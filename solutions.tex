@@ -1,0 +1,62 @@
+\input{prelude}
+
+% Import all our custom macros
+\input{macros}
+
+\title{
+  \booktitle \\
+  \ \\
+  Solutions Manual
+}
+
+% Lemmas/Corollaries environments
+\newtheorem{lem}{Lemma}[subsubsection]
+\newtheorem{defin}[lem]{Definition}
+\newtheorem{cor}[lem]{Corollary}
+\newtheorem{thrm}[lem]{Theorem}
+
+\begin{document}
+
+% Redefine numbering labels so it does not include section numbers
+\renewcommand\thesubsection{\arabic{subsection}}
+
+% Setup section (chapter)  format
+\titleformat{\section} % command
+[hang] % shape
+{\bfseries \Large} % format
+{Chapter \thesection} % label
+{12pt} % sep
+{} % before-code
+{} % after-code
+
+
+% Setup subsection format
+\titleformat{\subsection} % command
+[hang] % shape
+{\bfseries \large} % format
+{\S \thesubsection} % label
+{12pt} % sep
+{} % before-code
+{} % after-code
+
+% Question label format
+\newcommand\setqf[1]{\qformat{\hspace{0.5cm} \textbf{Exercise \thesubsection.\thequestion #1} \hfill \vrule depth 1em width 0pt}}
+\setqf{}
+
+% Title page
+\begin{titlingpage}
+  \maketitle
+\end{titlingpage}
+
+% Apparently need this to get page number on the first real page
+\cfoot{Page \thepage}
+
+% Start content
+\begin{questions}
+
+% Chapters (sections are used since the exam class has no chapters)
+\section{Set Theory and Logic}
+\input{sections/sec_04}
+
+\end{questions}
+\end{document}

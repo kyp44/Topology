@@ -1,0 +1,82 @@
+% Common sets
+\def\ints{{\mathbb{Z}}}
+\def\rats{{\mathbb{Q}}}
+\def\reals{{\mathbb{R}}}
+\def\es{\varnothing}
+
+% Common variables/symbols
+\def\vphi{\varphi}
+\def\a{\alpha}
+\def\b{\beta}
+\def\g{\gamma}
+\def\d{\delta}
+\def\e{\varepsilon}
+\def\z{\zeta}
+\def\k{\kappa}
+\def\l{\lambda}
+\def\n{\nu}
+\def\r{\rho}
+\def\s{\sigma}
+\def\t{\tau}
+\def\x{\xi}
+\def\w{\omega}
+\def\W{\Omega}
+
+% Logic
+\def\bic{\leftrightarrow}
+
+% For set-buider notation
+\def\where{\,|\,}
+
+% Other stuff
+\def\dom{\mathrm{dom}\,}
+\def\ran{\mathrm{ran}\,}
+
+% Shortcuts that make writing easier
+\newcommand\parens[1]{\left( #1 \right)}
+\newcommand\squares[1]{\left[ #1 \right]}
+\newcommand\braces[1]{\left\{ #1 \right\}}
+\newcommand\angles[1]{\left\langle #1 \right\rangle}
+\newcommand\ceil[1]{\left\lceil #1 \right\rceil}
+\newcommand\floor[1]{\left\lfloor #1 \right\rfloor}
+\newcommand\abs[1]{\left| #1 \right|}
+\newcommand\dabs[1]{\left\| #1 \right\|}
+\newcommand\vect[1]{\mathrm{\mathbf{#1}}}
+\newcommand\conj[1]{\overline{#1}}
+\newcommand\pset[1]{\mathcal{P}\left(#1\right)}
+\newcommand\inv[1]{#1^{-1}}
+\def\rest{\restriction}
+
+% Other miscellaneous stuff
+\def\ss{\subset}
+\def\pss{\subsetneq}
+\def\imp{\Rightarrow}
+
+% Environment shortcuts
+\newcommand\gath[1]{\begin{gather*} #1 \end{gather*}}
+\newcommand\ali[1]{\begin{align*} #1 \end{align*}}
+\newcommand\qproof[1]{\begin{proof} #1 \end{proof}}
+
+% Exercise, Theorem, and solution shortcuts
+\newcommand\exercise[2]{{ % Note that we need the double braces!
+    \renewcommand\label[1]{} % Needed to suppress multiply-defined label warning since the same question numbers are used in different sections
+    \setcounter{subsubsection}{#1-1} % Subsubsections are used to that lemmas have the full nested numbering
+    \stepcounter{subsubsection} % Need to increment this so that the lemma counter gets reset
+    \setcounter{question}{#1-1} % Manually set the question number since we always know the exercise number
+    \question{#2} % The actual exam class question
+}}
+\newcommand\sol[1]{\begin{solution} #1 \end{solution}}
+
+% Main problem label
+\def\mainprob{\textbf{Main Problem.}}
+
+% Book title
+\def\booktitle{
+  Topology \\
+  Second Edition \\
+  by James Munkres
+}
+
+% Authors
+\newcommand\contrib[1]{(Contributed by #1)}
+\def\dwhitman{\contrib{Dan Whitman}}
