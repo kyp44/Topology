@@ -1,0 +1,357 @@
+\setcounter{subsection}{4-1}
+\subsection{The Integers and the Real Numbers}
+
+\def\parta{(a) If $x + y = x$, then $y = 0$.}
+\def\partb{(b) $0 \cdot x = 0$. [Hint: Compute $(x+0) \cdot x$.]}
+\def\partc{(c) $-0 = 0$.}
+\def\partd{(d) $-(-x) = x$.}
+\def\parte{(e) $x(-y) = -(xy) = (-x)y$.}
+\def\partf{(f) $(-1)x = -x$.}
+\def\partg{(g) $x(y-z) = xy - xz$.}
+\def\parth{(h) $-(x+y) = -x - y$; $-(x-y) = -x + y$.}
+\def\parti{(i) If $x \neq 0$ and $x \cdot y = x$, then $y = 1$.}
+\def\partj{(j) $x/x = 1$ if $x \neq 0$.}
+\def\partk{(k) $x/1 = x$.}
+\def\partl{(l) $x \neq 0$ and $y \neq 0 \imp xy \neq 0$.}
+\def\partm{(m) $(1/y)(1/z) = 1/(yz)$ if $y,z \neq 0$.}
+\def\partn{(n) $(x/y)(w/z) = (xw)/(yz)$ if $y,z \neq 0$.}
+\def\parto{(o) $(x/y) + (w/z) = (xz + wy)/(yz)$ if $y,z \neq 0$.}
+\def\partp{(p) $x \neq 0 \imp 1/x \neq 0$.}
+\def\partq{(q) $1/(w/z) = z/w$ if $w,z \neq 0$.}
+\def\partr{(r) $(x/y)/(w/z) = (xz)/(yw)$ if $y,w,z \neq 0$.}
+\def\parts{(s) $(ax)/y = a(x/y)$ if $y \neq 0$.}
+\def\partt{(t) $(-x)/y = x/(-y) = -(x/y)$ if $y \neq 0$.}
+\def\xr{\frac{1}{x}}
+\def\yr{\frac{1}{y}}
+\def\zr{\frac{1}{z}}
+
+\exercise{1}{
+  Prove the following ``laws of algebra'' for $\reals$, using only axioms (1)-(5):
+
+  \begin{tabular}{ll}
+    \parta & \partk \\
+    \partb  & \partl  \\ 
+    \partc  & \partm \\
+    \partd  & \partn \\
+    \parte & \parto \\
+    \partf & \partp \\
+    \partg & \partq \\
+    \parth & \partr \\
+    \parti & \parts \\ 
+    \partj & \partt
+  \end{tabular}
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:intreal:eqadd}
+    $x + y = x + z$ if and only if $y = z$.
+  \end{lem}
+  \qproof{
+    $(\leftarrow)$ Clearly if $y = z$ then $x+y = x+z$ since the $+$ operation is a function.
+
+    $(\to)$ If $x+y = x+z$ then we have
+    \ali{
+      y &= y + 0 & \text{(by (3))} \\
+      &= 0 + y & \text{(by (2))} \\
+      &= (x + (-x)) + y & \text{(by (4))} \\
+      &= (-x + x) + y & \text{(by (2))} \\
+      &= -x + (x + y) & \text{(by (1))} \\
+      &= -x + (x + z) & \text{(by what was just shown for $(\leftarrow)$)} \\
+      &= (-x + x) + z & \text{(by (1))} \\
+      &= (x + (-x)) + z & \text{(by (2))} \\
+      &= 0 + z & \text{(by (4))} \\
+      &= z + 0 & \text{(by (2))} \\
+      &= z & \text{(by (3))}
+    }
+    as desired.
+  }
+
+  \begin{lem}\label{lem:intreal:eqmul}
+    If $x \neq 0$ then $x \cdot y = x \cdot z$ if and only if $y=z$.
+  \end{lem}
+  \qproof{
+    $(\leftarrow)$ Clearly if $y=z$ then $x \cdot y = x \cdot z$ since the $\cdot$ operation is a function.
+
+    $(\to)$ If $x \cdot y = x \cdot z$ then we have
+    \ali{
+      y &= y \cdot 1 & \text{(by (3))} \\
+      &= 1 \cdot y & \text{(by (2))} \\
+      &= \parens{x \cdot \xr} \cdot y & \text{(by (4), noting that $x \neq 0$)} \\
+      &= \parens{\xr \cdot x} \cdot y  & \text{(by (2))} \\
+      &= \xr \cdot \parens{x \cdot y} & \text{(by (1))} \\
+      &= \xr \cdot \parens{x \cdot z} & \text{(by what was just shown for $(\leftarrow)$)} \\
+      &= \parens{\xr \cdot x} \cdot z & \text{(by (1))} \\
+      &= \parens{x \cdot \xr} \cdot z & \text{(by (2))} \\
+      &= 1 \cdot z & \text{(by (4))} \\
+      &= z \cdot 1 & \text{(by (2))} \\
+      &= z & \text{(by (3))}
+    }
+    as desired.
+  }
+
+  \begin{lem}\label{lem:intreal:recom}
+    $1/(yz) = 1/(zy)$ if $y,z \neq 0$.
+  \end{lem}
+  \qproof{
+    We have $(zy) \cdot 1/(yz) = (yz) \cdot 1/(yz) = 1$ by (2) followed by (4) so that $1/(yz)$ is a reciprocal of $zy$.
+    Since this reciprocal is unique, however, it must be that $1/(yz) = 1/(zy)$ as desired.
+  }
+
+  \mainprob
+
+  \parta
+  \qproof{
+    Clearly by (3) we have $x + 0 = x = x + y$ so that it has to be that $y = 0$ by Lemma~\ref{lem:intreal:eqadd}.
+  }
+
+  \partb
+  \qproof{
+    We have
+    \ali{
+      x \cdot x + 0 \cdot x &= x \cdot x + x \cdot 0 & \text{(since $0 \cdot x = x \cdot 0$ by (2))} \\
+      &= x \cdot (x + 0) & \text{(by (5))} \\
+      &= x \cdot x \,. & \text{(since $x + 0 = x$ by (3))}
+    }
+    Thus it must be that $0 \cdot x = 0$ by part (a).
+  }
+
+  \partc
+  \qproof{
+    By (4) we have $0 + (-0) = 0$ so that it has to be that $-0 = 0$ by part (a).
+  }
+
+  \partd
+  \qproof{
+    We have
+    \ali{
+      -(-x) &= -(-x) + 0 & \text{(by (3))} \\
+      &= -(-x) + (x + (-x)) & \text{(by (4))} \\
+      &= -(-x) + ((-x) + x) & \text{(by (2))} \\
+      &= (-(-x) + (-x)) + x & \text{(by (1))} \\
+      &= ((-x) + (-(-x))) + x & \text{(by (2))} \\
+      &= 0 + x & \text{(by (4))} \\
+      &= x + 0 & \text{(by (2))} \\
+      &= x & \text{(by (3))}
+    }
+    as desired.
+  }
+
+  \parte
+  \qproof{
+    First we have
+    \ali{
+      x(-y) &= x(-y) + 0 & \text{(by (3))} \\
+      &= x(-y) + (xy + (-(xy))& \text{(by (4))} \\
+      &= (x(-y) + xy) + (-(xy)) & \text{(by (1))} \\
+      &= x(-y + y) + (-(xy)) & \text{(by (5))} \\
+      &= x(y + (-y)) + (-(xy)) & \text{(by (2))} \\
+      &= x \cdot 0 + (-(xy)) & \text{(by (4))} \\
+      &= 0 \cdot x + (-(xy)) & \text{(by (2))} \\
+      &= 0 + (-(xy)) & \text{(by part(b))} \\
+      &= -(xy) + 0 & \text{(by (2))} \\
+      &= -(xy) \,. & \text{(by (3))} \\
+    }
+    We also have
+    \ali{
+      (-x)y &= y(-x) & \text{(by (2))} \\
+      &= -(yx) & \text{(by what was just shown)} \\
+      &= -(xy) & \text{(by (2))}
+    }
+    so that the result follows since equality is transitive.
+  }
+
+  \partf
+  \qproof{
+    We have
+    \ali{
+      (-1)x &= -(1 \cdot x) & \text{(by part(e))} \\
+      &= -(x \cdot 1) & \text{(by (2))} \\
+      &= -x & \text{(since $x \cdot 1 = x$ by (3))}
+    }
+    as desired.
+  }
+
+  \partg
+  \qproof{
+    We have
+    \ali{
+      x(y-z) &= x(y + (-z)) & \text{(by the definition of subtraction)} \\
+      &= xy + x(-z) & \text{(by (5))} \\
+      &= xy + (-(xz)) & \text{(by part(e))} \\
+      &= xy - xz & \text{(by the definition of subtraction)}
+    }
+    as desired.
+  }
+
+  \parth
+  \qproof{
+    We have
+    \ali{
+      -(x+y) &= (-1)(x+y) & \text{(by part (f))} \\
+      &= (-1)x + (-1)y & \text{(by (5))} \\
+      &= -x + (-y) & \text{(by part (f) twice)} \\
+      &= -x - y & \text{(by the definition of subtraction)}
+    }
+    and
+    \ali{
+      -(x-y) &= -(x + (-y)) & \text{(by the definition of subtraction)} \\
+      &= -x - (-y)) & \text{(by what was just shown)} \\
+      &= -x + (-(-y)) & \text{(by the definition of subtraction)} \\
+      &= -x + y & \text{(by part (d))}
+    }
+    as desired.
+  }
+
+  \parti
+  \qproof{
+    By (3) we have $x \cdot 1 = x = x \cdot y$ so that it has to be that $y = 1$ by Lemma~\ref{lem:intreal:eqmul}, noting that this applies since $x \neq 0$.
+  }
+
+  \partj
+  \qproof{
+    By the definition of division we have $x/x = x \cdot (1/x) = 1$ by (4) since $x \neq 0$ and $1/x$ is defined as the reciprocal (i.e. the multiplicative inverse) of $x$.
+  }
+
+  \partk
+  \qproof{
+    First, we have by (4) that $1 \cdot (1/1) = 1$, where $1/1$ is the reciprocal of $1$.
+    We also have that $1 \cdot (1/1) = (1/1) \cdot 1 = 1/1$ by (2) and (3).
+    Therefore $1/1 = 1 \cdot (1/1) = 1$ so that $1$ is its own reciprocal.
+    Then, by the definition of division, we have $x/1 = x \cdot (1/1) = x \cdot 1 = x$ by (3).
+  }
+
+  \partl
+  \qproof{
+    Suppose that $x \neq 0$ and $y \neq 0$.
+    Also suppose to the contrary that $xy = 0$.
+    Since $y \neq 0$ it follows from (4) that $1/y$ exists.
+    So, we have $(xy) \cdot (1/y) = 0 \cdot (1/y) = 0$ by part (b).
+    We also have
+    \ali{
+      (xy) \cdot \yr &= x \parens{y \cdot \yr} & \text{(by (1))} \\
+      &= x \cdot 1 & \text{(by (4))} \\
+      &= x & \text{(by (3))}
+    }
+    so that $x = (xy) \cdot (1/y) = 0$, which is a contradiction since we supposed that $x \neq 0$.
+    Hence it must be that $xy \neq 0$ as desired.
+  }
+
+  \partm
+  \qproof{
+    We have
+    \ali{
+      (yz)\parens{\yr \cdot \zr} &= (yz) \parens{\zr \cdot \yr} & \text{(by (2))} \\
+      &= \parens{(yz) \cdot \zr}\yr & \text{(by (1))} \\
+      &= \parens{y \parens{z \cdot \zr}} \yr & \text{(by (1))} \\
+      &= \parens{y \cdot 1} \yr & \text{(by (4))} \\
+      &= y \cdot \yr & \text{(by (3))} \\
+      &= 1 & \text{(by (4))}
+    }
+    so that $(1/y)(1/z)$ is a multiplicative inverse of $yz$.
+    Since this inverse is \emph{unique} by (4), however, it has to be that $(1/y)(1/z) = 1/(yz)$ as desired.
+  }
+
+  \def\yzr{\frac{1}{yz}}
+  \partn
+  \qproof{
+    We have
+    \ali{
+      \frac{x}{y} \cdot \frac{w}{z} &= \parens{x \cdot \yr}\parens{w \cdot \zr} & \text{(by the definition of division)} \\
+      &= \parens{x \cdot \yr} \parens{\zr \cdot w} & \text{(by (2))} \\
+      &= \parens{\parens{x \cdot \yr} \zr} w  & \text{(by (1))} \\
+      &= \parens{x \parens{\yr \cdot \zr}} w & \text{(by (1))} \\
+      &= \parens{x \cdot \yzr} w & \text{(by part (m) since $y,z \neq 0$)} \\
+      &= \parens{\yzr \cdot x} w & \text{(by (2))} \\
+      &= \yzr (xw) & \text{(by (1))} \\
+      &=(xw) \yzr & \text{(by (2))} \\
+      &= \frac{xw}{yz} & \text{(by the definition of division)}
+    }
+    as desired.
+  }
+
+  \parto
+  \qproof{
+    We have
+    \ali{
+      \frac{x}{y} + \frac{w}{z} &= \frac{x}{y} \cdot 1 + \frac{w}{z} \cdot 1 & \text{(by (3))} \\
+      &= \frac{x}{y} \cdot \frac{z}{z} + \frac{w}{z} \cdot \frac{y}{y}  & \text{(by part (j))} \\
+      &= \frac{xz}{yz} + \frac{wy}{zy} & \text{(by part(n))} \\
+      &= (xz)\frac{1}{yz} + (wy)\frac{1}{zy} & \text{(by the definition of division)} \\
+      &= (xz)\frac{1}{yz} + (wy)\frac{1}{yz} & \text{(by Lemma~\ref{lem:intreal:recom})} \\
+      &= \frac{1}{yz}(xz) + \frac{1}{yz}(wy) & \text{(by (2))} \\
+      &= \frac{1}{yz}\parens{xz + wy} & \text{(by (5))} \\
+      &= \parens{xz+ wy} \frac{1}{yz} & \text{(by (2))} \\
+      &= \frac{xz + wy}{yz} & \text{(by the definition of division)}
+    }
+    as desired.
+  }
+
+  \partp
+  \qproof{
+    Suppose that $x \neq 0$ but $1/x = 0$.
+    Then we first have that $x \cdot (1/x) = x \cdot 0 = 0 \cdot x = 0$ by (2) and part (b).
+    However, we also have $x \cdot (1/x) = 1$ by (4).
+    Hence we have $0 = x \cdot (1/x) = 1$, which is a contradiction since we know that $0$ and $1$ are distinct by (3).
+    So, if we accept that $x \neq 0$, then it must be that $1/x \neq 0$ also.
+  }
+
+  \partq
+  \qproof{
+    We have
+    \ali{
+      \frac{w}{z} \cdot \frac{z}{w} &= \frac{wz}{zw} & \text{(by part (n) since $w,z \neq 0$)} \\
+      &= (wz) \frac{1}{zw} & \text{(by the definition of division)} \\
+      &= (wz) \frac{1}{wz} & \text{(by Lemma~\ref{lem:intreal:recom} since $w,z \neq 0$)} \\
+      &= 1 & \text{(by (4))}
+    }
+    so that by definition $z/w$ is the reciprocal of $w/z$.
+    Since this is unique by (4) we then have $z/w = 1/(w/z)$ as desired.
+  }
+
+  \partr
+  \qproof{
+    We have
+    \ali{
+      \frac{x/y}{w/z} &= \frac{x}{y} \cdot \frac{1}{w/z} & \text{(by the definition of division)} \\
+      &= \frac{x}{y} \cdot \frac{z}{w} & \text{(by part (q) since $w,z \neq 0$)} \\
+      &= \frac{xz}{yw} & \text{(by part (n) since $y,w \neq 0$)}
+    }
+    as desired.
+  }
+
+  \parts
+  \qproof{
+    We have
+    \ali{
+      \frac{ax}{y} &= (ax) \cdot \yr & \text{(by the definition of division)} \\
+      &= a \parens{x \cdot \yr} & \text{(by (1))} \\
+      &= a \cdot \frac{x}{y} & \text{(by the definition of division)}
+    }
+    as desired.
+  }
+
+  \partt
+  \qproof{
+    We have
+    \ali{
+      \frac{-x}{y} &= (-x) \cdot \yr & \text{(by the definition of division)} \\
+      &= ((-1)x) \cdot \yr & \text{(by part (f))} \\
+      &= (-1) \parens{x \cdot \yr} & \text{(by (1))} \\
+      &= (-1) \frac{x}{y} & \text{(by the definition of division)} \\
+      &= -\parens{\frac{x}{y}} \,. & \text{(by part (f))}
+    }
+    Now, we have $(-1)(-1) = -(-1) = 1$ by parts (f) and (d) so that $-1$ is its own reciprocal, since the reciprocal is unique, i.e. $1/(-1) = -1$.
+    We also have
+    \ali{
+      \frac{-x}{y} &= (-x) \cdot \yr & \text{(by the definition of division)} \\
+      &= ((-1)x) \cdot \yr & \text{(by part (f))} \\
+      &= (x(-1)) \cdot \yr & \text{(by (2))} \\
+      &= x \parens{(-1) \yr} & \text{(by (1))} \\
+      &= x \parens{\frac{1}{-1} \cdot \yr} & \text{(by what was just shown above)} \\
+      &= x \frac{1}{(-1)y} & \text{(part (m) since $y \neq 0$)} \\
+      &= x\frac{1}{-y} & \text{(by part (f))}
+    }
+    so that $-(x/y) = (-x)/y = x/(-y)$ as desired.
+  }
+}

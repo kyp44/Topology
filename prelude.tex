@@ -1,0 +1,37 @@
+\documentclass[answers]{exam}
+
+% AMS packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% Used so the PDF is hyperlinked for convenience
+\usepackage[hidelinks]{hyperref}
+
+% Used in copmlex tabular/table
+% Needed for a table in one of the solutions
+\usepackage{multirow}
+
+% Make the margins not so large
+% Cannot use for now because the page number at the bottom goes off page
+%\usepackage[margin=0.75in]{geometry}
+
+% Used to indent whole paragraphs
+\usepackage{changepage}
+
+% Needed to be able to do arithmetic when setting counters
+\usepackage{calc}
+
+% Needed to make title pages without page numbers in exam class
+\usepackage{titling}
+
+% Needed for customization of section headers
+\usepackage{titlesec}
+% This is to fix a bug in the version of titlesec that ships with Ubuntu 16.04
+% when this is updated this can be removed
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\ttlh@hang}{\parindent\z@}{\parindent\z@\leavevmode}{}{}
+\patchcmd{\ttlh@hang}{\noindent}{}{}{}
+\makeatother
