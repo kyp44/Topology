@@ -1,26 +1,26 @@
 \setcounter{subsection}{4-1}
 \subsection{The Integers and the Real Numbers}
 
-\def\parta{(a) If $x + y = x$, then $y = 0$.}
-\def\partb{(b) $0 \cdot x = 0$. [Hint: Compute $(x+0) \cdot x$.]}
-\def\partc{(c) $-0 = 0$.}
-\def\partd{(d) $-(-x) = x$.}
-\def\parte{(e) $x(-y) = -(xy) = (-x)y$.}
-\def\partf{(f) $(-1)x = -x$.}
-\def\partg{(g) $x(y-z) = xy - xz$.}
-\def\parth{(h) $-(x+y) = -x - y$; $-(x-y) = -x + y$.}
-\def\parti{(i) If $x \neq 0$ and $x \cdot y = x$, then $y = 1$.}
-\def\partj{(j) $x/x = 1$ if $x \neq 0$.}
-\def\partk{(k) $x/1 = x$.}
-\def\partl{(l) $x \neq 0$ and $y \neq 0 \imp xy \neq 0$.}
-\def\partm{(m) $(1/y)(1/z) = 1/(yz)$ if $y,z \neq 0$.}
-\def\partn{(n) $(x/y)(w/z) = (xw)/(yz)$ if $y,z \neq 0$.}
-\def\parto{(o) $(x/y) + (w/z) = (xz + wy)/(yz)$ if $y,z \neq 0$.}
-\def\partp{(p) $x \neq 0 \imp 1/x \neq 0$.}
-\def\partq{(q) $1/(w/z) = z/w$ if $w,z \neq 0$.}
-\def\partr{(r) $(x/y)/(w/z) = (xz)/(yw)$ if $y,w,z \neq 0$.}
-\def\parts{(s) $(ax)/y = a(x/y)$ if $y \neq 0$.}
-\def\partt{(t) $(-x)/y = x/(-y) = -(x/y)$ if $y \neq 0$.}
+\def\parta{If $x + y = x$, then $y = 0$.}
+\def\partb{$0 \cdot x = 0$. [Hint: Compute $(x+0) \cdot x$.]}
+\def\partc{$-0 = 0$.}
+\def\partd{$-(-x) = x$.}
+\def\parte{$x(-y) = -(xy) = (-x)y$.}
+\def\partf{$(-1)x = -x$.}
+\def\partg{$x(y-z) = xy - xz$.}
+\def\parth{$-(x+y) = -x - y$; $-(x-y) = -x + y$.}
+\def\parti{If $x \neq 0$ and $x \cdot y = x$, then $y = 1$.}
+\def\partj{$x/x = 1$ if $x \neq 0$.}
+\def\partk{$x/1 = x$.}
+\def\partl{$x \neq 0$ and $y \neq 0 \imp xy \neq 0$.}
+\def\partm{$(1/y)(1/z) = 1/(yz)$ if $y,z \neq 0$.}
+\def\partn{$(x/y)(w/z) = (xw)/(yz)$ if $y,z \neq 0$.}
+\def\parto{$(x/y) + (w/z) = (xz + wy)/(yz)$ if $y,z \neq 0$.}
+\def\partp{$x \neq 0 \imp 1/x \neq 0$.}
+\def\partq{$1/(w/z) = z/w$ if $w,z \neq 0$.}
+\def\partr{$(x/y)/(w/z) = (xz)/(yw)$ if $y,w,z \neq 0$.}
+\def\parts{$(ax)/y = a(x/y)$ if $y \neq 0$.}
+\def\partt{$(-x)/y = x/(-y) = -(x/y)$ if $y \neq 0$.}
 \def\xr{\frac{1}{x}}
 \def\yr{\frac{1}{y}}
 \def\zr{\frac{1}{z}}
@@ -28,18 +28,30 @@
 \exercise{1}{
   Prove the following ``laws of algebra'' for $\reals$, using only axioms (1)-(5):
 
-  \begin{tabular}{ll}
-    \parta & \partk \\
-    \partb  & \partl  \\ 
-    \partc  & \partm \\
-    \partd  & \partn \\
-    \parte & \parto \\
-    \partf & \partp \\
-    \partg & \partq \\
-    \parth & \partr \\
-    \parti & \parts \\ 
-    \partj & \partt
-  \end{tabular}
+  \begin{multicols}{2}
+    \begin{enumerate}[label=(\alph*)]
+      \item \parta
+      \item \partb
+      \item \partc
+      \item \partd
+      \item \parte
+      \item \partf
+      \item \partg
+      \item \parth
+      \item \parti
+      \item \partj
+      \item \partk
+      \item \partl
+      \item \partm
+      \item \partn
+      \item \parto
+      \item \partp
+      \item \partq
+      \item \partr
+      \item \parts
+      \item \partt
+    \end{enumerate}
+  \end{multicols}
 }
 \sol{
   \dwhitman
@@ -48,16 +60,16 @@
     $x + y = x + z$ if and only if $y = z$.
   \end{lem}
   \qproof{
-    $(\leftarrow)$ Clearly if $y = z$ then $x+y = x+z$ since the $+$ operation is a function.
+    $(\pmi)$ Clearly if $y = z$ then $x+y = x+z$ since the $+$ operation is a function.
 
-    $(\to)$ If $x+y = x+z$ then we have
+    $(\imp)$ If $x+y = x+z$ then we have
     \ali{
       y &= y + 0 & \text{(by (3))} \\
       &= 0 + y & \text{(by (2))} \\
       &= (x + (-x)) + y & \text{(by (4))} \\
       &= (-x + x) + y & \text{(by (2))} \\
       &= -x + (x + y) & \text{(by (1))} \\
-      &= -x + (x + z) & \text{(by what was just shown for $(\leftarrow)$)} \\
+      &= -x + (x + z) & \text{(by what was just shown for $(\pmi)$)} \\
       &= (-x + x) + z & \text{(by (1))} \\
       &= (x + (-x)) + z & \text{(by (2))} \\
       &= 0 + z & \text{(by (4))} \\
@@ -71,16 +83,16 @@
     If $x \neq 0$ then $x \cdot y = x \cdot z$ if and only if $y=z$.
   \end{lem}
   \qproof{
-    $(\leftarrow)$ Clearly if $y=z$ then $x \cdot y = x \cdot z$ since the $\cdot$ operation is a function.
+    $(\pmi)$ Clearly if $y=z$ then $x \cdot y = x \cdot z$ since the $\cdot$ operation is a function.
 
-    $(\to)$ If $x \cdot y = x \cdot z$ then we have
+    $(\imp)$ If $x \cdot y = x \cdot z$ then we have
     \ali{
       y &= y \cdot 1 & \text{(by (3))} \\
       &= 1 \cdot y & \text{(by (2))} \\
       &= \parens{x \cdot \xr} \cdot y & \text{(by (4), noting that $x \neq 0$)} \\
       &= \parens{\xr \cdot x} \cdot y  & \text{(by (2))} \\
       &= \xr \cdot \parens{x \cdot y} & \text{(by (1))} \\
-      &= \xr \cdot \parens{x \cdot z} & \text{(by what was just shown for $(\leftarrow)$)} \\
+      &= \xr \cdot \parens{x \cdot z} & \text{(by what was just shown for $(\pmi)$)} \\
       &= \parens{\xr \cdot x} \cdot z & \text{(by (1))} \\
       &= \parens{x \cdot \xr} \cdot z & \text{(by (2))} \\
       &= 1 \cdot z & \text{(by (4))} \\
@@ -100,12 +112,12 @@
 
   \mainprob
 
-  \parta
+  (a) \parta
   \qproof{
     Clearly by (3) we have $x + 0 = x = x + y$ so that it has to be that $y = 0$ by Lemma~\ref{lem:intreal:eqadd}.
   }
 
-  \partb
+  (b) \partb
   \qproof{
     We have
     \ali{
@@ -116,12 +128,12 @@
     Thus it must be that $0 \cdot x = 0$ by part (a).
   }
 
-  \partc
+  (c) \partc
   \qproof{
     By (4) we have $0 + (-0) = 0$ so that it has to be that $-0 = 0$ by part (a).
   }
 
-  \partd
+  (d) \partd
   \qproof{
     We have
     \ali{
@@ -137,7 +149,7 @@
     as desired.
   }
 
-  \parte
+  (e) \parte
   \qproof{
     First we have
     \ali{
@@ -161,7 +173,7 @@
     so that the result follows since equality is transitive.
   }
 
-  \partf
+  (f) \partf
   \qproof{
     We have
     \ali{
@@ -172,7 +184,7 @@
     as desired.
   }
 
-  \partg
+  (g) \partg
   \qproof{
     We have
     \ali{
@@ -184,7 +196,7 @@
     as desired.
   }
 
-  \parth
+  (h) \parth
   \qproof{
     We have
     \ali{
@@ -203,17 +215,17 @@
     as desired.
   }
 
-  \parti
+  (i) \parti
   \qproof{
     By (3) we have $x \cdot 1 = x = x \cdot y$ so that it has to be that $y = 1$ by Lemma~\ref{lem:intreal:eqmul}, noting that this applies since $x \neq 0$.
   }
 
-  \partj
+  (j) \partj
   \qproof{
     By the definition of division we have $x/x = x \cdot (1/x) = 1$ by (4) since $x \neq 0$ and $1/x$ is defined as the reciprocal (i.e. the multiplicative inverse) of $x$.
   }
 
-  \partk
+  (k) \partk
   \qproof{
     First, we have by (4) that $1 \cdot (1/1) = 1$, where $1/1$ is the reciprocal of $1$.
     We also have that $1 \cdot (1/1) = (1/1) \cdot 1 = 1/1$ by (2) and (3).
@@ -221,7 +233,7 @@
     Then, by the definition of division, we have $x/1 = x \cdot (1/1) = x \cdot 1 = x$ by (3).
   }
 
-  \partl
+  (l) \partl
   \qproof{
     Suppose that $x \neq 0$ and $y \neq 0$.
     Also suppose to the contrary that $xy = 0$.
@@ -237,7 +249,7 @@
     Hence it must be that $xy \neq 0$ as desired.
   }
 
-  \partm
+  (m) \partm
   \qproof{
     We have
     \ali{
@@ -253,7 +265,7 @@
   }
 
   \def\yzr{\frac{1}{yz}}
-  \partn
+  (n) \partn
   \qproof{
     We have
     \ali{
@@ -270,7 +282,7 @@
     as desired.
   }
 
-  \parto
+  (o) \parto
   \qproof{
     We have
     \ali{
@@ -287,7 +299,7 @@
     as desired.
   }
 
-  \partp
+  (p) \partp
   \qproof{
     Suppose that $x \neq 0$ but $1/x = 0$.
     Then we first have that $x \cdot (1/x) = x \cdot 0 = 0 \cdot x = 0$ by (2) and part (b).
@@ -296,7 +308,7 @@
     So, if we accept that $x \neq 0$, then it must be that $1/x \neq 0$ also.
   }
 
-  \partq
+  (q) \partq
   \qproof{
     We have
     \ali{
@@ -309,7 +321,7 @@
     Since this is unique by (4) we then have $z/w = 1/(w/z)$ as desired.
   }
 
-  \partr
+  (r) \partr
   \qproof{
     We have
     \ali{
@@ -320,7 +332,7 @@
     as desired.
   }
 
-  \parts
+  (s) \parts
   \qproof{
     We have
     \ali{
@@ -331,7 +343,7 @@
     as desired.
   }
 
-  \partt
+  (t) \partt
   \qproof{
     We have
     \ali{
@@ -353,5 +365,267 @@
       &= x\frac{1}{-y} & \text{(by part (f))}
     }
     so that $-(x/y) = (-x)/y = x/(-y)$ as desired.
+  }
+}
+
+\def\parta{$x > y$ and $w > z \imp x+w > y+z$.}
+\def\partb{$x > 0$ and $y > 0 \imp x+y>0$ and $x \cdot y > 0$.}
+\def\partc{$x > 0 \bic -x < 0$.}
+\def\partd{$x > y \bic -x < -y$.}
+\def\parte{$x > y$ and $z < 0 \imp xz < yz$.}
+\def\partf{$x \neq 0 \imp x^2 > 0$, where $x^2 = x \cdot x$.}
+\def\partg{$-1 < 0 < 1$.}
+\def\parth{$xy > 0 \bic x$ and $y$ are both positive or both negative.}
+\def\parti{$x > 0 \imp 1/x > 0$.}
+\def\partj{$x > y > 0 \imp 1/x < 1/y$.}
+\def\partk{$x < y \imp x < (x+y)/2 < y$.}
+
+\newpage % This is just because the exercise label was on a separate page from the text, which was annoying
+\exercise{2}{
+  Prove the following ``laws of inequalities'' for $\reals$, using axioms (1)-(6) along with the results of Exercise~1:
+
+  \begin{multicols}{2}
+    \begin{enumerate}[label=(\alph*)]
+      \item \parta
+      \item \partb
+      \item \partc
+      \item \partd
+      \item \parte
+      \item \partf
+      \item \partg
+      \item \parth
+      \item \parti
+      \item \partj
+      \item \partk
+    \end{enumerate}
+  \end{multicols}
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:intreal:xpx}
+    $x + x = 2x$ for any real $x$.
+  \end{lem}
+  \qproof{
+    We simply have
+    \ali{
+      x+x &= x \cdot 1 + x \cdot 1 & \text{(by (3))} \\
+      &= x(1+1) & \text{(by (5))} \\
+      &= x \cdot 2 & \text{(since $2$ is defined as $1+1$)} \\
+      &= 2x & \text{(by (2))}
+    }
+    as desired.
+  }
+
+  \mainprob
+
+  (a) \parta
+  \qproof{
+    We have
+    \ali{
+      x+w &> y+w & \text{(by (6) since $x>y$)} \\
+      &= w + y & \text{(by (2))} \\
+      &> z + y & \text{(by (6) since $w>z$)} \\
+      &= y + z & \text{(by (2))}
+    }
+    as desired.
+  }
+
+  (b) \partb
+  \qproof{
+    First we have
+    \ali{
+      x+y &> 0 + y & \text{(by (6) since $x>0$)} \\
+      &= y+0 & \text{(by (2))} \\
+      &= y & \text{(by (3))} \\
+      &> 0 \,.
+    }
+    Also
+    \ali{
+      x \cdot y &> 0 \cdot y & \text{(by (6) since $x>0$ and $y>0$)} \\
+      &= 0 & \text{(by Exercise~4.1b)}
+    }
+    as desired.
+  }
+
+  (c) \partc
+  \qproof{
+    $(\imp)$ Suppose that $x>0$.
+    Then we have
+    \ali{
+      -x &= -x + 0 & \text{(by (3))} \\
+      &= 0 + (-x) & \text{(by (2))} \\
+      &< x + (-x) & \text{(by (6) since $0 < x$)} \\
+      &= 0 \,. & \text{(by (4))}
+    }
+
+    $(\pmi)$ Suppose now that $-x < 0$.
+    Then we have
+    \ali{
+      x &= x + 0 & \text{(by (3))} \\
+      &= 0 + x & \text{(by (2))} \\
+      &> -x + x & \text{(by (6) since $0 > -x$)} \\
+      &= x + (-x) & \text{(by (2))} \\
+      &= 0 & \text{(by (4))}
+    }
+    as desired.
+  }
+
+  (d) \partd
+  \qproof{
+    $(\imp)$ Suppose that $x > y$.
+    Then we have
+    \ali{
+      -y &= -y + 0 & \text{(by (3))} \\
+      &= -y + (x + (-x)) & \text{(by (4))} \\
+      &= (x + (-x)) + (-y) & \text{(by (2))} \\
+      &= x + (-x + (-y)) & \text{(by (1))} \\
+      &> y + (-x + (-y)) & \text{(by (6) since $x > y$)} \\
+      &= y + (-y + (-x)) & \text{(by (2))} \\
+      &= (y + (-y)) + (-x) & \text{(by (1))} \\
+      &= 0 + (-x) & \text{(by (4))} \\
+      &= -x + 0 & \text{(by (2))} \\
+      &= -x \,. & \text{(by (3))}
+    }
+
+    $(\pmi)$ Now suppose that $-x < -y$.
+    Then we have
+    \ali{
+      x &= x + 0 & \text{(by (3))} \\
+      &= x + (y + (-y)) & \text{(by (4))} \\
+      &= (y + (-y)) + x & \text{(by (2))} \\
+      &= (-y + y) + x & \text{(by (2))} \\
+      &= -y + (y + x) & \text{(by (1))} \\
+      &> -x + (y + x) & \text{(by (6) since $-y > -x$)} \\
+      &= -x + (x + y) & \text{(by (2))} \\
+      &= (-x + x) + y & \text{(by (1))} \\
+      &= (x + (-x)) + y & \text{(by (2))} \\
+      &= 0 + y & \text{(by (4))} \\
+      &= y + 0 & \text{(by (2))} \\
+      &= y & \text{(by (3))}
+    }
+    as desired.
+  }
+
+  (e) \parte
+  \qproof{
+    First, by Exercise~4.1d, we have $-(-z) = z < 0$ so that $-z > 0$ by part (c).
+    Then, since $x > y$, it follows from (6) that
+    \ali{
+      x(-z) &> y(-z) \\
+      -(xz) &> -(yz) & \text{(by Exercise~4.1e applied to both sides)} \\
+      xz &< yz & \text{(by part (d))} 
+    }
+    as desired.
+  }
+
+  (f) \partf
+  \qproof{
+    Since $x \neq 0$ we either have that $x> 0$ or $x < 0$ since the $<$ relation is an order (in particular a linear order since this is part of the definition of order in this text).
+    If $x > 0$ then we have $x^2 = x \cdot x > 0 \cdot x = 0$ by (6) (since $x > 0$) and Exercise~4.1b.
+    If $x < 0$ then we have $0 = 0 \cdot x < x \cdot x = x^2$ by part (e) (since $0 > x$) and Exercise~4.1b.
+    Together these show the desired result.
+  }
+
+  (g) \partg
+  \qproof{
+    By (4) we know that $1 \neq 0$ so that $1^2 > 0$ by part (f).
+    However, we have $1^2 = 1 \cdot 1 = 1$ by (3).
+    Hence $1 = 1^2 > 0$.
+    It then follows from part (c) that $-1 < 0$ so that we have $-1 < 0 < 1$ as desired.
+  }
+
+  (h) \parth
+  \qproof{
+    $(\imp)$ Suppose that $xy > 0$.
+    It cannot be that $x = 0$, for then we would have $0 = 0 \cdot y = xy > 0$ by Exercise~4.1b, which is impossible by the definition of an order.
+    Hence we have $x \neq 0$, and an analagous argument shows that $y \neq 0$ as well.
+    We then have the following:
+
+    Case: $x > 0$.
+    Suppose that $y < 0$.
+    Then, by part (e) and Exercise~4.1b, we have $xy < 0 \cdot y = 0$ since $x > 0$ and $y < 0$, which contradicts our initial supposition.
+    Thus, since we know that $y \neq 0$, it has to be that $y > 0$ as well.
+
+    Case: $x < 0$.
+    Supose that $y > 0$.
+    Then, by (6) and Exercise~4.1b, we have $0 = 0 \cdot y > xy$ since $0 > x$ and $y > 0$, which again contradicts the initial supposition.
+    So it must be that $y < 0$ also since $y \neq 0$.
+
+    Therefore in every case either both $x$ and $y$ are positive or they are both negative.
+    Since $x \neq 0$, these cases are exhaustive so that this shows the result.
+
+    $(\pmi)$ Suppose that either $x > 0, y > 0$ or $x < 0, y < 0$.
+    In the case where both $x>0$  and $y>0$ we clearly have $xy > 0 \cdot y = 0$ by (6) and Exercise~4.1b.
+    In the other case in which $x<0$ and $y<0$ we have $0 = 0 \cdot y < xy$ by part (e) and Exercise~4.1b since $0 > x$ and $y < 0$.
+    Hence $xy > 0$ in both cases.
+  }
+
+  (i) \parti
+  \qproof{
+    First, it cannot be that $1/x=0$ because then we would have $1 = x(1/x) = x \cdot 0 = 0 \cdot x = 0$ by (4), (2), and Exercise~4.1b.
+    This is clearly a contradiction since we know that $1 \neq 0$ by (3).
+    Hence $1/x \neq 0$.
+    Now suppose that $1/x<0$ so that $1 = x(1/x) < 0 \cdot (1/x) = 0$ by part (e) since $x>0$ and $1/x<0$, and we have also used Exercise~4.1b.
+    This is also a contradiction since it was proved in part (g) that $1>0$.
+    Hence the only remaining possibility is that $1/x>0$ as desired.
+  }
+
+  (j) \partj
+  \qproof{
+    First, since the order is transitive, we have $x,y > 0$.
+    It then follows from part (i) that $1/x,1/y > 0$.
+    Then $(1/x)(1/y) > 0$ by part (h).
+    We then have
+    \ali{
+      \xr &= \xr \cdot 1 & \text{(by (3))} \\
+      &= \xr \parens{y \cdot \yr} & \text{(by (4))} \\
+      &= \parens{\xr \cdot y} \yr & \text{(by (1))} \\
+      &= \parens{y \cdot \xr} \yr & \text{(by (2))} \\
+      &= y \parens{\xr \cdot \yr} & \text{(by (1))} \\
+      &< x \parens{\xr \cdot \yr} & \text{(by (6) since $y<x$ and $(1/x)(1/y)>0$)} \\
+      &= \parens{x \cdot \xr} \yr & \text{(by (1))} \\
+      &= 1 \cdot \yr & \text{(by (4))} \\
+      &= \yr \cdot 1 & \text{(by (2))} \\
+      &= \yr & \text{(by (3))}
+    }
+    as desired.
+  }
+
+  (k) \partk
+  \qproof{
+    First, we know by part (g) that $1 > 0$ so that
+    \ali{
+      2 &= 1 + 1 & \text{(by the definition of 2)} \\
+      &> 0 + 1 & \text{(by (6) since $1>0$ )} \\
+      &= 1 + 0 & \text{(by (2))} \\
+      &= 1 & \text{(by (3))} \\
+      &> 0 \,. & \text{(by part (g))}
+    }
+    To summarize, $0 < 1 < 2$.
+    It then follows from part (i) that $1/2 > 0$.
+    We then have
+    \ali{
+      x &< y \\
+      x + x &< x + y & \text{(by (6))} \\
+      2x &< x + y & \text{(by Lemma~\ref{lem:intreal:xpx})} \\
+      (2x)\frac{1}{2} &< (x+y)\frac{1}{2} & \text{(by (6) since $1/2>0$)} \\
+      (x \cdot 2) \frac{1}{2} &< \frac{x+y}{2} & \text{(by (2) and the definition of division)} \\
+      x \parens{2 \cdot \frac{1}{2}} &< \frac{x+y}{2} & \text{(by (1))} \\\
+      x \cdot 1 &< \frac{x+y}{2} & \text{(by (4))} \\
+      x &< \frac{x+y}{2}\,. & \text{(by (3))}
+    }
+    Similarly, we have
+    \ali{
+      x &< y \\
+      x + y &< y + y & \text{(by (6))} \\
+      x + y &< 2y & \text{(by Lemma~\ref{lem:intreal:xpx})} \\
+      (x+y)\frac{1}{2} &< (2y)\frac{1}{2} & \text{(by (6) since $1/2>0$)} \\
+      \frac{x+y}{2} &< (y \cdot 2) \frac{1}{2} & \text{(by the definition of division and (2))} \\
+      \frac{x+y}{2} &< y \parens{2 \cdot \frac{1}{2}} & \text{(by (1))} \\
+      \frac{x+y}{2} &< y \cdot 1 & \text{(by (4))} \\
+      \frac{x+y}{2} &< y \,. & \text{(by (3))}
+    }
+    This shows that $x < (x+y)/2 < y$ as desired.
   }
 }

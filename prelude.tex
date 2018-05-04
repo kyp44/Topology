@@ -35,3 +35,9 @@
 \patchcmd{\ttlh@hang}{\parindent\z@}{\parindent\z@\leavevmode}{}{}
 \patchcmd{\ttlh@hang}{\noindent}{}{}{}
 \makeatother
+
+% Needed for multi column sections
+\usepackage{multicol}
+
+% Needed to change enumeartion formatting
+\usepackage{enumitem}
