@@ -29,28 +29,28 @@
   Prove the following ``laws of algebra'' for $\reals$, using only axioms (1)-(5):
 
   \begin{multicols}{2}
-    \begin{enumerate}[label=(\alph*)]
-      \item \parta
-      \item \partb
-      \item \partc
-      \item \partd
-      \item \parte
-      \item \partf
-      \item \partg
-      \item \parth
-      \item \parti
-      \item \partj
-      \item \partk
-      \item \partl
-      \item \partm
-      \item \partn
-      \item \parto
-      \item \partp
-      \item \partq
-      \item \partr
-      \item \parts
-      \item \partt
-    \end{enumerate}
+    \eparts{
+    \item \parta
+    \item \partb
+    \item \partc
+    \item \partd
+    \item \parte
+    \item \partf
+    \item \partg
+    \item \parth
+    \item \parti
+    \item \partj
+    \item \partk
+    \item \partl
+    \item \partm
+    \item \partn
+    \item \parto
+    \item \partp
+    \item \partq
+    \item \partr
+    \item \parts
+    \item \partt
+    }
   \end{multicols}
 }
 \sol{
@@ -385,19 +385,19 @@
   Prove the following ``laws of inequalities'' for $\reals$, using axioms (1)-(6) along with the results of Exercise~1:
 
   \begin{multicols}{2}
-    \begin{enumerate}[label=(\alph*)]
-      \item \parta
-      \item \partb
-      \item \partc
-      \item \partd
-      \item \parte
-      \item \partf
-      \item \partg
-      \item \parth
-      \item \parti
-      \item \partj
-      \item \partk
-    \end{enumerate}
+    \eparts{
+    \item \parta
+    \item \partb
+    \item \partc
+    \item \partd
+    \item \parte
+    \item \partf
+    \item \partg
+    \item \parth
+    \item \parti
+    \item \partj
+    \item \partk
+    }
   \end{multicols}
 }
 \sol{
@@ -634,10 +634,10 @@
 \def\intA{\bigcap_{A \in \inds} A}
 \def\intB{\bigcap_{B \in \inds} B}
 \exercise{3}{
-  \begin{enumerate}[label=(\alph*)]
+  \eparts{
   \item Show that if $\inds$ is a collection of inductive sets, then the intersection of the elements of $\inds$ is an inductive set.
   \item Prove the basic properties (1) and (2) of $\pints$.
-  \end{enumerate}
+  }
 }
 \sol{
   \dwhitman
@@ -667,4 +667,36 @@
     This shows that $A = \pints$ as desired since also $A \ss \pints$.
     This shows property (2).
   }
+}
+
+\exercise{4}{
+  \eparts{
+  \item Prove by induction that given $n \in \pints$, every nonempty subset of $\braces{1,\ldots,n}$ has a largest element.
+  \item Explain why you cannot conclude from (a) that every nonempty subset of $\pints$ has a largest element.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    Let $A$ be the set of integers such that the hypothesis is true.
+    Clearly the result is then shown if we can prove that $A = \pints$.
+    So first, clearly $1 \in A$ since the set $\braces{1}$ has only a single nonempty subset, i.e. $\braces{1}$ itself, in which 1 is clearly the largest element.
+    Now suppose that $n \in A$ so that every nonempty subset of $S_{n+1} = \braces{1,\ldots,n}$ has a largest element.
+    Consider any nonempty subset $B$ of $S_{n+2} = \braces{1,\ldots,n+1}$, noting that $S_{n+2} = S_{n+1} \cup \braces{n+1}$.
+
+    Case: $n+1 \in B$.
+    Then, for any other $k \in B$, $k \in S_{n+2}$ so that either $k = n+1$ or $k \in S_{n+1}$ so that $k < n+1$ by the definition of $S_{n+1}$.
+    Thus in either case $k \leq n+1$ so that $n+1$ is the greatest element of $B$ since $k$ was arbitrary.
+
+    Case: $n+1 \notin B$.
+    Then clearly $B \ss S_{n+1}$ so that $B$ has a greatest element by the induction hypothesis since $B$ is nonempty.
+
+    Hence in either case $B$ has a greatest element so that $n+1 \in A$ since $B$ was an arbitrary nonempty subset of $S_{n+2} = \braces{1, \ldots, n+1}$.
+    This shows that $A$ is an inductive set of positive integers so that $A = \pints$ as desired by the Principle of Induction.
+  }
+
+  (b) There could be nonempty subsets of $\pints$ that are \emph{not} subsets of $S_{n+1} = \braces{1, \ldots, n}$ for any $n \in \pints$, in which cases the hypothesis of part (a) is not satisfied so that the conclusion does not necessarily apply.
+  In fact, $\pints$ itself is an example of such a set.
 }
