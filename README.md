@@ -17,6 +17,6 @@ Other Solutions Manuals
 
 There are other solutions manuals floating around the Internet, and when studying mathematics it is always good to have different perspectives.
 
-[A nice online solutins manual](https://dbfin.com/topology/munkres/)
+[A nice online solutions manual](https://dbfin.com/topology/munkres/)
 
 [Another GiHub solutions manual project (includes both HTML and PDF)](https://github.com/9beach/munkres-topology-solutions)
