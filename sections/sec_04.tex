@@ -539,7 +539,7 @@
   \qproof{
     $(\imp)$ Suppose that $xy > 0$.
     It cannot be that $x = 0$, for then we would have $0 = 0 \cdot y = xy > 0$ by Exercise~4.1b, which is impossible by the definition of an order.
-    Hence we have $x \neq 0$, and an analagous argument shows that $y \neq 0$ as well.
+    Hence we have $x \neq 0$, and an analogous argument shows that $y \neq 0$ as well.
     We then have the following:
 
     Case: $x > 0$.
@@ -548,7 +548,7 @@
     Thus, since we know that $y \neq 0$, it has to be that $y > 0$ as well.
 
     Case: $x < 0$.
-    Supose that $y > 0$.
+    Suppose that $y > 0$.
     Then, by (6) and Exercise~4.1b, we have $0 = 0 \cdot y > xy$ since $0 > x$ and $y > 0$, which again contradicts the initial supposition.
     So it must be that $y < 0$ also since $y \neq 0$.
 
@@ -627,5 +627,44 @@
       \frac{x+y}{2} &< y \,. & \text{(by (3))}
     }
     This shows that $x < (x+y)/2 < y$ as desired.
+  }
+}
+
+\def\inds{\mathcal{A}}
+\def\intA{\bigcap_{A \in \inds} A}
+\def\intB{\bigcap_{B \in \inds} B}
+\exercise{3}{
+  \begin{enumerate}[label=(\alph*)]
+  \item Show that if $\inds$ is a collection of inductive sets, then the intersection of the elements of $\inds$ is an inductive set.
+  \item Prove the basic properties (1) and (2) of $\pints$.
+  \end{enumerate}
+}
+\sol{
+  \dwhitman
+
+  (a) We must show that $\intA$ is inductive.
+  \qproof{
+    First, consider any $A \in \inds$.
+    Then, since $A$ is inductive, $1 \in A$.
+    Since $A$ was arbitrary, this shows that $1 \in \intA$.
+    Now suppose that $x \in \intA$ and again consider arbitrary $A \in \inds$.
+    Then $x \in A$ so that $x+1 \in A$ also since $A$ is inductive.
+    Since $A$ was arbitrary, this shows that $x+1 \in \intA$.
+    Hence by definition $\intA$ is inductive.
+  }
+
+  (b)
+  \qproof{
+    Let $\inds$ be the collection of all inductive sets of $\reals$ so that by definition $\pints = \intA$.
+    It then follows immediately from part (a) that $\pints$ is inductive since $\inds$ is a collection of inductive sets.
+    This shows property (1).
+
+    Now suppose that $A$ is an inductive set of positive integers.
+    That is, $A$ is inductive and $A \ss \pints$.
+    Consider any $x \in \pints = \intB$, where again $\inds$ is the the collection of all inductive subsets of $\reals$.
+    Clearly we have that $A \ss \pints \ss \reals$ so that $A \in \inds$ since $A$ is an inductive subset of $\reals$.
+    Hence $x \in A$ (since $x \in \intB$ and $A \in \inds$) so that $\pints \ss A$ since $x$ was arbitrary.
+    This shows that $A = \pints$ as desired since also $A \ss \pints$.
+    This shows property (2).
   }
 }
