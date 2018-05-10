@@ -698,5 +698,160 @@
   }
 
   (b) There could be nonempty subsets of $\pints$ that are \emph{not} subsets of $S_{n+1} = \braces{1, \ldots, n}$ for any $n \in \pints$, in which cases the hypothesis of part (a) is not satisfied so that the conclusion does not necessarily apply.
-  In fact, $\pints$ itself is an example of such a set.
+  In fact, $\pints$ itself is an example of such a set where both the hypothesis and the conclusion are false.
+}
+
+\def\pintsz{\pints \cup \braces{0}}
+\exercise{5}{
+  Prove the following properties of $\ints$ and $\pints$:
+  \eparts{
+  \item $a,b \in \pints \imp a + b \in \pints$.
+    [Hint: Show that given $a \in \pints$, the set $X = \braces{x \where x \in \reals \text{ and } a + x \in \pints}$ is inductive.]
+  \item $a,b \in \pints \imp a \cdot b \in \pints$.
+  \item Show that $a \in \pints \imp a-1 \in \pints \cup \braces{0}$.
+    [Hint: Let $X = \braces{x \where x \in \reals \text{ and } x-1 \in \pints \cup \braces{0}}$; show that $X$ is inductive.]
+  \item $c,d \in \ints \imp c+d \in \ints$ and $c-d \in \ints$.
+    [Hint: Prove it first for $d=1$.]
+  \item $c,d \in \ints \imp c \cdot d \in \ints$.
+  }
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:intreal:negz}
+    If $x \in \ints$ then $-x \in \ints$.
+  \end{lem}
+  \qproof{
+    Let $\nints = \braces{-x \where x \in \pints}$ so that by definition $\ints = \pintsz \cup \nints$.
+    Suppose that $x \in \ints$ so that $x \in \pintsz \cup \nints$.
+
+    Case: $x \in \pints$.
+    Then $-x \in \nints$ by definition.
+
+    Case: $x = 0$.
+    Then by Exercise~4.1c we have $-x = -0 = 0 \in \braces{0}$.
+
+    Case: $x \in \nints$.
+    Then by definition there is a $y \in \pints$ such that $x = -y$.
+    Then $-x = -(-y) = y \in \pints$ by Exercise~4.1d.
+
+    Hence in all cases either $-x \in \pints$, $-x \in \braces{0}$, or $-x \in \nints$ so that $-x \in \pintsz \cup \nints = \ints$ as desired.
+  }
+
+  \mainprob
+  
+  (a)
+  \qproof{
+    Consider any $a \in \pints$ and define $X_a = \braces{x \in \reals \where a+x \in \pints}$.
+    We show that $X_a$ is inductive.
+    First, since $a \in \pints$ we have that $a+1 \in \pints$ since $\pints$ is inductive.
+    Hence $1 \in X_a$ by definition.
+    Now suppose that $x \in X_a$ so that $a+x \in \pints$.
+    Then we have $a+(x+1) = (a+x)+1 \in \pints$ since $a+x \in \pints$ and $\pints$ is inductive.
+    This shows by definition that $x+1 \in X_a$ and therefore that $X_a$ is inductive.
+    It follows that $\pints \ss X_a$ since $\pints$ is defined as the intersection of all inductive subsets of reals, of which $X_a$ is one.
+
+    Therefore, for any $a,b \in \pints$, we have that $b \in X_a$ since $\pints \ss X_a$.
+    Thus by definition $a + b \in \pints$ as desired
+  }
+
+  (b)
+  \qproof{
+    Consider any $a \in \pints$ and define $X_a = \braces{x \in \reals \where a \cdot x \in \pints}$.
+    We show that $X_a$ is inductive.
+    To this end, we first have that $a \cdot 1 = a \in \pints$ so that $1 \in X_a$ by definition.
+    Now suppose that $x \in X_a$ so that $ax \in \pints$.
+    Then we have $a \cdot (x+1) = a \cdot x + a \cdot 1 = ax + a \in \pints$ by part (a) since we know both $ax$ and $a$ are in $\pints$.
+    Hence $x+1 \in X_a$ by definition.
+    This shows that $X_a$ is inductive so that again $\pints \ss X_a$.
+
+    Hence for any $a,b \in \pints$ we have that $b \in X_a$ since $\pints \ss X_a$.
+    It then follows by definition that $a \cdot b \in \pints$ as desired.
+  }
+
+  (c)
+  \qproof{
+    Let $X = \braces{x \in \reals \where x-1 \in \pintsz}$, which we show is inductive.
+    First, we have $1 - 1 = 1 + (-1) = 0$ so that clearly $1 \in \pintsz$ and hence $1 \in X$.
+    Now suppose that $x \in X$ so that $x-1 \in \pintsz$.
+
+    Case: $x-1 \in \braces{0}$.
+    Then it must be that $x - 1 = 0$, which clearly implies $x = 1 \in \pints$ since $\pints$ is inductive.
+    Then $(x+1) - 1 = x + (1 - 1) = x + 0 = x \in \pints$ so that $(x+1)-1 \in \pintsz$ and therefore $x+1 \in X$.
+
+    Case: $x-1 \in \pints$.
+    Then $(x+1) - 1 = x + (1 -1) = x + ((-1) + 1) = (x - 1) + 1 \in \pints$ since $x-1 \in \pints$ and $\pints$ is inductive.
+    Thus clearly $(x+1)-1 \in \pintsz$ so that $x+1 \in X$ by definition.
+
+    Hence in both cases $x+1 \in X$, which shows that $X$ is inductive, and so $\pints \ss X$.
+    Therefore, for any $a \in \pints$, we have that also $x \in X$ since $\pints \ss X$.
+    Then, by the definition of $X$, it follows that $a-1 \in \pintsz$ as desired.
+  }
+
+  (d)
+  \qproof{
+    First we show that the set $X_c = \braces{x \in \reals \where c+x \in \ints \text{ and } c-x \in \ints}$ is inductive for any $c \in \ints$.
+    So consider any $c$ and $b$ in $\ints$ so that $c,b \in \pintsz \cup \nints$.
+
+    Case: $b \in \pints$.
+    Then $b+1 \in \pints$ since $\pints$ is inductive and $b-1 \in \pintsz$ by part (c).
+
+    Case: $b = 0$.
+    Then $b + 1 = 0 + 1 = 1 \in \pints$ since it is inductive, and $b - 1 = 0 - 1 = -1 \in \nints$ since $1 \in \pints$.
+
+    Case: $b \in \nints$.
+    Then $b = -a$ for $a \in \pints$, and we then have that $a+1 \in \pints$ since $\pints$ is inductive.
+    Hence $b - 1 = -a - 1 = -(a+1) \in \nints$.
+    We also have that $a-1 \in \pintsz$ by part (c), from which it is trivial to show that $-(a-1) \in \nints \cup \braces{0}$.
+    Therefore $b + 1 = -a + 1 = -(a - 1) \in \nints \cup \braces{0}$.
+
+    Thus in all cases we have that $b+1$ and $b-1$ are in $\pints$ or $\braces{0}$ or $\nints$ so that they are both in $\ints$, and so $1 \in X_b$.
+    Note that this is the case for any $b \in \ints$ so that it is clearly true for $c$, i.e. $1 \in X_c$.
+    Now suppose that $x \in X_c$ so that $c+x$ and $c-x$ are both in $\ints$.
+    It then follows that $1 \in X_{c+x}$ and $1 \in X_{c-x}$ so that $c + (x+1) = (c+x) + 1 \in \ints$ and $c - (x + 1) = (c -x) - 1 \in \ints$.
+    This then shows that $x+1 \in X_c$.
+    Hence $X_c$ is inductive for any $c \in \ints$ so that $\pints \ss X_c$.
+
+    Now consider $c,d \in \ints$.
+
+    Case: $d \in \pints$.
+    Then clearly $d \in X_c$ since $\pints \ss X_c$.
+    Hence by definition $c+d$ and $c-d$ are both in $\ints$.
+
+    Case: $d = 0$.
+    Then $c + d = c + 0 = c \in \ints$ and $c - d = c - 0 = c \in \ints$.
+
+    Case: $d \in \nints$.
+    Then by definition $d = -a$ for $a \in \pints$ so that $a \in X_c$ since $\pints \ss X_c$.
+    Then $c + a$ and $c - a$ are both in $\ints$ by the definition of $X_c$.
+    Hence $c + d = c + (-a) = c - a \in \ints$ and $c - d = c - (-a) = c + a \in \ints$.
+
+    Therefore we have shown that $c+d$ and $c-d$ are both integers in all cases, which is the desired result.
+  }
+
+  (e)
+  \qproof{
+    For any $c \in \ints$, define $X_c = \braces{x \in \reals \where c \cdot x \in \ints}$.
+    We first show that $X_c$ is inductive for any such $c \in \ints$.
+    We have $c \cdot 1 = c \in \ints$ so that $1 \in X_c$.
+    Now suppose that $x \in X_c$ so that $c \cdot x \in \ints$.
+    Then $c \cdot(x+1) = c \cdot x + c \cdot 1 = c \cdot x + c \in \ints$ by part (d) since both $c \cdot x$ and $c$ are integers.
+    This shows that $X_c$ is inductive so that $\pints \ss X_c$.
+    
+    Now consider any $c,d \in \ints$.
+
+    Case: $d \in \pints$.
+    Then $d \in X_c$ since $\pints \ss X_c$.
+    Thus $c \cdot d \in \ints$.
+
+    Case: $d = 0$.
+    The $c \cdot d = c \cdot 0 = 0 \in \ints$.
+
+    Case: $d \in \nints$.
+    Then there is an $a \in \pints$ such that $d = -a$.
+    Hence $a \in X_c$ since $\pints \ss X_c$, from which it follows that $c \cdot a \in \ints$.
+    We then have $c \cdot d = c \cdot (-a) = -(c \cdot a) \in \ints$ as well by Lemma~\ref{lem:intreal:negz}.
+
+    Thus in all cases $c \cdot d \in \ints$ as desired.
+  }
 }
