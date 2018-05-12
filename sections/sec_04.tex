@@ -1,6 +1,10 @@
 \setcounter{subsection}{4-1}
 \subsection{The Integers and the Real Numbers}
 
+% Macros used in this section
+\def\multcom{since multiplication is commutative}
+\def\multass{since multiplication is associative}
+
 \def\parta{If $x + y = x$, then $y = 0$.}
 \def\partb{$0 \cdot x = 0$. [Hint: Compute $(x+0) \cdot x$.]}
 \def\partc{$-0 = 0$.}
@@ -853,5 +857,329 @@
     We then have $c \cdot d = c \cdot (-a) = -(c \cdot a) \in \ints$ as well by Lemma~\ref{lem:intreal:negz}.
 
     Thus in all cases $c \cdot d \in \ints$ as desired.
+  }
+}
+
+\exercise{6}{
+  Let $a \in \reals$.
+  Define inductively
+  \ali{
+    a^1 &= a \,, \\
+    a^{n+1} &= a^n \cdot a
+  }
+  for $n \in \pints$.
+  (See \S 7 for a discussion of the process of inductive definition.)
+  Show that for $n,m \in \pints$ and $a,b \in \reals$,
+  \ali{
+    a^n a^m &= a^{n+m} \\
+    \parens{a^n}^m &= a^{nm} \\
+    a^m b^m &= (ab)^m \,.
+  }
+  These are called the \textbf{\emph{laws of exponents}}.
+  [Hint: For fixed $n$, prove the formulas by induction on $m$.]
+}
+\sol{
+  \dwhitman
+
+  The following Lemma is the familiar proof by induction, which is more straightforward than having to frame everything in terms of inductive sets.
+  Henceforth we use this whenever induction is required.
+  \begin{lem}
+    (Proof by Induction)
+    Suppose that $P(x)$ is a statement with parameter $x$.
+    Suppose also that $P(1)$ is true and that $P(x)$ implies $P(x+1)$.
+    Then $P(n)$ is true for all $n \in \pints$.
+  \end{lem}
+  \qproof{
+    Define the set $X = \braces{x \in \reals \where P(x)}$.
+    We show that $X$ is inductive.
+    Clearly since $P(1)$ is true we have $1 \in X$.
+    Now suppose that $x \in X$ so that $P(x)$ is true.
+    Then $P(x+1)$ is also true so that $x+1 \in X$.
+    This shows that $X$ is inductive so that $\pints \ss X$.
+    So, for any positive integer $n$ we have that $n \in X$ since $\pints \ss X$.
+    Therefore $P(n)$ is true.
+    Since $n$ was arbitrary, this shows the desired result.
+  }
+
+  \mainprob
+
+  In what follows, suppose that $a,b \in \reals$.
+
+  First we show that $a^n a^m = a^{n+m}$ for all $n,m \in \pints$.
+  \qproof{
+    Fix $n \in \pints$.
+    We show the result by induction on $m$.
+    First, we clearly have $a^n a^1 = a^n \cdot a = a^{n+1}$ by the inductive definition.
+    Now suppose that $a^n a^m = a^{n+m}$.
+    Then
+    \ali{
+      a^n a^{m+1} &= a^n \cdot (a^m \cdot a) & \text{(by the inductive definition)} \\
+      &= (a^n a^m) \cdot a & \text{(\multass)} \\
+      &= a^{n+m} \cdot a & \text{(by the induction hypothesis)} \\
+      &= a^{(n+m)+1} & \text{(by the inductive definition)} \\
+      &= a^{n + (m+1)} \,, & \text{(since addition is associative)}
+    }
+    which completes the induction step.
+    Therefore the result holds for all $m \in \pints$ by induction.
+  }
+
+  Next we show that $\parens{a^n}^m = a^{nm}$ for all $n,m \in \pints$.
+  \qproof{
+    We again fix $n \in \pints$ and use induction on $m$.
+    First, we have $\parens{a^n}^1 = a^n = a^{n \cdot 1}$ by the inductive definition.
+    Supposing now that $\parens{a^n}^m = a^{n \cdot m}$, we have
+    \ali{
+      \parens{a^n}^{m+1} &= \parens{a^n}^m \cdot a^n & \text{(by the inductive definition)} \\
+      &= a^{n \cdot m} a^n & \text{(by the induction hypothesis)} \\
+      &= a^{n \cdot m + n} & \text{(by what was shown above)} \\
+      &= a^{n \cdot m + n \cdot 1} \\
+      &= a^{n \cdot (m+1)} \,. & \text{(by the distributive property)}
+    }
+    This completes the induction so that the result holds for all $m \in \pints$.
+  }
+
+  Lastly, we show that $a^m b^m = (ab)^m$ for all $m \in \pints$.
+  \qproof{
+    We show this by induction on $m$.
+    First, we have $a^1 b^1 = ab = (ab)^1$ by the inductive definition.
+    Now suppose that $a^m b^m = (ab)^m$ so that
+    \ali{
+      a^{m+1} b^{m+1} &= (a^m \cdot a)(b^m \cdot b) & \text{(by the inductive definition)} \\
+      &= (a \cdot a^m)(b^m \cdot b) & \text{(\multcom)} \\
+      &= ((a \cdot a^m) b^m) \cdot b & \text{(\multass)} \\
+      &= (a \cdot (a^m b^m)) \cdot b & \text{(\multass)} \\
+      &= (a (ab)^m) \cdot b & \text{(by the induction hypothesis)} \\
+      &= ((ab)^m a) \cdot b & \text{(\multcom)} \\
+      &= (ab)^m (ab) & \text{(\multass)} \\
+      &= (ab)^{m+1} \,. & \text{(by the inductive definition)}
+    }
+    This completes the induction.
+  }
+}
+
+\exercise{7}{
+  Let $a \in \reals$ and $a \neq 0$.
+  Define $a^0 = 1$, and for $n \in \pints$, $a^{-n} = 1/a^n$.
+  Show that the laws of exponents hold for $a,b \neq 0$ and $n,m \in \ints$.
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:intreal:expone}
+    For any $n \in \ints$, $1^n = 1$.
+  \end{lem}
+  \qproof{
+    We show this for $n \in \pints$ by simple induction on $n$.
+    First, clearly $1^1 = 1$ by the inductive definition of exponentiation.
+    Next, if $1^n = 1$, then we have $1^{n+1} = 1^n \cdot 1 = 1^n = 1$ by the inductive definition of exponentiation and the inductive hypothesis.
+    This completes the induction so that the result holds for all $n \in \pints$.
+
+    Clearly if $n = 0$ then, by the definition of 0 as an exponent, $1^n = 1^0 = 1$.
+
+    Lastly, if $n \in \nints$ then there is a $k \in \pints$ where $n = -k$.
+    Then we have
+    \ali{
+      1^n &= 1^{-k} \\
+      &= \frac{1}{1^k} & \text{(by the definition of negative exponentiation)} \\
+      &= \frac{1}{1} & \text{(by what was just shown by induction since $k \in \pints$)} \\
+      &= 1\,. & \text{(since 1 is its own reciprocal)}
+    }
+    Thus the result has been shown for all the resulting cases when $n \in \ints$.
+  }
+  
+  \begin{lem}\label{lem:intreal:recpow}
+    $1/a^n = (1/a)^n$ for any real $a \neq 0$ and $n \in \pints$.
+  \end{lem}
+  \qproof{
+    We have
+    \ali{
+      \parens{\frac{1}{a}}^n a^n &= \parens{\frac{1}{a} \cdot a}^n & \text{(by Exercise~4.6 since $n \in \pints$)} \\
+      &= 1^n & \text{(by the definition of the reciprocal)} \\
+      &= 1\,. & \text{(by Lemma~\ref{lem:intreal:expone})}
+    }
+    Thus $(1/a)^n$ must be the unique reciprocal of $a^n$, that is $(1/a)^n = 1/a^n$ as desired.
+  }
+
+  \begin{lem}\label{lem:intreal:negexp}
+    $a^n a^{-n} = 1$ for any real $a \neq 0$ and $n \in \pints$.
+  \end{lem}
+  \qproof{
+    We have
+    \ali{
+      a^n a^{-n} &= a^n \parens{\frac{1}{a^n}} & \text{(by the definition of negative exponentiation)} \\
+      &= a^n \parens{\frac{1}{a}}^n & \text{(by Lemma~\ref{lem:intreal:recpow})} \\
+      &= \parens{a \cdot \frac{1}{a}}^n & \text{(by Exercise~4.6 since $n \in \pints$)} \\
+      &= 1^n & \text{(by the definition of the reciprocal)} \\
+      &= 1 & \text{(by Lemma~\ref{lem:intreal:expone})}
+    }
+    as desired.
+  }
+
+  \mainprob
+
+  First we show that $a^n a^m = a^{n+m}$ for all real $a \neq 0$ and $n,m \in \ints$.
+  \qproof{
+    Consider any real $a \neq 0$ and $n,m \in \ints$.
+    We number the following cases for reference:
+    \begin{enumerate}
+    \item Case: $n \in \pints$.
+      \begin{enumerate}
+      \item Case: $m \in \pints$.
+        Then the result immediately applies by Exercise~4.6.
+      \item Case: $m = 0$.
+        Then we have $a^n a^m = a^n a^0 = a^n \cdot 1 = a^n = a^{n+0} = a^{n+m}$.
+      \item Case: $m \in \nints$.
+        Then $m = -k$ for some $k \in \pints$.
+        \begin{enumerate}
+        \item Case: $n > k$.
+          Then $n-k > 0$ so that $n-k \in \pints$ since $n-k \in \ints$ by Exercise~4.5d.
+          We then have
+          \ali{
+            a^n a^m &= a^n a^{-k} \\
+            &= a^{n-k+k} a^{-k} & \text{(since $n = n + 0 = n -k + k$)} \\
+            &= (a^{n-k} a^k) a^{-k} & \text{(by Exercise~4.6 since $k,n-k \in \pints$)} \\
+            &= a^{n-k} (a^k a^{-k}) & \text{(\multass)} \\
+            &= a^{n-k} \cdot 1 & \text{(by Lemma~\ref{lem:intreal:negexp} since $k \in \pints$)} \\
+            &= a^{n-k} \\
+            &= a^{n+m} \,.
+          }
+        \item Case: $n = k$.
+          Then clearly $n+m = n-k = k-k = 0$, so that we have $a^n a^m = a^k a^{-k} = 1 = a^0 = a^{n+m}$ by Lemma~\ref{lem:intreal:negexp} and the definition of 0 as an exponent.
+        \item Case: $n < k$.
+          Then $n-k < 0$ so that $n-k \in \nints$ since $n-k \in \ints$ by Exercise~4.5d.
+          Also, clearly $-n \in \nints$ since $n \in \pints$.
+          Then we have
+          \ali{
+            a^n a^m &= a^n a^{-k} \\
+            &= a^n a^{-k+n-n} & \text{(since $-k = -k + 0 = -k + n - n$)} \\
+            &= a^n a^{n-k-n} & \text{(since addition is commutative)} \\
+            &= a^n (a^{n-k} a^{-n}) & \text{(by case 3c below since $n-k,-n \in \nints$)} \\
+            &= a^n (a^{-n} a^{n-k}) & \text{(\multcom)} \\
+            &= (a^n a^{-n}) a^{n-k} & \text{(\multass)} \\
+            &= 1 \cdot a^{n-k} & \text{(by Lemma~\ref{lem:intreal:negexp})} \\
+            &= a^{n-k} \\
+            &= a^{n+m} \,.
+          }
+        \end{enumerate}
+      \end{enumerate}
+    \item Case: $n = 0$.
+      \begin{enumerate}
+      \item Case: $m \in \pints$.
+        Since $a^n a^m = a^m a^n$ and $a^{n+m} = a^{m+n}$, this the same as case 1b above.
+      \item Case: $m = 0$.
+        Then we have $a^n a^m = a^0 a^0 = 1 \cdot 1 = 1 = a^0 = a^{0+0} = a^{n+m}$.
+      \item Case: $m \in \nints$.
+        Then there is a $k \in \pints$ such that $m = -k$, and $a^n a^m = a^0 a^{-k} = 1 \cdot (1/a^k) =  1/a^k = a^{-k} = a^m = a^{0+m} = a^{n+m}$.
+      \end{enumerate}
+    \item Case: $n \in \nints$.
+      \begin{enumerate}
+      \item Case: $m \in \pints$.
+        This is the same as case 1c above.
+      \item Case: $m = 0$.
+        This is the same as case 2c above.
+      \item Case: $m \in \nints$.
+        Here we have that $n = -k$ and $m = -l$ for some $k,l \in \pints$.
+        Hence we have
+        \ali{
+          a^n a^m &= a^{-k} a^{-l} \\
+          &= \parens{\frac{1}{a^k}}\parens{\frac{1}{a^l}} & \text{(by the definition of negative exponents)} \\
+          &= \parens{\frac{1}{a}}^k \parens{\frac{1}{a}}^l & \text{(by Lemma~\ref{lem:intreal:recpow})} \\
+          &= \parens{\frac{1}{a}}^{k+l} & \text{(by Exercise~4.6 since $k,l \in \pints$)} \\
+          &= \frac{1}{a^{k+l}} & \text{(by Lemma~\ref{lem:intreal:recpow})} \\
+          &= a^{-(k+l)} & \text{(by the definition of negative exponents)} \\
+          &= a^{-k-l} \\
+          &= a^{n+m} \,.
+        }
+      \end{enumerate}
+    \end{enumerate}
+
+    Thus in all cases we have shown the result.
+  }
+
+  Next we show that $(a^n)^m = a^{n m}$ for all real $a \neq 0$ and $n,m \in \ints$.
+  \qproof{
+    Consider any real $a \neq 0$ and $n,m \in \ints$.
+    We again number the cases for reference:
+    \begin{enumerate}
+    \item Case: $n \in \pints$.
+      \begin{enumerate}
+      \item Case: $m \in \pints$.
+        Then the result immediately applies by Exercise~4.6.
+      \item Case: $m = 0$.
+        Then we have $(a^n)^m = (a^n)^0 = 1 = a^0 = a^{n \cdot 0} = a^{nm}$ by the definition of a 0 exponent.
+      \item Case: $m \in \nints$.
+        Then there is a $k \in \pints$ such that $m = -k$.
+        Then we have
+        \ali{
+          (a^n)^m &= (a^n)^{-k} \\
+          &= \frac{1}{(a^n)^k} & \text{(by the definition of negative exponents)} \\
+          &= \frac{1}{a^{nk}} & \text{(by Exercise~4.6 since $n,k \in \pints$)} \\
+          &= a^{-(nk)} & \text{(by the definition of negative exponents)} \\
+          &= a^{n(-k)} \\
+          &= a^{nm} \,.
+        }
+      \end{enumerate}
+    \item Case: $n = 0$.
+      Then we have $(a^n)^m = (a^0)^m = 1^m = 1 = a^0 = a^{0 \cdot m} = a^{nm}$ by the definition of 0 as an exponent and Lemma~\ref{lem:intreal:expone}.
+    \item Case: $n \in \nints$.
+      Then $n = -k$ for some $k \in \pints$.
+      \begin{enumerate}
+      \item Case: $m \in \pints$.
+        Then we have
+        \ali{
+          (a^n)^m &= (a^{-k})^m \\
+          &= \parens{\frac{1}{a^k}}^m & \text{(by the definition of negative exponents)} \\
+          &= \squares{\parens{\frac{1}{a}}^k}^m & \text{(by Lemma~\ref{lem:intreal:recpow})} \\
+          &= \parens{\frac{1}{a}}^{km} & \text{(by Exercise~4.6 since $k,m \in \pints$)} \\
+          &= \frac{1}{a^{km}} & \text{(by Lemma~\ref{lem:intreal:recpow})} \\
+          &= a^{-(km)} & \text{(by the definition of negative exponents)} \\
+          &= a^{(-k)m} \\
+          &= a^{nm} \,.
+        }
+      \item Case: $m = 0$.
+        The same argument as in case 1b above applies here as it does not depend on $n$ being positive.
+      \item Case: $m \in \nints$.
+        Then $m = -l$ for some $l \in \pints$, and we have
+        \ali{
+          (a^n)^m &= (a^{-k})^{-l} \\
+          &= \parens{\frac{1}{a^k}}^{-l} & \text{(by the definition of negative exponents)} \\
+          &= \frac{1}{(1/a^k)^l} & \text{(by the definition of negative exponents)} \\
+          &= \frac{1}{[(1/a)^k]^l} & \text{(by Lemma~\ref{lem:intreal:recpow})} \\
+          &= \frac{1}{(1/a)^{kl}} & \text{(by Exercise~4.6 since $k,l \in \pints$)} \\
+          &= \parens{\frac{1}{1/a}}^{kl} & \text{(by Lemma~\ref{lem:intreal:recpow})} \\
+          &= a^{kl} \\
+          &= a^{(-k)(-l)} \\
+          &= a^{nm} \,.
+        }
+      \end{enumerate}
+    \end{enumerate}
+
+    Thus in all cases we have shown the result.
+  }
+
+  Lastly, we show that $a^m b^m = (ab)^m$ for all real $a,b \neq 0$ and $m \in \ints$.
+  \qproof{
+    We have the following cases:
+
+    Case: $m \in \pints$.
+    The result then follows immediately from Exercise~4.6.
+
+    Case: $m = 0$.
+    Then we have $a^m b^m = a^0 b^0 = 1 \cdot 1 = 1 = (ab)^0 = (ab)^m$ by the definition of a 0 exponent.
+
+    Case: $m \in \nints$.
+    Then there is a $k \in \pints$ such that $m = -k$.
+    Then we have
+    \ali{
+      a^m b^m &= a^{-k} b^{-k} \\
+      &= \frac{1}{a^k} \cdot \frac{1}{b^k} & \text{(by the definition of negative exponents)} \\
+      &= \parens{\frac{1}{a}}^k \parens{\frac{1}{b}}^k & \text{(by Lemma~\ref{lem:intreal:recpow})} \\
+      &= \parens{\frac{1}{a} \cdot \frac{1}{b}}^k & \text{(by Exercise~4.6 since $k \in \pints$)} \\
+      &= \parens{\frac{1}{ab}}^k & \text{(by Exercise~4.1m)} \\
+      &= \frac{1}{(ab)^k} & \text{(by Lemma~\ref{lem:intreal:recpow})} \\
+      &= (ab)^{-k} & \text{(by the definition of negative exponents)} \\
+      &= (ab)^m \,.
+    }
+    Therefore in all cases the result has been shown.
   }
 }
