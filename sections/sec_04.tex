@@ -1183,3 +1183,109 @@
     Therefore in all cases the result has been shown.
   }
 }
+
+\exercise{8}{
+  \eparts{
+  \item Show that $\reals$ has the greatest lower bound property.
+  \item Show that $\inf\braces{1/n \where n \in \pints} = 0$.
+  \item Show that given $a$ with  $0 < a < 1$, $\inf\braces{a^n \where n \in \pints} = 0$.
+    [Hint: Let $h=(1-a)/a$, and show that $(1+h)^n \geq 1 + nh$.]
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    Suppose that $A$ is an arbitrary nonempty set of real number that is bounded below by $a$.
+    Now let $B = \braces{-x \where x \in A}$ and $b = -a$.
+    First, we claim that $b$ is an upper bound of $B$.
+    So consider any $y \in B$ so that $y = -x$ for some $x \in A$.
+    Then $a \leq x$ since $a$ a lower bound of $A$.
+    It then follows from Exercise~4.2d that $y = -x \leq -a = b$.
+    Since $y \in B$ was arbitrary, this shows that $b$ is an upper bound of $B$.
+
+    Since $B$ is clearly nonempty (since $A$ is), we have that $B$ has a least upper bound $d = \sup B$ since the reals have the least upper bound property.
+    We claim that $c = -d$ is the greatest lower bound of $A$.
+    So first consider any $x \in A$ so that $y = -x \in B$.
+    Then we have $y \leq d$ since $d = \sup B$.
+    Hence $c = -d \leq -y = x$ again by Exercise~4.2d.
+    Since $x \in A$ was arbitrary, this shows that $c$ is in fact a lower bound of $A$.
+
+    Now suppose that $x$ is any lower bound of $A$.
+    Then, by the same argument as above for $b = -a$, we have that $y = -x$ is an upper bound of $B$.
+    It then follows that $d \leq y$ since $d$ is the \emph{least} upper bound of $B$.
+    Then, again by Exercise~4.2d, we have $x = -(-x) = -y \leq -d = c$, which shows that $c$ is in fact the greatest lower bound since $x$ was arbitrary.
+    This completes the proof.
+  }
+
+  (b)
+  \qproof{
+    First, let $A = \braces{1/n \where n \in \pints}$ so that we must show that $\inf{A} = 0$.
+    For any $x \in A$ we have that $x = 1/n$ for some $n \in \pints$.
+    Then $n > 0$ so that $x = 1/n > 0$ also by Exercise~4.2i.
+    Hence $0 \leq x$ is true, which shows that $0$ is a lower bound of $A$ since $x$ was arbitrary.
+
+    Now consider any $x > 0$ so that also $1/x > 0$ by Exercise~4.2i.
+    Then, by the Archimedean ordering property there is an $n \in \pints$ such that $n > 1/x > 0$ (since otherwise $1/x$ would be an upper bound of $\pints$).
+    It then follows from Exercise~4.2j that $1/n < 1/(1/x) = x$.
+    Since clearly $1/n \in A$ we have that $x$ is \emph{not} a lower bound of $A$.
+    Since $x>0$ was arbitrary, this shows that $0$ is the greatest lower bound of $A$ since, by the contrapositive, $x$ being a lower bound of $A$ implies that $x \leq 0$.
+  }
+
+  (c)
+  \qproof{
+    Consider any real $a$ where $0 < a < 1$.
+    First we show that the set $\braces{1/a^n \where n \in \pints}$ has no upper bound.
+    To this end define $h = (1-a)/a = 1/a - 1$ so that $1+h = 1 + (1/a - 1) = 1/a$.
+    Clearly we have
+    \ali{
+      a &< 1 \\
+      -a &> -1 \\
+      1-a &> 1 -1  = 0 \\
+      \frac{1-a}{a} &> \frac{0}{a} = 0 & \text{(since $a>0$)} \\
+      h &> 0
+    }
+    so that $1+h > 1 > 0$ and
+    \ali{
+      h &> 0 \\
+      h^2 &> h \cdot 0 = 0 & \text{(since $h>0$)} \\
+      n h^2 &> n \cdot 0 = 0
+    }
+    for any $n \in \pints$ since $n > 0$.
+    
+    We show by induction that $(1+h)^n \geq 1 + nh$ for all $n \in \pints$.
+    For $n = 1$ we clearly have $(1+h)^n = (1+h)^1 = 1+h \geq 1+h = 1+1\cdot h = 1+nh$.
+    Now, supposing that $(1+h)^n \geq 1 + nh$,we have
+    \ali{
+      (1+h)^{n+1} &= (1+h)^n (1+h) \\
+      &\geq (1+nh)(1+h) & \text{(since $1+h > 0$)} \\
+      &= 1 + nh + h + nh^2 \\
+      &\geq 1 + nh + h & \text{(since $nh^2 > 0$)} \\
+      &= 1 + (n+1)h \,,
+    }
+    which completes the induction.
+    So consider any real $x$.
+    Then, since we know that $\pints$ has no upper bound, there is an $n \in \pints$ where $n > x/h$ (noting that $h > 0$) so that
+    \ali{
+      n &> x/h \\
+      nh &> (x/h)h = x & \text{(since $h > 0$)} \\
+      1 + nh &> 1 + x > x \,. 
+    }
+    Then we have $1/a^n = (1/a)^n = (1+h)^n \geq 1 + nh > x$, which shows that the set $\braces{1/a^n \where n \in \pints}$ is unbounded above since $x$ was arbitrary.
+
+    Now we show the main result.
+    Let $A = \braces{a^n \where n \in \pints}$ so that we must show that $\inf{A} = 0$.
+    First we show by induction that 0 is a lower bound of $A$.
+    For $n=1$ we clearly have $a^n = a^1 = a \geq 0$.
+    Then, if $a^n \geq 0$, we have $a^{n+1} = a^n \cdot a \geq 0 \cdot a = 0$ since $a > 0$.
+    This completes the induction so that clearly $0$ is indeed a lower bound of $A$.
+
+    Now consider any real $x > 0$ so that $1/x > 0$ also.
+    Then, by what was shown above, we know that there is an $n \in \pints$ such that $1/a^n > 1/x > 0$.
+    We then have $a^n = 1/(1/a^n) < 1/(1/x) = x$ by Exercise~4.2j.
+    This shows that $x$ is \emph{not} a lower bound of $A$ since obviously $a^n \in A$.
+    It then follows that $0$ is the \emph{greatest} lower bound of $A$ since $x>0$ was arbitrary, because, by the contrapositive, $x$ being a lower bound of $A$ implies that $x \leq 0$.
+    Hence $0 = \inf{A}$ as desired.
+  }
+}
