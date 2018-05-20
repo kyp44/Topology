@@ -692,12 +692,12 @@
 
     Case: $n+1 \in B$.
     Then, for any other $k \in B$, $k \in S_{n+2}$ so that either $k = n+1$ or $k \in S_{n+1}$ so that $k < n+1$ by the definition of $S_{n+1}$.
-    Thus in either case $k \leq n+1$ so that $n+1$ is the greatest element of $B$ since $k$ was arbitrary.
+    Thus in either case $k \leq n+1$ so that $n+1$ is the largest element of $B$ since $k$ was arbitrary.
 
     Case: $n+1 \notin B$.
-    Then clearly $B \ss S_{n+1}$ so that $B$ has a greatest element by the induction hypothesis since $B$ is nonempty.
+    Then clearly $B \ss S_{n+1}$ so that $B$ has a largest element by the induction hypothesis since $B$ is nonempty.
 
-    Hence in either case $B$ has a greatest element so that $n+1 \in A$ since $B$ was an arbitrary nonempty subset of $S_{n+2} = \braces{1, \ldots, n+1}$.
+    Hence in either case $B$ has a largest element so that $n+1 \in A$ since $B$ was an arbitrary nonempty subset of $S_{n+2} = \braces{1, \ldots, n+1}$.
     This shows that $A$ is an inductive set of positive integers so that $A = \pints$ as desired by the Principle of Induction.
   }
 
@@ -1287,5 +1287,172 @@
     This shows that $x$ is \emph{not} a lower bound of $A$ since obviously $a^n \in A$.
     It then follows that $0$ is the \emph{greatest} lower bound of $A$ since $x>0$ was arbitrary, because, by the contrapositive, $x$ being a lower bound of $A$ implies that $x \leq 0$.
     Hence $0 = \inf{A}$ as desired.
+  }
+}
+
+\exercise{9}{
+  \eparts{
+  \item Show that every nonempty subset of $\ints$ that is bounded above has a largest element.
+  \item If $x \notin \ints$, show that there is exactly one $n \in \ints$ such that $n < x < n+1$.
+  \item If $x-y > 1$, show there is at least one $n \in \ints$ such that  $y < n < x$.
+  \item If $y < x$, show there is a rational number $z$ such that $y < z < x$.
+  }
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:intreal:intlub}
+    The set of integers $\ints$ is an inductive set that has no lower or upper bounds in $\reals$.
+  \end{lem}
+  \qproof{
+    First we show that $\ints$ is inductive.
+    Clearly $1 \in \ints$ since $1 \in \pints \ss \ints$.
+    Now suppose that $n \in \ints$ so that clearly $n+1 \in \ints$ by Exercise~4.5d since $1 \in \ints$.
+
+    Next, consider any $x \in \reals$.
+    Then we know that $\pints$ has no upper bound so that there is an $n \in \pints$ such that $n > x$, and clearly $n \in \ints$ since $\pints \ss \ints$.
+    By the same token there is an $m \in \pints$ such that $m > -x$.
+    But then we have $-m < -(-x) = x$ by Exercise~4.2d, and $-m \in \nints$ so that also $-m \in \ints$ since $\nints \ss \ints$.
+    Since $x$ was arbitrary, this shows that $\ints$ is not bounded above or below.
+  }
+
+  \begin{lem}\label{lem:intreal:zerone}
+    There is no integer $n$ such that $0 < n < 1$.
+  \end{lem}
+  \qproof{
+    Suppose to the contrary that $n \in \ints$ and $0 < n < 1$.
+    Let $S = \braces{k \in \ints \where 0 < k < 1}$ so that clearly $n \in S$ so that $S \neq \es$.
+    Also since $0 < k$ and $k \in \ints$ for any $k \in S$, clearly $S \ss \pints$.
+    Thus $S$ is a nonempty subset of positive integers so that it has a least element $m$ by the well-ordering property.
+    Since $m \in S$ we have $0 < m < 1$ and hence $m^2 = m \cdot m < 1 \cdot m = m < 1$ by property (6) since $m > 0$.
+    By the same property clearly $0 = 0 \cdot m < m \cdot m = m^2$ as well so that $0 < m^2 < 1$.
+    Also, clearly $m^2 = m \cdot m \in \ints$ by Exercise~4.5e since $m \in \ints$, and so $m^2 \in S$.
+    However, this cannot be since $m$ is the least element of $S$ and yet $m^2 < m$.
+    Therefore we have a contradiction, which proves the result.
+  }
+
+  \begin{cor}\label{cor:intreal:intbet}
+    For any integer $n$, there is no integer $a$ such that $n < a < n+1$.
+  \end{cor}
+  \qproof{
+    Consider any $n \in \ints$ and suppose to the contrary that there is an $a \in \ints$ such that $n < a < n+1$.
+    First, we have $n-a \in \ints$ by Exercise~4.5d since $a,n \in \ints$.
+    Also, $n < a$ clearly implies that $0 < a-n$.
+    Similarly, $a < n+1$ means that $a-n < 1$.
+    But then we have that $a-n$ is an integer where $0 < a-n < 1$, which contradicts Lemma~\ref{lem:intreal:zerone}.
+    Thus it must be the case that there is no such integer $a$.
+  }
+
+  \mainprob
+  
+  (a)
+  \qproof{
+    Suppose that $A$ is a nonempty subset of $\ints$ and that it is bounded above by $\a \in \reals$.
+    Since $A \neq \es$, there is an $a \in A$, so define $A' = \braces{n - a + 1 \where n \in A}$.
+    First we claim that $\a' = \a - a + 1$ is an upper bound of $A'$
+    So consider any $n' \in A'$ so that $n' = n-a+1$ for some $n \in A$.
+    Since $\a$ is an upper bound of $A$ we have
+    \ali{
+      n &\leq \a \\
+      n-a &\leq \a - a \\
+      n-a+1 & \leq \a - a + 1 \\
+      n' &\leq \a' \,,
+    }
+    which shows that $\a'$ is an upper bound of $A'$ since $n'$ was an arbitrary element.
+    We also have that there is an $N' \in \pints$ such that $\a' < N'$ since $\pints$ has no upper bound.
+
+    Now let $B' = A' \cap \pints$.
+    Then, for any $n' \in B'$, we have that $n' \in A'$ so that $n' \leq \a' < N'$.
+    Since also clearly $n' \in \pints$, we have that $n' \in S_{N'} = \braces{k \in \pints \where k < N'} = \braces{1, \ldots, N'-1}$.
+    Hence $B' \ss S_{N'}$ since $n'$ was arbitrary.
+    We also have that $1 \in A'$ since $a \in A$ and $a - a + 1 = 1$.
+    Hence $1 \in B'$ since clearly also $1 \in \pints$ since it is inductive.
+    Thus $B'$ is a nonempty subset of $S_{N'}$ so that it has a largest element $b'$ by Exercise~4.4a.
+
+    Since $b' \in B'$, we have that $b' \in A'$ so that there is a $b \in A$ such that $b' = b-a+1$.
+    We claim that $b$ is the largest element of $A$.
+    We already know that $b \in A$ so we need only show that it is also an upper bound of $A$.
+    So consider any $n \in A$ so that clearly $n' = n - a + 1 \in A'$.
+    Now, it follows from Exercise~4.5d that $n' \in \ints$ since $n,a,1 \in \ints$.
+    Thus we have the following:
+
+    Case: $n' \in \pints$.
+    Then, clearly $n' \in A' \cap \pints = B'$ so that $n' \leq b'$ since $b'$ is the largest element of $B'$.
+
+    Case: $n' \in \nints \cup \braces{0}$.
+    Then $n' < 1 \leq b'$ since $1 \in B'$ and $b'$ is the largest element of $B'$.
+
+    Thus in either case $n' \leq b'$ is true so that
+    \ali{
+      n' &\leq b' \\
+      n - a + 1 &\leq b - a + 1 \\
+      n - a &\leq b - a \\
+      n &\leq b \,,
+    }
+    which shows that $b$ is an upper bound and thus the largest element of $A$ since $n$ was arbitrary.
+  }
+
+  (b)
+  \qproof{
+    Suppose an $x \in \reals$ where $x \notin \ints$ and let $A = \braces{n \in \ints \where n < x}$.
+    It follows from Lemma~\ref{lem:intreal:intlub} that there is an $m \in \ints$ where $m < x$ since $\ints$ has no lower bounds.
+    Hence by definition $m \in A$ so that $A \neq \es$.
+    Clearly also $x$ is an upper bound of $A$ so that $A$ is a nonempty subset of $\ints$ that is bounded above.
+    It then follows from part (a) that $A$ has a largest element $n$, where clearly $n < x$ since $n \in A$.
+
+    Now, suppose for the moment that $n+1 \leq x$.
+    Then, since $\ints$ is inductive (again by Lemma~\ref{lem:intreal:intlub}) and $n \in \ints$, we have that $n+1 \in \ints$ as well.
+    But $x \notin \ints$ so that it must be that $n+1 \neq x$, and hence $n+1 < x$.
+    Then $n+1 \in A$ so that $n+1 \leq n$ since $n$ is the largest element of $A$.
+    However, this contradicts the obvious fact that $n+1 > n$ so that it must be that $n+1 \leq x$ is not true.
+    Hence $n+1 > x$ and thus we have shown that $n < x < n+1$.
+
+    Lastly, suppose that there is an integer $m$ such that $m < x < m+1$.
+    Then $m \in A$ so that $m \leq n$ since $n$ is the largest element of $A$.
+    Suppose for a moment that $m < n$.
+    Then we would have $m < n < x < m+1$ so that $n$ is an integer between $m$ and $m+1$, which violates Corollary~\ref{cor:intreal:intbet}.
+    Thus is has to be that $m = n$ (since $m \leq n$), which shows that $n$ is the unique integer such that $n < x < n+1$.
+  }
+
+  (c)
+  \qproof{
+    Suppose that $x,y \in \reals$ and $x-y > 1$.
+    If $x \in \ints$ then let $n = x-1$ so that clearly $n \in \ints$ by Exercise~4.5d.
+    First, we have
+    \ali{
+      x - y &> 1 \\
+      x &> 1 + y \\
+      x - 1 &> y \\
+      n &> y \,.
+    }
+    We also clearly have $n = x - 1 < x$ so that $y < n < x$.
+
+    On the other hand, if $x \notin \ints$, then we know from part (b) that there is a unique integer $n$ such that $n < x < n+1$.
+    We also have that
+    \ali{
+      x &< n + 1 \\
+      1 < x - y &< n + 1 - y \\
+      0 &< n - y \\
+      y &< n
+    }
+    so that again $y < n < x$.
+
+    Hence in both cases we have found an integer $n$ such that $y < n < x$, which proves the result.
+  }
+
+  (d)
+  \qproof{
+    Suppose that $x,y \in \reals$ where $y < x$.
+    Then $0 < x-y$ so that $1/(x-y)$ exists..
+    Since $\pints$ is unbounded above there is a $b \in \pints$ where $b > 1/(x-y)$.
+    Hence
+    \ali{
+      b &> \frac{1}{x-y} \\
+      b(x-y) &> 1 & \text{(since $x-y > 0$)} \\
+      bx - by &> 1 \,.
+    }
+    It then follows from part (c) that there is an integer $a$ such that $by < a < bx$.
+    We then have that $y < a/b < x$ since $b > 0$ (since $b \in \pints$).
+    This shows the result since clearly $a/b$ is rational because $a,b \in \ints$.
   }
 }
