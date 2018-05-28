@@ -135,7 +135,7 @@ def process_file(fpath, ofile, headers=False, shared=None) :
                             print(r"\stepcounter{" + counter_map[hdr] + "}", file=ofile)
 
 # Section file record
-Section = namedtuple("Section", ("chap", "sec", "fname"))
+Section = namedtuple("Section", ("sec", "fname"))
                     
 # Open up output file for writing
 with open(ofname, "w") as ofile :
@@ -148,24 +148,25 @@ with open(ofname, "w") as ofile :
             continue
         if bname.find("sec_") != 0 :
             continue
-        
         secs.append(Section(*(int(s) for s in bname.split("_")[1:]), idir + fname))
 
     # Sort sections and go through them
     print(r"\section{Solutions}", file=ofile)
-    for sec in sorted(secs, key=lambda s : (s.chap, s.sec)) : 
+    for sec in sorted(secs, key=lambda s : s.sec) : 
         print("Processing " + sec.fname + "...")
 
         # Set counters
-        print(r"\setcounter{chapter}{" + str(sec.chap) + "}", file=ofile)
-        print(r"\setcounter{section}{" + str(sec.sec) + "}", file=ofile)
+        print(r"\setcounter{chapter}{" + str(sec.sec) + "}", file=ofile)
+        #print(r"\setcounter{section}{" + str(sec.sec) + "}", file=ofile)
 
         # Process section file
         process_file(sec.fname, ofile)
                         
     # Go through theorems
+    """
     print("Processing theorems...")
     print(r"\setcounter{chapter}{0}", file=ofile)
     print(r"\setcounter{section}{1}", file=ofile)
     print(r"\section{Theorems}", file=ofile)
     process_file("theorems.tex", ofile, headers=True)
+    """
