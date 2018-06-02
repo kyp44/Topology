@@ -1,0 +1,127 @@
+\setcounter{subsection}{5-1}
+\subsection{Cartesian Products}
+
+\exercise{1}{
+  Show that there is a bijective correspondence of $A \times B$ with $B \times A$.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    We define a function $f: A \times B \to B \times A$.
+    For any element $(a,b) \in A \times B$ we set $f(a,b) = (b,a)$, noting that of course $a \in A$ and $b \in B$.
+    It should be obvious then that $f(a,b) = (b,a) \in B \times A$ so that $B \times A$ can be the range of $f$.
+
+    \def\opx{(a_1, b_1)}
+    \def\opy{(a_2, b_2)}
+    \def\pox{(b_1, a_1)}
+    \def\poy{(b_2, a_2)}
+    First we show that $f$ is injective.
+    To this end consider $\opx$ and $\opy$ in $A \times B$ where $\opx \neq \opy$.
+    Of course we have that $f\opx = \pox$ and $f\opy = \poy$.
+    Since $\opx \neq \opy$ clearly either $a_1 \neq a_2$ or $b_1 \neq b_2$.
+    In either case it should be clear that $f\opx = \pox \neq \poy = f\opy$, which shows that $f$ is injective since $\opx$ and $\opy$ were arbitrary.
+
+    It is very easy to that $f$ is also surjective since, for any $(b,a) \in B \times A$, clearly $(a,b) \in A \times B$ and $f(a,b) = (b,a)$.
+    Hence $f$ is a bijection as desired.
+    Note that if $A \times B = \es$ then $f = \es$ as well, which is vacuously a bijective function since it must be that $B \times A = \es$ as well (because either $A = \es$ or $B = \es$).
+  }
+}
+
+\exercise{2}{
+  \eparts{
+  \item Show that if $n > 1$ there is a bijective correspondence of
+    \gath{
+      A_1 \times \cdots \times A_n \hspace{1cm}
+      \text{with} \hspace{1cm}
+      \parens{A_1 \times \cdots \times A_{n-1}} \times A_n \,.
+    }
+  \item Given the indexed family $\braces{A_1, A_2, \ldots}$, let $B_i = A_{2i-1} \times A_{2i}$ for each positive integer $i$.
+    Show that there is a bijective correspondence of $A_1 \times A_2 \times \cdots$ with $B_1 \times B_2 \times \cdots$
+  }
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:cartp:eopints}
+    If $n \in \pints$ is even, then $n/2 \in \pints$.
+    If $n \in \pints$ is odd, then $(n+1)/2 \in \pints$.
+  \end{lem}
+  \qproof{
+    First, suppose that $n \in \pints$ is even.
+    Then by definition $n/2$ is an integer.
+    However, since both $n$ and $1/2$ are positive, it follows from Exercise~4.2h that $n \cdot (1/2) = n/2$ is positive also so that $n/2 \in \pints$.
+
+    Now, suppose that $n \in \pints$ is odd so that $n = 2k+1$ for some integer $k$ by Exercise~4.11a.
+    Then
+    \gath{
+      \frac{n+1}{2} = \frac{(2k + 1) + 1}{2} = \frac{2k + 2}{2} = \frac{2(k+1)}{2} = k+1 \,,
+    }
+    which is clearly an integer since $k$ is.
+    Moreover, we have $n+1 > n > 0$ since $n \in \pints$ and again $1/2 > 0$ so that $(n+1) \cdot (1/2) = (n+1)/2$ is positive by Exercise~4.2h.
+    Thus $(n+1)/2 \in \pints$.
+  }
+
+  \mainprob
+  
+  (a)
+  \qproof{
+    For brevity, let $X = A_1 \times \cdots \times A_n$ and $Y = \parens{A_1 \times \cdots \times A_{n-1}} \times A_n$.
+    Suppose that $n > 1$ so that $X$ and $Y$ make sense.
+    We construct a bijective function $f: X \to Y$.
+    For any $x = (x_1, \ldots x_n) \in X$ we have that $x_i \in A_i$ for $1 \leq i \leq n$.
+    So set $f(x) = ((x_1, \ldots, x_{n-1}), x_n)$, which is clearly an element of $Y$.
+
+    To see that $f$ is injective consider $x = (x_1, \ldots, x_n)$ and $y = (y_1, \ldots, y_n)$ in $X$ where $x \neq y$.
+    It then follows that there must be an $i \in \braces{1, \ldots, n}$ where $x_i \neq y_i$.
+    Let $x' = (x_1, \ldots, x_{n-1})$ and $y' = (y_1, \ldots, y_{n-1})$ so that clearly $f(x) = (x', x_n)$ and $f(y) = (y', y_n)$.
+    Now, if $i = n$, then clearly $f(x) = (x', x_n) \neq (y', y_n) = f(y)$ since $x_n = x_i \neq y_i = y_n$.
+    On the other hand, if $i \neq n$ then it has to be that $i < n$, and hence $i \leq n-1$.
+    It then follows that $x' = (x_1, \ldots, x_{n-1}) \neq (y_1, \ldots y_{n-1}) = y'$ so that then $f(x) = (x', x_n) \neq (y', y_n) = f(y)$ again.
+    Since $x$ and $y$ were arbitrary, this shows that $f$ is indeed injective.
+
+    Now consider any $y = ((x_1, \ldots, x_{n-1}), x_n) \in Y$ and let $x = (x_1, \ldots x_n)$.
+    It should be obvious that both $x \in X$ and $f(x) = y$ so that $f$ is surjective.
+    Hence $f$ is a bijective function as desired.
+  }
+
+  (b)
+  \qproof{
+    First let $A = A_1 \times A_2 \times \cdots$ and $B = B_1 \times B_2 \times \cdots$.
+    We construct a bijective $f: A \to B$.
+    So, for any $a \in A$, we have that $a = (a_1, a_2, \ldots)$, where $a_i \in A_i$ for any $i \in \pints$.
+    Then, for any $i \in \pints$, define $b_i = (a_{2i-1}, a_{2i})$ so that clearly $b_i \in A_{2i-1} \times A_{2i} = B_i$.
+    We then have that $b = (b_1, b_2, \ldots) \in B_1 \times B_2 \times \cdots = B$.
+    So set $f(a) = b$ so that $f$ is a function from $A$ to $B$.
+
+    To show that $f$ is injective, consider $a = (a_1, a_2, \ldots)$ and $a' = (a_1', a_2', \ldots)$ in $A$ where $a \neq a'$.
+    For each $i \in \pints$, define $b_i = (a_{2i-1}, a_{2i})$ and $b_i' = (a_{2i-1}', a_{2i}')$ as above and set $b = (b_1, b_2, \ldots)$ and $b' = (b_1', b_2', \ldots)$ so that clearly $f(a) = b$ and $f(a') = b'$.
+    Since $a \neq a'$, it follows that there must be an $i \in \pints$ where $a_i \neq a_i'$.
+
+    Case: $i$ is even.
+    Then let $j = i/2$ so that $j \in \pints$ by Lemma~\ref{lem:cartp:eopints}.
+    We also clearly have that $i = 2j$ so that $b_j = (a_{2j-1}, a_{2j}) \neq (a_{2j-1}', a_{2j}') = b_j'$ since $a_{2j} = a_i \neq a_i' = a_{2j}'$.
+
+    Case: $i$ is odd.
+    Then let $j = (i+1)/2$ so that $j \in \pints$ by Lemma~\ref{lem:cartp:eopints}.
+    We then clearly have that $i = 2j-1$ so that $b_j = (a_{2j-1}, a_{2j}) \neq (a_{2j-1}', a_{2j}') = b_j'$ since $a_{2j-1} = a_i \neq a_i' = a_{2j-1}'$.
+
+    Hence in all cases we have that there is a $j \in \pints$ where $b_j \neq b_j'$.
+    It then follows that $f(a) = b = (b_1, b_2, \ldots) \neq (b_1', b_2', \ldots) = b' = f(a')$ so that $f$ is injective since $a$ and $a'$ were arbitrary.
+
+    Lastly, to show that $f$ is surjective, consider any $b \in B$ so that $b = (b_1, b_2, \ldots)$ where $b_i \in B_i = A_{2i-1} \times A_{2i}$ for every $i \in \pints$.
+    Then, for any $i \in \pints$,  $b_i = (a_i', a_i'')$ where $a_i' \in A_{2i-1}$ and $a_i'' \in A_{2i}$.
+    So consider any $j \in \pints$.
+    If $j$ is even, then $i = j/2 \in \pints$ by Lemma~\ref{lem:cartp:eopints}.
+    Clearly also $j = 2i$.
+    So, define $a_j = a_i''$ so that $a_j = a_{2i} = a_i'' \in A_{2i} = A_j$.
+    On the other hand, if $j$ is odd, then $i = (j+1)/2 \in \pints$ again by Lemma~\ref{lem:cartp:eopints}.
+    Then clearly $j = 2i-1$.
+    So, here let $a_j = a_i'$ so that $a_j = a_{2i-1} = a_i' \in A_{2i-1} = A_j$.
+    Hence $a_j \in A_j$ for all $j \in \pints$ so that $a = (a_1, a_2, \ldots) \in A$.
+    Then, for any $i \in \pints$, we have $b_i = (a_i', a_i'') = (a_{2i-1}, a_{2i}) \in A_{2i-1} \times A_{2i} = B_i$ so that by definition $f(a) = b = (b_1, b_2, \ldots)$.
+    This shows that $f$ is surjective since $b$ was arbitrary.
+
+    This completes the proof that $f$ is bijective so that the desired result follows.
+  }
+}
