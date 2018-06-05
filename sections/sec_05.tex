@@ -125,3 +125,110 @@
     This completes the proof that $f$ is bijective so that the desired result follows.
   }
 }
+
+\exercise{3}{
+  Let $A = A_1 \times A_2 \times \cdots$ and $B = B_1 \times B_2 \times \cdots$.
+  \eparts{
+  \item Show that if $B_i \ss A_i$ for all $i$, then $B \ss A$.
+    (Strictly speaking, if we are given a function mapping the index set $\pints$ into the union of the sets $B_i$, we must change its range before it can be considered as a function mapping $\pints$ into the union of the sets $A_i$.
+    We shall ignore this technicality when dealing with cartesian products)
+  \item Show the converse of (a) holds if $B$ is nonempty.
+  \item Show that if $A$ is nonempty, each $A_i$ is nonempty.
+    Does the converse hold?
+    (We will return to this question in the exercises of \S 19.)
+  \item What is the relation between the set $A \cup B$ and the cartesian product of the sets $A_i \cup B_i$?
+    What is the relation between the set $A \cap B$ and the cartesian product of the sets $A_i \cap B_i$?
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    Suppose that $b \in B$ so that $b = (b_1, b_2, \ldots)$ where $b_i \in B_i$ for every $i \in \pints$.
+    Consider any such $i \in \pints$ so that $b_i \in B_i$.
+    Then also $b_i \in A_i$ since $B_i \ss A_i$.
+    Since $i$ was arbitrary, $b_i \in A_i$ for every $i \in \pints$ so that $b = (b_1, b_2, \ldots) \in A_1 \times A_2 \times \cdots = A$.
+    Since $b$ was arbitrary, this shows that $B \ss A$.
+    Note that we ignore the function range technicality issue mentioned above.
+  }
+
+  (b)
+  \qproof{
+    Suppose that $B \ss A$.
+    Since $B \neq \es$, there is a $b' \in B$ so that $b' = (b_1', b_2', \ldots)$ where $b_i' \in B_i$ for every $i \in \pints$.
+    Now consider any $i \in \pints$ and $b_0 \in B_i$.
+    Then define
+    \gath{
+      b_j = \begin{cases}
+        b_0 & j = i \\
+        b_j' & j \neq i
+      \end{cases}
+    }
+    for any $j \in \pints$.
+    Clearly we have that $b_j \in B_j$ for any $j \in \pints$ so that $b = (b_1, b_2, \ldots) \in B_1 \times B_2 \times \cdots = B$.
+    It then follows that also $b \in A$ since $B \ss A$.
+    Hence $b_j \in A_j$ for every $j \in \pints$.
+    In particular, we have $b_0 = b_i \in A_i$.
+    Since $b_0$ was arbitrary, this shows that $B_i \ss A_i$, and since $i$ was arbitrary, this shows the desired result.
+  }
+
+  (c)
+  \qproof{
+    Suppose that $A$ is nonempty so that there is an $a \in A$.
+    Then, since $A = A_1 \times A_2 \times \cdots$, it follows that $a = (a_1, a_2, \ldots)$ where $a_i \in A_i$ for every $i \in \pints$.
+    Therefore, for any such $i \in \pints$, we have that $a_i \in A_i$ so that $A_i \neq \es$.
+    Hence every $A_i$ is nonempty as desired since $i$ was arbitrary.
+  }
+
+  Consider the converse.
+  Suppose that each $A_i$ is nonempty (for $i \in \pints$).
+  Then there is an $a_i \in A_i$ for every $i \in \pints$ so that $a = (a_1, a_2, \ldots) \in A_1 \times A_2 \times \cdots = A$ so that then $A \neq \es$.
+  While this may seem like an innocuous argument, especially out of the context of axiomatic set theory, it actually requires the Axiom of Choice.
+  The reason is that, in the general case when each $A_i$ may have more than one, or even an infinite number, of elements, we have to choose a specific $a_i$ in each $A_i$.
+  Since the index set $\pints$ is infinite, an infinite number of these choices must be made, which is precisely when the Axiom of Choice is required.
+  If the index set was finite, then the axiom would not be needed.
+
+  (d)
+  First, let $C_i = A_i \cup B_i$ for every $i \in \pints$, and let $C = C_1 \times C_2 \times \cdots$,  so that we are asked to compare $C$ with $A \cup B$.
+
+  We claim that $A \cup B \ss C$ but that $C$ is \emph{not} generally a subset of $A \cup B$.
+  
+  \qproof{
+    First consider any $x \in A \cup B$ so that $x \in A$ or $x \in B$.
+    If $x \in A$ then it has to be that $x = (x_1, x_2, \ldots)$ where $x_i \in A_i$ for every $i \in \pints$.
+    Consider then any such $i \in \pints$.
+    Then $x_i \in A_i$ so that clearly $x_i \in A_i \cup B_i = C_i$.
+    Since $i$ was arbitrary, we conclude that $x = (x_1, x_2, \ldots) \in C_1 \times C_2 \times \cdots = C$.
+    An analogous argument shows that $x \in C$ when $x \in B$ as well.
+    Hence $A \cup B \ss C$ since $x$ was arbitrary.
+
+    To show that $C$ is \emph{not} a subset of $A \cup B$ in general, consider the following counterexample.
+    Let $A_1 = \es$ and $A_i = \braces{1}$ for every $i \in \pints$ where $i > 1$.
+    Also let $B_i = \braces{2}$ for every $i \in \pints$.
+    Now, it follows from the contrapositive of part (c) that $A = \es$ since $A_1 = \es$.
+    We also clearly have $B = B_1 \times B_2 \times \cdots = \braces{(2, 2, \ldots)}$ so that $A \cup B = \es \cup B = B = \braces{(2, 2, \ldots)}$.
+    Clearly $C_1 = A_1 \cup B_1 = \es \cup \braces{2} = \braces{2}$ while, for $i > 1$ we have $C_i = A_i \cup B_i = \braces{1} \cup \braces{2} = \braces{1,2}$.
+    It then follows that, for $a_1 = 2$ and $a_i = 1$ for $i > 1$, we have $a = (a_1, a_2, \ldots) = (2, 1, 1, \ldots) \in C_1 \times C_2 \times \cdots = C$.
+    However, clearly $a \notin A \cup B$, which suffices to show that $C$ cannot be a subset of $A \cup B$ in general.
+  }
+
+  Now let $C_i = A_i \cap B_i$ for every $i \in \pints$ so that we are asked to compare $C = C_1 \times C_2 \times \cdots$ and $A \cap B$.
+
+  Here we claim that in fact $A \cap B = C$.
+
+  \qproof{
+    First consider any $x \in A \cap B$ so that $x \in A$ and $x \in B$.
+    It then follows that $x = (x_1, x_2, \ldots)$ where $x_i \in A_i$ for every $i \in \pints$ and $x_i \in B_i$ for every $i \in \pints$.
+    Then, for any such $i \in \pints$, clearly $x_i \in A_i$ and $x_i \in B_i$ so that $x_i \in A_i \cap B_i = C_i$.
+    We then have that $x = (x_1, x_2, \ldots) \in C_1 \times C_2 \times \cdots = C$.
+    Since $x$ was arbitrary, this shows that $A \cap B \ss C$.
+
+    Now consider any $x \in C$ so that $x = (x_1, x_2, \ldots)$ where $x_i \in C_i$ for any $i \in \pints$.
+    Then, for any such $i \in \pints$, we have $x_i \in C_i = A_i \cap B_i$ so that $x_i \in A_i$ and $x_i \in B_i$.
+    Since $i$ was arbitrary, this shows that both $x = (x_1, x_2, \ldots) \in A_1 \times A_2 \times \cdots = A$ and $x = (x_1, x_2, \ldots) \in B_1 \times B_2 \times \cdots = B$.
+    Hence $x \in A \cap B$, which shows that $C \ss A \cap B$ since $x$ was arbitrary.
+
+    Therefore it must be that $A \cap B = C$ as desired.
+  }
+}
