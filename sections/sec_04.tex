@@ -675,7 +675,7 @@
 
 \exercise{4}{
   \eparts{
-  \item Prove by induction that given $n \in \pints$, every nonempty subset of $\braces{1,\ldots,n}$ has a largest element.
+  \item Prove by induction that given $n \in \pints$, every nonempty subset of $\intsfin{n}$ has a largest element.
   \item Explain why you cannot conclude from (a) that every nonempty subset of $\pints$ has a largest element.
   }
 }
@@ -687,8 +687,8 @@
     Let $A$ be the set of integers such that the hypothesis is true.
     Clearly the result is then shown if we can prove that $A = \pints$.
     So first, clearly $1 \in A$ since the set $\braces{1}$ has only a single nonempty subset, i.e. $\braces{1}$ itself, in which 1 is clearly the largest element.
-    Now suppose that $n \in A$ so that every nonempty subset of $S_{n+1} = \braces{1,\ldots,n}$ has a largest element.
-    Consider any nonempty subset $B$ of $S_{n+2} = \braces{1,\ldots,n+1}$, noting that $S_{n+2} = S_{n+1} \cup \braces{n+1}$.
+    Now suppose that $n \in A$ so that every nonempty subset of $S_{n+1} = \intsfin{n}$ has a largest element.
+    Consider any nonempty subset $B$ of $S_{n+2} = \intsfin{n+1}$, noting that $S_{n+2} = S_{n+1} \cup \braces{n+1}$.
 
     Case: $n+1 \in B$.
     Then, for any other $k \in B$, $k \in S_{n+2}$ so that either $k = n+1$ or $k \in S_{n+1}$ so that $k < n+1$ by the definition of $S_{n+1}$.
@@ -697,11 +697,11 @@
     Case: $n+1 \notin B$.
     Then clearly $B \ss S_{n+1}$ so that $B$ has a largest element by the induction hypothesis since $B$ is nonempty.
 
-    Hence in either case $B$ has a largest element so that $n+1 \in A$ since $B$ was an arbitrary nonempty subset of $S_{n+2} = \braces{1, \ldots, n+1}$.
+    Hence in either case $B$ has a largest element so that $n+1 \in A$ since $B$ was an arbitrary nonempty subset of $S_{n+2} = \intsfin{n+1}$.
     This shows that $A$ is an inductive set of positive integers so that $A = \pints$ as desired by the Principle of Induction.
   }
 
-  (b) There could be nonempty subsets of $\pints$ that are \emph{not} subsets of $S_{n+1} = \braces{1, \ldots, n}$ for any $n \in \pints$, in which cases the hypothesis of part~(a) is not satisfied so that the conclusion does not necessarily apply.
+  (b) There could be nonempty subsets of $\pints$ that are \emph{not} subsets of $S_{n+1} = \intsfin{n}$ for any $n \in \pints$, in which cases the hypothesis of part~(a) is not satisfied so that the conclusion does not necessarily apply.
   In fact, $\pints$ itself is an example of such a set where both the hypothesis and the conclusion are false.
 }
 
@@ -1363,7 +1363,7 @@
 
     Now let $B' = A' \cap \pints$.
     Then, for any $n' \in B'$, we have that $n' \in A'$ so that $n' \leq \a' < N'$.
-    Since also clearly $n' \in \pints$, we have that $n' \in S_{N'} = \braces{k \in \pints \where k < N'} = \braces{1, \ldots, N'-1}$.
+    Since also clearly $n' \in \pints$, we have that $n' \in S_{N'} = \braces{k \in \pints \where k < N'} = \intsfin{N'-1}$.
     Hence $B' \ss S_{N'}$ since $n'$ was arbitrary.
     We also have that $1 \in A'$ since $a \in A$ and $a - a + 1 = 1$.
     Hence $1 \in B'$ since clearly also $1 \in \pints$ since it is inductive.

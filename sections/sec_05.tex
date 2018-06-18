@@ -1,6 +1,12 @@
 \setcounter{subsection}{5-1}
 \subsection{Cartesian Products}
 
+% Some macros useful in this section
+\def\vx{\vect{x}}
+\def\vy{\vect{y}}
+\def\va{\vect{a}}
+\def\vb{\vect{b}}
+
 \exercise{1}{
   Show that there is a bijective correspondence of $A \times B$ with $B \times A$.
 }
@@ -69,19 +75,19 @@
     For brevity, let $X = A_1 \times \cdots \times A_n$ and $Y = \parens{A_1 \times \cdots \times A_{n-1}} \times A_n$.
     Suppose that $n > 1$ so that $X$ and $Y$ make sense.
     We construct a bijective function $f: X \to Y$.
-    For any $x = (x_1, \ldots x_n) \in X$ we have that $x_i \in A_i$ for $1 \leq i \leq n$.
+    For any $\vx = (x_1, \ldots x_n) \in X$ we have that $x_i \in A_i$ for $1 \leq i \leq n$.
     So set $f(x) = ((x_1, \ldots, x_{n-1}), x_n)$, which is clearly an element of $Y$.
 
-    To see that $f$ is injective consider $x = (x_1, \ldots, x_n)$ and $y = (y_1, \ldots, y_n)$ in $X$ where $x \neq y$.
-    It then follows that there must be an $i \in \braces{1, \ldots, n}$ where $x_i \neq y_i$.
-    Let $x' = (x_1, \ldots, x_{n-1})$ and $y' = (y_1, \ldots, y_{n-1})$ so that clearly $f(x) = (x', x_n)$ and $f(y) = (y', y_n)$.
-    Now, if $i = n$, then clearly $f(x) = (x', x_n) \neq (y', y_n) = f(y)$ since $x_n = x_i \neq y_i = y_n$.
+    To see that $f$ is injective consider $\vx = (x_1, \ldots, x_n)$ and $\vy = (y_1, \ldots, y_n)$ in $X$ where $\vx \neq \vy$.
+    It then follows that there must be an $i \in \intsfin{n}$ where $x_i \neq y_i$.
+    Let $\vx' = (x_1, \ldots, x_{n-1})$ and $\vy' = (y_1, \ldots, y_{n-1})$ so that clearly $f(\vx) = (\vx', x_n)$ and $f(\vy) = (\vy', y_n)$.
+    Now, if $i = n$, then clearly $f(\vx) = (\vx', x_n) \neq (\vy', y_n) = f(\vy)$ since $x_n = x_i \neq y_i = y_n$.
     On the other hand, if $i \neq n$ then it has to be that $i < n$, and hence $i \leq n-1$.
-    It then follows that $x' = (x_1, \ldots, x_{n-1}) \neq (y_1, \ldots y_{n-1}) = y'$ so that then $f(x) = (x', x_n) \neq (y', y_n) = f(y)$ again.
-    Since $x$ and $y$ were arbitrary, this shows that $f$ is indeed injective.
+    It then follows that $\vx' = (x_1, \ldots, x_{n-1}) \neq (y_1, \ldots y_{n-1}) = \vy'$ so that then $f(\vx) = (\vx', x_n) \neq (\vy', y_n) = f(\vy)$ again.
+    Since $\vx$ and $\vy$ were arbitrary, this shows that $f$ is indeed injective.
 
-    Now consider any $y = ((x_1, \ldots, x_{n-1}), x_n) \in Y$ and let $x = (x_1, \ldots x_n)$.
-    It should be obvious that both $x \in X$ and $f(x) = y$ so that $f$ is surjective.
+    Now consider any $\vy = ((x_1, \ldots, x_{n-1}), x_n) \in Y$ and let $\vx = (x_1, \ldots x_n)$.
+    It should be obvious that both $\vx \in X$ and $f(\vx) = \vy$ so that $f$ is surjective.
     Hence $f$ is a bijective function as desired.
   }
 
@@ -89,14 +95,14 @@
   \qproof{
     First let $A = A_1 \times A_2 \times \cdots$ and $B = B_1 \times B_2 \times \cdots$.
     We construct a bijective $f: A \to B$.
-    So, for any $a \in A$, we have that $a = (a_1, a_2, \ldots)$, where $a_i \in A_i$ for any $i \in \pints$.
+    So, for any $\va \in A$, we have that $\va = (a_1, a_2, \ldots)$, where $a_i \in A_i$ for any $i \in \pints$.
     Then, for any $i \in \pints$, define $b_i = (a_{2i-1}, a_{2i})$ so that clearly $b_i \in A_{2i-1} \times A_{2i} = B_i$.
-    We then have that $b = (b_1, b_2, \ldots) \in B_1 \times B_2 \times \cdots = B$.
-    So set $f(a) = b$ so that $f$ is a function from $A$ to $B$.
+    We then have that $\vb = (b_1, b_2, \ldots) \in B_1 \times B_2 \times \cdots = B$.
+    So set $f(\va) = \vb$ so that $f$ is a function from $A$ to $B$.
 
-    To show that $f$ is injective, consider $a = (a_1, a_2, \ldots)$ and $a' = (a_1', a_2', \ldots)$ in $A$ where $a \neq a'$.
-    For each $i \in \pints$, define $b_i = (a_{2i-1}, a_{2i})$ and $b_i' = (a_{2i-1}', a_{2i}')$ as above and set $b = (b_1, b_2, \ldots)$ and $b' = (b_1', b_2', \ldots)$ so that clearly $f(a) = b$ and $f(a') = b'$.
-    Since $a \neq a'$, it follows that there must be an $i \in \pints$ where $a_i \neq a_i'$.
+    To show that $f$ is injective, consider $\va = (a_1, a_2, \ldots)$ and $\va' = (a_1', a_2', \ldots)$ in $A$ where $\va \neq \va'$.
+    For each $i \in \pints$, define $b_i = (a_{2i-1}, a_{2i})$ and $b_i' = (a_{2i-1}', a_{2i}')$ as above and set $\vb = (b_1, b_2, \ldots)$ and $\vb' = (b_1', b_2', \ldots)$ so that clearly $f(\va) = \vb$ and $f(\va') = \vb'$.
+    Since $\va \neq \va'$, it follows that there must be an $i \in \pints$ where $a_i \neq a_i'$.
 
     Case: $i$ is even.
     Then let $j = i/2$ so that $j \in \pints$ by Lemma~\ref{lem:cartp:eopints}.
@@ -107,9 +113,9 @@
     We then clearly have that $i = 2j-1$ so that $b_j = (a_{2j-1}, a_{2j}) \neq (a_{2j-1}', a_{2j}') = b_j'$ since $a_{2j-1} = a_i \neq a_i' = a_{2j-1}'$.
 
     Hence in all cases we have that there is a $j \in \pints$ where $b_j \neq b_j'$.
-    It then follows that $f(a) = b = (b_1, b_2, \ldots) \neq (b_1', b_2', \ldots) = b' = f(a')$ so that $f$ is injective since $a$ and $a'$ were arbitrary.
+    It then follows that $f(\va) = \vb = (b_1, b_2, \ldots) \neq (b_1', b_2', \ldots) = \vb' = f(\va')$ so that $f$ is injective since $\va$ and $\va'$ were arbitrary.
 
-    Lastly, to show that $f$ is surjective, consider any $b \in B$ so that $b = (b_1, b_2, \ldots)$ where $b_i \in B_i = A_{2i-1} \times A_{2i}$ for every $i \in \pints$.
+    Lastly, to show that $f$ is surjective, consider any $\vb \in B$ so that $\vb = (b_1, b_2, \ldots)$ where $b_i \in B_i = A_{2i-1} \times A_{2i}$ for every $i \in \pints$.
     Then, for any $i \in \pints$,  $b_i = (a_i', a_i'')$ where $a_i' \in A_{2i-1}$ and $a_i'' \in A_{2i}$.
     So consider any $j \in \pints$.
     If $j$ is even, then $i = j/2 \in \pints$ by Lemma~\ref{lem:cartp:eopints}.
@@ -118,9 +124,9 @@
     On the other hand, if $j$ is odd, then $i = (j+1)/2 \in \pints$ again by Lemma~\ref{lem:cartp:eopints}.
     Then clearly $j = 2i-1$.
     So, here let $a_j = a_i'$ so that $a_j = a_{2i-1} = a_i' \in A_{2i-1} = A_j$.
-    Hence $a_j \in A_j$ for all $j \in \pints$ so that $a = (a_1, a_2, \ldots) \in A$.
-    Then, for any $i \in \pints$, we have $b_i = (a_i', a_i'') = (a_{2i-1}, a_{2i}) \in A_{2i-1} \times A_{2i} = B_i$ so that by definition $f(a) = b = (b_1, b_2, \ldots)$.
-    This shows that $f$ is surjective since $b$ was arbitrary.
+    Hence $a_j \in A_j$ for all $j \in \pints$ so that $\va = (a_1, a_2, \ldots) \in A$.
+    Then, for any $i \in \pints$, we have $b_i = (a_i', a_i'') = (a_{2i-1}, a_{2i}) \in A_{2i-1} \times A_{2i} = B_i$ so that by definition $f(\va) = \vb = (b_1, b_2, \ldots)$.
+    This shows that $f$ is surjective since $\vb$ was arbitrary.
 
     This completes the proof that $f$ is bijective so that the desired result follows.
   }
@@ -145,18 +151,18 @@
 
   (a)
   \qproof{
-    Suppose that $b \in B$ so that $b = (b_1, b_2, \ldots)$ where $b_i \in B_i$ for every $i \in \pints$.
+    Suppose that $\vb \in B$ so that $\vb = (b_1, b_2, \ldots)$ where $b_i \in B_i$ for every $i \in \pints$.
     Consider any such $i \in \pints$ so that $b_i \in B_i$.
     Then also $b_i \in A_i$ since $B_i \ss A_i$.
-    Since $i$ was arbitrary, $b_i \in A_i$ for every $i \in \pints$ so that $b = (b_1, b_2, \ldots) \in A_1 \times A_2 \times \cdots = A$.
-    Since $b$ was arbitrary, this shows that $B \ss A$.
+    Since $i$ was arbitrary, $b_i \in A_i$ for every $i \in \pints$ so that $\vb = (b_1, b_2, \ldots) \in A_1 \times A_2 \times \cdots = A$.
+    Since $\vb$ was arbitrary, this shows that $B \ss A$.
     Note that we ignore the function range technicality issue mentioned above.
   }
 
   (b)
   \qproof{
     Suppose that $B \ss A$.
-    Since $B \neq \es$, there is a $b' \in B$ so that $b' = (b_1', b_2', \ldots)$ where $b_i' \in B_i$ for every $i \in \pints$.
+    Since $B \neq \es$, there is a $\vb' \in B$ so that $\vb' = (b_1', b_2', \ldots)$ where $b_i' \in B_i$ for every $i \in \pints$.
     Now consider any $i \in \pints$ and $b_0 \in B_i$.
     Then define
     \gath{
@@ -166,8 +172,8 @@
       \end{cases}
     }
     for any $j \in \pints$.
-    Clearly we have that $b_j \in B_j$ for any $j \in \pints$ so that $b = (b_1, b_2, \ldots) \in B_1 \times B_2 \times \cdots = B$.
-    It then follows that also $b \in A$ since $B \ss A$.
+    Clearly we have that $b_j \in B_j$ for any $j \in \pints$ so that $\vb = (b_1, b_2, \ldots) \in B_1 \times B_2 \times \cdots = B$.
+    It then follows that also $\vb \in A$ since $B \ss A$.
     Hence $b_j \in A_j$ for every $j \in \pints$.
     In particular, we have $b_0 = b_i \in A_i$.
     Since $b_0$ was arbitrary, this shows that $B_i \ss A_i$, and since $i$ was arbitrary, this shows the desired result.
@@ -175,17 +181,17 @@
 
   (c)
   \qproof{
-    Suppose that $A$ is nonempty so that there is an $a \in A$.
-    Then, since $A = A_1 \times A_2 \times \cdots$, it follows that $a = (a_1, a_2, \ldots)$ where $a_i \in A_i$ for every $i \in \pints$.
+    Suppose that $A$ is nonempty so that there is an $\va \in A$.
+    Then, since $A = A_1 \times A_2 \times \cdots$, it follows that $\va = (a_1, a_2, \ldots)$ where $a_i \in A_i$ for every $i \in \pints$.
     Therefore, for any such $i \in \pints$, we have that $a_i \in A_i$ so that $A_i \neq \es$.
     Hence every $A_i$ is nonempty as desired since $i$ was arbitrary.
   }
 
   Consider the converse.
   Suppose that each $A_i$ is nonempty (for $i \in \pints$).
-  Then there is an $a_i \in A_i$ for every $i \in \pints$ so that $a = (a_1, a_2, \ldots) \in A_1 \times A_2 \times \cdots = A$ so that then $A \neq \es$.
+  Then there is an $a_i \in A_i$ for every $i \in \pints$ so that $\va = (a_1, a_2, \ldots) \in A_1 \times A_2 \times \cdots = A$ so that then $A \neq \es$.
   While this may seem like an innocuous argument, especially out of the context of axiomatic set theory, it actually requires the Axiom of Choice.
-  The reason is that, in the general case when each $A_i$ may have more than one, or even an infinite number, of elements, we have to choose a specific $a_i$ in each $A_i$.
+  The reason is that, in the general case when each $A_i$ may have more than one element, or even an infinite number of elements, we have to choose a specific $a_i$ in each $A_i$.
   Since the index set $\pints$ is infinite, an infinite number of these choices must be made, which is precisely when the Axiom of Choice is required.
   If the index set was finite, then the axiom would not be needed.
 
@@ -195,13 +201,13 @@
   We claim that $A \cup B \ss C$ but that $C$ is \emph{not} generally a subset of $A \cup B$.
   
   \qproof{
-    First consider any $x \in A \cup B$ so that $x \in A$ or $x \in B$.
-    If $x \in A$ then it has to be that $x = (x_1, x_2, \ldots)$ where $x_i \in A_i$ for every $i \in \pints$.
+    First consider any $\vx \in A \cup B$ so that $\vx \in A$ or $x \in B$.
+    If $\vx \in A$ then it has to be that $\vx = (x_1, x_2, \ldots)$ where $x_i \in A_i$ for every $i \in \pints$.
     Consider then any such $i \in \pints$.
     Then $x_i \in A_i$ so that clearly $x_i \in A_i \cup B_i = C_i$.
-    Since $i$ was arbitrary, we conclude that $x = (x_1, x_2, \ldots) \in C_1 \times C_2 \times \cdots = C$.
-    An analogous argument shows that $x \in C$ when $x \in B$ as well.
-    Hence $A \cup B \ss C$ since $x$ was arbitrary.
+    Since $i$ was arbitrary, we conclude that $\vx = (x_1, x_2, \ldots) \in C_1 \times C_2 \times \cdots = C$.
+    An analogous argument shows that $\vx \in C$ when $\vx \in B$ as well.
+    Hence $A \cup B \ss C$ since $\vx$ was arbitrary.
 
     To show that $C$ is \emph{not} a subset of $A \cup B$ in general, consider the following counterexample.
     Let $A_1 = \es$ and $A_i = \braces{1}$ for every $i \in \pints$ where $i > 1$.
@@ -209,8 +215,8 @@
     Now, it follows from the contrapositive of part (c) that $A = \es$ since $A_1 = \es$.
     We also clearly have $B = B_1 \times B_2 \times \cdots = \braces{(2, 2, \ldots)}$ so that $A \cup B = \es \cup B = B = \braces{(2, 2, \ldots)}$.
     Clearly $C_1 = A_1 \cup B_1 = \es \cup \braces{2} = \braces{2}$ while, for $i > 1$ we have $C_i = A_i \cup B_i = \braces{1} \cup \braces{2} = \braces{1,2}$.
-    It then follows that, for $a_1 = 2$ and $a_i = 1$ for $i > 1$, we have $a = (a_1, a_2, \ldots) = (2, 1, 1, \ldots) \in C_1 \times C_2 \times \cdots = C$.
-    However, clearly $a \notin A \cup B$, which suffices to show that $C$ cannot be a subset of $A \cup B$ in general.
+    It then follows that, for $a_1 = 2$ and $a_i = 1$ for $i > 1$, we have $\va = (a_1, a_2, \ldots) = (2, 1, 1, \ldots) \in C_1 \times C_2 \times \cdots = C$.
+    However, clearly $\va \notin A \cup B$, which suffices to show that $C$ cannot be a subset of $A \cup B$ in general.
   }
 
   Now let $C_i = A_i \cap B_i$ for every $i \in \pints$ so that we are asked to compare $C = C_1 \times C_2 \times \cdots$ and $A \cap B$.
@@ -218,17 +224,234 @@
   Here we claim that in fact $A \cap B = C$.
 
   \qproof{
-    First consider any $x \in A \cap B$ so that $x \in A$ and $x \in B$.
-    It then follows that $x = (x_1, x_2, \ldots)$ where $x_i \in A_i$ for every $i \in \pints$ and $x_i \in B_i$ for every $i \in \pints$.
+    First consider any $\vx \in A \cap B$ so that $\vx \in A$ and $\vx \in B$.
+    It then follows that $\vx = (x_1, x_2, \ldots)$ where $x_i \in A_i$ for every $i \in \pints$ and $x_i \in B_i$ for every $i \in \pints$.
     Then, for any such $i \in \pints$, clearly $x_i \in A_i$ and $x_i \in B_i$ so that $x_i \in A_i \cap B_i = C_i$.
-    We then have that $x = (x_1, x_2, \ldots) \in C_1 \times C_2 \times \cdots = C$.
-    Since $x$ was arbitrary, this shows that $A \cap B \ss C$.
+    We then have that $\vx = (x_1, x_2, \ldots) \in C_1 \times C_2 \times \cdots = C$.
+    Since $\vx$ was arbitrary, this shows that $A \cap B \ss C$.
 
-    Now consider any $x \in C$ so that $x = (x_1, x_2, \ldots)$ where $x_i \in C_i$ for any $i \in \pints$.
+    Now consider any $\vx \in C$ so that $\vx = (x_1, x_2, \ldots)$ where $x_i \in C_i$ for any $i \in \pints$.
     Then, for any such $i \in \pints$, we have $x_i \in C_i = A_i \cap B_i$ so that $x_i \in A_i$ and $x_i \in B_i$.
-    Since $i$ was arbitrary, this shows that both $x = (x_1, x_2, \ldots) \in A_1 \times A_2 \times \cdots = A$ and $x = (x_1, x_2, \ldots) \in B_1 \times B_2 \times \cdots = B$.
-    Hence $x \in A \cap B$, which shows that $C \ss A \cap B$ since $x$ was arbitrary.
+    Since $i$ was arbitrary, this shows that both $\vx = (x_1, x_2, \ldots) \in A_1 \times A_2 \times \cdots = A$ and $\vx = (x_1, x_2, \ldots) \in B_1 \times B_2 \times \cdots = B$.
+    Hence $\vx \in A \cap B$, which shows that $C \ss A \cap B$ since $\vx$ was arbitrary.
 
     Therefore it must be that $A \cap B = C$ as desired.
+  }
+}
+
+\def\parta{If $m \leq n$, find an injective map $f : X^m \to X^n$.}
+\def\partb{Find a bijective map $g : X^m \times X^n \to X^{m+n}$.}
+\def\partc{Find an injective map $h : X^n \to X^\w$.}
+\def\partd{Find a bijective map $k : X^n \times X^\w \to X^\w$.}
+\def\parte{Find a bijective map $l : X^\w \times X^\w \to X^\w$.}
+\def\partf{If $A \ss B$, find an injective map $m : \parens{A^\w}^n \to B^\w$.}
+\exercise{4}{
+  Let $m,n \in \pints$.
+  Let $X \neq \es$.
+  \eparts{
+  \item \parta
+  \item \partb
+  \item \partc
+  \item \partd
+  \item \parte
+  \item \partf
+  }
+  NOTE: For part (f), older printings of the text say, ``If $A \ss B$, find an injective map $m : X^A \to X^B$.''
+  This is assumed to be an error since the meaning of $X^A$ and $X^B$ are not defined in the text (though, for example, $X^A$ would typically mean the set of functions from $A$ to $X$) as well as the fact that it was changed.
+}
+\sol{
+  \dwhitman
+
+  (a) \parta
+  \qproof{
+    Suppose that $m \leq n$.
+    Since $X \neq \es$, there is an $x_0 \in X$.
+    Now, for any $\vx \in X^m$ we have that $\vx = (x_1, \ldots, x_m)$ where each $x_i \in X$.
+    Then define
+    \gath{
+      y_i = \begin{cases}
+        x_i & 1 \leq i \leq m \\
+        x_0 & m < i \leq n
+      \end{cases}
+    }
+    for $i \in \intsfin{n}$.
+    Clearly $y_i \in X$ for every $i \in \intsfin{n}$ so that $\vy = (y_1, \ldots, y_n) \in X^n$.
+    Then set $f(\vx) = \vy$ so that $f : X^m \to X^n$.
+
+    To show that $f$ is injective consider $\vx$ and $\vx'$ in $X^m$ so that $\vx = (x_1, \ldots, x_m)$ and $\vx' = (x_1', \ldots, x_m')$ where both $x_i$ and $x_i'$ are of course in $X$ for any $i \in \intsfin{m}$.
+    Also suppose that $\vx \neq \vx'$ so that it follows that there is an $i \in \intsfin{m}$ where $x_i \neq x_i'$.
+    Let $\vy = (y_1, \ldots, y_n) = f(\vx)$ and $\vy' = (y_1', \ldots, y_n') = f(\vx')$.
+    Then, since clearly $1 \leq i \leq m$, we have $y_i = x_i \neq x_i' = y_i'$ by the definition of $f$.
+    Hence we have $f(\vx) = \vy \neq \vy' = f(\vx')$, which shows that $f$ is injective since $\vx$ and $\vx'$ were arbitrary.
+  }
+
+  (b) \partb
+  \qproof{
+    Consider any $\vx \in X^m \times X^n$ so that $\vx = (\va, \vb)$ where $\va \in X^m$ and $\vb \in X^n$.
+    Then we have that $\va = (a_1, \ldots, a_m)$ and $\vb = (b_1, \ldots, b_n)$ where $a_i,b_j \in X$ for every $i \in \intsfin{m}$ and $j \in \intsfin{n}$.
+    Then define
+    \gath{
+      y_k = \begin{cases}
+        a_k & 1 \leq k \leq m \\
+        b_{k-m} & m < k \leq m+n
+      \end{cases}
+    }
+    for any $k \in \intsfin{m+n}$, noting that for $m < k \leq m+n$ we have $m+1 \leq k \leq m+n$, and hence $1 \leq k-m \leq n$ so that $b_{k-m}$ is defined.
+    Now set $g(\vx) = \vy = (y_1, \ldots, y_{m+n})$ so that clearly $g(\vx) \in X^{m+n}$ since each $y_k \in X$.
+    Thus $g$ is a function from $X^m \times X^n$ to $X^{m+n}$.
+
+    To show that $g$ is injective, consider any $\vx = (\va, \vb)$ and $\vx' = (\va', \vb')$ in  $X^m \times X^n$ where $\vx \neq \vx'$.
+    Also let $\vy = (y_1, \ldots, y_{m+n}) = g(\vx)$ and $\vy' = (y_1', \ldots, y_{m+n}') = g(\vx')$.
+    Since $\vx \neq \vx'$, it must be that $\va \neq \va'$ or $\vb \neq \vb'$.
+    In the former case we have that $\va = (a_1, \ldots, a_m)$ and $\va' = (a_1', \ldots, a_m')$ since they are both in $X^m$.
+    Since $\va \neq \va'$ there is an $i \in \intsfin{m}$ where $a_i \neq a_i'$.
+    Then, since clearly $1 \leq i \leq m$, we have that $y_i = a_i \neq a_i' = y_i'$.
+    In the latter case we have that $\vb = (b_1, \ldots, b_n)$ and $\vb' = (b_1', \ldots, b_n')$ since they are both in $X^n$.
+    Then, since $\vb \neq \vb'$, we have that there is an $i \in \intsfin{n}$ such that $b_i \neq b_i'$.
+    Let $k = m+i$ so that clearly $k-m = i$.
+    Also $m < m+i = k \leq m+n$ since $0 < 1 \leq i \leq n$ so that $y_k = b_{k-m} = b_i \neq b_i' = b_{k-m}' = y_k'$.
+    Hence in both cases there is a $k \in \intsfin{m+n}$ such that $y_k \neq y_k'$ so that $g(\vx) = \vy = (y_1, \ldots, y_{m+n}) \neq (y_1', \ldots, y_{m+n}') = \vy' = g(\vx')$.
+    Since $\vx$ and $\vx'$ were arbitrary, this shows that $g$ is indeed injective.
+
+    Now consider any $\vy = (y_1, \ldots, y_{m+n}) \in X^{m+n}$, and define $a_i = y_i$ for any $i \in \intsfin{m}$ and $b_j = y_{m+j}$ for any $j \in \intsfin{n}$, noting that $y_{m+j}$ is defined since $0 < 1 \leq j \leq n$ implies that $m < m+j \leq m+n$.
+    Then let $\va = (a_1, \ldots, a_m)$, $\vb = (b_1, \ldots, b_n)$, and $\vx = (\va,\vb)$ so that clearly $\vx \in X^m \times X^n$.
+    Let $\vy' = g(\vx)$ as defined above so that $\vy' = (y_1', \ldots, y_{m+n}')$.
+    Consider any $k \in \intsfin{m+n}$.
+    If $1 \leq k \leq m$ then we have by the definition of $g$ that $y_k' = a_k = y_k$.
+    On the other hand, if $m < k \leq m+n$, then we have $y_k' = b_{k-m} = y_{m+(k-m)} = y_k$.
+    Thus in both cases $y_k' = y_k$ so that clearly $g(\vx) = \vy' = (y_1', \ldots, y_{m+n}') = (y_1, \ldots, y_{m+n}) = \vy$ since $k$ was arbitrary.
+    This shows that $g$ is surjective since $\vy$ was arbitrary.
+
+    Therefore we have shown that $g$ is bijective as desired.
+  }
+
+  (c) \partc
+  \qproof{
+    First, we know that $X \neq \es$ so that there is an $x_0 \in X$.
+    So, for any $\vx = (x_1, \ldots, x_n) \in X^n$, define
+    \gath{
+      y_i = \begin{cases}
+        x_i & 1 \leq i \leq n \\
+        x_0 & n < i
+      \end{cases}
+    }
+    for any $i \in \pints$.
+    Then set $h(\vx) = \vy = (y_1, y_2, \ldots)$ so that clearly $h(\vx) \in X^\w$.
+    Thus $h$ is a function that maps $X^n$ into $X^\w$.
+
+    To show that $h$ is injective, consider $\vx$ and $\vx'$ in $X^n$ where $\vx \neq \vx'$.
+    Clearly we have that $\vx = (x_1, \ldots, x_n)$ and $\vx' = (x_1', \ldots, x_n')$, and let $\vy = (y_1, y_2, \ldots) = h(\vx)$ and $\vy' = (y_1', y_2', \ldots) = h(\vx')$.
+    Since $\vx \neq \vx'$, there must an $i \in \intsfin{n}$ where $x_i \neq x_i'$.
+    Then we have $y_i = x_i \neq x_i' = y_i'$ by the definition of $h$ since obviously $1 \leq i \leq n$.
+    It then follows that $h(\vx) = \vy = (y_1, y_2, \ldots) \neq (y_1', y_2', \ldots) = \vy' = h(\vx')$, which shows that $h$ is injective since $\vx$ and $\vx'$ were arbitrary.
+  }
+
+  (d) \partd
+  \qproof{
+    Consider any $\vx = (\va,\vb) \in X^n \times X^\w$ so that clearly $\va = (a_1, \ldots, a_n) \in X^n$ and $\vb = (b_1, b_2, \ldots) \in X^\w$.
+    Then define the sequence
+    \gath{
+      y_i = \begin{cases}
+        a_i & 1 \leq i \leq n \\
+        b_{i-n} & n < i
+      \end{cases}
+    }
+    for any $i \in \pints$, noting that when $n < i$ we have $n+1 \leq i$ so that $1 \leq i-n$  so that $b_{i-n}$ is defined.
+    We then of course set $k(\vx) = \vy = (y_1, y_2, \ldots)$ so that clearly $k(\vx) \in X^\w$.
+    Therefore $k$ is a function from $X^n \times X^\w$ to $X^\w$.
+
+    To show that $k$ is injective consider $\vx$ and $\vx'$ in $X^n \times X^\w$ where $\vx \neq \vx'$.
+    Of course we have $\vx = (\va,\vb)$ and $\vx' = (\va',\vb')$ where $\va,\va' \in X^n$ while $\vb,\vb' \in X^\w$.
+    It then follows that $\va = (a_1, \ldots, a_n)$, $\va' = (a_1', \ldots, a_n')$, $\vb = (b_1, b_2, \ldots)$, and $\vb' = (b_1', b_2', \ldots)$, where every $a_i$, $a_i'$, $b_j$, and $b_j'$ are in $X$ (for $i \in \intsfin{n}$ and $j \in \pints$).
+    Also, let $\vy = (y_1, y_2, \ldots) = k(\vx)$ and $\vy' = (y_1', y_2', \ldots) = k(\vx')$.
+    Now, since $\vx \neq \vx'$, we have that either $\va \neq \va'$ or $\vb \neq \vb'$.
+    If $\va \neq \va'$ then there is an $i \in \intsfin{n}$ where $a_i \neq a_i'$.
+    We then have that $y_i = a_i \neq a_i' = y_i'$ by the definition of $k$, since obviously $1 \leq i \leq n$.
+    If, on the other hand, $\vb \neq \vb'$, then there is an $i \in \pints$ such that $b_i \neq b_i'$.
+    Then clearly $n < n+i$ since $0 < i$ so that $y_{n+i} = b_{(n+i)-n} = b_i \neq b_i' = b_{(n+i)-n}' = y_{n+i}'$, noting that clearly $n+i \in \pints$.
+    Hence in either case there is an $i \in \pints$ such that $y_i \neq y_i'$ so that $k(\vx) = \vy = (y_1, y_2, \ldots) \neq (y_1', y_2', \ldots) = \vy' = k(\vx')$.
+    This shows that $k$ is injective since $\vx$ and $\vx'$ were arbitrary.
+
+    Now consider any $\vy = (y_1, y_2, \ldots) \in X^\w$ and set $a_i = y_i$ for any $i \in \intsfin{n}$ so that clearly $\va = (a_1, \ldots, a_n) \in X^n$.
+    Also, for any $j \in \pints$, let $b_j = y_{n+j}$ so that clearly $\vb = (b_1, b_2, \ldots) \in X^\w$.
+    Let $\vx = (\va,\vb)$ so that clearly $x \in X^n \times X^\w$.
+    Now set $\vy' = (y_1', y_2', \ldots) = k(\vx)$ as defined above.
+    Consider any $i \in \pints$.
+    If $1 \leq i \leq n$ then $y_i' = a_i = y_i$ by the definition of $k$.
+    If $n < i$ then $y_i' = b_{i-n} = y_{n+(i-n)} = y_i$.
+    Hence $y_i' = y_i$ for every $i \in \pints$ so that $k(\vx) = \vy' = (y_1', y_2', \ldots) = (y_1, y_2, \ldots) = \vy$, which shows that $k$ is surjective since $\vy$ was arbitrary.
+
+    This completes the proof that $k$ is bijective.
+  }
+
+  (e) \parte
+  \qproof{
+    Consider any $\vx = (\va,\vb) \in X^\w \times X^\w$ so that clearly $\va = (a_1, a_2, \ldots)$ and $\vb = (b_1, b_2, \ldots)$.
+    Now define
+    \gath{
+      y_i = \begin{cases}
+        a_{i/2} & \text{$i$ is even} \\
+        b_{(i+1)/2} & \text{$i$ is odd}
+      \end{cases}
+    }
+    for any $i \in \pints$.
+    Note that $i/2$ and $(i+1)/2$ are in $\pints$ if $i$ is even or odd, respectively by Lemma~\ref{lem:cartp:eopints} so that $y_i$ is defined.
+    Clearly we have that $y_i \in X$ for any $i \in \pints$ so that $\vy = (y_1, y_2, \ldots) \in X^\w$.
+    Setting $l(\vx) = \vy$, we then have that $l$ is a function from $X^\w \times X^\w$ to $X^\w$.
+
+    To show that $l$ is injective, consider $\vx = (\va, \vb)$ and $\vx' = (\va', \vb')$ in $X^\w \times X^\w$ where $\vx \neq \vx'$.
+    Also set $\vy = (y_1, y_2, \ldots) = l(\vx)$ and $\vy' = (y_1', y_2', \ldots) = l(\vx')$.
+    Since $\vx \neq \vx'$, we have that either $\va \neq \va'$ or $\vb \neq \vb'$.
+    If $\va \neq \va'$ then there is an $i \in \pints$ such that $a_i \neq a_i'$.
+    Then, since clearly $2i$ is even, we have $y_{2i} = a_{(2i)/2} = a_i \neq a_i' = a_{(2i)/2}' = y_{2i}'$.
+    On the other hand, if $\vb \neq \vb'$ then there is a $j \in \pints$ where $b_j \neq b_j'$.
+    Set $k = 2j-1$, noting that
+    \ali{
+      1 &\leq j \\
+      2 &\leq 2j \\
+      1 &\leq 2j-1 \\
+      1 &\leq k
+    }
+    so that $k \in \pints$.
+    Clearly also $(k+1)/2 = j$.
+    Since obviously $k$ is odd, we have $y_k = b_{(k+1)/2} = b_j \neq b_j' = b_{(k+1)/2}' = y_k'$.
+    Hence in both cases we have that there is a $k \in \pints$ where $y_k \neq y_k'$ so that $l(\vx) = \vy = (y_1, y_2, \ldots) \neq (y_1', y_2', \ldots) = \vy' = l(\vx')$.
+    Since $\vx$ and $\vx'$ were arbitrary, this shows that $l$ is injective.
+
+    Now consider any $\vy = (y_1, y_2, \ldots) \in X^\w$.
+    For any $i \in \pints$, define $a_i = y_{2i}$ and $b_i = y_{2i-1}$, noting again that $2i-1 \in \pints$ (and clearly $2i \in \pints$).
+    Then set $\va = (a_1, a_2, \ldots)$, $\vb = (b_1, b_2, \ldots)$, and $\vx = (\va, \vb)$.
+    Now let $\vy' = (y_1', y_2', \ldots) = l(\vx)$ and consider any $i \in \pints$.
+    If $i$ is  even then we have by the definition of $l$ that $y_i' = a_{i/2} = y_{2(i/2)} = y_i$.
+    If $i$ is odd then let $j = (i+1)/2$ so that clearly $i = 2j-1$.
+    Then $y_i' = b_{(i+1)/2} = b_j = y_{2j-1} = y_i$.
+    Hence in either case we have $y_i' = y_i$ so that $l(\vx) = \vy' = (y_1', y_2', \ldots) = (y_1, y_2, \ldots) = \vy$ since $i$ was arbitrary.
+    Since $\vy$ was arbitrary this shows that $l$ is surjective.
+
+    Thus we have shown that $l$ is bijective as desired.
+  }
+
+  (f) \partf
+  \qproof{
+    Consider any $\vx \in \parens{A^\w}^n$ so that $\vx = (\vx_1, \ldots \vx_n)$ where $\vx_i \in A^\w$ for any $i \in \intsfin{n}$.
+    Then let $x_{ij} = \vx_i(j)$ for $i \in \intsfin{n}$ and $j \in \pints$ so that clearly $x_{ij} \in A$, from which it follows that each $x_{ij} \in B$ as well since $A \ss B$.
+    Consider any $k \in \pints$.
+    Since $n \neq 0$ (since $n \in \pints$), it follows from the Division Theorem from algebra that there are unique integers $q$ and $0 \leq r < n$ where $k = qn + r$.
+    Suppose for a moment that $q < 0$ so that $q+1 \leq 0$.
+    Then we have that $k = qn + r < qn + n = (q+1)n \leq 0 \cdot n = 0 < k$ (since $k \in \pints$) since $r < n$ and $n > 0$ (so that $(q+1)n \leq 0 \cdot n$ since $q+1 \leq 0$).
+    This is of course a contradiction so that it must be that $q \geq 0$.
+    Then set $i = r+1 \geq 1$ and $j = q+1 \geq 1$ so that $i \in \intsfin{n}$ and $j \in \pints$.
+    Set $y_k = x_{ij}$ so that clearly $y_k \in B$ since $x_{ij}$ is.
+    It then follows that $\vy = (y_1, y_2, \ldots) \in B^\w$.
+    Then set $m(\vx) = \vy$ so that clearly $m$ is a function from $\parens{A^\w}^n$ to $B^\w$.
+
+    To show that $m$ is injective, consider any $\vx$ and $\vx'$ in $\parens{A^\w}^n$ where $\vx \neq \vx'$.
+    Then $\vx = (\vx_1, \ldots, \vx_n)$ and $\vx' = (\vx_1', \ldots, \vx_n')$ where each $\vx_i$ and $\vx_i'$ are in $A^\w$ for $i \in \intsfin{n}$.
+    As before set $x_{ij} = \vx_i(j)$ and $x_{ij}' = \vx_i'(j)$ for $i \in \intsfin{n}$ and $j \in \pints$, and also let $\vy = m(\vx)$ and $\vy' = m(\vx')$.
+    Now, since $\vx \neq \vx'$, there is an $i \in \intsfin{n}$ where $\vx_i \neq \vx_i'$.
+    It then follows that there is a $j \in \pints$ such that $x_{ij} = \vx_i(j) \neq \vx_i'(j) = x_{ij}'$.
+    Now let $k = (j-1)n + (i-1)$ so that it follows from the definition of $m$ that $y_k = x_{ij}$ and $y_k' = x_{ij}'$ since the quotient $q$ and remainder $r$ are unique by the Division Theorem.
+    Hence $y_k = x_{ij} \neq x_{ij}' = y_k'$ so that clearly $m(\vx) = \vy = (y_1, y_2, \ldots) \neq (y_1', y_2', \ldots) = \vy' = m(\vx')$.
+    This shows that $m$ is injective as desired since $\vx$ and $\vx'$ were arbitrary.
   }
 }
