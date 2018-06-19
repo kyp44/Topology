@@ -455,3 +455,83 @@
     This shows that $m$ is injective as desired since $\vx$ and $\vx'$ were arbitrary.
   }
 }
+
+\newpage % This is just because the exercise label was on a separate page from the text, which was annoying
+\exercise{5}{
+  Which of the following subsets of $\reals^\w$ can be expressed as the cartesian product of subsets of $\reals$?
+  \eparts{
+  \item $\braces{\vx \where \text{$x_i$ is an integer for all $i$}}$.
+  \item $\braces{\vx \where \text{$x_i \geq i$ for all $i$}}$.
+  \item $\braces{\vx \where \text{$x_i$ is an integer for all $i \geq 100$}}$.
+  \item $\braces{\vx \where x_2 = x_3}$.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a) Let $X = \braces{\vx \in \reals^\w \where \text{$x_i$ is an integer for all $i$}}$ and $Y = \ints^\w$, noting that $\ints \ss \reals$.
+  We claim that $X = Y$.
+  \qproof{
+    Consider any $\vx \in X$ so that $x_i \in \ints$ for any $i \in \pints$.
+    It is then immediately obvious that $\vx \in \ints^\w = Y$.
+    Hence $X \ss Y$ since $\vx$ was arbitrary.
+
+    Now consider any $\vx \in Y = \ints^\w$ so that $x_i \in \ints$ for every $i \in \pints$.
+    Again it is obvious by the definition of $X$ that $\vx \in X$.
+    Hence $Y \ss X$ since $\vx$ was arbitrary.
+    This shows that $X = Y$ as desired.
+  }
+
+  (b) Let $X = \braces{\vx \in \reals^\w \where \text{$x_i \geq i$ for all $i$}}$ and define $Y_i = \braces{x \in \reals \where x \geq i}$ for $i \in \pints$, noting that obviously each $Y_i \ss \reals$.
+  Then let $Y = Y_1 \times Y_2 \times \cdots$.
+  We claim that $X = Y$.
+  \qproof{
+    First consider $\vx \in X$ so that $x_i \geq i$ for any $i \in \pints$.
+    Then, for any $i \in \pints$ clearly $x_i \in Y_i$ by definition since $x_i \geq i$ (and also $x_i \in \reals$).
+    Hence it follows that $\vx = (x_1, x_2, \ldots) \in Y_1 \times Y_2 \times \cdots = Y$.
+    Since $\vx$ was arbitrary, this shows that $X \ss Y$.
+
+    Now suppose that $\vx \in Y$ so that $x_i \in Y_i$ for every $i \in \pints$.
+    Consider any such $i \in \pints$ so that $x_i \in Y_i$.
+    Then, by definition $x_i \geq i$.
+    Since $i$ was arbitrary, this shows that $\vx \in X$ by definition.
+    Hence $Y \ss X$ since $\vx$ was arbitrary so that $X = Y$.
+  }
+
+  (c) Define $X = \braces{\vx \in \reals^\w \where \text{$x_i$ is an integer for all $i \geq 100$}}$.
+  Also define $Y_i = \reals$ when $i < 100$ and $Y_i = \ints$ when $i \geq 100$ (and $i \in \pints$ for both), noting that of course $Y_i \ss \reals$ for either case.
+  Let $Y = Y_1 \times Y_2 \times \cdots$, and we claim that $X = Y$.
+  \qproof{
+    Consider any $\vx \in X$ so that $x_i \in \ints$ for all $i \geq 100$.
+    Suppose $i \in \pints$.
+    If $i < 100$ then clearly $x_i \in \reals = Y_i$ since $\vx \in \reals^\w$.
+    If $i \geq 100$ then we have that $x_i \in \ints = Y_i$.
+    Hence in either case $x_i \in Y_i$ so that $\vx \in Y_1 \times Y_2 \times \cdots = Y$ since $i$ was arbitrary.
+    Since $\vx$ was arbitrary, this shows that $X \ss Y$.
+
+    Now consider any $\vx \in Y$ and any $i \in \pints$ where $i \geq 100$.
+    Then $x_i \in Y_i = \ints$ so that $x_i$ is an integer.
+    From this it follows that $\vx \in X$ by definition since obviously $\vx \in \reals^\w$ (since $x_i \in Y_i = \reals$ when $i < 100$).
+    Hence $Y \ss X$ since $\vx$ was arbitrary.
+    This completes the proof that $X = Y$.
+  }
+
+  (d) We claim that $X = \braces{\vx \in \reals^\w \where x_2 = x_3}$ \emph{cannot} be expressed as the cartesian product of subsets of $\reals$.
+  \qproof{
+    Suppose to the contrary that there are $X_i \ss \reals$ for $i \in \pints$ where $X = X_1 \times X_2 \times \cdots$.
+    Let $(a, a, \ldots)$ denote the sequence $(x_1, x_2, \ldots)$ where $x_i = a$ for all $i \in \pints$.
+    We then have that $(1, 1, \ldots)$ and $(2, 2, \ldots)$ are both in $X$ since clearly $x_2 = x_3$ in both.
+    Hence we have that $1$ and $2$ are both in $X_i$ for every $i \in \pints$ since $X = X_1 \times X_2 \times \cdots$.
+    Now define
+    \gath{
+      y_i = \begin{cases}
+        1 & i \neq 2 \\
+        2 & i = 2
+      \end{cases}
+    }
+    for $i \in \pints$.
+    Clearly $\vy = (y_1, y_2, \ldots) \in X_1 \times X_2 \times \cdots$ since both $1$ and $2$ are in each $X_i$.
+    However, it is also clear that $\vy \notin X$ by definition since $y_2 = 2 \neq 1 = y_3$.
+    This contradicts the fact that $X = X_1 \times X_2 \times \cdots$, which shows the desired result.
+  }
+}   
