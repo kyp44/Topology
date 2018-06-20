@@ -1,0 +1,90 @@
+\setcounter{subsection}{6-1}
+\subsection{Finite Sets}
+
+\exercise{1}{
+  \eparts{
+  \item Make a list of all the injective maps
+    \gath{
+      f : \braces{1,2,3} \to \braces{1,2,3,4} \,.
+    }
+    Show that none is bijective.
+    (This constitutes a \emph{direct} proof that a set $A$ of cardinality three does not have cardinality four.)
+  \item How many injective maps
+    \gath{
+      f : \intsfin{8} \to \intsfin{10}
+    }
+    are there?
+    (You can see why one would not wish to try to prove \emph{directly} that there is no bijective correspondence between these sets.)
+  }
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:finset:inj}
+    The number of injective mappings (i.e. the cardinality of the set of injective functions) from $\intsfin{m}$ to $\intsfin{n}$, where $m \leq n$, is equal to the number of $m$-permutations of $n$, which is
+    \gath{
+      \frac{n!}{(n-m)!} \,.
+    }
+  \end{lem}
+  \qproof{
+    We fix $n$ and show this for all $m \leq n$ by induction.
+    First, for $m=1$, the domain of the mappings is simply $\braces{1}$ so that we need only choose a single element to which to map $1$.
+    Since there are $n$ elements to choose from (since the range is $\intsfin{n}$) there are clearly
+    \gath{
+      n = \frac{n!}{(n-1)!} = \frac{n!}{(n-m)!}
+    }
+    mappings, all of which are trivially injective.
+
+    Now suppose that $m < n$ and that there are $n! / (n-m)!$ injective mappings from $\intsfin{m}$ to $\intsfin{n}$.
+    Consider any such mapping $(f_1, \ldots, f_m)$.
+    Since this mapping is injective, each $f_i$ is unique so that it uses $m$ of the $n$ available numbers in $\intsfin{n}$.
+    Thus there are $n-m$ numbers to choose from to which to set $f_{m+1}$ so that the mapping $(f_1, \ldots, f_{m+1})$ is still injective.
+    Hence for each injective mapping $(f_1, \ldots, f_m)$ there are $n-m$ injective mappings from $\intsfin{m+1}$ to $\intsfin{n}$.
+    Since there are $n!/(n-m)!$ such mappings by the induction hypothesis, the total number of mappings from $\intsfin{m+1}$ to $\intsfin{n}$ will be
+    \gath{
+      \frac{n!}{(n-m)!}(n-m) = \frac{n!}{(n-m-1)!} = \frac{n!}{[n-(m+1)]!} \,,
+    }
+    which completes the induction.
+  }
+
+  \mainprob
+  
+  (a) Here we have $n=4$ and $m=3$ in Lemma~\ref{lem:finset:inj} so that we expect $4!/(4-3)! = 4!/1! = 4! = 24$ injective mappings.
+  Since the domain of each $f$ is a section of the positive integers, these maps can be written simply as 3-tuples.
+  They are enumerated below:
+  \begin{multicols}{4}
+    \begin{enumerate}[itemsep=0cm]
+    \item $(1, 2, 3)$
+    \item $(1, 2, 4)$
+    \item $(1, 3, 2)$
+    \item $(1, 3, 4)$
+    \item $(1, 4, 2)$
+    \item $(1, 4, 3)$
+    \item $(2, 1, 3)$
+    \item $(2, 1, 4)$
+    \item $(2, 3, 1)$
+    \item $(2, 3, 4)$
+    \item $(2, 4, 1)$
+    \item $(2, 4, 3)$
+    \item $(3, 1, 2)$
+    \item $(3, 1, 4)$
+    \item $(3, 2, 1)$
+    \item $(3, 2, 4)$
+    \item $(3, 4, 1)$
+    \item $(3, 4, 2)$
+    \item $(4, 1, 2)$
+    \item $(4, 1, 3)$
+    \item $(4, 2, 1)$
+    \item $(4, 2, 3)$
+    \item $(4, 3, 1)$
+    \item $(4, 3, 2)$
+    \end{enumerate}
+  \end{multicols}
+  Note that they are all injective since no number is used more than once in each tuple.
+  Also none are surjective since it is easily verified that there is always an element of $\braces{1,2,3,4}$ that is not in each tuple.
+  Thus none are a bijection since they are not surjective.
+
+  (b) Here we have $n = 10$ and $m = 8$ in Lemma~\ref{lem:finset:inj} so that there are $10! / (10-8)! = 10! / 2! = 1814400$ injective mappings.
+  That is nearly two million!
+  Certainly a direct proof would be unfeasible by hand, but could be done by computer fairly easily.
+}
