@@ -168,8 +168,8 @@
     Suppose that $A$ is simply ordered by $\prec$ and has cardinality $n+1$.
     Then there is a bijection $f$ from $A$ to $\intsfin{n+1}$, noting that obviously $\inv{f}$ is also a bijection.
     Clearly $A$ is nonempty (since the cardinality of $A$ is $n+1 > n > 0$) so that there is an $a \in A$.
-    Let $A' = A-\braces{a}$ so that $A'$ has cardinality $n$ by Lema~6.1.
-    Note also that clearly $A'$ is simply ordered by $\prec$ as well (technically we must restrict $\prec$ to elements of $A'$ so that it is really orderd by $\prec \cap (A' \times A')$).
+    Let $A' = A-\braces{a}$ so that $A'$ has cardinality $n$ by Lemma~6.1.
+    Note also that clearly $A'$ is simply ordered by $\prec$ as well (technically we must restrict $\prec$ to elements of $A'$ so that it is really ordered by $\prec \cap (A' \times A')$).
     It then follows that $A'$ has a largest element $b$ by the induction hypothesis.
     Since $a$ and $b$ must be comparable in $\prec$ by the definition of a simple order we have the following:
 
@@ -198,71 +198,38 @@
 
     Now suppose that all simply ordered sets of cardinality $n$ have the order type of a section of positive integers.
     Consider then a set $A$ simply ordered by $\prec$ that has cardinality $n+1$.
-    Clearly $A \neq \es$ so that there is an $a \in A$.
-    It then follows from Lemma~6.1 that $A' = A - \braces{a}$ has cardinality $n$ so that there is a bijection $f$ from $A'$ to $\intsfin{n}$.
-    Also, since $A'$ is also simply ordered by $\prec$ (with the appropriate restriction), it follows from the induction hypothesis that $A'$ has the order type of a section of integers.
-    Thus there is an order-preserving bijection $g$ from $A'$ to $\intsfin{m}$ for some $m \in \pints$.
-    Since the cardinality of a finite set is unique (by Corollary~6.5), it has to be that $m = n$ (since by definition $A'$ has cardinality $m$ and $n$ since there are bijections from $A'$ to both $\intsfin{m}$ and $\intsfin{n}$) so that $g$ is an order-preserving bijection from $A'$ to $\intsfin{n}$.
-
-    Now, let $B = \braces{x \in A \where x \prec a}$, noting that it could very well be that $B = \es$.
-    If $B \neq \es$ then, since clearly $a \notin B$ but $a \in A$, it follows that $B$ is a proper subset of $A$ so that $B$ is nonempty and finite by Corollary~6.6.
-    Since it is also clearly simply ordered by $\prec$ (with the appropriate restriction), it follows from part (a) that $B$ has a largest element $b$.
-    So set $k = g(b)+1$.
-    On the other hand, if $B = \es$ then simply set $k=1$.
-
+    Clearly $A \neq \es$ so that it has a largest element $a$ by part (a).
+    Then the set $A' = A - \braces{a}$ has cardinality $n$ by Lemma~6.1.
+    Since $A'$ is also clearly simply ordered by $\prec$ (with the appropriate restriction) it follows from the induction hypothesis that it has order type of $\intsfin{m}$ for some $m \in \pints$.
+    Since this also implies that $A'$ has the cardinality of $m$, it has to be that $m=n$ since this cardinality is unique (by Lemma~6.5).
+    So let $f'$ be the order-preserving bijection from $A'$ to $\intsfin{m} = \intsfin{n}$.
     Now define
     \gath{
-      h(x) = \begin{cases}
-        g(x) & x \prec a \\
-        k & x = a \\
-        g(x)+1 & a \prec x
+      f(x) = \begin{cases}
+        f'(x) & x \neq a \\
+        n+1 & x = a
       \end{cases}
     }
     for any $x \in A$.
-    We first claim that $h$ is a function from $A$ to $\intsfin{n+1}$.
-    Consider any $x \in A$.
-    If $x \prec a$ then clearly $h(x) = g(x) \in \intsfin{n}$ since the range of $g$ is $\intsfin{n}$.
-    Then clearly $h(x) \in \intsfin{n+1}$ since $\intsfin{n} \ss \intsfin{n+1}$.
-    If $x = a$ then either $h(x) = k = 1$ or $h(x) = k = g(b)+1$ for a $b \in B$.
-    Clearly $h(x) = 1 \in \intsfin{n+1}$ in the former case and, in the latter case, $1 \leq g(b) \leq n$ since the range of $g$ is $\intsfin{n}$, and hence $1 \leq 2 \leq h(x)=g(b)+1 \leq n+1$ so that clearly $h(x) \in \intsfin{n+1}$.
-    In the final case in which $a \prec x$ we again have that $1 \leq h(x) = g(x)+1 \leq n+1$ so that $h(x) \in \intsfin{n+1}$.
-    This shows that $h$ is indeed a function from $A$ to $\intsfin{n+1}$ since $x$ was arbitrary.
+    It is clear that $f$ is a function from $A$ to $\intsfin{n+1}$ since obviously $n+1 \in \intsfin{n+1}$ and the range of $f'$ is $\intsfin{n} \ss \intsfin{n+1}$.
 
-    Next we show that $h$ preserves order.
-    So consider $x$ and $x'$ in $A$ where $x \prec x'$.
+    Consider next any $x$ and $x'$ in $A$ where $x \prec x'$.
+    Suppose for the moment that $x = a$.
+    Then $x' \prece a = x$ since $a$ is the largest element of $A$.
+    This contradicts the fact that $x \prec x'$ so that it must be that $x \neq a$.
+    Then $f(x) = f'(x)$.
+    If also $x' \neq a$ then clearly $f(x) = f'(x) < f'(x') = f(x')$ since $f'$ preserves order.
+    If $x' = a$ then $f(x') = n+1$ so that $f(x) = f'(x) \leq n < n+1 = f(x')$ since the range of $f'$ is only $\intsfin{n}$.
+    Hence in all cases $f(x) < f(x')$ so that $f$ preserves order since $x$ and $x'$ were arbitrary.
+    Note that this also shows that $f$ is injective since, for any $x,x' \in A$ where $x \neq x'$, we can assume without loss of generality that $x \prec x'$ (since it must be that $x \prec x'$ or $x' \prec x$) so that $f(x) < f(x')$, and hence $f(x) \neq f(x')$.
 
-    Case: $x \prec a$.
-    Then $h(x) = g(x)$ and clearly $x \in B$ by definition so that $B \neq \es$, from which it follows that $k = g(b)+1$ where $b$ is the largest element of $B$.
-    Hence $x \prece b$.
-    Now, if also $x' \prec a$ then $h(x') = g(x')$ so that $h(x) = g(x) < g(x') = h(x')$ since $g$ preserves order, noting that both $x,x' \in A'$ so they are in the domain of $g$, since they are not equal to $a$.
-    If $x' = a$ then $h(x') = k = g(b)+1$.
-    Also since $x \prece b$ we have that $g(x) \leq g(b)$ since $g$ preserves order.
-    Hence we have $h(x) = g(x) \leq g(b) < g(b)+1 = k = h(x')$.
-    Lastly, if $a \prec x'$ then $h(x') = g(x')+1$ so that $h(x) = g(x) < g(x') < g(x')+1 = h(x')$ since $g$ preserves order and $x \prec x'$ (noting again that both $x$ and $x'$ are in the domain of $g$).
+    Lastly consider any $k \in \intsfin{n+1}$.
+    If $k = n+1$ then clearly by definition $f(a) = n+1 = k$, noting that obviously $a \in A$.
+    On the other hand, if $k \neq n+1$ then it has to be that $k < n+1$ so $k \leq n$.
+    Then $k \in \intsfin{n}$, which is the range of $f'$ so that there is an $x \in A'$ where $f'(x) = k$ since $f'$ is bijective (and therefore surjective).
+    Since $x \in A'$ we have that $x \in A$ but $x \neq a$ so that $f(x) = f'(x) = k$.
+    This shows that $f$ is surjective since $k$ was arbitrary.
 
-    Case: $x = a$.
-    Then of course $h(x) = k$.
-    Also $a = x \prec x'$ so that $h(x') = g(x')+1$.
-    In the case when $B = \es$ we have $k=1$ so that $h(x) = k = 1 < g(x')+1 = h(x')$ since obviously $0 < g(x')$.
-    In the other case in which $B \neq \es$ then $h(x) = k = g(b)+1$ for the largest element $b$ of $B$.
-    Since $b \in B$, we have $b \prec a = x$ by definition so that $b \prec x \prec x'$.
-    Hence $g(b) < g(x')$ since $g$ preserves order.
-    Then of course $h(x) = k = g(b)+1 < g(x')+1 = h(x')$.
-
-    Case: $a \prec x$.
-    Then we have $h(x) = g(x)+1$.
-    We also have that $a \prec x \prec x'$ so that also $h(x') = g(x')+1$.
-    Noting that we clearly have $x,x' \in A'$, we have that $g(x) < g(x')$ since $g$ preserves order.
-    Hence $h(x) = g(x)+1 < g(x')+1 = h(x')$.
-
-    Therefore in all cases and sub-cases we have shown that $h(x) < h(x')$, which shows that $h$ preserves order since $x$ and $x'$ were arbitrary.
-    Note that this also shows that $h$ is injective since, for any $x,x' \in A$ where $x \neq x'$, we can assume without loss of generality that $x \prec x'$ (since it must be that $x \prec x'$ or $x' \prec x$) so that $h(x) < h(x')$, and hence $h(x) \neq h(x')$.
-
-    Lastly, we show that $h$ is surjective.
-    So consider any $k \in \intsfin{n+1}$.
-    If $k \leq n$ then $k \in \intsfin{n}$, which is range of $g$ so that there is an $x \in A'$ where $g(x) = k$ since $g$ is surjective (since it is bijective).
-    We then have that $x \neq a$ since $x \in A'$.
-    Thus $x \prec a$ or $a \prec x$.
-    In the former case we have $h(x) = g(x) = k$, and in the latter case $h(x) = g(x)+1$.
+    Thus we have shown that $f$ is an order-preserving bijection from $A$ to $\intsfin{n+1}$, which completes the induction since by definition $A$ has order type $\intsfin{n+1}$.
   }
 }
