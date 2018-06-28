@@ -233,3 +233,120 @@
     Thus we have shown that $f$ is an order-preserving bijection from $A$ to $\intsfin{n+1}$, which completes the induction since by definition $A$ has order type $\intsfin{n+1}$.
   }
 }
+
+\exercise{5}{
+  If $A \times B$ is finite, does it follow that $A$ and $B$ are finite?
+}
+\sol{
+  \dwhitman
+  
+  We claim that in general this does not follow.
+  \qproof{
+    As a counterexample, let $A = \pints$ and $B = \es$.
+    Clearly $A$ is infinite by Corollary~6.4 so that not both $A$ and $B$ are finite.
+    It also follows from Exercise~5.3c that $A \times B = \es$ since $B$ is empty.
+    Hence clearly $A \times B$ is finite.
+  }
+
+  If we add the additional stipulation that both $A$ and $B$ are nonempty, then the statement becomes true.
+  \qproof{
+    Since $A \times B$ is finite there is a bijective function $f: A \times B \to \intsfin{n}$ for some $n \in \pints$.
+    We then show that $A$ is finite by first constructing an injective function $g$ from $A$ to $A \times B$.
+    Since $B \neq \es$, there is a $b \in B$.
+    So, for any $x \in A$, set $g(x) = (x, b)$, which is clearly in $A \times B$ so that $g$ is a function from $A$ to $A \times B$.
+    Now consider $x$ and $x'$ in $A$ where $x \neq x'$.
+    Then clearly $g(x) = (x,b) \neq (x', b) = g(x')$.
+    This shows that $g$ is injective since $x$ and $x'$ were arbitrary.
+
+    We then have that the composition $f \circ g$ is an injective function from $A$ to $\intsfin{n}$ by Exercise~2.4b since $f$ is injective as well (since it is a bijection).
+    Therefore $A$ is finite by Corollary~6.7.
+    An analogous argument uses the fact that $A \neq \es$ to show that $B$ is also finite.
+  }
+}
+
+\exercise{6}{
+  \eparts{
+  \item Let $A = \intsfin{n}$.
+    Show there is a bijection of $\pset{A}$ with the cartesian product $X^n$, where $X$ is the two-element set $X = \braces{0,1}$.
+  \item Show that if $A$ is finite, then $\pset{A}$ is finite.
+  }
+}
+\sol{
+  \dwhitman
+  
+  (a)
+  \qproof{
+    We construct a bijection $f : \pset{A} \to X^n$.
+    So, for any $Y \in \pset{A}$ we have that clearly $Y \ss A$.
+    Then set
+    \gath{
+      x_i = \begin{cases}
+        0 & i \notin Y \\
+        1 & i \in Y
+      \end{cases}
+    }
+    for any $i \in \intsfin{n} = A$.
+    Now set $f(Y) = \vx = (x_1, \ldots, x_n)$, noting that clearly $f(Y) \in X^n$ since each $x_i \in \braces{0,1} = X$.
+    Hence $f$ is a function from $\pset{A}$ to $X^n$.
+
+    To show that $f$ is injective consider $Y$ and $Y'$ in $\pset{A}$ where $Y \neq Y'$.
+    Also let $\vx = f(Y)$ and $\vx' = f(Y')$ as defined above.
+    Since $Y \neq Y'$, we can without loss of generality assume that there is an $i \in Y$ where $i \notin Y'$.
+    It then follows that $x_i = 1 \neq 0 = x_i'$ by the definition of $f$.
+    Hence clearly $f(Y) = \vx = (x_1, \ldots, x_n) \neq (x_1', \ldots, x_n') = \vx' = f(Y')$, which shows that $f$ is injective since $Y$ and $Y'$ were arbitrary.
+
+    Now consider any $\vx \in X^n$ and let $Y = \braces{i \in A \where x_i = 1}$.
+    Clearly $Y \ss A$ so that $Y \in \pset{A}$.
+    Let $\vx' = f(Y)$ and consider any $i \in \intsfin{n} = A$.
+    If $i \in Y$ then $x_i = 1 = x_i'$ by the definitions of $Y$ and $f$.
+    It $i \notin Y$ then $x_i \neq 1$ so that it has to be that $x_i = 0$ since $x_i \in X = \braces{0,1}$.
+    Also, by the definition of $f$, we have that $x_i' = 0 = x_i$.
+    Thus in either case $x_i = x_i'$ so that $\vx = \vx' = f(Y)$ since $i$ was arbitrary.
+    Since $\vx$ was arbitrary, this shows that $f$ is surjective.
+
+    Therefore $f$ is a bijection from $A$ to $X^n$ as desired.
+  }
+
+  (b)
+  \qproof{
+    First, if $A = \es$ then clearly $\pset{A} = \pset{\es} = \braces{\es}$ is finite.
+    So assume in what follows that $A \neq \es$.
+    Since $A$ is finite and nonempty there is a bijection $f$ from $A$ to $B = \intsfin{n}$ for some $n \in \pints$.
+    Let $X = \braces{0,1}$ so that by part (a) there is a bijection $g$ from $\pset{B}$ to $X^n$.
+    For any $Y \in \pset{A}$ clearly the mapping $h(Y) = \braces{i \in B \where \inv{f}(i) \in Y}$ is a bijection from $\pset{A}$ to $\pset{B}$.
+    It then follows that $g \circ h$ is bijection from $\pset{A}$ to $X^n$.
+    Since clearly $X^n$ is a finite cartesian product of finite sets, it follows from Corollary~6.8 that $X^n$ is finite so that $\pset{A}$ must be as well since there is a bijection between them.
+  }
+}
+
+\exercise{7}{
+  If $A$ and $B$ are finite, show that the set of all functions $f : A \to B$ is finite.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    As is customary, denote the set of all functions from $A$ to $B$ by $B^A$.
+    First, if $A = \es$, then the only function from $A$ to $B$ is the vacuous function $\es$ so that $B^A = \braces{\es}$, which is clearly finite.
+    So assume that $A \neq \es$.
+    Then, since $A$ is finite, there is a bijection $f$ from $A$ to $\intsfin{n}$ for some $n \in \pints$, noting that of course $\inv{f}$ is then a bijection from $\intsfin{n}$ to $A$.
+    
+    We construct a bijection $h$ from $B^A$ to $B^n$.
+    So, for any $g \in B^A$ set $h(g) = g \circ \inv{f}$, noting that clearly this is a function from $\intsfin{n}$ to $B$.
+    Hence $h$ is a function from $B^A$ to $B^n$.
+
+    To show that $h$ is injective consider $g$ and $g'$ in $B^A$ where $g \neq g'$.
+    It then follows that there is an $a \in A$ where $g(a) \neq g'(a)$.
+    Then let $k = f(a)$ so that clearly $\inv{f}(k) = a$ and $k \in \intsfin{n}$.
+    We then have that $(g \circ \inv{f})(k) = g(\inv{f}(k)) = g(a) \neq g'(a) = g'(\inv{f}(k)) = (g' \circ \inv{f})(k)$ so that it must be that $h(g) = g \circ \inv{f} \neq g' \circ \inv{f} = h(g')$.
+    Since $g$ and $g'$ were arbitrary, this shows that $h$ is injective.
+
+    Now consider any function $i \in B^n$ and let $g = i \circ f$ so that clearly $g$ is a function from $A$ to $B$ since $f : A \to \intsfin{n}$ and $i : \intsfin{n} \to B$.
+    Hence $g \in B^A$, and $h(g) = g \circ \inv{f} = (i \circ f) \circ \inv{f} = i \circ (f \circ \inv{f}) = i$.
+    Since $i$ was arbitrary, this shows that $h$ is surjective as well.
+
+    Hence $h$ is bijection from $B^A$ to $B^n$.
+    Now, since $B^n$ is a finite cartesian product of finite sets (since $B$ is finite), it is finite by Corollary~6.8.
+    Thus it must be that $B^A$ is also finite since there is bijection between them.
+  }
+}
