@@ -1,0 +1,251 @@
+\setcounter{subsection}{7-1}
+\subsection{Countable and Uncountable Sets}
+
+% Macros for this section
+\def\zs{\ints \times \ints}
+\def\zps{\pints \times \pints}
+
+\exercise{1}{
+  Show that $\rats$ is countably infinite.
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:countun:zs}
+    The set $\zs$ is countably infinite.
+  \end{lem}
+  \qproof{
+    First, by Example 7.1, the set of integers $\ints$ is countably infinite so that there is a bijection $f$ from $\ints$ to $\pints$.
+    We construct a bijection $g$ from $\zs$ to $\zps$.
+    For any $(a,b) \in \zs$ define $g(a,b) = (f(a), f(b))$, noting that clearly $g(a,b) \in \zps$ since $\pints$ is the range of $f$.
+    Hence $g$ is a function from $\zs$ to $\zps$.
+
+    It is easy to show that $g$ is bijective.
+    First, consider any $(a,b)$ and $(a',b')$ in $\zs$ where $(a,b) \neq (a',b')$ so that $a \neq a'$ or  $b \neq b'$.
+    If $a \neq a'$ then $f(a) \neq f(a')$ since $f$ is bijective (and therefore injective).
+    Thus we have that $g(a,b) = (f(a),f(b)) \neq (f(a'),f(b')) = g(a',b')$.
+    A similar argument shows the same result when $b \neq b'$.
+    Since $(a,b)$ and $(a',b')$ were arbitrary, this shows that $g$ is injective.
+
+    Now consider any $(c,d) \in \zps$ so that $c,d \in \pints$.
+    Since $f$ is surjective (since it is a bijection) there are $a,b \in \ints$ where $f(a) = c$ and $f(b) = d$.
+    We then clearly have that $g(a,b) = (f(a),f(b)) = (c,d)$ so that $g$ is surjective $(c,d)$ was arbitrary.
+
+    Therefore $g$ is a bijection.
+    Now, we know from Corollary~7.4 that $\zps$ is countably infinite so that there must be a bijection $h$ from $\zps$ to $\pints$.
+    It then follows that $h \circ g$ is bijection from $\zs$ to $\pints$, which shows the desired result by definition.
+  }
+
+  \mainprob
+  \qproof{
+    First we define a straightforward function $f$ from $\zs$ to $\rats$.
+    First consider any $(m,n) \in \zs$.
+    If $n \neq 0$ then let $q = m/n$.
+    If $n = 0$ then set $q = 0$.
+    Setting $f(m,n) = q$ we clearly have that $f$ is a function from $\zs$ to $\rats$.
+    Now consider any rational $q$ so that by definition there are integers $m$ and $n$ where $q=m/n$.
+    It then of course follows that $f(m,n) = m/n = q$, which shows that $f$ is surjective since $q$ was arbitrary.
+
+    Now, from Lemma~\ref{lem:countun:zs} we know that $\zs$ is countably infinite so that there is a bijection $g$ from $\zs$ to $\pints$.
+    Hence $\inv{g}$ is a bijection from $\pints$ to $\zs$.
+    It then follows that the function $f \circ \inv{g}$ is a surjective function from $\pints$ to $\rats$.
+    From this it follows from Theorem~7.1 that $\rats$ is countable.
+    Since $\pints$ is a subset of $\rats$, it has to be that $\rats$ is infinite, and hence must be countably infinite.
+  }
+}
+
+\exercise{2}{
+  Show that the maps $f$ and $g$ of Examples~1 and 2  are bijections.
+}
+\sol{
+  \dwhitman
+
+  It is claimed in Example~7.1 that the function
+  \gath{
+    f(n) = \begin{cases}
+      2n & n > 0 \\
+      -2n+1 & n \leq 0
+    \end{cases}
+  }
+  is a bijection from $\ints$ to $\pints$.
+  \qproof{
+    To show that $f$ is injective, consider $n,m \in \ints$ where $n \neq m$.
+
+    Case: $n > 0$.
+    Then $f(n) = 2n$, which is clearly even.
+    If $m > 0$, then clearly $f(n) = 2n \neq 2m = f(m)$ since $n \neq m$.
+    If $m \leq 0$ then $f(m) = -2m + 1 = 2(-m) + 1$ is clearly odd so that it must be that $f(n) \neq f(m)$.
+
+    Case: $n \leq 0$.
+    Then $f(n) = -2n+1 = 2(-n)+1$, which is clearly odd.
+    If $m > 0$ then $f(m) = 2m$ is even so that it has to be that $f(n) \neq f(m)$.
+    If $m \leq 0$ then $f(m) = -2m+1 \neq -2n+1 = f(n)$ since $n \neq m$.
+
+    Thus in every case $f(n) \neq f(m)$, which shows that $f$ is injective since $n$ and $m$ were arbitrary.
+
+    To show that $f$ is surjective, consider any $k \in \pints$.
+    If $k$ is even then $k = 2n$ for some $n \in \pints$.
+    Hence $n > 0$ (since $k > 0$ and $n=k/2$) so that $f(n) = 2n = k$, noting that $n \in \ints$ since $\pints \ss \ints$.
+    If $k$ is odd then $k = 2m-1$ for some $m \in \pints$.
+    So let $n=1-m$ so that clearly $n$ is an integer and
+    \ali{
+        m &\geq 1 & \text{(since $m \in \pints$)} \\
+        -m &\leq -1 \\
+        1-m &\leq 0 \\
+        n &\leq 0 \,.
+    }
+    Thus $f(n) = -2n+1 = -2(1-m) + 1 = -2 + 2m + 1 = 2m-1 = k$.
+    This shows that $f$ is surjective since $k$ was arbitrary.
+    Therefore we have shown that $f$ is a bijection as desired.
+  }
+
+  Regarding Example~7.2, the following set is defined:
+  \gath{
+    A = \braces{(x,y) \in \zps \where y \leq x} \,.
+  }
+  Then the function $f$ is defined from $\zps$ to $A$ by
+  \gath{
+    f(x,y) = (x+y-1, y)
+  }
+  for $(x,y) \in \zps$.
+  It is claimed that $f$ is a bijection.
+  \qproof{
+    First, it is not even clear that the range of $f$ is constrained to $A$, so let us show this.
+    Consider any $(x,y) \in \zps$ so that $f(x,y) = (x+y-1, y)$.
+    Since $x \geq 1$ and $y \geq 1$, we have that $x+y \geq 1 + 1 = 2 > 1$ so that $x+y-1 > 0$ and hence $x+y-1 \in \pints$.
+    Thus clearly $f(x,y) = (x+y-1,y) \in \zps$.
+    We also have
+    \ali{
+      1 &\leq x \\
+      0 &\leq x-1 \\
+      y &\leq x+y-1 \,.
+    }
+    Therefore it is clear that $f(x,y) = (x+y-1,y) \in A$ by definition.
+
+    To show that $f$ is injective consider $(x,y)$ and $(x',y')$ in $\zps$ where $f(x,y) = (x+y-1,y) = (x'+y'-1,y') = f(x',y')$.
+    Thus $x+y-1 = x'+y'-1$ and $y = y'$.
+    Therefore $x+y-1 = x'+y'-1 = x'+y-1$, from which it obviously follows that $x = x'$ as well.
+    Then $(x,y) = (x',y')$, which shows that $f$ is injective since $(x,y)$ and $(x',y')$ were arbitrary.
+
+    Now consider any $(z,y) \in A$ so that $(z,y) \in \zps$ and $y \leq z$.
+    Let $x = z-y+1$ so that clearly $z = x+y-1$.
+    We also have
+    \ali{
+      y &\leq z = x+y-1 \\
+      0 &\leq x-1 \\
+      1 &\leq x
+    }
+    so that $(x,y) \in \zps$.
+    Since also we have $f(x,y) = (x+y-1,y) = (z,y)$, $f$ is surjective since $(z,y)$ was arbitrary.
+    This completes the proof that $f$ is a bijection.
+  }
+
+  The function $g$ is then defined from $A$ to $\pints$ by
+  \gath{
+    g(x,y) = \frac{1}{2}(x-1)x + y
+  }
+  for $(x,y) \in A$.
+  This is also claimed to be a bijection.
+  \qproof{
+    First we show that the range of $g$ is indeed $\pints$ since this is not obvious.
+    Consider any $(x,y) \in A$ so that $(x,y) \in \zps$ and $y \leq x$.
+    First, if $x$ is even then $x = 2n$ for some $n \in \ints$.
+    Then $g(x,y) = (x-1)x/2 + y = (2n-1)(2n)/2 + y = (2n-1)n+y$, which is clearly an integer.
+    If $x$ is odd then $x = 2n+1$ for some integer $n$ so that
+    \gath{
+      g(x,y) = (x-1)x/2+y = (2n+1-1)(2n+1)/2+y = (2n)(2n+1)/2+y = n(2n+1)+y \,,
+    }
+    which is also clearly an integer.
+    We also have that $-y < 0$ since $y > 0$ so that
+    \ali{
+      x &\geq 1 \\
+      x-1 &\geq 0 \\
+      \frac{1}{2}(x-1) &\geq 0 & \text{(since $1/2 > 0$)} \\
+      \frac{1}{2}(x-1)x &\geq 0 > -y & \text{(since $x>0$)} \\
+      \frac{1}{2}(x-1)x + y &> 0 \\
+      g(x,y) &> 0 \,.
+    }
+    Since we have shown that $g(x,y) \in \ints$ as well, it follows that $g(x,y) \in \pints$.
+
+    Consider any $(x,y) \in A$ so that $(x,y) \in \zps$ and $y \leq x$.
+    Then clearly
+    \ali{
+      g(x,y) &= \frac{1}{2}(x-1)x + y \leq \frac{1}{2}(x-1)x + x \\
+      &< \frac{1}{2}(x-1)x+x+1 = \frac{1}{2}(x^2 - x + 2x) + 1 \\
+      &= \frac{1}{2}(x^2 + x) + 1 = \frac{1}{2}x(x+1) + 1 \\
+      &= \frac{1}{2}(x+1-1)(x+1) + 1 \\
+      &= g(x+1,1) \,.
+    }
+    A simple inductive argument shows that $g(x,y) < g(x+n,1)$ for any $n \in \pints$.
+    This was just shown for $n=1$.
+    Then, assuming it true for $n$, we have that $g(x,y) < g(x+n,1) < g((x+n)+1,1) = g(x+(n+1),1)$, which completes the induction.
+
+    So consider any $(x,y)$ and $(x',y')$ in $A$ so that $(x,y)$ and $(x',y')$ are in $\zps$, $y \leq x$, and $y' \leq x'$.
+    Also suppose that $(x,y) \neq (x',y')$ so that either $x \neq x'$ or $y \neq y$.
+    If $x=x'$ then it has to be that $y \neq y'$ so that clearly
+    \ali{
+      y &\neq y' \\
+      \frac{1}{2}(x-1)x + y &\neq \frac{1}{2}(x-1)x + y' \\
+      \frac{1}{2}(x-1)x + y &\neq \frac{1}{2}(x'-1)x' + y' \\
+      g(x,y) &\neq g(x',y') \,.
+    }
+    If $x \neq x'$ then we can assume that $x < x'$.
+    Then let $n = x'-x$ so that clearly $n > 0$ and $x' = x+n$.
+    By what was just shown, we have
+    \ali{
+      g(x,y) < g(x+n,1) = g(x',1) = \frac{1}{2}(x'-1)x' + 1 \leq \frac{1}{2}(x'-1)x' + y' = g(x',y')
+    }
+    since $1 \leq y'$.
+    Thus $g(x,y) \neq g(x',y')$.
+    Since this is true in both cases, this shows that $g$ is injective since $(x,y)$ and $(x',y')$ were arbitrary.
+
+    To show that $g$ is also surjective, consider any $z \in \pints$.
+    Define the set $B = \braces{x \in \pints \where g(x,1) \leq z}$.
+    First, we have that $g(1,1) = 1 \leq z$ since $z \in \pints$ so that $1 \in B$ and therefore $B \neq \es$.
+    If $z = 1$ then clearly $z = 1 \leq 1 = g(1,1) = g(z,1)$.
+    If $z \neq 1$ then we have
+    \ali{
+      2 &\leq z \\
+      1 &\leq \frac{1}{2}z \\
+      z-1 &\leq \frac{1}{2}(z-1)z \\
+      z &\leq \frac{1}{2}(z-1)z + 1 \\
+      z &\leq g(z,1)
+    }
+    Now consider any $x,y \in \pints$ where $x < y$.
+    It then follows from what was shown above that $g(x,1) \leq g(x,y) < g(x+1,1)$.
+    From this we clearly have that the function $g(x,1)$ is monotonically increasing in $x$, i.e. for $x,y \in \pints$, $x < y$ implies that $g(x,1) < g(y,1)$.
+    By the contrapositive of this, $g(x,1) \geq g(y,1)$ implies that $x \geq y$.
+    With this in mind, consider any $x \in B$ so $g(x,1) \leq z \leq g(z,1)$.
+    Then this implies that $x \leq z$, which shows that $z$ is an upper bound of $B$ since $x$ was arbitrary.
+
+    We have thus shown that $B$ is a nonempty set of integers that is bounded above.
+    It then follows from Exercise~4.9a that $B$ has a largest element $x$.
+    Now let $y = z - g(x,1) + 1$, noting that, since $x \in B$,
+    \ali{
+      g(x,1) &\leq z \\
+      0 &\leq z - g(x,1) \\
+      1 &\leq z - g(x,1) + 1 \\
+      1 &\leq y
+    }
+    and hence $y \in \pints$ so that $(x,y) \in \zps$.
+    We also must have that $z < g(x+1,1)$ since otherwise we would have that $x+1 \in B$, which would violate the definition of $x$ as being the largest element of $B$.
+    Thus we have
+    \ali{
+      z &\leq g(x+1,1) - 1 \\
+      z &\leq \frac{1}{2}(x+1-1)(x+1) + 1 - 1 \\
+      z &\leq \frac{1}{2}(x+1)x \\
+      z &\leq x + \frac{1}{2}(x-1)x \\
+      z &\leq x + \frac{1}{2}(x-1)x + 1 - 1 \\
+      z &\leq x + g(x,1) - 1 \\
+      z - g(x,1) + 1 &\leq x \\
+      y &\leq x
+    }
+    so that $(x,y) \in A$.
+    
+    Lastly, since $y = z - g(x,1) + 1$, we clearly have
+    \gath{
+      z = y + g(x,1) - 1 = y + \frac{1}{2}(x-1)x + 1 - 1 = \frac{1}{2}(x-1)x + y = g(x,y) \,.
+    }
+    This shows that $g$ is surjective since $z$ was arbitrary, thereby completing the long and arduous proof that $g$ is a bijection.
+  }
+}
