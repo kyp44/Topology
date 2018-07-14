@@ -249,3 +249,263 @@
     This shows that $g$ is surjective since $z$ was arbitrary, thereby completing the long and arduous proof that $g$ is a bijection.
   }
 }
+
+\exercise{3}{
+  Let $X$ be the two-element set $\braces{0,1}$.
+  Show there is a bijective correspondence between the set $\pset{\pints}$ and the cartesian product $X^\w$.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    Similar to Exercise~6.6a, we construct such a bijection $f$ from $\pset{\pints}$ to $X^\w$.
+    For any $A \in \pset{\pints}$ we have that $A \ss \pints$.
+    Then, for $i \in \pints$, set
+    \gath{
+      x_i = \begin{cases}
+        1 & i \in A \\
+        0 & i \notin A
+      \end{cases}
+    }
+    and set $f(A) = (x_1,x_2,\ldots)$ so that clearly $f(A) \in X^\w$.
+
+    To show that $f$ is injective consider $A$ and $A'$ in $\pset{\pints}$ where $A \neq A'$.
+    Without loss of generality, we can assume that there is an $i \in A$ where $i \notin A'$, noting that of course $i \in \pints$ since $A \ss \pints$.
+    Let $\vx = (x_1, x_2, \ldots) = f(A)$ and $\vx' = (x_1', x_2', \ldots) = f(A')$.
+    Then $x_i = 1 \neq 0 = x_i'$ by the definition of $f$ since $i \in A$ but $i \notin A'$.
+    Thus clearly $f(A) = \vx \neq \vx' = f(A')$, which shows that $f$ is injective since $A$ and $A'$ were arbitrary.
+
+    Now consider any $\vx = (x_1,x_2,\ldots) \in X^\w$ and define the set $A = \braces{i \in \pints \where x_i = 1}$ so that clearly $A \ss \pints$ and hence $A \in \pset{\pints}$.
+    Let $\vx' = (x_1',x_2',\ldots) = f(A)$ and consider $i \in \pints$.
+    If $i \in A$ then $x_i' = 1 = x_i$ by the definitions of $A$ and $f$.
+    If $i \notin A$ then $x_i \neq 1$ since otherwise $i \in A$ by definition.
+    Since $x_i \in X = \braces{0,1}$ it clearly must be that $x_i = 0$.
+    We then also have that $x_i' = 0$ by the definition of $f$, and thus $x_i = 0 = x_i'$.
+    Since $x_i = x_i'$ in both cases and $i$ was arbitrary, it follows that $\vx = \vx' = f(A)$.
+    This proves that $f$ is surjective since $\vx$ was arbitrary.
+
+    Hence it has been shown that $f$ is a bijection as desired.
+  }
+}
+
+\exercise{4}{
+  \eparts{
+  \item A real number $x$ is said to be \boldit{algebraic} (over the rationals) if it satisfies some polynomial equation of positive degree
+    \gath{
+      x^n + a_{n-1}x^{n-1} + \cdots + a_1 x + a_0 = 0
+    }
+    with rational coefficients $a_i$.
+    Assuming that each polynomial equation has only finitely many roots, show that the set of algebraic numbers is countable.
+  \item A real number is said to be \boldit{transcendental} if it is not algebraic.
+    Assuming the reals are uncountable, show that the transcendental numbers are uncountable.
+    (It is a somewhat surprising fact that only two transcendental numbers are familiar to us: $e$ and $\pi$.
+    Even proving these two numbers transcendental is highly nontrivial.)
+  }
+}
+\sol{
+  \dwhitman
+
+  \def\vq{\vect{q}}
+  (a)
+  \qproof{
+    First consider arbitrary degree $n \in \pints$.
+    Then for each $\vq = (q_1, \ldots, q_n) \in \rats^n$, there is a corresponding polynomial equation in $x$:
+    \gath{
+      x^n + \sum_{i = 1}^n q_i x^{i-1}  = x^n + q_n x^{n-1} + \cdots + q_2 x + q_1 = 0 \,,
+    }
+    which is assumed to have a finite number of solutions.
+    So let $X_\vq$ be the finite set real numbers that are solutions.
+    (We note that the polynomial corresponding to the vector $\vq = (0,\ldots,0) \in \rats^n$ becomes $0=0$ so that any real number $x$ satisfies it.
+    Similarly the polynomial corresponding to $\vq = (q_1, 0, \ldots, 0) \in \rats^n$ for nonzero $q_1$ corresponds to the equation $q_1 = 0$, which has no solutions.
+    Of course $X_\vq = \es$ is still finite in this case.
+    For the infinite-solution case we could simply remove the zero vector from $\rats^n$ without changing the argument in any substantial way.
+    This is also taken care of if we really do assume that \emph{any} polynomial has a finite number of solutions as we are evidently doing here.)
+
+    Now, we clearly have that $\rats^n$ is countable by Theorem~7.6 since it is a finite product of countable sets (since it was shown in Exercise~7.1 that $\rats$ is countable).
+    Thus the set $A_n = \bigcup_{\vq \in \rats^n} X_\vq$ is countable by Theorem~7.5 since it is a countable union of finite (and therefore countable) sets.
+    Of course, this is the set of all algebraic numbers from polynomials of degree $n$.
+    Then $A = \bigcup_{n \in \pints} A_n$ is the set of all algebraic numbers, which is also then countable by Theorem~7.5 since each $A_n$ was shown to be countable.
+  }
+
+  (b)
+  \qproof{
+    As in part (a), let $A \ss \reals$ be the set of algebraic numbers so that clearly, by definition, $T = \reals - A$ is the set of transcendental numbers.
+    Note that clearly $\reals = A \cup T$ so that, if $T$ were countable, then $\reals$ would be too since it is a finite union of countable sets.
+    This of course contradicts the (hitherto unproven) fact that $\reals$ is uncountable so that it must be that $T$ is also uncountable as desired.
+  }
+}
+
+\def\parta{The set $A$ of all functions $f: \braces{0,1} \to \pints$.}
+\def\partb{The set $B_n$ of all functions $f: \intsfin{n} \to \pints$.}
+\def\partc{The set $C = \bigcup_{n \in \pints} B_n$.}
+\def\partd{The set $D$ of all functions $f: \pints \to \pints$.}
+\def\parte{The set $E$ of all functions $f: \pints \to \braces{0,1}$.}
+\def\partf{
+  The set $F$ of all functions $f: \pints \to \braces{0,1}$ that are ``eventually zero.''
+  [We say that $f$ is \boldit{eventually zero} if there is a positive integer $N$ such that $f(n) = 0$ for all $n \geq N$.]
+}
+\def\partg{The set $G$ of all functions $f: \pints \to \pints$ that are eventually 1.}
+\def\parth{The set $H$ of all functions $f: \pints \to \pints$ that are eventually constant.}
+\def\parti{The set $I$ of all two-element subsets of $\pints$.}
+\def\partj{The set $J$ of all finite subsets of $\pints$.}
+\exercise{5}{
+  Determine, for each of the following sets, whether or not it is countable.
+  Justify your answers.
+  \eparts{
+  \item \parta
+  \item \partb
+  \item \partc
+  \item \partd
+  \item \parte
+  \item \partf
+  \item \partg
+  \item \parth
+  \item \parti
+  \item \partj
+  }
+}
+\sol{
+  \dwhitman
+
+  (a) \parta
+
+  We claim that $A$ is countable.
+  \qproof{
+    For any $f \in A$, clearly the mapping $g(f) = (f(0), f(1))$ is a bijection from $A$ to $\pints^2$.
+    Since $\pints^2$ is a finite cartesian product of countable sets, it follows that it is also countable by Theorem~7.6.
+    Hence there is a bijection $h :\pints^2 \to \pints$.
+    It is then obvious that $h \circ g$ is a bijection from $A$ to $\pints$ so that $A$ is countable.
+  }
+
+  (b) \partb
+
+  We claim that $B_n$ (for some $n \in \pints$) is also countable.
+  \qproof{
+    By the definition of $\pints^n$, $B_n = \pints^n$, which is clearly a finite cartesian product of countable sets.
+    Thus $B_n$ is countable by Theorem~7.6.
+  }
+
+  (c) \partc
+
+  We claim that $C$ is countable.
+  \qproof{
+    Since $n$ was arbitrary in part (b), we showed that $B_n$ is countable for any $n \in \pints$.
+    Thus $C = \bigcup_{n \in \pints} B_n$ is a countable union of countable sets, which is itself also countable by Theorem~7.5 as desired.
+  }
+
+  (d) \partd
+
+  Clearly $D = \pints^\w$, which we claim is uncountable.
+  \qproof{
+    We proceed to show, as in Theorem~7.7, that any function $g: \pints \to D$ is not surjective.
+    So denote
+    \gath{
+      g(n) = \vx_n = (x_{n1}, x_{n2}, \ldots) \,,
+    }
+    where of course each $x_{nm} \in \pints$ since $\vx_n \in D$ and so is a function from $\pints$ to $\pints$.
+    Now set
+    \gath{
+      y_n = \begin{cases}
+        0 & x_{nn} \neq 0 \\
+        1 & x_{nn} = 0
+      \end{cases}
+    }
+    so that clearly $\vy = (y_1, y_2, \ldots)$ is an element of $D$.
+    Now consider any $n \in \pints$.
+    If $x_{nn} = 0$ then $y_n = 1 \neq 0 = x_{nn}$, and if $x_{nn} \neq 0$ then $y_n = 0 \neq x_{nn}$.
+    Thus clearly $g(n) = \vx_n\neq \vy$ since the $n$th element of each differs.
+    This shows that $g$ cannot be surjective since $\vy \in D$ and $n$ was arbitrary.
+    It then follows from Theorem~7.1 that $D$ is not countable.
+  }
+
+  (e) \parte
+
+  This is exactly the set $X^\w$ in Theorem~7.7, wherein it was shown to be uncountable.
+
+  (f) \partf
+
+  We claim that $F$ is countable.
+  \qproof{
+    For brevity define $X = \braces{0,1}$.
+    First let $F_N$ be the set of all eventually zero functions $f:\pints \to X$ that are zero for $n \geq N$, where of course $N \in \pints$.
+    Then clearly $F = \bigcup_{N \in \pints} F_N$.
+
+    We show that each $F_N$ is countable.
+    So consider any $N \in \pints$.
+    If $N=1$ then clearly $f:\pints \to X$ defined by $f(n)=0$ for $n \in \pints$ (which could be denoted $(0,0,\ldots)$) is the only element of $F_N = F_1$ so that $f_N$ is clearly finite and therefore countable.
+    If $N > 1$ then for $\vx = (x_1, \ldots, x_{N-1}) \in X^{N-1}$ define
+    \gath{
+      y_n = \begin{cases}
+        x_n & n < N \\
+        0 & n \geq N
+      \end{cases}
+    }
+    for $n \in \pints$.
+    It then trivial to show that $g$ defined by $g(\vx) = \vy = (y_1, y_2, \ldots)$ is a bijection from $X^{N-1}$ to $F_N$.
+    Now, since $X = \braces{0,1}$ is finite, $X^{N-1}$ is finite by Corollary~6.8.
+    Since this is in bijective correspondence with $F_N$, it follows that it must also be finite and therefore countable.
+
+    Thus $F = \bigcup_{N \in \pints} F_N$ is a countable union of countable sets, and so is countable by Theorem~7.5 as desired
+  }
+
+  (g) \partg
+
+  Since $G$ is clearly a subset of $H$ in part (h) below, it is countable by Corollary~7.3 since $H$ is.
+
+  (h) \parth
+
+  We claim that $H$ is countable.
+  \qproof{
+    For $N \in \pints$, let $H_N$ be the set of functions $f: \pints \to \pints$ such that $f(n)$ is constant for $n \geq N$.
+    Thus clearly $H = \bigcup_{N \in \pints} H_N$.
+
+    We show that each $H_N$ is countable.
+    So consider $N \in \pints$.
+    For any $\vx = (x_1, \ldots, x_N) \in \pints^N$ define
+    \gath{
+      y_n = \begin{cases}
+        x_n & n < N \\
+        x_N & n \geq N
+      \end{cases}
+    }
+    for $n \in \pints$, and set $g(\vx) = \vy = (y_1, y_2, \ldots)$.
+    It is then a simple matter to show that $g$ is a bijection from $\pints^N$ to $H_N$.
+    Then, since $\pints^N$ is a finite product of countable sets, it is countable by Theorem~7.6.
+    Hence $H_N$ must also be countable since there is a bijective correspondence between them.
+
+    Thus $H = \bigcup_{N \in \pints} H_N$ is the countable union of countable sets so that it must also be countable by Theorem~7.5.
+  }
+
+  (i) \parti
+
+  In part (j) below it is shown that the set $J$ of all finite subsets of $\pints$ is countable.
+  Since clearly $I \ss J$, it follows that $I$ is also countable by Corollary~7.3.
+
+  (j) \partj
+
+  We claim that $J$ is countable.
+  \qproof{
+    First, let $J_n$ denote the set of $n$-element subsets of $\pints$ (for $n \in pints$), and let $J_0 = \braces{\es}$ since $\es$ is the only ``zero-element'' subset of $\pints$.
+    Clearly then $J = \bigcup_{n \in \pints \cup \braces{0}} J_n$.
+    Obviously $J_0$ is finite and therefore countable.
+    Next, we show that $J_n$ is countable for any $n \in \pints$.
+
+    So consider any such $n \in \pints$.
+    Clearly $\pints^n$ is countable by Theorem~7.6 since it is a finite product of countable sets.
+    Hence there is a bijection $f : \pints^n \to \pints$.
+    We now construct an injective function $g : J_n \to \pints^n$.
+    For any $X \in J_n$, we can choose a bijection $h : X \to \intsfin{n}$ since it has $n$ elements.
+    Since $X \ss \pints$, clearly $\inv{h} \in \pints^n$, so set $g(X) = \inv{h}$.
+    To show that $g$ is injective, consider $X$ and $X'$ in $J_n$ where $X \neq X'$.
+    Without loss of generality we can assume that there is an $x \in X$ where $x \notin X'$.
+    Let $h$ and $h'$ be the chosen bijections from $X$ and $X'$, respectively, to $\intsfin{n}$ so that by definition $g(X) = \inv{h}$ and $g(X') = \inv{h'}$.
+    Now let $k = h(x)$ so that $\inv{h}(k) = x$.
+    It has to be that $\inv{h'}(k) \neq x$ since otherwise $x$ would be in $X'$.
+    Hence $\inv{h}(k) = x \neq \inv{h'}(k)$, which shows that $g(X) = \inv{h} \neq \inv{h'} = g(X')$.
+    Thus $g$ is injective since $X$ and $X'$ were arbitrary.
+    It then follows that $f \circ g$ is an injective function from $J_n$ to $\pints$ so that $J_n$ must be countable by Theorem~7.1.
+
+    Since $n$ was arbitrary, this shows that $J_n$ is countable for any $n \in \pints$.
+    From this it follows from Theorem~7.5 that $J = \bigcup_{n \in \pints \cup \braces{0}} J_n$ is also countable since it is clearly a countable union of countable sets.
+  }
+}
