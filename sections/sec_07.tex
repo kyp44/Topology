@@ -681,25 +681,180 @@
 
   \mainprob
   
-  Recall that we have $D = \pints^\w = \pints^{\pints}$ and $E = X^\w = X^{\pints}$, where we let $X = \braces{0,1}$.
+  Recall that we have $D = \pints^\w = \pints^\pints$ and $E = X^\w = X^\pints$, where we let $X = \braces{0,1}$.
   We show that these have the same cardinality.
   \qproof{
-    First consider any $f \in E = X^{\pints}$.
-    Then define $g(n) = f(n)+1$ for $n \in \pints$ so that clearly $g \in \pints^{\pints} = D$.
+    First consider any $f \in E = X^\pints$.
+    Then define $g(n) = f(n)+1$ for $n \in \pints$ so that clearly $g \in \pints^\pints = D$.
     Now define the function $h : E \to D$ by $h(f) = g$.
     It is then trivial to show that $h$ is an injection.
 
     Now, for $n \in \pints$, define $x_n = 1$ and $x_i = 0$ when $i \in \pints$ and $i \neq n$.
-    Clearly then $\vx = (x_1, x_2, \ldots) \in X^{\pints}$, and it is easily shown that the function defined by $f(n) = \vx$ is an injection from $\pints$ to $X^{\pints}$
+    Clearly then $\vx = (x_1, x_2, \ldots) \in X^\pints$, and it is easily shown that the function defined by $f(n) = \vx$ is an injection from $\pints$ to $X^\pints$
     Also clearly the identity function on $\pints$ is an injection since it is a bijection.
-    It then follows from Lemma~\ref{lem:countun:expin} that there is an injection $f_1 : \pints^{\pints} \to (X^{\pints})^{\pints}$, noting that clearly $X^{\pints} \neq \es$.
+    It then follows from Lemma~\ref{lem:countun:expin} that there is an injection $f_1 : \pints^\pints \to (X^\pints)^\pints$, noting that clearly $X^\pints \neq \es$.
 
-    We presently have that there is a bijection $f_2 : (X^{\pints})^{\pints} \to X^{\zps}$ by Lemma~\ref{lem:countun:expmul}, which is of course also an injection.
+    We presently have that there is a bijection $f_2 : (X^\pints)^\pints \to X^{\zps}$ by Lemma~\ref{lem:countun:expmul}, which is of course also an injection.
     Finally, since $\zps$ has the same cardinality as $\pints$ (by Corollary~7.4), it follows that there is an injection from $\zps$ to $\pints$.
-    Since also the identity function on $X$ is an injection, we have again that there is an injection $f_3 : X^{\zps} \to X^{\pints}$ by Lemma~\ref{lem:countun:expin}.
-    Thus clearly then $f_3 \circ f_2 \circ f_1$ is an injection from $\pints^{\pints} = D$ to $X^{\pints} = E$.
+    Since also the identity function on $X$ is an injection, we have again that there is an injection $f_3 : X^{\zps} \to X^\pints$ by Lemma~\ref{lem:countun:expin}.
+    Thus clearly then $f_3 \circ f_2 \circ f_1$ is an injection from $\pints^\pints = D$ to $X^\pints = E$.
 
     Therefore, since there is an injection from $E$ to $D$ as well as from $D$ to $E$, it follows from Exercise~7.6b that $D$ and $E$ have the same cardinality as desired.
   }
 }
 
+\def\css{\mathcal{B}}
+\exercise{8}{
+  Let $X$ denote the two-element set $\braces{0,1}$; let $\css$ be the set of \emph{countable} subsets of $X^\w$.
+  Show that $X^\w$ and $\css$ have the same cardinality.
+}
+\sol{
+  \dwhitman
+
+  Again let $A^B$ denote the set of functions from $A$ to $B$.
+  \qproof{
+    First, for $\vx \in X^\w$, clearly the function that maps $\vx$ to the set $\braces{\vx}$ is an injective function from $X^\w$ to $\css$.
+
+    Now we construct an injection $f_1 : \css \to (X^\w)^\w$.
+    So consider any $S \in \css$ so that $S$ is a countable subset of $X^\w$.
+    Then, by Theorem~7.1, we can choose a surjective function $g : \pints \to S$.
+    Note that this does require the Axiom of Choice since we must choose such a surjection for each $S \in \css$, and clearly $\css$ is infinite.
+    Since $S \ss X^\w$, $g$ can be considered as a function from $\pints$ to $X^\w$ so that $g \in (X^\w)^\w$, though of course it would no longer necessarily be surjective with this range.
+    So we simply set $f_1(S) = g$
+
+    To show that $f_1$ is injective consider $S,S' \in \css$ where $S \neq S'$.
+    Then, setting $g = f_1(S)$ and $g' = f_1(S')$, we have that $g(\pints) = S$ and $g'(\pints) = S'$ by definition.
+    Since $S \neq S'$, we have that $g$ and $g'$ have the same domain but different image sets.
+    Clearly this means that $f_1(S) = g \neq g' = f_1(S')$, which shows that $f_1$ is injective since $S$ and $S'$ were arbitrary.
+
+    Hence $f_1$ is an injection from $\css$ to $(X^\w)^\w = (X^\pints)^\pints$.
+    Now, from Lemma~\ref{lem:countun:expmul}, we have that $(X^\pints)^\pints$ has the same cardinality as $X^{\zps}$ so that there is a bijection $f_2 : (X^\pints)^\pints \to X^{\zps}$, which is of course also an injection.
+    Finally, since $\zps$ has the same cardinality as $\pints$ (by Corollary~7.4), it follows that there is an injection from $\zps$ to $\pints$.
+    Since also the identity function on $X$ is an injection, we have that there is an injection $f_3 : X^{\zps} \to X^\pints$ by Lemma~\ref{lem:countun:expin}.
+    Then clearly $f_3 \circ f_2 \circ f_1$ is an injection from $\css$ to $X^\pints = X^\w$.
+
+    Since there is an injection from $X^\w$ to $\css$ and vice-versa, it follows that they have the same cardinality by Exercise~7.6b as desired.
+  }
+}
+
+\exercise{9}{
+  \eparts{
+  \item The formula
+    \ali{
+      & & h(1) &= 1\,, \\
+      &(*) & h(2) &= 2\,, \\
+      & & h(n) &= [h(n+1)]^2 - [h(n-1)]^2 \hspace{1cm} \text{for $n \geq 2$}
+    }
+    is not one to which the principle of recursive definition applies.
+    Show that nevertheless there does exist a function $h : \pints \to \reals$ satisfying this formula.
+    [Hint: Reformulate $(*)$ so that the principle will apply and require $h$ to be positive.]
+  \item Show that the formula $(*)$ of part (a) does not determine $h$ uniquely.
+    [Hint: If $h$ is a positive function satisfying $(*)$, let $f(i) = h(i)$ for $i \neq 3$, and let $f(3) = -h(3)$.]
+  \item Show that there is no function $h: \pints \to \reals$ satisfying the formula
+    \ali{
+      h(1) &= 1 \,, \\
+      h(2) &= 2 \,, \\
+      h(n) &= [h(n+1)]^2 + [h(n-1)]^2 \hspace{1cm} \text{for $n \geq 2$.}
+    }
+  }
+}
+\sol{
+  \dwhitman
+
+  (a) First, notice that $(*)$ does not satisfy the principle of recursive definition because, for $n \geq 2$, $h(n)$ is not defined strictly in terms of values of $h$ for positive integers less than $n$, since its definition depends on $h(n+1)$.
+  Now we show that there does exists a function satisfying $(*)$.
+  \qproof{
+    Consider the following reformulation:
+    \ali{
+      h(1) &= 1\,, \\
+      h(2) &= 2\,, \\
+      h(n) &= \sqrt{h(n-1) + [h(n-2)]^2} \hspace{1cm} \text{for $n > 2$}\,,
+    }
+    where as is convention we take the positive square root for $h(n)$.
+    Clearly for $n \in \braces{1,2}$ we have that $h(n)$ is positive.
+    Now suppose $n > 2$ and that $h(k)$ is positive for $k < n$ so that $h(n-1)$ and $h(n-2)$ are both positive.
+    Then clearly $h(n-1) + [h(n-2)]^2$ is positive so that $h(n) = \sqrt{h(n-1) + [h(n-2)]^2}$ is defined and is positive.
+    Hence $h(n)$ is positive and well-defined for all $n \in \pints$ by induction.
+
+    Thus, since $h(n)$ depends only on values of $h$ for integers less than $n$, this satisfies the recursion principle so that a unique $h$ satisfying the above exists.
+    We also claim that this $h$ satisfies $(*)$.
+    Clearly the explicitly defined values of $h(1)$ and $h(2)$ are satisfied.
+    For $n \geq 2$, we have that $n+1 > 2$ so that, by definition,
+    \gath{
+      h(n+1) = \sqrt{h((n+1)-1) + [h((n+1)-2)]^2} = \sqrt{h(n) + [h(n-1)]^2} \\
+      [h(n+1)]^2 = h(n) + [h(n-1)]^2 \\
+      h(n) = [h(n+1)]^2 - [h(n-1)]^2 \,,
+    }
+    which is the final constraint of $(*)$ so that it is also satisfied since $n \geq 2$ was arbitrary.
+  }
+
+
+  (b) First note that, for the recursively defined function $h$ from part (a),
+  \ali{
+    h(3) &= \sqrt{h(2) + [h(1)]^2} = \sqrt{2 + 1^2} = \sqrt{3} \\
+    h(4) &= \sqrt{h(3) + [h(2)]^2} = \sqrt{\sqrt{3} + 2^2} = \sqrt{\sqrt{3} + 4} \,.
+  }
+  Now define the function $f$ as in the hint, that is $f(i) = h(i)$ for $i \neq 3$ and $f(3) = -h(3)$.
+  Then we clearly have $f(3) = -h(3) = -\sqrt{3}$ while
+  \gath{
+    [f(4)]^2 - [f(2)]^2 = [h(4)]^2 - [h(2)]^2 = \parens{\sqrt{\sqrt{3} + 4}}^2 - 2^2 = \sqrt{3} + 4 - 4 = \sqrt{3}
+  }
+  so that $f(n) = -\sqrt{3} \neq \sqrt{3} = [f(n+1)]^2 - [f(n-1)]^2$ for $n = 3$, and hence $(*)$ is violated.
+  So it would seem that the hint as given does not exactly work.
+
+  Now we show that the function satisfying $(*)$ is not unique, taking inspiration from the hint.
+  \qproof{
+    We construct a function $f$, different from $h$ from part (a), that also satisfies $(*)$.
+    We define $f$ using recursion:
+    \ali{
+      f(1) &= 1\,, \\
+      f(2) &= 2\,, \\
+      f(3) &= -\sqrt{3}\,, \\
+      f(n) &= \sqrt{f(n-1) + [f(n-2)]^2} \hspace{1cm} \text{for $n > 3$}\,.
+    }
+    Clearly, since each $f(n)$ is defined only in terms of $f(k)$ for $k < n$ (or without dependence on any values of $f$), $f$ exists uniquely by the recursion principle so long as each $f(n)$ is well-defined.
+    We show this presently by induction.
+
+    Clearly $f(n)$ is defined for $n \in \braces{1,2,3}$.
+    For $n=4$ we have $f(n) = f(4) = \sqrt{f(3) + [f(2)]^2} = \sqrt{-\sqrt{3} + 2^2}  \sqrt{-\sqrt{3} + 4}$.
+    Now, since $1 < 3$, we have that $\sqrt{3} < 3 < 4$ so that $-\sqrt{3} + 4 = 4 - \sqrt{3} > 0$ and hence the square root, and therefore $f(4)$, is defined and positive.
+    Now consider any $n > 4$ and suppose that $f(n-1)$ is positive.
+    Then clearly $f(n) = \sqrt{f(n-1) + [f(n-2)]^2}$ is defined and positive since $f(n-1) > 0$, noting that even if $f(n-2) \leq 0$, its square is non-negative..
+    This completes the induction that shows that $f$ is uniquely defined.
+
+    Clearly $f \neq h$ since $f(3) = -\sqrt{3} \neq \sqrt{3} = h(3)$.
+    Also obviously $f(n)$ satisfies $(*)$ explicitly for $n \in \braces{1,2}$.
+    For $n = 2$ we have
+    \gath{
+      [f(n+1)]^2 - [f(n-1)]^2 = [f(3)]^2 - [f(1)]^2 = [-\sqrt{3}]^2 - 1^2 = 3-1 = 2 = f(n) \,.
+    }
+    Then, for $n > 2$ we have $n+1 > 3$ so that, by definition,
+    \gath{
+      f(n+1) = \sqrt{f((n+1)-1) + [f((n+1)-2)]^2} = \sqrt{f(n) + [f(n-1)]^2} \\
+      [f(n+1)]^2 = f(n) + [f(n-1)]^2 \\
+      f(n) = [f(n+1)]^2 - [f(n-1)]^2 \,.
+    }
+    Thus the recursive part of $(*)$ holds for $n \geq 2$ so that $(*)$ holds over the whole domain of $f$ as desired.
+  }
+
+  (c)
+  \qproof{
+    Suppose that such a function $h$ does exist.
+    Since the recursive property holds for $n \geq 2$, we have
+    \gath{
+      h(2) = [h(3)]^2 + [h(1)]^2 \\
+      2 = [h(3)]^2 + 1^2 \\
+      [h(3)]^2 = 2 - 1^2 = 1 \\
+      h(3) = \pm 1 \,.
+    }
+    Similarly, we have
+    \gath{
+      h(3) = [h(4)]^2 + [h(2)]^2 \\
+      \pm 1 = [h(4)]^2 + 2^2 \\
+          [h(4)]^2 = \pm 1 - 2^2 = \pm 1 - 4
+    }
+    so that either $[h(4)]^2 = 1 - 4  = -3$ or $[h(4)]^2 = -1-4 = -5$.
+    In either case we have $[h(4)]^2 < 0$, which is of course impossible since the square of a real number is always non-negative!
+    So it must be that such a function does not exist.
+  }
+}
