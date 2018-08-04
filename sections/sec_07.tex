@@ -743,7 +743,7 @@
     \ali{
       & & h(1) &= 1\,, \\
       &(*) & h(2) &= 2\,, \\
-      & & h(n) &= [h(n+1)]^2 - [h(n-1)]^2 \hspace{1cm} \text{for $n \geq 2$}
+      & & h(n) &= [h(n+1)]^2 - [h(n-1)]^2 \condgap \text{for $n \geq 2$}
     }
     is not one to which the principle of recursive definition applies.
     Show that nevertheless there does exist a function $h : \pints \to \reals$ satisfying this formula.
@@ -754,7 +754,7 @@
     \ali{
       h(1) &= 1 \,, \\
       h(2) &= 2 \,, \\
-      h(n) &= [h(n+1)]^2 + [h(n-1)]^2 \hspace{1cm} \text{for $n \geq 2$.}
+      h(n) &= [h(n+1)]^2 + [h(n-1)]^2 \condgap \text{for $n \geq 2$.}
     }
   }
 }
@@ -768,7 +768,7 @@
     \ali{
       h(1) &= 1\,, \\
       h(2) &= 2\,, \\
-      h(n) &= \sqrt{h(n-1) + [h(n-2)]^2} \hspace{1cm} \text{for $n > 2$}\,,
+      h(n) &= \sqrt{h(n-1) + [h(n-2)]^2} \condgap \text{for $n > 2$}\,,
     }
     where as is convention we take the positive square root for $h(n)$.
     Clearly for $n \in \braces{1,2}$ we have that $h(n)$ is positive.
@@ -810,7 +810,7 @@
       f(1) &= 1\,, \\
       f(2) &= 2\,, \\
       f(3) &= -\sqrt{3}\,, \\
-      f(n) &= \sqrt{f(n-1) + [f(n-2)]^2} \hspace{1cm} \text{for $n > 3$}\,.
+      f(n) &= \sqrt{f(n-1) + [f(n-2)]^2} \condgap \text{for $n > 3$}\,.
     }
     Clearly, since each $f(n)$ is defined only in terms of $f(k)$ for $k < n$ (or without dependence on any values of $f$), $f$ exists uniquely by the recursion principle so long as each $f(n)$ is well-defined.
     We show this presently by induction.

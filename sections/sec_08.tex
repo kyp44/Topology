@@ -1,0 +1,93 @@
+\setcounter{subsection}{8-1}
+\subsection{The Principle of Recursive Definition}
+
+% Some macros for this section
+\newcommand\sumf[1]{\sum_{k=1}^{#1} b_k}
+\newcommand\prodf[1]{\prod_{k=1}^{#1} b_k}
+
+\exercise{1}{
+  Let $(b_1,b_2,\ldots)$ be an infinite sequence of real numbers.
+  The sum $\sumf{n}$ is defined by induction as follows:
+  \ali{
+    \sumf{n} &= b_1 & \text{for $n=1$,} \\
+    \sumf{n} &= \parens{\sumf{n-1}} + b_n \condgap \text{for $n > 1$.}
+  }
+  Let $A$ be the set of real numbers; choose $\r$ so that Theorem~8.4 applies to define this sum rigorously.
+  We sometimes denote the sum $\sumf{n}$ by the symbol $b_1 + b_2 + \cdots + b_n$.
+}
+\sol{
+  \dwhitman
+
+  For a function $f: \intsfin{m} \to A$, define $\r(f) = f(m) + b_{m+1}$.
+  For clarity, denote the sum function by $s : \pints \to A$ so that $s(n) = \sumf{n}$.
+  Then by Theorem~8.4 there is a unique $s : \pints \to A$ such that
+  \ali{
+    s(1) &= b_1\,, \\
+    s(n) &= \r(s \rest \intsfin{n-1}) \condgap \text{for $n>1$.}
+  }
+  Then we clearly have that $\sumf{1} = s(1) = b_1$ and
+  \gath{
+    \sumf{n} = s(n) = \r(s \rest \intsfin{n-1}) = s(n-1) + b_{(n-1)+1} = \sumf{n-1} + b_n
+  }
+  for $n>1$ as desired.
+}
+
+\exercise{2}{
+  Let $(b_1, b_2, \ldots)$ be an infinite sequence of real numbers.
+  We define the product $\prodf{n}$ by the equations
+  \ali{
+    \prodf{1} &= b_1 \,, \\
+    \prodf{n} &= \parens{\prodf{n-1}} \cdot b_n \condgap \text{for $n > 1$.}
+  }
+  Use Theorem~8.4 to define the product rigorously.
+  We sometimes denote the product $\prodf{n}$ by the symbol $b_1 b_2 \cdots b_n$.
+}
+\sol{
+  \dwhitman
+
+  First, for any function $f : \intsfin{m} \to \reals$, define $\r$ by $\r(f) = f(m) \cdot b_{m+1}$.
+  Then, by the recursion theorem (Theorem~8.4), there is a unique function $p: \pints \to \reals$ such that
+  \ali{
+    p(1) &= b_1 \,, \\
+    p(n) &= \r(p \rest \intsfin{n-1}) \condgap \text{for $n > 1$.}
+  }
+  Then we define $\prodf{n} = p(n)$ so that we have $\prodf{1} = p(1) = b_1$ and
+  \gath{
+    \prodf{n} = p(n) = \r(p \rest \intsfin{n-1}) = p(n-1) \cdot b_{(n-1)+1} = \parens{\prodf{n-1}} \cdot b_n
+  }
+  for $n>1$ as desired.
+}
+
+\exercise{3}{
+  Obtain the definitions of $a^n$ and $n!$ for $n \in \pints$ as special cases of Exercise~8.2.
+}
+\sol{
+  \dwhitman
+
+  Regarding $a^n$, defined the sequence $(b_1,b_2,\ldots)$ by $b_i = a$ for every $i \in \pints$, which we could denote by $(a,a,\ldots)$.
+  Then define $a^n = \prodf{n}$ as it is defined in Exercise~8.2, and we claim that this satisfies the inductive definition given in Exercise~4.6 and Example~8.2.
+  \qproof{
+    First, we clearly have $a^1 = \prodf{1} = b_1 = a$.
+    Next, for $n > 1$, we have
+    \gath{
+      a^n = \prodf{n} = \parens{\prodf{n-1}} \cdot b_n = a^{n-1} \cdot a \,,
+    }
+    which shows that the inductive definition is satisfied.
+  }
+
+  Since it does not seem to be given in the book thus far, we reiterate the typical inductive definition for $n!$:
+  \ali{
+    1! &= 1 \,, \\
+    n! &= (n-1)! \cdot n \condgap \text{for $n>1$.}
+  }
+  Now, define the sequence $(b_1,b_2,\ldots)$ by $b_i = i$.
+  We then claim that defining $n! = \prodf{n}$ as defined in Exercise~8.2 satisfies this definition.
+  \qproof{
+    First, we have $1! = \prodf{1} = b_1 = 1$.
+    Then we also have
+    \gath{
+      n! = \prodf{n} = \parens{\prodf{n-1}} \cdot b_n = (n-1)! \cdot n
+    }
+    for $n > 1$ so that the definition is clearly satisfied.
+  }
+}
