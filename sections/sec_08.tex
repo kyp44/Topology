@@ -70,7 +70,7 @@
     First, we clearly have $a^1 = \prodf{1} = b_1 = a$.
     Next, for $n > 1$, we have
     \gath{
-      a^n = \prodf{n} = \parens{\prodf{n-1}} \cdot b_n = a^{n-1} \cdot a \,,
+*      a^n = \prodf{n} = \parens{\prodf{n-1}} \cdot b_n = a^{n-1} \cdot a \,,
     }
     which shows that the inductive definition is satisfied.
   }
@@ -80,7 +80,7 @@
     1! &= 1 \,, \\
     n! &= (n-1)! \cdot n \condgap \text{for $n>1$.}
   }
-  Now, define the sequence $(b_1,b_2,\ldots)$ by $b_i = i$.
+  Now, define the sequence $(b_1,b_2,\ldots)$ by $b_i = i$ for $i \in \pints$.
   We then claim that defining $n! = \prodf{n}$ as defined in Exercise~8.2 satisfies this definition.
   \qproof{
     First, we have $1! = \prodf{1} = b_1 = 1$.
@@ -91,3 +91,163 @@
     for $n > 1$ so that the definition is clearly satisfied.
   }
 }
+
+\exercise{4}{
+  The \emph{Fibonacci numbers} of number theory are defined recursively by the formula
+  \ali{
+    \l_1 &= \l_2 = 1 \,, \\
+    \l_n &= \l_{n-1} + \l_{n-2} \condgap \text{for $n>2$.}
+  }
+  Define them rigorously by use of Theorem~8.4.
+}
+\sol{
+  \dwhitman
+
+  First, note that the Fibonacci numbers are all positive integers.
+  So, for any function $f: \intsfin{m} \to \pints$ define
+  \gath{
+    \r(f) = \begin{cases}
+      1 & m = 1 \\
+      f(m) + f(m-1) & m > 1 \,,
+    \end{cases}
+  }
+  noting that clearly the range of $\r$ is still $\pints$ since that is the range of $f$.
+  Then, by Theorem~8.4, there is a unique function $F : \pints \to \pints$ such that
+  \ali{
+    F(1) &= 1 \,, \\
+    F(n) &= \r(F \rest \intsfin{n-1}) \condgap \text{for $n>1$.}
+  }
+  We claim that the Fibonacci numbers are $\l_n = F(n)$ for $n \in \pints$.
+  \qproof{
+    To show that the numbers $\l_n$ satisfy the inductive definition of the Fibonacci numbers, first note that we clearly have $\l_1 = F(1) = 1$.
+    We also have that
+    \gath{
+      \l_2 = F(2) = \r(F \rest \braces{1}) = 1 \,.
+    }
+    Lastly, for any $n > 2$, clearly $ n > 1$ also and $n - 1 > 1$ so that
+    \gath{
+      \l_n = F(n) = \r(F \rest \intsfin{n-1}) = F(n-1) + F([n-1]-1) = \l_{n-1} + \l_{n-2} \,,
+    }
+    which shows that the inductive definition is satisfied.
+  }
+}
+
+\exercise{5}{
+  Show that there is a unique function $h: \pints \to \preals$ satisfying the formula
+  \ali{
+    h(1) &= 3 \,, \\
+    h(i) &= [h(i-1) + 1]^{1/2} \condgap \text{for $i > 1$.}
+  }
+}
+\sol{
+  \dwhitman
+  \qproof{
+    First, for any function $f : \intsfin{m} \to \preals$, define
+    \gath{
+      \r(f) = [f(m) + 1]^{1/2} \,.
+    }
+    Consider any $m \in \pints$ and any function $f: \intsfin{m} \to \preals$.
+    Since $f(m) \in \preals$, it follows that $f(m) + 1 \in \preals$ also so that $\r(f) = [f(m)+1]^{1/2}$ is defined and is positive.
+    Hence $\r$ is a well-defined function with range $\preals$ since $m$ and $f$ were arbitrary.
+    It then follows from the principle of recursive definition (Theorem~8.4) that there is a unique function $h : \pints \to \preals$ such that
+    \ali{
+      h(1) &= 3 \,, \\
+      h(n) &= \r(h \rest \intsfin{n-1}) \condgap \text{for $n > 1$.}
+    }
+    It is easy to see that this $h$ satisfies the required property since $h(1) = 3$ and
+    \gath{
+      h(i) = \r(h \rest \intsfin{i-1}) = [h(i-1) + 1]^{1/2}
+    }
+    for $i > 1$ as desired.
+
+    Now we show that such a function is unique.
+    Suppose that $g$ and $h$ both satisfy the inductive formula.
+    We show by induction that $g(i) = h(i)$ for all $i \in \pints$, from which it clearly follows that $g = h$.
+    First, we clearly have $g(1) = 3 = h(1)$.
+    Now suppose that $g(i) = h(i)$ for $i \in \pints$.
+    Then we have that $i+1 > 1$ so that $g(i+1) = [g(i) + 1]^{1/2} = [h(i) + 1]^{1/2} = h(i+1)$ since $g(i) = h(i)$ and we are taking the positive root.
+    This completes the induction.
+  }
+}
+
+\exercise{6}{
+  \eparts{
+  \item Show that there is no function $h : \pints \to \preals$ satisfying the formula
+    \ali{
+      h(1) &= 3 \,, \\
+      h(i) &= [h(i-1) - 1]^{1/2} \condgap \text{for $i > 1$.}
+    }
+    Explain why this example does not violate the principle of recursive definition.
+  \item Consider the recursion formula
+    \ali{
+      h(1) &= 3 \,, \\
+      h(i) &= \left.\begin{cases}
+        [h(i-1)-1]^{1/2} & \text{if $h(i-1) > 1$} \\
+        5 & \text{if $h(i-1) \leq 1$}
+      \end{cases}
+      \right\}
+      \condgap \text{for $i > 1$.}
+    }
+    Show that there exists a unique function $h: \pints \to \preals$ satisfying this formula.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    Suppose to the contrary that there is such a function $h$.
+    Then clearly $h(1) = 3$ and $h(2) = \sqrt{h(1) - 1} = \sqrt{3-1} = \sqrt{2}$.
+    Now, since $1 < 2 < 4$, we clearly have $1 < \sqrt{2} < \sqrt{4} = 2$.
+    Thus $0 < \sqrt{2} - 1 < 1$ so that $h(3) = \sqrt{h(2) - 1} = \sqrt{\sqrt{2} - 1}$ is defined.
+    However, we also have that $0 < h(3) = \sqrt{\sqrt{2}-1} < 1$ since $0 < \sqrt{2} -1  < 1$, and hence $h(3) - 1 < 0$.
+    We then have that
+    \gath{
+      h(4) = \sqrt{h(3) - 1} \\
+      [h(4)]^2 = h(3) - 1 < 0 \,,
+    }
+    which is of course impossible since a square is always non-negative.
+    This contradiction shows that such a function $h$ cannot exist.
+  }
+
+  Note that this does not ostensibly violate the principle of recursive definition since $h(n)$ is defined only in terms of values of $h$ less than $n$ for $n>1$.
+  However, were one to try to show the existence of $h$ rigorously using the principle, one would find that the required function $\r$ would not be well-defined.
+
+  (b)
+  \qproof{
+    First, for any function $f : \intsfin{m} \to \preals$, define
+    \gath{
+      \r(f) = \begin{cases}
+        [f(m)-1]^{1/2} & f(m) > 1 \\
+        5 & f(m) \leq 1 \,.
+      \end{cases}
+    }
+    Consider any $m \in \pints$ and any function $f : \intsfin{m} \to \preals$.
+    If $f(m) > 1$ then clearly $f(m) - 1 > 0$ so that $\r(f) = [f(m)-1]^{1/2}$ is defined and positive.
+    If $f(m) \leq 1$ then clearly $\r(f) = 5$ is also defined and positive.
+    Since $m$ and $f$ were arbitrary, this shows that $\r$ is a well-defined function with range $\preals$.
+
+    It then follows from the principle of recursive definition (Theorem~8.4) that there is a unique function $h: \pints \to \preals$ such that
+    \ali{
+      h(1) &= 3 \,, \\
+      h(n) &= \r(h \rest \intsfin{n-1}) \condgap \text{for $n > 1$.}
+    }
+    To see that this $h$ satisfies the recursion formula, clearly $h(1) = 3$, and, for $i>1$, we have
+    \gath{
+      h(i) = \r(h \rest \intsfin{i-1}) = \begin{cases}
+        [h(i-1)-1]^{1/2} & h(i-1) > 1 \\
+        5 & h(i-1) \leq 1
+      \end{cases}
+    }
+    as desired.
+
+    To show that this function is unique, suppose that $g$ and $h$ both satisfy the recursive formula.
+    We show by induction that $g(n) = h(n)$ for all $n \in \pints$ so that clearly $g = h$.
+    First, obviously $g(1) = 3 = h(1)$.
+    Now suppose that $g(n) = h(n)$ for $n \in \pints$ so that $n+1 > 1$.
+    Then, if $g(n) = h(n) > 1$ then we have $g(n+1) = [g(n)-1]^{1/2} = [h(n)-1]^{1/2} = h(n+1)$ since $g(n) = h(n)$ and the roots are taken to be positive.
+    Similarly, if $g(n) = h(n) \leq 1$, then $g(n+1) = 5 = h(n+1)$.
+    Thus in either case $g(n+1) = h(n+1)$, which completes the induction.
+  }
+}
+
