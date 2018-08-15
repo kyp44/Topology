@@ -251,3 +251,152 @@
   }
 }
 
+\exercise{7}{\
+  Prove Theorem~8.4.
+}
+\sol{
+  \dwhitman
+
+  The proof follows the same pattern used to prove $(*)$ at the beginning of the section, which culminates in Theorem~8.3.
+  Similar to that approach, two lemmas will be proved first.
+  In what follows, $(*)$ refers to the properties defined in the statement of Theorem~8.4.
+  
+  \begin{lem}\label{lem:recdef:exists}
+    Given $n \in \pints$, there exists a function $f: \intsfin{n} \to A$ that satisfies $(*)$ for all $i$ in its domain.
+  \end{lem}
+  \qproof{
+    We show this by induction on $n$.
+    First, for $n=1$, clearly the function $f: \braces{1} \to A$ defined by $f(1) = a_0$ satisfies $(*)$.
+    Now suppose that $(*)$ holds for some function $f' : \intsfin{n} \to A$ for $n \in \pints$.
+    Now define $f: \intsfin{n+1} \to A$ by
+    \gath{
+      f(i) = \begin{cases}
+        f'(i) & i \in \intsfin{n}  \\
+        \r(f') & i = n+1
+      \end{cases}
+    }
+    for any $i \in \intsfin{n+1}$.
+    Note that $f$ is not defined in terms of itself, but in terms of $f'$ and $\r$.
+
+    First, we clearly have $f' = f \rest \intsfin{n}$ since $f(i) = f'(i)$ for all $i \in \intsfin{n}$.
+    Then, clearly $f(1) = f'(1) = a_0$ since $1 \leq n$ and $f'$ satisfies $(*)$.
+    Consider any $i \in \intsfin{n+1}$ where $i > 1$.
+    Then we have
+    \gath{
+      f(i) = f'(i) = \r(f' \rest \intsfin{i-1}) = \r(f \rest \intsfin{i-1})
+    }
+    if $1 < i \leq n$ since $f'$ satisfies $(*)$.
+    Lastly, if $i = n+1$, then
+    \gath{
+      f(i) = \r(f') = \r(f \rest \intsfin{n}) = \r(f \rest \intsfin{i-1})
+    }
+    again.
+    This shows that $f$ satisfies $(*)$, thereby completing the induction.
+  }
+
+  \begin{lem}\label{lem:recdef:unique}
+    Suppose that $f : \intsfin{n} \to A$ and $g : \intsfin{m} \to C$ both satisfy $(*)$ for all $i$ in their respective domains.
+    Then $f(i) = g(i)$ for all $i$ in both domains.
+  \end{lem}
+  \qproof{
+    Suppose that this is not the case and let $i$ be the \emph{smallest} integer (in the domain of both $f$ and $g$) for which $f(i) \neq g(i)$.
+    Hence $f(j) = g(j)$ for all $1 \leq j < i$ so that clearly $f \rest \intsfin{i-1} = g \rest \intsfin{i-1}$.
+    Now, it cannot be that $i = 1$ since clearly $f(1) = a_0 = g(1)$.
+    So then it must be that $1 < i$ so that $f(i) = \r(f \rest \intsfin{i-1})$ and $g(i) = \r(g \rest \intsfin{i-1})$ since they both satisfy $(*)$.
+    Since $f \rest \intsfin{i-1} = g \rest \intsfin{i-1}$, we then clearly have
+    \gath{
+      f(i) = \r(f \rest \intsfin{i-1}) = \r(g \rest \intsfin{i-1}) = g(i)
+    }
+    in contradiction with the definition of $i$.
+    Thus the result must be true as desired.
+  }
+
+  \mainprob
+
+  \qproof{
+    Lemmas~\ref{lem:recdef:exists} and \ref{lem:recdef:unique} show that there exists a unique function $f_n : \intsfin{n} \to A$ satisfying $(*)$ for every $n \in \pints$.
+    We then define $h = \bigcup_{n \in \pints} f_n$ and claim that this is the unique function from $\pints$ to $A$ satisfying $(*)$.
+
+    First we must show that $h$ is a function at all.
+    So consider any $i \in \pints$ and suppose that $(i,x)$ and $(i,y)$ are in $h$.
+    Then there are $n,m \in \pints$ where $(i,x) \in f_n$ and $(i,y) \in f_m$ since $h = \bigcup_{n \in \pints} f_n$, noting that it must be that $i \leq n$ and $i \leq m$.
+    Since $f_n$ and $f_m$ both satisfy $(*)$ and clearly $i$ is in the domain of both, it follows from Lemma~\ref{lem:recdef:unique} that $x = f_n(i) = f_m(i) = y$.
+    This shows that $h$ is a function since $(i,x)$ and $(i,y)$ were arbitrary.
+    Also, clearly the domain of $h$ is $\pints$ since, for any $i \in \pints$, $i$ is in the domain of $f_i$ and so in the domain of $h$.
+    Lastly, clearly the range of $h$ is $A$ since that is the range of all the $f_n$ functions.
+
+    Now we show that $h$ satisfies $(*)$.
+    First we have that $1$ is clearly in the domain of $h$ and $f_1$ so that it has to be that $h(1) = f_1(1) = a_0$ since $h$ is a function, $f_1 \ss h$, and $f_1$ satisfies $(*)$.
+    Now suppose that $i > 1$.
+    Then clearly $i$ is in the domain of $h$ and $f_i$ so that it has to be that $h(j) = f_i(j)$ for $1 \leq j \leq i$ since $h$ was shown to be a function and $f_i \ss h$.
+    It then follows that $h \rest \intsfin{i-1} = f_i \rest \intsfin{i-1}$.
+    Thus we have
+    \gath{
+      h(i) = f_i(i) = \r(f_i \rest \intsfin{i-1}) = \r(h \rest \intsfin{i-1})
+    }
+    since $f_i$ satisfies $(*)$.
+    This completes the proof that $h$ also satisfies $(*)$.
+
+    Lastly, we show that $h$ is unique, which is very similar to the proof of Lemma~\ref{lem:recdef:unique}.
+    So suppose that $f$ and $g$ are two functions from $\pints$ to $A$ that both satisfy $(*)$.
+    Suppose also that $f \neq g$ so that there is a smallest integer $i$ such that $f(i) \neq g(i)$.
+    Now, it cannot be that $i = 1$ since we have $f(1) = a_0 = g(1)$ since they both satisfy $(*)$.
+    Hence $i > 1$ and, since $i$ is the smallest integer where $f(i) \neq g(i)$, it follows that $f(j) = g(j)$ for all $1 \leq j < i$.
+    Therefore we have that $f \rest \intsfin{i-1} = g \rest \intsfin{i-1}$ so that
+    \gath{
+      f(i) = \r(f \rest \intsfin{i-1}) = \r(g \rest \intsfin{i-1}) = g(i)
+    }
+    since $f$ and $g$ both satisfy $(*)$ and $i > 1$.
+    This of course contradicts the definition of $i$ so that it has to be that in fact $f=g$.
+    This shows the uniqueness of $h$ constructed above.
+  }
+}
+
+\exercise{8}{
+  Verify the following version of the principle of recursive definition: Let $A$ be a set.
+  Let $\r$ be a function assigning, to every function $f$ mapping a section $S_n$ of $\pints$ into $A$, an element $\r(f)$ of $A$.
+  Then there is a unique function $h: \pints \to A$ such that $h(n) = \r(h \rest S_n)$ for each $n \in \pints$.
+}
+\sol{
+  \dwhitman
+
+  Denote the above property of $h$ by $(*)$.
+  We show that there is a unique $h: \pints \to A$ satisfying this using the standard principle of recursive definition, Theorem~8.4.
+  \qproof{
+    First, note that $S_1 = \braces{n \in \pints \where n < 1} = \es$ by definition.
+    Note also that $\es$ itself is vacuously a function from $S_1 = \es$ to $A$, and is the only such function.
+    It then follows that $f \rest S_1 = f \rest \es = \es$ for any $f : S_n \to A$ for some $n \in \pints$.
+    So then, define $a_0 = \r(\es)$ so that there is a unique function $h$ such that
+    \ali{
+      h(1) &= a_0 \,, \\
+      h(i) &= \r(h \rest \intsfin{i-1}) \condgap \text{for $i > 1$.}
+    }
+    by Theorem~8.4.
+    Denote this property by $(+)$.
+
+    We first claim that this $h$ satisfies $(*)$.
+    To see this, consider any $n \in \pints$.
+    If $n=1$ then we have
+    \gath{
+      h(n) =  h(1) = a_0 = \r(\es) = \r(h \rest \es) = \r(h \rest S_1) = \r(h \rest S_n) \,.
+    }
+    If $n > 1$ then by $(+)$ we have
+    \gath{
+      h(n) = \r(h \rest \intsfin{n-1}) = \r(h \rest S_n)
+    }
+    again.
+    Since $n$ was arbitrary, this shows that $(*)$ is satisfied.
+
+    To show that this $h$ satisfying $(*)$ is unique, suppose that another function $f: \pints \to A$ satisfies $(*)$.
+    Then we have
+    \gath{
+      h(1) = \r(h \rest S_1) = \r(h \rest \es) = \r(\es) = a_0
+    }
+    and
+    \gath{
+      h(i) = \r(h \rest S_i) = \r(h \rest \intsfin{i-1})
+    }
+    for $i > 1$.
+    This shows that $f$ also satisfies $(+)$, and, since we know that the function satisfying $(+)$ is unique, it must be that $f = h$ as desired.
+  } 
+}
