@@ -1,0 +1,126 @@
+\setcounter{subsection}{9-1}
+\subsection{Infinite Sets and the Axiom of Choice}
+
+\exercise{1}{
+  Define an injective map $f: \pints \to X^\w$, where $X$ is the two-element set $\braces{0,1}$, without using the choice axiom.
+}
+\sol{
+  \dwhitman
+
+  For any $n \in \pints$, define
+  \gath{
+    x_i = \begin{cases}
+      0 & i \neq n \\
+      1 & i = n
+    \end{cases}
+  }
+  for $i \in \pints$.
+  Then set $f(n) = \vx = (x_1, x_2, \ldots)$ so that clearly $f$ is a function from $\pints$ to $X^\w$.
+  It is easy to show that $f$ is injective.
+  \qproof{
+    Consider $n,m \in \pints$ where $n \neq m$.
+    Then let $\vx = f(n)$ and $\vy = f(m)$.
+    Then we have that $x_n = 1$ while $y_n = 0$ by the definition of $f$ since $n \neq m$.
+    It thus follows that $f(n) = \vx \neq \vy = f(m)$, which shows that $f$ is injective since $n$ and $m$ were arbitrary.
+  }
+}
+
+\newcommand\col[1]{\mathcal{#1}}
+\exercise{2}{
+  Find if possible a choice function for each of the following collections, without using the choice axiom:
+  \eparts{
+  \item The collection $\col{A}$ of nonempty subsets of $\pints$.
+  \item The collection $\col{B}$ of nonempty subsets of $\ints$.
+  \item The collection $\col{C}$ of nonempty subsets of the rational numbers $\rats$.
+  \item The collection $\col{D}$ of nonempty subsets of $X^\w$, where $X = \braces{0,1}$.
+  }
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:choice:countable}
+    If $A$ is a countable set and $\col{A}$ is the collection of nonempty subsets of $A$ then $\col{A}$ has a choice function.
+  \end{lem}
+  \qproof{
+    Since $A$ is countable, there is an injective function $A \to \pints$ by Theorem~7.1.
+    We define a choice function $c : \col{A} \to \bigcup_{B \in \col{A}} B$.
+    Consider any $X \in \col{A}$ so that $X$ is a nonempty subset of $A$.
+    Then $f(X)$ is a nonempty subset of $\pints$ so that it has a unique smallest element $n$ since $\pints$ is well-ordered.
+    Now, since $n \in f(X)$, clearly there is an $x \in X$ such that $f(x) = n$.
+    Moreover, it follows from the fact that $f$ is injective that this $x$ is unique.
+    So set $c(X) = x$ so that clearly $x$ is a choice function on $\col{A}$ since $c(X) = x \in X$.
+  }
+
+  \mainprob
+  
+  (a) Since $\pints$ is countable, a choice function can be constructed as in Lemma~\ref{lem:choice:countable}.
+
+  (b) Since $\ints$ is countable (by Example~7.1), a choice function can be constructed as in Lemma~\ref{lem:choice:countable}.
+
+  (c) Since $\rats$ is countable (by Exercise~7.1), a choice function can be constructed as in Lemma~\ref{lem:choice:countable}.
+
+  (d) First, there is an injective function $f$ from the real interval $[0,1]$ to $X^\w$.
+  The most straightforward such function is, for each $x \in [0,1]$ let $0.x_1 x_2 x_3 \ldots$ be a unique binary expansion of $x$ (these can be made unique by avoiding binary expansions that end in all 1's, noting though that the expansion of $1$ itself must be $0.111\ldots$).
+  So suppose that $c$ were a choice function on $\col{D}$ (that is presumably constructed without the choice axiom).
+  If $X$ is a nonempty subset of $[0,1]$ then $f(X)$ is a set in $\col{D}$ so that we can choose $c(f(X)) \in f(X)$.
+  Since $f$ is injective, there is a unique $x \in X$ where $f(x) = c(f(X))$, and so choosing $x$ results in a choice function on the collection of nonempty subsets of $[0,1]$ since $X$ was arbitrary.
+
+  This would allow one to then well-order $[0,1]$ without using the choice axiom, which evidently nobody has done.
+  As far as I have been able to determine, this has not yet been proven impossible, it is just that nobody has been able to do it.
+  So it would seem that such an explicit construction of a choice function on $\col{D}$ would at least make one famous.
+  Or else it is impossible, which is what we assume to be the case here.
+}
+
+\exercise{3}{
+  Suppose that $A$ is a set and $\braces{f_n}_{n \in \pints}$ is a given indexed family of injective functions
+  \gath{
+    f_n : \intsfin{n} \to A \,.
+  }
+  Show that $A$ is infinite.
+  Can you define an injective function $f : \pints \to A$ without using the choice axiom?
+}
+\sol{
+  \dwhitman
+
+  We defer the proof that $A$ is infinite until we define an injective $f : \pints \to A$, which we can do without using the choice axiom by using the principle of recursive definition.
+  \qproof{
+    First, let $a_0 = f_1(1) \in A$.
+    Now consider any function $g : S_n \to A$.
+    If $g = \es$ then set $\r(\es) = \r(g) = a_0$.
+    Otherwise let $I_g = \braces{i \in S_{n+1} \where f_n(i) \notin g(S_n)}$.
+    Suppose for the moment that $I_g = \es$.
+    Consider any $x \in f_n(S_{n+1})$ so that there is a $k \in S_{n+1}$ where $f_n(k) = x$.
+    Then it has to be that $x = f_n(k) \in g(S_n)$ since otherwise we would have $k \in I_g$.
+    Since $x$ was arbitrary, this shows that $f_n(S_{n+1}) \ss g(S_n)$.
+    Thus the identity function $h_1 : f_n(S_{n+1}) \to g(S_n)$ is an injection.
+    Clearly $g$ is a surjection from $S_n$ to its image $g(S_n)$ so that there is we can construct a particular injection $h_2 : g(S_n) \to S_n$ by Corollary~6.7.
+    Lastly, $f_n$ is an injection from $S_{n+1}$ to $f_n(S_{n+1})$.
+    Therefore $h = h_2 \circ h_1 \circ f_n$ is an injection from $S_{n+1}$ to $S_n$.
+    Hence $h$ is a bijection from $S_{n+1}$ to $h(S_{n+1})$, which is clearly a subset of $S_n$ since $S_n$ is the range of $h$.
+    But, since $S_n \pss S_{n+1}$, clearly $h(S_{n+1}) \pss S_{n+1}$ as well so that $h$ is a bijection from $S_{n+1}$ onto a proper subset of itself.
+    As $S_{n+1}$ is clearly finite, this violates Corollary~6.3 so that we have a contradiction.
+    
+    So it must be that $I_g \neq \es$ so that it is a nonempty set of positive integers, and hence has a smallest element $i$.
+    So simply set $\r(g) = f_n(i)$.
+    Now, it then follows from the principle of recursive definition that there is a unique $f: \pints \to A$ such that
+    \ali{
+      f(1) &= a_0 \,, \\
+      f(n) &= \r(f \rest S_n) \condgap \text{for $n > 1$.} 
+    }
+    We claim that this $f$ is injective.
+
+    To see this we first show that $f(n) \notin f(S_n)$ for all $n \in \pints$.
+    If $n = 1$ we have that $f(n) = f(1) = a_0 = f_1(1)$ and $f(S_n) = f(\es) = \es$ so that clearly the result holds.
+    If $n > 1$ then $f(n) = \r(f \rest S_n) = f_n(i)$ for some $i \in I_{f \rest S_n}$ since clearly $S_n \neq \es$ so that $f \rest S_n \neq \es$.
+    Since $i \in I_{f \rest S_n}$ we have that $f(n) = f_n(i) \notin (f \rest S_n)(S_n) = f(S_n)$ as desired.
+    This shows that $f$ is injective.
+    For consider any $n,m \in \pints$ where $n \neq m$.
+    Without loss of generality we can assume that $n < m$.
+    Then clearly $f(n) \in f(S_m)$ since $n \in S_m$ since $n < m$.
+    However, by what was just shown, we have $f(m) \notin f(S_m)$ so that it has to be that $f(n) \neq f(m)$.
+    This shows $f$ to be injective since $n$ and $m$ were arbitrary.
+
+    Lastly, since $f: \pints \to A$ is injective, it follows that $f$ is a bijection from $\pints$ to $f(\pints) \ss A$.
+    Hence $f(\pints)$ is infinite since $\pints$ is, and since it is a subset of $A$, it has to be that $A$ is infinite as well.
+  }
+}
