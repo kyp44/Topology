@@ -1,6 +1,8 @@
 \setcounter{subsection}{9-1}
 \subsection{Infinite Sets and the Axiom of Choice}
 
+\newcommand\col[1]{\mathcal{#1}}
+
 \exercise{1}{
   Define an injective map $f: \pints \to X^\w$, where $X$ is the two-element set $\braces{0,1}$, without using the choice axiom.
 }
@@ -25,7 +27,6 @@
   }
 }
 
-\newcommand\col[1]{\mathcal{#1}}
 \exercise{2}{
   Find if possible a choice function for each of the following collections, without using the choice axiom:
   \eparts{
@@ -123,4 +124,98 @@
     Lastly, since $f: \pints \to A$ is injective, it follows that $f$ is a bijection from $\pints$ to $f(\pints) \ss A$.
     Hence $f(\pints)$ is infinite since $\pints$ is, and since it is a subset of $A$, it has to be that $A$ is infinite as well.
   }
+}
+
+\exercise{4}{
+  There was a theorem in \S 7 whose proof involved an infinite number of arbitrary choices.
+  Which one was it?
+  Rewrite the proof so as to make explicit use of the choice axiom.
+  (Several of the earlier exercises have used the choice axiom also.)
+}
+\sol{
+  \dwhitman
+
+  This was the proof of Theorem~7.5, which asserts that a countable union of countable sets is also countable.
+  The following rewritten proof makes explicit use of the choice axiom and so points out where it is needed.
+  \qproof{
+    Let $\braces{A_n}_{n \in J}$ be an indexed family of countable sets, where the index set $J$ is $\intsfin{N}$ or $\pints$.
+    Assume that each set $A_n$ is nonempty for convenience since this does not change anything.
+    Now, for each $n \in J$, let $B_n$ be the set of surjective functions from $\pints$ to $A_n$.
+    Since each $A_n$ is countable, it follows from Theorem~7.1 that $B_n \neq \es$.
+    Then, by the axiom of choice, the collection $\braces{B_n}_{n \in J}$ has a choice function $c$ such that $c(B_n) \in B_n$ for every $n \in J$.
+
+    Now set $f_n = c(B_n)$ for every $n \in J$ so that $f_n \in B_n$ and hence is a surjection from $\pints$ into $A_n$.
+    Since $J$ is countable, there is also a surjection $g : \pints \to J$ by Theorem~7.1.
+    Then define $h : \pints \times \pints \to \bigcup_{n \in J} A_n$ by $h(k,m) = f_{g(k)}(m)$ for $k,m \in \pints$.
+
+    We now show that $h$ is surjective.
+    So consider any $a \in \bigcup_{n \in J} A_n$ so that $a \in A_n$ for some $n \in J$.
+    Since $g : \pints \to J$ is surjective, there is a $k \in \pints$ where $g(k) = n$.
+    Also, since $f_n : \pints \to A_n$ is surjective, there is an $m \in \pints$ where $f_n(m) = a$.
+    We then have by definition that
+    \gath{
+      h(k,m) = f_{g(k)}(m) = f_n(m) = a \,,
+    }
+    which shows that $h$ is surjective since $a$ was arbitrary.
+
+    Lastly, since $\pints \times \pints$ is countable by Example~7.2, there is a bijection $h' : \pints \to \pints \times \pints$.
+    It then follows that $h \circ h'$ is a surjection from $\pints$ to $\bigcup_{n \in J} A_n$, which shows that $\bigcup_{n \in J} A_n$ is countable again by Theorem~7.1.
+  }
+}
+
+\exercise{5}{
+  \eparts{
+  \item Use the choice axiom to show that if $f : A \to B$ is surjective, then $f$ has a right inverse $h : B \to A$.
+  \item Show that if $f : A \to B$ is injective and $A$ is not empty, then $f$ has a left inverse.
+    Is the axiom of choice needed?
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    Suppose that $f: A \to B$ is surjective.
+    Now, by the choice axiom, the collection $\col{A} = \pset{A} - \braces{\es}$ is a collection of nonempty sets and thus has a choice function $c$.
+    Consider any $b \in B$ and the set $A_b = \braces{x \in A \where f(x) = b}$.
+    Then $A_b \neq \es$ since $f$ is surjective, and hence $A_b \in \col{A}$ since clearly also $A_b \ss A$ so that $A_b \in \pset{A}$.
+    So set $h(b) = c(A_b) \in A_b$ so that $h(b) \in A$ since $A_b \ss A$.
+    Hence $h$ is a function from $B$ to $A$.
+
+    Recall that, by definition, $h$ is a right inverse if and only if $f \circ h = i_B$, which we show presently.
+    So consider any $b \in B$ and let $a = h(b) = c(A_b) \in A_b$ so that $f(a) = b$.
+    Then clearly
+    \gath{
+      (f \circ h)(b) = f(h(b)) = f(a) = b \,,
+    }
+    which shows that $f \circ h = i_B$ since $b$ was arbitrary.
+    Hence $h$ is a right inverse of $f$.
+  }
+
+  (b)
+  \qproof{
+    Suppose that $f : A \to B$ is injective and $A \neq \es$.
+    Then $f$ is a bijection from $A$ to its image $f(A) \ss B$ and hence its inverse $\inv{f}$ is a function from $f(A)$ to $A$.
+    Now, since $A$ is nonempty, there is an $a_0 \in A$.
+    So define $h: B \to A$ by
+    \gath{
+      h(b) = \begin{cases}
+        \inv{f}(b) & b \in f(A) \\
+        a_0 & b \notin f(A)
+      \end{cases}
+    }
+    for any $b \in B$.
+    Recall that $h$ is a left inverse of $f$ if and only if $h \circ f = i_A$ by definition, which we show now.
+
+    So consider any $a \in A$ and let $b = f(a)$ so that clearly $b \in f(A)$.
+    Hence by definition $h(b) = \inv{f}(b) = \inv{f}(f(a)) = a$.
+    Finally, we have
+    \gath{
+      (h \circ f)(a) = h(f(a)) = h(b) = a \,.
+    }
+    This shows that $h \circ f = i_A$ since $a$ was arbitrary.
+    Therefore $h$ is a left inverse of $f$ as desired.
+  }
+
+  Note that this proof does not require the axiom of choice as we did not need to make a choice for each $b \in B$ in order to define $h$ as we did in part $A$.
 }
