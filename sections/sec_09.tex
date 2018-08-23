@@ -219,3 +219,193 @@
 
   Note that this proof does not require the axiom of choice as we did not need to make a choice for each $b \in B$ in order to define $h$ as we did in part $A$.
 }
+
+\def\ca{\col{A}}
+\def\cb{\col{B}}
+\exercise{6}{
+  Most of the famous paradoxes of naive set theory are associated in some way or another with the concept of the ``set of all sets.''
+  None of the rules we have given for forming sets allows us to consider such a set.
+  And for good reason -- the concept itself is self-contradictory.
+  For suppose that $\ca$ denotes the ``set of all sets.''
+  \eparts{
+  \item Show that $\pset{\ca} \ss \ca$; derive a contradiction.
+  \item (\emph{Russell's paradox.}) Let $\cb$ be the subset of $\ca$ consisting of all sets that are not elements of themselves:
+    \gath{
+      \cb = \braces{A \where \text{$A \in \ca$ and $A \notin A$}} \,.
+    }
+    (Of course, there may be \emph{no} set $A$ such that $A \in A$;
+    If such is the case, then $\cb = \ca$.)
+    Is $\cb$ an element of itself or not?
+  }
+}
+\sol{
+  \dwhitman
+
+  (a) We show that $\pset{\ca} \ss \ca$ and that a contradiction results.
+  \qproof{
+    Consider any set $A \in \pset{\ca}$.
+    Since $A$ is a set and $\ca$ is the set of all sets, clearly $A \in \ca$ and hence $\pset{\ca} \ss \ca$ since $A$ was arbitrary.
+    Therefore the identity function $i_{\pset{\ca}}$ is clearly an injection from $\pset{\ca}$ to $\ca$.
+    However, this is impossible by Theorem~7.8!
+    Hence we have reached a contradiction.
+  }
+
+  (b) We show that the existence of $\cb$ is a contradiction by showing that supposing either $\cb \in \cb$ or $\cb \notin \cb$ results in a contradiction.
+  \qproof{
+    Suppose that $\cb \in \cb$ so that by definition we have $\cb \in \ca$ and $\cb \notin \cb$, the latter of which clearly contradicts our initial supposition.
+    On the other hand, suppose that $\cb \notin \cb$.
+    Then, since clearly also $\cb \in \ca$ since it is a set, it follows that $\cb \in \cb$ by definition.
+    This again contradicts the initial supposition.
+    Since one or the other ($\cb \in \cb$ or $\cb \notin \cb$) must be true, we are then guaranteed to have a contradiction.
+  }
+}
+
+\exercise{7}{
+  Let $A$ and $B$ be two nonempty sets.
+  If there is an injection of $B$ into $A$, but no injection of $A$ into $B$, we say that $A$ has \boldit{greater cardinality} than $B$.
+  \eparts{
+  \item Conclude from Theorem~9.1 that every uncountable set has greater cardinality than $\pints$.
+  \item Show that if $A$ has greater cardinality than $B$, and $B$ has greater cardinality than $C$, then $A$ has greater cardinality than $C$.
+  \item Find a sequence $A_1, A_2, \ldots$ of infinite sets, such that for each $n \in \pints$, the set $A_{n+1}$ has greater cardinality than $A_n$.
+  \item Find a set that for every $n$ has cardinality greater than $A_n$.
+  }
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:choice:pset}
+    For any set $A$, $\pset{A}$ has greater cardinality than $A$.
+  \end{lem}
+  \qproof{
+    Clearly the function that maps $a \in A$ to $\braces{a} \in \pset{A}$ is an injection.
+    However, we know from Theorem~7.8 that there is no injection from $\pset{A}$ to $A$.
+    Together these show that $\pset{A}$ has greater cardinality than $A$ as desired.
+  }
+
+  \mainprob
+
+  (a)
+  \qproof{
+    Suppose that $A$ is any uncountable set.
+    Clearly $A$ is not finite for then it would be countable.
+    Hence it is infinite and so there is a injection from $\pints$ to $A$ by Theorem~9.1.
+    There also cannot be an injection from $A$ to $\pints$, for if there were then $A$ would be countable by Theorem~7.1.
+    This shows that $A$ has greater cardinality than $\pints$ by definition.
+  }
+
+  (b)
+  \qproof{
+    Since $A$ has greater cardinality than $B$, there is an injection $f: B \to A$.
+    Likewise, since $B$ has greater cardinality than $C$, there is an injection $g : C \to B$.
+    It then follows that $f \circ g$ is an injection of $C$ into $A$.
+    Now suppose that $h : A \to C$ is injective.
+    Then $g \circ h$ would be an injection of $A$ into $B$, which we know cannot exist since $A$ has greater cardinality than $B$.
+    Hence it must be that no such injection $h$ exists, which shows that $A$ has greater cardinality than $C$ as desired.
+  }
+
+  (c)
+  We define a sequence of sets recursively:
+  \ali{
+    A_1 &= \pints \,, \\
+    A_n &= \pset{A_{n-1}} \condgap \text{for $n > 1$.}
+  }
+  We show that this meets the requirements.
+  \qproof{
+    First we show that each $A_n$ is infinite by induction.
+    Clearly $A_1 = \pints$ is infinite.
+    Now assume that $A_n$ is infinite for $n \in \pints$ so that there is an injection $f: \pints \to A_n$ by Theorem~9.1.
+    Then, by Lemma~\ref{lem:choice:pset}, $A_{n+1} = \pset{A_n}$ has greater cardinality than $A_n$ so that there is an injection $g: A_n \to A_{n+1}$.
+    Then $g \circ f$ is an injection from $\pints$ to $A_{n+1}$ so that $A_{n+1}$ is infinite as well by Theorem~9.1.
+    This completes the induction.
+
+    Finally, for any $n \in \pints$ we have that $n+1 > 1$ so that $A_{n+1} = \pset{A_{(n+1)-1}} = \pset{A_n}$.
+    Then clearly $A_{n+1}$ has greater cardinality than $A_{n}$ by Lemma~\ref{lem:choice:pset}.
+    This shows the desired result.
+  }
+
+  (d)
+  Let $A = \bigcup_{n \in \pints} A_n$, which we claim has the required property.
+  \qproof{
+    Consider any $n \in \pints$.
+    Clearly $A_n \ss A$ so that the identity function $i_{A_n}$ is an injection of $A_n$ into $A$.
+    Now suppose for the moment that $g : A \to A_n$ is injective.
+    Since clearly also $A_{n+1} \ss A$, it follows that $g \rest A_{n+1}$ is then an injection of $A_{n+1}$ into $A_n$.
+    However this contradicts the proven fact that $A_{n+1}$ has greater cardinality than $A_n$.
+    Hence it has to be that no such injection $g$ exists, which shows that $A$ has greater cardinality than $A_n$.
+    Since $n$ was arbitrary, this shows the desired result.
+  }
+}
+
+\exercise{8}{
+  Show that $\pset{\pints}$ and $\reals$ have the same cardinality.
+  [Hint: You may use the fact that every real number has a decimal expansion, which is unique if expansions that end in an infinite string of 9's are forbidden.]
+
+  A famous conjecture of set theory, called the \emph{continuum hypothesis}, asserts that there exists no set having cardinality greater than $\pints$ and lesser cardinality than $\reals$.
+  The \emph{generalized continuum hypothesis} asserts that, given the infinite set $A$, there is no set having greater cardinality than $A$ and lesser cardinality than $\pset{A}$.
+  Surprisingly enough, both of these assertions have been shown to be independent of the usual axioms of set theory.
+  For a readable expository account, see [Sm].
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:choice:psetsame}
+    If $A$ and $B$ are sets with the same cardinality, then $\pset{A}$ and $\pset{B}$ have the same cardinality.
+  \end{lem}
+  \qproof{
+    Since $A$ and $B$ have the same cardinality there is a bijection $f : A \to B$.
+    We define a bijection $g : \pset{A} \to \pset{B}$.
+    So, for any $X \in \pset{A}$, set $g(X) = f(X)$.
+    Clearly $f(X) \ss B$, since $B$ is the range of $f$, so that $g(X) = f(X) \in \pset{B}$ and hence $\pset{B}$ can be the range of $g$.
+
+    To show that $g$ is injective, consider sets $X$ and $Y$ in $\pset{A}$ so that $X,Y \ss A$.
+    Also suppose that $X \neq Y$ so, without loss of generality, we can assume that there is an $x \in X$ where $x \notin Y$.
+    Clearly $f(x) \in f(X)$ since $x \in X$.
+    Were it the case that $f(x) \in f(Y)$ then there would be a $y \in Y$ such that $f(y) = f(x)$.
+    But then we would have that $y = x$ since $f$ is injective and hence $x = y \in Y$, which we know not to be the case.
+    Hence $f(x) \notin f(Y)$ so that it has to be that $g(X) = f(X) \neq f(Y) = g(Y)$ since $f(x) \in f(X)$.
+    Since $X$ and $Y$ were arbitrary this shows that $g$ is injective.
+
+    To show that $g$ is surjective consider any $Y \in \pset{B}$ so that $Y \ss B$.
+    Let $X = \inv{f}(Y)$, noting that $\inv{f}$ is a bijection from $B$ to $A$ since $f$ is bijective.
+    Clearly $X \ss A$ since $A$ is the range of $\inv{f}$ so that $X \in \pset{A}$.
+    Now consider any $y \in f(X)$ so that there is an $x \in X$ where $f(x) = y$.
+    Then, since $X = \inv{f}(Y)$, there is a $y' \in Y$ where $x = \inv{f}(y')$, and hence $y = f(x) = f(\inv{f}(y')) = y'$.
+    Thus $y = y' \in Y$ so that $f(X) \ss Y$ since $y$ was arbitrary.
+    Now consider $y \in Y$ and let $x = \inv{f}(y)$ so that clearly $x = \inv{f}(y) \in \inv{f}(Y) = X$.
+    Moreover, $f(x) = f(\inv{f}(y)) = y$ so that $y \in f(X)$.
+    Thus $Y \ss f(X)$ as well since $y$ was arbitrary.
+    This shows that $g(X) = f(X) = Y$, from which we conclude that $g$ is surjective since $Y$ was arbitrary.
+
+    Hence $g: \pset{A} \to \pset{B}$ is a bijection so that $\pset{A}$ and $\pset{B}$ have the same cardinality by definition.
+  }
+
+  \mainprob
+
+  \qproof{
+    We show this using the Cantor-Schroeder-Bernstein (CSB) Theorem, which was proven in Exercise~7.6b.
+
+    First, we construct an injective function $f$ from $\reals$ to $\pset{\rats}$.
+    For any $x \in \reals$ let $Q = \braces{q \in \rats \where q < x}$ so that clearly $Q \ss \rats$ and hence $Q \in \pset{\rats}$.
+    Therefore setting $f(x) = Q$ means that $f$ is a function from $\reals$ to $\pset{\rats}$.
+    To show that $f$ is injective consider $x,y \in \reals$ where $x \neq y$.
+    Without loss of generality we can assume that $x < y$ so that there is a $q \in \rats$ where $x < q < y$ since the rationals are order-dense in the reals.
+    Also set $Q = f(x)$ and $P = f(y)$.
+    Since $q > x$ we have that $q \notin Q$.
+    Analogously, since $q < y$ we have that $q \in P$.
+    Thus it has to be that $f(x) = Q \neq P = f(y)$, which shows that $f$ is injective since $x$ and $y$ were arbitrary.
+
+    Now, it was shown in Exercise~7.1 that $\rats$ is countably infinite and thus has the same cardinality as $\pints$.
+    From Lemma~\ref{lem:choice:psetsame} it then follows that $\pset{\rats}$ has the same cardinality as $\pset{\pints}$ so that there is a bijection $g: \pset{\rats} \to \pset{\pints}$.
+    Clearly then $g \circ f$ is an injection from $\reals$ to $\pset{\pints}$.
+
+    Now let $X = \braces{0,1}$, and we construct an injection $h : X^\w \to \reals$.
+    For any sequence $\vx = (x_1, x_2, \ldots) \in X^\w$ set $h(\vx)$ to the decimal expansion $0.x_1 x_2 x_3 \ldots$, where clearly each $x_n$ is the digit 0 or 1.
+    Clearly $h(\vx)$ is a real number so that $h$ is a function from $X^\w$ to $\reals$.
+    It is easy to see that $h$ is injective since different sequences will result in different decimal expansions.
+    Since none of the expansions end in an infinite sequence of 9's, clearly the corresponding real numbers will be different.
+
+    Now, it was shown in Exercise~7.3 that $\pset{\pints}$ and $X^\w$ have the same cardinality so that there is a bijection $i : \pset{\pints} \to X^\w$.
+    It then follows that $h \circ i$ is an injection of $\pset{\pints}$ into $\reals$.
+    Since we have shown the existence of both injections, the result follows from the CSB Theorem.
+  }
+}
