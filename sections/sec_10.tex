@@ -1,0 +1,81 @@
+\setcounter{subsection}{10-1}
+\subsection{Well-Ordered Sets}
+
+\exercise{1}{
+  Show that every well-ordered set has the least upper bound property.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    Suppose that $A$ is a set with well-ordering $<$, and that $B$ is some nonempty subset of $A$ with upper bound $a \in A$.
+    Let $C$ then be the set of upper bounds of $B$, which is not empty since clearly $a \in C$.
+    Then $C$ is a nonempty subset of $A$ and so has a smallest element $c$ since $A$ is well-ordered.
+    Clearly then $c$ is the least upper bound of $B$ by definition.
+    This shows that $A$ has the least upper bound property since $B$ was arbitrary.
+  }
+}
+
+\exercise{2}{
+  \eparts{
+  \item Show that in a well-ordered set, every element except the largest (if one exists) has an immediate successor.
+  \item Find a set in which every element has an immediate successor that is not well-ordered.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    Suppose that $A$ is well-ordered by $<$ and consider any $a \in A$ where $a$ is not the largest element.
+    It then follows that there is some $x \in A$ where $a < x$ since otherwise $a$ would be the largest element of $A$.
+    Let $X = \braces{y \in A \where a < y}$ so that clearly $X \ss A$ and $x \in X$.
+    Thus $X$ is a nonempty subset of $A$ and so has a smallest element $b$ since $<$ well-orders $A$.
+    We claim that $b$ is the immediate successor of $a$.
+    To see this suppose that there is a $z \in A$ such that $a < z < b$, noting that clearly $a < b$ since $b \in X$.
+    Then we would have that $z \in X$ but $z < b$ so that it is not true that $b \leq z$, which contradicts the definition of $b$ as the smallest element of $X$.
+    So it must be that no such $z$ exists, which shows that $b$ is indeed the immediate successor of $a$.
+  }
+
+  (b) The most natural example of such a set is $\ints$.
+  We show that this has the desired properties.
+  \qproof{
+    First, clearly $\ints$ is not well-orderd since, for example, the set of negative integers is a nonempty subset of $\ints$ but has no smallest element.
+    Also, for any $n \in \ints$, clearly $n+1$ is the immediate successor of $n$, which was shown back in Corollary~\ref{cor:intreal:intbet}.
+  }
+}
+
+\def\ot{\braces{1,2}}
+\exercise{3}{
+  Both $\ot \times \pints$ and $\pints \times \ot$ are well-ordered in the dictionary order.
+  Do they have the same order type?
+}
+\sol{
+  \dwhitman
+
+  We claim that they do \emph{not} have the same order type, which we show presently.
+  \qproof{
+    First, clearly $(1,1)$ is the smallest element of both ordered sets.
+    For brevity let $A = \ot \times \pints$, $B = \pints \times \ot$, and $<_A$ and $<_B$ be the corresponding dictionary orderings, with $<$ being the normal ordering of $\pints$.
+
+    So assume that they \emph{do} have the same order type so that there is an order-preserving bijection $f : A \to B$.
+    Consider $(2,1) \in A$, which is clearly not the smallest element since $(2,1) \neq (1,1)$.
+    Let $(n,b) = f(2,1) \in B$, which cannot be the smallest element of $B$ since $f$ preserves order, so that $(n,b) \neq (1,1)$.
+    Cleary $b \in \ot$ so that $b=1$ or $b=2$.
+    In the former cases we must have that $n > 1$ so that $n-1 \in \pints$.
+    So set $y = (n-1,2)$.
+    In the latter case set $y = (n, 1)$.
+    It is easy to see, and trivial to formally show, that $y$ is the immediate predecessor of $(n,b)$ in either case.
+
+    Now let $x = \inv{f}(y)$, noting that $\inv{f}$ is an order-preserving bijection from $B$ to $A$ since $f$ is an order-preserving bijection.
+    It then follows that $x <_A (2, 1)$ since $f(x) = y <_B (n,b) = f(2,1)$.
+    If $x = (m,a)$ then it has to be that $m < 2$ so that $m = 1$ (because $m \in \ot$) since there is no $a \in \pints$ where $a < 1$.
+    Thus $x = (1, a)$ for some $a \in \pints$.
+    We then have that $a+1 \in \pints$ so that clearly $x = (1, a) <_A (1, a+1) <_A (2,1)$.
+    From this we have, $y = f(1,a) <_B f(1,a+1) <_B f(2,1) = (n,b)$, which contradicts the fact that $y$ is the immediate predecessor of $(n,b)$.
+    So it has to be that they do not have the same order type.
+  }
+
+  It is worth noting that, in the theory of ordinal numbers, $A = \ot \times \pints$ has order type $\w + \w = \w \cdot 2$ whereas $B = \pints \times \ot$ has simply order type $\w$.
+  This also shows that $A$ and $B$  have different order types since distinct ordinal numbers always have different order types.
+}
