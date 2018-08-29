@@ -40,7 +40,7 @@
   (b) The most natural example of such a set is $\ints$.
   We show that this has the desired properties.
   \qproof{
-    First, clearly $\ints$ is not well-orderd since, for example, the set of negative integers is a nonempty subset of $\ints$ but has no smallest element.
+    First, clearly $\ints$ is not well-ordered since, for example, the set of negative integers is a nonempty subset of $\ints$ but has no smallest element.
     Also, for any $n \in \ints$, clearly $n+1$ is the immediate successor of $n$, which was shown back in Corollary~\ref{cor:intreal:intbet}.
   }
 }
@@ -61,7 +61,7 @@
     So assume that they \emph{do} have the same order type so that there is an order-preserving bijection $f : A \to B$.
     Consider $(2,1) \in A$, which is clearly not the smallest element since $(2,1) \neq (1,1)$.
     Let $(n,b) = f(2,1) \in B$, which cannot be the smallest element of $B$ since $f$ preserves order, so that $(n,b) \neq (1,1)$.
-    Cleary $b \in \ot$ so that $b=1$ or $b=2$.
+    Clearly $b \in \ot$ so that $b=1$ or $b=2$.
     In the former cases we must have that $n > 1$ so that $n-1 \in \pints$.
     So set $y = (n-1,2)$.
     In the latter case set $y = (n, 1)$.
@@ -78,4 +78,150 @@
 
   It is worth noting that, in the theory of ordinal numbers, $A = \ot \times \pints$ has order type $\w + \w = \w \cdot 2$ whereas $B = \pints \times \ot$ has simply order type $\w$.
   This also shows that $A$ and $B$  have different order types since distinct ordinal numbers always have different order types.
+}
+
+\exercise{4}{
+  \eparts{
+  \item Let $\nints$ denote the set of negative integers in the usual order.
+    Show that a simple ordered set $A$ fails to be well-ordered if and only if it contains a subset having the same order type as $\nints$.
+  \item Show that if $A$ is simply ordered and every countable subset of $A$ is well-ordered, then $A$ is well-ordered.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    Let $A$ be a set with simple order $\prec$.
+    
+    $(\imp)$ Suppose that $\prec$ is not a well-ordering of $A$.
+    Then there exists a nonempty subset $B$ of $A$ such that $B$ has no smallest element.
+    For any $b \in B$ define the set $X_b = \braces{x \in B \where x \prec b}$.
+    Clearly $X_b \ss B$ and $X_b \neq \es$ for any $b \in B$ since otherwise $b$ would be the smallest element of $B$.
+    Now let $c$ be a choice function on the collection of nonempty subsets of $B$, which of course exists by the axiom of choice.
+    Since $B$ is nonempty there is a $b_0 \in B$.
+    It then follows from the principle of recursive definition that there is a function $f : \pints \to B$ such that
+    \ali{
+      f(1) &= b_0 \,, \\
+      f(n) &= c(X_{f(n-1)}) \condgap \text{for $n > 1$.}
+    }
+    It then is easy to show that $f(n+1) \prec f(n)$ for all $n \in \pints$, i.e. that the sequence defined by $f$ is decreasing.
+    If we then simply define $g : \nints \to \pints$ by $g(n) = -n$ for $n \in \nints$, it is clear that $f \circ g$ is an order-preserving bijection from $\nints$ to some subset $C$ of $B$.
+    Clearly also $C \ss A$ since $B \ss A$.
+    Hence the subset $C$ has the same order type as $\nints$.
+
+    $(\pmi)$ Now suppose that $A$ has a subset $B$ with the same order type as $\nints$.
+    Clearly then $B$ is nonempty and has no smallest element since $\nints$ does not.
+    The existence of this $B$  shows that $A$ fails to be well-ordered.
+  }
+
+  (b)
+  \qproof{
+    Suppose that $A$ is a set that is simply ordered by $\prec$ such that every countable subset is well-ordered by $\prec$.
+    Consider any nonempty subset $B \ss A$.
+    Suppose for a moment that the restricted $\prec$ does not well-order $B$.
+    Then it follows from part (a) that $B$ has a subset $C$ with the same order type as $\nints$.
+    However, clearly $C \ss A$ (since $B \ss A$) and $C$ is countable (since $\nints$ is countable) and thus it should be well-ordered.
+    As this is impossible since $C$ has the same order-type as $\nints$ (which is clearly not well-ordered), it has to be that the restricted $\prec$ does in fact well-order $B$.
+    Hence $B$ has a $\prec$-smallest element, which shows that $A$ is well-ordered since $B$ was arbitrary.
+  }
+}
+
+\exercise{5}{
+  Show the well-ordering theorem implies the choice axiom.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    Suppose that $\col{A}$ is a collection of nonempty sets.
+    Then, by the well-ordering theorem there is a well-ordering $<$ of $\bigcup \col{A}$.
+    We construct a choice function $c : \col{A} \to \bigcup \col{A}$.
+    Consider any set $A \in \col{A}$.
+    Since clearly $A$ is then a nonempty subset of $\bigcup \col{A}$, it follows that it has a unique smallest element $a$ according to $<$ since $\bigcup \col{A}$ is well-ordered by $<$.
+    So simply set $c(A) = a$ so that clearly then $c(A) = a \in A$.
+    This shows that $c$ is in fact a choice function on $\col{A}$.
+  }
+}
+
+\exercise{6}{
+  Let $S_\W$ be the minimal uncountable well-ordered set.
+  \eparts{
+  \item Show that $S_\W$ has no largest element.
+  \item Show that for every $\a \in S_\W$, the subset $\braces{x \where \a < x}$ is uncountable.
+  \item Let $X_0$ be the subset of $S_\W$ consisting of all elements $x$ such that $x$ has no immediate predecessor.
+    Show that $X_0$ is uncountable.
+  }
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:wellord:uncount}
+    If $A$ is an uncountable set and $B \ss A$ is countable then $A - B$ is uncountable.
+  \end{lem}
+  \qproof{
+    If we let $C = A - B$, then clearly $A = C \cup B$.
+    If $C$ were countable then $A = C \cup B$ would be countable by Theorem~7.5 since $B$ is also countable.
+    Since we know that $A$ is uncountable it therefore must be that $C = A - B$ is uncountable as well.
+  }
+
+  \mainprob
+
+  It is assumed in the following that $<$ is the well-order on $S_\W$.
+  
+  (a)
+  \qproof{
+    Suppose to the contrary that $S_\W$ does have a largest element $\a$.
+    Then, for any $x \in S_\W$, we have that $x \leq \a$.
+    Hence either $x \in \braces{y \in S_\W \where y < \a} = S_\a$ or $x = \a$.
+    Therefore $S_\W = S_\a \cup \braces{\a}$ since clearly both $S_\a$ and $\braces{\a}$ are both subsets of $S_\W$.
+    Now since $S_\a$ is a section of $S_\W$, it is countable.
+    Since $\braces{\a}$ is also clearly countable, it follows from Theorem~7.5 that their union $S_\a \cup \braces{\a} = S_\W$ is countable.
+    But this contradicts the fact that $S_\W$ is uncountable!
+    Hence it has to be that $S_\W$ has no largest element as desired.
+  }
+
+  (b)
+  \qproof{
+    Consider any $\a \in S_\W$.
+    Let $T_\a = \braces{x \in S_\W \where \a < x}$ so that we must show that $T_\a$ is uncountable.
+    Let $\bar{S}_\a = S_\a \cup \braces{\a}$ so that clearly we have that $\bar{S}_\a = \braces{x \in S_\W \where x \leq \a}$.
+    It is then easy to show that $T_\a = S_\W - \bar{S}_\a$.
+    Now, since $S_\a$ is a section of $S_\W$, it is countable so that clearly $\bar{S}_\a = S_\a \cup \braces{\a}$ is also countable by Theorem~7.5.
+    Then, since $S_\W$ itself is uncountable, it follows that $T_\a = S_\W - \bar{S}_\a$ is also uncountable by Lemma~\ref{lem:wellord:uncount}.
+  }
+
+  (c)
+  \qproof{
+    First we show that $X_0$ is not bounded above.
+    Assume the contrary so that $\a \in S_\W$ is an upper bound of $X_0$.
+    It then follows that the set $T_\a = \braces{x \in S_\W \where \a < x}$ is such that every element of $T_\a$ has an immediate predecessor since otherwise there would be a $\b \in T_\a$ where $\b \in X_0$ so that $\a$ would not be an upper bound of $X_0$ since then $\a < \b$.
+
+    Now, we know from part (a) that $S_\W$ has no largest element so that it follows from Exercise~10.2 that every element of $S_\W$ has an immediate successor.
+    Since $T_\a \ss S_\W$ it follows that each element $x \in T_\a$ has an immediate successor $y$.
+    Moreover we then have that $\a < x < y$ so that $y \in T_\a$ also.
+    Hence every element of $T_\a$ has an immediate successor in $T_\a$.
+    
+    Now, we know that $T_\a$ is uncountable by part (b) so that it has a smallest element $\b$ since it is then a nonempty subset of the well-ordered $S_\W$.
+    We derive a contradiction by showing that $T_\a$ has the same order type as $\pints$ and is thus countable.
+    We do this by defining an increasing bijection $f: \pints \to T_\a$.
+    First, set $f(1) = \b$ and then set $f(n)$ to the immediate successor of $f(n-1)$ for $n > 1$, which was shown to exist above.
+    Then the function $f$ uniquely exists by the principle of recursive definition.
+    Clearly we have that $f(n+1) > f(n)$ for all $n \in \pints$ since $f(n+1)$ is the immediate successor of $f(n)$.
+    Hence $f$ is increasing and therefore also injective.
+
+    To show that $f$ is surjective suppose the contrary so that the set $T_\a - f(\pints)$ is nonempty.
+    Since clearly this is a subset of the well-ordered $S_\W$, it has a smallest element $y$.
+    Now, we know that $f(1) = \b$ so that $y \neq \b$, and in fact $\b < y$ since $\b$ is the smallest element of $T_\a$.
+    Since $y \in T_\a$ we know that it has an immediate predecessor $x$ and that $\a < \b \leq x$ so that $x \in T_\a$.
+    However, it cannot be that $x \in T_\a - f(\pints)$ since $x < y$ and $y$ is the smallest element of $T_\a - f(\pints)$.
+    Thus $x \in f(\pints)$ so that there is an $n \in \pints$ where $f(n) = x$.
+    But then $f(n+1) = y$ since $y$ is the immediate successor of $x$.
+    As this contradicts the fact that $y \notin f(\pints)$, it must be that $f$ is in fact surjective!
+
+    Therefore we have shown that $f$ is a bijection from $\pints$ to $T_\a$ so that $T_\a$ is countable.
+    But we know from part (b) that $T_\a$ is uncountable.
+    As mentioned above, this is a contradiction so that it must be that indeed $X_0$ is not bounded above.
+    From this it immediately follows from the contrapositive of Theorem~10.3 that $X_0$ must be uncountable.
+  }
 }
