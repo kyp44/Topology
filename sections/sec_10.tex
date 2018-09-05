@@ -224,4 +224,225 @@
     As mentioned above, this is a contradiction so that it must be that indeed $X_0$ is not bounded above.
     From this it immediately follows from the contrapositive of Theorem~10.3 that $X_0$ must be uncountable.
   }
+
+  It is interesting to note that $S_\W$ corresponds to the ordinal number $\w_1$, which is the first uncountable ordinal, and the set $X_0$ of part (c) corresponds to the set of limit ordinals in $\w_1$.
+  All of the curious properties deduced here for $S_\W$ apply to $\w_1$ too, assuming we allow the choice axiom.
+}
+
+\exercise{7}{
+  Let $J$ be a well-ordered set.
+  A subset $J_0$ of $J$ is said to be \boldit{inductive} if for every $\a \in J$,
+  \gath{
+    \parens{S_\a \ss J_0} \imp \a \in J_0 \,.
+  }
+  \emph{Theorem (The principle of transfinite induction).}
+  If $J$ is a well-ordered set and $J_0$ is an inductive subset of $J$, then $J_0 = J$.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    Suppose that $J_0$ is an inductive subset of the well-ordered set $J$.
+    Also suppose that $J_0 \neq J$.
+    Since $J_0 \ss J$, it follows that there must be an $x \in J$ such that $x \notin J_0$.
+    Thus the set $J - J_0$ is nonempty.
+    Since clearly this is also a subset of $J$, it must have a smallest element $\a$ since $J$ is well-ordered.
+    Consider any $y \in S_\a$ so that $y < \a$.
+    Then it cannot be that $y \in J - J_0$ since otherwise $\a$ would not be the smallest element of $J - J_0$.
+    Since clearly $y \in J$ (since $S_\a \ss J$) it has to be that $y \in J_0$.
+    Since $y$ was arbitrary this shows that $S_\a \ss J_0$.
+    It then follows that $\a \in J_0$ since $J_0$ is inductive.
+    However, this contradicts the fact that $\a \in J - J_0$ so that our initial supposition that $J_0 \neq J$ must be incorrect.
+    Hence $J_0 = J$ as desired.
+  }
+}
+
+\exercise{8}{
+  \eparts{
+  \item Let $A_1$ and $A_2$ be disjoint sets, well-ordered by $<_1$ and $<_2$, respectively.
+    Define an order relation on $A_1 \cup A_2$ by letting $a < b$ either if $a,b \in A_1$ and $a <_1 b$, or if $a,b \in A_2$ and $a <_2 b$, or if $a \in A_1$ and $b \in A_2$.
+    Show that this is a well-ordering.
+  \item Generalize (a) to an arbitrary family of disjoint well-ordered sets, indexed by a well-ordered set.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    It is easy but tedious to show that $<$ is actually an order on $A_1 \cup A_2$, so we shall skip that proof and jump straight to the proof that it is a well-ordering.
+
+    So consider any nonempty subset $A$ of $A_1 \cup A_2$.
+
+    Case: $A_1 \cap A \neq \es$.
+    Then clearly $A_1 \cap A$ is a nonempty subset of $A_1$ so that it has a smallest element $a$ according to $<_1$ since it is a well-ordering.
+    We then claim that $a$ is the smallest element of $A$ according to $<$.
+    So consider any $x \in A$ so that clearly also $x \in A_1 \cup A_2$.
+    Hence $x \in A_1$ or $x \in A_2$.
+    If $x \in A_1$ then obviously $x \in A_1 \cap A$ so that $a \leq_1 x$ since $a$ is the smallest element of $A_1 \cap A$.
+    Then also $a \leq x$ by definition since $a$ and $x$ are both in $A_1$.
+    On the other hand, if $x \in A_2$ then we again have that $a < x$ since $a \in A_1$ and $x \in A_2$.
+    Therefore $a \leq x$ no matter what so that $a$ is the smallest element of $A$ since $x$ was arbitrary.
+
+    Case: $A_1 \cap A = \es$.
+    Then it has to be that $A_2 \cap A \neq \es$ since $A$ is nonempty and $A = A_1 \cup A_2$.
+    Thus $A_2 \cap A$ is a nonempty subset of $A_2$ so that it has a smallest element $a$ by $<_2$ since it is a well-ordering.
+    We claim that $a$ is the smallest element of $A$.
+    So consider any $x \in A$.
+    It has to be that $x \in A_2$ since $A_1 \cap A$ is empty and $A = A_1 \cup A_2$.
+    Therefore $x \in A_2 \cap A$ so that $a \leq_2 x$ since $a$ is the smallest element of $A_2 \cap A$.
+    Then, by definition, $a \leq x$ since both $a$ and $x$ are elements of $A_2$.
+    This shows that $a$ is the smallest element of $A$ since $x$ was arbitrary.
+
+    In either case we have shown that $A$ has a smallest element so that $<$ is a well-ordering of $A_1 \cup A_2$ since $A$ was arbitrary.
+  }
+
+  Note that well-ordering a union of two well-ordered sets like this is analogous to the addition of two ordinal numbers.
+  In particular if $A_1$ has order type $\a_1$ and $A_1$ has order type $\a_2$ where $\a_1$ and $\a_2$ are an ordinal numbers, then $A_1 \cup A_2$ with the above well-ordering has order type $\a_1 + \a_2$.
+
+  (b) Suppose that $J$ is well-ordered by $<_J$ and $\braces{A_\a}_{\a \in J}$ is a collection of well-ordered sets where $A_\a$ is well-ordered by $<_\a$ for each $\a \in J$.
+  Now define an order $<$ on $A = \bigcup_{\a \in J} A_\a$ as follows.
+  For any $x$ and $y$ in $A$ there are clearly $\a$ and $\b$ in $J$  where $x \in A_\a$ and $y \in A_\b$, noting that $\a$ and $\b$ are unique since the collection is mutually disjoint.
+  So set $x < y$ if and only if either $\a = \b$ and $x <_\a y$, or else $\a <_J \b$, noting that these are clearly mutually exclusive.
+  We then claim that $<$ is a well-ordering of $A$.
+  \qproof{
+    Let $B$ be any nonempty subset of $A$ and $I$ be the set of $\a \in J$ such that there is an $x \in B$ where $x \in A_\a$.
+    Now, since $B$ is nonempty, there is a $z \in B$.
+    Since $B \ss A = \bigcup_{\a \in J} A_\a$, there is an $\g \in J$ where $z \in A_\g$.
+    Then clearly $\g \in I$ so that $I$ is a nonempty subset of $J$.
+    Then $I$ has a smallest element $\a$ since it is well-ordered by $<_J$.
+    By the definition of $I$ there is a $w \in B$ where $w \in A_\a$.
+    Then clearly $w \in A_\a \cap B$ so that it is a nonempty subset of $A_\a$.
+    It then follows that $A_\a \cap B$ has a smallest element $a$ according to $<_\a$ since it is a well-ordering on $A_\a$.
+    We claim that $a$ is the smallest element of $B$ by $<$.
+
+    So consider any $x \in B$ so that there is a $\b \in J$ where $x \in A_\b$ since $B \ss A$.
+
+    Case: $\b = \a$.
+    Then both $a$ and $x$ are in $A_\a \cap B = A_\b \cap B$ so that $a \leq_\a b$ since $a$ is the smallest element of $A_\a \cap B$.
+    It then follows from the definition of $<$ that $a \leq x$.
+
+    Case: $\b \neq \a$.
+    Clearly then $\b \in I$ so that $\a \leq_J \b$ since $\a$ is the smallest element of $J$.
+    Since we know that $\b \neq \a$ it must be that $\a <_J \b$.
+    From this it follows that $a < x$ by definition.
+
+    Hence in either case it is true that $a \leq x$, which shows that $a$ is the smallest element of $B$.
+    Since $B$ was an arbitrary nonempty subset of $A$, this shows that $A$ is well-ordered by $<$.
+  }
+}
+
+\exercise{9}{
+  Consider the subset $A$ of $(\pints)^\w$ consisting of all infinite sequences of positive integers $\vx = (x_1, x_2, \ldots)$ that end in an infinite string of 1's.
+  Give $A$ the following order: $\vx < \vy$ if $x_n < y_n$ and $x_i = y_i$ for $i > n$.
+  We call this the ``antidictionary order'' on $A$.
+  \eparts{
+  \item Show that for every $n$, there is a section of $A$ that has the same order type as $(\pints)^n$ in the dictionary order.
+  \item Show that $A$ is well-ordered.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    Consider any positive integer $n$.
+    Define a sequence $\va = (a_1, a_2, \ldots)$ in $A$ by
+    \gath{
+      a_i = \begin{cases}
+        2 & i = n + 1 \\
+        1 & i \neq n + 1 \,.
+      \end{cases}
+    }
+    We claim that the section $S_\va$ has the same order type as $(\pints)^n$.
+    To show this we construct an order-preserving mapping $f: S_\va \to (\pints)^n$.
+    So consider any sequence $\vx = (x_1, x_2, \ldots)$ in $S_\va$ so that $\vx < \va$.
+    Now define a finite sequence where $y_i = x_{n-i+1}$ for any $i \in \intsfin{n}$, and set $f(\vx) = \vy = (y_1, \ldots, y_n)$.
+    Clearly $f(\vx) \in (\pints)^n$ since $\vx \in A \ss (\pints)^\w$.
+
+    Here we must digress for a moment and show that, for all  $\vx = (x_1, x_2, \ldots) \in A$, $\vx \in S_\va$ if and only if $x_i = 1$ for all $i > n$.
+
+    $(\imp)$ We show the contrapositive.
+    So suppose that there is an $i > n$ where $x_i \neq 1$.
+    Moreover let $i$ be the greatest such index, which must exist since $\vx$ must end in an infinite string of 1's.
+    Clearly then the fact that $x_i \in \pints$ and $x_i \neq 1$ means that $x_i > 1$.
+    Now, if $i > n+1$ then we have that $x_i > 1 = a_i$ and $x_j = 1 = a_j$ for all $j > i$ so that clearly $\vx > \va$.
+    If $i = n + 1$ and $i > 2$ clearly $x_i > 2 = a_{n+1} = a_i$ and $x_j = 1 = a_j$ for all $j > i$ so that again $\vx > \va$.
+    Lastly suppose that $i = n+1$ but that $x_i = 2 = a_{n+1} = a_i$.
+    If $x_j = 1 = a_j$ for all $j < i = n+1$ then clearly $\vx = \va$.
+    On the other hand if there is a $1 \leq j < n+1 = i$ where $x_j \neq 1$ then let $j$ be the greatest such index.
+    Then we clearly have $x_j > 1 = a_j$ while $x_k = a_k$ for all $k > j$ so that $\vx > \va$.
+    Therefore in every one of these exhaustive cases we have that $\vx \geq \va$ so that $\va \notin S_\va$.
+
+    $(\pmi)$ Now suppose that $x_i = 1$ for every $i > n$.
+    Then we have that $x_{n+1} = 1 < 2 = a_{n+1}$ while $x_j = 1 = a_j$ for all $j > n+1 > n$ so that $\vx < \va$ and hence $\vx \in S_\va$.
+
+    Now, returning to the main proof, we first show that $f$ as defined above preserves order.
+    To this end let $\prec$ denote the dictionary order on $(\pints)^n$.
+    Now consider any $\vx = (x_1, x_2, \ldots)$ and $\vx' = (x_1', x_2', \ldots)$ in $S_\va$ where $\vx < \vx'$.
+    Also let $\vy = f(\vx)$ and $\vy' = f(\vx')$.
+    Then there is an $m \in \pints$ where $x_m < x_m'$ and $x_i = x_i'$ for all $i > m$.
+    We also have by what was shown above that $x_i = 1 x_i'$ for all $i > n$ since $\vx,\vx' \in S_\va$.
+    So it has to be that $m \leq n$.
+    It then follows from the fact that $1 \leq m \leq n$ that $1 \leq n-m+1 \leq n$ as well.
+    Thus we have
+    \gath{
+      y_{n-m+1} = x_{n-(n-m+1)+1} = x_m < x_m' = x_{n-(n-m+1)+1}' = y_{n-m+1}' \,.
+    }
+    For any $1 \leq j < n-m+1$ we have that $n-j+1 > m$ so that
+    \gath{
+      y_j = x_{n-j+1} = x_{n-j+1}' = y_j' \,.
+    }
+    Thus by definition we have that $f(\vx) = \vy \prec \vy' = f(\vx')$, which shows that $f$ preserves order since $\vx$ and $\vx'$ were arbitrary.
+    Note that this also clearly shows that $f$ is injective.
+
+    To show that $f$ is also surjective, consider any $\vy = (y_1, \ldots, y_n) \in (\pints)^n$.
+    Now define a sequence
+    \gath{
+      x_i = \begin{cases}
+        y_{n-i+1} & 1 \leq i \leq n \\
+        1 & i > n
+      \end{cases}
+    }
+    so that clearly $\vx = (x_1, x_2, \ldots) \in S_\va$ by what was shown above.
+    Now let $\vy' = (y_1', \ldots y_n') = f(\vx)$.
+    Consider any $1 \leq i \leq n$ and let $j = n-i+1$ so that also $n-j+1 = i$, noting also that $1 \leq j \leq n$.
+    Then we have
+    \gath{
+      y_i = y_{n-j+1} = x_j = x_{n-i+1} = y_i'
+    }
+    by the definition of $f$.
+    Since $i$ was arbitrary this shows that $f(\vx) = \vy' = \vy$, which shows that $f$ is surjective since $\vy$ was arbitrary.
+
+    The existence of $f$ therefore shows that $S_\va$ and $(\pints)^n$ have the same order type.
+  }
+
+  (b)
+  \qproof{
+    Consider any nonempty subset $B$ of $A$.
+    Clearly the sequence $(1,1, \ldots)$ is the smallest element of $A$ and hence if it is in $B$ then it is also the smallest element of $B$.
+    So suppose that $(1,1,\ldots) \notin B$ so that, for every $\vx \in B$ there is a unique greatest $n_\vx \in \pints$ where $x_{n_\vx} > 1$ but $x_i = 1$ for all $i > n_\vx$.
+    So let $I = \braces{n_\vx \where \vx \in B}$, noting that $B \neq \es$ implies that $I \neq \es$ as well.
+    Thus $I$ is a nonempty subset of $\pints$ and hence has a smallest element $n$.
+    If we then let $B_n$ be the set of sequences $\vx \in B$ where $x_n > 1$ but $x_i = 1$ for all $i > n$, then the fact that $n \in I$ clearly implies that $B_n \neq \es$.
+    Also, if we define the sequence
+    \gath{
+      a_i = \begin{cases}
+        2 & i = n+1 \\
+        1 & i \neq n+1
+      \end{cases}
+    }
+    as in part (a) then it follows from what was shown there that $B_n \ss S_\va$.
+    Moreover it was shown that $S_\va$ has the same order type as the dictionary order of $(\pints)^n$, which we know to be a well-ordering.
+    Hence $S_\va$ must also be a well-ordering so that $B_n$ has a smallest element $\vb = (b_1, b_2, \ldots)$ since it is a nonempty subset of $S_\va$.
+    We claim that $\vb$ is in fact the smallest element of all of $B$.
+
+    So consider any $\vx \in B$ so that $n_\vx \in I$.
+    It then follows that $n \leq n_\vx$ since it is the smallest element of $I$.
+    If $n = n_\vx$ then we have that $\vx \in B_n$ so that $\vb \leq \vx$ since it is the smallest element of $B_n$.
+    If $n < n_\vx$ then we have that $b_{n_\vx} = 1 < x_{n_\vx}$ but $b_i = 1 = x_i$ for every $i > n_\vx > n$.
+    This shows that $\vb < \vx$.
+    Thus in all cases $\vb \leq \vx$, which shows that $\vb$ is the smallest element of $B$ since $\vx$ was arbitrary.
+    Since $B$ was arbitrary, this shows that $A$ is well-ordered as desired.
+  }
 }
