@@ -445,4 +445,244 @@
     Thus in all cases $\vb \leq \vx$, which shows that $\vb$ is the smallest element of $B$ since $\vx$ was arbitrary.
     Since $B$ was arbitrary, this shows that $A$ is well-ordered as desired.
   }
+
+  Note that, in the theory of ordinal numbers, the set $(\pints)^n$ (and therefore the corresponding section of $A$) has order type $\w^n$.
+  It would seem then that the set $A$ has order type $\w^\w$.
+}
+
+\exercise{10}{
+  \emph{Theorem.} Let $J$ and $C$ be well-ordered sets; assume that there is no surjective function mapping a section of $J$ onto $C$.
+  Then there exists a unique function $h: J \to C$ satisfying the equation
+  \ali{
+    (*)& & h(x) &= \text{smallest[$C - h(S_x)$]} \hspace{4cm}
+  }
+  for each $x \in J$, where $S_x$ is the section of $J$ by $x$.
+
+  \emph{Proof.}
+  \eparts{
+  \item If $h$ and $k$ map sections of $J$, or all of $J$, into $C$ and satisfy $(*)$ for all $x$ in their respective domains, show that $h(x) = k(x)$ for all $x$ in both domains.
+  \item If there exists a function $h: S_\a \to C$ satisfying $(*)$, show that there exists a function $k : S_\a \cup \braces{\a} \to C$ satisfying $(*)$.
+  \item If $K \ss J$ and for all $\a \in K$ there exists a function $h_\a : S_\a \to C$ satisfying $(*)$, show that there exists a function
+    \gath{
+      k : \bigcup_{\a \in K} S_\a \to C
+    }
+    satisfying $(*)$.
+  \item Show by transfinite induction that for every $\b \in J$, there exists a function $h_\b : S_\b \to C$ satisfying $(*)$.
+    [Hint: If $\b$ has an immediate predecessor $\a$, then $S_\b = S_\a \cup \braces{\a}$.
+      If not, $S_\b$ is the union of all $S_\a$ with $\a < \b$.]
+  \item Prove the theorem.
+  }
+}
+\sol{
+  \dwhitman
+
+  The following lemma is proof by transfinite induction, which is more straightforward than having to frame everything in terms of inductive sets.
+  Henceforth we use this whenever transfinite induction is required.
+  \begin{lem}
+    (Proof by transfinite induction)
+    Suppose that $J$ is a well-ordered set and $P(x)$ is a proposition with parameter $x$.
+    Suppose also that if $P(x)$ is true for all $x \in S_\a$ (where $S_\a$ is a section of $J$), then $P(\a)$ is also true.
+    Then $P(\b)$ is true for every $\b \in J$.
+  \end{lem}
+  \qproof{
+    Let $J_0 = \braces{x \in J \where P(x)}$.
+    We show that $J_0$ is inductive.
+    So consider any $\a \in J$ and suppose that $S_\a \ss J_0$.
+    Then, for any $x \in S_\a$ we have that $x \in J_0$ so that $P(x)$.
+    It then follows that $P(\a)$ is also true since $x$ was arbitrary, and so $\a \in J_0$.
+    Since $\a \in J$ was arbitrary, this shows that $J_0$ is inductive.
+    It then follows from Exercise~10.7 that $J_0 = J$.
+    So consider any $\b \in J$ so that also $\b \in J_0$ and hence $P(\b)$ is true.
+    Since $\b$ was arbitrary, this shows the desired result.
+  }
+
+  \mainprob
+
+  (a)
+  \qproof{
+    First suppose that the domains of $h$ and $k$ are sets $H$ and $K$ where each is either a section of $J$ or $J$ itself.
+    Since this is the case, we can assume without loss of generality that $H \ss K$  and so $H$ is exactly the domain common to both $h$ and $k$.
+    Now suppose that the hypothesis we are trying to prove is \emph{not} true so that there is an $x$ in both domains (i.e. $x \in H$) where $h(x) \neq k(x)$.
+    We can also assume that $x$ is the smallest such element since $H \ss J$ and $J$ is well-ordered.
+    It then clearly follows that $S_x \ss H$ is a section of $J$ and that $h(y) = k(y)$ for all $y \in S_x$.
+    From this we clearly have that $h(S_x) = k(S_x)$.
+    But then we have
+    \gath{
+      h(x) = \text{smallest[$C - h(S_x)$]} = \text{smallest[$C - k(S_x)$]} = k(x)
+    }
+    since both $h$ and $k$ satisfy $(*)$ and $x$ is in the domain of both.
+    This contradicts the supposition that $h(x) \neq k(x)$ so that it must be that no such $x$ exists and hence $h$ and $k$ are the same in their common domain as desired.
+  }
+
+  (b)
+  \qproof{
+    Suppose that $h : S_\a \to C$ is such a function satisfying $(*)$.
+    Now let $\bar{S}_\a = S_\a \cup \braces{\a}$ and we define $k : \bar{S}_\a \to C$ as follows.
+    For any $x \in \bar{S}_\a$ set
+    \gath{
+      k(x) = \begin{cases}
+        h(x) & x \in S_\a \\
+        \text{smallest[$C - h(S_\a)$]} & x = \a \,.
+      \end{cases}
+    }
+    We note that clearly $S_\a$ and $\braces{\a}$ are disjoint so that this is unambiguous.
+    We also note that $h$ is not surjective onto $C$ since $S_\a$ is a section of $J$, and hence $C - h(S_\a) \neq \es$ and so has a smallest element since $C$ is well-ordered.
+
+    Now we show that $k$ satisfies $(*)$.
+    First, clearly $h(S_x) = k(S_x)$ for any $x \leq \a$ since $k(y) = h(y)$ by definition for any $y \in S_x \ss S_\a$.
+    Now consider any $x \in \bar{S}_\a$.
+    If $x = \a$ then by definition we have
+    \gath{
+      k(x) = \text{smallest[$C - h(S_\a)$]} = \text{smallest[$C - k(S_\a)$]} = \text{smallest[$C - k(S_x)$]} \,.
+    }
+    On the other hand, if $x \in S_\a$ then $x < \a$ so that
+    \gath{
+      k(x) = h(x) = \text{smallest[$C - h(S_x)$]} = \text{smallest[$C - k(S_x)$]}
+    }
+    since $h$ satisfies $(*)$.
+    Therefore, since $x$ was arbitrary, this shows that $k$ also satisfies $(*)$.
+  }
+
+  (c)
+  \qproof{
+    Let
+    \gath{
+      k = \bigcup_{\a \in K} h_\a \,,
+    }
+    which we claim is the function we seek.
+
+    First we show that $k$ is actually a function from $\bigcup_{\a \in K} S_\a$ to $C$.
+    So consider any $x$ in the domain of $k$.
+    Suppose that $(x, a)$ and $(x, b)$ are both in $k$ so that there are $\a$ and $\b$ in $K$ where $(x, a) \in h_\a$ and $(x, b) \in h_\b$.
+    Since $h_\a$ and $h_\b$ both satisfy $(*)$, it follows from part (a) that $a = h_\a(x) = h_\b(x) = b$ since clearly $x$ is in the domain of both.
+    This shows that $k$ is indeed a function since $(x,a)$ and $(x,b)$ were arbitrary.
+    Also clearly the domain of $k$ is $\bigcup_{\a \in K} S_\a$ since, for any $x \in \bigcup_{\a \in K} S_\a$, we have that there is an $\a \in K$ where $x \in S_\a$.
+    Hence $x$ is in the domain of $h_\a$ and so in the domain of $k$.
+    In the other direction, clearly if $x$ is in the domain of $k$ then it is in the domain of $h_\a$ for some $\a \in K$.
+    Since this domain is $S_\a$, clearly $x \in \bigcup_{\a \in K} S_\a$.
+    Lastly, obviously the range of $k$ can be $C$ since this is the range of every $h_\a$.
+
+    Now we show that $k$ satisfies $(*)$.
+    So consider any $x \in \bigcup_{\a \in K} S_\a$ so that $x \in S_\a$ for some $\a \in K$.
+    Clearly we have that $k(y) = h_\a(y)$ for every $y \in S_\a$ since $h_\a \ss k$.
+    It then immediately follows that $k(x) = h(x)$ and $k(S_x) = h_\a(S_x)$ since $S_x \ss S_\a$.
+    Then, since $h_\a$ satisfies $(*)$, we have
+    \gath{
+      k(x) = h_\a(x) = \text{smallest[$C - h_\a(S_x)$]} = \text{smallest[$C - k(S_x)$]} \,.
+    }
+    Since $x$ was arbitrary, this shows that $k$ satisfies $(*)$ as desired.
+  }
+
+  (d)
+  \qproof{
+    Consider any $\b \in J$ and suppose that, for every $x \in S_\b$, there is a function $h_x : S_x \to C$ satisfying $(*)$.
+    Now, if $\b$ has an immediate predecessor $\a$ then we claim that $S_\b = S_\a \cup \braces{\a}$.
+    First if $x \in S_\b$ then $x < \b$ so that $x \leq \a$ since $\a$ is the immediate predecessor of $\b$.
+    If $x < \a$ then $x \in S_\a$ and if $x = \a$ then $x \in \braces{\a}$.
+    Hence in either case we have that $x \in S_\a \cup \braces{\a}$.
+    Now suppose that $x \in S_\a \cup \braces{\a}$.
+    If $x \in S_\a$ then $x < \a < \b$ so that $s \in S_\b$.
+    On the other hand if $x \in \braces{\a}$ then $x = \a < \b$ so that again $x \in S_\b$.
+    Thus we have shown that $S_\b \ss S_\a \cup \braces{\a}$ and $S_\a \cup \braces{\a} \ss S_\b$ so that $S_\b = S_\a \cup \braces{\a}$.
+    Since $\a \in S_\b$ it follows that there is an $h_\a : S_\a \to C$ that satisfies $(*)$.
+    Then, by part (b), we have that there is an $h_\b : S_\b = S_\a \cup \braces{\a} \to C$ that also satisfies $(*)$.
+
+    If $\b$ does not have an immediate predecessor then we claim that $S_\b = \bigcup_{\g < \b} S_\g$.
+    So consider any $x \in S_\b$ so that $x < \b$.
+    Since $x$ cannot be the immediate predecessor of $\b$, there must be an $\a$ where $x < \a < \b$.
+    Then $x \in S_\a$ so that, since $\a < \b$, clearly $x \in \bigcup_{\g < \b} S_\g$.
+    Now suppose that $x \in \bigcup_{\g < \b} S_\g$ so that there is an $\a < \b$ where $x \in S_\a$.
+    Then clearly $x < \a < \b$ so that also $x \in S_\b$.
+    Thus we have shown that $S_\b \ss \bigcup_{\g < \b} S_\g$ and $\bigcup_{\g < \b} S_\g \ss S_\b$ so that $S_\b = \bigcup_{\g < \b} S_\g$.
+    Now, clearly $S_\b$ is a subset of $J$ where there is an $h_x : S_x \to C$ satisfying $(*)$ for every $x \in S_\b$.
+    Then it follows from what was shown in part (c) that there is a function $h_\b$ from $\bigcup_{\g < S_\b} S_\g = \bigcup_{\g < \b} S_\g = S_\b$ to $C$ that satisfies $(*)$.
+
+    Therefore, in either case, we have shown that there is an $h_\b : S_\b \to C$ that satisfies $(*)$.
+    The desired result then follows by transfinite induction.
+  }
+
+  (e)
+  \qproof{
+    First suppose that $J$ has no largest element.
+    Then we claim that $J = \bigcup_{\a \in J} S_\a$.
+    For any $x \in J$ there must be a $y \in J$ where $x < y$ since $x$ cannot be the greatest element of $J$.
+    Hence $x \in S_y$ so that also clearly $\bigcup_{\a \in J} S_\a$.
+    Then, for any $x \in \bigcup_{\a \in J} S_\a$, there is an $\a \in J$ where $x \in S_\a$.
+    Clearly $S_\a \ss J$ so that $x \in J$ also.
+    Hence $J \ss \bigcup_{\a \in J} S_\a$ and $\bigcup_{\a \in J} S_\a \ss J$ so that $J = \bigcup_{\a \in J} S_\a$.
+    Since we know from part (d) that there is an $h_\a : S_\a \to C$ that satisfies $(*)$ for every $\a \in J$, it follows from part (c) that there is a function $h$ from $\bigcup_{\a \in J} S_\a = J$ to $C$ that satisfies $(*)$.
+
+    If $J$ does have a largest element $\b$ then clearly $J = S_\b \cup \braces{\b}$.
+    Since we know that there is an $h_\b : S_\b \to C$ that satisfies $(*)$ by part (d), it follows from part (b) that there is a function $h$ from $S_\b \cup \braces{\b} = J$ to $C$ that satisfies $(*)$.
+    Hence the desired function $h$ exists in both cases.
+    Part (a) also clearly shows that this function is unique.
+  }
+}
+
+\exercise{11}{
+  Let $A$ and $B$ be two sets.
+  Using the well-ordering theorem, prove that either they have the same cardinality, or one has cardinality greater than the other.
+  [Hint: If there is no surjection $f: A \to B$, apply the preceding exercise.]
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:wellord:injsur}
+    For well-ordered sets $A \neq \es$ and $B$ there is an injection from $A$ to $B$ if and only if there is a surjection from $B$ to $A$.
+  \end{lem}
+  \qproof{
+    $(\imp)$ Suppose that there is an injection $f: A \to B$ and $A \neq \es$.
+    Then there is an $a \in A$.
+    We then construct a surjection $g : B \to A$ as follows.
+    For any $y \in B$ if $b \in f(A)$ then there is a unique $x \in A$ where $y = f(x)$.
+    It is unique since, if $x$ and $x'$ are in $A$ where $f(x) = y = f(x')$, then $x = x'$ since $f$ is injective.
+    So in this case set $g(y) = x$.
+    If $b \notin f(A)$, then set $g(y) = a$.
+    Clearly $g$ is a function from $B$ to $A$.
+    To show that $g$ is surjective, consider any $x \in A$ and let $y = f(x)$, which is clearly an element of $B$.
+    Then, since obviously $y \in f(A)$ and $x$ is the unique $x \in A$ such that $y = f(x)$, we have that $g(y) = x$ by definition.
+    This shows that $g$ is surjective since $x$ was arbitrary.
+
+    $(\pmi)$ Now suppose that $g: B \to A$ is surjective.
+    We then construct an injection $f: A \to B$ as follows.
+    For any $x \in A$ we have that the set $B_x = \braces{y \in B \where g(y) = x}$ is nonempty since $g$ is surjective.
+    Hence $B_x$ has a unique smallest element $y$ since it is a nonempty subset of $B$ and $B$ is well-ordered.
+    So simply set $f(x) = y$.
+    Clearly $f$ is a function from $A$ to $B$.
+    To show that $f$ is injective, consider $x,x' \in A$ where $x \neq x'$.
+    Then clearly the sets $B_x$ and $B_{x'}$ have to be disjoint for otherwise there would be a $y \in B$ where $g(y) = x$ and $g(y) = x'$, which is impossible if $x \neq x'$ since $g$ is a function.
+    Hence, since $f(x)$ and $f(x')$ are defined to be the smallest elements of $B_x$ and $B_{x'}$, respectively, we have $f(x) \neq f(x')$.
+    This shows that $f$ is injective since $x$ and $x'$ were arbitrary.
+  }
+
+  \mainprob
+  \qproof{
+    First suppose that $A$ and $B$ are each well-ordered, which follows from the well-ordering theorem.
+    Also suppose that $A$ and $B$ do \emph{not} have the same cardinality so that it suffices to show that either $B$ has greater cardinality than $A$ or vice versa.
+    If $A = \es$ then it cannot be that $B = \es$ as well since then they would have the same cardinality ($\es$ would be a trivial bijection between them).
+    Hence $B \neq \es$ so that clearly $B$ has greater cardinality than $A$.
+    Thus in what follows assume that $A \neq \es$.
+
+    Suppose that there is an injection from $A$ to $B$.
+    Then there cannot be an injection from $B$ to $A$ since, if there were, then $A$ and $B$ would have the same cardinality by the Cantor-Schroeder-Bernstein Theorem (shown in Exercise~7.6b).
+    Thus $B$ has greater cardinality than $A$ by definition.
+
+    On the other hand, if there is no injection from $A$ to $B$ then there is no surjection from $B$ to $A$ by Lemma~\ref{lem:wellord:injsur} since they are both well-ordered and $A \neq \es$.
+    It then clearly follows that no section of $B$ can be a surjection onto $A$ since then any extension of such a function to all of $B$ would also be a surjection onto $A$.
+    From this we have by Exercise~10.10 that there is a unique function $h : B \to A$ with the property that
+    \gath{
+      h(x) = \text{smallest[$A - h(S_x)$]} \,,
+    }
+    where of course $S_x$ is the section of $B$ by $x$.
+
+    We claim that $h$ is injective.
+    So consider any $y$ and $y'$ in $B$ where $y \neq y'$.
+    Without loss of generality we can assume that $y < y'$ (by the well-ordering on $B$).
+    It then follows that $y \in S_{y'}$ so that clearly $h(y) \in h(S_{y'})$.
+    However, we have that $h(y')$ is the smallest element of $A - h(S_{y'})$ so that obviously $h(y') \notin h(S_{y'})$.
+    Hence it must be that $h(y) \neq h(y')$, which shows that $h$ is injective since $y$ and $y'$ were arbitrary.
+
+    Therefore there is an injection from $B$ to $A$ but none from $A$ to $B$ so that $A$ has greater cardinality than $B$ by definition.
+    This shows the desired result since these cases are exhaustive.
+  }
 }
