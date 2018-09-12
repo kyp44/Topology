@@ -1,0 +1,231 @@
+\setcounter{subsection}{11-1}
+\subsection{The Maximum Principle}
+
+\def\cA{\col{A}}
+\def\cB{\col{B}}
+\def\cC{\col{C}}
+
+\exercise{1}{
+  If $a$ and $b$ are real numbers, define $a \prec b$ if $b-a$ is positive and rational.
+  Show this is a strict partial order on $\reals$.
+  What are the maximal simply ordered subsets?
+}
+\sol{
+  \dwhitman
+
+  First we show that $\prec$ is a strict partial order.
+  \qproof{
+    First consider any $a \in \reals$ so that $a-a = 0$, which is not positive and hence it is not true that $a \prec a$.
+    Therefore $\prec$ is nonreflexive.
+    Now consider $a,b,c \in \reals$ where $a \prec b$ and $b \prec c$.
+    Then we have that $x = b-a$ and $y = c-b$ are positive and rational.
+    It then clearly follows that
+    \gath{
+      c - a = (c-b) + (b-a) = y + x
+    }
+    is also rational and positive since both $x$ and $y$ are.
+    Thus $a \prec c$, which shows that $\prec$ is transitive.
+    Since $\prec$ was shown to be nonreflexive and transitive, this shows that it is a strict partial order as desired.
+  }
+
+  For any element $x \in \reals$, define the set $A_x = \braces{y \in \reals \where x - y \in \rats}$.
+  We then claim that the collection $\cA = \braces{A_x}_{x \in \reals}$ is exactly the set of all maximal simply ordered subsets.
+  \qproof{
+    Suppose that $\cB$ is the set of maximally simply ordered subsets of $\reals$.
+    Then we show that $\cA = \cB$.
+
+    To show that $\cA \ss \cB$ consider any $X \in \cA$ so that $X = A_x$ for some $x \in \reals$.
+    Now consider any distinct $y$ and $z$ in $X = A_x$ so that by definition $x - y$ and $x - z$ are both rational so that $z - x = -(x-z)$ is also rational.
+    Then clearly $z - y = (z-x) + (x-y)$ is rational as is $y - z = -(z-y)$.
+    Since $y$ and $z$ are distinct, we have that $z-y$ and $y-z$ are nonzero and that either $y < z$ or $z < y$.
+    In the former case we have that $z - y$ is a positive rational number and in the latter $y - z$ is.
+    Thus either $y \prec z$ or $z \prec y$, which shows that $X = A_x$ is simply ordered since $y$ and $z$ were arbitrary.
+    Now consider any $y \in A_x$ and $z \notin A_x$ so that $x-y$ is rational but $x-z$ is irrational so that $z-x=-(x-z)$ is also irrational.
+    Since a rational added to an irrational is also irrational (which is trivially easy to prove), it follows that $z - y = (z-x) + (x-y)$ is irrational as is $y-z = -(z-y)$.
+    Hence it cannot be that either $y \prec z$ or $z \prec y$.
+    Since $y \in X$ and $z \notin X$ were arbitrary, this show that $X$ is a maximal simply ordered set so that $X \in \cB$.
+    This shows that $\cA \ss \cB$ since $X$ was arbitrary.
+
+    Now suppose that $X \in \cB$ so that $X$ is a maximal simply ordered set.
+    First, it is easy to see that $X \neq \es$ because, though $\es$ is vacuously simply ordered, it is not \emph{maximally} simply ordered since, for example, the set $\braces{0}$ properly contains $\es$ as a subset but is also clearly vacuously simply ordered by $\prec$.
+    Hence there is an $x \in X$, and we claim that in fact $X = A_x$.
+    So consider any $y \in X$.
+    Clearly if $y = x$ then $x-y = x-x = 0 \in \rats$ so that $y \in A_x$.
+    If $y \neq x$ than either $x \prec y$ or $y \prec x$ since $X$ is simply ordered by $\prec$.
+    In the former case we have that $y-x$ is positive and rational so that $x-y = -(y-x)$ is negative and rational, and hence $y \in A_x$.
+    In the latter case we have that $x-y$ is positive and rational so that clearly again $y \in A_x$.
+    Since $y$ was arbitrary this shows that $X \ss A_x$.
+    Now consider any $y \in A_x$ so that $x-y \in \rats$.
+    If $y = x$ then clearly $y \in X$.
+    If $y \neq x$ then either $y-x$ or $x-y$ is positive, and also clearly rational since $x-y$ is rational.
+    Hence either $x \prec y$ or $y \prec x$.
+    It then follows from the fact that $X$ is \emph{maximally} simply ordered that $y$ must be in $X$ since otherwise $y$ would not be comparable with $x$.
+    Since again $y$ was arbitrary this shows that $A_x \ss X$.
+    Hence $X = A_x$ so that clearly $X \in \braces{A_x}_{x \in \reals} = \cA$.
+    Since $X$ was arbitrary this shows that $\cB \ss \cA$.
+
+    Therefore we have shown that $\cA = \cB$, which shows that $\cA$ is exactly the complete set of maximally simply ordered subsets.
+  }
+
+  As an example of a particular maximally well-ordered set we have $\rats = A_0$ itself.
+}
+
+\exercise{2}{
+  \eparts{
+  \item Let $\prec$ be a strict partial order on the set $A$.
+    Define a relation on $A$ by letting a $\eprec b$ if either $a \prec b$ or $a = b$.
+    Show that this relation has the following properties, which are called the \boldit{partial order axioms}:
+    \begin{enumerate}[label=(\roman*)]
+    \item $a \eprec a$ for all $a \in A$.
+    \item $a \eprec b$ and $b \eprec a$ $\imp$ $a = b$.
+    \item $a \eprec b$ and $b \eprec c$ $\imp$ $a \eprec c$.
+    \end{enumerate}
+  \item Let $P$ be a relation on $A$ that satisfies properties (i)-(iii).
+    Define a relation $S$ on $A$ by letting $aSb$ if $aPb$ and $a \neq b$.
+    Show that $S$ is a strict partial order on $A$.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    We show that $\eprec$ satisfies the three partial order axioms:
+    
+    (i) Consider any $a \in A$.
+    Since obviously $a=a$ we have by definition that $a \eprec a$.
+
+    (ii) Suppose that $a \eprec b$ and $b \eprec a$.
+    Then either $a \prec b$ or $a  = b$, and either $b \prec a$ or $b = a$.
+    So suppose that $a \neq b$ so that it must be that $a \prec b$ and $b \prec a$.
+    Since $\prec$ is a strict partial order, it is transitive so that $a \prec a$ since $a \prec b$ and $b \prec a$.
+    But this contradicts the nonreflexivity of $\prec$.
+    Hence it must be that $a = b$ as desired.
+
+    (iii) Suppose that $a \eprec b$ and $b \eprec c$.
+    Hence either $a \prec b$ or $a = b$, and either $b \prec c$ or $b = c$.
+
+    Case: $a \prec b$.
+    If $b \prec c$ then clearly $a \prec c$ since $\prec$ is transitive (since it is a strict partial order).
+    If $b = c$ then we have that $a \prec b = c$.
+
+    Case: $a = b$.
+    If $b \prec c$ then we have that $a = b \prec c$.
+    If $b = c$ then we have that $a = b = c$.
+
+    Hence in all cases and sub-cases we have that $a \prec c$ or $a = c$, and thus $a \eprec c$ by definition.
+  }
+
+  (b)
+  \qproof{
+    We show that $S$ satisfies the two strict partial order axioms:
+
+    \emph{Nonreflexivity.}
+    Consider any $a \in A$.
+    Since $a = a$ it follows that it is not true that $a \neq a$ and hence not true that $aSa$.
+    Thus $S$ is nonreflexive since $a$ was arbitrary.
+
+    \emph{Transitivity.}
+    Suppose that $aSb$ and $bSc$.
+    Hence by definition $aPb$ and $a \neq b$, and $bPc$ and $b \neq c$.
+    Then, by the transitivity property of the partial order axioms, which is property (iii), we have that $aPc$.
+    Suppose for a moment that $a = c$.
+    Then we would have $aPb$ and $bPa$ (since $bPc$ and $c=a$).
+    Then by partial order axiom (ii) we have that $a=b$, which contradicts the fact that $a \neq b$.
+    So it must be that $a \neq c$.
+    Thus $aPc$ and $a \neq c$ so that $aSc$, which shows that $S$ is transitive.
+  }
+}
+
+\exercise{3}{
+  Let $A$ be a set with a strict partial order $\prec$; let $x \in A$.
+  Suppose that we wish to find a maximal simply ordered subset $B$ of $A$ that contains $x$.
+  One plausible way of attempting to define $B$ is to let $B$ equal the set of all those elements of $A$ that a \emph{comparable} with $x$:
+  \gath{
+    B = \braces{y \where y \in A \text{ and either } x \prec y \text{ or } y \prec x}\,.
+  }
+  But this will not always work.
+  In which of Examples 1 and 2 will this procedure succeed and in which will it not?
+}
+\sol{
+  \dwhitman
+
+  First, it seems that, as defined above, $B$ does not actually contain $x$ itself!
+  This is because it is not true that $x \prec x$ by the nonreflexivity of the partial order $\prec$.
+  We assume that this was an oversight, which is easily remedied by defining
+  \gath{
+    B' = \braces{y \in A \where \text{either } x \prec y \text{ or } y \prec x}
+  }
+  and $B = B' \cup \braces{x}$.
+
+  For Example~1, a circular region in $\reals^2$ is clearly
+  \gath{
+    C_{\vx_0,r} = \braces{\vx \in \reals^2 \where \abs{\vx - \vx_0} < r} \,,
+  }
+  where the point $\vx_0 \in \reals^2$ is the center of the circle, $r \in \preals$ is the radius, and $\abs{(x,y)} = \sqrt{x^2 + y^2}$ is the standard vector magnitude.
+  Then the collection  $\cA$ is the set of all circular regions:
+  \gath{
+    \cA = \braces{C_{\vx_0,r} \where \vx_0 \in \reals^2 \text{ and } r \in \preals} \,.
+  }
+  Then let $\cC = \braces{C_{(0,0),r} \where r \in \preals}$ be the set of circles centered at the origin, which is a maximal simply ordered subset according to the example (and this is not difficult to show).
+  Arbitrarily choose $X = C_{(0,0),1}$, that is the circular region of radius 1 centered at the origin, so that clearly $X \in \cC$.
+  Since the partial order in this is example is ``is a proper subset of'', define
+  \gath{
+    \cB' = \braces{Y \in \cA \where Y \pss X \text{ or } X \pss Y}
+  }
+  and $\cB = \cB' \cup \braces{X}$.
+  The question is then whether $\cB = \cC$.
+  We claim that, for this example, this is not the case.
+  \qproof{
+    Consider the set $C_{(1,0),2}$ and any $\vx \in X = C_{(0,0),1}$ so that $\abs{\vx - (0,0)} < 1$.
+    Then we have
+    \gath{
+      \abs{\vx - (1,0)} \leq \abs{\vx - (0,0)} + \abs{(0,0) - (1,0)} < 1 + \abs{(-1,0)} = 1 + 1 = 2\,,
+    }
+    where we have utilized the ever-useful triangle inequality.
+    Therefore $\vx \in C_{(1,0),2}$ so that $X \ss C_{(1,0),2}$ since $\vx$ was arbitrary.
+    However, clearly the point $(1,0) \in C_{(1,0),2}$ but we have that $(1,0) \notin C_{(0,0),1} = X$ since $\abs{(1,0) - (0,0)} = \abs{(1,0)} = 1 \geq 1$.
+    This shows that $X \pss C_{(1,0),2}$ so that by definition $C_{(1,0),2} \in \cB'$ and therefore $C_{(1,0),2} \in \cB = \cB' \cup \braces{X}$.
+    But clearly $C_{(1,0),2} \notin \cC$ since it is not centered at the origin.
+    This shows that $\cB \neq \cC$ as desired.
+  }
+  Hence it would seem that this method of attempting to define a maximal simply ordered subset containing $X$ has failed in this example.
+  It is easy to come up with an analogous counterexample that shows the same result of the other example of a maximal simply ordered subset of circles tangent to the y-axis at the origin.
+
+  Regarding Example~2, recall that the order $\prec$ is defined by
+  \gath{
+    (x_0, y_0) \prec (x_1, y_1)
+  }
+  if $y_0 = y_1$ and $x_0 < x_1$ for $(x_0, y_0)$ and $(x_1, y_1)$ in $\reals^2$.
+  It is then claimed (which is again easy to show) that maximal simply ordered subsets are horizontal lines in the plane, that is sets
+  \gath{
+    L_{y_0} = \braces{(x,y) \in \reals^2 \where y = y_0}
+  }
+  for some $y_0 \in \reals$.
+  So consider any such $y_0 \in \reals$ and let $\vx = (0, y_0)$.
+  Now define
+  \gath{
+    B' = \braces{\vy \in \reals^2 \where \vx \prec \vy \text{ or } \vy \prec \vx}
+  }
+  and $B = B' \cup \braces{\vx}$.
+  In contrast to Example~1, we here claim that $B = L_{y_0}$, which is to say that $B$ \emph{does} define the maximal simply ordered subset.
+  \qproof{
+    Consider any $(x,y) \in B = B' \cup \braces{\vx}$ so that either $(x,y) \in B'$ or $(x,y) = \vx$.
+    Clearly if $(x,y) = \vx = (0, y_0)$ then $(x,y) \in L_{y_0}$ since $y = y_0$.
+    On the other hand, if $(x,y) \in B'$ then $(x,y) \prec \vx$ or $\vx \prec (x,y)$.
+    In the former case we have that $(x,y) \prec \vx = (0, y_0)$ so that, by definition $y = y_0$ and $x < 0$.
+    Clearly then $(x,y) = (x,y_0) \in L_{y_0}$ by definition.
+    In the latter case we also have $y = y_0$ (though this time $0 < x$) so that again $(x,y) \in L_{y_0}$.
+    Since $(x,y)$ was arbitrary, this shows that $B \ss L_{y_0}$.
+
+    Now consider any $(x,y) \in L_{y_0}$ so that $y = y_0$.
+    If $x = 0$ then $(x,y) = (0, y_0) = \vx$ so that obviously $(x,y) \in \braces{\vx}$.
+    If $0 < x$ then $(x,y) = (x, y_0) \prec (0, y_0) = \vx$ so that $(x,y) \in B'$.
+    Similarly, if $x < 0$, then $\vx = (0, y_0) \prec (x, y_0) = (x,y)$ so that again $(x,y) \in B'$.
+    Hence in all cases either $(x,y) \in B'$ or $(x,y) \in \braces{\vx}$ so that $(x,y) \in B' \cup \braces{\vx} = B$.
+    This shows that $L_{y_0} \ss B$ since again $(x,y)$ was arbitrary.
+
+    Thus we have shown that $B = L_{y_0}$ as desired.
+  }
+  So it would seem that, in this example, this naive technique does work!
+}
