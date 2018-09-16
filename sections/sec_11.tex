@@ -13,6 +13,18 @@
 \sol{
   \dwhitman
 
+  \begin{lem}\label{lem:maximum:nonempty}
+    If $B$ is a maximal simply ordered subset of a nonempty partially ordered set $A$, then $B$ is nonempty.
+  \end{lem}
+  \qproof{
+    Since $A$ is nonempty, there is an $a \in A$.
+    Clearly $\es$ is vacuously simply ordered.
+    However, it cannot be maximal since clearly the set $\braces{a}$ properly contains $\es$ as a subset but is also clearly vacuously simply ordered by $\prec$.
+    Hence, since $B$ \emph{is} maximal it must be that $B \neq \es$ as desired.
+  }
+
+  \mainprob
+
   First we show that $\prec$ is a strict partial order.
   \qproof{
     First consider any $a \in \reals$ so that $a-a = 0$, which is not positive and hence it is not true that $a \prec a$.
@@ -47,8 +59,7 @@
     This shows that $\cA \ss \cB$ since $X$ was arbitrary.
 
     Now suppose that $X \in \cB$ so that $X$ is a maximal simply ordered set.
-    First, it is easy to see that $X \neq \es$ because, though $\es$ is vacuously simply ordered, it is not \emph{maximally} simply ordered since, for example, the set $\braces{0}$ properly contains $\es$ as a subset but is also clearly vacuously simply ordered by $\prec$.
-    Hence there is an $x \in X$, and we claim that in fact $X = A_x$.
+    It follows from Lemma~\ref{lem:maximum:nonempty} that $X$ is nonempty so that there is an $x \in X$, and we claim that in fact $X = A_x$.
     So consider any $y \in X$.
     Clearly if $y = x$ then $x-y = x-x = 0 \in \rats$ so that $y \in A_x$.
     If $y \neq x$ than either $x \prec y$ or $y \prec x$ since $X$ is simply ordered by $\prec$.
@@ -228,4 +239,212 @@
     Thus we have shown that $B = L_{y_0}$ as desired.
   }
   So it would seem that, in this example, this naive technique does work!
+}
+
+\exercise{4}{
+  Given two points $(x_0, y_0)$ and $(x_1, y_1)$ of $\reals^2$, define
+  \gath{
+    (x_0, y_0) \prec (x_1, y_1)
+  }
+  if $x_0 < x_1$ and $y_0 \leq y_1$.
+  Show that the curves $y = x^3$ and $y=2$ are maximal simply ordered subsets of $\reals^2$, and the curve $y = x^2$ is not.
+  Find all maximal simply ordered subsets.
+}
+\sol{
+  \dwhitman
+
+  First define
+  \gath{
+    A = \braces{(x,y) \in \reals^2 \where y = x^3} \,.
+  }
+  We show that it is a maximal simply ordered subset of $\reals^2$.
+  \qproof{
+    First we show that $A$ is simply ordered by $\prec$.
+    Consider distinct $(x_0, y_0)$ and $(x_1, y_1)$ in $A$ so that $y_0 = x_0^3$ and $y_1 = x_1^3$.
+    Since they are distinct, it has to be that $x_0 \neq x_1$ or $y_0 \neq y_1$.
+    The latter case actually implies the former since the function $f(x) = x^3$ is a well-defined function.
+    Hence we can assume that $x_0 \neq x_1$, from which we can also assume without loss of generality that $x_0 < x_1$.
+    Since $f(x) = x^3$ is also a monotonically increasing function (which is easy to show), it then follows that $y_0 = x_0^3 < x_1^3 = y_1$.
+    Thus we have that $x_0 < x_1$ and $y_0 \leq y_1$ so that $(x_0, y_0) \prec (x_1, y_1)$ by definition.
+    Since $(x_0, y_0)$ and $(x_1, y_1)$ were arbitrary, this shows that $\prec$ is a simple order on $A$.
+
+    To show that it is maximal suppose that $B$ is any proper superset of $A$ so that there is an $(x,y) \in B$ where $(x,y) \notin A$.
+    Therefore clearly $y \neq x^3$ by definition.
+    Now let $z = x^3$ so that $y \neq x^3 = z$ but $(x,z) \in A$.
+    Clearly it is not true that $x < x$ so that it can neither be that $(x,y) \prec (x,z)$ nor $(x,z) \prec (z,y)$.
+    Hence $(x,y)$ and $(x,z)$ are incomparable in $\prec$.
+    This shows that $B$ is not simply ordered and thus that $A$ is maximal since $B$ was an arbitrary superset.
+  }
+
+  Now redefine
+  \gath{
+    A = \braces{(x,y) \in \reals^2 \where y = 2} \,,
+  }
+  which we also show is a maximal simply ordered subset of $\reals^2$.
+  \qproof{
+    To show that $A$ is simply ordered consider distinct $(x_0, y_0)$ and $(x_1, y_1)$ in $A$ so that $y_0 = y_1 = 2$.
+    Since these points are distinct and $y_0 = y_2$ is must be that $x_0 \neq x_1$, from which we can assume that $x_0 < x_1$ without loss of generality.
+    But then clearly it is true that $x_0 < x_1$ and $y_0 \leq y_1$ so that $(x_0, y_0) \prec (x_1, y_1)$.
+    Since these points were arbitrary this shows that $A$ is simply ordered by $\prec$.
+
+    To show that it is maximal suppose that $B$ is any proper superset of $A$ so that there is an $(x,y) \in B$ where $(x,y) \notin A$.
+    It then follows that $y \neq 2$ so that the point $(x, 2) \in A$ but $(x,2) \neq (x,y)$.
+    Clearly it can be that neither $(x,2) \prec (x,y)$ nor $(x,y) \prec (x,2)$ since it is not true that $x < x$.
+    Hence $(x,y)$ and $(x,2)$ are incomparable in $\prec$.
+    This shows that $B$ is not simply ordered by $\prec$.
+    Since $B$ was an arbitrary superset this shows that $A$ is maximal.
+  }
+
+  Now let
+  \gath{
+    A = \braces{(x,y) \in \reals^2 \where y = x^2}\,.
+  }
+  We claim that this subset is not simply ordered by $\prec$ and therefore cannot be a maximal simply ordered subset.
+  \qproof{
+    Consider the clearly distinct points $(-1,1)$ and $(0,0)$.
+    Clearly since $0 = 0^2$ and $1 = (-1)^2$ these are both in $A$.
+    However, since $1 > 0$ it is not true that $-1 < 0$ and $1 \leq 0$, and therefore it is not true that $(-1,1) \prec (0,0)$.
+    Similarly since $0 \geq -1$ it is not true that $0 < -1$ and $0 \leq 1$, and therefore it is not true that $(0,0) \prec (-1,1)$.
+    Hence the two distinct points are both in $A$ but are not comparable.
+    This suffices to show that $A$ is not simply ordered by $\prec$.
+  }
+
+  We now claim that the maximal simply ordered subsets of $\reals^2$ as ordered by $\prec$ are exactly the collection of sets of the form
+  \gath{
+    A_f = \braces{(x,y) \in \reals^2 \where y = f(x)}
+  }
+  for some function $f: (a,b) \to \reals$, where $(a,b)$ is an open interval of $\reals$, noting that it could be that $a = -\infty$ and/or $b = \infty$.
+  The function $f$ must also satisfy the following properties:
+  \begin{enumerate}[label=(\roman*)]
+  \item It is non-decreasing.
+    Recall that this means that $x < y$ implies that $f(x) \leq f(y)$ for any $x,y \in (a,b)$.
+  \item If $b < \infty$ then its image is unbounded above.
+  \item If $a > -\infty$ then its image is unbounded below.
+  \end{enumerate}
+  Now, let $\cA$ be the collection of all these subsets and let $\cB$ denote the set of all maximal simply ordered subsets.
+  We show that $\cA = \cB$.
+  \qproof{
+    $(\ss)$ First consider any $A_f \in \cA$ so that $f : (a,b) \to \reals$ with the properties above for some open interval $(a,b)$.
+    To show that $A_f$ is simply ordered by $\prec$ consider any distinct $(x,y)$ and $(x',y')$ in $A_f$ so that $y = f(x)$ and $y' = f(x')$.
+    Since these are distinct it follows that $x \neq x'$ or $f(x) = y \neq y' = f(x')$.
+    In the latter case it also follows that $x \neq x'$ as well for otherwise $f$ would not be a function.
+    Hence we can, without loss of generality, assume that $x < x'$.
+    Since $f$ is non-decreasing it follows that also $y = f(x) \leq f(x') = y'$, and therefore by definition $(x,y) \prec (x',y')$.
+    Since these elements of $A_f$ were arbitrary, it follows that $A_f$ is simply ordered by $\prec$.
+
+    To show that $A_f$ is maximal consider any proper superset $A$ of $A_f$ so that there is an $(x,y) \in A$ where $(x,y) \notin A_f$.
+    There are a few possible ways in which $(x,y)$ can fail to be an element of $A_f$.
+
+    Case: $x \in (a,b)$.
+    Then it must be that $y \neq f(x)$ since $(x,y) \notin A_f$.
+    Since it is not true that $x < x$, it has to be that neither $(x,y) \prec (x,f(x))$ nor $(x,f(x)), (x,y)$.
+    Hence $(x,y)$ and $(x,f(x))$ are incomparable elements of $A$ (noting that clearly $(x,(f(x)) \in A_f \ss A$) so that $A$ is not simply ordered by $\prec$.
+
+    Case: $x \geq b$.
+    Note that this is only possible if $b < \infty$ so that $b \in \reals$.
+    Thus in this case we have that the image of $f$ is unbounded above by property (ii).
+    Hence there is a $y_u \in reals$ where $y' > y$ and $y'$ is in the image of $f$.
+    Thus there is also an $x' \in (a,b)$ where $y = f(x')$ so that $(x',y') \in A_f \ss A$.
+    Now, we have $x' < b \leq x$ but $y' > y$ so that it is not true that $y' \leq y$, and hence it cannot be that $(x',y') \prec (x,y)$.
+    Similarly is it is clearly not true that $x < x'$ so that it cannot be that $(x,y) \prec (x',y')$ either.
+    This shows that $(x,y)$ and $(x',y')$ are incomparable elements of $A$ so that $A$ is not simply ordered.
+
+    Case: $x \leq a$.
+    An argument analogous to the previous case shows that $a > -\infty$ so that the image of $f$ is unbounded below.
+    From this it follows again that $A$ is not simply ordered.
+
+    Thus in all cases $A$ is not simply ordered so that $A_f$ is a maximal simply ordered subset of $\reals^2$ since $A$ was an arbitrary proper superset.
+    This shows that $A_f \in \cB$ so that $\cA \ss \cB$ since $A_f$ was arbitrary.
+
+    $(\sps)$ Now consider any $B \in \cB$ so that $B$ is a maximal simply ordered set by $\prec$.
+    Define
+    \gath{
+      X = \braces{x \in \reals \where (x,y) \in B \text{ for some } y \in \reals} \,.
+    }
+    We prove that $B$ has the following properties:
+    \begin{enumerate}[label=(\arabic*)]
+    \item If $(x_0,y_0)$ and $(x_1,y_1)$ are in $B$ and $x_0 < x_1$ then $y_0 \leq y_1$.
+    \item For every $x \in X$ there is a unique $y \in \reals$ where $(x,y) \in B$.
+    \end{enumerate}
+    To show show (1) consider $(x_0,y_0)$ and $(x_1,y_1)$ in $B$ and suppose that $x_0 < x_1$.
+    Since $B$ is simply ordered, it must be that either $(x_0,y_0) \prec (x_1,y_1)$ or $(x_1,y_1) \prec (x_0,y_0)$.
+    Since $x_0 < x_1$ it clearly must be that $(x_0,y_0) \prec (x_1,y_1)$ and hence also $y_0 \leq y_1$.
+
+    To show (2) consider any $x \in X$.
+    Clearly there is a $y \in \reals$ where $(x,y) \in B$ by the definition of $X$.
+    To show that this $y$ is unique, suppose that $(x,y_0)$ and $(x,y_1)$ are both in $B$ but that $y_0 \neq y_1$ so that $(x,y_0)$ and $(x,y_1)$ are distinct.
+    Since $B$ is simply ordered they must be comparable in $\prec$ but they clearly cannot be since it is not true that $x < x$.
+    As this is a contradiction, it must be that $y_0 = y_1$.
+
+    With that out of the way, let $b$ be the least upper bound of $X$ if it is bounded above and $b = \infty$ otherwise.
+    Similarly let $a$ be the greatest lower bound if $X$ is bounded below and $a = -\infty$ otherwise.
+    Now we claim that $X$ is equal to the open interval $(a,b)$.
+
+    So consider any $x \in X$ so that then clearly $a \leq x \leq b$ since $a$ and $b$ are lower and upper bounds of $X$, respectively.
+    Clearly if $b = \infty$ then it cannot be that $x = b$ (since $x \in \reals$) so assume that $b \in \reals$ and $x = b$.
+    Then $b = x \in X$ so that by property (2) there is a unique $y \in \reals$ where $(b,y) \in B$.
+    Clearly then $(b+1,y) \notin B$, since $b+1 \notin X$,  so that the set $B' = B \cup \braces{(b+1,y)}$ is a proper superset of $B$.
+    Now consider any $(x',y') \in B$ so that clearly $x' \in X$ and hence $x' \leq b < b+1$.
+    By property (1) above it also follows that $y' \leq y$, and so we have that $(x',y') \prec (b+1, y)$.
+    Since $(x',y')$ was arbitrary, this shows that $(b+1,y)$ is comparable to every element of $B$ and hence $B'$ is simply ordered by $\prec$.
+    But this is not possible since $B$ is maximal and $B'$ is a proper superset.
+    Hence it must be that $x \neq b$.
+    An analogous argument shows that $x \neq a$ as well and hence $a < x < b$.
+    Since $x$ was arbitrary this shows that $X \ss (a,b)$.
+
+    Now consider any $x \in (a,b)$ so that $a < x < b$.
+    Since $b$ is the least upper bound of $X$, it has to be that $x$ is not an upper of $X$ so that there is an $x_g \in X$ where $x < x_g < b$ (clearly the existence of $x_g$ also follows when $b = \infty$ since then $X$ is unbounded above).
+    Clearly then there is also a $y_g \in \reals$ where $(x_g,y_g) \in B$.
+    It then follows that the set $Y_g = \braces{y \in \reals \where (z,y) \in B \text{ for some } x < z < b}$ is nonempty.
+    By an analogous argument there is an $(x_l,y_l) \in B$ where $a < x_l < x$ so that the set $Y_l = \braces{y \in \reals \where (z,y) \in B \text{ for some } a < z < x}$ is nonempty.
+    Now, for any $y \in Y_g$, we have that $(z, y) \in B$ for some $x < z < b$.
+    Therefore $x_l < x < z$ and by property (1) of $B$ we have that $y_l \leq y$.
+    Since $y$ was arbitrary this shows that $y_l$ is a lower bound of $Y_g$ and hence it has a greatest lower bound $y_v$.
+    So suppose that $x \notin X$ so that there is not a $y \in \reals$ where $(x,y) \in B$.
+    Then we have that the set $B \cup \braces{(x,y_v)}$ is a proper superset of $B$.
+    However, consider any $(x',y') \in B$ so that $x' \in X$ but $x' \neq x$.
+
+    Case: $x' < x$.
+    Then it has to be that $a < x' < x$ so that $y' \in Y_l$.
+    Then, for any $y \in Y_g$ we again have that $(z,y) \in B$ for some $x < z < b$.
+    Hence $x' < x < z$ so that $y' \leq y$ by property (1) since $(x',y') \in B$ and $(z,y) \in B$.
+    Since $y$ was arbitrary, this shows that $y'$ is a lower bound of $Y_g$.
+    Since $y_v$ is the greatest lower bound of $Y_g$, we have that $y' \leq y_v$.
+    Then clearly $(x',y') \prec (x, y_v)$ since also $x' < x$.
+
+    Case: $x' > x$.
+    Then it has to be that $x < x' < b$ so that $y' \in Y_g$.
+    It then follows that $y_v \leq y'$ since $y_v$ is the greatest lower bound of $Y_g$.
+    Hence we have that $(x,y_v) \prec (x',y')$  since $x < x'$ as well.
+
+    Therefore in all cases we have that $(x,y_v)$ and $(x',y')$ are comparable in $\prec$.
+    Since $(x',y')$ was arbitrary, this clearly shows that $B \cup \braces{(x,y_v)}$ is simply ordered.
+    But this cannot be possible since it is a proper superset and $B$ is maximal!
+    So it has to be that in fact there \emph{is} a $y \in \reals$ where $(x,y) \in B$, and hence $x \in X$.
+    Since $x \in (a,b)$ was arbitrary, this shows that $(a,b) \ss X$.
+    This completes the rather long proof that $X = (a,b)$.
+
+    Now, by property (2) there is a unique $y \in \reals$ for every $x \in X = (a,b)$ where $(x,y) \in B$.
+    So we define a function $f: (a,b) \to \reals$ by simply setting $f(x) = y$.
+    Clearly based on the way this function is defined and the fact that $(a,b) = X$ we have that $B = A_f$.
+    We must now show that $f$ has the properties (i) through (iii) above.
+
+    Property (i) follows almost immediately from property (1) of $B$.
+    To see this, consider any $x,y \in (a,b)$ where $x < y$.
+    Then $(x,f(x))$ and $(y,f(y))$ are in $B$ and hence $f(x) \leq f(y)$ by property (1).
+    For property (ii) suppose that $b < \infty$ but that the image of $f$ is bounded above.
+    Hence it image has an upper bound, say $y_u \in \reals$, so that clearly $B \cup \braces{(b+1,y_u)}$ is a proper superset of $B$.
+    So consider any $(x,y) \in B$ so that $y = f(x)$ for some $x \in (a,b)$.
+    Then clearly $f(x)$ is in the image of $f$ so that $y = f(x) \leq y_u$ since $y_u$ is an upper bound of the image.
+    Since also we must have $x < b < b+1$, it follows that $(x,y) \prec (b+1, y_u)$.
+    Since $(x,y) \in B$ was arbitrary, this shows that $B \cup \braces{(b+1,y_u)}$ is simply ordered, which cannot be possible since it is a proper superset and $B$ is maximal.
+    So it has to be that in fact the image of $f$ is unbounded above when $b < \infty$, which shows property (ii).
+    An analogous argument shows property (iii).
+
+    Since $f$ has all of the required properties and $B = A_f$, this shows that $B \in \cA$.
+    Clearly then $\cB \ss \cA$ since $B$ was arbitrary.
+    This shows that $\cA = \cB$ as desired.
+  }
+
+  Lastly, note that the example curves $y = x^3$ and $y=2$ are clearly in $\cA = \cB$ since they are non-decreasing functions on $\reals$, ($\reals$ being the same as the open interval $(-\infty, \infty)$), while the curve $y = x^2$ is not since it is decreasing when $x < 0$.
 }
