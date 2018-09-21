@@ -448,3 +448,152 @@
 
   Lastly, note that the example curves $y = x^3$ and $y=2$ are clearly in $\cA = \cB$ since they are non-decreasing functions on $\reals$, ($\reals$ being the same as the open interval $(-\infty, \infty)$), while the curve $y = x^2$ is not since it is decreasing when $x < 0$.
 }
+
+\exercise{5}{
+  Show that Zorn's Lemma implies the following:
+  
+  \emph{Lemma (Kuratowski).} Let $\cA$ be a collection of sets.
+  Suppose that for every subcollection $\cB$ of $\cA$ that is simply ordered by proper inclusion, the union of the elements of $\cB$ belongs to $\cA$.
+  Then $\cA$ has an element that is properly contained in no other element of $\cA$.
+}
+
+\sol{
+  \dwhitman
+
+  \qproof{
+    First, we know that $\pss$ is a strict partial order on $\cA$, which is trivial to show.
+    So consider any simply ordered subset $\cB$ of $\cA$ and let $A = \bigcup \cB$ so that we know that $A \in \cA$.
+    Clearly for any set $B \in \cB$ we have that $B \ss \bigcup \cB = A$ so that, since $B$ was arbitrary, $A$ is an upper bound of $\cB$ in the strict partial order $\pss$.
+    Since $\cB$ was arbitrary, this shows the hypothesis of Zorn's Lemma so that $\cA$ has a maximal element $A$.
+    Then clearly $A$ is not properly contained in any other element of $\cA$.
+  }
+}
+
+\exercise{6}{
+  A collection $\cA$ of subsets of a set $X$ is said to be of \emph{finite type} provided that a subset $B$ of $X$ belongs to $\cA$ if and only if every finite subset of $B$ belongs to $\cA$.
+  Show that the Kuratowski lemma implies the following:
+
+  \emph{Lemma (Tukey, 1940).} Let $\cA$ be a collection of sets.
+  If $\cA$ is of finite type, then $\cA$ has an element properly contained in no other element of $\cA$.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    Suppose that $\cA$ is a collection of sets of finite type.
+    Let $\cB$ be a subcollection of $\cA$ that is simply ordered by $\pss$.
+    Consider next any finite subset $B$ of $\bigcup \cB$.
+    Then, for every $b \in B$, $b \in \bigcup \cB$ so that we can choose a set $B_b \in \cB$ such that $b \in B_b$.
+    Note that this does not require the choice axiom since we need to make only a finite number of choices.
+    Then the set $\cB' = \braces{B_b \where b \in B}$ is clearly a finite set of elements of $\cB$.
+    Since $\cB$ is simply ordered by $\pss$, it follows that $\cB'$ is as well and so has a largest element $C$ since it is finite.
+
+    Hence, for any $b \in B$, we have that $b \in B_b \ss C$ so that $b \in C$, and so $B$ is a finite subset of $C$.
+    Since $C \in \cB$ and $\cB \ss \cA$, clearly $C \in \cA$.
+    Since $\cA$ is of finite type and $B$ is a finite subset of $C$, it follows that $B \in \cA$ also.
+    Since $B$ was an arbitrary finite subset of $\bigcup \cB$, it then follows that $\bigcup \cB$ is also in $\cA$ since it is of finite type.
+    It then follows from the Kuratowski lemma (Exercise~11.5) that $\cA$ has an element that is properly contained in no other element of $\cA$ as desired.
+  }
+}
+
+\exercise{7}{
+  Show that the Tukey lemma implies the Hausdorff maximum principle.
+  [Hint: If $\prec$ is a strict partial order on $A$, let $\cA$ be the collection of all subsets of $A$ that are simply ordered by $\prec$.
+    Show that $\cA$ is of finite type.]
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    Following the hint, suppose that the set $A$ has strict partial order $\prec$ and let $\cA$ be the collection of all subsets of $A$ that are simply ordered by $\prec$.
+    We show that $\cA$ has finite type, i.e. that a subset $B \ss A$ is in $\ca$ if and only if every finite subset of $B$ is.
+
+    $(\imp)$ Suppose that $B \ss A$ is in $\cA$ so that it is simply ordered by $\prec$.
+    Clearly any finite subset of $B$ is also simply ordered by $\prec$ so that it is also in $\cA$, which shows the result.
+
+    $(\pmi)$ Now suppose that $B \ss A$ and that every finite subset of $B$ is in $\cA$.
+    Now consider two distinct element $x$ and $y$ of $B$.
+    Clearly then the set $\braces{x,y}$ is a finite subset of $B$ and hence is in $\cA$.
+    Then this means that $\braces{x,y}$ is simply ordered by $\prec$ so that clearly $x$ and $y$ are comparable.
+    Since $x$ and $y$ were arbitrary this shows that $B$ is simply ordered by $\prec$ and hence $B \in \cA$.
+
+    We have thus shown that $\cA$ is of finite type so that it has a set $C$ such that is properly contained in no other element of $\cA$.
+    Since $C \in \cA$, it is simply ordered by $\prec$.
+    It is also maximal since, if $D$ is any proper superset of $C$ then it cannot be that $D$ is simply ordered for then we would have $D \in \cA$ and $C \pss D$, which would contradict the definition of $C$.
+    Hence $C$ is the maximal simply ordered subset of $A$ that shows the maximum principle.
+  }
+}
+
+\exercise{8}{
+  A typical use of Zorn's lemma in algebra is the proof that every vector space has a basis.
+  Recall that if $A$ is a subset of the vector space $V$, we say a vector belongs to that \emph{span} of $A$ if it equals a finite linear combination of elements of $A$.
+  The set $A$ is \emph{independent} if the only finite linear combination of elements of $A$ that equals the zero vector is the trivial one having all coefficients zero.
+  If $A$ is independent and if every vector in $V$ belongs to the span of $A$, then $A$ is a \emph{basis} for $V$.
+  \eparts{
+  \item If $A$ is independent and $v \in V$ does not belong to the span of $A$, show $A \cup \braces{v}$ is independent.
+  \item Show the collection of all independent sets in $V$ has a maximal element.
+  \item Show that $V$ has a basis.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    We show this by contradiction.
+    Suppose that $A$ is independent and $v \in V$ does not belong to the span of $A$.
+    Also let $B = A \cup \braces{v}$ and suppose that $B$ is \emph{not} independent.
+    Then
+    \gath{
+      \sum_{i=1}^n \b_i b_i = 0
+    }
+    for some nonzero coefficients $\b_i$, where each $b_i$ is in $B$.
+    Now, it must be that one of the $b_i$ vectors is $v$ and the rest in $A$ since otherwise they would all be in $A$ and then $A$ would not be independent.
+    Hence this can be expressed as
+    \gath{
+      \sum_{i=1}^{n-1} \a_i a_i + \g v = 0
+    }
+    for nonzero coefficients $\a_i$ and $\g$ and vectors $a_i \in A$.
+    However clearly then we would have
+    \gath{
+      v = -\frac{1}{\g} \sum_{i=1}^{n-1} \a_1 a_i = \sum_{i=1}^{n-1} \parens{\frac{-\a_i}{\g}} a_i
+    }
+    so that $v$ is a linear combination of vectors in $A$ and hence is in the span of $A$.
+    This is a contradiction so that it must be that in fact $B = A \cup \braces{v}$ is independent as desired.
+  }
+
+  (b)
+  \qproof{
+    Let $\cA$ be the collection of all independent sets in $V$.
+    We know that $\pss$ is a strict partial order on $\cA$.
+    Now let $\cB$ be any subset of $\cA$ that is simply ordered by $\pss$.
+    We claim that $\bigcup \cB$ is an upper bound of $\cB$ that is in $\cA$.
+    So first consider any $B \in \cB$ and any $b \in B$ so that clearly then $b \in \bigcup \cB$.
+    Hence $B \ss \bigcup \cB$ since $b$ was arbitrary.
+    Since $B \in \cB$ was arbitrary, this shows that $\bigcup \cB$ is an upper bound of $\cB$ by $\pss$.
+
+    Next we show that $\bigcup \cB$ is also in $\cA$.
+    To this end consider any finite set $B$ of elements of $\bigcup \cB$ so that $B$ is a set of vectors in $V$.
+    Now, for each $b \in B$ we have that $b \in \bigcup \cB$ so that we can choose any set $B_b \in \cB$ where $b \in B_b$.
+    Note that this does not require the axiom of choice since $B$ is finite.
+    Then, since each $B_b$ is in $\cB$, which is simply ordered by $\pss$ and $\braces{B_b \where b \in B}$ is finite, it follows that it has a largest element $C$ so that $B_b \ss C$ for any $b \in B$.
+    Hence $B \ss C$ since each $b \in B_b$ and $B_b \ss C$.
+    Also $C \in \cA$ since $C \in \cB$ and $\cB \ss \cA$ so that $C$ is independent.
+    Hence the only linear combination of the vectors in $B$ that is the zero vector must have all zero coefficients since they are all in the independent set $C$.
+    Since $B$ was an arbitrary set of vectors in $\bigcup \cB$, this shows that $\bigcup \cB$ is independent and therefore in $\cA$.
+
+    Since $\cB$ was an arbitrary simply ordered subset of $\cA$, it follows that every such subset has an upper bound in $\cA$.
+    Thus by Zorn's Lemma $\cA$ has a maximal element as desired.
+  }
+
+  (c)
+  \qproof{
+    Again let $\cA$ be the collection of all independent sets in $V$, which we know has a maximal element $A$ from part (b).
+    We claim that $A$ is a basis for $V$.
+    Suppose to the contrary that it is not so that, since we know that $A$ is independent (since it is in $\cA$), there must be a vector $v \in V$ that is not in the span of $A$.
+    Then by part (a) we have that $A \cup \braces{v}$ is also independent and so in $\cA$.
+    We also have that $v \notin A$ since otherwise it would clearly be in the span of $A$.
+    Hence $A \pss A \cup \braces{v}$.
+    However, this contradicts the fact that $A$ is a maximal element of $\cA$, so that it must be that in fact $A$ is a basis for $V$ as desired.
+  }
+}
