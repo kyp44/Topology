@@ -1,0 +1,235 @@
+\setcounter{subsection}{13-1}
+\subsection{Basis for a Topology}
+
+\def\cA{\col{A}}
+\def\cB{\col{B}}
+\def\cC{\col{C}}
+\def\cT{\col{T}}
+\def\cTa{\col{T}_\a}
+\def\cTb{\col{T}_\b}
+
+\exercise{1}{
+  Let $X$ be a topological space; let $A$ be a subset of $X$.
+  Suppose that for each $x \in A$ there is an open set $U$ containing $x$ such that $U \ss A$.
+  Show that $A$ is open in $X$.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    For each $x \in A$ we can choose an open set $U_x$ containing $x$ such that $U_x \ss A$.
+    We then claim that $\bigcup_{x \in A} U_x = A$.
+    So first consider any $y \in \bigcup_{x \in A} U_x$ so that there is an $x \in A$ such that $y \in U_x$.
+    Then clearly also $y \in A$ since $U_x \ss A$.
+    Hence $\bigcup_{x \in A} U_x \ss A$ since $y$ was arbitrary.
+    Now consider $y \in A$ so that clearly $y \in U_y$.
+    Then obviously $y \in \bigcup_{x \in A} U_x$ so that $A \ss \bigcup_{x \in A} U_x$ since $y$ was arbitrary.
+    Thus we have shown that $\bigcup_{x \in A} U_x = A$, and since each $U_x$ is open, it follows from the definition of a topology that the union $\bigcup_{x \in A} U_x = A$ is open as well.
+  }
+}
+
+\exercise{2}{
+  Consider the nine topologies on the set $X = \braces{a,b,c}$ indicated in Example~1 of \S 12.
+  Compare them; that is, for each pair of topologies, determine whether they are comparable, and if so, which is finer.
+}
+\sol{
+  \dwhitman
+
+  We label each of the topologies in Figure~12.1 with an ordered pair $(i,j)$ where $1 \leq i,j \leq 3$, $i$ is the row, $j$ is the column, and $(1,1)$ is the upper left corner.
+  The following matrix lists which of each pair is \emph{finer}, or ``Inc'' if they are incomparable.
+  \begin{center}
+    \begin{tabular}{c|c|c|c|c|c|c|c|c|c|}
+      & $(1,1)$ & $(1,2)$ & $(1,3)$ & $(2,1)$ & $(2,2)$ & $(2,3)$ & $(3,1)$ & $(3,2)$ & $(3,3)$ \\
+      \hline
+      $(1,1)$ & $=$ & $(1,2)$ & $(1,3)$ & $(2,1)$ & $(2,2)$ & $(2,3)$ & $(3,1)$ & $(3,2)$ & $(3,3)$ \\
+      \hline
+      $(1,2)$ &  & $=$ & Inc & Inc & Inc & Inc & $(1,2)$ & $(3,2)$ & $(3,3)$ \\
+      \hline
+      $(1,3)$ &  &  & $=$ & $(1,3)$ & Inc & $(2,3)$ & $(1,3)$ & Inc & $(3,3)$ \\
+      \hline
+      $(2,1)$ &  &  &  & $=$ & Inc & $(2,3)$ & Inc & $(3,2)$ & $(3,3)$ \\
+      \hline
+      $(2,2)$ &  &  &  &  & $=$ & Inc & Inc & Inc & $(3,3)$ \\
+      \hline
+      $(2,3)$ &  &  &  &  &  & $=$ & $(2,3)$ & Inc & $(3,3)$ \\
+      \hline
+      $(3,1)$ &  &  &  &  &  &  & $=$ & $(3,2)$ & $(3,3)$ \\
+      \hline
+      $(3,2)$ &  &  &  &  &  &  &  & $=$ & $(3,3)$ \\
+      \hline
+      $(3,3)$ &  &  &  &  &  &  &  &  & $=$ \\
+      \hline
+    \end{tabular}
+  \end{center}
+  We know that $\pss$ forms a strict partial order on these topologies.
+  So we can also list all the maximal simply ordered subsets, each in order:
+  \gath{
+    (1,1) \pss (2,2) \pss (3,3) \\
+    (1,1) \pss (3,1) \pss (1,2) \pss (3,2) \pss (3,3) \\
+    (1,1) \pss (3,1) \pss (1,3) \pss (2,3) \pss (3,3) \\
+    (1,1) \pss (2,1) \pss (1,3) \pss (2,3) \pss (3,3) \\
+    (1,1) \pss (2,1) \pss (3,2) \pss (3,3)
+  }
+}
+
+\def\cTi{\col{T}_\infty}
+\exercise{3}{
+  Show that the collection $\cTa$ given in Example~4 of \S 12 is a topology on $X$.
+  Is the collection
+  \gath{
+    \cTi = \braces{U \where X - U \text{ is infinite or empty or all of } X}
+  }
+  a topology on $X$?
+}
+\sol{
+  \dwhitman
+
+  Recall that $\cTa$ from Example~12.4 is the set of all subsets $U$ of $X$ such that $X - U$ either is countable or is all of $X$.
+  First we show that $\cTa$ is a topology on $X$.
+  \qproof{
+    First, clearly $\es \in \cTa$ since $X - \es = X$ is all of $X$.
+    Also $X \in \cTa$ since $X - X = \es$ is countable.
+    Now suppose that $\cA$ is a subcollection of $\cTa$ so that $X - U$ is countable (or all of $X$) for every $U \in \cA$.
+    Then we have that
+    \gath{
+      X - \bigcup \cA = X - \bigcup_{A \in \cA} A = \bigcap_{A \in \cA} (X - A)
+    }
+    is countable (or all of $X$) since every $X - A$ is countable (or all of $X$).
+    Therefore $\bigcup \cA \in \cTa$ by definition.
+
+    Now suppose that $U_1, \ldots U_n$ are nonempty elements of $\cTa$ so that $X - U_i$ is a countable subset of $X$ or $X$ itself for each $i \in \intsfin{n}$.
+    Then we have
+    \gath{
+      X - \bigcap_{i=1}^n U_i = \bigcup_{i=1}^n (X - U_i)
+    }
+    is a finite union of sets that are either countable subsets of $X$, or $X$ itself.
+    It then follows that the union is countable or $X$ itself so that $\bigcap_{i=1}^n U_i \in \cTa$ by definition.
+    This completes the proof that $\cTa$ is a topology on $X$.
+  }
+
+  Now we claim that the collection $\cTi$ as defined above is not always a topology on $X$.
+  \qproof{
+    As a counterexample, let $X = \pints$ and suppose that $\cTi$ is a topology on $X$.
+    Clearly if $U$ is a finite subset of $X$, then $X - U$ is infinite since $X$ is infinite so that $U$ is open.
+    Now consider the subcollection
+    \gath{
+      \cA = \braces{\braces{i} \where i \in \pints \text{ and } i > 1} = \braces{\braces{2}, \braces{3}, \ldots} \,.
+    }
+    Then clearly we have that $\bigcup \cA = \braces{2,3, \ldots}$ so that $X - \bigcup \cA = \braces{1}$ is neither infinite, empty, nor all of $X$.
+    Therefore $\bigcup \cA$ cannot be open, which violates property (2) of a topology.
+    So it must be that $\cTi$ is not a topology, which of course contradicts our supposition that it is!
+  }
+}
+
+\def\cTo{\col{T}_1}
+\def\cTt{\col{T}_2}
+\def\cTs{\col{T}_s}
+\def\cTl{\col{T}_l}
+\exercise{4}{
+  \eparts{
+  \item If $\braces{\cTa}$ is a family of topologies on $X$, show that $\bigcap \cTa$ is a topology on $X$.
+    Is $\bigcup \cTa$ a topology on $X$?
+  \item Let $\braces{\cTa}$ be family of topologies on $X$.
+    Show that there is a unique smallest topology on $X$ containing all the collections $\cTa$, and a unique largest topology contained in all $\cTa$.
+  \item If $X = \braces{a,b,c}$, let
+    \gath{
+      \cTo = \braces{\es, X, \braces{a}, \braces{a,b}} \condgap \text{and} \condgap \cTt = \braces{\es, X, \braces{a}, \braces{b,c}} \,.
+    }
+    Find the smallest topology containing $\cTo$ and $\cTt$, and the largest topology contained in $\cTo$ and $\cTt$.      
+  }
+}
+\sol{
+  \dwhitman
+
+  (a) First we show that $\bigcap \cTa$ is a topology on $X$.
+  \qproof{
+    First, clearly since $\es$ and $X$ are in every $\cTa$ since they are topologies, they are both in $\bigcap \cTa$ so that property (1).
+    Now suppose that $\cA$ is a subcollection of $\bigcap \cTa$.
+    Consider any $\cTb$ and any $A \in \cA$.
+    Then $A$ is also in $\bigcap \cTa$ since $\cA \ss \bigcap \cTa$.
+    It then follows that $A$ is in our specific $\cTb$.
+    Since $A$ was arbitrary it follows that $\cA$ is a subcollection of $\cTb$ so that $\bigcup \cA \in \cTb$ also  since $\cTb$ is a topology.
+    Since $\cTb$ was also arbitrary it follows that $\bigcup \cA \in \bigcap \cTa$.
+    Lastly, since the subcollection $\cA$ was arbitrary, this shows property (2) for $\bigcap \cTa$.
+
+    Finally, suppose that $U_1, \ldots, U_n$ are sets in $\bigcap \cTa$.
+    Consider any $\cTb$ so that clearly then $U_i \in \cTb$ for every $i \in \intsfin{n}$.
+    It then follows that $\bigcap_{i=1}^n U_i \in \cTb$ since $\cTb$ is a topology.
+    Since $\cTb$ was arbitrary, this shows that $\bigcap_{i=1}^n U_i \in \bigcap \cTa$, which shows property (3) for $\bigcap \cTa$.
+    This completes the proof that $\bigcap \cTa$ is a topology on $X$ since all three properties have been shown.
+  }
+
+  Now we claim that $\bigcup \cTa$ is \emph{not} generally a topology.
+  \qproof{
+    As a counterexample consider the set $X = \braces{a,b,c}$, the topologies $\cTo = \braces{\es, X, \braces{a}}$ and $\cTt = \braces{\es, X, \braces{b}}$, and the collection of topologies $\col{C} = \braces{\cTo, \cTt}$.
+    Then we clearly have that $\bigcup \col{C} = \cTo \cup \cTt = \braces{\es, X, \braces{a}, \braces{b}}$, which is not a topology since $\cA = \braces{\braces{a}, \braces{b}}$ is a subcollection of $\bigcup \col{C}$ but $\bigcup \cA = \braces{a,b}$ is not in $\bigcup \col{C}$.
+  }
+
+  (b) First we show that there is a unique smallest topology that contains each $\cTa$.
+  \qproof{
+    It was proven in part (a) that $\bigcup \cTa$ is not necessarily a topology.
+    However, it is clearly always a subbasis for a topology since clearly $X \in \bigcup \cTa$ since it is in each $\cTa$ since they are topologies.
+    Hence obviously then $\bigcup \parens{\bigcup \cTa} = X$ so that $\bigcup \cTa$ is a subbasis by definition.
+    Then let $\cTs$ be the topology generated by the subbasis $\bigcup \cTa$.
+    We claim that $\cTs$ is then the smallest topology that contains all the $\cTa$ as subsets.
+
+    First, from the proof following the definition of a subbasis, we know that the set $\cB$ of finite intersections of elements of $\bigcup \cTa$ is a basis for the topology $\cTs$, and that $\cTs$ is the set of all unions of subcollections of $\cB$.
+
+    We first show that every $\cTa$ is indeed contained as a subset of $\cTs$.
+    So consider any specific $\cTb$ and any $U \in \cTb$.
+    Then clearly $U \in \bigcup \cTa$ so that $U \in \cB$ since $U = \bigcap \braces{U}$ is a finite intersection of elements of $\bigcup \cTa$.
+    It then follows that $U \in \cTs$ since $U = \bigcup \braces{U}$ is the union of a subcollection of $\cB$.
+    Since $U$ was arbitrary, this shows that $\cTb \ss \cTs$, which shows the result since $\cTb$ was arbitrary.
+
+    Now we show that $\cTs$ is the smallest such topology as ordered by $\pss$.
+    So suppose that $\cT$ is a topology that contains every $\cTa$ as a subset.
+    Consider any $U \in \cTs$ so that $U = \bigcup \cC$ for some subcollection $\cC \ss \cB$.
+    Now consider any $Y \in \cC$ so that also $Y \in \cB$.
+    Then $Y = \bigcap_{i=1}^n Y_i$ where each $Y_i \in \bigcup \cTa$.
+    Then each $Y_i$ is in some $\cTb \ss \cT$ so that also $Y_i \in \cT$.
+    Since $\cT$ is a topology, it follows that the finite intersection $\bigcap_{i=1}^n Y_i = Y$ is also in $\cT$.
+    Since $Y$ was arbitrary, this shows that $\cC \ss \cT$ so that $\cC$ is a subcollection of $\cT$.
+    It then follows that $\bigcup \cC = U$ is also in $\cT$ since $\cT$ is a topology.
+    Since $U$ was arbitrary, we have that $\cTs \ss \cT$, which shows that $\cTs$ is the smallest topology since $\cT$ was arbitrary.
+
+    It is easy to see that $\cTs$ is unique since, if both $\cTo$ and $\cTs$ are the smallest topologies that contain each $\cTa$ as subsets, then we would have that both $\cTo \ss \cTt$ and $\cTt \ss \cTo$ so that $\cTo = \cTt$.
+    Really this follows from the more general fact that smallest elements in any order are always unique.
+  }
+
+  Next we show that there is a unique largest topology that is contained in each $\cTa$.
+  \qproof{
+    It was shown in part (a) that $\cTl = \bigcap \cTa$ is a topology on $X$.
+    We claim that in fact this is the unique largest topology contained in all $\cTa$.
+    First, clearly $\cTl = \bigcap \cTa$ is contained in each $\cTa$ since the intersection of a collection of sets is always a subset of every set in the collection.
+    Now suppose that $\cT$ is a topology that is contained in every $\cTa$, i.e. $\cT \ss \cTa$ for every $\cTa$.
+    Then clearly for any $U \in \cT$ we have that $U \in \cTa$ for every $\cTa$ so that $U \in \bigcap \cTa = \cTl$.
+    Thus $\cT \ss \cTl$ since $U$ was arbitrary.
+    This shows that $\cTl$ is the largest such topology since $\cT$ was arbitrary.
+
+    Clearly also $\cTl$ is unique since, if $\cTo$ and $\cTt$ are two such largest topologies that are contained in every $\cTa$.
+    Then we would have $\cTo \ss \cTt$ and $\cTt \ss \cTo$ so that $\cTo = \cTt$.
+    This also follows from the fact that the largest element in any ordered set (or collection of sets in this case) is unique.
+  }
+
+  (c)
+  Note that the proofs in part (b) are constructive so that we can construct these topologies as done in the proof.
+  For the smallest topology containing $\cTo$ and $\cTt$ we have that
+  \gath{
+    \bigcup \braces{\cTo, \cTt} = \cTo \cup \cTt = \braces{\es, X, \braces{a}, \braces{a,b}, \braces{b,c}}
+  }
+  is a subbasis for the smallest topology $\cTs$.
+  Then the collection of all finite intersections of elements of this set is a basis for $\cTs$:
+  \gath{
+    \cB = \braces{\es, X, \braces{a}, \braces{b}, \braces{a,b}, \braces{b,c}} \,.
+  }
+  Then the topology $\cTs$ is the set of all unions of subcollections of $\cB$:
+  \gath{
+    \cTs = \braces{\es, X, \braces{a}, \braces{b}, \braces{a,b}, \braces{b,c}} = \cB
+  }
+  so that evidently the basis and the topology are the same set here!
+
+  For the largest topology contained in $\cTo$ and $\cTt$ we have simply
+  \gath{
+    \cTl = \bigcap \braces{\cTo, \cTt} = \cTo \cap \cTt = \braces{\es, X, \braces{a}} \,.
+  }
+}
