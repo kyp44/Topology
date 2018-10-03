@@ -1,0 +1,263 @@
+% This ensures that the unnumberred section is in the PDF index
+\def\stitle{Supplementary Exercises: Well-Ordering}
+\currentpdfbookmark{\stitle}{sec:wo}
+\subsection*{\stitle} 
+
+% Set section label to text
+\renewcommand\thesubsection{WO}
+
+\def\cF{\col{F}}
+\exercise{1}{
+  \emph{Theorem (General principle of recursive definition).}
+  Let $J$ be a well-ordered set; let $C$ be a set.
+  Let $\cF$ be the set of all functions mapping sections of $J$ into $C$.
+  Given a function $\r : \cF \to C$, there is a unique $h : J \to C$ such that $h(\a) = \r(h \rest S_\a)$ for each $\a \in J$.
+  [Hint: Follow the pattern outlined in Exercise~10 of \S 10.]
+}
+\sol{
+  \dwhitman
+
+  Following the hint, we follow the pattern of Exercise~10.10.
+  In what follows denote by $(*)$ the property
+  \gath{
+    h(\a) = \r(h \rest S_\a)
+  }
+  for a function $h$ from $J$ or a section of $J$ to $C$.
+  
+  \begin{lem}\label{lem:sewo:hunique}
+    If $h$ and $k$ map sections of $J$, or all of $J$, into $C$ and satisfy $(*)$ for all $x$ in their respective domains, then $h(x) = k(x)$ for all $x$ in both domains.
+  \end{lem}
+  \qproof{
+    First suppose that the domains of $h$ and $k$ are sets $H$ and $K$ where each is either a section of $J$ or $J$ itself.
+    Since this is the case, we can assume without loss of generality that $H \ss K$  and so $H$ is exactly the domain common to both $h$ and $k$.
+    Now suppose that the hypothesis we are trying to prove is \emph{not} true so that there is an $x$ in both domains (i.e. $x \in H$) where $h(x) \neq k(x)$.
+    We can also assume that $x$ is the smallest such element since $H \ss J$ and $J$ is well-ordered.
+    It then clearly follows that $S_x \ss H$ is a section of $J$ and that $h(y) = k(y)$ for all $y \in S_x$.
+    From this we clearly have that $h \rest S_x = k \rest S_x$ so that
+    \gath{
+      h(x) = \r(h \rest S_x) = \r(k \rest S_x) = k(x)
+    }
+    since both $h$ and $k$ satisfy $(*)$ and $x$ is in the domain of both.
+    This contradicts the supposition that $h(x) \neq k(x)$ so that it must be that no such $x$ exists and hence $h$ and $k$ are the same in their common domain as desired.
+  }
+
+  \begin{lem} \label{lem:sewo:hsucc}
+    If there exists a function $h: S_\a \to C$ satisfying $(*)$, then there exists a function $k : S_\a \cup \braces{\a} \to C$ satisfying $(*)$.
+  \end{lem}
+  \qproof{
+    Suppose that $h : S_\a \to C$ is such a function satisfying $(*)$.
+    Now let $\bar{S}_\a = S_\a \cup \braces{\a}$ and we define $k : \bar{S}_\a \to C$ as follows.
+    For any $x \in \bar{S}_\a$ set
+    \gath{
+      k(x) = \begin{cases}
+        h(x) & x \in S_\a \\
+        \r(h) & x = \a \,.
+      \end{cases}
+    }
+    We note that clearly $S_\a$ and $\braces{\a}$ are disjoint so that this is unambiguous.
+    We also note that $h$ is a function from a section of $J$ to $C$ so that $h \in \cF$ and $\r(h) \in C$ is therefore defined.
+
+    Now we show that $k$ satisfies $(*)$.
+    First, clearly $h \rest S_x = k \rest S_x$ for any $x \leq \a$ since $k(y) = h(y)$ by definition for any $y \in S_x \ss S_\a$.
+    Now consider any $x \in \bar{S}_\a$.
+    If $x = \a$ then by definition we have
+    \gath{
+      k(x) = \r(h) = \r(h \rest S_\a) = \r(k \rest S_\a) = \r(k \rest S_x)
+    }
+    since clearly $h = h \rest S_\a$ since $S_\a$ is the domain of $h$.
+    On the other hand, if $x \in S_\a$ then $x < \a$ so that
+    \gath{
+      k(x) = h(x) = \r(h \rest S_x) = \r(k \rest S_x)
+    }
+    since $h$ satisfies $(*)$.
+    Therefore, since $x$ was arbitrary, this shows that $k$ also satisfies $(*)$.
+  }
+
+  \begin{lem}\label{lem:sewo:hunion}
+    If $K \ss J$ and for all $\a \in K$ there exists a function $h_\a : S_\a \to C$ satisfying $(*)$, then there exists a function
+    \gath{
+      k : \bigcup_{\a \in K} S_\a \to C
+    }
+    satisfying $(*)$.
+  \end{lem}
+  \qproof{
+        Let
+    \gath{
+      k = \bigcup_{\a \in K} h_\a \,,
+    }
+    which we claim is the function we seek.
+
+    First we show that $k$ is actually a function from $\bigcup_{\a \in K} S_\a$ to $C$.
+    So consider any $x$ in the domain of $k$.
+    Suppose that $(x, a)$ and $(x, b)$ are both in $k$ so that there are $\a$ and $\b$ in $K$ where $(x, a) \in h_\a$ and $(x, b) \in h_\b$.
+    Since $h_\a$ and $h_\b$ both satisfy $(*)$, it follows from Lemma~\ref{lem:sewo:hunique} that $a = h_\a(x) = h_\b(x) = b$ since clearly $x$ is in the domain of both.
+    This shows that $k$ is indeed a function since $(x,a)$ and $(x,b)$ were arbitrary.
+    Also clearly the domain of $k$ is $\bigcup_{\a \in K} S_\a$ since, for any $x \in \bigcup_{\a \in K} S_\a$, we have that there is an $\a \in K$ where $x \in S_\a$.
+    Hence $x$ is in the domain of $h_\a$ and so in the domain of $k$.
+    In the other direction, clearly if $x$ is in the domain of $k$ then it is in the domain of $h_\a$ for some $\a \in K$.
+    Since this domain is $S_\a$, clearly $x \in \bigcup_{\a \in K} S_\a$.
+    Lastly, obviously the range of $k$ can be $C$ since this is the range of every $h_\a$.
+
+    Now we show that $k$ satisfies $(*)$.
+    So consider any $x \in \bigcup_{\a \in K} S_\a$ so that $x \in S_\a$ for some $\a \in K$.
+    Clearly we have that $k(y) = h_\a(y)$ for every $y \in S_\a$ since $h_\a \ss k$.
+    It then immediately follows that $k(x) = h(x)$ and $k \rest S_x = h_\a \rest S_x$ since $S_x \ss S_\a$.
+    Then, since $h_\a$ satisfies $(*)$, we have
+    \gath{
+      k(x) = h_\a(x) = \r(h_\a \rest S_x) = \r(k \rest S_x) \,.
+    }
+    Since $x$ was arbitrary, this shows that $k$ satisfies $(*)$ as desired.
+  }
+
+  \begin{lem} \label{lem:sewo:hind}
+    For every $\b \in J$, there exists a function $h_\b : S_\b \to C$ satisfying $(*)$.
+  \end{lem}
+  \qproof{
+    We show this by transfinite induction.
+    So consider any $\b \in J$ and suppose that, for every $x \in S_\b$, there is a function $h_x : S_x \to C$ satisfying $(*)$.
+    Now, if $\b$ has an immediate predecessor $\a$ then we claim that $S_\b = S_\a \cup \braces{\a}$.
+    First if $x \in S_\b$ then $x < \b$ so that $x \leq \a$ since $\a$ is the immediate predecessor of $\b$.
+    If $x < \a$ then $x \in S_\a$ and if $x = \a$ then $x \in \braces{\a}$.
+    Hence in either case we have that $x \in S_\a \cup \braces{\a}$.
+    Now suppose that $x \in S_\a \cup \braces{\a}$.
+    If $x \in S_\a$ then $x < \a < \b$ so that $s \in S_\b$.
+    On the other hand if $x \in \braces{\a}$ then $x = \a < \b$ so that again $x \in S_\b$.
+    Thus we have shown that $S_\b \ss S_\a \cup \braces{\a}$ and $S_\a \cup \braces{\a} \ss S_\b$ so that $S_\b = S_\a \cup \braces{\a}$.
+    Since $\a \in S_\b$ it follows that there is an $h_\a : S_\a \to C$ that satisfies $(*)$.
+    Then, by Lemma~\ref{lem:sewo:hsucc}, we have that there is an $h_\b : S_\b = S_\a \cup \braces{\a} \to C$ that also satisfies $(*)$.
+
+    If $\b$ does not have an immediate predecessor then we claim that $S_\b = \bigcup_{\g < \b} S_\g$.
+    So consider any $x \in S_\b$ so that $x < \b$.
+    Since $x$ cannot be the immediate predecessor of $\b$, there must be an $\a$ where $x < \a < \b$.
+    Then $x \in S_\a$ so that, since $\a < \b$, clearly $x \in \bigcup_{\g < \b} S_\g$.
+    Now suppose that $x \in \bigcup_{\g < \b} S_\g$ so that there is an $\a < \b$ where $x \in S_\a$.
+    Then clearly $x < \a < \b$ so that also $x \in S_\b$.
+    Thus we have shown that $S_\b \ss \bigcup_{\g < \b} S_\g$ and $\bigcup_{\g < \b} S_\g \ss S_\b$ so that $S_\b = \bigcup_{\g < \b} S_\g$.
+    Now, clearly $S_\b$ is a subset of $J$ where there is an $h_x : S_x \to C$ satisfying $(*)$ for every $x \in S_\b$.
+    Then it follows from Lemma~\ref{lem:sewo:hunion} that there is a function $h_\b$ from $\bigcup_{\g < S_\b} S_\g = \bigcup_{\g < \b} S_\g = S_\b$ to $C$ that satisfies $(*)$.
+
+    Therefore, in either case, we have shown that there is an $h_\b : S_\b \to C$ that satisfies $(*)$.
+    The desired result then follows by transfinite induction.
+    }
+    
+  \mainprob
+  \qproof{
+    First suppose that $J$ has no largest element.
+    Then we claim that $J = \bigcup_{\a \in J} S_\a$.
+    For any $x \in J$ there must be a $y \in J$ where $x < y$ since $x$ cannot be the greatest element of $J$.
+    Hence $x \in S_y$ so that also clearly $\bigcup_{\a \in J} S_\a$.
+    Then, for any $x \in \bigcup_{\a \in J} S_\a$, there is an $\a \in J$ where $x \in S_\a$.
+    Clearly $S_\a \ss J$ so that $x \in J$ also.
+    Hence $J \ss \bigcup_{\a \in J} S_\a$ and $\bigcup_{\a \in J} S_\a \ss J$ so that $J = \bigcup_{\a \in J} S_\a$.
+    Since we know from Lemma~\ref{lem:sewo:hind} that there is an $h_\a : S_\a \to C$ that satisfies $(*)$ for every $\a \in J$, it follows from Lemma~\ref{lem:sewo:hunion} that there is a function $h$ from $\bigcup_{\a \in J} S_\a = J$ to $C$ that satisfies $(*)$.
+
+    If $J$ does have a largest element $\b$ then clearly $J = S_\b \cup \braces{\b}$.
+    Since we know that there is an $h_\b : S_\b \to C$ that satisfies $(*)$ by Lemma~\ref{lem:sewo:hind}, it follows from Lemma~\ref{lem:sewo:hsucc} that there is a function $h$ from $S_\b \cup \braces{\b} = J$ to $C$ that satisfies $(*)$.
+    Hence the desired function $h$ exists in both cases.
+    Lemma~\ref{lem:sewo:hunique} also clearly shows that this function is unique.
+  }
+}
+
+\exercise{2}{
+  \eparts{
+  \item Let $J$ and $E$ be well-ordered sets; let $h: J \to E$.
+    Show that the following statements are equivalent:
+    \begin{enumerate}[label=(\roman*)]
+    \item $h$ is order preserving and its image is $E$ or a section of $E$.
+    \item $h(\a) = \text{smallest } [E - h(S_\a)]$ for all $\a$.
+    \end{enumerate}
+        [Hint: Show that each of these conditions implies that $h(S_\a)$ is a section of $E$; conclude that it must be the section by $h(\a)$.]
+      \item If $E$ is a well-ordered set, show that no section of $E$ has the order type of $E$, nor do two different sections of $E$ have the same order type.
+        [Hint: Given $J$, there is a most one order-preserving map of $J$ into $E$ whose image is $E$ or a section of $E$.]
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    First, for any $\a \in J$ and $\b \in E$, let $S_\a$ denote the section of $J$ by $\a$, and $T_\b$ denote the section of $E$ by $\b$.
+    To avoid ambiguity, also suppose that $<$ is the well-order on $J$ and $\prec$ is the well-order on $E$.
+    We show that each of these conditions are equivalent to the condition that $h(S_\a) = T_{h(\a)}$ for every $\a \in J$.
+    Call this condition (iii).
+    This of course also shows that the conditions are equivalent to each other.
+
+    First we show that (i) implies (iii).
+    So suppose that $h$ is order preserving and its image is $E$ or a section of $E$.
+    Consider any $\a \in J$ and any $y \in h(S_\a)$ so that there is an $x \in S_\a$ where $y = h(x)$.
+    Then $x < \a$ and $y = h(x) \prec h(\a)$ since $h$ preserves order.
+    Therefore $y \in T_{h(\a)}$ so that $h(S_\a) \ss T_{h(\a)}$ since $y$ was arbitrary.
+    Now consider $y \in T_{h(\a)}$ so that $y \prec h(\a)$.
+    Since also clearly $y \in E$ (since $T_{h(\a)} \ss E$), $y$ is in the image of $h$ if its image is all of $E$.
+    If the image of $h$ is some section of $E$, say $T_\b$, then clearly $h(\a) \in T_\b$ since $h(\a)$ is obviously in the image of $h$.
+    Hence we have $y \prec h(\a) \prec \b$ so that $y \in T_\b$ and hence in the image of $h$.
+    Since $y$ is in the image of $h$ in either case, there is an $x \in J$ such that $y = h(x)$.
+    Then $h(x) = y \prec h(\a)$ so that $x < \a$ since $h$ preserves order.
+    Hence $x \in S_\a$ so that $y \in h(S_\a)$ since $y = h(x)$.
+    This shows that $T_{h(\a)} \ss h(S_\a)$ since $y$ was arbitrary.
+    Therefore $h(S_\a) = T_{h(\a)}$ so that condition (iii) is true since $\a$ was arbitrary.
+
+    Next we show that (iii) implies (i).
+    So suppose that $h(S_\a) = T_{h(\a)}$ for all $\a \in J$.
+    First, it is easy to see that $h$ preserves order since, if $x,y \in J$ where $x < y$, then we have that $x \in S_y$ so that clearly $h(x) \in h(S_y) = T_{h(y)}$, and hence $h(x) < h(y)$.
+    To show that the image of $h$, i.e. $h(J)$, is either $E$ or a section of $E$, consider the set $E - h(J)$.
+
+    Case: $E - h(J) = \es$.
+    Then clearly for any $y \in E$ we must have that $y \in h(J)$ since otherwise it would be that $y \in E - h(J)$.
+    Thus $E \ss h(J)$ since $y$ was arbitrary.
+    Also clearly $h(J) \ss E$ since $E$ is the range of $h$.
+    This shows that $h(J) = E$.
+
+    Case: $E - h(J) \neq \es$.
+    Then clearly $E - h(J)$ is a nonempty subset of $E$ so that it has a smallest element $\b$ since $E$ is well-ordered, noting that clearly $\b \notin h(J)$.
+    We claim that $h(J) = T_\b$.
+    So consider any $y \in h(J)$ so that there is an $x \in J$ where $y = h(x)$.
+    Suppose for a moment that $\b \eprec y$.
+    Now it cannot be that $\b = y$ since $y \in h(J)$ but $\b \notin h(J)$, and so $\b \prec y$.
+    But then $\b \in T_y = T_{h(x)} = h(S_x)$ since $x \in J$.
+    Then $\b$ is in the image of $h$ since clearly $h(S_x) \ss h(J)$.
+    As this contradicts the fact that $\b \notin h(J)$, it must be that $y \prec \b$ so that $y \in T_\b$.
+    This shows that $h(J) \ss T_\b$ since $y$ was arbitrary.
+    Suppose now that $y \in T_\b$ so that $y \prec \b$.
+    Since $\b$ is the smallest element of $E - h(J)$, it follows that $y \notin E - h(J)$.
+    Since clearly $y \in E$ (since $T_\b \ss E$), it must be that $y \in h(J)$.
+    This shows that $T_\b \ss h(J)$ since $y$ was arbitrary.
+    Hence we have shown that $h(J) = T_\b$.
+
+    Therefore in every case either the image of $h$ is $E$ or a section of $E$ as desired.
+    This completes the proof of (i).
+
+    Now we show that (ii) implies (iii).
+    So suppose that $h(\a)$ is the smallest element of $E - h(S_\a)$ for every $\a \in J$.
+    First we show that $h$ is injective.
+    So consider any $x,y \in J$ where $x \neq y$.
+    We can assume without loss of generality that $x < y$ so that $x \in S_y$ and hence $h(x) \in h(S_y)$.
+    However since we have that $h(y)$ is the smallest element of $E - h(S_y)$, clearly $h(y) \notin h(S_y)$.
+    Therefore we have that $h(x) \neq h(y)$ so that $h$ is injective.
+    
+    Now consider any $\a \in J$ so that clearly $h(\a)$ is the smallest element of $E - h(S_\a)$.
+    Suppose that $y \in h(S_\a)$ so that there is an $x \in S_\a$ where $y = h(x)$, and therefore $x < \a$.
+    Consider the possibility that $h(\a) \prece h(x) = y$.
+    It cannot be that $h(\a) = h(x) = y$ since $x \neq \a$ and $h$ is injective, so it must be that $h(\a) \prec h(x)$.
+    It then follows that $h(\a) \notin E - h(S_x)$ since $h(x)$ is the smallest element of $E - h(S_x)$.
+    Thus $h(\a) \in h(S_x)$ since clearly $h(\a) \in E$.
+    It then follows from the fact that $h$ is injective that $\a \in S_x$ so that we have $\a < x < \a$, which is clearly a contradiction.
+    So it must be that $y = h(x) \prec h(\a)$ so that $y \in T_{h(\a)}$.
+    This shows that $h(S_\a) \ss T_{h(\a)}$ since $y$ was arbitrary.
+        
+    Now suppose that $y \in T_{h(\a)}$ so that $y \prec h(\a)$.
+    Since $h(\a)$ is the smallest element of $E - h(S_\a)$, it follows that $y \notin E - h(S_\a)$.
+    Since clearly $y \in E$, it must be that $y \in h(S_\a)$.
+    This shows that $T_{h(\a)} \ss h(S_\a)$ since $y$ was arbitrary, and hence $h(S_\a) = T_{h(\a)}$, which shows (iii) since $\a$ was arbitrary.
+
+    Lastly, we show that (iii) implies (ii).
+    So suppose that $h(S_\a) = T_{h(\a)}$ for every $\a \in J$ and consider any such $\a$.
+    Clearly we have that $h(\a) \in E$ but $h(\a) \notin T_{h(\a)} = h(S_\a)$ so that $h(\a) \in E - h(S_\a)$.
+    Suppose for the moment that $h(\a)$ is not the smallest element of $E - h(S_\a)$ so that there is a $\b \in E - h(S_\a)$ where $\b \prec h(\a)$.
+    Then $\b \in T_{h(\a)}$ so that it must be that $\b \notin E - T_{h(\a)} = E - h(S_\a)$ since $h(S_\a) = T_{h(\a)}$.
+    Clearly this is a contradiction so that it must be that $h(\a)$ really is the smallest element of $E - h(S_\a)$, which shows (ii) since $\a$ was arbitrary.
+  }
+}
+
+% Restore section label to number
+\renewcommand\thesubsection{\arabic{subsection}}

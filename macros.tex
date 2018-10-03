@@ -86,7 +86,7 @@
 % Exercise, Theorem, and solution shortcuts
 \newcommand\exercise[2]{{ % Note that we need the double braces, not sure why though!
     \renewcommand\label[1]{} % Needed to suppress multiply-defined label warning since the same question numbers are used in different sections
-    \setcounter{subsubsection}{#1-1} % Subsubsections are used to that lemmas have the full nested numbering
+    \setcounter{subsubsection}{#1-1} % Subsubsections are used so that lemmas have the full nested numbering
     \stepcounter{subsubsection} % Need to increment this so that the lemma counter gets reset
     \setcounter{question}{#1-1} % Manually set the question number since we always know the exercise number
     \question{\hspace{0.1cm}#2} % The actual exam class question (hspace is necessary because lists start on same line for some annoying reason)
