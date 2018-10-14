@@ -64,6 +64,7 @@
 
 % Other miscellaneous stuff
 \def\ss{\subset}
+\def\nss{\not \ss}
 \def\sps{\supset}
 \def\pss{\subsetneq}
 \def\prece{\preccurlyeq}
@@ -109,6 +110,10 @@
   Second Edition \\
   by James Munkres
 }
+
+% These are needed so that half-open intervals do not cause auto-indentation issues due to unmatched brackets
+\newcommand\clop[1]{[#1)}
+\newcommand\opcl[1]{(#1]}
 
 % Authors
 \newcommand\contrib[1]{(Contributed by #1)}
