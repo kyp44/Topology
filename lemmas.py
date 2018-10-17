@@ -78,7 +78,6 @@ def process_file(fpath, ofile, headers=False, shared=None) :
                 # No, only pass through certain lines pertaining to the statements
                 earg = get_arg(sl, "exercise")
                 iarg = get_arg(sl, "input")
-                targ = get_arg(sl, "theorem")
                 scarg = get_arg(sl, "setcounter")
                 if (sl.find(r"\def") == 0 and sl.find("{") >= 0) or mdef > 0 :
                     # Include any macro definitions
@@ -96,11 +95,7 @@ def process_file(fpath, ofile, headers=False, shared=None) :
                 elif earg :
                     # Exercise line, set counters
                     e = int(earg)
-                    print(r"\setcounter{subsection}{" + str(e-1) + "}\stepcounter{subsection}", file=ofile)
-                elif targ :
-                    # Theorem line, set counters
-                    t = int(targ)
-                    print(r"\setcounter{subsection}{" + str(t-1) + "}\stepcounter{subsection}", file=ofile)
+                    print(r"\setcounter{section}{" + str(e-1) + "}\stepcounter{section}", file=ofile)
                 elif iarg and iarg.find("shared") == 0 :
                     # Input line for shared satement
                     process_file(iarg + ".tex", ofile, shared=iarg.split("/")[-1])
@@ -148,19 +143,35 @@ with open(ofname, "w") as ofile :
             continue
         if bname.find("sec_") != 0 :
             continue
-        secs.append(Section(*(int(s) for s in bname.split("_")[1:]), idir + fname))
+        secs.append(Section("_".join(bname.split("_")[1:]), idir + fname))
 
     # Sort sections and go through them
     print(r"\section{Solutions}", file=ofile)
-    for sec in sorted(secs, key=lambda s : s.sec) : 
+    for sec in sorted(secs, key=lambda s : s.sec) :
         print("Processing " + sec.fname + "...")
 
-        # Set counters
-        print(r"\setcounter{chapter}{" + str(sec.sec) + "}", file=ofile)
-        #print(r"\setcounter{section}{" + str(sec.sec) + "}", file=ofile)
+        # Is this a special section with text?
+        tsec = False
+        try :
+            slab = int(sec.sec)
+        except :
+            slab = sec.sec.split("_")[1]
+            tsec = True
+        
+        # Set section counter
+        if not tsec :
+            # Normal numbered section
+            print(r"\setcounter{chapter}{" + str(slab) + "}", file=ofile)
+        else :
+            # Special text section
+            print(r"\renewcommand\thechapter{" + slab + "}", file=ofile)
 
         # Process section file
         process_file(sec.fname, ofile)
+
+        # If text section the restore numbered sections
+        if tsec :
+            print(r"\renewcommand\thechapter{\arabic{chapter}}", file=ofile)
                         
     # Go through theorems
     """

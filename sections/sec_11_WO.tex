@@ -13,7 +13,7 @@
   Let $\cF$ be the set of all functions mapping sections of $J$ into $C$.
   Given a function $\r : \cF \to C$, there is a unique $h : J \to C$ such that $h(\a) = \r(h \rest S_\a)$ for each $\a \in J$.
   [Hint: Follow the pattern outlined in Exercise~10 of \S 10.]
-}
+}\label{tester}
 \sol{
   \dwhitman
 
@@ -168,7 +168,7 @@
     \end{enumerate}
         [Hint: Show that each of these conditions implies that $h(S_\a)$ is a section of $E$; conclude that it must be the section by $h(\a)$.]
       \item If $E$ is a well-ordered set, show that no section of $E$ has the order type of $E$, nor do two different sections of $E$ have the same order type.
-        [Hint: Given $J$, there is a most one order-preserving map of $J$ into $E$ whose image is $E$ or a section of $E$.]
+        [Hint: Given $J$, there is a most one order preserving map of $J$ into $E$ whose image is $E$ or a section of $E$.]
   }
 }
 \sol{
@@ -256,6 +256,98 @@
     Suppose for the moment that $h(\a)$ is not the smallest element of $E - h(S_\a)$ so that there is a $\b \in E - h(S_\a)$ where $\b \prec h(\a)$.
     Then $\b \in T_{h(\a)}$ so that it must be that $\b \notin E - T_{h(\a)} = E - h(S_\a)$ since $h(S_\a) = T_{h(\a)}$.
     Clearly this is a contradiction so that it must be that $h(\a)$ really is the smallest element of $E - h(S_\a)$, which shows (ii) since $\a$ was arbitrary.
+  }
+}
+
+\exercise{3}{
+  Let $J$ and $E$ be well-ordered sets; suppose there is an order preserving map $k: J \to E$.
+  Using Exercises~1 and 2, show that $J$ has the order type of $E$ or a section of $E$.
+  [Hint: Choose $e_0 \in E$.
+    Define $h: J \to E$ by the recursion formula
+    \gath{
+      h(\a) = \text{smallest } [E - h(S_\a)] \condgap \text{if} \condgap h(S_\a) \neq E \,,
+    }
+    and $h(\a) = e_0$ otherwise.
+    Show that $h(\a) \leq k(\a)$ for all $\a$; conclude that $h(S_\a) \neq E$ for all $\a$.]
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    First, if $E = \es$ then it must be that $J = \es$ as well so that they vacuously have the same order type.
+    Otherwise, following the hint, choose $e_0 \in E$ and define $h: J \to E$ by
+    \gath{
+      h(\a) = \text{smallest } [E - h(S_\a)] \condgap \text{if} \condgap h(S_\a) \neq E \,,
+    }
+    and $h(\a) = e_0$ otherwise, noting that this function is uniquely defined by the general principle of recursive definition (Exercise~\thesubsection.1).
+    We show that $h(\a) \leq k(\a)$ for all $\a \in J$ using transfinite induction (see Lemma~\ref{lem:wellord:tind}).
+    So consider $\a \in J$ and assume that $h(x) \leq k(x)$ for all $x \in S_\a$.
+    Since $k$ preserves order we have that $h(x) \leq k(x) < k(\a)$ when $x < \a$.
+    In particular, this means that $h(x) \neq k(\a)$ for all $x \in S_\a$ so that $k(\a) \in E - h(S_\a)$.
+    Hence $E - h(S_\a)$ is not empty so that $h(S_\a) \neq E$.
+    Thus $h(\a)$ is the smallest element of $E - h(S_\a)$ and so $h(\a) \leq k(\a)$ since $k(\a) \in E - h(S_\a)$.
+    This completes the induction.
+
+    Therefore, for any $\a \in J$ and any $x < \a$ we have $h(x) \leq k(x) < k(\a)$ since $k$ preserves order so that $h(x) \neq k(\a)$.
+    As in the induction step above, it follows that $h(S_\a) \neq E$.
+    Hence, since $\a$ was arbitrary,
+    \gath{
+      h(\a) = \text{smallest } [E - h(S_\a)]
+    }
+    for all $\a \in J$.
+    It then follows from Exercise~\thesubsection.2 part (a) that $h$ is order preserving and maps $J$ onto $E$ or a section of $E$.
+    This clearly shows that $J$ has the order type of $E$ or a section of $E$ as desired.
+  }
+}
+
+\exercise{4}{
+  Use Exercises 1-3 to prove the following:
+  \eparts{
+  \item If $A$ and $B$ are well-ordered sets, then exactly one of the following three conditions holds: $A$ and $B$ have the same order type, or $A$ has the order type of a section of $B$, or $B$ has the order type of a section of $A$.
+    [Hint: Form a well-ordered set containing both $A$ and $B$, as in Exercise~8 of \S 10; then apply the preceding exercise.]
+  \item Suppose that $A$ and $B$ are well-ordered sets that are uncountable, such that every section of $A$ and $B$ is countable.
+    Show that $A$ and $B$ have the same order type.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    First, we can assume that $A$ and $B$ are disjoint since, if not, we can form $A' = \braces{(x,1) \where x \in A}$ and $B' = \braces{(x,2) \where x \in B}$, which clearly \emph{are} disjoint and have the same order types as $A$ and $B$ if ordered in the same way.
+    So let $\prec$ be the order on $A \cup B$ as in Exercise~10.8 with all the elements of $A$ before the elements of $B$.
+    From the exercise, we know that $A \cup B$ is well-ordered by $\prec$.
+    Now, clearly the identity function $i_B$ with $A \cup B$ as the range is an order-preserving function from $B$ to $A \cup B$ so that $B$ is the same order type as $A \cup B$ or a section of $A \cup B$ by Exercise~\thesubsection.3.
+
+    If $B$ has the same order type as $A \cup B$, then there is a an order preserving bijection $g: A \cup B \to B$.
+    Let $b$ be the smallest element of $B$ so that $y = g(b) \in B$.
+    Since $b$ is the least element of $B$, clearly the section $S_b = \braces{x \in A \cup B \where x \prec b} = A$.
+    Also clearly $g(A) = g(S_b) = S_y = \braces{x \in B \where x < y}$ so that $A$ has the same order type as a section of $B$ since $g$ preserves order.
+
+    If $B$ has the same order type as a section of $A \cup B$ then there is an order preserving bijection $f: B \to S_\a$ for some $\a \in A \cup B$.
+    If $\a \in A$ then clearly $S_\a$ lies entirely in $A$ and is a section of $A$ so that $B$ has the same order type as a section of $A$.
+    So now suppose that $\a \in B$.
+    If $\a$ is the smallest element of $B$ then again it has to be that $S_\a$ lies in $A$ and is in fact the enitrety of $A$ so that $B$ and $A$ have the same order type.
+    If $\a$ is not the smallest element of $B$ then $S_\a$ contains elements of both $A$ and $B$.
+    So let $b$ be the smallest element of $B$ so that $b \in S_\a$, and let $y \in B$ be such that $f(y) = b$, which exists since $f$ is surjective.
+    We also have that $S_b = A$ since $b$ is the smallest element of $B$.
+    It then follows that $f(S_y) = S_b = A$ since $f(y) = b$ so that $A$ has the same order type as the section $S_y$ of $B$ since $f$ preserves order.
+
+    Hence in all cases one of the desired results always follows.
+    To show that exactly one of these is the case, note that if $A$ and $B$ have the same order type then clearly it cannot be that $A$ has the same order type as a section of $B$ since then $B$ would also have the same order type is its own section, which would violate Exercise~\thesubsection.2b.
+    Similarly $B$ cannot have the same order type as a section of $A$ since then $A$ would have the same order type as its own section.
+    Now suppose that $A$ has the same order type as a section $S_b$ of $B$.
+    Then $A$ and $B$ cannot have the same order type since then $B$ would have the same order type as its section $S_b$.
+    Also $B$ cannot have the same order type as a section $S_a$ of $A$ since then the section $S_b$, and therefore $A$, would have the same order type as a smaller section of $A$.
+    An analogous argument shows the result when $B$ has the same order type as a section of $A$.
+  }
+
+  (b)
+  \qproof{
+    Suppose that $A$ has the same order type as a section of $B$.
+    Then there would be a bijection from $A$, an uncountable set, to a section of $B$, which is countable.
+    A similar contradiction arises if $B$ were to have the same order type as a section of $A$.
+    By part (a), the only remaining possibility is that $A$ and $B$ have the same order type as desired.
   }
 }
 
