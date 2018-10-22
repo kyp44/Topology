@@ -1,0 +1,242 @@
+\setcounter{subsection}{16-1}
+\subsection{The Subspace Topology}
+
+\exercise{1}{
+  Show that if $Y$ is a subspace of $X$ and $A$ is a subspace of $Y$, then the topology $A$ inherits as a subspace of $Y$ is the same as the topology it inherits as a subspace of $X$.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    Let $\cT$ be the topology on $X$ and  $\cT_Y$ be the subspace topology that $Y$ inherits from $X$.
+    Also let $\cT_A$ and $\cT_A'$ be the topologies that $A$ inherits as a subspace of $Y$ and $X$, respectively.
+    Therefore we must show that $\cT_A = \cT_A'$.
+    Now, by definition of subspace topologies we have that,
+    \ali{
+      \cT_Y &= \braces{Y \cap U \where U \in \cT} &
+      \cT_A &= \braces{A \cap U \where U \in \cT_Y} &
+      \cT_A' &= \braces{A \cap U \where U \in \cT} \,.
+    }
+    Now suppose that $W \in \cT_A$ so that $W = A \cap V$ for some $V \in \cT_Y$.
+    Then we have that $V = Y \cap U$ for some $U \in \cT$, and hence
+    \gath{
+      W = A \cap V = A \cap (Y \cap U) = (A \cap Y) \cap U = A \cap U
+    }
+    since we have that $A \cap Y = A$ since $A \ss Y$.
+    Since $U \in \cT$ this clearly shows that $W \in \cT_A'$ so that $\cT_A \ss \cT_A'$ since $W$ was arbitrary.
+
+    Then, for any $W \in \cT_A'$, we have that $W = A \cap U$ for some $U \in \cT$.
+    Let $V = Y \cap U$ so that clearly $V \in \cT_Y$.
+    Then as before we have that $A = A \cap Y$ since $A \ss Y$ so that
+    \gath{
+      W = A \cap U = (A \cap Y) \cap U = A \cap (Y \cap U) = A \cap V \,,
+    }
+    and thus $W \in \cT_A$ since $V \in \cT_Y$.
+    Since $W$ was arbitrary this shows that $\cT_A' \ss \cT_A$, which completes the proof that $\cT_A = \cT_A'$.
+  }
+}
+
+\exercise{2}{
+  If $\cT$ and $\cT'$ are topologies on $X$ and $\cT'$ is strictly finer than $\cT$, what can you say about the corresponding subspace topologies on the subset $Y$ of $X$?
+}
+\sol{
+  \dwhitman
+
+  Let $\cT_Y$ and $\cT_Y'$ be the subspace topologies on $Y$ corresponding to $\cT$ and $\cT'$, respectively.
+  We claim that $\cT_Y$ is finer than $\cT_Y$ but not necessarily strictly finer.
+  \qproof{
+    First, we have that
+    \ali{
+      \cT_Y &= \braces{Y \cap U \where U \in \cT} &
+      \cT_Y' &= \braces{Y \cap U \where U \in \cT'}
+    }
+    by the definition of subspace topologies.
+    So for any $V \in \cT_Y$ we have that $V = Y \cap U$ where $U \in \cT$.
+    Then also $U \in \cT'$ since $\cT'$ is finer than $\cT$.
+    This shows that $V \in \cT_Y'$ since $V = Y \cap U$ where $U \in \cT'$.
+    Hence $\cT_Y'$ is finer than $\cT_Y$ since $V$ was arbitrary.
+
+    To show that it is not necessarily strictly finer, consider the sets $X = \braces{a,b,c}$ and $Y = \braces{a,b}$ so that clearly $Y \ss X$.
+    Consider also the topologies
+    \ali{
+      \cT &= \braces{\es, X, \braces{a,b}} &
+      \cT' &= \braces{\es, X, \braces{a,b}, \braces{c}} 
+    }
+    on $X$ so that clearly $\cT'$ is strictly finer than $\cT$.
+    This results in the subspace topologies
+    \ali{
+      \cT_Y &= \braces{\es, Y} &
+      \cT_Y' &= \braces{\es, Y} \,,
+    }
+    which are clearly the same so that $\cT_Y'$ is not strictly finer than $\cT_Y'$, noting that it is technically still finer.
+    However, if we instead have the topologies
+    \ali{
+      \cT &= \braces{\es, X, \braces{a,b}} &
+      \cT' &= \braces{\es, X, \braces{a,b}, \braces{b}} 
+    }
+    then 
+    \ali{
+      \cT_Y &= \braces{\es, Y} &
+      \cT_Y' &= \braces{\es, Y, \braces{b}}
+    }
+    so that $\cT_Y'$ \emph{is} strictly finer than $\cT_Y$.
+    Thus we can say nothing about the strictness of relation of the subspace topologies.
+  }
+}
+
+\def\oh{\tfrac{1}{2}}
+\exercise{3}{
+  Consider the set $Y = [-1, 1]$ as a subspace of $\reals$.
+  Which of the following sets are open in $Y$?
+  Which are open in $\reals$?
+  \ali{
+    A &= \braces{x \where \oh < \abs{x} < 1}, \\
+    B &= \braces{x \where \oh < \abs{x} \leq 1}, \\
+    C &= \braces{x \where \oh \leq \abs{x} < 1}, \\
+    D &= \braces{x \where \oh \leq \abs{x} \leq 1}, \\
+    E &= \braces{x \where 0 < \abs{x} < 1 \text{ and } 1/x \notin \pints}.
+  }
+}
+\sol{
+  \dwhitman
+  
+  \begin{lem}\label{lem:subset:abs}
+    If $a,b \in \reals$ such that $0 \leq a < b$ then the following are true:
+    \ali{
+      \braces{x \in \reals \where a < \abs{x} < b} &= (-b, -a) \cup (a, b) &
+      \braces{x \in \reals \where a \leq \abs{x} \leq b} &= [-b, -a] \cup [a, b] \\
+      \braces{x \in \reals \where a \leq \abs{x} < b} &= \opcl{-b, -a} \cup \clop{a, b} &
+      \braces{x \in \reals \where a < \abs{x} \leq b} &= \clop{-b, -a} \cup \opcl{a, b} \,.
+    }
+  \end{lem}
+  \qproof{
+    We prove only the first of these as the rest follow from nearly identical arguments.
+    Let $A = \braces{x \in \reals \where a < \abs{x} < b}$ and $B = (-b, -a) \cup (a, b)$ so that we must show that $A = B$.
+
+    So consider $x \in A$ so that $a < \abs{x} < b$.
+    If $x \geq 0$ then $\abs{x} = x$ so that $a < x < b$ and hence $x \in (a,b)$.
+    If $x < 0$ then $\abs{x} = -x$ so that $a < -x < b$, and thus $-a > x > -b$ so that $x \in (-b, -a)$.
+    Thus in either case $x \in B$ so that $A \ss B$.
+
+    Now let $x \in B$ so that either $x \in (-b,-a)$ or $x \in (a,b)$.
+    In the former case we have that $x < -a \leq 0$ since $a \geq 0$ so that $\abs{x} = -x$ and therefore
+    \gath{
+      x \in (-b, -a) \imp -b < x < -a \imp b > -x = \abs{x} > a \imp x \in A \,.
+    }
+    In the  latter case we have that $x > a \geq 0$ so that $\abs{x} = x$ and therefore
+    \gath{
+      x \in (a, b) \imp a < x = \abs{x} < b \imp x \in A \,.
+    }
+    This shows that $B \ss A$ since $x$ was arbitrary, and thus $A = B$ as desired.
+  }
+
+  \begin{lem}\label{lem:subset:open}
+    Suppose that $X$ is a topological space and $Y \ss X$ with the subspace topology.
+    Then, if a set $U \ss Y$ is open in $X$, then it is also open in $Y$.
+  \end{lem}
+  \qproof{
+    So suppose that $U \ss Y$ is open in $X$.
+    Then we have that $Y \cap U = U$ is also open in $Y$ by the definition of the subspace topology.
+  }
+
+  \mainprob
+
+  First we claim that $A$ is open in both $\reals$ and $Y$.
+  \qproof{
+    We have from Lemma~\ref{lem:subset:abs} that $A = (-1, -\oh) \cup (\oh, 1)$ which is clearly the union of basis elements so that $A$ is open in $\reals$.
+    We also have that $A \ss Y$ so that $A$ is open in $Y$ by Lemma~\ref{lem:subset:open} since it is open in $\reals$.
+  }
+
+  Next we claim that $B$ is open in $Y$ but not in $\reals$.
+  \qproof{
+    By Lemmma~\ref{lem:subset:abs} we have that $B = \clop{-1, -\oh} \cup \opcl{\oh, 1}$.
+    First, consider the sets $(-2,-\oh)$ and $(\oh,2)$, which are clearly both basis elements and therefore open in $\reals$.
+    We then have that $(-2,-\oh) \cap Y = \clop{-1,-\oh}$ and $(\oh,2) \cap Y = \opcl{\oh, 1}$ so that these sets are open in $Y$ by the definition of the subspace topology.
+    Clearly then their union $B = \clop{-1, -\oh} \cup \opcl{\oh, 1}$ is then also open in $Y$.
+
+    It is also easy to see that $B$ is not open in $\reals$.
+    For example, $-1 \in B$ but for any basis element $B' = (a,b)$ containing $-1$ we have that $a < -1 < b$ so that $a < (a-1)/2 < -1 < b$ and hence $(a-1)/2 \in B'$.
+    Clearly though $(a-1)/2 \notin B$ so that $B'$ cannot be a subset of $B$.
+    Thus suffices to show that $B$ is not open by the definition of the topology of $\reals$ generated by its basis.
+  }
+
+  We claim that $C$ is open neither in $\reals$ nor $Y$.
+  \qproof{
+    By Lemmma~\ref{lem:subset:abs} we have that $C = \opcl{-1,-\oh} \cup \clop{\oh, 1}$.
+    If $\cB$ is the standard basis on $\reals$, then, by Lemma~16.1, the set $\cB_Y = \braces{B \cap Y \where B \in \cB}$ is a basis for the subspace $Y$.
+    So consider the point $x = \oh$ and any basis element $B_Y \in \cB_Y$ containing $x$.
+    Then we have that $B_Y = Y \cap B_X$ for some basis element $B_X = (a,b)$ in $\cB$, and thus $a < x < b$ since $x \in B_X$.
+    Let $a' = \max(a, -\oh)$ and set $y = (a'+x)/2$ so that
+    \gath{
+      a \leq a' < (a'+x)/2 = y < x < b \,,
+    }
+    and hence $y \in (a,b) = B_X$.
+    Also we have
+    \gath{
+      -1 < -\oh \leq a' < (a'+x)/2 = y < x = \oh < 1
+    }
+    so that $y \in [-1,1] = Y$.
+    Therefore $y \in Y \cap B_X = B_Y$.
+    However, since $-\oh < y < \oh$, clearly $y \notin C$ so that $B_Y$ cannot be a subset of $C$.
+    Since the basis element $B_Y \in \cB_Y$ was arbitrary, this suffices to show that $C$ cannot be open in $Y$ since $\cB_Y$ is a basis.
+    Since also clearly $C \ss Y$, it follows from the contrapositive of Lemma~\ref{lem:subset:open} that $C$ is not open in $\reals$ either.
+  }
+
+  Next we claim that $D$ is also not open in $\reals$ or $Y$.
+  \qproof{
+    This follows from basically the same argument as the previous proof, again using the point $x = \oh$ to show that any basis element of $Y$ that contains $x$ cannot be a subset of $D$.
+  }
+
+  Lastly, we claim that $E$ is open in both $\reals$ and $Y$.
+  \qproof{
+    First, it is trivial to show that
+    \gath{
+      E = \braces{x \in \reals \where 0 < \abs{x} < 1} - K = \squares{(-1,0) \cup (0,1)} - K \,,
+    }
+    where we have used Lemma~\ref{lem:subset:abs}.
+    Now consider any $x \in E$ so that $x \in (-1,0) \cup (0,1)$ and $x \notin K$.
+    If $x \in (-1,0)$ then clearly the basis element $(-1,0)$ contains $x$ and is a subset of $E$ since $(-1,0) \cap K = \es$.
+
+    On the other hand, if $x \in (0,1)$ then $x \notin K$ so that $1/x \notin \pints$.
+    From this it follows from Exercise~4.9b that there is exactly one positive integer $n$ such that $n < 1/x < n+1$.
+    We then have that $1/(n+1) < x < 1/n$.
+    So let $B = (1/(n+1), 1/n)$ so that clearly $x \in B$, $B \cap K = \es$, and $B$ is a basis element of the standard topology on $\reals$.
+    Since $B \cap K = \es$ and clearly $0 < 1/(n+1) < 1/n \leq 1$, it also follows that $B \ss E$.
+
+    Hence in either case there is a basis element of $\reals$ that contains $x$ and is a subset of $E$.
+    This suffices to show that $E$ is open in $\reals$.
+    Since clearly $E \ss Y$, we also clearly have that $E$ is open in $Y$ by Lemma~\ref{lem:subset:open}.
+  }
+}
+
+\exercise{4}{
+  A map $f: X \to Y$ is said to be an \boldit{open map} if for every open set $U$ of $X$, the set $f(U)$ is open in $Y$.
+  Show that $\pi_1 : X \times Y \to X$ and $\pi_2 : X \times Y \to Y$ are open maps.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    Let $\cB_p$ be the basis of the product topology $X \times Y$ as given by the definition of a product topology.
+    Consider then any open subset $W$ of $X \times Y$ so that $W = \bigcup \cB$ for some subcollection $\cB \ss \cB_p$ by Lemma~13.1.
+    Let $\cC = \braces{U \where U \times V \in \cB}$, and we claim that $\pi_1(W) = \bigcup \cC$.
+
+    So first consider $x \in \pi_1(W)$ so that there is a $y \in Y$ where $(x,y) \in W$ (and of course $\pi_1(x,y) = x$).
+    Then, since $W = \bigcup \cB$, there is a basis element $U \times V \in \cB$ where $(x,y) \in U \times V$ and $U$ and $V$ are open subsets of $X$ and $Y$, respectively.
+    Hence $x \in U$ and clearly $U \in \cC$ so that $x \in \bigcup \cC$.
+    This shows that $\pi_1(W) \ss \bigcup \cC$ since $x$ was arbitrary.
+
+    Now consider any $x \in \bigcup \cC$ so that there is a $U \in \cC$ where $x \in U$.
+    Then $U \times V \in \cB$ for some open subset $V$ of $Y$ since $U \in \cC$.
+    If it were the case that $V = \es$ then $U \times V$ would also be empty so it could not be that $x \in U$.
+    Hence $V \neq \es$ so that we can choose a $y \in V$, and hence $(x,y) \in U \times V$.
+    Since $U \times V \in \cB$, it follows that $(x,y) \in \bigcup \cB = W$.
+    Then clearly $x \in \pi_1(W)$ since we have $\pi_1(x,y) = x$ and $(x,y) \in W$.
+    This shows that $\bigcup \cC \ss \pi_1(W)$ since $x$ was arbitrary.
+
+    We have therefore shown that $\pi_1(W) = \bigcup \cC$.
+    But clearly $\cC$ is a collection of open subsets of $X$ so that $\pi_1(W) = \bigcup \cC$ is also an open subset of $X$.
+    Since $W$ was arbitrary, this shows that $\pi_1$ is an open map.
+    An analogous argument shows that $\pi_2$ has the same property.
+  }
+}
