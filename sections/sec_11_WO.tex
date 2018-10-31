@@ -321,13 +321,13 @@
 
     If $B$ has the same order type as $A \cup B$, then there is a an order preserving bijection $g: A \cup B \to B$.
     Let $b$ be the smallest element of $B$ so that $y = g(b) \in B$.
-    Since $b$ is the least element of $B$, clearly the section $S_b = \braces{x \in A \cup B \where x \prec b} = A$.
+    Since $b$ is the smallest element of $B$, clearly the section $S_b = \braces{x \in A \cup B \where x \prec b} = A$.
     Also clearly $g(A) = g(S_b) = S_y = \braces{x \in B \where x < y}$ so that $A$ has the same order type as a section of $B$ since $g$ preserves order.
 
     If $B$ has the same order type as a section of $A \cup B$ then there is an order preserving bijection $f: B \to S_\a$ for some $\a \in A \cup B$.
     If $\a \in A$ then clearly $S_\a$ lies entirely in $A$ and is a section of $A$ so that $B$ has the same order type as a section of $A$.
     So now suppose that $\a \in B$.
-    If $\a$ is the smallest element of $B$ then again it has to be that $S_\a$ lies in $A$ and is in fact the enitrety of $A$ so that $B$ and $A$ have the same order type.
+    If $\a$ is the smallest element of $B$ then again it has to be that $S_\a$ lies in $A$ and is in fact the entirety of $A$ so that $B$ and $A$ have the same order type.
     If $\a$ is not the smallest element of $B$ then $S_\a$ contains elements of both $A$ and $B$.
     So let $b$ be the smallest element of $B$ so that $b \in S_\a$, and let $y \in B$ be such that $f(y) = b$, which exists since $f$ is surjective.
     We also have that $S_b = A$ since $b$ is the smallest element of $B$.
@@ -349,6 +349,173 @@
     A similar contradiction arises if $B$ were to have the same order type as a section of $A$.
     By part (a), the only remaining possibility is that $A$ and $B$ have the same order type as desired.
   }
+}
+
+\exercise{5}{
+  Let $X$ be a set; let $\cA$ be the collection of all pairs $(A, <)$, where $A$ is a subset of $X$ and $<$ is a well-ordering of $A$.
+  Define
+  \gath{
+    (A, <) \prec (A', <')
+  }
+  if $(A, <)$ \emph{equals} a section of $(A', <')$.
+  \eparts{
+  \item Show that $\prec$ is a strict partial order on $\cA$.
+  \item Let $\cB$ be a subcollection of $\cA$ that is simply ordered by $\prec$.
+    Define $B'$ to be the union of the sets $B$, for all $(B, <) \in \cB$; and define $<'$ to be the union of the relations $<$, for all $(B, <) \in \cB$.
+    Show that $(B', <')$ is a well-ordered set.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    For any $(A,<) \in \cA$ we have that it is not equal to a section of itself since then it would then clearly have the same order type as its own section, which would violate Exercise~\thesubsection.2b.
+    Hence it is not true that $(A, <) \prec (A, <)$ by definition, which shows that $\prec$ is nonreflexive.
+
+    Now consider $(A,<)$, $(A',<')$, and $(A'',<'')$ in $\cA$ where $(A,<) \prec (A',<')$ and $(A',<') \prec (A'',<'')$.
+    Then $(A,<)$ is a section of $(A',<')$.
+    Also $(A',<')$ is a section of $(A'',<'')$ so that clearly any section of $(A',<')$ is also a section of $(A'',<'')$.
+    Since $(A,<)$ is such a section we have that $(A,<)$ is a section of $(A'',<'')$ so that $(A,<) \prec (A'',<'')$.
+    This shows that $\prec$ is transitive.
+
+    This completes the proof that $\prec$ is a strict partial order.
+  }
+
+  (b)
+  \qproof{
+    First we must show that $B'$ is simply ordered by $<'$.
+
+    First consider any $(x,y) \in <'$ so that there is a $(B,<) \in \cB$ where $(x,y) \in <$ and $x,y \in B$.
+    Clearly then $x$ and $y$ are in the union $B'$ so that $(x,y) \in B' \times B'$.
+    This shows that $<' \ss B' \times B'$ so that $<'$ is a relation on $B'$.
+
+    Next consider any $x$ and $y$ in $B'$ where $x \neq y$.
+    Then there are well-ordered sets $(B_1, <_1)$ and $(B_2, <_2)$ in $\cB$ where $x \in B_1$ and $y \in B_2$.
+    Since $\cB$ is simply ordered by $\prec$ we have that $(B_1, <_1) \prec (B_2, <_2)$ or $(B_2, <_2) \prec (B_1, <_1)$.
+    Without loss of generality we can assume the former case (since otherwise we can just swap the roles of $x$ and $y$).
+    Then $(B_1 <_1)$ is a section of $(B_2, <_2)$ and is thus also a subset so that $x,y \in B_2$,
+    It then follows that $x$ and $y$ are comparable by $<_2$ since $x \neq y$ and $<_2$ is a well-order and therefore a simple order.
+    Thus $(x,y)$ or $(y,x)$ are in $<_2$.
+    Since $<'$ is the union of all relations $<$ where $(B,<) \in \cB$, clearly we have that $(x,y)$ or $(y,x)$ are in $<'$ since $<_2$ is such a relation.
+    Thus shows that $<'$ has the comparability property.
+
+    Now consider any $x \in B'$ so that there is a $(B,<) \in \cB$ where $x \in B$.
+    Consider also any $(B'', <'') \in \cB$.
+    Then, since $\cB$ is simply ordered, it follows that $(B,<)$ and $(B'', <'')$ are comparable in $\prec$.
+    If $(B,<) \prec (B'',<'')$ then $(B,<)$ is a section of $(B'',<'')$ so that $x \in B''$ as well.
+    Then it cannot be that $x <'' x$ since $<''$ is a simple order.
+    If $(B'',<'') \prec (B,<)$ then $(B'',<'')$ is a section of $(B,<)$.
+    If $x \in B''$ then again it cannot be that $x <'' x$ since $<''$ is a simple order.
+    If $x \notin B''$ then $(x, x) \notin <''$ since it is a relation on $B''$.
+    Thus in all cases and sub-cases it is not true that $x <'' x$ so that $x <' x$ does not hold since $<''$ was arbitrary and $<'$ is their union.
+    This shows that $<'$ is nonreflexive.
+
+    Lastly, suppose that $x <' y$ and $y <' z$.
+    Then it has to be that there is a $(B_1, <_1)$ and $(B_2, <_2)$ in $\cB$ where $z <_1 y$ and  $y <_2 z$.
+    Then $(B_1, <_1)$ and $(B_2, <_2)$ are comparable in $\prec$ since $\cB$ is simply ordered.
+    Hence one is a section of the other so that, in either case, it follows that $x < y$ and $y < z$ where either $< = <_1$ or $< = <_2$.
+    Then clearly $x < z$ since both $<_1$ and $<_2$ are transitive since they are simple orders.
+    Thus $x <' z$ since $<'$ is the union of all the orders in $\cB$ and $<$ is such an order.
+    This shows that $<'$ is transitive.
+
+    This completes the proof that $<'$ is a simple order on $B'$.
+    To show that it is a well-order, consider any nonempty subset $A \ss B'$.
+    Then there is an $x \in A$ so that $x \in B'$ as well.
+    It then follows that there is a $(B, <) \in \cB$ where $x \in B$.
+    Then clearly $B \cap A$ is a nonempty subset of $B$ since $x \in B$ and $x \in A$.
+    Let $b$ be the $<$-smallest element in $B \cap A$, and we claim that this is the smallest element of $A$ by $<'$.
+    First, obviously $b \in A$ since $b \in B \cap A$.
+    Next consider any $y \in A$ so that $y \in B'$ as well.
+    Then there is a $(B'', <'') \in \cB$ where $y \in B''$.
+    Since $\cB$ is simply ordered by $\prec$ we have that $(B,<)$ and $(B'',<'')$ are comparable.
+    Hence $(B,<)$ is a section of $(B'',<'')$ or vice-versa.
+    
+    In the first case we have that both $b$ and $y$ are in $B''$.
+    If $y \in B$ then also $y \in B \cap A$ so that $b \leq y$ since it is the smallest element of $B \cap A$ by $<$.
+    If $y \notin B$ then $b <'' y$ since $B$ is a section of $B''$, and therefore $b \leq'' y$ is true.
+    In the second case in which $(B'',<'')$ is a section of $(B,<)$ we have that both $b$ and $y$ are in $B$ and hence in $B \cap A$.
+    Then, again $b \leq y$ since $b$ is the smallest element of $B \cap A$ by $<$.
+    Hence in all cases either $b \leq y$ or $b \leq'' y$.
+    Either way it follows that $b \leq' y$ as well since $<'$ is the union.
+    This shows that $b$ is the least element of $A$ by $<'$ as desired.
+    Since $A$ was an arbitrary nonempty subset, this shows that $B'$ is well-ordered by $<'$.
+  }
+}
+
+\exercise{6}{
+  Use Exercises~1 and 5 to prove the following:
+
+  \emph{Theorem.}
+  The maximum principle is equivalent to the well-ordering theorem.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    First suppose that the maximum principle is true and let $X$ be any set.
+    Then let $\cA$ be the collection of all pairs $(A,<)$, where $A \ss X$ and $<$ is a well-ordering of $A$ as in Exercise~\thesubsection.5.
+    Define the relation $\prec$ on $\cA$ also as in Exercise~\thesubsection.5, i.e $(A,<) \prec (A', <')$ if $(A,<)$ is a section of $(A',<')$.
+    It was then shown in that exercise that $\prec$ is a strict partial order on $\cA$ so that, by the maximum principle, there is a maximal simply ordered subset $\cB \ss \cA$.
+    Now let $(B', <')$ be the unions of the corresponding elements of $\cB$ so that we know that $<'$ well-orders $B'$ by part (b) of Exercise~\thesubsection.5.
+
+    We claim that $B' = X$.
+    Suppose that this is not the case so that there is a $x \in X$ where $x \notin B'$ (since we know that $B' \ss X$).
+    Then define $B'' = B' \cup \braces{x}$ and the relation $<'' = <' \cup \braces{(b', x) \where b' \in B'}$.
+    It is then easy to see (and trivial but tedious to show) that $B''$ is well-ordered by $<''$.
+    Also, clearly $B'$ is the section of $B'' $ by $x$ so that, for any $B \in \cB$, we have $B \eprec B' \prec B''$.
+    Since $B$ was arbitrary, this shows that the set $\cB \cup \braces{B''}$ is simply ordered by $\prec$ and is a subset of $\cA$.
+    Since $x \notin B'$ we have that $x \notin B$ for any $B \in \cB$ (since $B'$ is their union) so that $B'' \neq B$ since $x \in B$.
+    It follows that $\cB \pss \cB \cup \braces{B''}$, but this contradicts the maximality of $\cB$!
+    So it has to be that in fact $B' = X$ itself so that $<'$ is a well-ordering of $X$.
+    Since $X$ was an arbitrary set, this shows the well-ordering theorem.
+
+    Now suppose the well-ordering theorem and that $A$ is a set with strict partial ordering $\prec$.
+    Then we know that $A$ has a well-ordering, say $<$.
+    Now, for any function $f$ from a section $S_x$ (by $<$) to $\pset{A}$, define
+    \gath{
+      \r(f) = \begin{cases}
+        \bigcup f(S_x) \cup \braces{x} & \text{if $\prec$ is a simple order on $\bigcup f(S_x) \cup \braces{x}$} \\
+        \bigcup f(S_x) & \text{otherwise} \,.
+      \end{cases}
+    }
+    Then by the general principle of recursive defamation (Exercise~\thesubsection.1) there is a unique function $h : A \to \pset{A}$ such that $h(\a) = \r(h \rest S_\a)$ for all $\a \in A$.
+
+    First we show that, for $\a,\b \in A$ where $\a < \b$, we have $h(\a) \ss h(\b)$.
+    So consider any $x \in h(\a) = \r(h \rest S_\a)$, and hence either $x \in \bigcup h(S_\a) \cup \braces{\a}$ or $x \in \bigcup h(S_\a)$.
+    Either way obviously $x \in \bigcup h(S_\a)$ so that there is a set $X \in h(S_\a)$ where $x \in X$.
+    Then there is a $\g \in S_\a$ where $X = h(\g)$.
+    Since we have $\a < \b$, clearly also $\g \in S_\b$ and hence $X \in h(S_\b)$.
+    Then also clearly both $x \in \bigcup h(S_\b) \cup \braces{\b}$ and $x \in \bigcup h(S_\b)$ so that for sure $x \in \r(h \rest S_\b) = h(\b)$.
+    Since $x$ was arbitrary this shows that $h(\a) \ss h(\b)$ as desired.
+
+    Next we show by transfinite induction that $h(\a)$ is simply ordered by $\prec$ for every $\a \in A$.
+    So consider $\a \in A$ and suppose that $h(\b)$ is simply ordered by $\prec$ for every $\b < \a$.
+    If $\bigcup h(S_\a) \cup \braces{\a}$ is simply ordered by $\prec$ then clearly $h(\a)$ is since then $h(\a) = \r(h \rest S_\a) = \bigcup h(S_\a) \cup \braces{\a}$.
+    So suppose that this is not the case so that $h(\a) = \r(h \rest S_\a) = \bigcup h(S_\a)$.
+    Consider then any $x,y \in h(\a) = \bigcup h(S_\a)$ where $x \neq y$ so that there are $X$ and $Y$ in $h(S_\a)$ where $x \in X$ and $y \in Y$.
+    Then there is a $\b$ and $\g$ in $S_\a$ where $X = h(\b)$ and $Y = h(\g)$.
+    If $\b = \g$ then $x$ and $y$ are both in $X = h(\b) = h(\g) = Y$, which is simply ordered by the induction hypothesis so that $x$ and $y$ are comparable in $\prec$.
+    If $\b < \g$ then by what was shown above we have that $x \in X = h(\b) \ss h(\g)$ so that $x$ and $y$ are both in $h(\g)$, which is simply ordered by the induction hypothesis so that again $x$ and $y$ are comparable.
+    A similar argument shows that $x$ and $y$ are both in $h(\b)$ and thus are comparable when $\b > \g$.
+    This completes the induction since $x$ and $y$ are comparable in all cases so that $h(\a)$ is always simply ordered.
+
+    We then claim that the set $B = \bigcup_{\a \in A} h(\a)$ is a maximal simply ordered (by $\prec$) subset of $A$, which of course shows the maximum principle.
+    First, it is obviously a subset of $A$ since each $h(\a) \in \pset{A}$ so and so is a subset of $A$.
+    To show that that $B$ is simply ordered by $\prec$, consider $x$ and $y$ in $B$ where $x \neq y$ so that there is an $\a$ and $\b$ in $A$ where $x \in h(\a)$ and $y \in h(\b)$.
+    Without loss of generality we can assume that $\a < \b$ so that $h(\a) \ss h(\b)$ by what was shown below.
+    Then both $x$ and $y$ are in $h(\b)$, which is simply ordered by what was shown above.
+    Hence $x$ and $y$ are comparable in $\prec$ so that $B$ is simply ordered.
+
+    To show that $B$ is maximal, suppose that $B \pss Z$ and $Z \ss A$ is simply ordered by $\prec$.
+    Then there is a $z \in Z$ where $z \notin B$.
+    Now let $x \in \bigcup h(S_z)$ so that there is an $X \in h(S_z)$ where $x \in X$.
+    Then there is an $\a \in S_z$ where $x \in X = h(\a)$.
+    Hence clearly $x \in B$ so that also $x \in Z$ and so $x$ and $z$ are comparable in $\prec$ since $Z$ is simply ordered.
+    Since $x$ was arbitrary this shows that the set $\bigcup h(S_z) \cup \braces{z}$ is simply ordered so that $h(z) = \r(h \rest S_z) = \bigcup h(S_z) \cup \braces{z}$.
+    However, then we have that $z \in h(z)$ so that $z \in B$, which is a contradiction.
+    So it must be that there is no such set $Z$ and hence $B$ is maximal.
+  } 
 }
 
 % Restore section label to number

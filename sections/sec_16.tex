@@ -217,26 +217,15 @@
   \dwhitman
 
   \qproof{
-    Let $\cB_p$ be the basis of the product topology $X \times Y$ as given by the definition of a product topology.
-    Consider then any open subset $W$ of $X \times Y$ so that $W = \bigcup \cB$ for some subcollection $\cB \ss \cB_p$ by Lemma~13.1.
-    Let $\cC = \braces{U \where U \times V \in \cB}$, and we claim that $\pi_1(W) = \bigcup \cC$.
-
-    So first consider $x \in \pi_1(W)$ so that there is a $y \in Y$ where $(x,y) \in W$ (and of course $\pi_1(x,y) = x$).
-    Then, since $W = \bigcup \cB$, there is a basis element $U \times V \in \cB$ where $(x,y) \in U \times V$ and $U$ and $V$ are open subsets of $X$ and $Y$, respectively.
-    Hence $x \in U$ and clearly $U \in \cC$ so that $x \in \bigcup \cC$.
-    This shows that $\pi_1(W) \ss \bigcup \cC$ since $x$ was arbitrary.
-
-    Now consider any $x \in \bigcup \cC$ so that there is a $U \in \cC$ where $x \in U$.
-    Then $U \times V \in \cB$ for some open subset $V$ of $Y$ since $U \in \cC$.
-    If it were the case that $V = \es$ then $U \times V$ would also be empty so it could not be that $x \in U$.
-    Hence $V \neq \es$ so that we can choose a $y \in V$, and hence $(x,y) \in U \times V$.
-    Since $U \times V \in \cB$, it follows that $(x,y) \in \bigcup \cB = W$.
-    Then clearly $x \in \pi_1(W)$ since we have $\pi_1(x,y) = x$ and $(x,y) \in W$.
-    This shows that $\bigcup \cC \ss \pi_1(W)$ since $x$ was arbitrary.
-
-    We have therefore shown that $\pi_1(W) = \bigcup \cC$.
-    But clearly $\cC$ is a collection of open subsets of $X$ so that $\pi_1(W) = \bigcup \cC$ is also an open subset of $X$.
-    Since $W$ was arbitrary, this shows that $\pi_1$ is an open map.
-    An analogous argument shows that $\pi_2$ has the same property.
+    Suppose that $U$ is an open subset of $X \times Y$.
+    Consider any $x \in \pi_1(U)$ so that there is a $y \in Y$ such that $(x,y) \in U$.
+    Then there is a basis element $A \times B$ of the product topology on $X \times Y$ where $(x,y) \in A \times B \ss U$.
+    Then $A$ and $B$ are open sets of $X$ and $Y$, respectively, since $A \times B$ is a basis element of the product topology.
+    Clearly we have that $x \in A$ since $(x,y) \in A \times B$.
+    Now, for any $x' \in A$, we have that $(x',y) \in A \times B$ so that $(x',y) \in U$.
+    Hence $x' = \pi_1(x',y) \in \pi_1(U)$, which shows that $A \ss \pi_1(U)$ since $x'$ was arbitrary.
+    Then, since $A$ is an open subset of $X$, there is a basis element $A'$ where $x \in A' \ss A \ss \pi_1(U)$.
+    This suffices to show that $\pi_1(U)$ is an open subset of $X$ since $x$ was arbitrary.
+    An analogous argument shows that $\pi_2$ is also an open map.
   }
 }
