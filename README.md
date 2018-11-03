@@ -21,4 +21,4 @@ There are other solutions manuals floating around the Internet, and when studyin
 
 [A nice online solutions manual](https://dbfin.com/topology/munkres/)
 
-[Another GiHub solutions manual project (includes both HTML and PDF)](https://github.com/9beach/munkres-topology-solutions)
+[Another GitHub solutions manual project (includes both HTML and PDF)](https://github.com/9beach/munkres-topology-solutions)

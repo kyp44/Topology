@@ -229,3 +229,83 @@
     An analogous argument shows that $\pi_2$ is also an open map.
   }
 }
+
+\exercise{5}{
+  Let $X$ and $X'$ denote a single set in the topologies $\cT$ and $\cT'$, respectively; let $Y$ and $Y'$ denote a single set in the topologies $\cU$ and $\cU'$, respectively.
+  Assume these sets are nonempty.
+  \eparts{
+  \item Show that if $\cT' \sps \cT$ and $\cU' \sps \cU$, then the product topology on $X' \times Y'$ is finer than the product topology on $X \times Y$.
+  \item Does the converse of (a) hold? Justify your answer.
+  }
+}
+\sol{
+  \dwhitman
+
+  In what follows let $\cT_p'$ and $\cT_p$ denote the product topologies on $X' \times Y'$ and $X \times Y$, respectively.
+  
+  (a)
+  \qproof{
+    Consider any $W \in \cT_p$ and any $(x,y) \in W$, noting that obviously $W \ss X \times Y$.
+    Then there is a basis element $U \times V$ of $\cT_p$ such that $(x,y) \in U \times V$ and $U \times V \ss W$.
+    By the definition of the product topology, we have that $U$ and $V$ are open sets in $\cT$ and $\cU$, respectively.
+    Then we also have that $U \in \cT'$ and $V \in \cU'$ since $\cT \ss \cT'$ and $\cU \ss \cU'$.
+    Hence $U \times V$ is also a basis element of $\cT_p'$.
+    Since we know that $(x,y) \in U \times V$, $U \times V \ss W$, and $(x,y) \in W$ was arbitrary, this suffices to show that $W$ is an open subset of $X' \times Y'$ and hence $W \in \cT_p'$.
+    This in turn shows that $\cT_p \ss \cT_p'$ since $W$ was arbitrary.
+  }
+
+  (b) We claim that the converse does not always hold.
+  \qproof{
+    As a counterexample consider $A = \braces{a, b, c, d}$ so that clearly
+    \ali{
+      \cT' &= \braces{\es, A, \braces{a,b}, \braces{c,d}} \\
+      \cT &= \braces{\es, A, \braces{a,b}, \braces{c,d}, \braces{c}, \braces{d}, \braces{a,b,c}, \braces{a,b,d}} 
+    }
+    are topologies on $A$.
+    Clearly also $\cT'$ is not finer that $\cT$.
+    Similarly let $B = \braces{1, 2, 3, 4}$ so that
+    \ali{
+      \cU' &= \braces{\es, B, \braces{1,2}, \braces{3,4}} \\
+      \cU &= \braces{\es, B, \braces{1,2}, \braces{3,4}, \braces{3}, \braces{4}, \braces{1,2,3}, \braces{1,2,4}} 
+    }
+    are topologies on $B$, also noting that clearly $\cU'$ is not finer that $\cU$.
+    Now let $X = X' = \braces{a,b}$ and $Y = Y' = \braces{1,2}$ so that clearly $X$ and $X'$ are in topologies $\cT$ and $\cT'$, respectively, and $Y$ and $Y'$ are in $\cU$ and $\cU'$, respectively.
+
+    Then the bases for the product topologies $\cT_p$ on $X \times Y$ and $\cT_p'$ on $X' \times Y'$ are then
+    \ali{
+      \cB &= \braces{\es, X \times Y} &
+      \cB' &= \braces{\es, X' \times Y'} = \braces{\es, X \times Y} = \cB \,,
+    }
+    respectively, since there are no subsets of $X$ in $\cT$ or $\cT'$ other than $\es$ and $X$ itself, and similarly no subsets of $Y$ in $\cU$ or $\cU'$ other than $\es$ and $Y$.
+    Since their bases are the same, clearly $\cT_p = \cT_p'$ so that it is true that $\cT_p'$ is finer than $\cT_p$ (though not strictly so).
+  }
+}
+
+\exercise{6}{
+  Show that the countable collection
+  \gath{
+    \braces{(a,b) \times (c,d) \where \text{$a < b$ and $c < d$ and $a,b,c,d$ are rational}}
+  }
+  is a basis for $\reals^2$.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    It was proven in Exercise~13.8a that the set
+    \gath{
+      \cB = \braces{(a,b) \where \text{$a < b$, $a$ and $b$ rational}}
+    }
+    is a basis for the standard topology on $\reals$.
+    It then follows that
+    \gath{
+      \col{D} = \braces{B \times C \where B,C \in \cB}
+    }
+    is a basis for the standard topology on $\reals^2$ by Theorem~15.1.
+    Clearly we have
+    \gath{
+      \col{D} = \braces{(a,b) \times (c,d) \where \text{$a < b$ and $c < d$ and $a,b,c,d$ are rational}} \,,
+    }
+    which shows the desired result.
+  }
+}
