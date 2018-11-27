@@ -415,3 +415,158 @@
   \end{center}
   We note that $\reals$ simply denotes the standard topology.
 }
+
+\exercise{9}{
+  Show that the dictionary order topology on the set $\reals \times \reals$ is the same as the product topology on $\reals_d \times \reals$, where $\reals_d$ denotes $\reals$ in the discrete topology.
+  Compare this topology with the standard topology on $\reals^2$.
+}
+\sol{
+  \dwhitman
+
+  In what follows let $\cT_d$ denote the dictionary order topology on $\reals \times \reals$, and let $\cT_p$ denote the product topology on $\reals_d \times \reals$.
+  Also let $\prec$ denote the dictionary ordering of $\reals \times \reals$.
+  First we show that $\cT_d = \cT_p$.
+  \qproof{
+    First we note that clearly the dictionary order on $\reals \times \reals$ has no largest or smallest elements so that, by definition, $\cT_d$ has as basis elements intervals $((x,y), (x',y'))$, that is the set of all points $z \in \reals \times \reals$ where $(x,y) \prec z \prec (x',y')$.
+    Clearly the set $\braces{\braces{x} \where x \in \reals}$ is a basis for $\reals_d$.
+    Hence, by Theorem~15.1, the set $\cB_p = \braces{\braces{x} \times (a,b) \where \text{$x \in \reals$ and $a < b$}}$ is a basis for the product topology $\cT_p$.
+
+    So consider any $(x,y) \in \reals \times \reals$ and any basis element $B_d = ((a,b), (a',b'))$ of $\cT_d$ that contains $(x,y)$.
+    Hence $(a,b) \prec (x,y) \prec (a',b')$.
+
+    Case: $a = x$:
+    Then since $(a,b) \prec (x,y)$, it has to be that $b < y$.
+    \begin{indpar}
+      Case: $a = x = a'$.
+      Then it also has to be that $y < b'$ since $(x,y) \prec (a',b')$.
+      Then the set $B_p = \braces{x} \times (b,b')$ is a basis element of $\cT_p$ that contains $(x,y)$ and is a subset of $B_d$.
+
+      Case: $a = x < a'$.
+      Then it is easy to show that the set $B_p = \braces{x} \times (b, y+1)$ is a basis element of $\cT_p$ that contains $(x,y)$ and is a subset of $B_d$.
+    \end{indpar}
+
+    Case: $a < x$:
+    \begin{indpar}
+      Case: $x = a'$.
+      Then it has to be that $y < b'$ since $(x,y) \prec (a',b')$.
+      Then it is easy to show that the set $B_p = \braces{x} \times (y-1, b')$ is a basis element of $\cT_p$ that contains $(x,y)$ and is a subset of $B_d$.
+
+      Case: $a = x < a'$.
+      Then it is easy to show that the set $B_p = \braces{x} \times (y-1, y+1)$ is a basis element of $\cT_p$ that contains $(x,y)$ and is a subset of $B_d$.
+    \end{indpar}
+    In every case and sub-case it follows from Lemma~13.3 that $\cT_d \ss \cT_p$.
+
+    Now suppose $(x,y) \in \reals \times \reals$ and $B_p = \braces{x} \times (a,b)$ is a basis element of $\cT_p$ containing $(x,y)$.
+    Also let $B_d$ be the interval in the dictionary order $((x,a), (x,b))$, which is clearly a basis element of $\cT_d$.
+    It is then trivial to show that $B_p = B_d$ so that $x \in B_d \ss B_p$, which shows that $\cT_p \ss \cT_d$ by Lemma~13.3.
+    This suffices to show that $\cT_d = \cT_p$ as desired.
+  }
+
+  We now claim that this topology $\cT_d = \cT_p$ is strictly finer than the standard topology on $\reals \times \reals$.
+  We denote the latter by simply $\cT$.
+  \qproof{
+    Since it was just shown that $\cT_d = \cT_p$, it suffices to show that either one is strictly finer than the standard topology.
+    It shall be most convenient to use the product topology $\cT_p$.
+    So first consider any $(x,y) \in \reals^2$ and  any basis element $B = (a,b) \times (c,d)$ of $\cT$ containing $(x,y)$.
+    Hence $a < x < b$ and $c < y < d$.
+    It is then trivial to show that the set $\braces{x} \times (c,d)$, which is clearly a basis element of $\cT_p$, contains $(x,y)$ and is a subset of $B$.
+    This shows that $\cT_p$ is finer than $\cT$ by Lemma~13.3.
+
+    To show that it is strictly finer, consider the point $(0,0)$ and the set $B_p = \braces{0} \times (-1,1)$, which clearly contains $(0,0)$ and is a basis element of $\cT_p$.
+    Now consider any basis element $B = (a,b) \times (c,d)$ of $\cT$ that also contains $(0,0)$.
+    It then follows that $a < 0 < b$ and $c < 0 < d$.
+    Consider then the point $x = (a+0)/2 = a/2$ so that clearly $a < x < 0 < b$ and hence $x \in (a,b)$.
+    Thus the point $(x,0) \in B$, but also $(x,0) \notin B_p$ since $x < 0$ so that $x \neq 0$.
+    This shows that $B$ cannot be a subset of $B_p$.
+    Since $B$ was an arbitrary basis element of $\cT$, this shows that $\cT$ is \emph{not} finer than $\cT_p$ by the negation of Lemma~13.3.
+
+    This suffices to show that $\cT_p$ is strictly finer than $\cT$ as desired.
+  }
+}
+
+\exercise{10}{
+  Let $I = [0,1]$.
+  Compare the product topology on $I \times I$, the dictionary order topology on $I \times I$, and the topology $I \times I$ inherits as a subspace of $\reals \times \reals$ in the dictionary order topology.
+}
+\sol{
+  \dwhitman
+
+  First, we assume that the product topology on $I \times I$ is the product of $I$ with the order topology as this seems to be the standard when no topology is explicitly specified.
+  Denote this product topology by $\cT_p$.
+  Let $\cT_d$ denote the dictionary order topology on $I \times I$, and let $\cT_s$ denote the subspace topology on $I \times I$ inherited as a subspace of $\reals \times \reals$ in the dictionary order topology.
+  Lastly, let $\prec$ denote the dictionary order on $I \times I$ and $\reals \times \reals$.
+  To avoid ambiguity we also use the notation $x \times y$ to denote the ordered pair $(x,y)$ and reserve parentheses for open intervals.
+
+  First we claim that $\cT_p$ and $\cT_d$ are incomparable.
+  \qproof{
+    First, consider the point $0 \times 1 \in I \times I$ and $B_p = \clop{0,1/2} \times \opcl{1/2,1}$, which is a basis element of $\cT_p$ that clearly contains $0 \times 1$.
+    Note that $B_p$ is a basis element because $\clop{0,1/2}$ and $\opcl{1/2,1}$ are both basis elements in the order topology on $I$ since $0$ and $1$ are the smallest and largest elements of $I$, respectively.
+    Now consider any interval $B_d = (a \times b, a' \times b')$ in the dictionary order on $I \times I$ that contains $0 \times 1$, which is of course a basis element of $\cT_d$.
+    Then we have that $a \times b$ and $a' \times b'$ are in $I \times I$ with $a \times b \prec 0 \times 1 \prec a' \times b'$.
+    Hence $0 < a'$ or $0 = a'$ and $1 < b'$.
+    As $1$ is the largest element of $I$, the latter case is not possible so that it must be that $0 < a'$.
+    Let $x = (0+a')/2 = a'/2$ so that clearly $0 < x < a'$.
+    Then we have that $a \times b' \prec x \times 0 \prec a' \times b'$ so that the point $x \times 0$ is in $B_d$.
+    However, clearly $0 \notin \opcl{1/2,1}$ so that $x \times 0 \notin B_p$.
+    This shows that $B_d$ cannot be a subset of $B_p$.
+
+    Here we note that, in the dictionary order on $I \times I$, the smallest element is $0 \times 0$ while the largest is $1 \times 1$.
+    With this in mind, the above argument for an open interval also applies to the half-open intervals $\clop{0 \times 0, a \times b}$ and $\opcl{a \times b,1 \times 1}$, which are of course also basis elements of $\cT_d$.
+    This then shows that $\cT_d$ is not finer than $\cT_p$ by the negation of Lemma~13.3.
+
+    Now consider the point $0 \times 1/2$ and the interval $B_d = (0 \times 0,0 \times 1)$ in the dictionary ordering, which is therefore a basis element of $\cT_d$, and clearly also contains $0 \times 1/2$.
+    Consider also any basis element $B_p = A \times B$ of $\cT_p$ that contains $0 \times 1/2$.
+    Since $0 \in A$ and $A$ must be a basis element of the order topology on $I$, it has to be that $A = \clop{0, a}$ for some $0 < a \leq 1$.
+    Then let $x = (0+a)/2 = a/2$ so that $0 < x < a$, and thus $x \in A$.
+    Then, since $1/2 \in B$ (since $0 \times 1/2 \in A \times B$), we have that $x \times 1/2 \in A \times B = B_p$ as well.
+    However, we also clearly have that $0 \times 1 \prec x \times 1/2$ since $0 < x$ so that $x \times 1/2 \notin (0 \times 0,0 \times 1) = B_d$.
+    This shows that $B_p$ cannot be a subset of $B_d$.
+    As $B_p$ was an arbitrary basis element of $\cT_p$, this shows by the negation of Lemma~13.3 that $\cT_p$ is not finer than $\cT_d$.
+
+    This suffices to show that $\cT_d$ and $\cT_p$ are incomparable.
+  }
+
+  Next we claim that $\cT_s$ is strictly finer than $\cT_p$.
+  \qproof{
+    Consider any $x \times y \in I \times I$ and suppose that $B_p = A \times B$ is a basis element of $\cT_p$ that contains $x \times y$.
+    First suppose that $A = (a,b)$ and $B = (c,d)$ so that of course $a,b,c,d \in I$, $a < x < b$, and $c < y < d$.
+    It is then trivial to show that the interval $B_s = (x \times c,x \times d)$ in the dictionary order also contains $x \times y$, is a basis element of $\cT_s$ (since $B_s \ss I \times I$ so that $B_s \cap (I \times I) = B_s$),  and is a subset of $B_p$.
+    A similar argument can be made if $A$ is an interval of the form $\clop{0,a}$ or $\opcl{a,1}$.
+    If $B = \opcl{c,1}$ and $A$ is still $(a,b)$, then let $X$ be the interval $(x \times c, x \times 2)$ in the dictionary order so that we have $B_s = X \cap (I \times I) = \braces{x} \times \opcl{c,1}$ is a basis element of $\cT_s$ that contains $x \times y$ and is a subset of $B_p$.
+    A similar argument applies if $B = \clop{0,d}$ and/or when the interval $A$ is half-open.
+    This shows that $\cT_s$ is finer than $\cT_p$ by Lemma~13.3.
+
+    The argument above that shows that $\cT_p$ is not finer than $\cT_d$ using the negation of Lemma~13.3 applies equally well to show that $\cT_p$ is not finer than $\cT_s$.
+    This of course suffices to show the desired result that $\cT_s$ is strictly finer than $\cT_p$.
+  }
+
+  Lastly, we claim that $\cT_s$ is also strictly finer than $\cT_d$.
+  \qproof{
+    First consider any point $x \times y$ in $I \times I$ and let $B_d$ be a basis element of $\cT_d$ that contains $x \times y$ so that it is some kind of interval with endpoints $a \times b$ and $a' \times b'$ in $I \times I$.
+    We note here that, since $\reals \times \reals$ has no smallest or largest elements, basis elements of the dictionary order topology there can only be open intervals.
+    Now, if $B_d$ is an open interval in $I \times I$ then clearly then the same interval $B = (a \times b,a' \times b')$ is a basis element in the dictionary order topology of $\reals \times \reals$, though though the two intervals can in general be different sets.
+    For example the interval $(0 \times 0, 1 \times 1)$ in $\reals \times \reals$ contains the point $0 \times 100$ whereas the same interval in $I \times I$ does not since $0 \times 100 \notin I \times I$.
+    It is, however, trivial to show that $B \cap (I \times I) = B_d$ so that $B_d$ is basis element of $\cT_s$.
+
+    If we have that $B_d$ is the half-open interval $\clop{0 \times 0, a' \times b'}$ then let $B = (0 \times -1, a' \times b')$, which is clearly a basis element of the dictionary order topology on $\reals \times \reals$.
+    It is then easy to see that $B \cap (I \times I) = B_d$ again so that it is a basis element of $\cT_s$.
+    If $B_d$ is the half-open interval $\opcl{a \times b, 1 \times 1}$, then the open interval $(a \times b, 1 \times 2)$ is a basis element of the dictionary order topology on $\reals \times \reals$ and has the same result.
+    Hence in all cases $B_d$ is also a basis element of $\cT_s$, and that it trivially is a subset of itself, and it contains $x \times y$.
+    This shows that $\cT_s$ is finer than $\cT_d$ by Lemma~13.3.
+
+    To show that it is strictly finer, consider the point $0 \times 1$ and the open interval $B = (0 \times 0, 0 \times 2)$, which is clearly a basis element of the dictionary order topology in $\reals \times \reals$.
+    It is then easy to prove that $B_s = B \cap (I \times I) = \braces{0} \times \opcl{0,1} = \opcl{0 \times 0, 0 \times 1}$ so that $B_s$ is a basis element of $\cT_s$.
+    Now consider any basis element $B_d$ of $\cT_d$ that contains $0 \times 1$ so that $B_d$ is some type of dictionary-order interval with endpoints $a \times b$ and $a' \times b'$, both in $I \times I$.
+    The only way the interval can be closed above is if $a' \times b' = 1 \times 1$, in which case clearly $1 \times 1 \in B_d$ but $1 \times 1 \notin B_s$.
+    So assume that it is open above so that $0 \times 1 \prec a' \times b'$, and hence either $0 < a'$ or $0 = a'$ and $1 < b'$.
+    The latter case cannot be since $1$ is the largest element of $I$ and $b' \in I$.
+    Therefore it has to be that $0 < a'$.
+    So let $x = (0+a')/2 = a'/2$ so that $0 < x < a'$ and thus $0 \times 1 \prec x \times 0 \prec a' \times b'$.
+    From this it follows that $x \times 0$ is in $B_d$.
+    However, clearly $x \times 0 \notin B_s$ since $0 \times 1 \prec x \times 0$.
+
+    Hence in any case we have shown that, while they both contain $0 \times 1$, $B_d$ cannot be a subset of $B_s$.
+    Since $B_d$ was an arbitrary basis element, this shows that $\cT_d$ is not finer than $\cT_s$ by the negation of Lemma~13.3.
+    This shows the desired result that $\cT_s$ is strictly finer than $\cT_d$.
+  }
+}

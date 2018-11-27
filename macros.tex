@@ -122,6 +122,14 @@
 \newcommand\clop[1]{[#1)}
 \newcommand\opcl[1]{(#1]}
 
+% Environment for indenting nested paragraphs (useful in case trees)
+\newenvironment{indpar}
+{
+    \begin{adjustwidth}{1cm}{}
+}{
+    \end{adjustwidth}
+}
+
 % Authors
 \newcommand\contrib[1]{(Contributed by #1)}
 \def\dwhitman{\contrib{Dan Whitman}}
