@@ -144,7 +144,7 @@
   \qproof{
     First suppose that $J$ has no largest element.
     Then we claim that $J = \bigcup_{\a \in J} S_\a$.
-    For any $x \in J$ there must be a $y \in J$ where $x < y$ since $x$ cannot be the greatest element of $J$.
+    For any $x \in J$ there must be a $y \in J$ where $x < y$ since $x$ cannot be the largest element of $J$.
     Hence $x \in S_y$ so that also clearly $\bigcup_{\a \in J} S_\a$.
     Then, for any $x \in \bigcup_{\a \in J} S_\a$, there is an $\a \in J$ where $x \in S_\a$.
     Clearly $S_\a \ss J$ so that $x \in J$ also.
@@ -438,7 +438,7 @@
     Then, again $b \leq y$ since $b$ is the smallest element of $B \cap A$ by $<$.
     Hence in all cases either $b \leq y$ or $b \leq'' y$.
     Either way it follows that $b \leq' y$ as well since $<'$ is the union.
-    This shows that $b$ is the least element of $A$ by $<'$ as desired.
+    This shows that $b$ is the smallest element of $A$ by $<'$ as desired.
     Since $A$ was an arbitrary nonempty subset, this shows that $B'$ is well-ordered by $<'$.
   }
 }
@@ -516,6 +516,148 @@
     However, then we have that $z \in h(z)$ so that $z \in B$, which is a contradiction.
     So it must be that there is no such set $Z$ and hence $B$ is maximal.
   } 
+}
+
+\exercise{7}{
+  Use Exercises~1-5 to prove the following:
+
+  \emph{Theorem.}
+  The choice axiom is equivalent to the well-ordering theorem.
+  \proof{
+    Let $X$ be a set; let $c$ be a fixed choice function for the nonempty subsets of $X$.
+    If $T$ is a subset of $X$ and $<$ is a relation on $T$, we say that $(T,<)$ is a \boldit{tower} in $X$ if $<$ is a well-ordering of $T$ and if for each $x \in T$,
+    \gath{
+      x = c(X - S_x(T))\,,
+    }
+    where $S_x(T)$ is the section of $T$ by $x$.
+    \eparts{
+    \item Let $(T_1,<_1)$ and $(T_2,<_2)$ be two towers in $X$.
+      Show that either these two ordered sets are the same, or one equals a section of the other.
+      [Hint: Switching indices if necessary, we can assume that $h: T_1 \to T_2$ is order preserving and $h(T_1)$ equals either $T_2$ or a section of $T_2$.
+        Use Exercise~2 to show that $h(x) = x$ for all $x$.]
+    \item If $(T,<)$ is a tower in $X$ and $T \neq X$, show that there is a tower in $X$ of which $(T,<)$ is a section.
+    \item Let $\braces{(T_k,<_k) \where k \in K}$ be the collection of all towers in $X$.
+      Let
+      \gath{
+        T = \bigcup_{k \in K} T_k \condgap \text{and} \condgap < = \bigcup_{k \in K} (<_k) \,.
+      }
+      Show that $(T,<)$ is a tower in $X$.
+      Conclude that $T = X$.
+    }
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    Since $(T_1,<_1)$ and $(T_2,<_2)$ are both well-ordered sets, it follows from Exercise~\thesubsection.4a that either they have the same order type, $T_1$ has the same order type as a section of $T_2$, or vice-versa.
+    We can assume that either they have the same order type of $T_1$ has the same order type as a section of $T_2$ since, in the third case, we can just swap the roles of $T_1$ and $T_2$.
+    Thus there is an order preserving function $h: T_1 \to T_2$ whose image is either all of $T_2$ or a section of $T_2$.
+    Given this, it was shown in the proof of Exercise~\thesubsection.2a that $h(S_x(T_1)) = S_{h(x)}(T_2)$ for all $x \in T_1$.
+
+    We show that $h(x) = x$ for all $x \in T_1$ by transfinite induction.
+    So suppose that $h(y) = y$ for all $y < x$, i.e. for all $y \in S_x(T_1)$ so that clearly $h(S_x(T_1)) = S_x(T_1)$.
+    Then, since both $T_1$ and $T_2$ are towers in $X$ and $h(x) \in T_2$, we have
+    \gath{
+      h(x) = c(X - S_{h(x)}(T_2)) = c(X - h(S_x(T_1))) = c(X - S_x(T_1)) = x \,.
+    }
+    This completes the induction.
+    Since $h(x) = x$ for all $x \in T_1$ and $h$ preserves order, it follows that $T_1$ is equal to $T_2$ or a section of $T_2$ as desired.
+  }
+
+  (b)
+  \qproof{
+    Since $T \neq X$, it follows that $X - T$ is nonempty.
+    So let $a = c(X - T)$, $T' = T \cup \braces{a}$, and $<' = < \cup \braces{(x,a) \where x \in T}$.
+    Then clearly $a$ is the largest element of $T'$ and an upper bound of $T$ so that $T = S_a(T')$, and hence $a = c(X-T) = c(X-S_a(T'))$.
+    Since $T$ is a tower, it then follows that $T'$ is also a tower in $X$ and that $T$ is a section of $T'$ as desired.
+  }
+
+  (c)
+  \qproof{
+    First we need to show that $<$ is even a well-ordering of $T$ as this is not obvious.
+    To show that it is a simple order, consider $x,y \in T$ where $x \neq y$.
+    It follows that $x \in T_k$ and $y \in T_l$ for some $k,l \in K$ by the definition of $T$.
+    Since $T_k$ and $T_l$ are both towers in $X$, it follows from part (a) that they are equal or one is a section of the other.
+    So, without loss of generality, we can assume that $T_k \ss T_l$ and also $<_k \ss <_l$.
+    It then follows that both $x$ and $y$ are in $T_l$ so that either $x <_l y$ or $y <_l x$ since $x \neq y$ and $<_l$ is a simple order.
+    Then clearly $x < y$ or $y < x$ from the definition of $<$.
+    This shows that $<$ has the comparability property.
+
+    Now suppose that there is an $x \in T$ where $x < x$.
+    Then there is a $k \in K$ where $x <_k x$, which violates the fact that $<_k$ is a simple order.
+    Hence it must be that $<$ is nonreflexive.
+
+    Lastly consider $x,y,z \in T$ where $x < y$ and $y < z$.
+    Then there $k,l \in K$ where $x <_k y$ and $y <_l z$ and it must then be that $x,y \in T_k$ and $y,z \in T_l$.
+    Again, since these are both towers, they are either equal or one is a section of the other by part (a).
+    So we can assume that $T_k \ss T_l$ and $<_k \ss <_l$ without loss of generality so that we have $x,y,z \in T_l$ and $x <_l y <_l z$.
+    From this clearly $x <_l z$ since it is a simple order and therefore transitive.
+    Hence we have $x < y$, which of course shows that $<$ is transitive as well.
+    This all shows that $<$ is indeed a simple order by definition.
+
+    To show that $<$ is a well-ordering, consider any nonempty subset $Y$ of $T$.
+    Then there is a $b \in Y$ so that also $b \in T$.
+    It follows that there is a $k \in K$ such that $b \in T_k$, and also that $Y \cap T_k$ is a nonempty subset of $T_k$.
+    It then follows that $Y \cap T_k$ has a smallest element $a$ since $T_k$ is well-ordered by $<_k$.
+    We claim that in fact $a$ is the smallest element of all of $Y$.
+    To see this, consider any other $x \in Y$ so that also $x \in T$.
+    Hence there is an $l \in K$ where $x \in T_l$.
+    Now, since both $T_k$ and $T_l$ are towers in $X$, it follows from part (a) that they are equal or one is a section of the other.
+
+    Case: $T_k$ and $T_l$ are equal.
+    Then both $a$ and $x$ are in $T_k$ and so both in $Y \cap T_k$.
+    Then $a \leq_k x$ since $a$ is the smallest element of $Y \cap T_k$.
+
+    Case: $T_k$ is a section of $T_l$.
+    Then, if $a \in T_k$ then the argument in the previous case shows that $a \leq_k x$.
+    On the other hand, if $a \notin T_k$, then it has to be that that $x <_l a$ since $x \in T_k$ and $T_k$ is a section of $T_l$.
+
+    Case: $T_l$ is a section of $T_k$.
+    Then $T_l \ss T_k$ so that both $a$ and $x$ are in $T_k$ and thus in $Y \cap T_k$.
+    Hence again $a \leq_k x$ since $a$ is the smallest element of $Y \cap T_k$.
+
+    In all cases $a \leq_m x$ for some $m \in K$ and hence $a \leq x$.
+    Since $x$ was an arbitrary element of $Y$, this shows that $a$ is in fact the smallest element of $Y$.
+    Since $Y$ was an arbitrary nonempty subset of $T$, this shows that $T$ is well-ordered by $<$.
+
+    Next we digress for a moment to show, for any $k \in K$ and $x \in T_k$, that $S_x(T_k) = S_x(T)$.
+    So consider such $k$ and $x$ and suppose that $y \in S_x(T_k)$ so that $y <_k x$.
+    Then clearly also $y < x$ by the definition of $<$ and hence $y \in S_x(T)$.
+    This shows that $S_x(T_k) \ss S_x(T)$ since $y$ was arbitrary.
+    Now suppose $y \in S_x(T)$ so that $y < x$.
+    Then there is an $l \in K$ where $y <_l x$.
+    Hence $x,y \in T_l$, and by part (a) either $T_l$ and $T_k$ are equal, or one is a section of the other.
+    If they are equal or $T_l$ is a section of $T_k$ then clearly we have $<_l \ss <_k$ so that $y <_k x$.
+    If $T_k$ is a section of $T_l$ then, since $y <_l x$ and $x \in T_k$, it has to be that also $y \in T_k$ since $T_k$ is a section of $T_l$.
+    Hence it must be that $y <_k x$.
+    Since this is true in all cases it follows that $y \in S_x(T_k)$, which shows that $S_x(T) \ss S_x(T_k)$.
+    This completes the proof that $S_x(T_k) = S_x(T)$.
+
+    With this having been shown, we can easily show that $T$ is a tower in $X$.
+    For any $x \in T$ there is a $k \in K$ where $x \in T_k$.
+    Since $T_k$ is a tower in $X$ we have
+    \gath{
+      x = c(X - S_x(T_k)) = c(X - S_x(T))
+    }
+    by what was just shown.
+    Thus suffices to show that $T$ is a tower in $X$.
+
+    Lastly, we claim that $T = X$.
+    To see this, suppose that it is not the case so that by part (b) there is a tower $S$ in $X$ such that $T$ is a section of $S$.
+    From this we have that $T = S_a(S)$ for some $a \in S$ and that of course $a \notin T$.
+    However, since $S$ is a tower and $\braces{(T_k,<_k) \where k \in K}$ is the collection of \emph{all} towers in $X$, it follows that there must be a $k \in K$ such that $S = T_k$.
+    Then we have that $a \in S = T_k$ so that of course $a \in T$ by definition, which is a contradiction.
+    So it must be that in fact $T = X$ as desired.
+
+    This of course shows that $<$ is a well-ordering of $X = T$ so that the choice axiom implies the well-ordering theorem since $X$ is an arbitrary set.
+    In contrast to the previous proof, it is easy to prove that the well-ordering theorem implies the choice axiom.
+    For a collection of nonempty sets $\cB$ define $X = \bigcup \cB$.
+    Then $X$ can be well-ordered by the well-ordering theorem.
+    Then we simply define a choice function $c$ on $\cB$ in the following way: any $B \in \cB$ is clearly a nonempty subset of $X$ and so has a smallest element $a$ since $X$ is well ordered.
+    So simply set $c(B) = a$, from which it is clear that $c(B) \in B$ and so $c$ is a valid choice function.
+  }
 }
 
 % Restore section label to number
