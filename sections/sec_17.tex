@@ -1,0 +1,157 @@
+\setcounter{subsection}{17-1}
+\subsection{Closed Sets and Limit Points}
+
+\exercise{1}{
+  Let $\cC$ be a collection of subsets of the set $X$.
+  Suppose that $\es$ and $X$ are in $C$, and that finite unions and arbitrary intersections of elements of $\cC$ are in $\cC$.
+  Show that the collection
+  \gath{
+    \cT = \braces{X - C \where C \in \cC}
+  }
+  is a topology on $X$.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    First, clearly $\es$ and $X$ are in $\cT$ since $\es = X - X$ and $X = X - \es$ and both $X$ and $\es$ are in $\cC$.
+    This shows the first defining property of a topology.
+
+    Now consider an arbitrary subcollection $\cA$ of $\cT$.
+    Then, for each $A \in \cA$, we have that $A = X - B$ for some $B \in \cC$ since also $A \in \cT$.
+    So let $\cB = \braces{B \in \cC \where X - B \in \cA}$.
+    Then we have that
+    \gath{
+      \bigcup \cA = \bigcup_{A \in \cA} A = \bigcup_{B \in \cB} (X - B) = X - \bigcap_{B \in \cB} B = X - \bigcap \cB
+    }
+    by DeMorgan's law.
+    By the definition of $\cC$ we have that $\bigcap \cB \in \cC$ since it is an arbitrary intersection of elements of $\cC$.
+    It then follows that $\bigcup \cA = X - \bigcap \cB$ is in $\cT$ by definition.
+    This shows the second defining property of a topology.
+
+    Lastly, suppose that $\cA$ is a nonempty finite subcollection of $\cT$, which of course can be expressed as $\cA = \braces{A_k \where k \in \intsfin{n}}$ for some positive integer $n$.
+    Then, again we have that that $A_k = X - B_k$ for some $B_k \in \cC$ for all $k \in \intsfin{n}$ since $A_k \in \cT$.
+    Then we have
+    \gath{
+      \bigcap \cA = \bigcap_{k=1}^n A_k = \bigcap_{k=1}^n (X - B_k) = X - \bigcup_{k=1}^n B_k
+    }
+    by DeMorgan's law.
+    Then clearly $\bigcup_{k=1}^n B_k$ is in $\cC$ by definition since it is a finite union of elements of $\cC$.
+    It then follows that $\bigcap \cA = X - \bigcup_{k=1}^n B_k$ is in $\cT$ by definition.
+    Since $\cA$ was an arbitrary finite subcollection, this shows the third defining property of a topology.
+    Hence $\cT$ is a topology by definition.
+  }
+}
+
+\exercise{2}{
+  Show that if $A$ is closed in $Y$ and $Y$ is closed in $X$, then $A$ is closed in $X$.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    Since $A$ is closed in $Y$, it follows from Theorem~17.2 that $A = B \cap Y$ where $B$ is some closed set in $X$.
+    Hence by definition $X - B$ is open in $X$.
+    Also, since $Y$ is closed in $X$, we have that $X - Y$ is open in $X$ by definition.
+    We then have
+    \gath{
+      X - A = X - (B \cap Y) = (X - B) \cup (X - Y)
+    }
+    by DeMorgan's law.
+    Since both $X - B$ and $X - Y$ are open in $X$, clearly their union must also be open since we are in a topological space.
+    Hence $X - A$ is open in $X$ so that $A$ is closed in $X$ by definition.
+  }
+}
+
+\exercise{3}{
+  Show that if $A$ is closed in $X$ and $B$ is closed in $Y$, then $A \times B$ is closed in $X \times Y$.
+}
+\sol{
+  \dwhitman
+  \begin{lem}\label{lem:closedlim:setid}
+    If $X$, $Y$, $A$, and $B$ are sets then $X \times Y - A \times B = (X-A) \times Y \cup X \times (Y - B)$.
+  \end{lem}
+  \qproof{
+    We show this via logical equivalences:
+    \ali{
+      (x,y) \in X \times Y - A \times B &\bic (x,y) \in X \times Y \land (x,y) \notin A \times B \\
+      &\bic (x \in X \land y \in Y) \land \lnot(x \in A \land y \in B) \\
+      &\bic (x \in X \land y \in Y) \land (x \notin A \lor y \notin B) \\
+      &\bic (x \in X \land y \in Y \land x \notin A) \lor (x \in X \land y \in Y \land y \notin B) \\
+      &\bic (x \in X - A \land y \in Y) \lor (x \in X \land y \in Y - B) \\
+      &\bic (x,y) \in (X-A) \times Y \lor (x,y) \in X \times (Y-B) \\
+      &\bic (x,y) \in (X-A) \times Y \cup X \times (Y-B)
+    }
+    as desired.
+  }
+
+  \mainprob
+  \qproof{
+    Since $A$ is closed we have that $X-A$ is open in $X$.
+    Since also $Y$ itself is open in $Y$, we have that $(X-A) \times Y$ is a basis element in the product topology by definition, and is therefore obviously open.
+    An analogous argument shows that $X \times (Y-B)$ is also open in the product topology since $B$ is closed in $Y$.
+    Hence their union is also open in the product topology, but by Lemma~\ref{lem:closedlim:setid} we have
+    \gath{
+      (X-A) \times Y \cup X \times (Y-B) = X \times Y - A \times B
+    }
+    so that $X \times Y - A \times B$ is also open in the product topology.
+    It then follows by definition that $A \times B$ is closed as desired.
+  }
+}
+
+\exercise{4}{
+  Show that if $U$ is open in $X$ and $A$ is closed in $X$, then $U-A$ is open in $X$, and $A-U$ is closed in $X$.
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:closedlim:setmid}
+    If $A$, $B$, and $C$ are sets then $A - (B - C) = (A-B) \cup (A \cap C)$.
+  \end{lem}
+  \qproof{
+    We show this by a sequence of logical equivalences:
+    \ali{
+      x \in A - (B - C) &\bic x \in A \land x \notin B - C \\
+      &\bic x \in A \land \lnot(x \in B \land x \notin C) \\
+      &\bic x \in A \land (x \notin B \lor x \in C) \\
+      &\bic (x \in A \land x \notin B) \lor (x \in A \land x \in C) \\
+      &\bic x \in A - B \lor x \in A \cap C \\
+      &\bic x \in (A-B) \cup (A \cap C)
+    }
+    as desired.
+  }
+
+  \begin{cor}\label{cor:closedlim:cc}
+    If $A \ss X$ and $B = X - A$, then $A = X - B$.
+  \end{cor}
+  \qproof{
+    By Lemma~\ref{lem:closedlim:setmid}, we have that
+    \gath{
+      X - B = X - (X - A) = (X - X) \cup (X \cap A) = \es \cup (X \cap A) = X \cap A = A
+    }
+    since $A \ss X$.
+  }
+
+  \mainprob
+  \qproof{
+    First, since $A$ is closed in $X$, we have that $B = X - A$ is open in $X$, and it follows from Corollary~\ref{cor:closedlim:cc} that $A = X - B$.
+    Then we have that
+    \gath{
+      U - A = U - (X - B) = (U - X) \cup (U \cap B)
+    }
+    by Lemma~\ref{lem:closedlim:setmid}.
+    Since $U \ss X$, it follows that $U - X = \es$, and hence
+    \gath{
+      U - A = \es \cup (U \cap B) = U \cap B \,.
+    }
+    Then, since both $U$ and $B$ are open, their intersection is as well and therefore $U - A$ is open.
+
+    Next, we have by Lemma~\ref{lem:closedlim:setmid}
+    \gath{
+      X - (A - U) = (X - A) \cup (X \cap U) = B \cup (X \cap U) = B \cup U.
+    }
+    since $U \ss X$ so that $X \cap U = U$.
+    Since both $B$ and $U$ are open, clearly their union is as well and hence $X - (A - U)$ is open.
+    This of course means that $A - U$ is closed by definition.
+  }
+}
