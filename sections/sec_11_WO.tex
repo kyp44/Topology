@@ -5,6 +5,7 @@
 
 % Set section label to text
 \renewcommand\thesubsection{WO}
+\def\secl{\thesubsection}
 
 \def\cF{\col{F}}
 \exercise{1}{
@@ -279,7 +280,7 @@
     \gath{
       h(\a) = \text{smallest } [E - h(S_\a)] \condgap \text{if} \condgap h(S_\a) \neq E \,,
     }
-    and $h(\a) = e_0$ otherwise, noting that this function is uniquely defined by the general principle of recursive definition (Exercise~\thesubsection.1).
+    and $h(\a) = e_0$ otherwise, noting that this function is uniquely defined by the general principle of recursive definition (Exercise~\secl.1).
     We show that $h(\a) \leq k(\a)$ for all $\a \in J$ using transfinite induction (see Lemma~\ref{lem:wellord:tind}).
     So consider $\a \in J$ and assume that $h(x) \leq k(x)$ for all $x \in S_\a$.
     Since $k$ preserves order we have that $h(x) \leq k(x) < k(\a)$ when $x < \a$.
@@ -295,7 +296,7 @@
       h(\a) = \text{smallest } [E - h(S_\a)]
     }
     for all $\a \in J$.
-    It then follows from Exercise~\thesubsection.2 part (a) that $h$ is order preserving and maps $J$ onto $E$ or a section of $E$.
+    It then follows from Exercise~\secl.2 part (a) that $h$ is order preserving and maps $J$ onto $E$ or a section of $E$.
     This clearly shows that $J$ has the order type of $E$ or a section of $E$ as desired.
   }
 }
@@ -317,7 +318,7 @@
     First, we can assume that $A$ and $B$ are disjoint since, if not, we can form $A' = \braces{(x,1) \where x \in A}$ and $B' = \braces{(x,2) \where x \in B}$, which clearly \emph{are} disjoint and have the same order types as $A$ and $B$ if ordered in the same way.
     So let $\prec$ be the order on $A \cup B$ as in Exercise~10.8 with all the elements of $A$ before the elements of $B$.
     From the exercise, we know that $A \cup B$ is well-ordered by $\prec$.
-    Now, clearly the identity function $i_B$ with $A \cup B$ as the range is an order-preserving function from $B$ to $A \cup B$ so that $B$ is the same order type as $A \cup B$ or a section of $A \cup B$ by Exercise~\thesubsection.3.
+    Now, clearly the identity function $i_B$ with $A \cup B$ as the range is an order-preserving function from $B$ to $A \cup B$ so that $B$ is the same order type as $A \cup B$ or a section of $A \cup B$ by Exercise~\secl.3.
 
     If $B$ has the same order type as $A \cup B$, then there is a an order preserving bijection $g: A \cup B \to B$.
     Let $b$ be the smallest element of $B$ so that $y = g(b) \in B$.
@@ -334,7 +335,7 @@
     It then follows that $f(S_y) = S_b = A$ since $f(y) = b$ so that $A$ has the same order type as the section $S_y$ of $B$ since $f$ preserves order.
 
     Hence in all cases one of the desired results always follows.
-    To show that exactly one of these is the case, note that if $A$ and $B$ have the same order type then clearly it cannot be that $A$ has the same order type as a section of $B$ since then $B$ would also have the same order type is its own section, which would violate Exercise~\thesubsection.2b.
+    To show that exactly one of these is the case, note that if $A$ and $B$ have the same order type then clearly it cannot be that $A$ has the same order type as a section of $B$ since then $B$ would also have the same order type is its own section, which would violate Exercise~\secl.2b.
     Similarly $B$ cannot have the same order type as a section of $A$ since then $A$ would have the same order type as its own section.
     Now suppose that $A$ has the same order type as a section $S_b$ of $B$.
     Then $A$ and $B$ cannot have the same order type since then $B$ would have the same order type as its section $S_b$.
@@ -370,7 +371,7 @@
 
   (a)
   \qproof{
-    For any $(A,<) \in \cA$ we have that it is not equal to a section of itself since then it would then clearly have the same order type as its own section, which would violate Exercise~\thesubsection.2b.
+    For any $(A,<) \in \cA$ we have that it is not equal to a section of itself since then it would then clearly have the same order type as its own section, which would violate Exercise~\secl.2b.
     Hence it is not true that $(A, <) \prec (A, <)$ by definition, which shows that $\prec$ is nonreflexive.
 
     Now consider $(A,<)$, $(A',<')$, and $(A'',<'')$ in $\cA$ where $(A,<) \prec (A',<')$ and $(A',<') \prec (A'',<'')$.
@@ -454,10 +455,10 @@
 
   \qproof{
     First suppose that the maximum principle is true and let $X$ be any set.
-    Then let $\cA$ be the collection of all pairs $(A,<)$, where $A \ss X$ and $<$ is a well-ordering of $A$ as in Exercise~\thesubsection.5.
-    Define the relation $\prec$ on $\cA$ also as in Exercise~\thesubsection.5, i.e $(A,<) \prec (A', <')$ if $(A,<)$ is a section of $(A',<')$.
+    Then let $\cA$ be the collection of all pairs $(A,<)$, where $A \ss X$ and $<$ is a well-ordering of $A$ as in Exercise~\secl.5.
+    Define the relation $\prec$ on $\cA$ also as in Exercise~\secl.5, i.e $(A,<) \prec (A', <')$ if $(A,<)$ is a section of $(A',<')$.
     It was then shown in that exercise that $\prec$ is a strict partial order on $\cA$ so that, by the maximum principle, there is a maximal simply ordered subset $\cB \ss \cA$.
-    Now let $(B', <')$ be the unions of the corresponding elements of $\cB$ so that we know that $<'$ well-orders $B'$ by part (b) of Exercise~\thesubsection.5.
+    Now let $(B', <')$ be the unions of the corresponding elements of $\cB$ so that we know that $<'$ well-orders $B'$ by part (b) of Exercise~\secl.5.
 
     We claim that $B' = X$.
     Suppose that this is not the case so that there is a $x \in X$ where $x \notin B'$ (since we know that $B' \ss X$).
@@ -479,7 +480,7 @@
         \bigcup f(S_x) & \text{otherwise} \,.
       \end{cases}
     }
-    Then by the general principle of recursive defamation (Exercise~\thesubsection.1) there is a unique function $h : A \to \pset{A}$ such that $h(\a) = \r(h \rest S_\a)$ for all $\a \in A$.
+    Then by the general principle of recursive defamation (Exercise~\secl.1) there is a unique function $h : A \to \pset{A}$ such that $h(\a) = \r(h \rest S_\a)$ for all $\a \in A$.
 
     First we show that, for $\a,\b \in A$ where $\a < \b$, we have $h(\a) \ss h(\b)$.
     So consider any $x \in h(\a) = \r(h \rest S_\a)$, and hence either $x \in \bigcup h(S_\a) \cup \braces{\a}$ or $x \in \bigcup h(S_\a)$.
@@ -551,10 +552,10 @@
 
   (a)
   \qproof{
-    Since $(T_1,<_1)$ and $(T_2,<_2)$ are both well-ordered sets, it follows from Exercise~\thesubsection.4a that either they have the same order type, $T_1$ has the same order type as a section of $T_2$, or vice-versa.
+    Since $(T_1,<_1)$ and $(T_2,<_2)$ are both well-ordered sets, it follows from Exercise~\secl.4a that either they have the same order type, $T_1$ has the same order type as a section of $T_2$, or vice-versa.
     We can assume that either they have the same order type of $T_1$ has the same order type as a section of $T_2$ since, in the third case, we can just swap the roles of $T_1$ and $T_2$.
     Thus there is an order preserving function $h: T_1 \to T_2$ whose image is either all of $T_2$ or a section of $T_2$.
-    Given this, it was shown in the proof of Exercise~\thesubsection.2a that $h(S_x(T_1)) = S_{h(x)}(T_2)$ for all $x \in T_1$.
+    Given this, it was shown in the proof of Exercise~\secl.2a that $h(S_x(T_1)) = S_{h(x)}(T_2)$ for all $x \in T_1$.
 
     We show that $h(x) = x$ for all $x \in T_1$ by transfinite induction.
     So suppose that $h(y) = y$ for all $y < x$, i.e. for all $y \in S_x(T_1)$ so that clearly $h(S_x(T_1)) = S_x(T_1)$.
@@ -657,6 +658,124 @@
     Then $X$ can be well-ordered by the well-ordering theorem.
     Then we simply define a choice function $c$ on $\cB$ in the following way: any $B \in \cB$ is clearly a nonempty subset of $X$ and so has a smallest element $a$ since $X$ is well ordered.
     So simply set $c(B) = a$, from which it is clear that $c(B) \in B$ and so $c$ is a valid choice function.
+  }
+}
+
+\exercise{8}{
+  Using Exercises~1-4, construct an uncountable well-ordered set, as follows.
+  Let $\cA$ be the collection of all pairs $(A,<)$, where $A$ is a subset of $\pints$ and $<$ is a well-ordering of $A$.
+  (We allow $A$ to be empty.)
+  Define $(A,<) \sim (A',<')$ if $(A,<)$ and $(A',<')$ have the same order type.
+  It is trivial to show that this is an equivalence relation.
+  Let $[(A,<)]$ denote the equivalence class of $(A,<)$; let $E$ denote the collection of these equivalence classes.
+  Define
+  \gath{
+    [(A,<)] \ll [(A',<')]
+  }
+  if $(A,<)$ has the order type of a \emph{section} of $(A',<')$.
+  \eparts{
+  \item Show that the relation $\ll$ is well defined and is a simple order on $E$.
+    Note that the equivalence class $[(\es,\es)]$ is the smallest element of $E$.
+  \item Show that if $\a = [(A,<)]$ is an element of $E$, then $(A,<)$ has the same order type as the section $S_\a(E)$ of $E$ by $\a$.
+    [Hint: Define a map $f: A \to E$ by setting $f(x) = [(S_x(A), \text{restriction $<$})]$ for each $x \in A$.]
+  \item Conclude that $E$ is well-ordered by $\ll$.
+  \item Show that $E$ is uncountable.
+    [Hint: If $h: E \to \pints$ is a bijection, then $h$ gives rise to a well-ordering of $\pints$.]
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    First, to show that $\ll$ is well defined, suppose that $[(A,<)] \ll [(A',<')]$ and that $(B,\prec) \in [(A,<)]$ and $(B',\prec') \in [(A',<')]$.
+    Then $(A,<)$ has the same order type as a section of $(A',<')$ so that there is an order-preserving map $h$ from $A$ onto a section of $A'$.
+    We also then have that $(B,\prec)$ has the same order type as $(A,<)$ since they are in the same equivalence class.
+    Thus there is an order-preserving bijection $f : B \to A$.
+    Likewise there is an order-preserving bijection from $g : B' \to A'$.
+    It is then trivial to show that $\inv{g} \circ h \circ f$ is bijection from $B$ onto a section of $B'$ that preserves order.
+    Hence $(B, \prec)$ has the same order type as a section of $(B',\prec')$.
+    Since $(B, \prec)$ and $(B', \prec')$ were arbitrary elements in their respective equivalence classes, this shows that $\ll$ is well defined such that it does not matter which representatives we use from the equivalence classes.
+
+    Now consider any equivalence class $[(A,<)]$ in $E$.
+    Then clearly it cannot be that $[(A,<)] \ll [(A,<)]$, since this would mean that $A$ has the same order type as a section of itself, which would contradict what was shown in Exercise~\secl.2b.
+    Thus $\ll$ is nonreflexive.
+
+    Next consider two distinct equivalence classes $[(A,<)]$ and $[(A',<')]$.
+    Then it cannot be that $(A,<)$ and $(A',<')$ have the same order type, for then they would be the same equivalence class.
+    Then, by Exercise~\secl.4a, it must be that either $(A,<)$ has the same order type as a section of $(A',<')$ or vice-versa.
+    Clearly then, in the former case $[(A,<)] \ll [(A',<')]$, and in the latter case $[(A',<')] \ll [(A,<)]$.
+    This shows that $\ll$ has the comparability property.
+
+    Lastly, suppose that $[(A,<)] \ll [(A',<')]$ and $[(A',<')] \ll [(A'',<'')]$.
+    Then $(A,<)$ has the same order type as section of $(A',<')$ so that there is an order-preserving bijection $f$ from $A$ onto a section of $A'$
+    Likewise there is an order-preserving bijection $g$ from $A'$ onto a section of $A''$.
+    It is then trivial to show that $f \circ g$ is an order-preserving bijection from $A$ onto a section of $A''$.
+    It then clearly follows that $[(A,<)] \ll [(A'',<'')]$, which shows that $\ll$ is transitive.
+
+    Hence we have shown that $\ll$ satisfies all the requirements of a simple order.
+  }
+
+  (b)
+  \qproof{
+    Following the hint, define the map $f : A \to E$ by setting
+    \gath{
+      f(x) = [(S_x(A), \text{restriction $<$})]
+    }
+    for any $x \in A$, noting that clearly $S_x(A)$ is well-ordered by the restricted $<$ so that the equivalence class is valid and in $E$.
+
+    Consider any $x$ and $y$ in $A$ where $x < y$.
+    Then clearly $x \in S_y(A)$ but $x \notin S_x(A)$ (since it is not true that $x < x$) so that $S_x(A)$ and $S_y(A)$ are distinct sets.
+    We also clearly have that $S_x(A) = S_x(S_y(A))$ so that $S_x(A)$ has the same order type (the identity function is the required order-preserving map) as a section of $S_y(A)$.
+    Hence
+    \gath{
+      f(x) = [(S_x(A), \text{restriction $<$})] \ll [(S_y(A), \text{restriction $<$})] = f(y)
+    }
+    so that $f$ preserves order since $x$ and $y$ were arbitrary.
+
+    Now we show that $f$ is onto $S_\a(E)$.
+    So consider any equivalence class $[(B,\prec)]$ in $S_\a(E)$ and hence
+    \gath{
+      [(B,\prec)] \ll \a = [(A,<)]
+    }
+    so that by definition $(B,\prec)$ has the same order type as some section $S_x(A)$.
+    Hence $[(B,\prec)]$ and $[(S_x(A),\text{restriction $<$})]$ are the same equivalence class!
+    Therefore
+    \gath{
+      f(x) = [(S_x(A),\text{restriction $<$})] = [(B,\prec)] \,,
+    }
+    which of course shows the desired property since $[(B,\prec)]$ was arbitrary.
+
+    This shows that $f$ is an order-preserving map from $A$ onto $S_\a(E)$ so that they have the same order type.
+  }
+
+  (c)
+  \qproof{
+    Consider any nonempty subset $D \ss E$.
+    Thus there is an $\a = [(A,<)] \in D$.
+    If $\a$ is the smallest element of $D$ then we are done, so assume that this is not the case so that there is a $\b \in D$ where $\b \ll \a$.
+    Now, it was shown in part (b) that $(A,<)$ has the same order type as the section $S_\a(E)$ so that this section must be well-ordered since $A$ is.
+    Also we have that $\b \in S_\a(E)$ since $\b \ll \a$.
+    Thus $\b \in D \cap S_\a(E)$ so that $D \cap S_\a(E)$ is a nonempty subset of $S_\a(E)$ so has a smallest element $\g$ since $S_\a(E)$ is well-ordered.
+    In particular, we of course have that $\g \lll \b$, where we use $\lll$ to denote $\ll$ or equal to.
+
+    We claim that $\g$ must be the smallest element of $D$.
+    If not, then there is a $\d \in D$ where $\d \ll \g$.
+    Of course we also then have that $\d \ll \g \lll \b \ll \a$ and hence $\d \in S_\a(E)$.
+    Therefore $\d \in D \cap S_\a(E)$, but since $\d \ll \g$ this contradicts the definition of $\g$ as the smallest element of $D \cap S_\a(E)$.
+    So it must be that in fact $\g$ is the smallest element of $D$, which shows that $E$ is well-ordered by $\ll$ since $D$ was an arbitrary subset.
+  }
+
+  (d)
+  \qproof{
+    Following the hint, suppose that $E$ is countable so that there is a bijection $h : E \to \pints$.
+    This of course gives rise to a well-ordering $<$ of $h(E) = \pints$ by simply ordering its elements according to its bijection with $E$, which was shown to be well-ordered in part (c).
+    Then we have that $(\pints, <)$ is an element of $\cA$ since $\pints$ is a subset of itself.
+    Thus the equivalence class $\a = [(\pints,<)]$ is an element of $E$.
+    But we know from part (b) that $(\pints,<)$ then has the same order type as the section $S_\a(E)$.
+    Since we also know that $(\pints,<)$ has the same order type as $E$ itself, it follows that $E$ has the same order type as its section $S_\a(E)$.
+    This was shown not to be possible in Exercise~\secl.2b so that a contradiction has been reached.
+    So it must be that in fact $E$ is uncountable as desired!
   }
 }
 

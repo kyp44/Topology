@@ -155,3 +155,292 @@
     This of course means that $A - U$ is closed by definition.
   }
 }
+
+\exercise{5}{
+  Let $X$ be an ordered set in the order topology.
+  Show that $\closure{(a,b)} \ss [a,b]$.
+  Under what conditions does equality hold?
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    First, the closed interval $[a,b]$ is closed (hence why it is called such!) because clearly its compliment is
+    \gath{
+      X - [a,b] = (-\infty, a) \cup (b, \infty)
+    }
+    and we know that open rays are always open so that their union is as well.
+    Clearly also $[a,b]$ contains $(a,b)$.
+    Hence $[a,b]$ is a closed set containing $(a,b)$.
+    Since $\closure{(a,b)}$ is defined as the intersection of closed sets that contain $(a,b)$ clearly we have that $\closure{(a,b)} \ss [a,b]$ as desired.
+  }
+
+  The conditions required for equality are such that $[a,b]$ is also a subset of $\closure{(a,b)}$ and, in particular both $a$ and $b$ must be in $\closure{(a,b)}$.
+  Since clearly $a,b \notin (a,b)$, it has to be that they are both limit points of $(a,b)$.
+  This is equivalent to the condition that $a$ has no immediate successor and $b$ no immediate predecessor.
+  We show only the first of these since the second is analogous.
+  \qproof{
+    $(\imp)$ We show the contrapositive of this.
+    So suppose that $a$ \emph{does} have an immediate successor $c$.
+    Then the open ray $(-\infty, c)$ is an open set that contains $a$ but does not intersect $(a,b)$.
+    This is easy to see, because if they did intersect, there would be an $x \in (a,b)$ where also $x \in (-\infty, c)$.
+    From these it follows that $a < x < c$, which contradicts the fact that $c$ is the immediate successor of $a$.
+    Hence by definition $a$ is not a limit point of $(a,b)$.
+
+    $(\pmi)$ Suppose that $a$ is not a limit point of $(a,b)$.
+    Then there is an open set $U$ containing $a$ that does not intersect $(a,b)$.
+    From this it follows that there is a basis element $B$ containing $a$ such that $B \ss U$, and thus $B$ also cannot intersect $(a,b)$ (as, if it did, then so would $U$).
+    Suppose that $B$ is the open interval $(c,d)$ so that $c < a < d$.
+    It also must be that $d < b$ for otherwise, for any element of $x$ of $(a,b)$, we would have $c < a < x < b \leq d$ so that $x \in (c,d) = B$ and $B$ and $(a,b)$ would not be disjoint.
+    We claim that $d$ is the immediate successor of $a$.
+    If this is not the case then there would be an $x$ such that $c < a < x < d$ and hence $x \in (c,d) = B$.
+    Also $a < x < d < b$ so that also $x \in (a,b)$.
+    Therefore $B$ and $(a,b)$ would not be disjoint.
+    Similar arguments can be made if $B$ are other types of basis element in the order topology.
+    (Actually $B$ cannot be of the form $\opcl{e,f}$ for largest element $f$ of $X$ since then any element of $(a,b)$ would also be in $B$ and they would not be disjoint.)
+  }
+
+  It is also worth noting that the Hausdorff axiom (and therefore also the T1 axiom since it is implied by the Hausdorff axiom) is not sufficient for general equivalence of $[a,b]$ and $\closure{(a,b)}$.
+  For example the order topology on $\ints$ results in the discrete topology so that every subset is both open and closed.
+  Thus for any pair $x_1, x_2$ in $\ints$, the sets $\braces{x_1}$ and $\braces{x_2}$ are neighborhoods of $x_1$ and $x_2$, respectively, that are disjoint.
+  This shows that this topology is a Hausdorff space.
+  However, the fact that $a$ has an immediate successor in $\pints$ is sufficient to show that $[a,b] \neq \closure{(a,b)}$ per what was just shown above.
+}
+
+\exercise{6}{
+  Let $A$, $B$, and $A_\a$ denote subsets of a space $X$.
+  Prove the following:
+  \eparts{
+  \item If $A \ss B$, then $\clA \ss \clB$.
+  \item $\closure{A \cup B} = \clA \cup \clB$.
+  \item $\closure{\bigcup A_a} \sps \bigcup \clA_\a$; give an example where equality fails.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    Suppose that $A \ss B$ and consider any $x \in \clA$.
+    Consider any neighborhood $U$ of $x$ so that $U$ intersects $A$ by Theorem~17.5a.
+    Hence there is a point $y \in U \cap A$ so that $y \in U$ and $y \in A$.
+    But then clearly $y \in B$ also since $A \ss B$.
+    Therefore $y \in U \cap B$ so that $U$ intersects $B$.
+    Since $U$ was an arbitrary neighborhood of $x$, this shows that $x \in \clB$, again by Theorem~17.5a.
+    This of course shows that $\clA \ss \clB$ as desired since $x$ was arbitrary.
+  }
+
+  (b)
+  \qproof{
+    $(\ss)$
+    We show this by contrapositive.
+    So suppose that $x \notin \clA \cup \clB$.
+    Then clearly $x \notin \clA$ and $x \notin \clB$.
+    Thus, by Theorem~17.5a, there is an open set $U_A$ such that $U_A$ does not intersect $A$, and likewise an open $U_B$ that does not intersect $B$.
+    Let $U = U_A \cap U_B$, which is clearly open since $U_A$ and $U_B$ are.
+    We also note that $U$ contains $x$ since both $U_A$ and $U_B$ do.
+    Then it must be that $U$ does not intersect $A$ since, if it did, then $U_A$ would also intersect $A$ since $U \ss U_A$.
+    Similarly, $U$ cannot intersect $B$.
+    Thus, for all $y \in U$, $y \notin A$ and $y \notin B$.
+    This is logically equivalent to saying that there is no $y \in U$ where $y \in A$ or $y \in B$, therefore there is no $y \in U$ where $y \in A \cup B$.
+    Hence $U$ and $A \cup B$ do not intersect.
+    Since $U$ is open and contains $x$, this shows that $x \notin \closure{A \cup B}$, again by Theorem~17.5a.
+    Therefore, by contrapositive, $x \in \closure{A \cup B}$ implies that $x \in \clA \cup \clB$ so that $\closure{A \cup B} \ss \clA \cup \clB$.
+
+    $(\sps)$
+    Consider any $x \in \clA \cup \clB$ and any neighborhood $U$ of $x$.
+    If $x \in \clA$ then $U$ intersects $A$ by Theorem~17.5a.
+    Hence there is a $y \in U \cap A$ so that $y \in U$ and $y \in A$.
+    Then clearly $y \in A \cup B$ so that $y$ is also in $U \cap (A \cup B)$.
+    Hence $U$ intersects $A \cup B$.
+    An analogous argument shows that this is also true if $x \in \clB$ instead.
+    Since $U$ was an arbitrary neighborhood, this shows that $x \in \closure{A \cup B}$ by Theorem~17.5a.
+    Hence $\clA \cup \clB \ss \closure{A \cup B}$ since $x$ was arbitrary.
+  }
+
+  (c)
+  \qproof{
+    Consider any $x \in \bigcup \clA_\a$ so that there is a particular $\b$ where $x \in \clA_\b$.
+    Suppose that $U$ is any open set containing $x$ so that $U$ intersects $A_\b$ by Theorem~17.5a since $x \in \clA_\b$.
+    Then clearly $U$ also intersects $\bigcup A_\a$ since $A_\b \ss \bigcup A_\a$.
+    Since $U$ was an arbitrary open set containing $x$, this shows that $x \in \closure{\bigcup A_\a}$ by Theorem~17.5a.
+    This shows that $\bigcup \clA_\a \ss \closure{\bigcup A_\a}$ since $x$ was arbitrary, which is of course the desired result.
+  }
+
+  As an example where equality fails, consider the standard topology on $\reals$ and the sets $A_n = \opcl{1/n, 2}$ for $n \in \pints$.
+  It is then trivial to show that $\bigcup A_n = \opcl{0, 2}$ so that clearly $0$ is a limit point of $\bigcup A_n$, and hence $0 \in \closure{\bigcup A_n}$.
+  However, for any $n \in \pints$, the open interval $(-1, 1/n)$ is clearly an open set containing $0$ that is disjoint from $\opcl{1/n, 2} = A_n$.
+  This shows that $0 \notin \clA_n$ for every $n \in \pints$ by Theorem~17.5a, from which it follows that $0 \notin \bigcup \clA_n$.
+  Hence $\closure{\bigcup A_n}$ is not a subset of $\bigcup \clA_n$ and thus $\closure{\bigcup A_n} \neq \bigcup \clA_n$.
+}
+
+\exercise{7}{
+  Criticize the following ``proof'' that $\closure{\bigcup A_\a} \ss \bigcup \clA_\a$: if $\braces{A_\a}$ is a collection of sets in $X$ and if $x \in \closure{\bigcup A_\a}$, then every neighborhood $U$ of $x$ intersects $\bigcup A_\a$.
+  Thus $U$ must intersect some $A_\a$, so that $x$ must belong to the closure of some $A_\a$.
+  Therefore, $x \in \bigcup \clA_\a$.
+}
+\sol{
+  \dwhitman
+
+  The problem with this ``proof'' is that, just because every neighborhood $U$ intersects \emph{some} $A_\a$, it does not mean that \emph{every} $U$ intersects a single $A_\a$, which is what is required for $x$ to be in $\clA_\a$.
+  This is illustrated in the counterexample above at the end of Exercise~17.6c.
+  There, every neighborhood of $0$ clearly intersects \emph{some} set $A_n = \opcl{1/n, 2}$, but, for any given $n \in \pints$, not every neighborhood of $0$ intersects $A_n$, for example the neighborhood $(-1, 1/n)$ does not.
+}
+
+\exercise{8}{
+  Let $A$, $B$, and $A_\a$ denote subsets of a space $X$.
+  Determine whether the following equations hold; if an equality fails, determine whether one of the inclusions $\sps$ or $\ss$ holds.
+  \eparts{
+  \item $\closure{A \cap B} = \clA \cap \clB$.
+  \item $\closure{\bigcap A_\a} = \bigcap \clA_\a$.
+  \item $\closure{A - B} = \clA - \clB$.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a) We claim that $\closure{A \cap B} \ss \clA \cap \clB$ but equality is not always true.
+  \qproof{
+    Consider any $x \in \closure{A \cap B}$ and any open set $U$ containing $x$.
+    Then by, Theorem~17.5a, $U$ intersects $A \cap B$, from which it immediately follows that $U$ intersects both $A$ and $B$.
+    However, since $U$ was an arbitrary neighborhood of $x$, it follows from Theorem~17.5a again that $x$ is in both $\clA$ and $\clB$.
+    Hence $x \in \clA \cap \clB$, which shows that $\closure{A \cap B} \ss \clA \cap \clB$ since $x$ was arbitrary.
+
+    Now consider the standard topology on $\reals$ with $A = \clop{-1,0}$ and $B = \opcl{0,1}$.
+    As these are clearly disjoint, we have that $A \cap B = \es$ so that $\closure{A \cap B} = \es$ also.
+    However, since we also clearly have that $\clA = [-1,0]$ and $\clB = [0,1]$, it follows that $\clA \cap \clB = \braces{0}$.
+    Thus clearly $\closure{A \cap B} = \es \neq \braces{0} = \clA - \clB$ as desired.
+  }
+
+  (b) We again claim that $\closure{\bigcap A_\a} \ss \bigcap \clA_\a$ but that equality is not generally true.
+  \qproof{
+    Consider any $x \in \closure{\bigcap A_\a}$ and any open set $U$ of $x$.
+    Then, by Theorem~17.5a, $U$ intersects $\bigcap A_\a$ so that, for any particular $A_\b$, $U$ intersects $A_\b$.
+    This shows that $x \in \clA_\b$ by Theorem~17.5a so that $x \in \clA_\a$ for every $\a$ since $\b$ was arbitrary.
+    Hence $x \in \bigcap \clA_\a$, which shows that $\closure{\bigcap A_\a} \ss \bigcap \clA_\a$ since $x$ was arbitrary.
+    
+    As in part (a), equality fails if we have $A_1 = \clop{-1,0}$ and $A_2 = \opcl{0,1}$ in the standard topology on $\reals$.
+    By the same argument as in part (a) it follows that $\closure{\bigcap_{n=1}^2 A_n} = \es \neq \braces{0} = \bigcap_{n=1}^2 \clA_n$.
+  }
+
+  (c) Here we claim that $\closure{A-B} \sps \clA - \clB$ but that the converse does not always hold.
+  \qproof{
+    Consider any $x \in \clA - \clB$ and any open set $U$ containing $x$.
+    Then $x \in \clA$ so that every open set containing $x$ intersects $A$ by Theorem~17.5a.
+    Also $x \notin \clB$ so that there is an open set $V$ containing $x$ that does not intersect $B$, also by Theorem~17.5a.
+    Let $W = U \cap V$ so that $W$ contains $x$ since both $x \in U$ and $x \in V$.
+    Now, since $W$ is also an open set containing $x$, $W$ intersects $A$ so that there is a $y \in W$ where also $y \in A$.
+    It also cannot be that $y \in B$ since we have $y \in W \ss V$ so that then $V$ would intersect $B$.
+    Therefore $y \in A - B$.
+    Also we have $y \in W \ss U$ so that also $y \in U$.
+    Hence $U$ intersects $A - B$, which shows that $x \in \closure{A-B}$ by Theorem~17.5a since $U$ was an arbitrary neighborhood of $x$.
+    Therefore $\closure{A-B} \sps \clA - \clB$ as desired since $x$ was arbitrary.
+
+    As a counterexample to equality, consider the standard topology on $\reals$ with $A = [0,2]$ and $B = \opcl{1,3}$.
+    Then clearly $\clA = A = [0,2]$ and $\clB = [1,3]$, from which it is easily shown that $\clA - \clB = \clop{0,1}$.
+    But we also have $A - B = [0,1]$ so that obviously $\closure{A-B} = [0,1]$ as well.
+    Therefore $\closure{A-B} = [0,1] \neq \clop{0,1} = \clA - \clB$ as desired.
+  }
+}
+
+\exercise{9}{
+  Let $A \ss X$ and $B \ss Y$.
+  Show that in the space $X \times Y$,
+  \gath{
+    \closure{A \times B} = \clA \times \clB \,.
+  }
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    $(\ss)$ Consider $(x,y) \in \closure{A \times B}$.
+    Also suppose that $U$ and $V$ are any open sets in $X$ and $Y$, respectively, that contain $x$ and $y$, respectively.
+    Then $U \times V$ is a basis element of the product topology on $X \times Y$, by definition, that contains $(x,y)$.
+    It then follows from Theorem~17.5b that $U \times V$ intersects $A \times B$ and hence there is a point $(w,z) \in U \times V$ where also $(w,z) \in A \times B$.
+    Then $w \in U$ and $w \in A$ so that $U$ intersects $A$, and hence $x \in \clA$ by Theorem~17.5a since $U$ was an arbitrary neighborhood of $x$.
+    An analogous argument shows that $y \in \clB$.
+    Therefore $(x,y) \in \clA \times \clB$ so that $\closure{A \times B} \ss \clA \times \clB$ since $x$ was arbitrary.
+
+    $(\sps)$ Now suppose that $(x,y)$ is any point in $\clA \times \clB$ so that $x \in \clA$ and $y \in \clB$.
+    Suppose also that $U \times V$ is any basis element of $X \times Y$ that contains $(x,y)$ so that by definition $U$ and $V$ are open in $X$ and $Y$, respectively.
+    Since $x \in \clA$ and $U$ is an open set where $x \in U$, it follows from Theorem~17.5a that $U$ intersects $A$.
+    Thus there is $w \in U$ where $w \in A$ as well.
+    An analogous argument shows that $V$ intersects $B$ so that there is a $z \in V$ where also $z \in B$.
+    We therefore have that $(w,z) \in U \times V$ and $(w,z) \in A \times B$ so that $U \times V$ intersects $A \times B$.
+    Since $U \times V$ was an arbitrary basis element containing $(x,y)$, it follows from Theorem~17.5b that $(x,y) \in \closure{A \times B}$.
+    This shows that $\clA \times \clB \ss \closure{A \times B}$ since the point $(x,y)$ was arbitrary.
+  }
+}
+
+\exercise{10}{
+  Show that every order topology is Hausdorff.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    Suppose that $X$ is an ordered set with the order topology.
+    Consider a pair of distinct points $x_1$ and $x_2$ in $X$.
+    Since $X$ is an order, $x_1$ and $x_2$ must be comparable since they are distinct, so we can assume that $x_1 < x_2$ without loss of generality.
+
+    Case: $x_2$ is the immediate successor of $x_1$.
+    Then, if $X$ has a smallest element $a$ then clearly the set $U_1 = \clop{a, x_2}$ is a neighborhood (because it is a basis element) of $x_1$.
+    If $X$ has no smallest element then there is an $a < x_1$ so that $U_1 = (a, x_2)$ is a neighborhood of $x_1$.
+    Similarly $U_2 = \opcl{x_1, b}$ or $U_2 = (x_1, b)$ is a neighborhood of $x_2$, where $b$ is either the largest element of $X$ or $x_2 < b$, respectively.
+    Either way, for any $y \in U_1$ we have that $y < x_2$ so that $y \leq x_1$ since $x_2$ is the immediate successor of $x_1$.
+    Hence it is not true that $y > x_1$ so that $y \notin U_2$.
+    This shows that $U_1$ and $U_2$ are disjoint.
+
+    Case: $x_2$ is not the immediate successor of $x_1$.
+    Then there is an $x \in X$ where $x_1 < x < x_2$.
+    So let $U_1 = \clop{a,x}$ (or $U_1 = (a, x)$) for the smallest element $a$ of $X$ (or some $a < x_1$).
+    Similarly let $U_2 = \opcl{x,b}$ (or $U_2 = (x,b)$) for the largest element $b$ of $X$ (or some $x_2 < b$).
+    Either way $U_1$ and $U_2$ are neighborhoods of $x_1$ and $x_2$, respectively.
+    If $y \in U_1$ then $y < x$ so that clearly it is not true that $y > x$ so that $x \notin U_2$.
+    Hence again $U_1$ and $U_2$ are disjoint.
+
+    Thus in either case we have shown that $X$ is a Hausdorff space as desired since $x_1$ and $x_2$ were an arbitrary pair.
+  }
+}
+
+\exercise{11}{
+  Show that the product of two Hausdorff spaces is Hausdorff.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    Suppose that $X$ and $Y$ are Hausdorff spaces and consider two distinct points $(x_1,y_1)$ and $(x_2,y_2)$ in $X \times Y$.
+    Since these points are distinct, it has to be that $x_1 \neq x_2$ or $y_1 \neq y_2$.
+    In the first case $x_1$ and $x_2$ are distinct points of $X$ so that there are disjoint neighborhoods $U_1$ and $U_2$ of $x_1$ and $x_2$, respectively.
+    This of course follows from the fact that $X$ is a Hausdorff space.
+    Then we have that $U_1 \times Y$ and $U_2 \times Y$ are both basis elements, and therefore open sets, in the product space $X \times Y$ since $Y$ itself is obviously an open set of $Y$.
+    Clearly also $(x_1,y_1) \in U_1 \times Y$ and $(x_2,y_2) \in U_2 \times Y$ so that $U_1 \times Y$ is a neighborhood of $(x_1,y_1)$ and $U_2 \times Y$ is a neighborhood of $(x_2,y_2)$.
+
+    Then, for any $(x,y) \in U_1 \times Y$ we have that $x \in U_1$ so that $x \notin U_2$ since they are disjoint.
+    Then it has to be that $(x,y) \notin U_2 \times Y$.
+    This suffices to show that $U_1 \times Y$ and $U_2 \times Y$ are disjoint since $(x,y)$ was arbitrary.
+    Thus $X \times Y$ is a Hausdorff space since the points $(x_1,y_1)$ and $(x_2,y_2)$ were arbitrary.
+    An analogous argument in the case in which $y_1 \neq y_2$ shows the same result.
+  }
+}
+
+\exercise{12}{
+  Show that a subspace of a Hausdorff space is Hausdorff.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    Suppose that $X$ is a Hausdorff space and that $Y$ is a subset of $X$.
+    Consider any two distinct points $y_1$ and $y_2$ in $Y$ so that of course also $y_1,y_2 \in X$.
+    Then there are neighborhoods $U_1$ and $U_2$ of $y_1$ and $y_2$, respectively, that are disjoint since $X$ is Hausdorff.
+    Since $U_1$ is open in $X$, we have that $V_1 = U_1 \cap Y$ is open in $Y$ by the definition of a subspace topology.
+    Clearly also $V_1$ contains $y_1$ since $y_1 \in U_1$ and $y_1 \in Y$.
+    Similarly $V_2 = U_2 \cap Y$ is an open set of $Y$ that contains $y_2$.
+    Then, for any $x \in V_1$ clearly $x \in U_1$ so that $x \notin U_2$ since $U_1$ and $U_2$ are disjoint.
+    Then $x \notin U_2 \cap Y = V_2$.
+    Since $x$ was arbitrary, this shows that $V_1$ and $V_2$ are disjoint, which then shows that $Y$ is a Hausdorff space as desired.
+  }
+}
