@@ -200,7 +200,7 @@
     (Actually $B$ cannot be of the form $\opcl{e,f}$ for largest element $f$ of $X$ since then any element of $(a,b)$ would also be in $B$ and they would not be disjoint.)
   }
 
-  It is also worth noting that the Hausdorff axiom (and therefore also the T1 axiom since it is implied by the Hausdorff axiom) is not sufficient for general equivalence of $[a,b]$ and $\closure{(a,b)}$.
+  It is also worth noting that the Hausdorff axiom (and therefore also the $T_1$ axiom since it is implied by the Hausdorff axiom) is not sufficient for general equivalence of $[a,b]$ and $\closure{(a,b)}$.
   For example the order topology on $\ints$ results in the discrete topology so that every subset is both open and closed.
   Thus for any pair $x_1, x_2$ in $\ints$, the sets $\braces{x_1}$ and $\braces{x_2}$ are neighborhoods of $x_1$ and $x_2$, respectively, that are disjoint.
   This shows that this topology is a Hausdorff space.
@@ -442,5 +442,274 @@
     Then, for any $x \in V_1$ clearly $x \in U_1$ so that $x \notin U_2$ since $U_1$ and $U_2$ are disjoint.
     Then $x \notin U_2 \cap Y = V_2$.
     Since $x$ was arbitrary, this shows that $V_1$ and $V_2$ are disjoint, which then shows that $Y$ is a Hausdorff space as desired.
+  }
+}
+
+\exercise{13}{
+  Show that $X$ is Hausdorff if and only if the \boldit{diagonal} $\D = \braces{x \times x \where x \in X}$ is closed in $X \times X$.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    $(\imp)$ Suppose that $X$ is Hausdorff and consider any point $x \times y \in X \times X$ where $x \times y \notin \D$.
+    Then it must be that $x \neq y$ so that there are disjoint neighborhood $U$ of $x$ and $V$ of $y$ since $X$ is Hausdorff.
+    Then $U \times V$ is a basis element of $X \times X$, by the definition of a product topology, and is therefore open.
+    Now consider any point $w \times z \in U \times V$ so that $w \in U$ and $z \in V$.
+    Then it has to be that $w \neq z$ since $U$ and $V$ are disjoint, which shows that $w \times z \notin \D$.
+    Since $w \times z$ was an arbitrary point of $U \times V$, this shows that $U \times V$ does not intersect $\D$.
+    Since also $U \times V$ is open and contains $x \times y$, this shows that $x \times y$ is not a limit point of $\D$.
+    Moreover, since $x \times y$ was an arbitrary element of $X \times X$ that is not in $\D$, it follows that $\D$ must contain all of its limit points and is therefore closed by Corollary~17.7.
+
+    $(\pmi)$ Now suppose that $\D$ is closed and suppose that $x$ and $y$ are distinct points in $X$.
+    Then $x \times y \notin \D$ so that $x \times y$ cannot be a limit point of $\D$ (since it contains all its limit points by Corollary~17.7).
+    Hence there is an open set $T$ in $X \times X$ that contains $x \times y$ and does not intersect $\D$.
+    It then follows that there is a basis element $U \times V$ of $X \times X$ containing $x \times y$ where $U \times V \ss T$.
+    Then $U$ and $V$ are both open in $X$ by the definition of the product topology, and clearly $x \in U$ and $y \in V$.
+    It also follows that $U \times V$ does not intersect $\D$ since, if it did, then $T$ would as well.
+
+    Suppose that $U$ and $V$ are not disjoint so that there is a $z \in U$ where also $z \in V$.
+    Then clearly $z \times z \in U \times V$ but we also have that $z \times z \in \D$ so that $U \times V$ intersects $\D$.
+    As we know that this cannot be the case, it has to be that $U$ and $V$ are disjoint.
+    This shows that $X$ is Hausdorff as desired since $U$ is a neighborhood of $x$, $V$ is a neighborhood of $y$, and $x$ and $y$ were arbitrary distinct points of $X$.
+  }
+}
+
+\exercise{14}{
+  In the finite compliment topology on $\reals$, to what point or points does the sequence $x_n = 1/n$ converge?
+}
+\sol{
+  \dwhitman
+
+  We claim that this sequence converges to every point in $\reals$.
+  \qproof{
+    Suppose that this is not the case so that there is point $a \in \reals$ where the sequence does not converge to $A$.
+    Then there is an open set $U$ containing $a$ such that, for every $N \in \pints$, there is an $n \geq N$ where $x_n \notin U$.
+    It is easy to see that $x_n \notin U$ for an infinite number of $n \in \pints$.
+    For, if this were not the case, then there would be an $N \in \pints$ where $x_n \in U$ for every $n \geq N$.
+    We know, though, that there must be an $n \geq N$ where $x_n \notin U$.
+
+    Moreover, clearly every $x_n$ in the sequence is distinct so that there are an infinite number of points not in $U$.
+    Since each of these points are still in $X$, we have that $X - U$ is infinite.
+    As this is the finite compliment topology and $U$ is open, this can only be the case if $X - U = X$ itself, in which case it would have be that $U = \es$ since $U \ss X$.
+    This is not possible since $U$ contains $a$.
+    So it seems that a contradiction has been reached, which shows the desired result.
+  }
+
+  In fact, this is true for any sequence for which the range the sequence  $\braces{x_n \where n \in \pints}$ is infinite.
+  This is to say that any such sequence converges to every point of $\reals$.
+  Note also that this shows that the finite compliment topology on $\reals$ is not a Hausdorff space by the contrapositive of Theorem~17.10.
+}
+
+\exercise{15}{
+  Show the $T_1$ axiom is equivalent to the condition that for each pair of points of $X$, each has a neighborhood not containing the other.
+}
+\sol{
+  \dwhitman
+
+  Note that, though it does not say so above, the points must be distinct since any neighborhood containing $x$ obviously has to contain $x$.
+
+  \qproof{
+    $(\imp)$ Suppose that a space $X$ satisfies the $T_1$ axiom and consider any two distinct points $x$ and $y$ of $X$.
+    Then the point $\braces{x}$ is closed since it is finite, and hence it also contains all of its limit points by Corollary~17.7.
+    Since the point $y$ is not in $\braces{x}$ (since $y \neq x$), it cannot be a limit point of $\braces{x}$.
+    Hence there is a neighborhood $U$ of $y$ that does not intersect $\braces{x}$.
+    Hence $x \notin U$.
+    An analogous argument involving $\braces{y}$ shows that there is a neighborhood $V$ of $x$ that does not contain $y$.
+    Since $x$ and $y$ were arbitrary points, this shows the desired property.
+
+    $(\pmi)$ Now suppose that, for each pair of distinct points in $X$, each point has a neighborhood that does not contain the other point.
+    As in the proof of Theorem~17.8, it suffices to show that every one-point set is closed, since any finite set can be expressed as the finite union of such sets, which is also then closed by Theorem~17.1.
+    So let $\braces{x}$ be such a one-point set and consider any $y \notin \braces{x}$ so that clearly $y \neq x$.
+    Then, since $x$ and $y$ are distinct, there is a neighborhood $U$ of $y$ such that $U$ does not contain $x$.
+    Therefore $U$ and $\braces{x}$ are disjoint.
+    This shows that $y$ is not a limit point of $\braces{x}$, which shows that $\braces{x}$ contains all its limit points since $y \notin \braces{x}$ was arbitrary.
+    Hence $\braces{x}$ is closed as desired by Corollary~17.7.
+  }
+}
+
+\exercise{16}{
+  Consider the five topologies on $\reals$ given in Exercise~7 of \S 13.
+  \eparts{
+  \item Determine the closure of the set $K = \braces{1/n \where n \in \pints}$ under each of these topologies.
+  \item Which of these topologies satisfy the Hausdorff axiom? the $T_1$ axiom?
+  }
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:closedlim:axiomsf}
+    Suppose that $\cT$ and $\cT'$ are topologies on $X$ and $\cT'$ is finer than $\cT$.
+    If $\cT$ satisfies the $T_1$ axiom, then so does $\cT'$.
+    Similarly, if $\cT$ is Hausdorff, then so is $\cT'$.
+  \end{lem}
+  \qproof{
+    First, suppose that $\cT$ satisfies the $T_1$ axiom and consider any finite subset $A$ of $X$.
+    Then $A$ is closed in $\cT$ by the $T_1$ axiom so that by definition $X - A$ is open in $\cT$ and hence $X -A \in \cT$.
+    Then $X - A \in \cT'$ as well since $\cT \ss \cT'$ so that $X - A$ is open in $\cT'$.
+    Hence $A$ is closed in $\cT'$ by definition.
+    Since $A$ was an arbitrary finite set, this shows that $\cT'$ also satisfies the $T_1$ axiom.
+
+    Now suppose that $\cT$ is Hausdorff, and consider any two distinct points $x$ and $y$ in $X$.
+    Then there are neighborhoods $U$ of $x$ and $V$ of $y$, both in $\cT$, that do not intersect since $\cT$ is Hausdorff.
+    Then clearly $U,V \in \cT'$ as well since $\cT \ss \cT'$.
+    Hence $U$ and $V$ are neighborhoods of $x$ and $y$, respectively, in $\cT'$ that do not intersect.
+    This shows that $\cT'$ is Hausdorff as desired since $x$ and $y$ were arbitrary points of $X$.
+  }
+
+  \mainprob
+
+  First we summarize what we claim about these topologies on $\reals$ for both parts:
+  \begin{center}
+    \begin{tabular}{cl|ccc}
+      Topology & Definition &$T_1$ & Hausdorff? & $\clK$ \\
+      \hline
+      $\cT_1$ & Standard & Yes & Yes & $K \cup \braces{0}$ \\
+      $\cT_2$ & $\reals_K$ & Yes & Yes & $K$ \\
+      $\cT_3$ & Finite complement & Yes & No & $\reals$ \\
+      $\cT_4$ & Upper limit & Yes & Yes & $K$ \\
+      $\cT_5$ & Basis of $(-\infty, a)$ sets & No & No & $\braces{x \in \reals \where 0 \leq x}$
+    \end{tabular}
+  \end{center}
+  Next we justify these claims for each part.
+
+  (a)
+  First we show that $\clK = K \cup \braces{0}$ in $\cT_1$.
+  \qproof{
+    $(\ss)$ Consider any real number $x$ and suppose that $x \notin K \cup \braces{0}$, hence $x \notin K$ and $x \neq 0$.
+    Since $x \neq 0$, we have
+
+    Case: $x < 0$.
+    Then clearly the open set $(x-1,0)$ contains $x$ but does not intersect $K$ since $0 < y$ for every $y \in K$, but $y < 0$ for every $y \in (x-1,0)$.
+
+    Case: $x > 0$.
+    If $1 < x$, then $(1, x+1)$ contains $x$ but does not intersect $K$ since $y \leq 1$ for every $y \in K$, but $1 < y$ for every $y \in (1, x+1)$.
+    If $1 \geq x$ it follows from the fact that $x \notin K$ that there is a positive integer $n$ where $n < 1/x < n+1$, and hence $1/(n+1) < x < 1/n$.
+    Then clearly the open set $(1/(n+1), 1/n)$ contains $x$, but we also have that it does not intersect $K$.
+    If it did, then there would be an integer $m$ where $1/(n+1) < 1/m < 1/n$ so that $n < m < n+1$, which we know is not possible since $n+1$ is the immediate successor of $n$ in $\pints$.
+
+    Thus in all cases there is a neighborhood of $x$ that does not intersect $K$.
+    This of course shows that $x \notin \clK$ by Theorem~17.5a.
+    We have therefore shown that $x \notin K \cup \braces{0}$ implies that $x \notin \clK$.
+    By contrapositive, this shows that $\clK \ss K \cup \braces{0}$.
+
+    $(\sps)$ Now consider any neighborhood $U$ of $0$ so that there is a basis element $(a,b)$ containing $0$ that is a subset of $U$.
+    Then $a < 0 < b$.
+    Clearly there is an $n \in \pints$ large enough where $a < 0 < 1/n < b$ and hence $1/n \in (a,b) \ss U$.
+    Since also $1/n \in K$, we have that $U$ intersects $K$.
+    Since $U$ was an arbitrary neighborhood, this shows that $0$ is in $\clK$ by Theorem~17.5a.
+    Since also clearly any $x \in K$ is also in $\clK$, it follows that $\clK \sps K \cup \braces{0}$.
+  }
+
+  Next we show that $\clK = K$ in $\cT_2$, which is to say that $K$ is already closed.
+  \qproof{
+    First, clearly $K \ss \clK$ basically by definition.
+    Now consider any $x \notin K$.
+    Then clearly the set $B = (x-1,x+1) - K$ is a basis element of $\cT_2$.
+    Also it clearly contains $x$ since $x \notin K$ and also does not intersect $K$ since $y \in B$ means that $y \notin K$.
+    This shows that $x$ is not in $\clK$ by Theorem~17.5b.
+    Since $x$ was arbitrary this shows that $x \notin K$ implies that $x \notin \clK$.
+    Thus $\clK \ss K$ by contrapositive.
+    This suffices to show that $\clK = K$ as desired.
+  }
+
+  Now we show that $\clK = \reals$ in $\cT_3$.
+  \qproof{
+    Consider any real $x$ and any neighborhood $U$ of $x$.
+    Then $U$ is open in $\cT_3$ so that $\reals - U$ must be finite, noting that $\reals - U$ cannot be all of $\reals$ since $U$ would then have to be empty since $U \ss \reals$, whereas we know that $x \in U$.
+    It then follows that there are a finite number of real numbers not in $U$.
+    However, clearly $K$ is an infinite set so that there must be an element of $K$ that \emph{is} in $U$.
+    This shows that $K$ intersects $U$ so that $x$ is in $\clK$ by Theorem~17.5a since $U$ was an arbitrary neighborhood.
+    Hence $\reals \ss \clK$ since $x$ was arbitrary.
+    Clearly also $\clK \ss \reals$ so that $\clK = \reals$.
+  }
+
+  Next we show that $\clK = K$ in $\cT_4$ so that $K$ is closed.
+  \qproof{
+    Clearly $K \ss \clK$.
+    So consider any real $x$ where $x \notin K$.
+
+    Case: $x \leq 0$.
+    Then the set $B = \opcl{x-1,x}$ is clearly a basis element of $\cT_4$ that contains $x$.
+    For any $y \in K$ we have that $x \leq 0 < y$ so that $y \notin B$.
+    Hence $B$ does not intersect $K$.
+
+    Case: $x > 0$.
+    If $1 \leq x$ then it has to be that $1 < x$ since $1 = 1/1 \in K$ but $x \notin K$, and hence $x \neq 1$.
+    Then $B = \opcl{1,x}$ is clearly a basis element of $\cT_4$ and contains $x$.
+    This also clearly does not intersect $K$ since $y \leq 1$ for any $y \in K$ so that $y \notin B$.
+    On the other hand, if $1 > x$ then there is an integer $n$ where $n < 1/x < n+1$ so that $1/(n+1) < x < 1/n$ since $x \notin K$.
+    It then follows that the set $B = \opcl{1/(n+1), x}$ is a basis element of $\cT_4$ that contains $x$ and does not intersect $K$.
+
+    Hence in all cases there is a basis element $B$ containing $x$ that does not intersect $K$.
+    This shows that $x \notin \clK$ by Theorem~17.5b.
+    Hence we have shown that $x \notin K$ implies that $x \notin \clK$, which shows by contrapositive that $\clK \ss K$.
+    Therefore $\clK = K$ as desired.
+  }
+
+  Lastly we show that $\clK = \braces{x \in \reals \where 0 \leq x}$ in $\cT_5$.
+  \qproof{
+    First, let $A = \braces{x \in \reals \where 0 \leq x}$ and consider any $x \in A$ and any basis element $B = (-\infty,a)$ containing $x$.
+    Hence clearly $0 \leq x$ since $x \in A$ and $x < a$ since $x \in B$.
+    Thus $0 \leq x < a$ so that there is an integer $n$ large enough that $0 < 1/n < a$.
+    Then $1/n \in B$ and also clearly $1/n \in K$.
+    Thus $B$ intersects $K$.
+    Since $B$ was any neighborhood of $x$ it follows from Theorem~17.5b that $x \in \clK$.
+    Hence $A \ss \clK$ since $x$ was arbitrary.
+
+    Now suppose that $x \notin A$ so that $x < 0$.
+    Then the set $B = (-\infty,0)$ is clearly a basis element of $\cT_5$ that contains $x$.
+    Since $0 < y$ for any $y \in K$, it follows that $y \notin B$, and thus $B$ cannot intersect $K$.
+    Hence by Theorem~17.5b we have that $x \notin \clK$.
+    This shows that $\clK \ss A$ by contrapositive, which completes the proof that $\clK = A$.
+  }
+  
+  (b)
+  First we show that $\cT_1$, $\cT_2$, and $\cT_4$ are Hausdorff spaces and satisfy the $T_1$ axiom.
+  \qproof{
+    First consider any two distinct points $x,y \in \reals$.
+    Without loss of generality, we can assume that $x < y$.
+    Let $z = (x+y)/2$ so that clearly $x < z < y$.
+    Then obviously the open intervals $(x-1,z)$ and $(z,y+1)$ are disjoint open sets in $\cT_1$ that contain $x$ and $y$, respectively.
+    This shows that $\cT_1$ is a Hausdorff space and therefore also satisfies the $T_1$ axiom by Theorem~17.8.
+    
+    It then follows that $\cT_2$ and $\cT_4$ are also both Hausdorff and satisfy the $T_1$ axiom.
+    This follows from Lemma~\ref{lem:closedlim:axiomsf} since it was shown in Exercise~13.7 that $\cT_1 \ss \cT_2 \ss \cT_4$.
+  }
+
+  Next we show that $\cT_3$ satisfies the $T_1$ axiom but is not a Hausdorff space.
+  \qproof{
+    So first consider any finite subset $A$ of $\reals$.
+    Let $U = X - A$ so that clearly $A = X - (X - A) = X - U$.
+    Then, since $X - U = A$ is finite, it follows that $U$ is open in $\cT_3$ by the definition of the finite complement topology.
+    Hence by definition $A$ is closed in $\cT_3$ since $X - A = U$ is open.
+    This shows that $\cT_3$ satisfies the $T_1$ axiom since $A$ was an arbitrary finite subset of $\reals$.
+
+    To show that $\cT_3$ is not Hausdorff, consider any open set $U$ containing $0$ and any open set $V$ containing $1$.
+    It then has to be that $\reals - U$ is finite since it cannot be that $\reals - U = \reals$ itself since then $U$ would have to be empty (which we know is not the case since $0 \in U$) since $U \ss \reals$.
+    Likewise $\reals - V$ is also finite.
+    Thus there are a finite number of real numbers that are not in $U$ and a finite number that are not in $V$.
+    From this it clearly follows that there are a finite number of real numbers $x$ where $x \notin U$ or $x \notin V$.
+    Since we have
+    \gath{
+      x \notin U \lor x \notin V
+      \bic \lnot (x \in U \land x \in V)
+      \bic \lnot (x \in U \cap V)
+      \bic x \notin U \cap V \,,
+    }
+    it has to be that there are a finite number of reals numbers that are not in $U \cap V$.
+    But since $\reals$ is infinite, this means that there are an infinite number of real numbers that \emph{are} in $U \cap V$.
+    Hence $U \cap V \neq \es$, i.e. they intersect.
+    Since $U$ and $V$ were arbitrary neighborhoods, this shows that $\cT_3$ is not Hausdorff by the negation of the definition.
+  }
+
+  Lastly we prove that $\cT_5$ is neither a Hausdorff space nor satisfies the $T_1$ axiom.
+  \qproof{
+    First consider the distinct real numbers $0$ and $1$.
+    Consider then any open set $V$ containing $1$ so that there is a basis element $B = (-\infty, a)$ that contains $1$ and is a subset of $U$.
+    Clearly we have that $0 \in B$ since $0 < 1 < a$ and hence $0 \in U$ since $B \ss U$.
+    Since $U$ was an arbitrary neighborhood of $1$, it follows there is no neighborhood of $1$ that does not contain $0$.
+    Hence $\cT_5$ does not satisfy the $T_1$ axiom by the negation of Exercise~17.15.
+    It also then follows that $\cT_5$ is not a Hausdorff space by the contrapositive of Theorem~17.8.
   }
 }
