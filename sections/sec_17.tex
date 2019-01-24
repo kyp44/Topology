@@ -17,7 +17,7 @@
     First, clearly $\es$ and $X$ are in $\cT$ since $\es = X - X$ and $X = X - \es$ and both $X$ and $\es$ are in $\cC$.
     This shows the first defining property of a topology.
 
-    Now consider an arbitrary subcollection $\cA$ of $\cT$.
+    Now consider an arbitrary sub-collection $\cA$ of $\cT$.
     Then, for each $A \in \cA$, we have that $A = X - B$ for some $B \in \cC$ since also $A \in \cT$.
     So let $\cB = \braces{B \in \cC \where X - B \in \cA}$.
     Then we have that
@@ -29,7 +29,7 @@
     It then follows that $\bigcup \cA = X - \bigcap \cB$ is in $\cT$ by definition.
     This shows the second defining property of a topology.
 
-    Lastly, suppose that $\cA$ is a nonempty finite subcollection of $\cT$, which of course can be expressed as $\cA = \braces{A_k \where k \in \intsfin{n}}$ for some positive integer $n$.
+    Lastly, suppose that $\cA$ is a nonempty finite sub-collection of $\cT$, which of course can be expressed as $\cA = \braces{A_k \where k \in \intsfin{n}}$ for some positive integer $n$.
     Then, again we have that that $A_k = X - B_k$ for some $B_k \in \cC$ for all $k \in \intsfin{n}$ since $A_k \in \cT$.
     Then we have
     \gath{
@@ -38,7 +38,7 @@
     by DeMorgan's law.
     Then clearly $\bigcup_{k=1}^n B_k$ is in $\cC$ by definition since it is a finite union of elements of $\cC$.
     It then follows that $\bigcap \cA = X - \bigcup_{k=1}^n B_k$ is in $\cT$ by definition.
-    Since $\cA$ was an arbitrary finite subcollection, this shows the third defining property of a topology.
+    Since $\cA$ was an arbitrary finite sub-collection, this shows the third defining property of a topology.
     Hence $\cT$ is a topology by definition.
   }
 }
@@ -928,4 +928,364 @@
     A similar argument shows an analogous result in the case when $y = 1$.
     This shows by Theorem~17.5b that $x \times y \in \closure{E}$ since $F$ was an arbitrary basis element, which of course shows that $\closure{E} \sps F$ since $x \times y$ was arbitrary.
   }
+}
+
+\exercise{19}{
+  If $A \ss X$, we define the \boldit{boundary} of $A$ by the equation
+  \gath{
+    \Bd{A} = \clA \cap \closure{(X-A)} \,.
+  }
+  \eparts{
+  \item Show that $\Int{A}$ and $\Bd{A}$ are disjoint, and $\clA = \Int{A} \cup \Bd{A}$.
+  \item Show that $\Bd{A} = \es \bic A$ is both open and closed.
+  \item Show that $U$ is open $\bic \Bd{U} = \clU - U$.
+  \item If $U$ is open, is it true that $U = \Int(\clU)$?
+    Justify your answer.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    Consider any $x \in \Int{A}$ so that there is a neighborhood of $x$ that is entirely contained in $A$.
+    Then, for any $y \in U$, we have that $y \in A$ and hence $y \notin X - A$.
+    This shows that $U$ does not intersect $X - A$, which suffices to show that $x$ is not in the closure of $X - A$ by Theorem~17.5a.
+    Thus $x$ is not in the boundary of $A$ since $\Bd{A} = \clA \cap \closure{(X-A)}$.
+    This of course shows that $\Int{A}$ and $\Bd{A}$ are disjoint since $x$ was arbitrary.
+
+    To show that $\clA = \Int{A} \cup \Bd{A}$, first consider any $x \in \clA$.
+    If $x \in \Int{A}$ then clearly $x \in \Int{A} \cup \Bd{A}$, so assume that $x \notin \Int{A}$.
+    Consider any neighborhood $U$ of $X$.
+    Then it has to be that $U$ is not a subset of $A$ since otherwise $x$ would be in the union of open subsets of $A$ and hence in the interior.
+    It then follows that there is a point $y \in U$ where $y \notin A$ and therefore $y \in X - A$.
+    This shows that $U$ intersects $X - A$ so that $x$ is in the closure of $X - A$ since $U$ was an arbitrary neighborhood.
+    Since also $x \in \clA$, we have that $x \in \clA \cap \closure{(X-A)} = \Bd{A}$.
+    Hence clearly $x \in \Int{A} \cup \Bd{A}$ so that $\clA \ss \Int{A} \cup \Bd{A}$ since $x$ was arbitrary.
+
+    Now consider any $x \in \Int{A} \cup \Bd{A}$.
+    If $x \in \Int{A}$ then also $x \in \clA$ since we have that $\Int{A} \ss A \ss \clA$.
+    On the other hand, if $x \in \Bd{A} = \clA \cap \closure{(X-A)}$ then of course $x \in \clA$.
+    This shows that $\Int{A} \cup \Bd{A} \ss \clA$ in either case since $x$ was arbitrary.
+    Since both directions have been shown, it follows that $\clA = \Int{A} \cup \Bd{A}$ as desired.
+  }
+
+  (b)
+  \qproof{
+    $(\imp)$ First suppose that $\Bd{A} = \es$.
+    Then by part (a) we have that $\clA = \Int{A} \cup \Bd{A} = \Int{A} \cup \es = \Int{A}$.
+    Hence $A \ss \clA = \Int{A}$ so that $A = \Int{A}$ since it is also always the case that $\Int{A} \ss A$.
+    This shows that $A$ is open since $\Int{A}$ is always open.
+    We also have $\clA = \Int{A} \ss A$ so that $A = \clA$ since it is always also the case that $A \ss \clA$.
+    This of course shows that $A$ is also closed since $\clA$ is always closed.
+
+    $(\pmi)$ Now suppose that $A$ is both open and closed.
+    It then follows that $\clA = A = \Int{A}$.
+    So consider any $x \in \clA$ so that also $x \in \Int{A}$.
+    Then there is a neighborhood $U$ of $x$ contained entirely in $A$.
+    Thus, for any point $y \in U$, we have that $y \in A$ so that $y \notin X - A$, which shows that $U$ does not intersect $X - A$.
+    Since $U$ is a neighborhood of $x$, this shows that $x \notin \closure{X-A}$ by Theorem~17.5a.
+    Then, since $x$ was an arbitrary element of $\clA$, it follows that $\clA$ and $\closure{X-A}$ are disjoint so that $\Bd{A} = \clA \cap \closure{(X-A)} = \es$ as desired.
+  }
+
+  (c)
+  \qproof{
+    $(\imp)$ First suppose that $U$ is open and consider any $x \in \Bd{U}$.
+    Then we have that $x \in \clU$ and $x \in \closure{X-U}$ since $\Bd{U} = \clU \cap \closure{(X-U)}$ by definition.
+    Suppose for the moment that $x \in U$ so that $U$ itself is a neighborhood of $x$ since it is open.
+    For any $y \in U$ we have that $y \notin X - U$, and hence $U$ does not intersect $X - U$.
+    This shows that $x$ is not in $\closure{X-U}$ by Theorem~17.5a, which is a contradiction since we know it is.
+    Thus it must be that $x \notin U$ so that $x \in \clU - U$.
+    This of course shows that $\Bd{U} \ss \clU - U$ since $x$ was arbitrary.
+
+    Now consider any $x \in \clU - U$ so that clearly $x \in \clU$.
+    Since also $x \notin U$, it follows that $x \in X-U$ so that of course $x \in \closure{X-U}$ as well.
+    Hence $x \in \clU \cap \closure{(X-U)} = \Bd{U}$, which shows that $\clU - U \ss \Bd{U}$ since $x$ was arbitrary.
+    This suffices to show that $\Bd{U} = \clU - U$ as desired.
+
+    $(\pmi)$ Now suppose that $\Bd{U} = \clU - U$ and consider any $x \in U$.
+    Then we have that $x \notin \clU - U = \Bd{U} = \clU \cap \closure{(X-U)}$.
+    Since we know that $x \in \clU$ (since $U \ss \clU$), it must be that $x \notin \closure{X-U}$.
+    Thus, by Theorem~17.5a, there is a neighborhood of $V$ of $x$ that does not intersect $X - U$.
+    This means that, for any point $y \in V$, we have that $y \notin X - U$.
+    Since of course $y \in X$, it follows that $y$ must be in $U$.
+    This shows that $V \ss U$ since $y$ was arbitrary.
+    Hence $V$ is a neighborhood of $x$ that is entirely contained in $U$ so that $x$ is in the union of open sets contained in $U$, hence $x \in \Int{U}$.
+    Since $x$ was an arbitrary element of $U$, this shows that $U \ss \Int{U}$.
+    As it is always the case that $\Int{U} \ss U$ as well, we have that $U = \Int{U}$ so that $U$ is open since $\Int{U}$ is always open.
+  }
+
+  (d)
+  We claim that this is not generally true.
+  \qproof{
+    As a counterexample consider the set $U = \reals - \braces{0}$ in the finite complement topology on $\reals$.
+    Clearly $U$ is open as its complement $\reals - U = \braces{0}$ is finite.
+    It is also obvious that $U$ is an infinite set.
+
+    Now consider any real number $x$ and any neighborhood $V$ of $x$.
+    It cannot be that $\reals - V$ is all of $\reals$ since then $V$ would be empty, and we know that $x \in V$.
+    So it must be that $\reals - V$ is finite since $V$ is open, which means that there are only a finite number of real numbers that are \emph{not} in $V$.
+    However, since $U$ is infinite, there must be an element of $U$ that \emph{is} in $V$ (in fact there are an infinite number of such elements).
+    Hence $V$ intersects $U$ so that $x \in \clU$ by Theorem~17.5a.
+    Since $x \in \reals$ was arbitrary, it must be that $\clU$ is all of $\reals$.
+
+    Clearly $\reals$ is open (since the a set is always open in any topology on that set) so that $\Int(\clU) = \Int{\reals} = \reals$.
+    Then, since $0 \in \reals = \Int(\clU)$ but $0 \notin U$, we have that $U \neq \Int(\clU)$.
+  }
+}
+
+\exercise{20}{
+  Find the boundary and the interior of each of the following subsets of $\reals^2$:
+  \eparts{
+  \item $A = \braces{x \times y \where y = 0}$
+  \item $B = \braces{x \times y \where x > 0 \text{ and } y \neq 0}$
+  \item $C = A \cup B$
+  \item $D = \braces{x \times y \where x \text{ is rational}}$
+  \item $E = \braces{x \times y \where 0 < x^2 - y^2 \leq 1}$
+  \item $F = \braces{x \times y \where x \neq 0 \text{ and } y \leq 1/x}$
+  }
+}
+\sol{
+  \dwhitman
+
+  (a) It is easy to show that $A$ is closed so that $\clA = A$, and that also $\closure{\reals - A} = A$ so that $\Bd{A} = A$.
+  It is also easy to see that no basis element and therefore no neighborhood of any point in $A$ is contained entirely within $A$.
+  From this it follows that $\Int{A} = \es$.
+
+  (b) It is easy to show that $B$ is open so that $\Int{B} = B$.
+  It is likewise not difficult to prove that $\clB = \braces{x \times y \where x \geq  0}$.
+  We then have from Exercise~17.19c that $\Bd{B} = \clB - B = \braces{x \times y \where x = 0} \cup \braces{x \times y \where x > 0 \text{ and } y = 0}$.
+
+  (c) Here we have that $C = A \cup B = \braces{x \times y \where y = 0} \cup \braces{x \times y \where x > 0}$.
+  It is then easy to show that the closure is $\closure{C} = \braces{x \times y \where y = 0} \cup \braces{x \times y \where x \geq 0}$.
+  We also have that $\reals - C = \braces{x \times y \where x \leq 0 \text{ and } y \neq 0}$ so that $\closure{\reals - C} = \braces{x \times y \where x \leq 0}$.
+  From these we clearly then have
+  \gath{
+    \Bd{C} = \closure{C} \cap \closure{(\reals - C)} = \braces{x \times y \where x < 0 \text{ and } y = 0} \cup \braces{x \times y \where x = 0} \,.
+  }
+  It is also not difficult to show that $\Int{C} = \braces{x \times y \where x > 0}$.
+
+  (d) Clearly we have that $\closure{D}$ is all of $\reals^2$ as a consequence of the fact that the rationals are order-dense in the reals.
+  Also, since any neighborhood of any point in $D$ will intersect a point $x \times y$ with irrational $x$, it follows that no point of $D$ is in its interior.
+  Thus $\Int{D} = \es$ so that $\closure{D} = \Int{D} \cup \Bd{D} = \es \cup \Bd{D} = \Bd{D}$ by Exercise~17.19a, and hence $\Bd{D} = \closure{D} = \reals^2$.
+
+  (e) It should be fairly obvious by this point that
+  \gath{
+    \Bd{E} = \braces{x \times y \where \abs{y} = \abs{x}} \cup \braces{x \times y \where x^2 - y^2 = 1}
+  }
+  and $\Int{E} = \braces{x \times y \where 0 < x^2 - y^2 < 1}$.
+  This would be easy but tedious to prove rigorously.
+
+  (f) First we clearly have that $\Int{F} = \braces{x \times y \where x \neq 0 \text{ and } y < 1/x}$.
+  We also have that $\closure{F} = \braces{x \times y \where x = 0} \cup \braces{x \times y \where x \neq 0 \text{ and } y \leq 1/x}$.
+  By Exercise~17.19a we have that $\closure{F} = \Int{F} \cup \Bd{F}$ and that $\Int{F} \cap \Bd{F} = \es$ so that $\Bd{F} = \closure{F} - \Int{F}$.
+  Thus we have that $\Bd{F} = \braces{x \times y \where x = 0} \cup \braces{x \times y \where x \neq 0 \text{ and } y = 1/x}$.
+  Again these facts are not difficult to show rigorously but would be tedious.
+}
+
+\exercise{21}{
+  (Kuratowski) Consider the collection of all subsets $A$ of the topological space $X$.
+  The operations of closure $A \to \clA$ and complementation $A \to X - A$ are functions from the collection to itself.
+  \eparts{
+  \item Show that starting with a given set $A$, one can form no more than 14 distinct sets by applying these two operations successively.
+  \item Find a subset $A$ of $\reals$ (in its usual topology) for which the maximum of 14 is obtained.
+  }
+}
+\sol{
+  \dwhitman
+
+  For the following we introduce the following notation to make things simpler. If $A$ is a subset of a topological space $X$ then denote
+  \ali{
+    cA &= \clA &
+    xA &= X - C \\
+    iA &= \Int{A} &
+    bA &= \Bd{A} \,.
+  }
+  We can consider these ($c$, $x$, $i$, and $b$) as operators on sets that can be chained together in the obvious way so that, for example, $cxiA = \closure{X - \Int{A}}$.
+
+  \begin{lem}\label{lem:closedlim:part}
+    For a subset $A$ of topological space $X$, $X = cA \cup ixA$, and $cA$ and $ixA$ are disjoint
+  \end{lem}
+  \qproof{
+    First, it is obvious that $cA \cup ixA \ss X$ since each of the sets in the union is a subset of $X$.
+    Now consider any $x \in X$ and suppose that $x \notin cA = \clA$.
+    Then by Lemma~17.5a there is an open set $U$ containing $x$ where $U$ does not intersect $A$.
+    For any $y \in U$ we thus have that $y \notin A$ and hence $y \in X - A = xA$.
+    This shows that $U \ss xA$ since $y$ was arbitrary, which suffices to show that $x \in \Int(xA) = ixA$ since $U$ is a neighborhood of $x$.
+    This of course shows that $x \in cA \cup ixA$ so that $X \ss cA \cup ixA$ since $x$ was arbitrary.
+    This completes the proof that $X = cA \cup ixA$.
+
+    To show that $cA$ and $ixA$ are disjoint, consider any $x \in cA$.
+    Consider any neighborhood $U$ of $x$ so that $U$ intersects $A$ by Lemma~17.5a.
+    Hence there is a point $y \in U$ where also $y \in A$, from which it follows that $y \notin X - A = xA$.
+    This suffices to show that $U$ is not a subset of $xA$.
+    Since $U$ is an arbitrary neighborhood, this shows that $x \notin \Int(xA) = ixA$.
+    This of course shows that $cA$ and $ixA$ are disjoint as desired.
+  }
+
+  \begin{lem}\label{lem:closedlim:idents}
+    For a subsets $A$ and $B$ of topological space $X$ where $A \ss B$, we have the following:
+    \begin{multicols}{3}
+      \eparts{
+      \item $cA \ss cB$
+      \item $iA \ss iB$
+      \item $ccA = cA$
+      \item $iiA = iA$
+      \item $xxA = A$
+      \item $xcA = ixA$
+      \item $xiA = cxA$
+      \item $icicA = icA$
+      \item $ciciA = ciA$.
+      }
+    \end{multicols}
+  \end{lem}
+  \qproof{
+    (a) This was shown in Exercise~17.6a.
+
+    (b) Consider any $x \in iA$ so that there is a neighborhood $U$ of $x$ that is totally contained in $A$.
+    Then clearly $U$ is also totally contained in $B$ as well since, for any $x \in U$, we have that $x \in A$ and hence $x \in B$ since $A \ss B$.
+    This shows that $x \in iB$ since $U$ is a neighborhood of $x$.
+    Hence $iA \ss iB$ since $x$ was arbitrary.
+
+    (c) Since $cA = \clA$ is closed, we clearly have $ccA = cA$.
+
+    (d) Since $iA = \Int{A}$ is open, its interior is itself, i.e.  $iiA = iA$.
+
+    (e) Obviously $xxA = X - (X - A) = A$.
+
+    (f) We have by Lemma~\ref{lem:closedlim:part} that $X = cA \cup ixA$ where $cA$, and $ixA$ are mutually disjoint.
+    From this it follows that $ixA = X - cA = xcA$.
+
+    (g) We have
+    \ali{
+      cxA &= xxcxA & \text{(by (e))} \\
+      &= xixxA & \text{(by (f))} \\
+      &= xiA & \text{(by (e) again)}
+    }
+    as desired.
+
+    (h) First we have that $icA = iicA$ by (d).
+    Also clearly $icA = c(icA) = cicA$ since a set is always a subset of its closure.
+    Hence by (b) we have that $icA = iicA = i(icA) \ss i(cicA) = icicA$.
+    Now, we also have that $icA = i(cA) \ss cA$ since the interior of a set is always a subset of the set.
+    Hence by (a) and (c) we have $cicA = c(icA) \ss c(cA) = ccA = cA$.
+    It then follows from (b) that $icicA = i(cicA) \ss i(cA) = icA$ as well.
+    This of course shows that $icicA = icA$ as desired.
+
+    (i) Lastly, we have
+    \ali{
+      ciciA &= cicixxA & \text{(by (e))} \\
+      &= cicxcxA & \text{(by (f))} \\
+      &= cixicxA & \text{(by (g))} \\
+      &= cxcicxA & \text{(by (f))} \\
+      &= xicicxA & \text{(by (g))} \\
+      &= xicxA & \text{(by (h))} \\
+      &= cxcxA & \text{(by (g))} \\
+      &= cixxA & \text{(by (f))} \\
+      &= ciA & \text{(by (e))}
+    }
+    as desired.
+  }
+
+  \mainprob
+
+  (a)
+  \def\pres{\text{(previous result)}}
+  \newcommand\lemref[1]{\text{(by Lemma~\ref{lem:closedlim:idents}#1)}}
+  \qproof{
+    We are interested in sequences applying the operators $c$ and $x$ to a subset $A$.
+    By Lemma~\ref{lem:closedlim:idents} (c) and (e) we have that $ccA = cA$ and $xxA = A$.
+    Thus there is no point in ever applying $c$ or $x$ twice in a row since that would clearly result in a set that we have seen before.
+    We are then interested only in sequences that apply alternating $c$ and $x$.
+    If we apply the closure $c$ first, we obtain the following sequence:
+    \ali{
+      A &= A \\
+      cA &= cA \\
+      xcA &= ixA & \lemref{f} \\
+      cxcA &= cixA & \pres \\
+      xcxcA &= xcixA & \pres \\
+      &= ixixA & \lemref{f} \\
+      &= icxxA & \lemref{g} \\
+      &= icA & \lemref{e} \\
+      cxcxcA &= cicA & \pres \\
+      xcxcxcA &= xcicA & \pres \\
+      &= ixicA & \lemref{f} \\
+      &= icxcA & \lemref{g} \\
+      &= icixA & \lemref{f}
+    }
+    If we apply the next operation we obtain
+    \ali{
+      cxcxcxcA &= cicixA & \pres \\
+      &= cixA \,, & \lemref{i}
+    }
+    which is the same as the fourth set above.
+    Therefore we can get at most 7 distinct sets by applying $c$ first, including $A$ itself.
+    If we instead apply $x$ first then we get the following sequence:
+    \ali{
+      xA &= xA \\
+      cxA &= cxA \\
+      xcxA &= ixxA & \text{(corresponding result above)} \\
+      &= iA & \lemref{e} \\
+      cxcxA &= ciA & \pres \\
+      xcxcxA &= xciA & \pres \\
+      &= ixiA & \lemref{f} \\
+      &= icxA & \lemref{g} \\
+      cxcxcxA &= cicxA & \pres \\
+      xcxcxcxA &= xcicxA & \pres \\
+      &= ixicxA & \lemref{f} \\
+      &= icxcxA & \lemref{g} \\
+      &= icixxA & \lemref{f} \\
+      &= iciA & \lemref{e}
+    }
+    Again if we try to apply the next operation we get
+    \ali{
+      cxcxcxcxA &= ciciA & \pres \\
+      &= ciA\, & \lemref{i}
+    }
+    which as before is the same as the fourth set in the sequence.
+    Hence we have at most 7 distinct sets in this sequence for a total of 14 potentially distinct sets as desired.
+  }
+
+  Note that this only shows that there can be \emph{no more than} 14 distinct sets.
+  It could be that there are always less than 14 in general.
+  While there are certainly sets that generate less than 14 distinct sets, the next part shows the existence of a topology and a set that does result in 14 distinct sets.
+  This of course shows that 14 is the lowest possible bound in general.
+
+  (b) We claim that $A = (-3, -2) \cup (-2, -1)  \cup ([0,1] \cap \rats) \cup \braces{2}$ in the standard topology on $\reals$ is a set that results in 14 distinct sets when the operational sequences from part (a) are applied.
+  We do not prove each sequential operation as this is easy but would be prohibitively tedious.
+  First we enumerate the first sequence, starting with $A$.
+  \begin{center}
+    \begin{tabular}{c|c}
+      Operations & Set \\
+      \hline
+      $A$ & $(-3, -2) \cup (-2, -1) \cup ([0,1] \cap \rats) \cup \braces{2}$ \\
+      $cA$ & $[-3,-1] \cup [0,1] \cup \braces{2}$ \\
+      $xcA = ixA$ & $(-\infty, -3) \cup (-1, 0) \cup (1,2) \cup (2, \infty)$ \\
+      $cxcA = cixA$ & $\opcl{-\infty, -3} \cup [-1,0] \cup \clop{1, \infty}$ \\
+      $xcxcA = icA$ & $(-3, -1) \cup (0, 1)$ \\
+      $cxcxcA = cicA$ & $[-3, -1] \cup [0, 1]$ \\
+      $xcxcxcA = icixA$ & $(-\infty, -3) \cup (-1,0) \cup (1, \infty)$
+    \end{tabular}
+  \end{center}
+  Next we enumerate the next sequence of 7 sets, starting with $xA$:
+  \begin{center}
+    \begin{tabular}{c|c}
+      Operations & Set \\
+      \hline
+      $xA$ & $\opcl{-\infty,-3} \cup \braces{-2} \cup \clop{-1,0} \cup \parens{(0,1) - \rats} \cup (1,2) \cup (2, \infty)$ \\
+      $cxA$ & $\opcl{-\infty -3} \cup \braces{-2} \cup \clop{-1, \infty}$ \\
+      $xcxA = iA$ & $(-3, -2) \cup (-2, -1)$ \\
+      $cxcxA = ciA$ & $[-3, -1]$ \\
+      $xcxcxA = icxA$ & $(-\infty, -3) \cup (-1, \infty)$ \\
+      $cxcxcxA = cicxA$ & $\opcl{-\infty, -3} \cup \clop{-1, \infty}$ \\
+      $xcxcxcxA = iciA$ & $(-3, 1)$
+    \end{tabular}
+  \end{center}
+  It is easy to see that these are 14 distinct sets.
+
+  We do note that, in an interval containing only rationals (or only irrationals), such as $[0,1] \cap \rats$ used as part of $A$, clearly every point in the interval is a limit point, including any irrational (or rational) points.
+  This is because any open interval containing any real always contains both rationals and irrationals on account of $\rats$ being order-dense in $\reals$.
+  For the same reason no point of such an interval of rationals (or irrationals) is in its interior.
+  If, for example $C = [0,1] \cap \rats$, this clearly then results in $cC = [0,1]$ and $iC = \es$.
+  Indeed this property of this part of $A$ is crucial in its success in generating 14 distinct sets.
 }
