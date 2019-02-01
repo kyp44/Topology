@@ -1,0 +1,352 @@
+\setcounter{subsection}{1-1}
+\subsection{Fundamental Concepts}
+
+\exercise{1}{
+  Check the distributive laws for $\cup$ and $\cap$ and DeMorgan's laws.
+}
+\sol{
+  \dwhitman
+
+  Suppose that $A$, $B$, and $C$ are sets.
+  First we show that $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$.
+  \qproof{
+    We show this as a series of logical equivalences:
+    \ali{
+      x \in A \cap (B \cup C) &\bic x \in A \land x \in B \cup C \\
+      &\bic x \in A \land (x \in B \lor x \in C) \\
+      &\bic (x \in A \land x \in B) \lor (x \in A \land x \in C) \\
+      &\bic x \in A \cap B \lor x \in A \cap C \\
+      &\bic x \in (A \cap B) \cup (A \cap C) \,,
+    }
+    which of course shows the desired result.
+  }
+
+  Next we show that $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$.
+  \qproof{
+    We show this in the same way:
+    \ali{
+      x \in A \cup (B \cap C) &\bic x \in A \lor x \in B \cap C \\
+      &\bic x \in A \lor (x \in B \land x \in C) \\
+      &\bic (x \in A \lor x \in B) \land (x \in A \lor x \in C) \\
+      &\bic x \in A \cup B \land x \in A \cup C \\
+      &\bic x \in (A \cup B) \cap (A \cup C) \,,
+    }
+    which of course shows the desired result.
+  }
+
+  Now we show the first DeMorgan's law that $A - (B \cup C) = (A - B) \cap (A - C)$.
+  \qproof{
+    We show this in the same way:
+    \ali{
+      x \in A - (B \cup C) &\bic x \in A \land x \notin B \cup C \\
+      &\bic x \in A \land \lnot (x \in B \lor x \in C) \\
+      &\bic x \in A \land (x \notin B \land x \notin C) \\
+      &\bic (x \in A \land x \notin B) \land (x \in A \land x \notin C) \\
+      &\bic x \in A - B \land x \in A - C \\
+      &\bic x \in (A - B) \cap (A - C) \,,
+    }
+    which is the desired result.
+  }
+
+  Lastly we show that $A - (B \cap C) = (A - B) \cup (A - C)$.
+  \qproof{
+    Again we use a sequence of logical equivalences:
+    \ali{
+      x \in A - (B \cap C) &\bic x \in A \land x \notin B \cap C \\
+      &\bic x \in A \land \lnot (x \in B \land x \in C) \\
+      &\bic x \in A \land (x \notin B \lor x \notin C) \\
+      &\bic (x \in A \land x \notin B) \lor (x \in A \land x \notin C) \\
+      &\bic x \in A - B \lor x \in A - C \\
+      &\bic x \in (A - B) \cup (A - C) \,,
+    }
+    as desired.
+  }
+}
+
+\exercise{2}{
+  Determine which of the following statements are true for all sets $A$, $B$, $C$, and $D$.
+  If a double implication fails, determine whether one or the other of the possible implications holds.
+  If an equality fails, determine whether the statement becomes true if the ``equals'' symbol is replaced by one or the other of the inclusion symbols $\ss$ or $\sps$.
+  \begin{multicols}{2}
+    \eparts{
+    \item $A \ss B$ and $A \ss C \bic A \ss (B \cup C)$.
+    \item $A \ss B$ or $A \ss C \bic A \ss (B \cup C)$.
+    \item $A \ss B$ and $A \ss C \bic A \ss (B \cap C)$.
+    \item $A \ss B$ or $A \ss C \bic A \ss (B \cap C)$.
+    \item $A - (A - B) = B$.
+    \item $A - (B - A) = A - B$.
+    \item $A \cap (B - C) = (A \cap B) - (A \cap C)$.
+    \item $A \cup (B - C) = (A \cup B) - (A \cup C)$.
+    \item $(A \cap B) \cup (A - B) = A$.
+    \item $A \ss C$ and $B \ss D \imp (A \times B) \ss (C \times D)$.
+    \item The converse of (j).
+    \item The converse of (j), assuming that $A$ and $B$ are nonempty.
+    \item $(A \times B) \cup (C \times D) = (A \cup C) \times (B \cup D)$.
+    \item $(A \times B) \cap (C \times D) = (A \cap C) \times (B \cap D)$.
+    \item $A \times (B - C) = (A \times B) - (A \times C)$.
+    \item $(A - B) \times (C - D) = (A \times C - B \times C) - A \times D$.
+    \item $(A \times B) - (C \times D) = (A - C) \times (B - D)$.
+    }
+  \end{multicols}
+}
+\sol{
+  \dwhitman
+
+  (a) We claim that $A \ss B$ and $A \ss C \imp A \ss (B \cup C)$ but that the converse is not generally true.
+  \qproof{
+    Suppose that $A \ss B$ and $A \ss C$ and consider any $x \in A$.
+    Then clearly also $x \in B$ since $A \ss B$ so that $x \in B \cup C$.
+    Since $x$ was arbitrary, this shows that $A \ss (B \cup C)$ as desired.
+
+    To show that the converse is not true, suppose that $A = \braces{1,2,3}$, $B = \braces{1,2}$, and $C = \braces{3, 4}$.
+    Then clearly $A \ss \braces{1,2,3,4} = B \cup C$ but it neither true that $A \ss B$ (since $3 \in A$ but $3 \notin B$) nor $A \ss C$ (since $1 \in A$ but $1 \notin C$).
+  }
+
+  (b) We claim that $A \ss B$ or $A \ss C \imp A \ss (B \cup C)$ but that the converse is not generally true.
+  \qproof{
+    Suppose that $A \ss B$ or $A \ss C$ and consider any $x \in A$.
+    If $A \ss B$ then clearly $x \in B$ so that $x \in B \cup C$.
+    If $A \ss C$ then clearly $x \in C$ so that again $x \in B \cup C$.
+    Since $x$ was arbitrary, this shows that $A \ss (B \cup C)$ as desired.
+
+    The counterexample that disproves the converse of part (a), also serves as a counterexample to the converse here.
+    Again this is because $A \ss B \cup C$ but neither $A \ss B$ nor $A \ss C$, which is to say that $A \nss B$ and $A \nss C$.
+    Hence it is not true that $A \ss B$ or $A \ss C$.
+  }
+
+  (c) We claim that this biconditional is true.
+  \qproof{
+    $(\imp)$ Suppose that $A \ss B$ and $A \ss C$ and consider any $x \in A$.
+    Then clearly also $x \in B$ and $x \in C$ since both $A \ss B$ and $A \ss C$.
+    Hence $x \in B \cap C$, which proves that $A \ss B \cap C$ since $x$ was arbitrary.
+
+    $(\pmi)$ Now suppose that $A \ss B \cap C$ and consider any $x \in A$.
+    Then $x \in B \cap C$ as well so that $x \in B$ and $x \in C$.
+    Since $x$ was an arbitrary element of $A$, this of course shows that both $A \ss B$ and $A \ss C$ as desired.
+  }
+
+  (d) We claim that only the converse is true here.
+  \qproof{
+    To show the converse, suppose that $A \ss B \cap C$.
+    It was shown in part (c) that this implies that both $A \ss B$ and $A \ss C$.
+    Thus it is clearly true that $A \ss B$ or $A \ss C$.
+
+    As a counterexample to the forward implication, let $A = \braces{1}$, $B = \braces{1,2}$, and $C = \braces{3,4}$ so that clearly $A \ss B$ and hence $A \ss B$ or $A \ss C$ is true.
+    However we have that $B$ and $C$ are disjoint so that $B \cap C = \es$, therefore $A \nss \es = B \cap C$ since $A \neq \es$.
+  }
+
+  (e) We claim that $A - (A - B) \ss B$ but that the other direction is not generally true.
+  \qproof{
+    First consider any $x \in A - (A - B)$ so that $x \in A$ but $x \notin A - B$.
+    Hence it is not true that $x \in A$ and $x \notin B$.
+    So it must be that $x \notin A$ or $x \in B$.
+    However, since we know that $x \in A$, it has to be that $x \in B$.
+    Thus $A - (A - B) \ss B$ since $x$ was arbitrary.
+
+    Now let $A = \braces{1,2}$ and $B = \braces{2,3}$.
+    Then we clearly have $A - B = \braces{1}$, and thus $A - (A - B) = \braces{2}$.
+    So clearly $B$ is not a subset of $A - (A - B)$ since $3 \in B$ but $3 \notin A - (A - B)$.
+  }
+
+  (f) Here we claim that $A - (B - A) \sps A - B$ but that the other direction is not generally true.
+  \qproof{
+    First suppose that $x \in A - B$ so that $x \in A$ but $x \notin B$.
+    Then it is certainly true that $x \notin B$ or $x \in A$ so that, by logical equivalence, it is not true that $x \in B$ and $x \notin A$.
+    That is, it is not true that $x \in B - A$, which is to say that $x \notin B - A$.
+    Since also $x \in A$, it follows that $x \in A - (B - A)$, which shows the desired result  since $x$ was arbitrary.
+
+    To show that the other direction does not hold consider the counterexample $A = \braces{1,2}$ and $B = \braces{2, 3}$.
+    Then $B - A = \braces{3}$ so that $A - (B - A) = \braces{1, 2} = A$.
+    We also have that $A - B = \braces{1}$ so that $2 \in A - (B - A)$ but $2 \notin A - B$.
+    This suffices to show that $A - (B - A) \nss A - B$.
+  }
+
+  (g) We claim that equality holds here, i.e. that $A \cap (B - C) = (A \cap B) - (A \cap C)$.
+  \qproof{
+    $(\ss)$ Suppose that $x \in A \cap (B - C)$ so that $x \in A$ and $x \in B - C$.
+    Thus $x \in B$ but $x \notin C$.
+    Since both $x \in A$ and $x \in B$ we have that $x \in A \cap B$.
+    Also since $x \notin C$ it clearly must be that $x \notin A \cap C$.
+    Hence $x \in (A \cap B) - (A \cap C)$, which shows the forward direction since $x$ was arbitrary.
+
+    $(\sps)$ Now suppose that $x \in (A \cap B) - (A \cap C)$.
+    Hence $x \in A \cap B$ but $x \notin A \cap C$.
+    From the former of these we have that $x \in A$ and $x \in B$, and from the latter it follows that either $x \notin A$ or $x \notin C$.
+    Since we know that $x \in A$, it must therefore be that $x \notin C$.
+    Hence $x \in B - C$ since $x \in B$ but $x \notin C$.
+    Since also $x \in A$ we have that $x \in A \cap (B - C)$, which shows the desired result since $x$ was arbitrary.
+  }
+
+  (h) Here we claim that $A \cup (B - C) \sps (A \cup B) - (A \cup C)$ but that the forward direction is not generally true.
+  \qproof{
+    First consider any $x \in (A \cup B) - (A \cup C)$ so that $x \in A \cup B$ and $x \notin A \cup C$.
+    From the latter, it follows that $x \notin A$ and $x \notin C$ since otherwise we would have $x \in A \cup C$.
+    From the former, we have that $x \in A$ or $x \in B$ so that it must be that $x \in B$ since $x \notin A$.
+    Therefore we have that $x \in B$ and $x \notin C$ so that $x \in B - C$.
+    From this it obviously follows that $x \in A \cup (B - C)$, which shows that $A \cup (B - C) \sps (A \cup B) - (A \cup C)$ since $x$ was arbitrary.
+
+    To show that the forward direction does not always hold, consider the sets $A = \braces{1,2}$, $B = \braces{2, 3}$, and $C = \braces{2}$.
+    Then we clearly have that $B - C = \braces{3}$, and hence $A \cup (B - C) = \braces{1,2,3}$.
+    On the other hand, we have $A \cup B = \braces{1,2,3}$ and $A \cup C = \braces{1,2}$ so that $(A \cup B) - (A \cup C) = \braces{3}$.
+    Hence, for example, $1 \in A \cup (B - C)$ but $1 \notin (A \cup B) - (A \cup C)$, which suffices to show that $A \cup (B - C) \nss (A \cup B) - (A \cup C)$ as desired.
+  }
+
+  (i) We claim that equality holds here.
+  \qproof{
+    We show this with a chain of logical equivalences:
+    \ali{
+      x \in (A \cap B) \cup (A - B) &\bic x \in A \cap B \lor x \in A - B \\
+      &\bic (x \in A \land x \in B) \lor (x \in A \land x \notin B) \\
+      &\bic x \in A \land (x \in B \lor x \notin B) \\
+      &\bic x \in A \land \mathrm{True} \\
+      &\bic x \in A \,,
+    }
+    where we note that ``True'' denotes the fact that $x \in B \lor x \notin B$ is always true by the excluded middle property of logic.
+  }
+
+  (j) We claim that this implication is true.
+  \qproof{
+    Suppose that $A \ss C$ and $B \ss D$.
+    Consider any $(x,y) \in A \times B$ so that $x \in A$ and $y \in B$ by the definition of the cartesian product.
+    Then also clearly $x \in C$ and $y \in D$ since $A \ss C$ and $B \ss D$.
+    Hence $(x,y) \in C \times D$, which shows the result since the ordered pair $(x,y)$ was arbitrary.
+  }
+
+  (k) We claim that the converse of (j) is not always true.
+  \qproof{
+    Consider the following sets:
+    \ali{
+      A &= \es & C &= \braces{1} \\
+      B &= \braces{1,2} & D &= \braces{2} \,.
+    }
+    Then we have that $A \times B = \es$ since there are no ordered pairs $(x,y)$ such that $x \in A$ (since $A = \es$).
+    Hence it is vacuously true that $(A \times B) \ss (C \times D)$.
+    However, clearly it is not the case that $B \ss D$, and so, even though $A \ss C$, it is not true that $A \ss C$ and $B \ss D$.
+  }
+
+  (l) We claim that the converse of (j) is true with the stipulation that $A$ and $B$ are both nonempty.
+  \qproof{
+    Suppose that $(A \times B) \ss (C \times D)$.
+    First consider any $x \in A$.
+    Then, since $B \neq \es$, there is a $b \in B$.
+    Then $(x,b) \in A \times B$ so that clearly also $(x,b) \in C \times D$.
+    Hence $x \in C$ so that $A \ss C$ since $x$ was arbitrary.
+    An analogous argument shows that $B \ss D$ since $A$ is nonempty.
+    Hence it is true that $A \ss C$ and $B \ss D$ as desired.
+  }
+
+  (m) Here we claim that $(A \times B) \cup (C \times D) \ss (A \cup C) \times (B \cup D)$ but that the other direction is not always true.
+  \qproof{
+    First consider any $(x,y) \in (A \times B) \cup (C \times D)$ so that either $(x,y) \in A \times B$ or $(x,y) \in C \times D$.
+    In the first case $x \in A$ and $y \in B$ so that clearly $x \in A \cup C$ and $y \in B \cup D$.
+    Hence $(x, y) \in (A \cup C) \times (B \cup D)$.
+    In the second case we have $x \in C$ and $y \in D$ so that again $x \in A \cup C$ and $y \in B \cup D$ are still both true.
+    Hence of course $(x, y) \in (A \cup C) \times (B \cup D)$ here also.
+    This shows the result in either case since $(x,y)$ was an arbitrary ordered pair.
+
+    To show that the other direction does not always hold, consider $A = B = \braces{1}$ and $C = D = \braces{2}$.
+    Then we clearly have $A \times B = \braces{(1,1)}$ and $C \times D = \braces{(2,2)}$ so that $(A \times B) \cup (C \times D) = \braces{(1,1), (2,2)}$.
+    We also have $A \cup C = B \cup D = \braces{1,2}$ so that $(A \cup C) \times (B \cup D) = \braces{(1,1), (1,2), (2,1), (2,2)}$.
+    This clearly shows that $(A \times B) \cup (C \times D) \not \sps (A \cup C) \times (B \cup D)$ as desired.
+  }
+
+  (n) We claim that the equality holds here.
+  \qproof{
+    We can show this by a series of logical equivalences:
+    \ali{
+      (x,y) \in (A \times B) \cap (C \times D) &\bic (x,y) \in A \times B \land (x,y) \in C \times D \\
+      &\bic (x \in A \land y \in B) \land (x \in C \land y \in D) \\
+      &\bic (x \in A \land x \in C) \land (y \in B \land y \in D) \\
+      &\bic x \in A \cap C \land y \in B \cap D \\
+      &\bic (x,y) \in (A \cap C) \times (B \cap D)
+    }
+    as desired.
+  }
+
+  (o) We claim that equivalence holds here as well.
+  \qproof{
+    $(\ss)$ First consider any $(x,y) \in A \times (B - C)$ so that $x \in A$ and $y \in B - C$.
+    From the latter of these we have that $y \in B$ but $y \notin C$.
+    We clearly then have that $(x,y) \in A \times B$ since $x\in A$ and $y \in B$.
+    It also has to be that $(x,y) \notin A \times C$ since $y \notin C$ even though it is true that $x\ in A$.
+    Therefore $(x,y) \in (A \times B) - (A \times C)$ as desired.
+
+    $(\sps)$ Now suppose that $(x,y) \in (A \times B) - (A \times C)$ so that $(x,y) \in A \times B$ but $(x,y) \notin (A \times C)$.
+    From the former we have that $x \in A$ and $y \in B$.
+    It then must be that $y \notin C$ since $(x,y) \notin (A \times C)$ but we know that $x \in A$.
+    Then we have $y \in B - C$ since $y \in B$ but $y \notin C$.
+    Since also $x \in A$, it follows that $(x,y) \in A \times (B-C)$ as desired.
+  }
+
+  (p) We claim the equivalence hold for this statement.
+  \qproof{
+    $(\ss)$ Suppose that $(x,y) \in (A - B) \times (C - D)$ so that $x \in A - B$ and $y \in C - D$.
+    Then we have that $x \in A$, $x \notin B$, $y \in C$, and $y \notin D$.
+    So first, clearly $(x,y) \in A \times C$.
+    Then, since $x \notin B$, we have that $(x,y) \notin B \times C$, and hence $(x,y) \in A \times C - B \times C$.
+    Since $y \notin D$, we also have that $(x,y) \notin A \times D$, and thus $(x,y) \in (A \times C - B \times C) - A \times D$.
+    This clearly shows the desired result since $(x,y)$ was arbitrary.
+
+    $(\sps)$ Now suppose that $(x,y) \in (A \times C - B \times C) - A \times D$ so that $(x,y) \in A \times C - B \times C$ but $(x,y) \notin A \times D$.
+    From the former we have that $(x,y) \in A \times C$ and $(x,y) \notin B \times C$.
+    Thus $x \in A$ and $y \in C$ so that it has to be that $x \notin B$ since $(x,y) \notin B \times C$ but we know that $y \in C$.
+    It also must be that $y \notin D$ since $(x,y) \notin A \times D$ but $x \in A$.
+    Therefore we have that $x \in A$, $x \notin B$, $y \in C$, and $y \notin D$, from which it readily follows that $x \in A - B$ and $y \in C - D$.
+    Thus clearly $(x,y) \in (A-B) \times (C-D)$, which shows the desired result since $(x,y)$ was arbitrary.
+  }
+
+  (q) Here we claim that $(A \times B) - (C \times D) \sps (A - C) \times (B - D)$ but that the forward direction is not true in general.
+  \qproof{
+    First consider any $(x,y) \in (A - C) \times (B - D)$ so that $x \in A - C$ and $y \in B - D$.
+    Thus we have $x \in A$, $x \notin C$, $y \in B$, and $y \notin D$.
+    From this clearly $(x,y) \in A \times B$ but $(x,y) \notin C \times D$.
+    Hence $(x,y) \in (A \times B) - (C \times D)$, which clearly shows the desired result since $(x,y)$ was arbitrary.
+
+    To show that the forward direction does not hold, consider $A = \braces{1,2}$, $B = \braces{a,b}$, $C = \braces{2,3}$, and $D = \braces{b,c}$.
+    We then clearly have the following sets:
+    \ali{
+      A \times B &= \braces{(1,a), (1,b), (2,a), (2,b)} & A - C &= \braces{1} \\
+      C \times D &= \braces{(2,b), (2,c), (3,b), (3,c)} & B - D &= \braces{a} \\
+      (A \times B) - (C \times D) &= \braces{(1,a), (1,b), (2,a)} & (A - C) \times (B - D) &= \braces{(1,a)} \,.
+    }
+    This clearly shows that $(A \times B) - (C \times D)$ is not a subset of $(A - C) \times (B - D)$.
+  }
+}
+
+\exercise{3}{
+  \eparts{
+  \item Write the contrapositive and converse of the following statement: ``If $x < 0$, then $x^2 - x > 0$,'' and determine which (if any) of the three statements are true.
+  \item Do the same for the statement ``If $x > 0$, then $x^2 - x > 0$.''
+  }
+}
+\sol{
+  \dwhitman
+
+  (a) First we claim that the original statement is true.
+  \qproof{
+    Since $x < 0$ we clearly have that $x-1 < x < 0$ as well.
+    Then, since the product of two negative numbers is positive, we have that $x^2 - x = x(x-1) > 0$ as desired.
+  }
+  The contrapositive of this is, ``If $x^2 - x \leq 0$, then $x \geq 0$.''
+  This is of course also true by virtue of the fact that the contrapositive is logically equivalent to the original implication.
+
+  Lastly, the converse of this statement is, ``If $x^2 - x > 0$, then $x < 0$.''
+  We claim that this is not generally true.
+  \qproof{
+    A simple counterexample of $x = 2$ shows this.
+    We have $x^2 - x = 2^2 - 2 = 4 - 2 = 2 > 0$, but also clearly $x = 2 > 0$ as well so that $x < 0$ is clearly false.
+  }
+
+  (b) First we claim that this statement is false.
+  \qproof{
+    As a counterexample, let $x = 1/2$.
+    Then clearly $x > 0$, but we also have $x^2 - x = (1/2)^2 - 1/2 = 1/4 - 1/2 = -1/4 < 0$ so that $x^2-x > 0$ is obviously not true.
+  }
+  The contrapositive is then ``If $x^2 - x \leq 0$, then $x \leq 0$,'' which is false since it is logically equivalent to the original statement.
+
+  The converse is ``If $x^2 - x > 0$, then $x > 0$,'' which we claim is false.
+  \qproof{
+    As a counterexample, consider $x = -1$ so that $x^2 - x = (-1)^2 - (-1) = 1 + 1 = 2 > 0$.
+    However, we also clearly have $x = -1 < 0$ so that $x > 0$ is not true.
+  }
+}
