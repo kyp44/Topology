@@ -1,0 +1,108 @@
+\setcounter{subsection}{18-1}
+\subsection{Continuous Functions} 
+
+\exercise{1}{
+  Prove that for functions $f: \reals \to \reals$, the $\e$-$\d$ definition of continuity implies the open set definition.
+}
+\sol{
+  \dwhitman
+
+  Recall that that $f: \reals \to \reals$ is continuous at a point $x \in \reals$ if, for every real $\e > 0$, there is a real $\d > 0$ such that $\abs{f(y) - f(x)} < \e$ for every real $y$ where $\abs{y - x} < \d$.
+  We say that $f$ itself is continuous if it is continuous at every $p \in \reals$.
+  \qproof{
+    Suppose that $f: \reals \to \reals$ is continuous by the $\e$-$\d$ definition above.
+    We show that this implies the open set definition by showing that $f$ satisfies (4) in Theorem~18.1.
+    So consider any $x \in \reals$ and any neighborhood $V$ of $f(x)$.
+    Then of course there is a basis element $(c,d)$ containing $f(x)$ such that $(c,d) \ss V$.
+    Let $\e = \min(f(x)-c, d-f(x))$, noting that $\e > 0$ since $c < f(x) < d$.
+    It is then trivial to show that $(f(x)-\e, f(x)+\e) \ss (c,d) \ss V$ and contains $x$.
+
+    Then, since $f$ is continuous at $x$, there is $\d > 0$ such that $\abs{y - x} < \d$ implies that $\abs{f(y) - f(x)} < \e$ for any real $y$.
+    Let $U = (x-\d, x+\d)$, which is clearly a neighborhood of $x$.
+    Now consider any $z \in f(U)$ so that $z = f(y)$ for some $y \in U$.
+    Then we have that $x - \d < y < x+ \d$ so that clearly $-\d < y - x < \d$, from which it follows that $\abs{y-x} < \d$.
+    We then know that $\abs{z - f(x)} = \abs{f(y) - f(x)} < \e$ since $f$ is continuous.
+    Hence $-\e < z - f(x) < \e$ so that $f(x) - \e < z < f(x) + \e$, and thus $z \in V$ since $(f(x)-\e, f(x)+\e) \ss V$.
+    Since $z \in f(U)$ was arbitrary, this shows that $f(U) \ss V$, which shows that (4) holds for $f$ since $x$ was also arbitrary.
+  }
+}
+
+\exercise{2}{
+  Suppose that $f: X \to Y$ is continuous.
+  If $x$ is a limit point of the subset $A$ of $X$, is it necessarily true the $f(x)$ is a limit point of $f(A)$?
+}
+\sol{
+  \dwhitman
+
+  This is not necessarily true.
+  \qproof{
+    As a counterexample consider a constant function $f: X \to Y$ defined by $f(x) = y_0$ for any $x \in X$ and some $y_0 \in Y$.
+    It was shown in Theorem~18.2a that this is continuous.
+    However, clearly $f(A) = \braces{y_0}$ for any subset $A$ of $X$.
+    So even if $x$ is a limit point of $A$, no neighborhood of $f(x)$ can intersect $f(A)$ in a point other than $f(x) = y_0$ since $y_0$ is the only point in $f(A)$!
+    Therefore $f(x)$ is not a limit point of $f(A)$.
+  }
+}
+
+\exercise{3}{
+  Let $X$ and $X'$ denote a single set in two topologies $\cT$ and $\cT'$, respectively.
+  Let $i : X' \to X$ be the identity function.
+  \eparts{
+  \item Show that $i$ is continuous $\bic \cT' \text{ is finer than } \cT$.
+  \item Show that $i$ is a homeomorphism $\bic \cT' = \cT$.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    First note that clearly the inverse of the identity function is itself with the domain and range reversed, and that for any subset $A \ss X = X'$ we have $i(A) = \inv{i}(A) = A$.
+    
+    $(\imp)$ Suppose that $i$ is continuous and consider any open set $U \in \cT$.
+    Then we have that $\inv{i}(U) = U$ is open in $\cT'$ since $i$ is continuous.
+    Since $U$ was arbitrary, this shows that $\cT \ss \cT'$ so that $\cT'$ is finer.
+
+    $(\pmi)$ Now suppose that $\cT'$ is finer so that $\cT \ss \cT'$.
+    Consider any open set $U \in \cT$ so that also clearly $U \in \cT'$, i.e. $U$ is also open in $\cT'$.
+    Since $\inv{i}(U) = U$, this shows that $i$ is continuous by the definition of continuity.
+  }
+
+  (b)
+  \qproof{
+    Clearly $i$ is a bijection since its domain and range are the same set, and $\inv{i} = i$.
+    We then have that
+    \ali{
+      \text{$i$ is a homeomorphism } &\bic \text{$i$ and $\inv{i}$ are both continuous} \\
+      &\bic \text{$\cT'$ is finer than $\cT$ and $\cT$ is finer than $\cT'$} & \text{(by part (a) applied twice)} \\
+      &\bic \cT \ss \cT' \text{ and } \cT' \ss \cT \\
+      &\bic \cT' = \cT
+    }
+    as desired.
+  }
+}
+
+\exercise{4}{
+  Given $x_0 \in X$ and $y_0 \in Y$, show that the maps $f: X \to X \times Y$ and $g: Y \to X \times Y$ defined by
+  \gath{
+    f(x) = x \times y_0 \condgap \text{and} \condgap g(y) = x_0 \times y
+  }
+  are imbeddings.
+}
+\sol{
+  \dwhitman
+
+  We only show that $f$ is an imbedding of $X$ in $X \times Y$ as the argument for $g$ is entirely analogous.
+  \qproof{
+    First, it is easy to see and trivial to formally show that $f$ is injective.
+    The function $f$ can be of course be defined as $f(x) = f_1(x) \times f_2(x)$ where $f_1 : X \to X$ is the identity function and $f_2 : X \to Y$ is the constant function that maps every element of $X$ to $y_0$.
+    Since these have both been proven to be continuous in the text, it follows that $f$ is continuous by Theorem~18.4.
+
+    Now let $f'$ be the function obtained by restricting the range of $f$ to $f(X) = \braces{x \times y_0 \where x \in X}$.
+    Since $f$ is injective, it follows that $f'$ is a bijection.
+    It follows from Theorem~18.2e that $f'$ is continuous.
+    Clearly the inverse function $\inv{f'}$ is equal to the projection function $\pi_1$ so that $\inv{f'}(x,y) = x$.
+    This was shown to be continuous in the proof of Theorem~18.4.
+    This suffices to show that $f'$ is a homeomorphism, which shows the $f$ is an imbedding of $X$ in $X \times Y$.
+  }
+}
