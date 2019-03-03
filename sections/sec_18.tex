@@ -317,3 +317,92 @@
     This suffices to show that $f(U)$ is not a subset of $V$, which shows that $f$ is not continuous by Theorem~18.1 since $U$ was an arbitrary neighborhood of $x$.
   }
 }
+
+\exercise{8}{
+  Let $Y$ be an ordered set in the order topology.
+  Let $f,g : X \to Y$ be continuous.
+  \eparts{
+  \item Show that the set $\braces{x \where f(x) \leq g(x)}$ is closed in $X$.
+  \item Let $h: X \to Y$ be the function
+    \gath{
+      h(x) = \min\braces{f(x), g(x)} \,.
+    }
+    Show that $h$ is continuous.
+    [Hint: Use the pasting lemma.]
+  }
+}
+\sol{
+  \dwhitman
+
+  (a) First let $C = \braces{x \in X \where f(x) \leq g(x)}$ so that we must show that $C$ is closed in $X$.
+  \qproof{
+    We prove this by showing that the complement $X - C$ is open in $X$.
+    So first let $S$ be the set of all $y \in Y$ where $y$ has an immediate successor, and denote that successor by $y+1$.
+    Then clearly $y+1$ is well defined for all $y \in S$.
+    Now define
+    \ali{
+      A_{>y} &= \braces{z \in Y \where z > y} &
+      A_{<y} &= \braces{z \in Y \where z < y+1}
+    }
+    for $y \in S$.
+    As these are both rays in the order topology $Y$, they are both basis elements and therefore open.
+    It then follows that $\inv{f}(A_{>y})$ and $\inv{g}(A_{<y})$ are both open in $X$ since $f$ and $g$ are continuous.
+    Hence their intersection $U_y = \inv{f}(A_{>y}) \cap \inv{g}(A_{<y})$ is also open in $X$.
+
+    Similarly the rays
+    \ali{
+      B_{>y} &= \braces{z \in Y \where z > y} &
+      B_{<y} &= \braces{z \in Y \where z < y}
+    }
+    for $y \in Y$ are also open so that the intersection $V_y = \inv{f}(B_{>y}) \cap \inv{g}(B_{<y})$ is open in $X$.
+    Then clearly the union of unions
+    \gath{
+      D = \bigcup_{y \in S} U_y \cup \bigcup_{y \in Y} V_y
+    }
+    is also open in $X$.
+    We claim that $X -C = D$ so that the complement is open in $X$ and hence $C$ is closed as desired.
+
+    $(\ss)$ First consider any $x \in X - C$ so that clearly $f(x) > g(x)$.
+    If $g(x)$ has an immediate successor $g(x)+1$ then $g(x) \in S$ and we have $f(x) \in A_{>g(x)}$ so that $x \in \inv{f}(A_{>g(x)})$.
+    We also have that $g(x) \in A_{<g(x)}$ since $g(x) < g(x)+1$, and hence $x \in \inv{g}(A_{<g(x)})$.
+    It then follows that $x \in U_{g(x)}$ and hence $\bigcup_{y \in S} U_y$ and $x \in D$ since $g(x) \in S$.
+    If $g(x)$ does not have an immediate successor then there must be a $y \in Y$ where $g(x) < y < f(x)$.
+    We then have that clearly $f(x) \in B_{>y}$ and $g(x) \in B_{<y}$ so that $x \in \inv{f}(B_{>y})$ and $x \in \inv{g}(B_{<y})$.
+    Thus $x \in V_y$ so that $x \in \bigcup_{y \in Y} V_y$ and $x \in D$.
+    This shows that $X - C \ss D$ since either way $x \in D$ and $x$ was arbitrary.
+
+    $(\sps)$ Now suppose that $x \in D$.
+    If $x \in \bigcup_{y \in S} U_y$ when there is a $y \in S$ where $x \in U_y$.
+    Hence $x \in \inv{f}(A_{>y})$ and $x \in \inv{g}(A_{<y})$ so that $f(x) \in A_{>y}$ and $g(x) \in A_{<y}$.
+    From this it follows that $f(x) > y$ and $g(x) < y+1$.
+    Then it has to be that $g(x) \leq y$ so that $f(x) > y \geq g(x)$.
+    If $x \in \bigcup_{y \in Y} V_y$ then there is a $y \in Y$ where $x \in V_y$.
+    Hence $x \in \inv{f}(B_{>y})$ and $x \in \inv{g}(B_{<y})$ so that $f(x) \in B_{>y}$ and $g(x) \in B_{<y}$.
+    It then clearly follows that $f(x) > y$  and $g(x) < y$ so that $f(x) > y > g(x)$.
+    Therefore in either case we have $f(x) > g(x)$ so that $x \in X - C$.
+    This of course shows that $X - C \sps D$ since $x$ was arbitrary.
+  }
+
+  (b)
+  \qproof{
+    Let $A = \braces{x \in X \where f(x) \leq g(x)}$ and $B = \braces{x \in X \where g(x) \leq f(x)}$, which are clearly both closed by part (a).
+    It is easy to see that $X = A \cup B$.
+    First, clearly $X \sps A \cup B$ since both $A \ss X$ and $B \ss X$.
+    Then, for any $x \in X$, it has to be that either $f(x) \leq g(x)$ or $f(x) > g(x)$ since $<$ is a total order on $Y$.
+    In the former case of course $x \in A$, and in the latter $x \in B$ so that either way $x \in A \cup B$.
+    Hence $X \ss A \cup B$.
+    It is also easy to see that $f(x) = g(x)$ for every $x \in A \cap B$.
+    For any such $x$, we have that $x \in A$ so that $f(x) \leq g(x)$, and $x \in B$ so that $g(x) \leq f(x)$.
+    From this it clearly must be that $f(x) = g(x)$.
+
+    Since $f$ and $g$ are continuous, it then follows from the pasting lemma that the function
+    \gath{
+      h(x) = \begin{cases}
+        f(x) & x \in A \\
+        g(x) & x \in B
+      \end{cases}
+    }
+    for $x \in X$ is continuous as well.
+    Based on the definitions of $A$ and $B$ it is then easy to see and trivial to show that $h(x) = \min\braces{f(x), g(x)}$ for all $x \in X$, which of course shows the desired result.
+  }
+}
