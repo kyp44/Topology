@@ -106,3 +106,214 @@
     This suffices to show that $f'$ is a homeomorphism, which shows the $f$ is an imbedding of $X$ in $X \times Y$.
   }
 }
+
+\exercise{5}{
+  Show that the subspace $(a,b)$ of $\reals$ is homeomorphic with $(0,1)$ and the subspace $[a,b]$ of $\reals$ is homeomorphic with $[0,1]$.
+}
+\sol{
+  \dwhitman
+
+  First we show that $(a,b)$ is homeomorphic to $(0,1)$.
+  \qproof{
+    First let $X = (a,b)$ and $Y = (0,1)$, and define the map $f: X \to Y$ by
+    \gath{
+      f(x) = \frac{x - a}{b - a}
+    }
+    for any $x \in X$, noting that this is defined since $a < b$ so that $b - a > 0$.
+    It is trivial to show that $f$ is a bijection.
+
+    Now, $f$ is a linear function that could just as well be defined as a map from $\reals$ to $\reals$, and clearly this would be continuous by basic calculus.
+    It then follows from Theorem~18.2d that restricting its domain to $X$ means that it is still continuous.
+    We also clearly have from basic algebra that its inverse is the function $\inv{f}: Y \to X$ defined by
+    \gath{
+      \inv{f}(y) = a + y(b-a)
+    }
+    for $y \in Y$.
+    As this is also linear, it too is continuous by the same argument.
+    This suffices to show that $f$ is a homeomorphism.
+  }
+
+  The exact same argument shows that $[a,b]$ is homeomorphic to $[0,1]$ by simply setting $X = [a,b]$ and $Y = [0,1]$ in the above proof.
+  It is assumed that here again $a < b$ even though the interval $[a,b]$ is valid if $a = b$ and simply becomes $[a,b] = [a,a] = \braces{a}$.
+  However, clearly this set cannot be homeomorphic to $[0,1]$ since it is finite whereas $[0,1]$ is uncountable.
+}
+
+\exercise{6}{
+  Find a function $f: \reals \to \reals$ that is continuous at precisely one point.
+}
+\sol{
+  \dwhitman
+
+  For any real $x$ define
+  \gath{
+    f(x) = \begin{cases}
+      0 & x \in \rats \\
+      x & x \notin \rats \,.
+    \end{cases}
+  }
+  We claim that this is continuous only at $x = 0$.
+  \qproof{
+    As it is easier to do so, we show this using the $\e$-$\d$ definition of continuity, which we know implies the open set definition by Exercise~18.1.
+    First we note that $f(0) = 0$ since $0$ is rational.
+    Now consider any $\e > 0$ and let $\d = \e$.
+    Suppose real $y$ where $\abs{y - 0} = \abs{y} < \d$.
+    If $y$ is rational then $y = 0$ so that $\abs{y - f(0)} = \abs{0 - 0} = \abs{0} = 0 < \e$.
+    If $y$ is irrational then $\abs{y - f(0)} = \abs{y - 0} = \abs{y} < \d = \e$ again.
+    Since $\e$ was arbitrary this shows that $f$ is continuous at $x = 0$.
+
+    Now consider any $x \neq 0$.
+    Let $\e = \abs{x} / 2$, noting that $\e > 0$ since $x \neq 0$.
+    Now consider any $\d > 0$.
+
+    Case: $x \in \rats$.
+    Then $f(x) = 0$ but there is clearly an irrational $y$ close enough to $x$ so that $\abs{y - x} < \min(\e, \d)$, and hence both $\abs{y-x} < \e$ and $\abs{y-x} < \d$.
+    We also have that $f(y) = y$. We then have that
+    \gath{
+      2\e = \abs{x} \leq \abs{y-x} + \abs{y} < \e + \abs{y}
+    }
+    so that
+    \gath{
+      \e < \abs{y} = \abs{f(y)} = \abs{f(y) - 0} = \abs{f(y) - f(x)} \,.
+    }
+
+    Case: $x \notin \rats$.
+    Then $f(x) = x$, and there is clearly a rational $y$ close enough to $x$ that $\abs{y-x} < \d$.
+    We then also have $f(y) = 0$ so that
+    \gath{
+      \abs{f(y) - f(x)} = \abs{0 - x} = \abs{x} = 2\e > \e
+    }
+    since $\e > 0$.
+
+    Hence in either case there is a $y$ such that $\abs{y-x} < \d$ but $\abs{f(y) - f(x)} \geq \e$.
+    This suffices to show that $f$ is not continuous at $x$.
+  }
+}
+
+\exercise{7}{
+  \eparts{
+  \item Suppose that $f: \reals \to \reals$ is ``continuous from the right,'' that is
+    \gath{
+      \lim_{x \to a^+} f(x) = f(a) \,,
+    }
+    for each $a \in \reals$.
+    Show that $f$ is continuous when considered as a function from $\reals_l$ to $\reals$.
+  \item Can you conjecture what functions $f: \reals \to \reals$ are continuous when considered as maps from $\reals$ to $\reals_l$?
+    We shall return to this question in Chapter~3.
+  }
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:cont:Rlopcl}
+    In the topology $\reals_l$, every basis element is both open and closed.
+  \end{lem}
+  \qproof{
+    Consider any basis element $B = \clop{a,b}$, which is clearly open since basis elements are always open.
+    We then have that the complement of this set is $C = \reals - B = (-\infty, a) \cup \clop{b, \infty}$.
+    We claim that this complement is also open so that $B$ is closed by definition.
+    To see this, define the sets $C_n = \clop{a-n-1, a-n+1} \cup \clop{b+n-1, b+n+1}$ for $n \in \pints$.
+    Clearly each $C_n$ is open since it is the union of two basis elements.
+    It is also trivial to show that $C = \bigcup_{n \in \pints} C_n$, which is then also open since it is a union of open sets.
+  }
+
+  \begin{lem}\label{lem:cont:Ropcl}
+    The only open sets in the standard topology on $\reals$ that are both open and closed are $\es$ and $\reals$ itself.
+  \end{lem}
+  \qproof{
+    First, clearly both $\es$ and $\reals$ are both open and closed since they are compliments of each other and are both open by the definition of a topology.
+    Now suppose that $U$ is a nonempty subset of $\reals$ that is both open and closed.
+    Suppose also that $U \neq \reals$ so that $U \pss \reals$ and hence there is a $y \in \reals$ where $y \notin U$.
+    We show that the existence of such a $U$ results in a contradiction, which of course shows the desired result since it implies that $U = \reals$ if $U \neq \es$.
+    Since $U$ is nonempty we have that there is an $x \in U$ and it must be that $x \neq y$ since $x \in U$ but $y \notin U$.
+
+    If $x < y$ then define the set $A = \braces{z > x \where z \notin U}$.
+    Clearly we have that $A$ is nonempty since $y \in A$, and that $x$ is a lower bound of $A$.
+    It then follows that $A$ has a largest lower bound $a$ since this is a fundamental property of $\reals$.
+    It could be that $a \in U$ or $a \notin U$.
+    In the former case we have that any basis element $(c,d)$ containing $a$ is not a subset of $U$.
+    To see this, we have that $c < a < d$, which means that $d$ is not a lower bound of $A$ since $a$ is the largest lower bound.
+    Hence there is a $z \in A$ where $d > z$.
+    We then have $c < a \leq z < d$ (noting that $a \leq z$ since $a$ is a lower bound of $A$) so $z \in (c,d)$ and $z \in A$ so that $z \notin U$.
+    Hence $(c,d)$ is not a subset of $U$, which contradicts the fact that $U$ is open since the basis element $(c,d)$ was arbitrary.
+
+    In the latter case where $a \notin U$ then it has to be that $x < a$ since $x$ is a lower bound of $A$ and $a$ is the largest lower bound (and it cannot be that $a = x$ since $x \in U$ but $a \notin U$).
+    We clearly have that $a \in \reals - U$, which is open since $U$ is closed.
+    Now consider any basis element $(c,d)$ containing $a$ so that $c < a < d$.
+    Let $b = \max(x,c)$ so that $b < a$ and hence there is a real $z$ where $c \leq b < z < a < d$ and hence $z \in (c,d)$.
+    Now, since $z < a$ it has to be that $z \notin A$ since otherwise $a$ would not be a lower bound of $A$.
+    We also have that $x \leq b < z$ so that it has to be that $z \in U$ since otherwise it would be that $z \in A$.
+    Thus $z \notin \reals - U$, which shows that $(c,d)$ is not a subset of $\reals - U$ since $z \in (c,d)$.
+    Since $(c,d)$ was an arbitrary basis element, this contradicts the fact that $\reals - U$ is open.
+
+    It was thus shown that in either case a contradiction arises.
+    Analogous arguments also show contradictions when $x > y$, this time using the set $A = \braces{z < x \where z \notin U}$ and its least upper bound.
+    Hence it has to be that $U = \reals$, which shows the desired result.
+  }
+
+  \mainprob
+  
+  (a) Recall that by the definition of the one-sided limit, $f: \reals \to \reals$ is continuous from the right if, for every $a \in \reals$ and every $\e > 0$, there is a $\d > 0$ such that $\abs{f(x) - f(a)} < \e$ for every $x > a$ where $\abs{x-a} < \d$.
+  \qproof{
+    So suppose that $f$ is continuous from the right and consider any $a \in \reals$.
+    Let $V$ be neighborhood of $f(a)$ in $\reals$.
+    Then there is a basis element $(c,d)$ of $\reals$ that contains $f(a)$ and is a subset of $V$.
+    Hence $c < f(a) < d$, so let $\e = \min[f(a)-c, d - f(a)]$ so that clearly $\e > 0$ and if $\abs{y - f(a)} < \e$, then $y \in (c,d)$ so that also $y \in V$.
+    Now, since $f$ is continuous from the right, there is a $\d > 0$ such that $\abs{f(x) - f(a)} < \e$ for every $x > a$ where $\abs{x-a} < \d$.
+    So let $U = \clop{a, a+\d}$ which is clearly a basis element of $\reals_l$ and contains $a$ so that it is a neighborhood of $a$.
+
+    Now consider any $y \in f(U)$ so that there is an $x \in U$ where $y = f(x)$.
+    If $x = a$ then clearly $\abs{f(x) - f(a)} = \abs{f(a) - f(a)} = \abs{0} = 0 < \e$ so that $f(x) \in V$.
+    If $x \neq a$ then it has to be that $x > a$ and also that $\abs{x-a} = x - a < \d$ since $U = \clop{a,a+\d}$.
+    It then follows that $\abs{f(x) - f(a)} < \e$ so that again $f(x) \in V$.
+    Hence in both cases $y = f(x) \in V$, which shows that $f(U) \ss V$ since $y$ was arbitrary.
+    We have thus shown part (4) of Theorem~18.1, from which the topological continuity of $f$ follows.
+  }
+
+  (b) We claim that only constant functions are continuous from $\reals$ to $\reals_l$.
+  \qproof{
+    First, it was shown in Theorem~18.2a that constant functions are always continuous regardless of the topologies.
+    Hence we must show that any continuous function from $\reals$ to $\reals_l$ is constant.
+    So suppose that $f$ is such a function.
+    Now consider any real $x$ where $x \neq 0$.
+    Clearly if $f(x) = f(0)$ then $f$ is a constant function since $x$ was arbitrary.
+    So suppose that this is not the case so that $f(x) \neq f(0)$.
+    Without loss of generality we can assume that $f(0) < f(x)$.
+    So consider the basis element $B = \clop{f(0), f(x)}$ of $\reals_l$, which clearly contains $f(0)$ but not $f(x)$.
+
+    Since $f$ is continuous and $B$ is both open and closed by Lemma~\ref{lem:cont:Rlopcl}, it follows from the definition of continuity and from Theorem~18.1 part (3) that $\inv{f}(B)$ must be both open and closed in $\reals$.
+    However the only sets that are both open and closed in $\reals$ are $\es$ and $\reals$ itself by Lemma~\ref{lem:cont:Ropcl}.
+    Thus either $\inv{f}(B) = \es$ or $\inv{f}(B) = \reals$.
+    It cannot be that $\inv{f}(B) = \es$ since we have that $f(0) \in B$ so that $0 \in \inv{f}(B)$.
+    Hence it must be that $\inv{f}(B) = \reals$, but then we would have $x \in \inv{f}(B)$ so that $f(x) \in B$, which we know it not the case.
+    We therefore have a contradiction so that it must be that $f(x) = f(0)$ so that $f$ is constant.
+  }
+
+  Lastly, we claim that  the only functions that are continuous from $\reals_l$ to $\reals_l$ are those that are \emph{continuous and non-decreasing from the right}.
+  For a function $f:\reals \to \reals$ this means that for every $x \in \reals$ and every $\e > 0$ there is a $\d > 0$ such that $\abs{f(y) - f(x)} < \e$ and $f(y) \geq f(x)$ for every $x \leq y < x + \d$.
+  \qproof{
+    First we show that such functions are in fact continuous.
+    So suppose that $f$ is continuous and non-decreasing from the right and consider any real $x$.
+    Let $V$ be any neighborhood of $f(x)$ so that there is a basis element $B = \clop{c,d}$ containing $f(x)$ such that $B \ss V$.
+    Let $\e = d - f(x)$ so that $\e > 0$ since $f(x) < d$.
+    Hence there is a $\d > 0$ such that $x < y < x+\d$ implies that $\abs{f(y)-f(x)} < \e$ and $f(y) \geq f(x)$.
+    We then have that $U = \clop{x, x+\d}$ is a basis element and therefore an open set of $\reals_l$ that contains $x$.
+    Consider any $z \in f(U)$ so that $z = f(y)$ for some $y \in U$.
+    Then $x \leq y < x+\d$ so that $z = f(y) \geq f(x)$ and $\abs{z - f(x)} = \abs{f(y)-f(x)} < \e$.
+    It then follows that $0 \leq z - f(x) < \e$ so that $c \leq f(x) \leq z < f(x) + \e = d$, and hence $z \in \clop{c,d} = B$.
+    Thus also $z \in V$ since $B \ss V$.
+    This shows that $f(U) \ss V$ since $z$ was arbitrary, and hence that $f$ is continuous by Theorem~18.1.
+
+    Now we show that a continuous function \emph{must} be continuous and non-decreasing from the right by showing the contrapositive.
+    So suppose that $f$ is not continuous and non-decreasing from the right.
+    Then there exists a real $x$ and an $\e > 0$ such that, for any $\d > 0$, there is a $x \leq y <x+\d$ where $f(y) < f(x)$ or $\abs{f(y)-f(x)} \geq \e$.
+    Clearly we have that $V = \clop{f(x), f(x)+\e}$ is basis element and therefore open set of $\reals_l$ that contains $f(x)$.
+    Consider any neighborhood $U$ of $x$ so that there is a basis element $B = \clop{a,b}$ containing $x$ where $B \ss U$.
+    Then $x < b$ so that $\d = b - x > 0$.
+    It then follows that there is a $x \leq y < x+\d = b$ such that $f(y) < f(x)$ or $\abs{f(y) - f(x)} \geq \e$.
+    Clearly we have that $y \in B$ so that also $y \in U$ and $f(y) \in f(U)$.
+    However, if $f(y) < f(x)$ then clearly $f(y) \notin V$.
+    On the other hand if $f(y) \geq f(x)$ then it has to be that $\abs{f(y) - f(x)} \geq \e$.
+    Then we have that $f(y) - f(x) \geq 0$ so that $f(y) - f(x) = \abs{f(y) - f(x)} \geq \e$, and hence $f(y) \geq f(x) + \e$ so that again $f(y) \notin V$.
+    This suffices to show that $f(U)$ is not a subset of $V$, which shows that $f$ is not continuous by Theorem~18.1 since $U$ was an arbitrary neighborhood of $x$.
+  }
+}
