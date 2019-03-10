@@ -406,3 +406,163 @@
     Based on the definitions of $A$ and $B$ it is then easy to see and trivial to show that $h(x) = \min\braces{f(x), g(x)}$ for all $x \in X$, which of course shows the desired result.
   }
 }
+
+\exercise{9}{
+  Let $\braces{A_\a}$ be a collection of subsets of $X$; let $X = \bigcup_\a A_\a$.
+  Let $f: X \to Y$; suppose that $f \rest A_\a$, is continuous for each $\a$.
+  \eparts{
+  \item Show that if the collection $\braces{A_\a}$ is finite and each set $A_\a$ is closed, then $f$ is continuous.
+  \item Find an example where the collection $\braces{A_\a}$ countable and each $A_\a$ is closed, but $f$ is not continuous.
+  \item An indexed family of sets $\braces{A_\a}$ is said to be \boldit{locally finite} if each point $x$ of $X$ has a neighborhood that intersects $A_\a$ for only finitely many values of $\a$.
+    Show that if the family $\braces{A_\a}$ is locally finite and each $A_\a$ is closed, then $f$ is continuous.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    We show using induction that $f$ is continuous for any collection $\braces{A_\a}_{\a=1}^n$, for any $n \in \pints$,  where each $A_\a$ is closed.
+    This of course shows the desired result since the collection is $\braces{A_\a}_{\a=1}^n$ for some $n \in \pints$ if it is finite.
+    So first, for $n=1$, we have that $A_1 = \bigcup_{\a=1}^n A_\a = X$ so that of course $f = f \rest X = f \rest A_1$ is continuous.
+
+    Now suppose that $f$ is continuous for any collection of size $n$ and suppose we have the collection $\braces{A_\a}_{\a=1}^{n+1}$ of size $n+1$.
+    Let $A = \bigcup_{\a=1}^n A_\a$, which is closed by Theorem~17.1 since each $A_\a$ is closed and it is a finite union, and let $B = A_{n+1}$ so that $B$ is also closed.
+    We then have that $A \cup B = \bigcup_{\a=1}^n A_\a \cup A_{n+1} = \bigcup_{\a=1}^{n+1} A_\a = X$.
+    We know that $g = f \rest B = f \rest A_{n+1}$ is continuous.
+    Considering the set $A$ as a subspace of $X$, then each $A_\a$ for $\a \in \intsfin{n}$ is closed in $A$ by Theorem~17.2 since they are subsets of $A$ and closed in $X$.
+    Since by definition $\bigcup_{\a=1}^n A_\a = A$, it follows from the induction hypothesis that $f' = f \rest A$ is continuous.
+    Clearly also for any $x \in A \cap B$ we have that $x \in A$ and $x \in B = A_{n+1}$ so that $f'(x) = (f \rest A)(x) = f(x) = (f \rest A_{n+1})(x) = g(x)$.
+
+    Then by the pasting lemma the function $h : X \to Y$ defined by
+    \gath{
+      h(x) = \begin{cases}
+        f'(x) & x \in A \\
+        g(x) & x \in B
+      \end{cases}
+    }
+    is continuous.
+    However, consider any $x \in X$.
+    If $x \in A$ then $h(x) = f'(x) = (f \rest A)(x) = f(x)$.
+    Similarly if $x \in B$ then $h(x) = g(x) = (f \rest B)(x) = f(x)$ as well.
+    This suffices to show that $h = f$ since $x$ was arbitrary.
+    Thus $f$ is continuous, which completes the induction.
+  }
+
+  (b) Consider the standard topology on $\reals$ and define the countable collection of set $\braces{A_n}$ by
+  \gath{
+    A_n = \begin{cases}
+      \opcl{-\infty, 0} & n = 1 \\
+      \clop{1, \infty} & n = 2 \\
+      \squares{\frac{1}{n-1}, \frac{1}{n-2}} & n > 2
+    \end{cases}
+  }
+  for $n \in \pints$.
+  Also define $f: \reals \to \reals$ by
+  \gath{
+    f(x) = \begin{cases}
+      1 & x \leq 0 \\
+      0 & x > 0
+    \end{cases}
+  }
+  for real $x$.
+  We claim that this collection and function have the desired properties.
+  \qproof{
+    First, it is trivial to show that the collection covers all of $\reals$, i.e. that $\bigcup_{n=1}^\infty A_n = \reals$.
+    It is also obvious by this point that each $A_n$ is closed in the standard topology.
+    Clearly $f$ is not a continuous function since there is a discontinuity at $x = 0$, which is trivial to prove.
+    Lastly, consider any $n \in \pints$.
+    If $n = 1$ then for any $x \in A_n = A_1 = \opcl{-\infty, 0}$ we have that $x \leq 0$ and hence $f(x) = 1$.
+    Likewise if $n = 2$ then for any $x \in A_n = A_2 = \clop{1, \infty}$ it follows that $x \geq 1 > 0$ , and hence $f(x) = 0$.
+    Lastly, if $n > 2$ then for any $x \in A_n = [1/(n-1), 1/(n-2)]$ we have that $0 < 1/(n-1) \leq x$ so that $f(x) = 0$ again.
+    Thus in all cases $f \rest A_n$ is constant and therefore continuous.
+    This shows the desired properties.
+  }
+
+  (c)
+  \qproof{
+    Consider any $x \in X$ so that there is a neighborhood $U'$ of $x$ that intersects a finite subcollection $\braces{A_k}_{k=1}^n$ of the full collection $\braces{A_\a}$.
+    Consider $A = \bigcup_{k=1}^n A_k$ as a subspace of $X$, from which it follows from Theorem~17.2 that each $A_k$ is closed in $A$ since it is a subset of $A$ and closed in $X$.
+    It is then easy to show that $U' \ss A$.
+    It also follows from part (a) that $f \rest A$ is continuous with the domain being the subspace topology on $A$.
+
+    Now consider any neighborhood $V$ of $f(x)$, noting that of course $x \in A$ since $x \in U'$ and $U' \ss A$.
+    Thus $f(x)$ is in the range of $f \rest A$ so that there is a neighborhood $U_A$ of $x$ in the subspace topology such that $(f \rest A)(U_A) \ss V$ by Theorem~18.1 since $f \rest A$ is continuous.
+    Since $U_A$ is open in the subspace topology, there is an open set $U_X$ in $X$ where $U_A = A \cap U_X$.
+    Now let $U = U' \cap U_X$, which is open in $X$ since $U'$ and $U_X$ are both open in $X$.
+    Then also $x \in U_X$ since $x \in U_A$ and $U_A = A \cap U_X$, and hence $x \in U$ since also $x \in U'$ and $U = U' \cap U_X$.
+    Thus $U$ is a neighborhood of $x$ in $X$.
+
+    Let $z$ be any element of $f(U)$ so that $z = f(y)$ for some $y \in U$.
+    Then $y \in U'$ and $y \in U_X$ since $U = U' \cap U_X$.
+    Then also $y \in A$ since $U' \ss A$, and hence $y \in A \cap U_X = U_A$.
+    From this it follows that $z = f(y) = (f \rest A)(y) \in (f \rest A)(U_A)$ so that $z \in V$ since $(f \rest A)(U_A) \ss V$.
+    Since $z$ was arbitrary, this shows that $f(U) \ss V$, which in turn shows that $f$ is continuous by Theorem~18.1 since $V$ was an arbitrary neighborhood of $f(x)$ and $x$ was an arbitrary element of $X$.
+  }
+
+  We note that the example in part (b) is not locally finite since any neighborhood of $x = 0$ intersects infinitely many $A_n$ in the collection.
+  This fact is easy to see and would be easy to prove formally, though a bit tedious.
+}
+
+\def\fg{f \times g}
+\def\xy{x \times y}
+\def\xyp{x' \times y'}
+\def\wz{w \times z}
+\exercise{10}{
+  Let $f: A \to B$ and $g: C \to D$ be continuous functions.
+  Let us define a map $f \times g: A \times C \to B \times D$ by the equation
+  \gath{
+    (f \times g)(a \times c) = f(a) \times g(c) \,.
+  }
+  Show that $f \times g$ is continuous.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    Consider any $\xy \in A \times C$ and any neighborhood $V$ of $(\fg)(\xy)$ in $B \times D$.
+    Since $V$ is open in $B \times D$, there is a basis element $U_B \times U_D$ of the product topology that contains $(\fg)(\xy)$ where $U_B \times U_D \ss V$.
+    Then $U_B$ and $U_D$ are open in $B$ and $D$, respectively.
+    Since $f$ is continuous, we then have that $U_A = \inv{f}(U_B)$ is open in $A$.
+    Likewise $U_C = \inv{g}(U_D)$ is open in $C$ since $g$ is continuous.
+    Then the set $U = U_A \times U_C$ is a basis element of the product topology $A \times C$ and therefore open.
+
+    Since $U_B \times U_D$ contains $(\fg)(\xy) = f(x) \times g(y)$ we have that $f(x) \in U_B$ and $g(y) \in U_D$.
+    From this it follows that $x \in \inv{f}(U_B) = U_A$ and $y \in \inv{g}(U_D) = U_C$.
+    Therefore $\xy \in U_A \times U_C = U$ so that $U$ is a neighborhood of $\xy$ in $A \times C$.
+    Now consider any $\wz \in (\fg)(U)$ so that there is an $\xyp \in U = U_A \times U_C$ where $\wz = (\fg)(\xyp) = f(x') \times g(y')$.
+    Hence $w = f(x')$ and $x' \in U_A = \inv{f}(U_B)$ so that $w = f(x') \in U_B$.
+    Similarly $z = g(y')$ and $y' \in U_C = \inv{g}(U_D)$ so that $z = g(y') \in U_D$.
+    Thus $\wz \in U_B \times U_D$ so that also $\wz \in V$ since $U_B \times U_D \ss V$.
+    This shows that $(\fg)(U) \ss V$ since $\wz$ was arbitrary.
+
+    This suffices to show that $\fg$ is continuous by Theorem~18.1 as desired.
+  }
+}
+
+\exercise{11}{
+  Let $F: X \times Y \to Z$.
+  We say that $F$ is \boldit{continuous in each variable separately} if for each $y_0$ in $Y$, the map $h: X \to Z$ defined by $h(x) = F(x \times y_0)$ is continuous, and for each $x_0 \in X$, the map $k: Y \to Z$ defined by $k(y) = F(x_0 \times y)$ is continuous.
+  Show that if $F$ is continuous, then $F$ is continuous in each variable separately.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    To show that $F$ is continuous in $x$, consider any $y_0 \in Y$ and define $h: X \to Z$ by $h(x) = F(x \times y_0)$.
+    Now consider any $x \in X$ and any neighborhood $V$ of $h(x) = F(x \times y_0)$.
+    Then $V$ is an open set containing $h(x) = F(x \times y_0)$ so that it is a neighborhood of $F(x \times y_0)$.
+    Since $F$ is continuous, this means that there is neighborhood $U'$ of $x \times y_0$ in $X \times Y$ such that $F(U') \ss V$ by Theorem~18.1.
+    It then follows that there is a basis element $U_X \times U_Y$ of $X \times Y$ containing $x \times y_0$ where $U_X \times U_Y \ss U'$.
+    Since $X \times Y$ is a product topology, we have that $U_X$ is open in $X$ and $U_Y$ is open in $Y$.
+    Then, since $x \times y_0 \in U_X \times U_Y$ we have that $x \in U_X$ and $y_0 \in U_Y$ so that $U_X$ is a neighborhood of $x$ in $X$.
+
+    So consider any $z \in h(U_X)$ so that $z = h(x')$ for some $x' \in U_X$.
+    Then $x' \times y_0 \in U_X \times U_Y$ so that also $x' \times y_0$ in $U'$ since $U_X \times U_Y \ss U'$.
+    It then also follows that $z = h(x') = F(x' \times y_0) \in F(U')$ so that $z \in V$ since $F(U') \ss V$.
+    This shows that $h(U_X) \ss V$ since $z$ was arbitrary.
+    It then follows that $h$ is continuous by Theorem~18.1.
+    
+    The proof that $F$ is continuous in $y$ is directly analogous.
+  }
+}
