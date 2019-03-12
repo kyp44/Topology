@@ -566,3 +566,81 @@
     The proof that $F$ is continuous in $y$ is directly analogous.
   }
 }
+
+\exercise{12}{
+  Let $F: \reals \times \reals \to \reals$ by defined by the equation
+  \gath{
+    F(x \times y) = \begin{cases}
+      xy / (x^2 + y^2) & \text{if $x \times y \neq 0 \times 0$.} \\
+      0 & \text{if $x \times y = 0 \times 0$.}
+    \end{cases}
+  }
+  \eparts{
+  \item Show that $F$ is continuous in each variable separately.
+  \item Compute the function $g: \reals \to \reals$ defined by $g(x) = F(x \times x)$.
+  \item Show that $F$ is not continuous.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    It is easy to see that $F$ is continuous in $x$.
+    For any real $y_0$ we generally have that
+    \gath{
+      h(x) = F(x \times y_0) = \frac{x y_0}{x^2 + y_0^2}
+    }
+    so long as one of $x$ and $y_0$ are nonzero.
+    If $y_0 = 0$ then $x = 0$ implies that $x \times y_0 = 0 \times 0$ so that $h(x) = F(0 \times0) = 0$ by definition.
+    If $x \neq 0$ then  we have $h(x) = 0/x^2 = 0$ again.
+    Thus $h$ is the constant function $h(x) = 0$ and so is continuous when $y_0 = 0$.
+    If $y_0 \neq 0$ then $y_0^2 > 0$ so that $x^2 + y_0^2 > 0$ since also $x \geq 0$.
+    Thus the denominator is never zero that the $h(x)$ is given by the expression above, which is continuous by elementary calculus.
+    Hence $h$ is always continuous.
+    The same arguments show that $F$ is continuous in $y$ as well.
+  }
+
+  (b)
+  We clearly have
+  \gath{
+    g(x) = F(x \times x) = \begin{cases}
+      \frac{x^2}{x^2 + x^2} = \frac{x^2}{2x^2} = \frac{1}{2} & x \neq 0 \\
+      0 & x = 0 \,.
+    \end{cases}
+  }
+
+  (c)
+  \qproof{
+    First consider the function $f: \reals \to \reals \times \reals$ defined simply by $f(x) = x \times x$.
+    This function is clearly continuous by Theorem~18.4 since it can be expressed as $f(x) = f_1(x) \times f_2(x)$ where the identical functions $f_1(x) = f_2(x) = x$ are obviously continuous.
+    Then $g = F \circ f$, where $g$ is the function from part (b) since we have $g(x) = F(x \times x) = F(f(x))$ for any real $x$.
+    Now, clearly $g$ as calculated in part (b) has a discontinuity at $x = 0$ so that it is not continuous.
+    It then follows from Theorem~18.2c that either $F$ or $f$ is not continuous since $g = F \circ f$.
+    As we know that the trivial function $f$ is continuous, it must then be that $F$ is not as desired.
+  }
+}
+
+\exercise{13}{
+  Let $A \ss X$; let $f: A \to Y$ be continuous; let $Y$ be Hausdorff.
+  Show that if $f$ may be extended to a continuous function $g: \clA \to Y$, then $g$ is uniquely determined by $f$.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    Suppose that $g_1$ and $g_2$ are both continuous functions from $\clA$ to $Y$ that extend $f$ so that $g_1(x) = g_2(x) = f(x)$ for all $x \in A$.
+    Clearly $g_1 = g_2$ if and only if $g_1(x) = g_2(x)$ for all $x \in \clA$.
+    So suppose that this is \emph{not} the case so that there is an $x_0 \in \clA$ where $g_1(x_0) \neq g_2(x_0)$.
+    Since $Y$ is a Hausdorff space and $g_1(x_0)$ and $g_2(x_0)$ are distinct, there are disjoint neighborhoods $V_1$ and $V_2$ of $g_1(x_0)$ and $g_2(x_0)$, respectively.
+    Then there are also neighborhoods $U_1$ and $U_2$ of $x_0$ such that $g_1(U_1) \ss V_1$ and $g_2(U_2) \ss V_2$ by Theorem~18.1 since both $g_1$ and $g_2$ are continuous.
+
+    Now let $U = U_1 \cap U_2$ so that $U$ is also a neighborhood of $x_0$.
+    Since $x_0 \in \clA$, it follows that $U$ intersects $A$ so that there is a $y \in U$ where also $y \in A$ by Theorem~17.5.
+    Since $y \in A$ we have that $g_1(y) = g_2(y) = f(y)$.
+    We also have that $y \in U_1$ and $y \in U_2$ since $U = U_1 \cap U_2$.
+    Thus $g_1(y) \in g_1(U_1)$ so that $f(y) = g_1(y) \in V_1$ since $g_1(U_1) \ss V_1$.
+    Similarly $f(y) = g_2(y) \in V_2$, but then we have that $f(y) \in V_1 \cap V_2$, which contradicts the fact that $V_1$ and $V_2$ are disjoint!
+    Hence it must be that $g_1 = g_2$, which shows uniqueness.
+  }
+}
