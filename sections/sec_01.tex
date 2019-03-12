@@ -350,3 +350,116 @@
     However, we also clearly have $x = -1 < 0$ so that $x > 0$ is not true.
   }
 }
+
+\exercise{4}{
+  Let $A$ and $B$ be sets of real numbers.
+  Write the negation of each of the following statements:
+  \eparts{
+  \item For every $a \in A$, it is true that $a^2 \in B$.
+  \item For at least one $a \in A$, it is true that $a^2 \in B$.
+  \item For every $a \in A$, it is true that $a^2 \notin B$.
+  \item For at least one $a \notin A$, it is true that $a^2 \in B$.
+  }
+}
+\sol{
+  \dwhitman
+
+  These are all basic logical negations using existential quantifiers:
+
+  (a) There is an $a \in A$ where $a^2 \notin B$.
+  
+  (b) For every $a \in A$, $a^2 \notin B$.
+
+  (c) There is an $a \in A$ where $a^2 \in B$.
+
+  (d) For every $a \notin A$, $a^2 \notin B$.
+}
+
+\exercise{5}{
+  Let $\cA$ be a nonempty collection of sets.
+  Determine the truth of each of the following statements and of their converses:
+  \eparts{
+  \item $x \in \bigcup_{A \in \cA} A \imp x \in A$ for at least one $A \in \cA$.
+  \item $x \in \bigcup_{A \in \cA} A \imp x \in A$ for every $A \in \cA$.
+  \item $x \in \bigcap_{A \in \cA} A \imp x \in A$ for at least one $A \in \cA$.
+  \item $x \in \bigcap_{A \in \cA} A \imp x \in A$ for every $A \in \cA$.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a) The statement on the right is the definition of the statement on the left so of course the implication and its converse are true.
+
+  (b) The implication is generally false.
+  \qproof{
+    As a counterexample, consider $\cA = \braces{\braces{1}, \braces{2}}$.
+    Then clearly $\bigcup_{A \in \cA} A = \braces{1, 2}$ so that $1 \in \bigcup_{A \in \cA} A$, but $1$ is not in $A$ for every $A \in \cA$ since $1 \notin \braces{2}$.
+  }
+  However, the converse \emph{is} true.
+  \qproof{
+    Suppose that $x \in A$ for every $A \in \cA$.
+    Since $\cA$ is nonempty there is an $A_0 \in \cA$.
+    Then $x \in A_0$ since $A_0 \in \cA$.
+    Hence by definition $x \in \bigcup_{A \in \cA} A$ since $x \in A_0$ and $A_0 \in \cA$.
+  }
+
+  (c) The implication here is true.
+  \qproof{
+    Suppose that $x \in \bigcap_{A \in \cA} A$ so that by definition $x \in A$ for every $A \in \cA$.
+    Since $\cA$ is nonempty there is an $A_0 \in \cA$ so that in particular $x \in A_0$.
+    This shows the desired result since $A_0 \in \cA$.
+  }
+  The converse is not generally true.
+  \qproof{
+    As a counterexample consider $\cA = \braces{\braces{1,2}, \braces{2,3}}$.
+    Then $1 \in \braces{1,2}$ and $\braces{1,2} \in \cA$, but $1 \notin \bigcap_{A \in \cA} A$ since clearly $\bigcap_{A \in \cA} A = \braces{2}$.
+  }
+
+  (d) The statement on the right is the definition of the statement on the left so of course the implication and its converse are true.
+}
+
+\exercise{6}{
+  Write the contrapositive of each of the statements of Exercise~5.
+}
+\sol{
+  \dwhitman
+
+  Again these involve simple logical negations of both sides of the implications:
+
+  (a) $x \notin A$ for every $A \in \cA \imp x \notin \bigcup_{A \in \cA} A$.
+
+  (b) $x \notin A$ for at least one $A \in \cA \imp x \notin \bigcup_{A \in \cA} A$.
+
+  (c) $x \notin A$ for every $A \in \cA \imp x \notin \bigcap_{A \in \cA} A$.
+
+  (d) $x \notin A$ for at least one $A \in \cA \imp x \notin \bigcap_{A \in \cA} A$.
+}
+
+\exercise{7}{
+  Given sets $A$, $B$, and $C$, express each of the following sets in terms of $A$, $B$, and $C$, using the symbols $\cup$, $\cap$ and $-$.
+  \ali{
+    D &= \braces{x \where x \in A \text{ and } (x \in B \text{ or } x \in C} \,, \\
+    E &= \braces{x \where (x \in A \text{ and } x \in B) \text{ or } x \in C} \,, \\
+    F &= \braces{x \in A \text{ and } (x \in B \imp x \in C)} \,.
+  }
+}
+\sol{
+  \dwhitman
+
+  First, we obviously have
+  \ali{
+    D &= A \cap (B \cup C) \\
+    E &= (A \cap B) \cup C \,,
+  }
+  noting that $D \neq E$ generally though they appear similar.
+  Regarding $F$ we have the following sequence of logical equivalences:
+  \ali{
+    x \in F &\bic x \in A \land (x \in B \imp x \in C) \\
+    &\bic x \in A \land (x \notin B \lor x \in C) \\
+    &\bic x \in A \land \lnot(x \in B \land x \notin C) \\
+    &\bic x \in A \land \lnot(x \in B - C) \\
+    &\bic x \in A \land x \notin B - C \\
+    &\bic x \in A - (B - C)
+  }
+  so that of course $F = A - (B - C)$.
+}
