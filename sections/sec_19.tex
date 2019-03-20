@@ -7,18 +7,19 @@
 \sol{
   \dwhitman
 
-  Let $\cC$ be the collection of sets that are alleged to be a basis for the box topology in Theorem~19.2.
+  Let $\cC$ be the collection of sets that are alleged to be a basis for the box or product topologies in Theorem~19.2.
   \qproof{
-    We show that $\cC$ is a basis of the box topology using Lemma~13.2.
+    We show that $\cC$ is a basis of the box or product topology using Lemma~13.2.
     First, it is easy to see that $\cC$ is a collection of open sets.
-    Consider any $B = \cC$ so that $B = \prod_{\a \in J} B_\a$ where each $B_\a \in \cB_\a$.
-    Since each $B_\a$ is a basis element of $X_\a$, they are open so that $B$ is a basis element of the box topology by definition and therefore open.
+    Consider any $B \in \cC$ so that $B = \prod  B_\a$ where each $B_\a \in \cB_\a$ (for a finitely many $\a \in J$ and $B_\a = X_\a$ for the rest in the product topology).
+    Since each $B_\a$ is a basis element of $X_\a$ (or $X_\a$ itself), they are open so that $B$ is a basis element of the box or product topology by definition and therefore open.
+    Note that the basis for the product topology is given directly by Theorem~19.1.
     
     Now suppose that $U$ is an any open set of the box topology and consider any $x \in U$.
-    Then it follows that there is a basis element $\prod_{\a \in J} U_\a$  of the box topology containing $x$ where $\prod_{\a \in J} U_\a \ss U$.
-    Thus each $U_\a$ is an open set of $X_\a$ by the definition of the box topology.
+    Then it follows that there is a basis element $\prod_{\a \in J} U_\a$  of the box or product topology containing $x$ where $\prod_{\a \in J} U_\a \ss U$.
+    Thus each $U_\a$ is an open set of $X_\a$ (or $U_\a = X_\a$ for all but finitely many $\a \in J$ for the product topology).
     Also $x \in \prod_{\a \in J} U_\a$ so that $x = (x_\a)_{\a \in J}$ where each $x_\a \in U_\a$.
-    It then follows that there is basis element $B_\a \in \cB_\a$ of $X_\a$ containing $x_\a$ where $B_\a \ss U_\a$, noting that choosing a basis element $B_\a$ for each $\a \in J$ requires the choice axiom.
+    It then follows that there is basis element $B_\a \in \cB_\a$ of $X_\a$ containing $x_\a$ where $B_\a \ss U_\a$ (for $U_\a = X_\a$ we simply set $B_\a = X_\a$ as well).
     
     Then clearly $x \in \prod_{\a \in J} B_\a$ and $\prod_{\a \in J} B_\a \in \cC$.
     Consider also any $y \in \prod_{\a \in J} B_\a$ so that $y = (y_\a)_{\a \in J}$ where each $y_\a \in B_\a$.
@@ -26,59 +27,6 @@
     This suffices to show that $y \in \prod_{\a \in J} U_\a \ss U$.
     Since $y$ was arbitrary this shows that $\prod_{\a \in J} B_\a \ss U$.
     Therefore $\cC$ is a basis of the box topology by Lemma~13.2.
-  }
-
-  Now let $\cC$ be the set alleged to be a basis for the product topology in Theorem~19.2.
-  \qproof{
-    Recall that the general product topology is defined in terms of its subbasis
-    \gath{
-      \cS = \bigcup_{\b \in J} \cS_\b \,,
-    }
-    where
-    \gath{
-      \cS_\b = \braces{\inv{\pi_\b}(U_\b) \where \text{$U_\b$ open in $X_\b$}}\,.
-    }
-    We again use Lemma~13.2 and so must first show that $\cC$ is a collection of open sets.
-    We do this by showing that each element is a finite intersection of elements of the subbasis $\cS$.
-    So consider any $B = \prod_{\a \in J} B_\a \in \cC$ and let $I$ be the finite subset of $J$ such that $B_\a \in \cB_\a$ for $\a \in I$ and $B_\a = X_\a$ for $\a \in J - I$.
-    Then let
-    \gath{
-      B_S = \bigcap_{\b \in I} \inv{\pi_\b}(B_\b).
-    }
-    First, since each $B_\b$ for $\b \in I$ is open in $X_\b$, we have that $\inv{\pi_\b}(B_\b) \in \cS_\b$ so that $\inv{\pi_\b}(B_\b) \in \cS$.
-    Hence $B_S$ is a finite intersection of subbasis elements and so is in the basis of the product topology.
-
-    Now we claim that $B = B_S$.
-    So first consider any $x \in B$ so that $x = (x_\a)_{\a \in J}$ where each $x_\a \in B_\a$.
-    Now consider any $\b \in I$ so that $x \in \inv{\pi_\b}(B_\b)$ since $\pi_\b(x) = x_\b \in B_\b$.
-    Since $\b$ was arbitrary, this shows that $x \in B_S$ so that $B \ss B_S$.
-    Now consider $x \in B_S$ so that $x \in \inv{\pi_\b}(B_\b)$ for every $\b \in I$.
-    Suppose $\a \in J$.
-    If $\a \in I$ then $x \in \inv{\pi_\a}(B_\a)$ so that $x_\a = \pi_\a(x) \in B_\a$.
-    If $\a \notin I$ then of course $x_\a \in X_\a = B_\a$ since $x$ is a point in the topological space $\prod_{\a \in I} X_\a$.
-    Thus either way $x_\a \in B_\a$ so that $x \in B$.
-    Hence $B \sps B_S$ so that $B = B_S$ as desired.
-    This of course shows that $B$ is a basis element of the product topology and so is open.
-    Since $B$ was arbitrary this shows that $\cC$ is a collection of open sets.
-
-    Now consider any open set $U$ of the product topology and any $x \in U$ so that there is a basis element $B_S$ where $x \in B_S \ss U$.
-    Since $B_S$ is a basis element of the product topology defined by its subbasis, $B_S$ is a finite intersection of subbasis elements.
-    Hence there is a finite $I \ss J$ where
-    \gath{
-      B_S = \bigcap_{\b \in I} \inv{\pi_\b}(U_\b)
-    }
-    for some open sets $U_B$ of $X_B$.
-    Since $x \in B_S$ where have that $x \in \inv{\pi_\b}(U_\b)$ for all $\b \in I$.
-    Thus $x = (x_\a)_{\a \in J}$ and $\pi_\b(x) = x_\b \in U_\b$ for every $\b \in I$ (and of course $x_\a \in X_\a$ for any $\a \notin I$).
-    Then, for every $\b \in I$ we have $x_\b \in U_\b$ so that there is a basis element $B_\b \in \cB_\b$ of $X_\b$ where $x_\b \in B_\b \ss U_\b$.
-    Note that this does not require the choice axiom as we are only choosing a finite number of basis elements $B_\b$.
-    Letting $B = \prod_{\a \in J} B_\a$ where $B_\a = X_\a$ for $\a \notin I$, clearly $x \in B$ and $B \in \cC$.
-
-    Lastly, consider any $y = (y_\a)_{\a \in J} \in B$ so that $y_\a \in B_\a$ for all $\a \in I$.
-    Now consider any $\b \in I$ so that $y_\b \in B_\b$ and hence also $y_\b \in U_\b$ since $B_\b \ss U_\b$.
-    We then have that $\pi_\b(y) = y_\b \in U_\b$ so that $y \in \inv{\pi_\b}(U_\b)$.
-    Since $\b \in I$ was arbitrary, this shows that $y \in B_S$ and hence also $y \in U$ since $B_S \ss U$.
-    Since $y$ was arbitrary, this shows that $x \in B \ss U$, which suffices to show that $\cC$ is a basis for the product topology by Lemma~13.2.
   }
 }
 
