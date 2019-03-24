@@ -70,3 +70,123 @@
     Hence $\cC \sps \cB_A$ since $B$ was arbitrary.
   }
 }
+
+\exercise{3}{
+  Prove Theorem~19.4.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    Suppose that $x$ and $y$ are distinct points of $\prod X_\a$.
+    Then $x = (x_a)$ and $y = (y_\a)$ where each $x_\a, y_\a \in X_\a$, and there must be a $\b$ where $x_\b \neq y_\b$ since $x \neq y$.
+    Thus $x_\b$ and $y_\b$ are distinct points of $X_\b$, so that there are neighborhoods $W_x$ and $W_y$ of $x_\b$ and $y_\b$, respectively, that are disjoint since $X_\b$ is a Hausdorff space.
+    So define the sets
+    \ali{
+      U_\a &= \begin{cases}
+        W_x & \a = \b \\
+        X_\a & \a \neq \b
+      \end{cases}
+      &
+      V_\a &= \begin{cases}
+        W_y & \a = \b \\
+        X_\a & \a \neq \b
+      \end{cases}
+    }
+    so that clearly $x \in \prod U_\a$ and $y \in \prod V_\a$.
+    Then since each $U_\a$ and $V_\a$ are open, we have that $\prod U_\a$ and $\prod V_\a$ are both basis elements of $\prod X_\a$ and therefore open.
+    Note that this is true for both the box and product topologies since, in the case of the latter, $U_\a$ and $V_\a$ are not all of $X_\a$ for only one $\a$, namely $\a = \b$.
+    Thus $\prod U_\a$ is a neighborhood of $x$ and $\prod V_\a$ is a neighborhood of $y$ in $\prod X_\a$.
+
+    We also assert that $\prod U_\a$ and $\prod V_\a$ are disjoint, which of course completes the proof that $\prod X_\a$ is Hausdorff.
+    To see this, suppose to the contrary that there is a $z$ in both $\prod U_\a$ and $\prod V_\a$.
+    Then $z = (z_\a)$ and in particular we would have that $z_\b \in U_\b = W_x$ and $z_\b \in V_\b = W_y$.
+    But then $z_\b \in W_x \cap W_y$, which contradicts the fact that $W_x$ and $W_y$ are disjoint!
+    So it must be that in fact $\prod U_\a$ and $\prod V_\a$ are disjoint.
+  }
+}
+
+\def\doms{\cpfin{X}{n}}
+\def\rans{(\cpfin{X}{n-1}) \times X_n}
+\exercise{4}{
+  Show that $\rans$ is homeomorphic to $\doms$.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    First we note that since we are dealing with finite products, the box and product topologies are the same; we shall find it most convenient to use the box topology definition.
+    Also, as there are no intervals involved here, we use the traditional tuple notation using parentheses.
+    So define $f: \doms  \to \rans$ by
+    \gath{
+      f(x_1, \ldots, x_{n-1}) = ((x_1, \ldots, x_{n-1}), x_n) \,.
+    }
+    It is obvious that this is a bijection, and it is trivial to prove.
+    Also obvious and trivial to prove based on the definition of $f$ is that $f(\cpfin{A}{n}) = (\cpfin{A}{n-1}) \times A_n$ when each $A_k \ss X_k$.
+    
+    First we show that $f$ is continuous by showing that the inverse image of every basis element in $\rans$ is open in $\doms$.
+    So consider any basis element $C$ of $\rans$ and let $U = \inv{f}(C)$ so that of course $f(U) = C$ and $U \ss \doms$.
+    We then have that $C = V' \times V_n$ where $V'$ is open in $\cpfin{X}{n-1}$ and $V_n$ is open in $X_n$ by the definition of the box/product topology.
+    Now consider any $x \in U$ so that $x = (x_k)_{k=1}^n$ and we have that $f(x) = ((x_1, \ldots, x_{n-1}), x_n) \in f(U) = C$.
+    Hence $x' = (x_1, \ldots, x_{n-1}) \in V'$ and $x_n \in V_n$.
+    Since $V'$ is open in $\cpfin{X}{n-1}$ there is a basis element $C'$ containing $x'$ that is a subset of $V'$.
+    By the definition of the box topology, we then have that $C' = \cpfin{V}{n-1}$ where each $V_k$ is open in $X_k$.
+
+    We then have that $B = \cpfin{V}{n}$ is a basis element of $\doms$ and also clearly $B$ contains $x$ since $(x_1, \ldots, x_{n-1}) = x' \in C' = \cpfin{V}{n-1}$ and $x_n \in V_n$.
+    Now suppose that $y = (y_k)_{k=1}^n \in B$ so that each $y_k \in V_k$.
+    Then we have that $y' = (y_1, \ldots, y_{n-1}) \in C'$ so that also $y' \in V'$ since $C' \ss V'$.
+    Since also of course $y_n \in V_n$, we have that $(y', y_n) \in V' \times V_n = C$.
+    Also clearly $f(y) = (y', y_n) \in C = f(U)$ so that $y \in U$.
+    Since $y$ was arbitrary this shows that $B \ss U$, which suffices to show that $U$ is open since $x$ was arbitrary.
+    This completes the proof that $f$ is continuous.
+
+    Next we show that $\inv{f}$ is continuous, which is a little simpler.
+    Let $B$ be any basis element of $\doms$ so that $B = \cpfin{U}{n}$ where each $U_k$ is open in $X_k$ by the definition of the box topology.
+    Then we have that $f(B) = (\cpfin{U}{n-1}) \times U_n$.
+    By the definition of the box topology, we then have that $U' = \cpfin{U}{n-1}$ is a basis element of $\cpfin{X}{n-1}$ and is therefore open.
+    Since $U_n$ is also open, we have that $f(B) = U' \times U_n$ is a basis element of $\rans$ by the definition of the box/product topology, and is therefore open.
+    Since $f(B) = \inv{(\inv{f})}(B)$ is the inverse image of $B$ under $\inv{f}$, this shows that $\inv{f}$ is also continuous.
+
+    We have shown that both $f$ and $\inv{f}$ are continuous, which proves that $f$ is a homeomorphism by definition.
+  }
+}
+
+\exercise{5}{
+  One of the implications stated in Theorem~19.6 holds for the box topology. Which one?
+}
+\sol{
+  \dwhitman
+
+  Example 19.2 gives a function $f$ that is not continuous in the box topology even though all of its constituent functions $f_\a$ are continuous.
+  Hence the only implication that can be generally true in the box topology is that $f$ being continuous implies that each $f_\a$ is continuous.
+  A proof of this is straightforward.
+  \qproof{
+    As in Theorem~19.6 suppose that $f: A \to \prod_{\a \in J} X_\a$ be given by
+    \gath{
+      f(a) = (f_\a(a))_{\a \in J} \,,
+    }
+    where $f_\a: A \to X_\a$ for each $\a \in J$.
+    Here $\prod X_\a$ has the box topology.
+    Suppose that $f$ is continuous and consider any $\b \in J$.
+    We show that $f_\b$ is continuous, which of course shows the desired result.
+
+    So let $V$ be any open set of $X_\b$ and define
+    \gath{
+      B_\a = \begin{cases}
+        V & \a = \b \\
+        X_\a & \a \neq \b \,.
+      \end{cases}
+    }
+    Then, since each $B_\a$ is clearly open in $X_\a$, we have that $B = \prod B_\a$ is a basis element of the box topology by definition and is therefore open.
+    Hence $U = \inv{f}(B)$ is open in $A$ since $f$ is continuous.
+    We claim that $U = \inv{f_\b}(V)$, which shows that $f_\b$ is continuous since $U$ is open in $A$ and $V$ was an arbitrary open set of $X_\b$.
+
+    $(\ss)$ If $x \in U = \inv{f}(B)$ then of course $f(x) \in B$ so that each $f_\a(x) \in B_\a$ since $f(x) = (f_\a(x))_{\a \in J}$ and $B = \prod B_\a$.
+    In particular $f_\b(x) \in B_\b = V$ so that $x \in \inv{f_\b}(V)$.
+    Hence $U \ss \inv{f_\b}(V)$ since $x$ was arbitrary.
+
+    $(\sps)$ If $x \in \inv{f_\b}(V)$ then $f_\b(x) \in V = B_\b$.
+    Since of course every other $f_\a(x) \in X_\a = B_\a$ we have that $f(x) \in \prod B_\a = B$.
+    Hence $x \in \inv{f}(B) = U$ so that $\inv{f_\b}(V) \ss U$ since $x$ was arbitrary.
+  }
+}
