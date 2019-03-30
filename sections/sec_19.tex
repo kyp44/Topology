@@ -190,3 +190,215 @@
     Hence $x \in \inv{f}(B) = U$ so that $\inv{f_\b}(V) \ss U$ since $x$ was arbitrary.
   }
 }
+
+\exercise{6}{
+  Let $\vx_1, \vx_2, \ldots$ be a sequence of the points of the product space $\prod X_\a$.
+  Show that the sequence converges to the point $\vx$ if and only if the sequence $\pi_\a(\vx_1), \pi_\a(\vx_2), \ldots$ converges to $\pi_\a(\vx)$ for each $\a$.
+  Is this fact true if one uses the box topology instead of the product topology?
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    $(\imp)$ First suppose that the sequence $\vx_1, \vx_2, \ldots$ converges to $\vx$ and consider any $\b$.
+    Also suppose that $U$ is any neighborhood of $\pi_\b(\vx)$.
+    Define
+    \gath{
+      B_a = \begin{cases}
+        U & \a = \b \\
+        X_\a & \a \neq \b
+      \end{cases}
+    }
+    so that $B = \prod B_\a$ is a basis element of $\prod X_\a$ since each $B_\a$ is open.
+    Note that $B$ is a basis element of both the box and product topologies since possibly $B_\a \neq X_\a$ for only one $\a$ (i.e. for $\a = \b$).
+    We also clearly have that $\vx \in B$ so that $B$ is a neighborhood of $\vx$ in $\prod X_\a$.
+    Since the sequence $\vx_1, \vx_2, \ldots$ converges to $\vx$, we have that there is an $N \in \pints$ where $\vx_n \in B$ for all $n \geq N$.
+    So consider any such $n \geq N$ so that $\vx_n \in B = \prod B_\a$.
+    Hence $\pi_\a(\vx_n) \in B_\a$ for all $\a$, and in particular $\pi_\b(\vx_n) \in B_\b = U$.
+    This suffices to show that the sequence $\pi_\b(\vx_1), \pi_\b(\vx_2), \ldots$ converges to $\pi_\b(\vx)$ as desired since $U$ was an arbitrary neighborhood.
+
+    $(\pmi)$ Now suppose that the sequence $\pi_\a(\vx_1), \pi_\a(\vx_2), \ldots$ converges to $\pi_\a(\vx)$ for every $\a$.
+    Let $U$ be any neighborhood of $\vx$ in $\prod X_\a$.
+    Then there is a basis element $B = \prod U_\a$ of $\prod X_\a$ where $\vx \in B$ and $B \ss U$.
+    Since $\prod X_\a$ is the product topology, each $U_\a$ is open but only a finite number of them are different from $X_\a$.
+    Suppose then that $J$ is the index set of $\a$ and that $I \ss J$ is the finite subset where $U_\a = X_\a$ for all $\a \notin I$.
+
+    Then for any $\b \in I$ we have that $\pi_\b(\vx) \in U_\b$ since $\vx \in B = \prod U_\a$, hence $U_\b$ is a neighborhood of $\pi_\b(\vx)$.
+    Then, since  $\pi_\b(\vx_1), \pi_\b(\vx_2), \ldots$ converges to $\pi_\b(\vx)$, there is an $N_\b \in \pints$ where $\pi_\b(\vx_n) \in U_\b$ for all $n \geq N_\b$.
+    So let $N = \max_{\a \in I} N_\a$, noting that this exists since $I$ is finite.
+    Consider any $n \geq N$ and any $\a \in J$.
+    If $\a \in I$ then we have that $n \geq N \geq N_\a$ so that $\pi_\a(\vx_n) \in U_\a$.
+    If $\a \notin J$ then of course we have that $\pi_a(\vx_n) \in X_\a = U_\a$.
+    Hence either way we have that $\pi_\a(\vx_n) \in U_\a$ so that $\vx_n \in \prod U_\a = B$ and hence also $\vx_n \in U$ since $B \ss U$.
+    Since $n \geq N$ was arbitrary and $U$ was an arbitrary neighborhood of $\vx$, this shows that $\vx_1, \vx_2, \ldots$ converges to $\vx$ as desired.
+  }
+
+  As noted there, the forward direction of the preceding proof works for the product or the box topology.
+  However, then reverse direction was proved only for the product topology, with the critical point being where we took $\max_{\a \in I} N_\a$, which was only guaranteed to exist since $I$ is finite in the product topology.
+  The provides a hint as to how to construct a counterexample that proves that this direction is not generally true for the box topology.
+  \qproof{
+    Define
+    \gath{
+      x_{ij} = \begin{cases}
+        1 & j \leq i \\
+        \frac{1}{j-i} & j > i
+      \end{cases}
+    }
+    for $i,j \in \pints$.
+    Now define a sequence $\vx_1, \vx_2, \ldots$ in $\prod_{i \in \pints} \reals = \reals^\w$ by $\pi_i(\vx_j) = x_{ij}$.
+    With the box topology on $\reals^\w$ we claim that each coordinate sequence $\pi_i(\vx_1), \pi_i(\vx_2), \ldots$ converges to $0$ but that the sequence $\vx_1, \vx_2, \ldots$ does not converge to the point $\vect{0} = (0, 0, \ldots)$.
+
+    First, it is easy to see that each coordinate sequence $\pi_i(\vx_1), \pi_i(\vx_2), \ldots$ converges to $0$ since, for fixed $i$, there is always an $N \in \pints$ large enough such that $j > i$ and $\pi_i(\vx_j) = x_{ij} = 1/(j-i)$ is small enough to be within any fixed neighborhood of $0$ for all $j \geq N$.
+    To show that the sequence $\vx_1, \vx_2, \ldots$ does not converge to $\vect{0}$ though, consider the neighborhood $U = \prod U_k$ of $\vect{0}$ where every $U_k = (-1,1)$.
+    We note that clearly $U$ is open in the box topology since each $U_k$ is a basis element of $\reals$ and therefore open.
+    For any $N \in \pints$ we then have that $\pi_{N}(\vx_N) = x_{NN} = 1$ so that clearly $\pi_N(\vx_N) \notin (-1, 1) = U_N$ and hence $\vx_N \notin \prod U_k = U$.
+    This suffices to show that the sequence does not converge, but it does not even come close to converging since there are actually no points in the sequence that are even in this quite large neighborhood of $\vect{0}$!
+  }
+}
+
+\exercise{7}{
+  Let $\reals^\infty$ be the subset of $\reals^\w$ consisting of all sequences that are ``eventually zero,'' that is all sequences $(x_1, x_2, \ldots)$ such that $x_i \neq 0$ for only finitely many values of $i$.
+  What is the closure of $\reals^\infty$ in $\reals^\w$ in the box and product topologies?
+  Justify your answer.
+}
+\sol{
+  \dwhitman
+
+  First we claim that $\reals^\infty$ is dense in $\reals^\w$ in the product topology in the sense that its closure is all of $\reals^\w$.
+  \qproof{
+    We show that any point of $\reals^\w$ is in $\closure{\reals^\w}$.
+    So consider any point $x = (x_n)_{n \in \pints} \in \reals^\w$ and any neighborhood $U$ of $x$.
+    Then there is a basis element $B = \prod U_n$ containing $x$ where $B \ss U$.
+    By the definition of the product topology each $U_n$ is open and $U_n = \reals$ for all but finitely many values of $n$.
+    So let $I$ be a finite subset of $\pints$ such that $U_n = \reals$ for all $n \notin I$ and $U_n$ is merely just open for $n \in I$.
+
+    Consider now the sequence $y = (y_n)_{n \in \pints}$ defined by
+    \gath{
+      y_n = \begin{cases}
+        x_n & n \in I \\
+        0 & n \notin I
+      \end{cases}
+    }
+    for $n \in \pints$.
+    Since $I$ is finite clearly $y \in \reals^\infty$.
+    Also $y_n = x_n \in U_n$ when $n \in I$ since $B = \prod U_n $ contains $x$.
+    We also have $y_n = 0 \in \reals = U_n$ when $n \notin I$ so that either way $y_n \in U_n$ and hence $y \in \prod U_n = B$.
+    Thus also $y \in U$ since $B \ss U$.
+    Since $U$ was an arbitrary neighborhood and $U$ intersects $\reals^\infty$ (with $y$ being a point in the intersection), this shows that $x \in \closure{\reals^\infty}$ by Theorem~17.5.
+    This of course shows the desired result since $x$ was any element of $\reals^\w$.
+  }
+
+  For the box topology, we claim that $\reals^\infty$ is already closed.
+  \qproof{
+    We show this by showing that any point not in $\reals^\infty$ is not a limit point of $\reals^\infty$ so that $\reals^\infty$ must already contain all its limit points.
+    So consider any $x = (x_n)_{n \in \pints} \notin \reals^\infty$ so that $x_n \neq 0$ for infinitely many values of $n$.
+    Now define the sets
+    \gath{
+      U_n = \begin{cases}
+        (-1, 1) & x_n = 0 \\
+        (x_n/2, 2x_n) & x_n > 0 \\
+        (2x_n, x_n/2) & x_n < 0
+      \end{cases}
+    }
+    for $n \in \pints$.
+    Clearly each $U_n$ is a basis element of $\reals$ and is therefore open.
+    Also clearly each $x_n \in U_n$.
+    It therefore follows that $B = \prod U_n$ is a basis element of $\reals^\w$ and is therefore open, and that $x \in B$.
+    Hence $B$ is a neighborhood of $x$.
+
+    Then, for any $y = (y_n)_{n \in \pints} \in B$ we have that each $y_n \in U_n$.
+    For infinitely many $n \in \pints$ we then have that $x_n \neq 0$ and hence $x_n > 0$ or $x_n < 0$.
+    In the former case $y_n \in U_n = (x_n/2, 2x_n)$ so that $0 < x_n/2 < y_n$.
+    In the latter case $y_n \in U_n = (2x_n, x_n/2)$ so that $y_n < x_n / 2 < 0$.
+    Hence either way $y_n \neq 0$ so that $y \notin \reals^\infty$ since this is true for infinitely many $n$.
+    Since $y \in B$ was arbitrary, this shows that $B$ cannot not intersect $\reals^\infty$.
+    Therefore $x$ is not a limit point of $\reals^\infty$ since $B$ is a neighborhood of $x$.
+  }
+}
+
+\exercise{8}{
+  Given sequences $(a_1, a_2, \ldots)$ and $(b_1, b_2, \ldots)$ of reals numbers with $a_i > 0$ for all $i$, define $h: \reals^\w \to \reals^\w$ by the equation
+  \gath{
+    h((x_1, x_2, \ldots)) = (a_1 x_1 + b_1, a_2 x_2 + b_2, \ldots) \,.
+  }
+  Show that if $\reals^\w$ is given the product topology, $h$ is a homeomorphism of $\reals^\w$ with itself.
+  What happens if $\reals^\w$ is given the box topology?
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:prodtop:box}
+    Consider the spaces $\prod X_\a$ and $\prod Y_\a$ in the box topologies over the index set $J$.
+    If $f: \prod X_\a \to \prod Y_\a$ is defined by
+    \gath{
+      f((x_\a)_{\a \in J}) = (f_\a(x_\a))_{\a \in J}
+    }
+    and each $f_\a : X_\a \to Y_\a$ is continuous, then $f$ is continuous.
+  \end{lem}
+  \qproof{
+    Consider any basis element $B = \prod V_\a$ in $\prod Y_\a$ so that each $V_\a$ is open in $Y_\a$ since we are in the box topology.
+    For each $\a \in J$ then define $U_\a = \inv{f_\a}(V_\a)$, which is open in $X_\a$ since $f_\a$ is continuous.
+    Hence the set $U = \prod U_\a$ is a basis element of $\prod X_\a$ in the box topology and is therefore open.
+    We claim that $U = \inv{f}(B)$, which shows that $f$ is continuous since $U$ is open and $B$ was arbitrary.
+
+    $(\ss)$ Consider any $\vx \in U = \prod U_\a$.
+    Then, for any $\a \in J$, we have $x_\a \in U_\a = \inv{f_\a}(V_\a)$ so that $f(x_\a) \in V_\a$.
+    Hence $f(\vx) = (f_\a(x_\a))_{\a \in J} \in \prod V_\a = B$ so that $\vx \in \inv{f}(B)$.
+    this shows that $U \ss \inv{f}(B)$ since $\vx$ was arbitrary.
+
+    $(\sps)$ Now consider any $\vx \in \inv{f}(B)$ so that $f(\vx) \in B = \prod V_\a$ and hence each $f_\a(x_\a) \in V_\a$ by the definition of $f$.
+    Then $x_\a \in \inv{f_\a}(V_\a) = U_\a$ so that clearly $\vx \in \prod U_\a = U$.
+    Since $\vx$ was arbitrary this shows that $\inv{f}(B) \ss U$ as well.
+  }
+
+  \mainprob
+  \qproof{
+    First note that clearly $h(\vx) = (h_1(\vx), h_2(\vx), \ldots)$ for $\vx \in \reals^\w$, where each $h_i : \reals^\w \to \reals$ is defined by
+    \gath{
+      h_i(\vx) = a_i \pi_i(\vx) + b_i \,.
+    }
+    This can further be broken down as $h_i(\vx) = f_i(\pi_i(\vx)) = (f_i \circ \pi_i)(\vx)$, where each $f_i : \reals \to \reals$ is defined by $f_i(x) = a_i x + b_i$.
+    As discussed in the proof of Theorem~19.6, each $\pi_i$ is continuous and we have that each $f_i$ is continuous by elementary calculus, noting that this is true whether each $a_i > 0$ or not.
+    It then follows from Theorem~18.2c that each $f_i \circ \pi_i = h_i$ is continuous.
+    Then we have that $h$ is continuous by Theorem~19.6 since each coordinate function is continuous and we are using the product topology.
+
+    Now define the functions $g_i : \reals \to \reals$ by $g_i(x) = (x - b_i) / a_i$ for $i \in \pints$, noting that this is defined since each $a_i > 0$.
+    Define also the functions $k_i : \reals^\w \to \reals$ by $k_i = g_i \circ \pi_i$, and finally define $k : \reals^\w \to \reals^\w$ by $k(\vx) = (k_1(\vx), k_2(\vx), \ldots)$.
+    Now again we have that each $\pi_i$ and $g_i$ are continuous by the proof of Theorem~19.6 and elementary calculus.
+    Hence $k_i = g_i \circ \pi_i$ and $k$ are continuous by Theorem~18.2c, and Theorem~19.6, respectively, as before.
+
+    Now consider any $\vx = (x_i)_{i \in \pints} \in \reals^\w$ so that we have, for any $i \in \pints$,
+    \ali{
+      k_i(h(\vx)) &=  [g_i \circ \pi_i](h(\vx)) = g_i(\pi_i(h(\vx))) = g_i(h_i(\vx)) \\
+      &= g_i([f_i \circ \pi_i](\vx)) = g_i(f_i(\pi_i(\vx))) = g_i(f_i(x_i)) \\
+      &= \frac{f_i(x_i) - b_i}{a_i} = \frac{(a_i x_i + b_i) - b_i}{a_i} = \frac{a_i x_i}{a_i} \\
+      &= x_i \,.
+    }
+    Therefore
+    \gath{
+      k(h(\vx)) = (k_1(h(\vx)), k_2(h(\vx)), \ldots) = (x_1, x_2, \ldots) = \vx \,.
+    }
+    We also have that
+    \ali{
+      h_i(k(\vx)) &= [f_i \circ \pi_i](k(\vx)) = f_i(\pi_i(k(\vx))) = f_i(k_i(\vx)) \\
+      &= f_i([g_i \circ \pi_i](\vx)) = f_i(g_i(\pi_i(\vx))) = f_i(g_i(x_i)) \\
+      &= a_i g_i(x_i) + b_i = a_i\parens{\frac{x_i - b_i}{a_i}} + b_i = (x_i - b_i) + b_i\\
+      &= x_i \,.
+    }
+    for each $i \in \pints$ so that
+    \gath{
+      h(k(\vx)) = (h_1(k(\vx)), h_2(k(\vx)), \ldots) = (x_1, x_2, \ldots) = \vx \,.
+    }
+    Since $\vx$ was arbitrary, it thus follows from Lemma~2.1 that $h$ is bijective and $k = \inv{h}$.
+    Since we have already shown that $h$ and $k = \inv{h}$ are continuous, this suffices to prove that $h$ is a homeomorphism as desired.
+  }
+
+  We claim that $h$ is also a homeomorphism in the box topology.
+  \qproof{
+    First, $h$ is still a bijection as the proof of this above does not depend on the topology at all.
+    However, Theorem~19.6 was used in the proofs that $h$ and $\inv{h}$ are continuous, and we know that this theorem is not generally true for the box topology.
+    On the other hand $h$ can be formulated as $h(\vx) = (f_1(x_1), f_2(x_2), \ldots)$, where as before each $f_i(x) = a_i x + b_i$.
+    Since each $f_i$ is continuous by elementary calculus, it follows from Lemma~\ref{lem:prodtop:box} that $h$ is continuous in the box topology.
+    The same argument applies to the inverse function $\inv{h}$ since $\inv{h}(\vx) = (g_1(x_1), g_2(x_2), \ldots)$ and each $g_i$ is continuous.
+  }
+}
