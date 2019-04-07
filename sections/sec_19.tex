@@ -402,3 +402,99 @@
     The same argument applies to the inverse function $\inv{h}$ since $\inv{h}(\vx) = (g_1(x_1), g_2(x_2), \ldots)$ and each $g_i$ is continuous.
   }
 }
+
+\exercise{9}{
+  Show that the choice axiom is equivalent to the statement that for any indexed family $\braces{A_\a}_{\a \in J}$ of nonempty sets, with $J \neq 0$, the cartesian product
+  \gath{
+    \prod_{\a \in J} A_\a
+  }
+  is not empty.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    For the following denote the collection $\braces{A_\a}_{\a \in J}$ by $\cA$.
+
+    $(\imp)$ First suppose that the choice axiom is true.
+    Then by Lemma~9.2 there exists a choice function
+    \gath{
+      c : \cA \to \bigcup_{A \in \cA} A
+    }
+    where $c(A) \in A$ for each $A \in \cA$, noting that this is true since $\cA$ is a collection of nonempty sets.
+    Then consider, set $x_\a = c(A_\a)$ for each $\a \in J$ so that $x_\a = c(A_\a) \in A_\a$.
+    Therefore clearly $\vx = (x_\a)_{\a \in J} \in \prod A_\a$ so that $\prod A_\a$ is not empty.
+
+    $(\pmi)$ Now suppose that $\prod_{\a \in J} A_\a$ is nonempty for any indexed family $\braces{A_\a}_{\a \in J}$ of nonempty sets when $J \neq \es$.
+    Let $\cA$ be a collection of disjoint nonempty sets where $\cA \neq \es$.
+    Then the $\braces{A}_{A \in \cA}$ is a nonempty family of nonempty sets.
+    Hence $\prod_{A \in \cA} A$ is nonempty so that there is an $\vx = (x_A)_{A \in \cA} \in \prod_{A \in \cA} A$, and thus $x_A \in A$ for every $A \in \cA$.
+    Now let $C = \braces{x_A}_{A \in \cA}$ so that clearly $C \ss \bigcup \cA$.
+    Consider any $A \in \cA$ so that $x_A \in C$ and $x_A \in A$, and hence $x_A \in C \cap A$.
+    Suppose that $y \in C \cap A$ so that $y \in C$ and hence there is a $B \in \cA$ where $y = x_B$.
+    We also have that $x_B = y \in A$.
+    If $B \neq A$ then $x_B \in B$ and $x_B \in A$, which is not possible since $B$ and $A$ are disjoint as they are distinct elements of $\cA$.
+    So it must be that $B = A$ and hence $y = x_B = x_A$.
+    Since $y$ was arbitrary, this shows that $C \cap A$ has only a single element $x_A$.
+    This suffices to show the choice axiom.
+  }
+}
+
+\exercise{10}{
+  Let $A$ be a set; let $\braces{X_\a}_{\a \in J}$ be an indexed family of spaces; and let $\braces{f_\a}_{\a \in J}$ be an indexed family of functions $f_\a: A \to X_\a$.
+  \eparts{
+  \item Show there is a unique coarsest topology $\cT$ on $A$ relative to which each of the functions $f_\a$ is continuous.
+  \item Let
+    \gath{
+      \cS_\b = \braces{\inv{f_\b}(U_\b) \where \text{$U_\b$ is open in $X_\b$}}\,,
+    }
+    and let $\cS = \bigcup S_\b$.
+    Show that $\cS$ is a subbasis for $\cT$.
+  \item Show that a map $g: Y \to A$ is continuous relative to $\cT$ if and only if each map $f_\a \circ g$ is continuous.
+  \item Let $f: A \to \prod X_\a$ be defined by the equation
+    \gath{
+      f(a) = (f_\a(a))_{\a \in J} \,;
+    }
+    let $Z$ denote the subspace $f(A)$ of the product space $\prod X_\a$.
+    Show that the image under $f$ of each element of $\cT$ is an open set of $Z$.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    Let $\cC$ be the collection of topologies on $A$ relative to which each of the functions $f_\a$ is continuous.
+    Clearly $\cC$ is nonempty as the discrete topology is in $\cC$ since every subset of $A$ is open in it so that $f_\a(V_\a)$ is always open when $V_\a$ is open in $X_\a$.
+    Let $\cT = \bigcap \cC$, which is a topology on $A$ by what was shown in Exercise~13.4a.
+    We claim that this is the unique coarsest topology such that each $f_\a$ is continuous relative to it.
+    To see this suppose that $\cT'$ is any topology in such that each $f_\a$ is continuous relative to it, hence $\cT' \in \cC$.
+    Then, for any open $U \in \cT = \bigcap \cC$ we of course have that $U \in \cT'$ since $\cT' \in \cC$.
+    Hence $\cT \ss \cT'$ since $U$ was arbitrary so that $\cT$ is courser than $\cT'$, noting that it could of course be that $\cT = \cT'$ as well.
+    Since $\cT'$ was artbitary, this shows the desired result.
+
+    Of course it also must be that $\cT$ is unique since, for any other $\cT'$ that is a coarsest element of $\cC$, we just showed above that $\cT \ss \cT'$ since $\cT' \in \cC$.
+    But also $\cT \sps \cT'$ since $\cT'$ must be coarser than $\cT$ since $\cT \in \cC$.
+    This shows that $\cT = \cT'$ so that $\cT$ is unique since $\cT'$ was arbitrary.
+    This also follows from the more general fact that any smallest element in an order or partial order is always unique, and inclusion is always at least a partial order.
+  }
+
+  (b)
+  \qproof{
+    Let $\cT'$ be the topology defined by the subbasis $\cS$ and let $\cT$ be the coarsest topology defined in part (a).
+    We show that $\cT' = \cT$.
+
+    $(\ss)$ Suppose that $U \in \cT'$ and consider any $x \in U$.
+    Since $U$ is open set of $\cT'$ there is a basis element $B$ containing $x$ where $B \ss U$.
+    We then have that $B$ is the finite intersection of subbasis elements, i.e. $B = \bigcap_{n \in I} S_n$, where each each $S_n$ is a subbasis element and $I$ is finite.
+    Then each $S_n$ is the inverse image of an open set of $X_\b$ under one of the functions $f_\b$.
+    It then follows based on the definition of the collection $\cC$ from part (a) that each $S_n$ is in every topology in $\cC$ since $f_\b$ is continuous relative to those topologies.
+    Hence each $S_n \in \bigcap \cC = \cT$.
+    Since $\cT$ is a topology, we then have that the finite intersection $B = \bigcap_{n \in I} S_n$ is in $\cT$ as well.
+    Therefore $x \in B$, $B$ is open in the topology $\cT$, and $B \ss U$.
+    Since $x$ was arbitrary, this shows that $U$ is open relative to $\cT$ by Exercise~13.1.
+    Thus $U \in \cT$ so that $\cT' \ss \cT$ since $U$ was arbitrary.
+
+    $(\sps)$ Now consider any $U \in \cT$ so that
+  }
+}
