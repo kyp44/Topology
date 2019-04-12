@@ -448,7 +448,7 @@
     \gath{
       \cS_\b = \braces{\inv{f_\b}(U_\b) \where \text{$U_\b$ is open in $X_\b$}}\,,
     }
-    and let $\cS = \bigcup S_\b$.
+    and let $\cS = \bigcup \cS_\b$.
     Show that $\cS$ is a subbasis for $\cT$.
   \item Show that a map $g: Y \to A$ is continuous relative to $\cT$ if and only if each map $f_\a \circ g$ is continuous.
   \item Let $f: A \to \prod X_\a$ be defined by the equation
@@ -481,20 +481,72 @@
 
   (b)
   \qproof{
-    Let $\cT'$ be the topology defined by the subbasis $\cS$ and let $\cT$ be the coarsest topology defined in part (a).
-    We show that $\cT' = \cT$.
+    We show that $\cC$ from part (a) is exactly the set of topologies on $A$ that contain the subbasis $\cS$.
+    That is, we show that $\cT' \in \cC$ if and only if $\cS \ss \cT'$ when $\cT'$ is a topology on $A$.
+    Since the coarsest topology $\cT$ from part (a) is defined as $\bigcap \cC$, this shows that $\cT$ is the topology generated from the subbasis $\cS$ by Exercise~13.5.
 
-    $(\ss)$ Suppose that $U \in \cT'$ and consider any $x \in U$.
-    Since $U$ is open set of $\cT'$ there is a basis element $B$ containing $x$ where $B \ss U$.
-    We then have that $B$ is the finite intersection of subbasis elements, i.e. $B = \bigcap_{n \in I} S_n$, where each each $S_n$ is a subbasis element and $I$ is finite.
-    Then each $S_n$ is the inverse image of an open set of $X_\b$ under one of the functions $f_\b$.
-    It then follows based on the definition of the collection $\cC$ from part (a) that each $S_n$ is in every topology in $\cC$ since $f_\b$ is continuous relative to those topologies.
-    Hence each $S_n \in \bigcap \cC = \cT$.
-    Since $\cT$ is a topology, we then have that the finite intersection $B = \bigcap_{n \in I} S_n$ is in $\cT$ as well.
-    Therefore $x \in B$, $B$ is open in the topology $\cT$, and $B \ss U$.
-    Since $x$ was arbitrary, this shows that $U$ is open relative to $\cT$ by Exercise~13.1.
-    Thus $U \in \cT$ so that $\cT' \ss \cT$ since $U$ was arbitrary.
+    $(\imp)$ Suppose that $\cT' \in \cC$ so that every $f_\a$ is continuous relative to $\cT'$.
+    Now consider any subbasis element $S \in \cS$ so that $S = \inv{f_\b}(U_\b)$ for some $\b \in J$ and some open set $U_\b$ in $X_\b$.
+    Then $f_\b$ is continuous relative to $\cT'$ so that $S$ is open with respect to $\cT'$, and hence $S \in \cT'$.
+    This shows that $\cS \ss \cT'$ since $S$ was arbitrary, hence $\cT'$ contains $\cS$.
 
-    $(\sps)$ Now consider any $U \in \cT$ so that
+    $(\pmi)$ Now suppose that $\cT'$ is a topology on $A$ that contains $\cS$ so that $\cS \ss \cT'$.
+    Consider any $\a \in J$ and any open set $U_\a$ of $X_\a$.
+    Then clearly $\inv{f_\a}(U_\a)$ is in $\cS_\a$ so that it is also clearly in $\cS = \bigcup \cS_\b$.
+    Hence also $\inv{f_\a}(U_\a) \in \cT'$ since $\cS \ss \cT'$.
+    Therefore $\inv{f_\a}(U_\a)$ is open with respect to $\cT'$, which shows that $f_\a$ is continuous relative to $\cT'$ since $U_\a$ was an arbitrary open set of $X_\a$.
+    Since $\a \in J$ was also arbitrary, this shows that every $f_\a$ is continuous relative to $\cT'$ so that $\cT' \in \cC$ by definition.
+  }
+
+  (c)
+  \qproof{
+    $(\imp)$ Suppose that $g : Y \to A$ is continuous relative to $\cT$.
+    Consider any $\a \in J$ and any open set $U_\a$ of $X_\a$.
+    Then $\inv{f_\a}(U_\a)$ is open with respect to $\cT$ since $f_\a$ is continuous relative to $\cT$ since every $f_\a$ is.
+    It then follows that $\inv{g}(\inv{f_\a}(U_\a))$ is open in $Y$ since $g$ is continuous relative to $\cT$.
+    From Exercise~2.4a we have that $\inv{g}(\inv{f_\a}(U_\a)) = \inv{(f_\a \circ g)}(U_\a)$, which shows that $f_\a \circ g$ is continuous since $U_\a$ was an arbitrary open set of $X_\a$.
+    Since $\a \in J$ was arbitrary, this shows the desired result.
+
+    $(\pmi)$ Now suppose that every $f_\a \circ g$ is continuous and consider any open set $U$ of $A$ with respect to $\cT$.
+    Then by part (b) we have that $U$ is an arbitrary union of finite intersections of subbasis elements $\inv{f_\a}(U_\a)$ for $\a \in J$ and open $U_\a$ in $X_\a$.
+    It then follows from Exercise~2.2 parts (b) and (c) that $\inv{g}(U)$ is an arbitrary union of finite intersections of sets $\inv{g}(\inv{f_\a}(U_\a))$.
+    Again we have that each $\inv{g}(\inv{f_\a}(U_\a)) = \inv{(f_\a \circ g)}(U_\a)$ by Exercise~2.4a so that each of these sets is open in $Y$ since every $f_\a \circ g$ is continuous.
+    Hence $\inv{g}(U)$ is open as well since it is the arbitrary union of finite intersections of these open sets and $Y$ is a topological space.
+    Since $U$ was an arbitrary open set of $A$ with respect to $\cT$, this shows that $g$ is continuous relative to $\cT$ as desired.
+  }
+
+  (d)
+  \qproof{
+    Suppose that $U$ is any open set of $A$ with respect to $\cT$.
+    Consider any $\vy = (y_\a)_{\a \in J} \in f(U)$ so that there is an $a \in U$ where $f(a) = \vy$.
+    Since $a \in U$ and $U$ is open in $A$, we have that there is a basis element $B_A$ containing $a$ where $B_A \ss U$.
+    It then follows from part (b) that this basis element is a finite intersection of subbasis elements, hence $B_A = \bigcap_{\b \in I} \inv{f_\b}(U_\b)$, where $I \ss J$ is finite and each $U_\b$ is open in $X_\b$.
+    Now define
+    \gath{
+      V_\a = \begin{cases}
+        U_\b & \a \in I \\
+        X_\b & \a \notin I
+      \end{cases}
+    }
+    so that clearly the set $B_p = \prod V_\a$ is a basis element of $\prod X_\a$ in the product topology by Theorem~19.1 since $I$ is finite.
+    We then have that $B_Z = Z \cap B_p$ is a basis element of the subspace $Z$ by Lemma~16.1.
+
+    Now, we have that $a \in U$ and $U \ss A$ so that $a \in A$ as well.
+    It then follows that $\vy = f(a) \in f(A) = Z$.
+    For $\b \in I$, we also have that $a \in \inv{f_\b}(U_\b)$ since the basis element $B_A = \bigcap_{\b \in I} \inv{f_\b}(U_\b)$ contains $a$.
+    Hence $f_\b(a) \in U_\b$.
+    Since of course every other $f_\a(a) \in X_\a$ when $\a \notin I$, we have that $f_\a(a) \in V_\a$ for all $\a \in J$ and thus $\vy = f(a) = (f_\a(a))_{\a \in J} \in \prod V_\a = B_p$.
+    We therefore have that $\vy \in Z \cap B_p = B_Z$ so that $B_Z$ contains $\vy$.
+
+    Lastly, consider any $\vz = (z_\a)_{\a \in J} \in B_Z = Z \cap B_p$.
+    Then $\vz \in Z = f(A)$ so that there is an $x \in A$ where $f(x) = (f_\a(x))_{\a \in J} = \vz$ and hence each $f_\a(x) = z_\a$.
+    We also have that $\vz \in B_p = \prod V_\a$ so that $z_\a \in V_\a$ for every $\a \in J$.
+    In particular $f_\b(x) = z_\b \in V_\b = U_\b$ for all $\b \in I$ so that $x \in \inv{f_\b}(U_\b)$.
+    Therefore $x \in \bigcap_{\b \in I} \inv{f_\b}(U_\b) = B_A$ so that also $x \in U$ since $B_A \ss U$.
+    Then we have that $\vz = f(x) \in f(U)$.
+    Since $\vz$ was arbitrary this shows that $B_Z \ss f(U)$.
+
+    We have thus shown that $B_Z$ is a basis element of the subspace $Z$ that contains $\vy$ where $B_Z \ss f(U)$.
+    Since $\vy$ was an arbitrary element of $f(U)$, this suffices to show that $f(U)$ is open in the subspace $Z$ as desired.
   }
 }
