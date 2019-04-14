@@ -463,3 +463,120 @@
   }
   so that of course $F = A - (B - C)$.
 }
+
+\exercise{8}{
+  If a set $A$ has two elements, show that $\pset{A}$ has four elements.
+  How many elements does $\pset{A}$ have if $A$ has one element?
+  Three elements?
+  No elements?
+  Why is $\pset{A}$ called the power set of $A$.
+}
+\sol{
+  \dwhitman
+
+  We claim that if a finite set has $n$ elements, then its power set has $2^n$ elements, which is why it is called the power set.
+  \qproof{
+    We show this by induction on the size of the set.
+    For the base case start with the the empty set in which $n = 0$.
+    Clearly the only subset of $\es$ is the trivial subset $\es$ itself so that $\pset{\es} = \braces{\es}$.
+    This has $1 = 2^0 = 2^n$ element obviously, which shows the base case.
+    Now suppose that the power set of any set with $n$ elements has $2^n$ elements.
+    Let $A$ be a set with $n+1$ elements, noting that this is nonempty since $n+1 \geq 1$ since $n \geq 0$.
+    Hence there is an $x \in A$.
+    For any subset $B \ss A$, either $x \notin B$ or $x \in B$.
+    In the first case $B$ is a subset of $A - \braces{x}$ and in the latter $B = \braces{x} \cup C$ for some $C \ss A - \braces{x}$.
+    Therefore $\pset{A}$ has twice the number of elements of $\pset{A - \braces{x}}$, one half being just the elements of $A - \braces{x}$ and the other being those elements with $x$ added in.
+    But $A - \braces{x}$ has $n$ elements since $A$ has $n+1$, and hence $\pset{A - \braces{x}}$ has $2^n$ elements by the induction hypothesis.
+    Thus $\pset{A}$ has $2 \cdot 2^n = 2^{n+1}$ elements, which completes the induction.
+  }
+  Using this, we can answer all of the specific questions.
+  If a set has two elements, than its power set has $2^2 = 4$ elements.
+  If it has one element, then its power set has $2^1 = 2$ elements, namely $\pset{\braces{x}} = \braces{\es, \braces{x}}$.
+  If a set has three elements then its power set has $2^3  = 8$ elements.
+  Lastly, if a set has no elements (i.e. it is the empty set), then its power set has $2^0 = 1$ elements.
+  As noted in the proof we have $\pset{\es} = \braces{\es}$.
+}
+
+\exercise{9}{
+  Formulate and prove DeMorgan's laws for arbitrary unions and intersections.
+}
+\sol{
+  \dwhitman
+
+  In following suppose that $A$ is a set and $\cB$ is a nonempty collection of sets.
+  For arbitrary unions, we claim that
+  \gath{
+    A - \bigcup_{B \in \cB} B = \bigcap_{B \in \cB} (A - B) \,.
+  }
+  \qproof{
+    The simplest way to show this is with a series of logically equivalent statements.
+    For any $x$ we have that
+    \ali{
+      x \in A - \bigcup_{B \in \cB} B &\bic x \in A \land x \notin \bigcup_{B \in \cB} B \\
+      &\bic x \in A \land \lnot \exists B \in \cB (x \in B) \\
+      &\bic x \in A \land \forall B \in \cB (x \notin B) \\
+      &\bic \forall B \in \cB (x \in A \land x \notin B) \\
+      &\bic \forall B \in \cB (x \in A - B) \\
+      &\bic x \in \bigcap_{B \in \cB} (A - B) \,,
+    }
+    which of course shows the desired result.
+  }
+  For intersections, we claim that
+  \gath{
+    A - \bigcap_{B \in \cB} B = \bigcup_{B \in \cB} (A - B) \,.
+  }
+  \qproof{
+    Similarly, we show this with a series of logically equivalent statements.
+    For any $x$ we have
+    \ali{
+      x \in A - \bigcap_{B \in \cB} B &\bic x \in A \land x \notin \bigcap_{B \in \cB} B \\
+      &\bic x \in A \land \lnot \forall B \in \cB (x \in B) \\
+      &\bic x \in A \land \exists B \in \cB (x \notin B) \\
+      &\bic \exists B \in \cB (x \in A \land x \notin B) \\
+      &\bic \exists B \in \cB (x \in A - B) \\
+      &\bic x \in \bigcup_{B \in \cB} (A - B) \,,
+    }
+    which shows the desired result.
+  }
+}
+
+\exercise{10}{
+  Let $\reals$ denote the set of real numbers.
+  For each of the following subsets of $\reals \times \reals$, determine whether it is equal to the cartesian product of two subsets of $\reals$.
+  \eparts{
+  \item $\braces{(x,y) \where \text{$x$ is an integer}}$.
+  \item $\braces{(x,y) \where 0 < y \leq 1}$.
+  \item $\braces{(x,y) \where y > x}$.
+  \item $\braces{(x,y) \where \text{$x$ is not an integer and $y$ is an integer}}$.
+  \item $\braces{(x,y) \where x^2 + y^2 < 1}$.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a) This is equal to the set $\ints \times \reals$, which is trivial to prove.
+
+  (b) It is easy to show that this is equal to $\reals \times \opcl{0, 1}$, where of course $\opcl{a,b}$ denotes the half-open interval $\braces{x \in \reals \where a < x \leq b}$.
+
+  (c) We claim that this cannot be equal to the cartesian product of subsets of $\reals$.
+  \qproof{
+    Let $A = \braces{(x,y) \where y > x}$ and suppose to the contrary that $A = B \times C$ where $B,C \ss \reals$.
+    Since $1 > 0$, we have that $(0,1) \in A$.
+    Then also $0 \in B$ and $1 \in C$ since $A = B \times C$.
+    We also have that $1 \in B$ and $2 \in C$ since $2 > 1$ so that $(1,2) \in A = B \times C$.
+    Thus $1 \in B$ and $1 \in C$ so that $(1,1) \in B \times C = A$, but this cannot be since it is not true that $1 > 1$.
+    Hence we have a contradiction so that $A$ cannot be expressed as $B \times C$.
+  }
+
+  (d) It is trivial to show that this set is equal to $(\reals - \ints) \times \ints$.
+
+  (e) We claim that this set cannot be expressed as the cartesian product of subsets of $\reals$.
+  \qproof{
+    Let $A = \braces{(x,y) \where x^2 + y^2 < 1}$ and suppose to the contrary that $A = B \times C$ where $B,C \ss \reals$.
+    We then have that $(9/10)^2 + 0^2 = 81/100 + 0 = 81/100 < 1$ so that $(9/10, 0) \in A = B \times C$, and hence $9/10 \in B$ and $0 \in C$.
+    Also $0^2 + (9/10)^2 = (9/10)^2 + 0^2 = 81/100 < 1$ so that $(0, 9/10) \in A = B \times C$, and hence $0 \in B$ and $9/10 \in C$.
+    Hence $(9/10, 9/10) \in B \times C = A$ since $9/10$ is in both $B$ and $C$.
+    However, we have $(9/10)^2 + (9/10)^2 = 81/100 + 81/100 = 162/100 \geq 1$ so that $(9/10, 9/10)$ cannot be in $A$, so we have a contradiction.
+    So it must be that $A$ cannot be equal to $B \times C$.
+  }
+}
