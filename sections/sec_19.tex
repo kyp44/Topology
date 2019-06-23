@@ -246,13 +246,13 @@
     }
     for $i,j \in \pints$.
     Now define a sequence $\vx_1, \vx_2, \ldots$ in $\prod_{i \in \pints} \reals = \reals^\w$ by $\pi_i(\vx_j) = x_{ij}$.
-    With the box topology on $\reals^\w$ we claim that each coordinate sequence $\pi_i(\vx_1), \pi_i(\vx_2), \ldots$ converges to $0$ but that the sequence $\vx_1, \vx_2, \ldots$ does not converge to the point $\vect{0} = (0, 0, \ldots)$.
+    With the box topology on $\reals^\w$ we claim that each coordinate sequence $\pi_i(\vx_1), \pi_i(\vx_2), \ldots$ converges to $0$ but that the sequence $\vx_1, \vx_2, \ldots$ does not converge to the point $\vze = (0, 0, \ldots)$.
 
     First, it is easy to see that each coordinate sequence $\pi_i(\vx_1), \pi_i(\vx_2), \ldots$ converges to $0$ since, for fixed $i$, there is always an $N \in \pints$ large enough such that $j > i$ and $\pi_i(\vx_j) = x_{ij} = 1/(j-i)$ is small enough to be within any fixed neighborhood of $0$ for all $j \geq N$.
-    To show that the sequence $\vx_1, \vx_2, \ldots$ does not converge to $\vect{0}$ though, consider the neighborhood $U = \prod U_k$ of $\vect{0}$ where every $U_k = (-1,1)$.
+    To show that the sequence $\vx_1, \vx_2, \ldots$ does not converge to $\vze$ though, consider the neighborhood $U = \prod U_k$ of $\vze$ where every $U_k = (-1,1)$.
     We note that clearly $U$ is open in the box topology since each $U_k$ is a basis element of $\reals$ and therefore open.
     For any $N \in \pints$ we then have that $\pi_{N}(\vx_N) = x_{NN} = 1$ so that clearly $\pi_N(\vx_N) \notin (-1, 1) = U_N$ and hence $\vx_N \notin \prod U_k = U$.
-    This suffices to show that the sequence does not converge, but it does not even come close to converging since there are actually no points in the sequence that are even in this quite large neighborhood of $\vect{0}$!
+    This suffices to show that the sequence does not converge, but it does not even come close to converging since there are actually no points in the sequence that are even in this quite large neighborhood of $\vze$!
   }
 }
 

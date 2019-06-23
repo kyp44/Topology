@@ -300,16 +300,329 @@
     Analogous arguments show that $\vy \prec \vb$ so that $\vy \in (\va, \vb) = B$, which shows that $B_d(\vx, \d) \ss B$ as desired since $\vy$ was arbitrary.
     This shows that the topology induced by $d$ is finer than the dictionary order topology by Lemma~13.3.
 
-    Now again suppose that $\vx \in \reals^2$, and that $\e > 0$ so that $B_d(\vx, \e)$ is an arbitrary basis element of the metric topology induced by $d$ that contains $\vx$.
+    Now again suppose that $\vx \in \reals^2$, and that $\e' > 0$ and $\vx' \in \reals^2$ such that $B_d(\vx', \e')$ is an arbitrary basis element of the metric topology induced by $d$ that contains $\vx$.
+    It was shown after the definition of a metric topology in the text that there is another ball $B_d(\vx, \e)$ centered at $\vx$ such that $B_d(\vx, \e) \ss B_d(\vx', \e')$.
     Let $\d = \min\braces{1, \e}$ and define $\va = x_1 \times (x_2 - \d)$ and $\vb = x_1 \times (x_2 + \d)$.
     Set $B = (\va, \vb)$, which is clearly a basis element of the dictionary order topology.
     So consider any $\vy \in B$ so that $\va \prec \vy \prec \vb$.
     Clearly it must be that $a_1 = y_1 = b_1 = x_1$ since otherwise we would have that $\vy \prec \va$ or $\vb \prec \vy$.
     From this it follows that $a_2 = x_2 - \d < y_2 < x_2 + \d = b_2$ so that $-\d < y_2 - x_2 < \d$ and hence $\abs{x_2 - y_2} < \d$.
     Moreover, since $y_1 = x_1$ and $\d \leq 1$, it follows that $d(\vx, \vy) = \bd(x_2, y_2) = \abs{x_2 - y_2} < \d \leq \e$.
-    This shows that $\vy \in B_d(\vx, \e)$, which shows that $B \ss B_d(\vx, \e)$ since $\vy$ was arbitrary.
+    This shows that $\vy \in B_d(\vx, \e)$, which shows that $B \ss B_d(\vx, \e) \ss B_d(\vx', \e')$ since $\vy$ was arbitrary.
     This proves that the dictionary order topology is finer than the topology induced by $d$ again by Lemma~13.3.
 
     Since each is finer than the other the topologies must be the same, which shows that the dictionary order topology is metrizable as desired.
+  }
+}
+
+\exercise{3}{
+  Let $X$ be metric space with metric $d$.
+  \eparts{
+  \item Show that $d : X \times X \to \reals$ is continuous.
+  \item Let $X'$ denote a space having the same underlying set as $X$.
+    Show that if $d : X' \times X' \to \reals$ is continuous, then the topology of $X'$ is finer than the topology of $X$.
+  }
+  One can summarize the result of this exercise as follows: If $X$ has a metric $d$, then the topology induced by $d$ is the coarsest topology relative to which the function $d$ is continuous.
+}
+\sol{
+  \dwhitman
+
+  (a) We use Theorem~18.1 part (4) to show that $d$ is continuous.
+  So consider any $x_1 \times x_2 \in X \times X$ and any neighborhood $V$ of $z = d(x_1,x_2)$, noting that $V \ss \reals$ since $\reals$ is the range of $d$.
+  Since $V$ is open in $\reals$, there is a basis element $B = (a,b)$ containing $z$ where $B \ss V$.
+  Hence $a < z < b$.
+  Now let $\e = \min\braces{(z-a)/2, (b-z)/2}$, noting that $\e > 0$ since $z > a$ and $b > z$.
+  Next define $U_1 = B_d(x_1, \e)$ and $U_2 = B_d(x_2, \e)$ so that they are both basis elements and therefore open sets of the metric space $X$.
+  It then follows that $U = U_1 \times U_2$ is a a basis element and therefore an  open set of the product space $X \times X$.
+  Clearly we have that $x_1 \in B_d(x_1, \e) = U_1$ and $x_2 \in B_d(x_2, \e) = U_2$ so that $U$ contains $x_1 \times x_2$ and so is a neighborhood of $x_1 \times x_2$.
+
+  We claim that $d(U) \ss B$.
+  To see this, consider any $w \in d(U)$ so that there is a $y_1 \times y_2 \in U = U_1 \times U_2$ such that $w = d(y_1, y_2)$.
+  Therefore $y_1 \in U_1 = B_d(x_1, \e)$ so that $d(y_1, x_1) < \e$, and similarly $d(y_2, x_2) < \e$ since $y_2 \in U_2 = B_d(x_2, \e)$.
+  Then, since $d$ is a metric, we have
+  \ali{
+    z = d(x_1, x_2) &\leq d(x_1, y_1) + d(y_1, x_2) \\
+    &\leq d(x_1, y_1) + d(y_1, y_2) + d(y_2, x_2) \\
+    &= d(y_1, x_1) + d(y_1, y_2) + d(y_2, x_2) \\
+    &< \e + w + \e \\
+    z &< w + 2\e \leq w + 2(z-a)/2 = w + z - a \\
+    a &< w \,.
+  }
+  Similarly, we have
+  \ali{
+    w = d(y_1, y_2) &\leq d(y_1, x_1) + d(x_1, y_2) \\
+    &\leq d(y_1, x_1) + d(x_1, x_2) + d(x_2, y_2) \\
+    &= d(y_1, x_1) + d(x_1, x_2) + d(y_2, x_2) \\
+    &< \e + z + \e \\
+    w &< z + 2\e \leq z + 2(b-z)/2 = z + b - z \\
+    w &< b \,.
+  }
+  We therefore have that $a < w < b$ so that $w \in (a,b) = B$.
+  This of course shows that $d(U) \ss B$ since $w$ was arbitrary.
+  Moreover, we have that $B \ss V$ so that clearly $d(U) \ss V$, which completes the proof of Theorem~18.1 part (4) so that $d$ is continuous.
+
+  (b) Let $U$ be any open set of $X$ and consider any $x \in U$.
+  Then clearly there is a basis element $B_d(y, \e)$, for some $\e > 0$ and $y \in U$, of the metric topology $X$ that contains $x$ and where $B_d(y, \e) \ss U$.
+  Now, since $d$ is continuous with respect to $X' \times X'$, it follows from Exercise~18.11 that the function $d_y(z) = d(y,z)$ is a continuous function from $X'$ to $\reals$.
+  Since clearly the interval $(-\infty, \e)$ is open in $\reals$, it then follows that the set
+  \gath{
+    \inv{d_y}((-\infty, \e)) = \braces{z \in X' \where d_y(z) < \e} = \braces{z \in X \where d(y, z) < \e} = B_d(y, \e)
+  }
+  is also open in $X'$.
+  Thus $B_d(y,\e)$ is an open set in $X'$ containing $x$ such that $B_d(y, \e) \ss U$.
+  This shows that $U$ is also open in $X'$ by Exercise~13.1 since the point $x \in U$ was arbitrary.
+  This suffices to show the desired result.
+}
+
+\exercise{4}{
+  Consider the product, uniform, and box topologies on $\reals^\w$,
+  \eparts{
+  \item In which topologies are the following functions from $\reals$ to $\reals^\w$ continuous?
+    \ali{
+      f(t) &= (t, 2t, 3t, \ldots), \\
+      g(t) &= (t, t, t, \ldots), \\
+      h(t) &= (t, \tfrac{1}{2}t, \tfrac{1}{3}t, \ldots).
+    }
+  \item In which topologies do the following sequences converge?
+    \ali{
+      \vw_1 &= (1,1,1,1,\ldots), & \vx_1 &= (1,1,1,1, \ldots), \\
+      \vw_2 &= (0,2,2,2,\ldots), & \vx_2 &= (0,\tfrac{1}{2},\tfrac{1}{2},\tfrac{1}{2}, \ldots), \\
+      \vw_3 &= (0,0,3,3,\ldots), & \vx_3 &= (0,0,\tfrac{1}{3},\tfrac{1}{3}, \ldots), \\
+      &\ldots & &\ldots \\
+      \vy_1 &= (1,0,0,0,\ldots), & \vz_1 &= (1,1,0,0, \ldots), \\
+      \vy_2 &= (\tfrac{1}{2},\tfrac{1}{2},0,0,\ldots), & \vz_2 &= (\tfrac{1}{2},\tfrac{1}{2},0,0, \ldots), \\
+      \vy_3 &= (\tfrac{1}{3},\tfrac{1}{3},\tfrac{1}{3},0,\ldots), & \vz_3 &= (\tfrac{1}{3},\tfrac{1}{3},0,0, \ldots), \\
+      &\ldots & &\ldots
+    }
+  }
+}
+\sol{
+  \dwhitman
+
+  \begin{lem}\label{lem:metric:ball}
+    Suppose that $X$ is a metric space with metric $d$.
+    If $U$ is an open set of $X$ containing a point $x$ then there is a ball $B_d(x, \e)$ centered at $x$ that is contained in $U$.
+  \end{lem}
+  \qproof{
+    The main part of this proof was given after the definition of a metric topology in the text, but we repeat it here for completeness.
+
+    By the definition of the metric topology, there is a $\d > 0$ and $y \in X$ such that the basis element $B_d(y,\d)$ contains $x$ and is contained in $U$.
+    Let $\e = \d - d(x,y)$ so that $d(x,y) = \d - \e$, noting that $\e > 0$ since $x \in B_d(y, \d)$ so that $d(x,y) < \d$.
+    Then, for any $z \in B_d(x, \e)$, we have that $d(z,x) < \e$ and so
+    \gath{
+      d(z,y) \leq d(z,x) + d(x,y) = d(z,x) + \d - \e < \e + \d - \e = \d
+    }
+    since $d$ is a metric.
+    Hence $z \in B_d(y, \d)$ so that $B_d(x,\e) \ss B_d(y, \d) \ss U$ as desired since $z$ was arbitrary.
+  }
+
+  \begin{lem}\label{lem:metric:finer}
+    Suppose that $X$ is a topological space and $Y$ and $Y'$ are topological spaces on the same set, and that $Y'$ is finer than $Y$.
+    Suppose also that $f: X \to Y$ so that of course it is also a function from $X$ to $Y'$.
+    We assert the following:
+    \begin{enumerate}[label=(\arabic*)]
+    \item If $f$ is continuous with respect to $Y'$ then it is also continuous with respect to $Y$.
+    \item If $f$ is \emph{not} continuous with respect to $Y$ then it is also not continuous with respect to $Y'$.
+    \item If a sequence in $Y'$ converges to a point $y_0$, then it also converges to $y_0$ in $Y$.
+    \item If a sequence in $Y$ does not converge to a point $y_0$, then it also does not converge to $y_0$ in $Y'$.
+    \item If a sequence in $Y$ does not converge at all, then it also does not converge at all in $Y'$.
+    \end{enumerate}
+  \end{lem}
+  \qproof{
+    For assertion (1) suppose that $f$ is continuous with respect to $Y'$ and let $U$ be any open set of $Y$.
+    Since $Y'$ is finer than $Y$, it follows that $U$ is also open in $Y'$.
+    Then, since $f$ is continuous with respect to $Y'$ we have that $\inv{f}(U)$ is open in $X$, which suffices to show that $f$ is continuous with respect to $Y$ since $U$ was an arbitrary open set. Assertion (2) follows immediately from the contrapositive of (1).
+
+    Regarding (3), suppose that a sequence $(y_1, y_2, y_3, \ldots)$ converges to $y_0$ in $Y'$ and let $U$ be any neighborhood of $y_0$ in $Y$.
+    Then $U$ is also open in $Y'$ since it is finer than $Y$, hence $U$ is a neighborhood of $y_0$ in $Y'$.
+    Thus there is an $N \in \pints$ such that $x_n \in U$ for all $n \geq N$, since the sequence converges to $y_0$ in $Y'$.
+    Since $U$ was an arbitrary neighborhood of $Y$, this shows that the sequence converges to $y_0$ in $Y$.
+    Assertion (4) follows immediately from the contrapositive of (3).
+    Assertion (5) then immediately follows from (4) since, if a sequence does not converge at all in $Y$ then for any point $y_0 \in Y$, it does not converge to $y_0$.
+    Then it also does not converge to $y_0$ in $Y'$ by (4).
+    Since $y_0$ was arbitrary, this shows that it does not converge at all in $Y'$.
+  }
+
+  \begin{lem}\label{lem:metric:unihaus}
+    For an index set $J$, the uniform topology on $\reals^J$ is a Hausdorff space.
+  \end{lem}
+  \qproof{
+    Suppose that $\vx$ and $\vy$ are distinct points in $\reals^J$.
+    Then there must be an $\a \in J$ where $x_\a \neq y_\a$.
+    Since $\reals$ is Hausdorff there are open sets $U$ and $V$ of $\real$ that contains $x_\a$ and $y_\a$, respectively, and that are disjoint.
+    Lemma~\ref{lem:metric:ball} then implies that there are $\e,\d > 0$ where $B_d(x_\a,\e)$ and $B_d(y_\a,\d)$ (where $d$ is the standard metric on $\reals$) are subsets of $U$ and $V$, respectively, and therefore must be disjoint.
+    Let $\g = \min\braces{1, \e, \d}$ so that clearly $B_{\br}(\vx, \g)$ and $B_{\br}(\vy, \g)$ are neighborhoods of $\vx$ and $\vy$, respectively, in the uniform topology.
+
+    Suppose for the moment that there is a $\vz \in B_{\br}(\vx, \g) \cap B_{\br}(\vy, \g)$.
+    Therefore
+    \gath{
+      \br(\vz, \vx) = \sup\braces{\bd(z_\b, z_\b) \where \b \in J} < \g
+    }
+    since $\vz \in B_{\br}(\vx, \g)$, where of course $\bd$ is the usual bounded metric on $\reals$.
+    It of course has to be that in particular $\bd(z_\a, x_\a) < \g \leq 1$ so that it has to be that $\bd(z_\a, x_\a) = d(z_\a, x_\a)$.
+    Then we have $d(z_\a, x_\a) = \bd(z_\a, x_\a) < \g \leq \e$ so that $z_\a \in B_d(x_\a, \e)$.
+    An analogous argument with $\vy$ in place of $\vx$ and $\d$ in place of $\e$ shows that also $z_\a \in B_d(y_\a, \d)$.
+    However, this is impossible as we know that $B_d(x_\a, \e)$ and $B_d(y_\a, \d)$ are disjoint!
+    So it has be that the neighborhoods $B_{\br}(\vx, \g)$ and $B_{\br}(\vy, \g)$ are actually disjoint, which suffices to show that the uniform topology is Hausdorff as desired.
+  }
+  
+  \mainprob
+  
+  (a) Regarding whether or not the functions are continuous in the various topologies, we claim the following:
+  \begin{center}
+    \begin{tabular}{c|ccc}
+      & Product & Uniform & Box \\
+      \hline
+      $f$ & Yes & No & No \\
+      $g$ & Yes & Yes & No \\
+      $h$ & Yes & Yes & No
+    \end{tabular}
+  \end{center}
+
+  \qproof{
+    First, the functions $f$, $g$, and $h$ can all be considered as special cases of the more general function
+    \gath{
+      s(t) = (s_n(t))_{n \in \pints} \,,
+    }
+    where each $s_n(t) = \a_n t$, and $\a_n = n$ for $f$, $\a_n = 1$ for $g$, and $\a_n = 1/n$ for $h$.
+
+    Clearly each $s_n$ is continuous for the three $\a_n$ by elementary calculus so that $s$ is continuous in the product topology by Theorem~19.6 for all three $\a_n$.
+    We can show that $s$ is \emph{not} continuous in the box topology for all three $\a_n$ with a single example.
+    Consider the set $B = \prod_{n \in \pints} (-1/n^2, 1/n^2)$, which is clearly a basis element of the box topology and so is open.
+    Similar to Example~19.2, if $s$ were continuous then there would be an interval $(-\d, \d)$ about the point $0$ such that $s((-\d, \d)) \ss B$, where of course $\d > 0$.
+    This would of course mean that
+    \gath{
+      s_n((-\d, \d)) = (-\a_n \d, \a_n \d) \ss (-1/n^2, 1/n^2)
+    }
+    for all $n \in \pints$.
+    However, since clearly there is an $n \in \pints$ large enough that
+    \gath{
+      n^3 \d \geq n^2 \d \geq n \d > 1 \,,
+    }
+    we have that
+    \gath{
+      n\d \geq \d \geq \d/n > 1/n^2 \,,
+    }
+    and hence for all three functions we have that $\a_n \d > 1/n^2$ so that
+    \gath{
+      s_n((-\d,\d)) = (-\a_n\d, \a_n \d) \nss (-1/n^2, 1/n^2) \,.
+    }
+    This shows that $s$ cannot be continuous with respect to the box topology for all three $\a_n$.
+
+    Next we show that $f$ is \emph{not} continuous in the uniform topology.
+    First, suppose that $\br$ is the metric that induces the uniform topology, i.e.
+    \gath{
+      \br(\vx, \vy) = \sup\braces{\bd(x_n, y_n) \where n \in \pints} \,.
+    }
+    Now consider the basis element and open set $B_{\br}(\vze, 1)$ in the uniform topology.
+    If $f$ were continuous then there would be a $\d > 0$ such that
+    \gath{
+      f((-\d, \d)) = \prod_{n \in \pints} (-\d n, \d n) \ss B_{\br}(\vze, 1) \,.
+    }
+    Clearly there is an $n \in \pints$ large enough such that $n > 1/\d$ so that $\d n > 1$.
+    Then consider the point $\vx \in \reals^\w$ defined by
+    \gath{
+      x_m = \begin{cases}
+        0 & m \neq n+1 \\
+        \d n & m = n+1 \,.
+      \end{cases}
+    }
+    We then have of course that $-(n+1)\d < 0 < n\d = x_{n+1} < (n+1)\d$ so that $x_{n+1} \in (-(n+1)\d, (n+1)\d)$.
+    It then follows that $\vx \in f((-\d, \d)$.
+    However, we also have that $\bd(\d n, 0) = \max\braces{\abs{\d n - 0}, 1} = \max\braces{\d n, 1} = 1$ since $\d n > 1$.
+    Hence it is not true that $\br(\vx, \vze) < 1$ so that $\vx \notin B_{\br}(\vze, 1)$.
+    Thus $f((-\d, \d)) \nss B_{\br}(\vze, 1)$ so that $f$ is not continuous in the uniform topology.
+
+    Next we show that $g$ and $h$ \emph{are} continuous in the uniform topology at the same time, which we show using Theorem~18.1 part (4).
+    Consider any real $u$ and any neighborhood $V$ of $\vx = g(u)$ (or $\vx = h(u)$) in the uniform topology.
+    Then by Lemma~\ref{lem:metric:ball} there is an $\e > 0$ such that the basis element $B_{\br}(\vx, \e)$ is a subset of $V$.
+    Now consider the basis element and open set $U = B_d(u, \e/2)$, where $d$ denotes the usual metric on $\reals$.
+    Obviously $U$ contains $u$ but we also claim that $g(U) \ss V$ (or $h(U) \ss V$), thereby completing the proof.
+
+    So consider any $\vy \in g(U)$ (or $\vy \in h(U)$) so that there is some $v \in U$ such that $\vy = g(v)$ (or $\vy = h(v)$)
+    In the case of $g$ we have that $\vx = g(u) = (u,u,u,\ldots)$, which is to say that $x_n = u$ for all $n \in \pints$.
+    Similarly $y_n = v$ for all $n \in \pints$ since $\vy = g(v)$.
+    Now, since $v \in U = B_d(u,\e/2)$, we have that
+    \gath{
+      \bd(y_n, x_n) \leq d(y_n, x_n) = d(v, u) < \e/2
+    }
+    for all $n \in \pints$.
+    From this it follows that
+    \gath{
+      \br(\vy, \vx) = \sup\braces{\bd(y_n, x_n) \where n \in \pints} \leq \e/2 < \e \,.
+    }
+    Likewise in the case of $h$ we have that $x_n = u/n$ and $y_n = v/n$ for all $n \in \pints$ since $\vx = h(u)$ and $\vy = h(v)$.
+    We therefore have that
+    \gath{
+      \bd(y_n, x_n) \leq d(y_n, x_n) = \abs{y_n - x_n} = \abs{v/n - u/n} = \abs{\frac{v-u}{n}} = \frac{1}{n}\abs{v-u} = \frac{1}{n}d(v,u) < \frac{\e/2}{n} \leq \e/2
+    }
+    for all $n \in \pints$ since every $n \geq 1$.
+    Hence again
+    \gath{
+      \br(\vy, \vx) = \sup\braces{\bd(y_n, x_n) \where n \in \pints} \leq \e/2 < \e \,.
+    }
+    Therefore for both functions we have $\br(\vy, \vx) < \e$ so that $\vy \in B_{\br}(\vx, \e)$.
+    This shows that $g(U) \ss B_{\br}(\vx, \e) \ss V$ (or $h(U) \ss B_{\br}(\vx, \e) \ss V$) as desired since $\vy$ was arbitrary.
+  }
+
+  (b) First we note that, since $\reals$ is a Hausdorff space, $\reals^\w$ is as well in both the box and product topologies by Theorem~19.4.
+  The uniform topology was shown to be Hausdorff in Lemma~\ref{lem:metric:unihaus}.
+  It then follows from Theorem~17.10 that if any of the sequences converge in any of the three topologies, then they converge to a unique point in $\reals^\w$.
+
+  Regarding whether the sequences converge in the various topologies then, we claim
+    \begin{center}
+    \begin{tabular}{c|ccc}
+      & Product & Uniform & Box \\
+      \hline
+      $\vw$ & Yes & No & No \\
+      $\vx$ & Yes & Yes & No \\
+      $\vy$ & Yes & Yes & No \\
+      $\vz$ & Yes & Yes & Yes
+    \end{tabular}
+  \end{center}
+  \qproof{
+    Now, regarding the $\vw$ sequence, each element in the sequence is defined as
+    \gath{
+      \vw_n = (w_{n,1}, w_{n,2}, w_{n,3}, \ldots) \,,
+    }
+    where
+    \gath{
+      w_{n,m} = \begin{cases}
+        0 & m < n \\
+        n & m \geq n
+      \end{cases}
+    }
+    for $n,m \in \pints$.
+
+    First we show that the $\vw$ sequence converges to the point $\vze$ in the product topology.
+    So consider any neighborhood $U$ of $\vze$ in the product topology so that there is a basis element $B$ containing $\vze$ where $B \ss U$.
+    Then $B = \prod_{m=1}^\infty B_m$ where each $B_m$ is open and $B_m$ is all of $\reals$ for all but finitely many values of $m$.
+    Let $J$ then be a finite subset of $\pints$ where each $B_m = \reals$ for $m \notin J$.
+    Of course we also have that $0 \in B_m$ for all $m \in \pints$ since $B$ contains $\vze$.
+
+    Then $J$ has a largest element $N$ since it is a finite set of positive integers.
+    Now consider any $n \geq N+1$ and any $m \in \pints$.
+    If $m \in J$ then we have that $m \leq N < N+1 \leq n$ since $N$ is the largest element of $J$, and hence $w_{n,m} = 0 \in B_m$.
+    If $m \notin J$ then of course $B_m = \reals$ so that of course $w_{n,m} \in \reals = B_m$ regardless of whether $w_{n,m} = 0$ or $w_{n,m} = n$.
+    Hence either way we have $w_{n,m} \in B_m$, which shows that $\vw_n \in \prod_{m=1}^\infty B_m = B$ since $m$ was arbitrary.
+    Thus also $\vw_n \in U$ since $B \ss U$.
+    Since $n \geq N+1$ was arbitrary and $U$ was an arbitrary neighborhood of $\vze$, this shows that the sequence converges to $\vze$ as desired.
+    
+    Next we show that the $\vw$ sequence does not converge in the uniform topology.
+    It suffices to show that the sequence does not converge to $\vze$, since if it converged to any other point $\vx$, then by Lemma~\ref{lem:metric:finer} part (3) it would also converge to $\vx$ in the product topology since it is coarser than the uniform topology.
+    However, this would violate the fact that the sequence converges to $\vze$ in the product topology (just shown above), and so cannot also converge to $\vx \neq \vze$ since the convergence point is unique as noted above.
+
+    So consider the neighborhood $B_{\br}(\vze, 1)$ of $\vze$ in the uniform topology.
+    We claim that no elements of the sequence are in this neighborhood so that it clearly cannot converge to $\vze$.
+    So consider any $n \in \pints$ so that we clearly have $w_{n,n} = n \geq 1 > 0$.
+    Therefore $d(w_{n,n}, 0) = \abs{w_{n,n} - 0} = \abs{w_{n,n}} = w_{n,n} \geq 1$, from which it follows that it has to be that $\bd(w_{n,n}, 0) = 1$.
+    This of course implies that
+    \gath{
+      \br(\vw_n, \vze) = \sup\braces{\bd(w_{n,m}, 0) \where m \in \pints} \geq 1 \,.
+    }
+    Hence it is not true that $\br(\vw_n, \vze) < 1$ so that $\vw_n \notin B_{\br}(\vze, 1)$.
+    This shows the desired result since $n$ was arbitrary.
+
+    It then follows that the $\vw$ sequence also does not converge at all in the box topology by Lemma~\ref{lem:metric:finer} part (5) since it is finer than the uniform topology.
   }
 }
