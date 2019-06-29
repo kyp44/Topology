@@ -426,6 +426,7 @@
     \item If a sequence in $Y'$ converges to a point $y_0$, then it also converges to $y_0$ in $Y$.
     \item If a sequence in $Y$ does not converge to a point $y_0$, then it also does not converge to $y_0$ in $Y'$.
     \item If a sequence in $Y$ does not converge at all, then it also does not converge at all in $Y'$.
+    \item If $Y$ is a Hausdorff space, then so is $Y'$.
     \end{enumerate}
   \end{lem}
   \qproof{
@@ -441,31 +442,13 @@
     Assertion (5) then immediately follows from (4) since, if a sequence does not converge at all in $Y$ then for any point $y_0 \in Y$, it does not converge to $y_0$.
     Then it also does not converge to $y_0$ in $Y'$ by (4).
     Since $y_0$ was arbitrary, this shows that it does not converge at all in $Y'$.
+
+    For (6), suppose that $Y$ is a Hausdorff space and let $x$ and $y$ be distinct points of $Y'$ so that they are of course also points of $Y$.
+    Hence there are neighborhoods $U$ and $V$ of $x$ and $y$, respectively, in $Y$ that are disjoint.
+    Since $Y'$ is finer than $Y$, we have that $U$ and $V$ are also open sets of $Y'$ and thus are disjoint neighborhoods of $x$ and $y$ in $Y'$ as well.
+    This suffices to show that $Y'$ is Hausdorff as desired.
   }
 
-  \begin{lem}\label{lem:metric:unihaus}
-    For an index set $J$, the uniform topology on $\reals^J$ is a Hausdorff space.
-  \end{lem}
-  \qproof{
-    Suppose that $\vx$ and $\vy$ are distinct points in $\reals^J$.
-    Then there must be an $\a \in J$ where $x_\a \neq y_\a$.
-    Since $\reals$ is Hausdorff there are open sets $U$ and $V$ of $\real$ that contains $x_\a$ and $y_\a$, respectively, and that are disjoint.
-    Lemma~\ref{lem:metric:ball} then implies that there are $\e,\d > 0$ where $B_d(x_\a,\e)$ and $B_d(y_\a,\d)$ (where $d$ is the standard metric on $\reals$) are subsets of $U$ and $V$, respectively, and therefore must be disjoint.
-    Let $\g = \min\braces{1, \e, \d}$ so that clearly $B_{\br}(\vx, \g)$ and $B_{\br}(\vy, \g)$ are neighborhoods of $\vx$ and $\vy$, respectively, in the uniform topology.
-
-    Suppose for the moment that there is a $\vz \in B_{\br}(\vx, \g) \cap B_{\br}(\vy, \g)$.
-    Therefore
-    \gath{
-      \br(\vz, \vx) = \sup\braces{\bd(z_\b, z_\b) \where \b \in J} < \g
-    }
-    since $\vz \in B_{\br}(\vx, \g)$, where of course $\bd$ is the usual bounded metric on $\reals$.
-    It of course has to be that in particular $\bd(z_\a, x_\a) < \g \leq 1$ so that it has to be that $\bd(z_\a, x_\a) = d(z_\a, x_\a)$.
-    Then we have $d(z_\a, x_\a) = \bd(z_\a, x_\a) < \g \leq \e$ so that $z_\a \in B_d(x_\a, \e)$.
-    An analogous argument with $\vy$ in place of $\vx$ and $\d$ in place of $\e$ shows that also $z_\a \in B_d(y_\a, \d)$.
-    However, this is impossible as we know that $B_d(x_\a, \e)$ and $B_d(y_\a, \d)$ are disjoint!
-    So it has be that the neighborhoods $B_{\br}(\vx, \g)$ and $B_{\br}(\vy, \g)$ are actually disjoint, which suffices to show that the uniform topology is Hausdorff as desired.
-  }
-  
   \mainprob
   
   (a) Regarding whether or not the functions are continuous in the various topologies, we claim the following:
@@ -566,8 +549,8 @@
   }
 
   (b) First we note that, since $\reals$ is a Hausdorff space, $\reals^\w$ is as well in both the box and product topologies by Theorem~19.4.
-  The uniform topology was shown to be Hausdorff in Lemma~\ref{lem:metric:unihaus}.
-  It then follows from Theorem~17.10 that if any of the sequences converge in any of the three topologies, then they converge to a unique point in $\reals^\w$.
+  Therefore the uniform topology on $\reals^\w$ is also Hausdorff by Lemma~\ref{lem:metric:finer} part (6) since it is finer than the product topology.
+  It then follows from Theorem~17.10 that if any of the sequences converge in any of the three topologies, then they converge to a unique point.
 
   Regarding whether the sequences converge in the various topologies then, we claim
     \begin{center}
@@ -624,5 +607,93 @@
     This shows the desired result since $n$ was arbitrary.
 
     It then follows that the $\vw$ sequence also does not converge at all in the box topology by Lemma~\ref{lem:metric:finer} part (5) since it is finer than the uniform topology.
+
+    Regarding the $\vx$ sequence, the definition is that each
+    \gath{
+      \vx_n = (x_{n,1}, x_{n,2}, x_{n,3}, \ldots) \,,
+    }
+    where
+    \gath{
+      x_{n,m} = \begin{cases}
+        0 & m < n \\
+        1/n & m \geq n
+      \end{cases}
+    }
+    for $n,m \in \pints$.
+
+    First we show that this sequence converges to $\vze$ in the uniform topology, which is of course is the unique convergence point.
+    So consider any neighborhood $U$ of $\vze$ in the uniform topology so that by Lemma~\ref{lem:metric:ball} there is an $\e > 0$ where $B_{\br}(\vze, \e) \ss U$.
+    Then there is a positive integer $N$ large enough so that $N > 2/\e$ so that, for any $n \geq N$ we have $1/n \leq 1/N < \e/2$.
+    Next consider any such $n \geq N$ and any $m \in \pints$.
+    Since $x_{n,m}$ is either $0$ or $1/n$ we have that $\abs{x_{n,m}} = x_{n,m} \leq 1/n$ so that
+    \gath{
+      \bd(x_{n,m}, 0) \leq d(x_{n,m}, 0) = \abs{x_{n,m} - 0} = \abs{x_{n,m}} = x_{n,m} \leq 1/n < \e/2 \,.
+    }
+    Thus, since $m$ was arbitrary, it follows that
+    \gath{
+      \br(\vx_n, \vze) = \sup\braces{\bd(x_{n,m}, 0) \where m \in \pints} \leq \e/2 < \e \,,
+    }
+    and hence $\vx_n \in B_{\br}(\vze, \e)$.
+    Thus also $\vx_n \in U$ since $B_{\br}(\vze, \e) \ss U$.
+    Since $n \geq N$ was arbitrary as was the neighborhood $U$, this shows that the sequence converges to $\vze$ as desired.
+
+    Since it is coarser than the uniform topology, it follows that the $\vx$ sequence also converges to $\vze$ in the product topology as well by Lemma~\ref{lem:metric:finer} part (3).
+
+    Next we show that the $\vx$ sequence does not converge in the box topology, for which it suffices to show that it does not converge to $\vze$.
+    Again, this is because, if it were to converge to some other point $\vy \neq 0$ in the box topology, then it would also converge to $\vy$ in the uniform topology since it is coarser (Lemma~\ref{lem:metric:finer} part (3)), but this would violate the fact that it converges to the unique point $\vze$ by what was just shown.
+    So consider the basis element and open set of the box topology $U = \prod_{n=1}^\infty U_n$ where each $U_n = (-1/n, 1/n)$.
+    Clearly $U$ contains $\vze$ so that it is a neighborhood of $\vze$.
+    We claim that no element of the sequence is in $U$, which of course suffices to show that it cannot converge to $\vze$.
+    So consider any $n \in \pints$ and so that $x_{n,n} = 1/n \geq 1/n$ so that $x_{n,n} \notin (-1/n, 1/n) = U_n$.
+    From this it follows that $\vx_n \notin \prod_{n=1}^\infty U_n = U$.
+    Since $n$ was arbitrary this shows no element of the sequence is in $U$ so that the sequence cannot converge to $\vze$.
+
+    Regarding the $\vy$ sequence, it is defined as
+    \gath{
+      \vy_n = (y_{n,1}, y_{n,2}, y_{n,3}, \ldots) \,,
+    }
+    where
+    \gath{
+      y_{n,m} = \begin{cases}
+        1/n & m \leq n \\
+        0 & m > n
+      \end{cases}
+    }
+    for $n,m \in \pints$.
+    Since $y_{n,m}$ is always either $0$ or $1/n$, the same argument that shows that the $\vx$ sequence converges to $\vze$ in the uniform topology shows that the $\vy$ sequence does as well.
+    Of course this also mean that it converges to $\vze$ in the product topology as well since it is coarser.
+    Similarly, the same argument that shows that the $\vx$ sequence does not converge in the box topology applies to $\vy$ as well since we have that $y_{n,n} = x_{n,n} = 1/n$ for all $n \in \pints$.
+
+    Now, the $\vz$ sequence is defined by
+    \gath{
+      \vz_n = (z_{n,1}, z_{n,2}, z_{n,3}, \ldots) \,,
+    }
+    where
+    \gath{
+      z_{n,m} = \begin{cases}
+        1/n & m \leq 2 \\
+        0 & m > 2
+      \end{cases}
+    }
+    for $n,m \in \pints$.
+
+    We show that this sequence converges to $\vze$ in the box topology.
+    So consider any neighborhood $U$ of $\vze$ in the box topology so that there is a basis element $B = \prod_{m=1}^\infty B_m$ containing $\vze$ where $B \ss U$.
+    Of course then each $B_m$ is open in $\reals$ and $0 \in B_m$.
+    Considering the standard topology of $\reals$ using the metric topology basis, there is then an $\e_1 > 0$ such that $B_d(0, \e_1) \ss B_1$ by Lemma~\ref{lem:metric:ball} since $B_1$ is open and contains $0$.
+    Likewise there is an $\e_2 > 0$ where $B_d(0, \e_2) \ss B_2$.
+    So set $\e = \min\braces{\e_1, \e_2}$ so that of course there is a positive integer $N$ large enough that $N > 1/\e$.
+    Then, for any $n \geq N$ we have that $n \geq N > 1/\e$ so that $1/n < \e \leq \e_1$, and similarly $1/n < \e \leq \e_2$.
+    Now consider any $m \in \pints$.
+    If $m \leq 2$ then of course either $m = 1$ or $m = 2$ so that, either way, we have
+    \gath{
+      d(z_{n,m}, 0) = \abs{z_{n,m} - 0} = \abs{z_{n,m}} = \abs{1/n} = 1/n < \e \leq \e_m
+    }
+    so that $z_{n,m} \in B_d(0, \e_m) \ss B_m$.
+    If $m > 2$ then we clear have $z_{n,m} = 0 \in B_m$ as well.
+    Since $m$ was arbitrary, this shows that $\vz_n \in \prod_{m=1}^\infty B_m = B \ss U$.
+    This shows that the sequence converges to $\vze$ since $n \geq N$ was arbitrary and $U$ was any neighborhood of $\vze$.
+
+    Of course this also shows that the $\vz$ sequence converges to $\vze$ in the uniform and product topologies as well by Lemma~\ref{lem:metric:finer} part (3) since they are both coarser than the box topology.
   }
 }
