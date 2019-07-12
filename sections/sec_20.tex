@@ -697,3 +697,309 @@
     Of course this also shows that the $\vz$ sequence converges to $\vze$ in the uniform and product topologies as well by Lemma~\ref{lem:metric:finer} part (3) since they are both coarser than the box topology.
   }
 }
+
+\def\rinf{\reals^\infty}
+\exercise{5}{
+  Let $\rinf$ be the subset of $\reals^\w$ consisting of all sequences that are eventually zero.
+  What is the closure of $\rinf$ in $\reals^\w$ in the uniform topology?
+  Justify your answer. 
+}
+\sol{
+  \dwhitman
+
+  Let $\reals^0$ denote the subset of $\reals^\w$ consisting of all sequences that converge to zero.
+  We then claim that $\closure{\rinf} = \reals^0$, i.e. the closure of $\rinf$ is $\reals^0$.
+  \qproof{
+    $(\ss)$ We show this by contrapositive.
+    So suppose that $\vx \notin \reals^0$ so that the sequence $\vx$ does \emph{not} converge to zero.
+    Then there is a neighborhood $V$ of $0$ in the standard topology on $\reals$ such that, for any $N \in \pints$, there is an $n \geq N$ where $x_n \notin V$.
+    It also follows from Lemma~\ref{lem:metric:ball} that there is an $\e > 0$ such that $B_d(0, \e) \ss V$.
+    So let $\d = \min\braces{\e, 1}$ and consider the set $B_{\br}(\vx, \d)$, which is clearly a neighborhood of $\vx$ in the uniform topology.
+    Also suppose that $\vy$ is any element of $\rinf$ so that $\vy$ is eventually zero.
+    Then there must be an $N$ where $y_n = 0$ for all $n \geq N$.
+    From before we have that there is a specific $n \geq N$ where $x_n \notin V$ so that also $x_n \notin B_d(0, \e)$, and thus
+    \gath{
+      d(y_n, x_n) = d(0, x_n) = d(x_n, 0) \geq \e \geq \d \,.
+    }
+    Then we have that both $d(y_n, x_n) \geq \d$ and $1 \geq \d$ so that
+    \gath{
+      \bd(y_n, x_n) = \min\braces{d(y_n, x_n), 1} \geq \d \,.
+    }
+    From this it clearly follows that
+    \gath{
+      \br(\vy, \vx) = \sup\braces{\bd(y_n, x_n) \where n \in \pints} \geq \d
+    }
+    so that $\vy \notin B_{\br}(\vx, \d)$.
+    Since $\vy$ was arbitrary, this shows that $B_{\br}(\vx, \d)$ does not intersect $\rinf$.
+    This in turn shows that $\vx$ is not a limit point of $\rinf$.
+    Now, clearly also $\vx$ cannot be eventually zero since then it would converge to zero, hence $\vx \notin \rinf$ either.
+    Therefore $\vx$ cannot be in the closure of $\rinf$.
+    Hence by the contrapositive we have that $\closure{\rinf} \ss \reals^0$.
+
+    $(\sps)$ Now consider any $\vx \in \reals^0$ so that the sequence $\vx$ converges to zero.
+    Consider any neighborhood $U$ of $\vx$ in the uniform topology so that, by Lemma~\ref{lem:metric:ball}, there is an $\e > 0$ such that $B_{\br}(\vx, \e) \ss U$.
+    Now, since $B_d(0, \e/2)$ is a neighborhood of $0$, it follows that there is an $N \in \pints$ where $x_n \in B_d(0, \e/2)$ for all $n \geq N$ since $\vx$ converges to $0$.
+    Now define the sequence $\vy$ where
+    \gath{
+      y_n = \begin{cases}
+        x_n & n < N \\
+        0 & n \geq N
+      \end{cases}
+    }
+    for $n \in \pints$.
+    Clearly $\vy$ is eventually zero so that $\vy \in \rinf$.
+
+    We also claim that $\vy \in U$.
+    To see this consider any $n \in \pints$.
+    If $n < N$ then clearly $y_n = x_n$ so that
+    \gath{
+      \bd(y_n, x_n) \leq d(y_n, x_n) = d(x_n, x_n) = 0 < \e/2 \,.
+    }
+    If $n \geq N$ then $y_n = 0$ and we have from before that $x_n \in B_d(0, \e/2)$ and hence
+    \gath{
+      \bd(y_n, x_n) \leq d(y_n, x_n) = d(0, x_n) = d(x_n, 0) < \e/2 \,.
+    }
+    Hence it follows that
+    \gath{
+      \br(\vy, \vx) = \sup\braces{\bd(y_n, x_n) \where n \in \pints} \leq \e/2 < \e
+    }
+    so that $\vy \in B_{\br}(\vx, \e) \ss U$.
+    This shows that $\vy \in \rinf \cap U$.
+    If $\vy = \vx$ then of course $\vx = \vy \in \rinf$ itself.
+    If $\vy \neq \vx$ then we have shown that $\vx$ is a limit point of $\rinf$ since $U$ was an arbitrary neighborhood.
+    Thus either way $\vy \in \closure{\rinf}$ so that $\closure{\rinf} \sps \reals^0$ since $\vx$ was arbitrary.
+  }
+  Lastly, we note that $\rinf$ is a proper subset of its closure $\closure{\rinf} = \reals^0$ since, for example, the sequence $\vx$ defined by $x_n = 1/n$ for all $n \in \pints$ clearly converges to zero so is in $\reals^0$ but is not eventually zero so is not in $\rinf$.
+}
+
+\exercise{6}{
+  Let $\br$ be the uniform metric on $\reals^\w$.
+  Given $\vx = (x_1,x_2,\ldots) \in \reals^\w$ and given $0 < \e < 1$, let
+  \gath{
+    U(\vx, \e) = (x_1-\e, x_1+\e) \times \cdots \times (x_n - \e, x_n + \e) \times \cdots \,.
+  }
+  \eparts{
+  \item Show that $U(\vx, \e)$ is not equal to the $\e$-ball $B_{\br}(\vx, \e)$.
+  \item Show that $U(\vx, \e)$ is not even open in the uniform topology.
+  \item Show that
+    \gath{
+      B_{\br}(\vx, \e) = \bigcup_{\d < \e} U(\vx, \d) \,.
+    }
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    We show that $B_{\br}(\vx, \e)$ is not a subset of $U(\vx, \e)$, which of course suffices to show that they cannot be equal.
+    To this end we define the point $\vy$ in $\reals^\w$ by
+    \gath{
+      y_n = x_n + \e\parens{1 - \frac{1}{n}}
+    }
+    for any $n \in \pints$.
+    Then, for any such $n$, we clearly have that
+    \ali{
+      n &\geq 1 \\
+      -n &\leq -1 < 0 \\
+      -1 &\leq -\frac{1}{n} < 0 & \text{(since $n > 0$)} \\
+      0 &\leq 1 - \frac{1}{n} < 1 \\
+      0 &\leq \e\parens{1 - \frac{1}{n}} < \e & \text{(since $\e > 0$)} \\
+      x_n &\leq x_n + \e\parens{1 - \frac{1}{n}} < x_n + \e \\
+      x_n - \e < x_n &\leq y_n < x_n + \e
+    }
+    so that $y_n \in (x_n - \e, x_n + \e)$.
+    Since $n$ was arbitrary, this shows that $\vy \in \prod_{n=1}^\infty (x_n - \e, x_n + \e) = U(\vx, \e)$.
+    However, again for any $n \in \pints$, it was shown that $x_n \leq y_n$  so that
+    \gath{
+      d(y_n, x_n) = \abs{y_n - x_n} = y_n - x_n = x_n + \e\parens{1 - \frac{1}{n}} - x_n = \e\parens{1 - \frac{1}{n}} \,.
+    }
+    It was shown above that
+    \ali{
+      0 \leq \e\parens{1 - \frac{1}{n}} < \e &< 1 \\
+      0 \leq d(y_n, x_n) < \e &< 1
+    }
+    so that
+    \gath{
+      \bd(y_n, x_n) = \min\braces{d(y_n, x_n), 1} = d(y_n, x_n) \,.
+    }
+    We then clearly have
+    \gath{
+      \lim_{n \to \infty} \bd(y_n, x_n) = \lim_{n \to \infty} d(y_n, x_n) = \lim_{n \to \infty} \e \parens{1 - \frac{1}{n}} = \e
+    }
+    so that
+    \gath{
+      \br(\vy, \vx) = \sup_{n \in \pints} \bd(y_n, x_n) = \e \geq \e
+    }
+    since the sequence $\vy$ is clearly monotonically increasing.
+    This shows that $\vy \notin B_{\br}(\vx, \e)$ so that $B_{\br}(\vx, \e)$ cannot be a subset of $U(\vx, \e)$.
+  }
+
+  (b)
+  \qproof{
+    Let $\vy$ be the point in $\reals^\w$ defined in part (a) so that we know that $\vy \in U(\vx, \e)$.
+    Now if $U(\vx, \e)$ were open in the uniform topology then there would be a basis element $B_{\br}(\vy, \d)$ that is contained in $U(\vx, \e)$.
+    We shall show that any such basis element cannot be contained within $U(\vx, \e)$, from which the desired result follows.
+
+    So consider any $\d > 0$ so that there is an $n \in \pints$ large enough that $n > \e/\d$.
+    Then we have
+    \ali{
+      n &> \frac{\e}{\d} \\
+      \d &> \e \frac{1}{n} & \text{(since both $\d > 0$ and $n > 0$)} \\
+      -\e\frac{1}{n} + \d &> 0 \\
+      \e - \e\frac{1}{n} + \d &> \e \\
+      x_n + \e\parens{1 - \frac{1}{n}} + \d &> x_n + \e \\
+      y_n + \d &> x_n + \e \,.
+    }
+    Now define the point $\vz$ by
+    \gath{
+      z_m = \begin{cases}
+        y_m & m \neq n \\
+        \frac{(x_n + \e) + (y_n + \d)}{2} & m = n \,.
+      \end{cases}
+    }
+    It then follows that $x_n + \e < z_n < y_n + \d$.
+    The fact that $x_n + \e < z_n$ means that of course $z_n \notin (x_n - \e, x_n + \e)$ so that $\vz \notin \prod_{m=1}^\infty (x_m - \e, x_m + \e) = U(\vx, \e)$.
+    However, for $m \neq n$ we have that
+    \gath{
+      d(z_m, y_m) = d(y_m, y_m) = 0
+    }
+    and so $\bd(z_m, y_m) = 0$ as well.
+    For $m = n$ we have
+    \gath{
+      x_m + \e = x_n + \e < z_m = z_n < y_n + \d = y_m + \d \\
+      x_m + \e - y_m < z_m - y_m < \d \\
+      x_m + \e - x_m - \e\parens{1 - \frac{1}{n}} < z_m - y_m < \d \\
+      0 < \e\frac{1}{n} < z_m - y_m < \d \\
+      \abs{z_m - y_m} < \d \\
+      \bd(z_m, y_m) \leq d(z_m, y_m) < \d \,.
+    }
+    From these facts it follows that
+    \gath{
+      \br(\vz, \vy) = \sup_{m \in \pints} \bd(z_m, y_m) = \bd(z_n, y_n) < \d
+    }
+    so that $\vz \in B_{\br}(\vy, \d)$.
+    This shows that $B_{\br}(\vy, \d)$ is not a subset of $U(\vx, \e)$, which shows the desired result as explained before.
+  }
+
+  (c)
+  \qproof{
+    $(\ss)$ Let $\vy$ be any element of $B_{\br}(\vx, \e)$ so that $\br(\vy, \vx) < \e$.
+    Then there is a $\d$ where $\br(\vy, \vx) < \d < \e$ since the reals are order-dense.
+    For any $n \in \pints$ it must be that $\bd(y_n, x_n) < \d < \e < 1$ since $\br$ is the supremum of these.
+    From this it has to be that $\bd(y_n, x_n) = d(y_n, x_n) < \d$ so that
+    \gath{
+      d(y_n, x_n) = \abs{y_n - x_n} < \d \\
+      -\d < y_n - x_n < \d \\
+      x_n - \d < y_n < x_n + \d \,.
+    }
+    Hence $y_n \in (x_n - \d, x_n + \d)$.
+    Since $n$ was arbitrary, this shows that $\vy \in \prod_{n=1}^\infty (x_n-\d, x_n+\d) = U(\vx, \d)$.
+    Thus obviously $\vy \in \bigcup_{\d < \e} U(\vx, \d)$, which shows the desired result.
+
+    $(\sps)$ Now suppose that $\vy \in \bigcup_{\d < \e} U(\vx, \d)$ so that there is a $\d < \e$ where $\vy \in U(\vx, \d)$.
+    Consider any $n \in \pints$ so that we have $y_n \in (x_n-\d, x_n+\d)$.
+    Then of course
+    \gath{
+      x_n - \d < y_n < x_n + \d \\
+      -\d < y_n - x_n < \d
+    }
+    so that $d(y_n, x_n) = \abs{y_n - x_n} < \d < \e < 1$ so that it must be that $\bd(y_n, x_n) = d(y_n, x_n) < \d$.
+    Since $n$ was arbitrary, it follows that
+    \gath{
+      \br(\vy, \vx) = \sup\braces{\bd(y_n, x_n) \where n \in \pints} \leq \d < \e \,,
+    }
+    and hence $\vy \in B_{\br}(\vx, \e)$.
+    Since $\vy$ was arbitrary, this shows that $B_{\br}(\vx, \e) \sps \bigcup_{\d < \e} U(\vx, \d)$, which completes the proof.
+  }
+}
+
+\exercise{7}{
+  Consider the map $h: \reals^\w \to \reals^\w$ defined in Exercise~8 of $\S 19$; give $\reals^\w$ the uniform topology.
+  Under what conditions on the numbers $a_i$ and $b_i$ is $h$ continuous?
+  a homeomorphism?
+}
+\sol{
+  \dwhitman
+
+  First some discussion.
+  We know that the product topology is strictly finer than the uniform topology in $\reals^\w$, and the that box topology is strictly finer than the uniform topology.
+  By Lemma~\ref{lem:metric:finer} part (1), when the topology on the range of a function becomes coarser, the function remains continuous.
+  It is similarly easy to show that if the topology on the \emph{domain} of a function becomes \emph{finer}, it also remains continuous.
+  However, nothing can be said for sure if the range becomes finer and/or the domain becomes coarser.
+
+  It was shown in Exercise~19.8 that $h$ is a homeomorphism (for $a_i > 0$ as in the exercise) if both the domain and range have the product topology, or if they both have the box topology.
+  By what was just discussed then, $h$ is at least continuous with box topology on the domain, and the uniform topology on the range, or likewise with the uniform topology on the domain and the product topology on the range.
+  However, the relative ``fineness'' of these topologies does not allow us to conclude anything about whether $h$ is continuous or a homeomorphism when both the domain and range are the uniform topologies, which is unfortunately what we are interested in.
+
+  In fact, we claim that $h$ is continuous with the uniform topology as the domain and range if and only if the set of numbers $\braces{a_i}_{i \in \pints}$ is bounded (and of course each $a_i > 0$).
+  \qproof{
+    $(\imp)$ We show this direction by contrapositive.
+    So suppose that $\braces{a_i}$ is not bounded.
+    We then show that $h$ is not continuous by showing the negation of Theorem~18.1 part (4).
+    So consider the point $\vze$ and the neighborhood $V = B_{\br}(h(\vze), 1)$ in the uniform topology.
+    Consider also any neighborhood $U$ of $\vze$ so that by Lemma~\ref{lem:metric:ball} there is an $\e > 0$ where $B_{\br}(\vze, \e) \ss U$.
+    Now define the point $\vx \in \reals^\w$ by $x_i = \e/2$ for all $i \in \pints$.
+    Then, for any $i \in \pints$, we have
+    \gath{
+      \bd(x_i, 0) \leq d(x_i, 0) = \abs{x_i - 0} = \abs{x_i} = \abs{\e/2} = \e/2
+    }
+    so that clearly
+    \gath{
+      \br(\vx, \vze) = \sup\braces{\bd(x_i, 0) \where i \in \pints} \leq \e/2 < \e \,,
+    }
+    and hence $\vx \in B_{\br}(\vze, \e)$ so that also $\vx \in U$.
+    Then clearly $h(\vx) \in h(U)$.
+
+    Now, since the $a_i$ coefficients are unbounded, there is a specific $i \in \pints$, where $a_i \geq 2/\e$ regardless of how small $\e$ is.
+    We then have that
+    \gath{
+      d(h_i(x_i), h_i(0)) = d(a_i x_i + b_i, b_i) = \abs{a_i x_i + b_i - b_i} = \abs{a_i x_i} = a_i \abs{x_i} = a_i \frac{\e}{2} \geq \frac{2}{\e} \frac{\e}{2} = 1 \,,
+    }
+    from which we have $\bd(h_i(x_i), h_i(0)) = 1$ and so
+    \gath{
+      \br(h(\vx), h(\vze)) = \sup\braces{\bd(h_i(x_i), h_i(0)) \where i \in \pints} \geq 1 \,.
+    }
+    Then of course $h(\vx) \notin B_{\br}(h(\vze), 1) = V$.
+    This shows that $h(U) \nss V$, which in turn shows that $h$ is not continuous, since $U$ was an arbitrary neighborhood of $\vze$.
+
+    $(\pmi)$ Now suppose that the coefficients $a_i$ are bounded so that there is a real $a$ where $0 < a_i \leq a$ for all $i \in \pints$.
+    Consider any $\vx \in \reals^\w$ and any neighborhood $V$ of $h(\vx)$ in the uniform topology.
+    Then there is an $\e > 0$ where $B_{\br}(h(\vx), \e) \ss V$ by Lemma~\ref{lem:metric:ball}.
+    So let $\d = \min\braces{\e/2a, 1}$, noting that $\d > 0$ since both $\e > 0$ and $a > 0$.
+    Then $U = B_{\br}(\vx, \d)$ is of course a neighborhood of $\vx$ in the uniform topology.
+    We claim that $h(U) \ss V$.
+
+    To see this, suppose that $\vz \in h(U)$ so that there is a $\vy \in U$ where $\vz = h(\vy)$.
+    Then $\br(\vy, \vx) < \d \leq 1$ since $\vy \in U$, from which it follows that each $\bd(y_i, x_i) < \d \leq 1$, and hence
+    \gath{
+      \bd(y_i, x_i) = d(y_i, x_i) = \abs{y_i - x_i} < \d \,.
+    }
+    We then have that
+    \ali{
+      \bd(h_i(y_i), h_i(x_i)) &\leq d(h_i(y_i), h_i(x_i)) = d(a_i y_i + b_i, a_i x_i + b_i) = \abs{a_i y_i + b_i - a_i x_i - b_i} \\
+      &= \abs{a_i y_i - a_i x_i} = \abs{a_i(y_i - x_i)} = a_i \abs{y_i - x_i} \leq a \abs{y_i - x_i} \\
+      &< a\d \leq a \e/2a = \e/2
+    }
+    for each $i \in \pints$.
+    From this it follows that
+    \gath{
+      \br(\vz, h(\vx)) = \br(h(\vy), h(\vx)) = \sup\braces{\bd(h_i(y_i), h_i(x_i)) \where i \in \pints} \leq \e/2 < \e
+    }
+    so that $\vz \in B_{\br}(h(\vx), \e) \ss V$.
+    Since $\vz$ was arbitrary, this shows that $f(U) \ss V$, which shows that $h$ is continuous by Theorem~18.1 part (4) since $V$ was an arbitrary neighborhood.
+  }
+
+  The function $h$ is a homeomorphism if and only if there are real $a, a_0 > 0$ where $0 < a_0 \leq a_i \leq a$ for all $i \in \pints$.
+  \qproof{
+    First, it was just shown that $h$ is continuous if and only if $\braces{a_i}$ is bounded above.
+    It was shown in Exercise~19.8 that $h$ is bijective (so long as each $a_i > 0$) and that its inverse function $\inv{h}$ has the same form as $h$:
+    \gath{
+      \inv{h}(\vy) = (c_i y_i + d_i)_{i \in \pints} \,,
+    }
+    where each $c_i = 1/a_i$ and $d_i = -b_i/a_i$.
+    Since the topologies of the domain and range of $\inv{h}$ are both the uniform topology, as with $h$, it follows that the same conditions on $c_i$ and $d_i$ will make $\inv{h}$ continuous.
+    That is to say that $\inv{h}$ is continuous (and thus $h$ is a homeomorphism) if and only if also $\braces{c_i} = \braces{1/a_i}$ is bounded above.
+    Of course $\braces{1/a_i}$ being bounded above means that $\braces{a_i}$ cannot get arbitrarily close to zero and so must have some nonzero lower bound $a_0$.
+  }
+}
