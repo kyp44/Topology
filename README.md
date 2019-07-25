@@ -13,6 +13,7 @@ You can then build a lemma list document by compiling `lemmas.tex`, which includ
 An up-to-date [PDF of this solutions manual](http://kyp4.dyndns-home.com/Topology.pdf) is built and published hourly as necessary.
 
 If you are interested in contributing, send me a message.
+Also, please submit an issue if you discover any errors in any of the proofs.
 
 Other Solutions Manuals
 -----------------------

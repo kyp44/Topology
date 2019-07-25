@@ -22,7 +22,7 @@
   \dwhitman
 
   \begin{lem}\label{lem:metric:pmon}
-    If $x$ and $y$ are real and $x,y \geq 0$ then $x^p < y^p$ if and only if $x < y$ for all integers $p \geq 1$.
+    If $x$ and $y$ are real and $x,y \geq 0$ then $x^p < y^p$ if and only if $x < y$, for all integers $p \geq 1$.
   \end{lem}
   \qproof{
     First, if $x = 0$ then of course
@@ -56,7 +56,7 @@
   }
 
   \begin{cor}\label{cor:metric:opmon}
-    If $x$ and $y$ are real and $x,y \geq 0$ then $x^{1/p} < y^{1/p}$ if and only if $x < y$ for all integers $p \geq 1$.
+    If $x$ and $y$ are real and $x,y \geq 0$ then $x^{1/p} < y^{1/p}$ if and only if $x < y$, for all integers $p \geq 1$.
   \end{cor}
   \qproof{
     Consider any $p \geq 1$ and let $u = x^{1/p}$ and $v = y^{1/p}$.
@@ -698,7 +698,6 @@
   }
 }
 
-\def\rinf{\reals^\infty}
 \exercise{5}{
   Let $\rinf$ be the subset of $\reals^\w$ consisting of all sequences that are eventually zero.
   What is the closure of $\rinf$ in $\reals^\w$ in the uniform topology?
@@ -1001,5 +1000,422 @@
     Since the topologies of the domain and range of $\inv{h}$ are both the uniform topology, as with $h$, it follows that the same conditions on $c_i$ and $d_i$ will make $\inv{h}$ continuous.
     That is to say that $\inv{h}$ is continuous (and thus $h$ is a homeomorphism) if and only if also $\braces{c_i} = \braces{1/a_i}$ is bounded above.
     Of course $\braces{1/a_i}$ being bounded above means that $\braces{a_i}$ cannot get arbitrarily close to zero and so must have some nonzero lower bound $a_0$.
+  }
+}
+
+\def\elltop{$\ell^2$-topology}
+\exercise{8}{
+  Let $X$ be the subset of $\reals^\w$ consisting of all sequences $\vx$ such that $\sum x_i^2$ converges.
+  Then the formula
+  \gath{
+    d(\vx, \vy) = \squares{\sum_{i=1}^\infty (x_i - y_i)^2}^{1/2}
+  }
+  defines a metric on $X$. (See Exercise~10)
+  On $X$ we have the three topologies it inherits from the box, uniform, and product topologies on $\reals^\w$.
+  We have also the topology given by the metric $d$, which we call the \emph{\elltop{}}.
+  (Read ``little ell two.'')
+  \eparts{
+  \item Show that on $X$, we have the inclusions
+    \gath{
+      \text{box topology} \sps \text{\elltop{}} \sps \text{uniform topology} \,.
+    }
+  \item The set $\rinf$ of all sequences that are eventually zero is contained in $X$.
+    Show that the four topologies that $\rinf$ inherits as a subspace of $X$ are all distinct.
+  \item The set
+    \gath{
+      H = \prod_{n \in \pints} \squares{0, 1/n}
+    }
+    is contained in $X$; it is called the \boldit{Hilbert cube}.
+    Compare the four topologies that $H$ inherits as a subspace of $X$.
+  }
+}
+\sol{
+  \dwhitman
+
+  \begin{lem} \label{lem:metric:seqleq}
+    Suppose that $(a_1, a_2, \ldots)$ and $(b_1, b_2, \ldots)$ are two real sequences that converge to $a$ and $b$, respectively.
+    Then, if $a_n \leq b_n$ for every $n \in \pints$, then $a \leq b$.
+  \end{lem}
+  \qproof{
+    Suppose to the contrary that $a > b$, and let $\e = (a-b)/2$ so that clearly $\e > 0$.
+    Since $(a_n)$ converges to $a$ there is an $N_a \in \pints$ where $\abs{a_n - a} < \e$ for all $n \geq N_a$.
+    Similarly there is an $N_b \in \pints$ where $\abs{b_n - b} < \e$ for all $n \geq N_b$ since $(b_n)$ converges to $b$.
+    So let $N = \max\braces{N_a, N_b}$ and consider any $n \geq N$.
+    Then $n \geq N \geq N_a$ so that $\abs{a_n - a} < \e$ and hence
+    \gath{
+      -\e < a_n - a < \e \\
+      a - \e < a_n < a + \e \\
+      a - \frac{a-b}{2} < a_n \\
+      \frac{a+b}{2} < a_n \,.
+    }
+    Analogously, we have that $n \geq N \geq N_b$ so that $\abs{b_n - b} < \e$ and so
+    \gath{
+      -\e < b_n - b < \e \\
+      b - \e < b_n < b + \e \\
+      b_n < b + \frac{a-b}{2} \\
+      b_n < \frac{a+b}{2} \,.
+    }
+    Therefore we have $b_n < (a+b)/2 < a_n$, which contradicts the supposition that $b_n \geq a_n$.
+    So it has to be that in fact $a \leq b$ as desired.
+  }
+
+  \begin{cor} \label{cor:metric:sumleq}
+    Suppose that $\sum a_n$ and $\sum b_n$ are two real series that converge to $a$ and $b$, respectively.
+    Then, if $a_n \leq b_n$ for every $n \in \pints$, then $a \leq b$.
+  \end{cor}
+  \qproof{
+    Since we have that $a_n \leq b_n$ for every $n \in \pints$, it follows that we have
+    \gath{
+      s_n = \sum_{i=1}^n a_i \leq \sum_{i=1}^n b_i = t_n
+    }
+    for any $n \in \pints$ for the partial sums.
+    Then we have by definition of series that
+    \gath{
+      a = \sum_{n=1}^\infty a_n = \lim_{n \to \infty} s_n \leq \lim_{n \to \infty} t_n = \sum_{n=1}^\infty b_n = b
+    }
+    by Lemma~\ref{lem:metric:seqleq}, as desired.
+  }
+
+  The following is a corollary of Lemma~\ref{lem:metric:ball}:
+  \begin{cor} \label{cor:metric:subball}
+    Suppose that $X$ is a subspace of metric space $Y$ with metric $d$.
+    If $U$ is open in $X$ and contains $x$, then there is a ball $B_d(x, \e)$ in $Y$ such that $X \cap B_d(x,\e) \ss U$.
+  \end{cor}
+  \qproof{
+    Consider open $U$ in $X$ and any $x \in U$.
+    Then there is an open set $V$ in $Y$ such that $U = X \cap V$ by the definition of the subspace topology.
+    Then of course $x \in X$ and $x \in V$ since $x \in U$.
+    It then follows that there is an $\e > 0$ such that $B_d(x, \e) \ss V$ by Lemma~\ref{lem:metric:ball}.
+    Now consider any $y \in X \cap B_d(x, \e)$ so that $y \in X$ and $y \in B_d(x, \e)$.
+    Then also $y \in V$ since $B_d(x, \e) \ss V$.
+    Hence $y \in X \cap V = U$, which shows that $X \cap B_d(x, \e) \ss U$ as desired since $y$ was arbitrary.
+  }
+
+  \begin{defin}\label{def:metric:pseries}
+    If $(x_1, x_2, \ldots)$ is a sequence whose series $\sum x_i$ converges, we define the partial series starting at $n \in \pints$ as
+    \gath{
+      \sum_{i=n}^\infty x_i = \sum_{i=1}^\infty x_i - \sum_{i=1}^{n-1} x_i \,,
+    }
+    where we adopt the standard convention that $\sum_{i=a}^b x_i = 0$ when $b < a$.
+    According to this the partial series starting at $n=1$ is just the series itself as expected.
+  \end{defin}
+  \begin{lem} \label{lem:metric:pseries}
+    If $(x_1, x_2, \ldots)$ is a series of non-negative real numbers such that the series $\sum x_i$ converges, then the sequence of partial series defined by
+    \gath{
+      p_n = \sum_{i=n}^\infty x_i
+    }
+    is non-increasing and converges to zero.
+    Also each $p_n \geq 0$.
+  \end{lem}
+  \qproof{
+    Since the terms are all non-negative, clearly the sequence of partial sums is non-decreasing.
+    Thus we have
+    \gath{
+      \sum_{i=1}^n x_i \leq \sum_{i=1}^{n+1} x_i \\
+      -\sum_{i=1}^n x_i \geq -\sum_{i=1}^{n+1} x_i \\
+      \sum_{i=1}^\infty x_i -\sum_{i=1}^n x_i \geq \sum_{i=1}^\infty x_i -\sum_{i=1}^{n+1} x_i \\
+      \sum_{i=n+1}^\infty x_i \geq \sum_{i=n+2}^\infty x_i \\
+      p_{n+1} \geq p_{n+2}
+    }
+    for any $n \in \pints$.
+    Of course we also have
+    \gath{
+      0 \leq x_1 = \sum_{i=1}^1 x_i \\
+      0 \geq -\sum_{i=1}^1 x_i \\
+      \sum_{i=1}^\infty x_i \geq \sum_{i=1}^\infty x_i - \sum_{i=1}^1 x_i \\
+      p_1 \geq p_2 \,.
+    }
+    Together these show that the sequence of partial series is non-increasing.
+    Also, since the series of partial sums is non-decreasing, we have that that the infinite sum cannot be less than any of the partial sums, that is
+    \gath{
+      \sum_{i=1}^\infty x_i \geq \sum_{i=1}^{n-1} x_i \\
+      \sum_{i=1}^\infty x_i - \sum_{i=1}^{n-1} x_i \geq 0 \\
+      p_n \geq 0
+    }
+    for any $n \in \pints$.
+
+    To show that the sequence of partial series converges to zero, consider any $\e > 0$.
+    We know that the sequence of partial sums converges to the infinite sum by the definition of a series.
+    Hence there is an $N \in \pints$ such that
+    \ali{
+      \abs{\sum_{i=1}^n x_i - \sum_{i=1}^\infty x_i} &< \e \\
+      \abs{-p_{n+1}} &< \e \\
+      \abs{p_{n+1}} &< \e \\
+      \abs{p_{n+1} - 0} &< \e
+    }
+    for all $n \geq N$, and hence $\abs{p_n - 0} < \e$ for all $n \geq N+1$.
+    This of course shows convergence to zero as desired.
+  }
+    
+  \mainprob
+
+  (a)
+  \qproof{
+    First we show that the \elltop{} is finer than the topology inherited from the uniform topology using Lemma~20.2 since they are both metric topologies.
+    So consider any $\vx \in X$ and let $B = X \cap B_{\br}(\vx, \e)$ for any $\e > 0$, which is of course a basis element of the subspace topology inherited by the uniform topology.
+    Then the set $C = B_d(\vx, \e/2)$ (where $d$ is the metric defined above for the \elltop{} instead of the usual metric on $\reals$) is a basis element of the \elltop{}.
+    We claim that $\vx \in C \ss B$, which completes the proof that the \elltop{} is finer.
+
+    First, it is obvious that $\vx \in C$.
+    Now consider any $\vy \in C = B_d(\vx, \e/2)$.
+    Then we have that
+    \gath{
+      d(\vy, \vx) = \squares{\sum_{i=1}^\infty (y_i - x_i)^2}^{1/2} < \e/2
+    }
+    For $n \in \pints$ let
+    \gath{
+      s_n = \sum_{i=1}^n (y_i - x_i)^2
+    }
+    be the partial sums of the infinite sum $\sum (y_i-x_i)^2$.
+    Clearly each term in the sum is non-negative so that the sequence of partial sums is non-decreasing.
+    It then follows that $s_n \leq \sum (y_i-x_i)^2$ for any $n \in \pints$.
+    We clearly then have, for any $n \in \pints$, that
+    \gath{
+      \abs{y_n-x_n}^2 = (y_n-x_n)^2 \leq \sum_{i=1}^{n-1} (y_i-x_i)^2  + (y_n-x_n)^2 = \sum_{i=1}^n (y_i-x_i)^2 = s_n \leq \sum_{i=1}^\infty (y_i-x_i)^2
+    }
+    since again each term is non-negative.
+    Hence by Corollary~\ref{cor:metric:opmon} we have
+    \gath{
+      \abs{y_n-x_n} = \squares{\abs{y_n-x_n}^2}^{1/2} \leq \squares{\sum_{i=1}^\infty (y_i-x_i)^2}^{1/2} < \e/2 \,.
+    }
+    It then follows that
+    \gath{
+      \bar{p}(y_n,x_n) \leq p(y_n,x_n) = \abs{y_n-x_n} < \e/2 \,,
+    }
+    where we have let $p$ and $\bar{p}$ denote the standard metric and standard bounded metric, respectively, on $\reals$.
+    Since this is true for any $n \in \pints$, it follows that
+    \gath{
+      \br(\vy, \vx) = \sup\braces{\bar{p}(y_n,x_n) \where n \in \pints} \leq \e/2 < \e
+    }
+    so that $\vy \in B_{\br}(\vx, \e)$.
+    Thus clearly $\vy \in X \cap B_{\br}(\vx, \e) = B$ so that $C \ss B$ as desired since $\vy$ was arbitrary.
+
+    Now we show that the topology inherited from the box topology is finer the \elltop{} using Lemma~13.3.
+    So consider any $\vx \in X$ and any basis element $B$ containing $\vx$ of the \elltop{}.
+    Then by Lemma~\ref{lem:metric:ball} there is an $\e > 0$ where $B_d(\vx,\e) \ss B$ since $B$ is of course open.
+    Now consider the set
+    \gath{
+      C = X \cap \prod_{i \in \pints} B_p(x_i, \e/\sqrt{2^{i+1}}) \,,
+    }
+    where again $p$ denotes the usual metric on $\reals$.
+    Then clearly $C$ is a basis element of the subspace topology inherited by the box topology and contains $\vx$, noting that clearly each $\e/\sqrt{2^{i+1}} > 0$.
+    We claim that $C \ss B_d(\vx, \e) \ss B$, which shows the desired result.
+
+    To see this suppose that $\vy \in C$ so that $\vy \in X$ and $\vy \in \prod B_p(x_i, \e/\sqrt{2^{i+1}})$.
+    Then, for any $i \in \pints$, we have that
+    \gath{
+      p(y_i, x_i) = \abs{y_i - x_i} \leq \e/\sqrt{2^{i+1}}
+    }
+    is true.
+    It then follows from Lemma~\ref{lem:metric:pmon} that
+    \gath{
+      (y_i - x_i)^2 = \abs{y_i - x_i}^2 \leq \parens{\e/\sqrt{2^{i+1}}}^2 \,.
+    }
+    Since this is true for any $i \in \pints$, we have by Corollary~\ref{cor:metric:sumleq} that
+    \ali{
+      \sum_{i=1}^\infty (y_i-x_i)^2 &\leq \sum_{i=1}^\infty \parens{\frac{\e}{\sqrt{2^{i+1}}}}^2 = \sum_{i=1}^\infty \frac{\e^2}{2^{i+1}} = \e^2 \sum_{i=1}^\infty \parens{\frac{1}{2}}^{i+1} \\
+      &= \e^2 \sum_{i=2}^\infty \parens{\frac{1}{2}}^i = \e^2 \squares{\sum_{i=0}^\infty \parens{\frac{1}{2}}^i - \parens{\frac{1}{2}}^0 - \parens{\frac{1}{2}}^1} \\
+      &= \e^2 \squares{\frac{1}{1-\frac{1}{2}} - 1 - \frac{1}{2}} = \e^2 \squares{2 - 1 - \frac{1}{2}} \\
+      &= \frac{\e^2}{2}
+    }
+    since $\sum (1/2)^i$ is a geometric series.
+    It then follows from Corollary~\ref{cor:metric:opmon} that
+    \gath{
+      d(\vy, \vx) = \squares{\sum_{i=1}^\infty (y_i - x_i)^2}^{1/2} \leq \parens{\frac{\e^2}{2}}^{1/2} = \frac{\e}{\sqrt{2}} < \e
+    }
+    so that $\vy \in B_d(\vx, \e)$.
+    Since $\vy$ was arbitrary, this shows that $C \ss B_d(\vx, \e) \ss B$ as desired, thereby completing the proof.
+  }
+
+  (b)
+  \qproof{
+    Since relative topological ``fineness'' is preserved when inherited by subspace topologies (which is trivial to show), we have from part (a) and what was shown in the text that
+    \gath{
+      \text{box topology} \sps \text{\elltop{}} \sps \text{uniform topology} \sps \text{product topology}
+    }
+    on $\rinf$.
+    To show that they are all distinct, it then suffices to show that each of the box, $\ell^2$, and uniform topologies (or more properly the subspace topologies inherited from them) have open sets that are not open in the $\ell^2$, uniform, and product topologies, respectively.
+
+    First we show that the inherited box topology has an open set that is not open in the inherited \elltop{}.
+    Consider the set $U = \rinf \cap \prod_{n \in \pints} (-1, 1/n)$, which is clearly a basis element and open set in the inherited box topology.
+    We show that $U$ is not open in the inherited \elltop{} using the contrapositive of Lemma~\ref{cor:metric:subball}.
+    So consider the point $\vze$, which is clearly contained in $U$ and any $\e > 0$ and the arbitrary ball $B_d(\vze, \e)$ of $X$.
+    Of course, there is positive integer $N$ large enough that $N \geq 2/\e$, and hence $1/N \leq \e/2$.
+
+    Now, consider the sequence $\vx$ defined by
+    \gath{
+      x_n = \begin{cases}
+        0 & n \neq N \\
+        \e/2 & n = N
+      \end{cases}
+    }
+    for $n \in \pints$.
+    Clearly $\vx$ is eventually zero so that $\vx \in \rinf$ since $x_n = 0$ for all $n \geq N+1$.
+    We also clearly have
+    \gath{
+      d(\vx, \vze) = \squares{\sum_{i=1}^\infty (x_i - 0)^2}^{1/2} = \squares{\sum_{i=1}^\infty x_i^2}^{1/2} = \squares{\parens{\frac{\e}{2}}^2}^{1/2} = \frac{\e}{2} < \e
+    }
+    so that $\vx \in B_d(\vze, \e)$.
+    Therefore $\vx \in \rinf \cap B_d(\vze, \e)$.
+    However, we have that $1/N \leq \e/2 = x_N$ so that $x_N \notin (-1, 1/N)$, and hence $\vx \notin \prod_{n \in \pints} (-1, 1/n)$.
+    From this clearly $\vx \notin U$ so that $\rinf \cap B_d(\vze, \e)$ cannot be a subset of $U$.
+    Since the ball $B_d(\vze, \e)$ was arbitrary, this shows that $U$ is not open in the inherited \elltop{} as desired.
+
+    Next we show that there is an open set in the inherited \elltop{} that is not open in the inherited uniform topology.
+    So consider the set $U = \rinf \cap B_d(\vze, 1)$, which is clearly open in the inherited \elltop{}.
+    We show that $U$ is not open in the inherited uniform topology, again by the contrapositive of Corollary~\ref{cor:metric:subball}.
+    Consider the point $\vze$, clearly in $U$, and any $\e > 0$ so that $B_{\br}(\vze, \e)$ is an arbitrary ball in the uniform topology on $\reals^\w$.
+    Now clearly there is an $N \in \pints$ large enough that $N \geq (2/\e)^2$.
+    It then follows from Corollary~\ref{cor:metric:opmon} that $\sqrt{N} \geq 2/\e$.
+
+    Now define the sequence $\vx$ by
+    \gath{
+      x_n = \begin{cases}
+        \e/2 & n \leq N \\
+        0 & n > N
+      \end{cases}
+    }
+    for $n \in \pints$, so that clearly $\vx \in \rinf$.
+    Then clearly we have
+    \gath{
+      \bar{p}(x_n, 0) \leq p(x_n, 0) = \abs{\e/2 - 0} = \abs{\e/2} = \e/2
+    }
+    for any $n \leq N$, where again $p$ and $\bar{p}$ are the standard and standard bounded metrics on $\reals$, respectively.
+    If $n > N$ clearly
+    \gath{
+      \bar{p}(x_n, 0) \leq p(x_n, 0) = \abs{0 - 0} = \abs{0} = 0 \leq \e/2 \,.
+    }
+    Hence it follows that
+    \gath{
+      \br(\vx, \vze) = \sup\braces{\bar{p}(x_n, 0) \where n \in \pints} \leq \e/2 < \e
+    }
+    so that $\vx \in B_{\br}(\vze, \e)$.
+    Therefore of course $\vx \in \rinf \cap B_{\br}(\vze, \e)$.
+    However, we also have
+    \ali{
+      d(\vx, 0) &= \squares{\sum_{i=1}^\infty (x_i - 0)^2}^{1/2} = \squares{\sum_{i=1}^\infty x_i^2}^{1/2} 
+      = \squares{\sum_{i=1}^N \parens{\frac{\e}{2}}^2}^{1/2} \\
+      &= \squares{N \parens{\frac{\e}{2}}^2}^{1/2}
+      = \sqrt{N}\frac{\e}{2} \\
+      &\geq \frac{2}{\e}\parens{\frac{\e}{2}} = 1
+    }
+    since $\sqrt{N} \geq 2/\e$.
+    Therefore clearly $\vx \notin B_d(\vze, 1)$ so that $\vx \notin U$.
+    It follows that $\rinf \cap B_{\br}(\vze, \e)$ cannot be a subset of $U$.
+    Since $B_{\br}(\vze, \e)$ was an arbitrary ball, this shows that $U$ is not open in the uniform topology as desired.
+
+    Lastly we show that there is an open set in the inherited uniform topology that is not open in the inherited product topology.
+    So let $U = \rinf \cap B_{\br}(\vze, 1)$, which is clearly open in the inherited uniform topology.
+    We show that $U$ is not open in the inherited product topology using the definition of a basis.
+    Consider any basis element $B$ of the inherited product topology that contains $\vze$ so that $B = \rinf \cap \prod_{n \in \pints} B_n$, where each $B_n$ is open in $\reals$ and $B_n \neq \reals$ for only finitely many $n \in \pints$.
+    Then clearly there is an $N \in \pints$ where $B_N = \reals$, and clearly we have $0 \in B_n$ for all $n \in \pints$.
+
+    So define the sequence $\vx$ by
+    \gath{
+      x_n = \begin{cases}
+        0 & n \neq N \\
+        1 & n = N
+      \end{cases}
+    }
+    for $n \in \pints$.
+    Clearly $\vx \in \rinf$ since $x_n = 0$ for all $n \geq N+1$.
+    For any $n \in \pints$ we have that $x_n = 0 \in B_n$ if $n \neq N$, and $x_n = 1 \in \reals = B_n$ for $n = N$.
+    Hence clearly $\vx \in \prod B_n$ so that $\vx \in \rinf \cap \prod B_n = B$ as well.
+    However, we clearly have that
+    \gath{
+      p(x_N,0) = \abs{x_N - 0} = \abs{1 - 0} = \abs{1} = 1 \geq 1
+    }
+    so that $\bar{p}(x_N, 0) = \min\braces{p(x_N,0), 1} = 1 \geq 1$.
+    Then it has to be that
+    \gath{
+      \br(\vx, \vze) = \sup\braces{\bar{p}(x_n, 0) \where n \in \pints} \geq 1
+    }
+    so that $\vx \notin B_{\br}(\vze, 1)$ and hence $\vx \notin U$.
+    This shows that $B$ is not a subset of $U$, which shows that $U$ is not open in the inherited product topology since $B$ was an arbitrary basis element.
+  }
+
+  (c) First, we note that $H$ is contained in $X$ by the comparison test since the series $\sum (1/n)^2$ converges. Then, again since relative topological ``fineness'' is preserved when inherited by subspace topologies, we know that
+  \gath{
+    \text{box topology} \sps \text{\elltop{}} \sps \text{uniform topology} \sps \text{product topology}
+  }
+  on $H$.
+  We claim, however, that the inherited box topology is distinct from the other three, which are all the same.
+  \qproof{
+    First we show that the inherited box topology has an open set that is not open in the inherited \elltop{}, in a very similar way to how this was shown in part (b).
+    Consider the set $U = H \cap \prod_{n \in \pints} (-1, 1/n)$, which is clearly a basis element and open set in the inherited box topology.
+    We show that $U$ is not open in the inherited \elltop{} using the contrapositive of Lemma~\ref{cor:metric:subball}.
+    So consider the point $\vze$, which is clearly contained in $U$ and any $\e > 0$ and the arbitrary ball $B_d(\vze, \e)$ of $X$.
+    Of course, there is positive integer $N$ large enough that $N \geq 2/\e$, and hence $1/N \leq \e/2$.
+
+    Now, consider the sequence $\vx$ defined by
+    \gath{
+      x_n = \begin{cases}
+        0 & n \neq N \\
+        1/N & n = N
+      \end{cases}
+    }
+    for $n \in \pints$.
+    Clearly $\vx \in H$ since each $x_n \in [0,1/n]$.
+    We also clearly have
+    \gath{
+      d(\vx, \vze) = \squares{\sum_{i=1}^\infty (x_i - 0)^2}^{1/2} = \squares{\sum_{i=1}^\infty x_i^2}^{1/2}
+      = \squares{x_N^2}^{1/2} = x_N = 1/N \leq \e/2 < \e
+    }
+    so that $\vx \in B_d(\vze, \e)$.
+    Therefore $\vx \in H \cap B_d(\vze, \e)$.
+    However, we have that $x_N = 1/N$ so that $x_N \notin (-1, 1/N)$, and hence $\vx \notin \prod_{n \in \pints} (-1, 1/n)$.
+    From this clearly $\vx \notin U$ so that $H \cap B_d(\vze, \e)$ cannot be a subset of $U$.
+    Since the ball $B_d(\vze, \e)$ was arbitrary, this shows that $U$ is not open in the inherited \elltop{} as desired.
+
+    To show that the other three topologies are the same on $H$, it suffices to show that the inherited product topology is finer than the inherited \elltop{}, which we do using Lemma~13.3.
+    So consider any $\vx \in H$ and any basis element $B$ of the inherited \elltop{} that contains $\vx$.
+    It then follows from Corollary~\ref{cor:metric:subball} that there is an $\e > 0$ where $B' = H \cap B_d(\vx, \e) \ss B$ since of course $B$ is open.
+    Now, by Lemma~\ref{lem:metric:pseries} the sequence of partial series $p_n = \sum_{i=n}^\infty (1/i)^2$ converges to zero so that there is an $N \in \pints$ where $p_n = \abs{p_n} = \abs{p_n - 0} < \e^2/2$ for all $n \geq N$ since each $p_n$ is non-negative (also by Lemma~\ref{lem:metric:pseries}).
+    In particular $p_{N+1} = \sum_{i=N+1}^\infty (1/i)^2 < \e^2/2$.
+    So define the following sets:
+    \gath{
+      C_n = \begin{cases}
+        B_p(x_n, \e/\sqrt{2N}) & n \leq N \\
+        \reals & n > 0
+      \end{cases}
+    }
+    for $n \in \pints$, where again $p$ is the usual metric on $\reals$.
+    Clearly $C = H \cap \prod C_n$ is a basis element in the inherited product topology that contains $\vx$.
+    We now claim that $C \ss B' \ss B$, which shows that the inherited product topology is finer by Lemma~13.3 since $B$ was an arbitrary basis element.
+
+    To see this, consider any $\vy \in C$ so that $\vy \in H$ and $\vy \in \prod C_n$.
+    Now, for any $n \leq N$, we have that $y_n \in C_n = B_p(x_n, \e/\sqrt{2N})$ so that $\abs{y_n - x_n} < \e/\sqrt{2N}$.
+    It then follows from Lemma~\ref{lem:metric:pmon} that
+    \gath{
+      (y_n - x_n)^2 = \abs{y_n - x_n}^2 < \parens{\frac{\e}{\sqrt{2N}}}^2 = \frac{\e^2}{2N} \,.
+    }
+    Since this is true of each $n \leq N$, we clearly have that
+    \gath{
+      \sum_{i=1}^N (y_i - x_i)^2 < \sum_{i=1}^N \frac{\e^2}{2N} = N\frac{\e^2}{2N} = \frac{\e^2}{2} \,.
+    }
+    Now, for any $n > N$ we have that of course that $\vy \in H = \prod [0, 1/n]$ so that $y_n \in [0, 1/n]$.
+    Similarly $\vx \in H$ so that $x_n \in [0,1/n]$.
+    Then both $0 \leq y_n \leq 1/n$ and $0 \leq x_n \leq 1/n$ so that
+    \gath{
+      0 \leq x_n \leq 1/n \\
+      0 \geq -x_n \geq -1/n \\
+      y_n \geq y_n - x_n \geq y_n - 1/n \\
+      1/n \geq y_n \geq y_n - x_n \geq y_n - 1/n \geq 0 - 1/n = -1/n \,.
+    }
+    Hence $\abs{y_n - x_n} \leq 1/n$, from which it follows that $(y_n-x_n)^2 = \abs{y_n-x_n}^2 \leq (1/n)^2$ by Lemma~\ref{lem:metric:pmon}.
+    Since this it true for any $n > N$, it follow from either Lemma~\ref{lem:metric:seqleq} or Corollary~\ref{cor:metric:sumleq} that
+    \gath{
+      \sum_{i=N+1}^\infty (y_i - x_i)^2 \leq \sum_{i=N+1}^\infty \parens{\frac{1}{i}}^2 < \frac{\e^2}{2} \,.
+    }
+    We then have, from the definition of partial series (Definition~\ref{def:metric:pseries}), that
+    \gath{
+      \sum_{i=1}^\infty (y_i - x_i)^2 = \sum_{i=1}^N (y_i - x_i)^2 + \sum_{i=N+1}^\infty (y_i - x_i)^2 < \frac{\e^2}{2} + \frac{\e^2}{2} = \e^2
+    }
+    Then Corollary~\ref{cor:metric:opmon} means that
+    \gath{
+      d(\vy, \vx) = \squares{\sum_{i=1}^\infty (y_i - x_i)^2}^{1/2} < \parens{\e^2}^{1/2} = \e
+    }
+    so that $\vy \in B_d(\vx, \e)$, and hence clearly $\vy \in H \cap B_d(\vx, \e) = B'$.
+    Since $\vy$ was arbitrary, this shows that $C \ss B' \ss B$ as desired.
   }
 }
