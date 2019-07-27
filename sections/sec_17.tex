@@ -222,11 +222,11 @@
   (a)
   \qproof{
     Suppose that $A \ss B$ and consider any $x \in \clA$.
-    Consider any neighborhood $U$ of $x$ so that $U$ intersects $A$ by Theorem~17.5a.
+    Consider any neighborhood $U$ of $x$ so that $U$ intersects $A$ by Theorem~17.5 part (a).
     Hence there is a point $y \in U \cap A$ so that $y \in U$ and $y \in A$.
     But then clearly $y \in B$ also since $A \ss B$.
     Therefore $y \in U \cap B$ so that $U$ intersects $B$.
-    Since $U$ was an arbitrary neighborhood of $x$, this shows that $x \in \clB$, again by Theorem~17.5a.
+    Since $U$ was an arbitrary neighborhood of $x$, this shows that $x \in \clB$, again by Theorem~17.5 part (a).
     This of course shows that $\clA \ss \clB$ as desired since $x$ was arbitrary.
   }
 
@@ -236,7 +236,7 @@
     We show this by contrapositive.
     So suppose that $x \notin \clA \cup \clB$.
     Then clearly $x \notin \clA$ and $x \notin \clB$.
-    Thus, by Theorem~17.5a, there is an open set $U_A$ such that $U_A$ does not intersect $A$, and likewise an open $U_B$ that does not intersect $B$.
+    Thus, by Theorem~17.5 part (a), there is an open set $U_A$ such that $U_A$ does not intersect $A$, and likewise an open $U_B$ that does not intersect $B$.
     Let $U = U_A \cap U_B$, which is clearly open since $U_A$ and $U_B$ are.
     We also note that $U$ contains $x$ since both $U_A$ and $U_B$ do.
     Then it must be that $U$ does not intersect $A$ since, if it did, then $U_A$ would also intersect $A$ since $U \ss U_A$.
@@ -244,33 +244,33 @@
     Thus, for all $y \in U$, $y \notin A$ and $y \notin B$.
     This is logically equivalent to saying that there is no $y \in U$ where $y \in A$ or $y \in B$, therefore there is no $y \in U$ where $y \in A \cup B$.
     Hence $U$ and $A \cup B$ do not intersect.
-    Since $U$ is open and contains $x$, this shows that $x \notin \closure{A \cup B}$, again by Theorem~17.5a.
+    Since $U$ is open and contains $x$, this shows that $x \notin \closure{A \cup B}$, again by Theorem~17.5 part (a).
     Therefore, by contrapositive, $x \in \closure{A \cup B}$ implies that $x \in \clA \cup \clB$ so that $\closure{A \cup B} \ss \clA \cup \clB$.
 
     $(\sps)$
     Consider any $x \in \clA \cup \clB$ and any neighborhood $U$ of $x$.
-    If $x \in \clA$ then $U$ intersects $A$ by Theorem~17.5a.
+    If $x \in \clA$ then $U$ intersects $A$ by Theorem~17.5 part (a).
     Hence there is a $y \in U \cap A$ so that $y \in U$ and $y \in A$.
     Then clearly $y \in A \cup B$ so that $y$ is also in $U \cap (A \cup B)$.
     Hence $U$ intersects $A \cup B$.
     An analogous argument shows that this is also true if $x \in \clB$ instead.
-    Since $U$ was an arbitrary neighborhood, this shows that $x \in \closure{A \cup B}$ by Theorem~17.5a.
+    Since $U$ was an arbitrary neighborhood, this shows that $x \in \closure{A \cup B}$ by Theorem~17.5 part (a).
     Hence $\clA \cup \clB \ss \closure{A \cup B}$ since $x$ was arbitrary.
   }
 
   (c)
   \qproof{
     Consider any $x \in \bigcup \clA_\a$ so that there is a particular $\b$ where $x \in \clA_\b$.
-    Suppose that $U$ is any open set containing $x$ so that $U$ intersects $A_\b$ by Theorem~17.5a since $x \in \clA_\b$.
+    Suppose that $U$ is any open set containing $x$ so that $U$ intersects $A_\b$ by Theorem~17.5 part (a) since $x \in \clA_\b$.
     Then clearly $U$ also intersects $\bigcup A_\a$ since $A_\b \ss \bigcup A_\a$.
-    Since $U$ was an arbitrary open set containing $x$, this shows that $x \in \closure{\bigcup A_\a}$ by Theorem~17.5a.
+    Since $U$ was an arbitrary open set containing $x$, this shows that $x \in \closure{\bigcup A_\a}$ by Theorem~17.5 part (a).
     This shows that $\bigcup \clA_\a \ss \closure{\bigcup A_\a}$ since $x$ was arbitrary, which is of course the desired result.
   }
 
   As an example where equality fails, consider the standard topology on $\reals$ and the sets $A_n = \opcl{1/n, 2}$ for $n \in \pints$.
   It is then trivial to show that $\bigcup A_n = \opcl{0, 2}$ so that clearly $0$ is a limit point of $\bigcup A_n$, and hence $0 \in \closure{\bigcup A_n}$.
   However, for any $n \in \pints$, the open interval $(-1, 1/n)$ is clearly an open set containing $0$ that is disjoint from $\opcl{1/n, 2} = A_n$.
-  This shows that $0 \notin \clA_n$ for every $n \in \pints$ by Theorem~17.5a, from which it follows that $0 \notin \bigcup \clA_n$.
+  This shows that $0 \notin \clA_n$ for every $n \in \pints$ by Theorem~17.5 part (a), from which it follows that $0 \notin \bigcup \clA_n$.
   Hence $\closure{\bigcup A_n}$ is not a subset of $\bigcup \clA_n$ and thus $\closure{\bigcup A_n} \neq \bigcup \clA_n$.
 }
 
@@ -283,7 +283,7 @@
   \dwhitman
 
   The problem with this ``proof'' is that, just because every neighborhood $U$ intersects \emph{some} $A_\a$, it does not mean that \emph{every} $U$ intersects a single $A_\a$, which is what is required for $x$ to be in $\clA_\a$.
-  This is illustrated in the counterexample above at the end of Exercise~17.6c.
+  This is illustrated in the counterexample above at the end of Exercise~17.6 part (c).
   There, every neighborhood of $0$ clearly intersects \emph{some} set $A_n = \opcl{1/n, 2}$, but, for any given $n \in \pints$, not every neighborhood of $0$ intersects $A_n$, for example the neighborhood $(-1, 1/n)$ does not.
 }
 
@@ -302,8 +302,8 @@
   (a) We claim that $\closure{A \cap B} \ss \clA \cap \clB$ but equality is not always true.
   \qproof{
     Consider any $x \in \closure{A \cap B}$ and any open set $U$ containing $x$.
-    Then by, Theorem~17.5a, $U$ intersects $A \cap B$, from which it immediately follows that $U$ intersects both $A$ and $B$.
-    However, since $U$ was an arbitrary neighborhood of $x$, it follows from Theorem~17.5a again that $x$ is in both $\clA$ and $\clB$.
+    Then by, Theorem~17.5 part (a), $U$ intersects $A \cap B$, from which it immediately follows that $U$ intersects both $A$ and $B$.
+    However, since $U$ was an arbitrary neighborhood of $x$, it follows from Theorem~17.5 part (a) again that $x$ is in both $\clA$ and $\clB$.
     Hence $x \in \clA \cap \clB$, which shows that $\closure{A \cap B} \ss \clA \cap \clB$ since $x$ was arbitrary.
 
     Now consider the standard topology on $\reals$ with $A = \clop{-1,0}$ and $B = \opcl{0,1}$.
@@ -315,8 +315,8 @@
   (b) We again claim that $\closure{\bigcap A_\a} \ss \bigcap \clA_\a$ but that equality is not generally true.
   \qproof{
     Consider any $x \in \closure{\bigcap A_\a}$ and any open set $U$ of $x$.
-    Then, by Theorem~17.5a, $U$ intersects $\bigcap A_\a$ so that, for any particular $A_\b$, $U$ intersects $A_\b$.
-    This shows that $x \in \clA_\b$ by Theorem~17.5a so that $x \in \clA_\a$ for every $\a$ since $\b$ was arbitrary.
+    Then, by Theorem~17.5 part (a), $U$ intersects $\bigcap A_\a$ so that, for any particular $A_\b$, $U$ intersects $A_\b$.
+    This shows that $x \in \clA_\b$ by Theorem~17.5 part (a) so that $x \in \clA_\a$ for every $\a$ since $\b$ was arbitrary.
     Hence $x \in \bigcap \clA_\a$, which shows that $\closure{\bigcap A_\a} \ss \bigcap \clA_\a$ since $x$ was arbitrary.
     
     As in part (a), equality fails if we have $A_1 = \clop{-1,0}$ and $A_2 = \opcl{0,1}$ in the standard topology on $\reals$.
@@ -326,14 +326,14 @@
   (c) Here we claim that $\closure{A-B} \sps \clA - \clB$ but that the converse does not always hold.
   \qproof{
     Consider any $x \in \clA - \clB$ and any open set $U$ containing $x$.
-    Then $x \in \clA$ so that every open set containing $x$ intersects $A$ by Theorem~17.5a.
-    Also $x \notin \clB$ so that there is an open set $V$ containing $x$ that does not intersect $B$, also by Theorem~17.5a.
+    Then $x \in \clA$ so that every open set containing $x$ intersects $A$ by Theorem~17.5 part (a).
+    Also $x \notin \clB$ so that there is an open set $V$ containing $x$ that does not intersect $B$, also by Theorem~17.5 part (a).
     Let $W = U \cap V$ so that $W$ contains $x$ since both $x \in U$ and $x \in V$.
     Now, since $W$ is also an open set containing $x$, $W$ intersects $A$ so that there is a $y \in W$ where also $y \in A$.
     It also cannot be that $y \in B$ since we have $y \in W \ss V$ so that then $V$ would intersect $B$.
     Therefore $y \in A - B$.
     Also we have $y \in W \ss U$ so that also $y \in U$.
-    Hence $U$ intersects $A - B$, which shows that $x \in \closure{A-B}$ by Theorem~17.5a since $U$ was an arbitrary neighborhood of $x$.
+    Hence $U$ intersects $A - B$, which shows that $x \in \closure{A-B}$ by Theorem~17.5 part (a) since $U$ was an arbitrary neighborhood of $x$.
     Therefore $\closure{A-B} \sps \clA - \clB$ as desired since $x$ was arbitrary.
 
     As a counterexample to equality, consider the standard topology on $\reals$ with $A = [0,2]$ and $B = \opcl{1,3}$.
@@ -357,18 +357,18 @@
     $(\ss)$ Consider $(x,y) \in \closure{A \times B}$.
     Also suppose that $U$ and $V$ are any open sets in $X$ and $Y$, respectively, that contain $x$ and $y$, respectively.
     Then $U \times V$ is a basis element of the product topology on $X \times Y$, by definition, that contains $(x,y)$.
-    It then follows from Theorem~17.5b that $U \times V$ intersects $A \times B$ and hence there is a point $(w,z) \in U \times V$ where also $(w,z) \in A \times B$.
-    Then $w \in U$ and $w \in A$ so that $U$ intersects $A$, and hence $x \in \clA$ by Theorem~17.5a since $U$ was an arbitrary neighborhood of $x$.
+    It then follows from Theorem~17.5 part (b) that $U \times V$ intersects $A \times B$ and hence there is a point $(w,z) \in U \times V$ where also $(w,z) \in A \times B$.
+    Then $w \in U$ and $w \in A$ so that $U$ intersects $A$, and hence $x \in \clA$ by Theorem~17.5 part (a) since $U$ was an arbitrary neighborhood of $x$.
     An analogous argument shows that $y \in \clB$.
     Therefore $(x,y) \in \clA \times \clB$ so that $\closure{A \times B} \ss \clA \times \clB$ since $x$ was arbitrary.
 
     $(\sps)$ Now suppose that $(x,y)$ is any point in $\clA \times \clB$ so that $x \in \clA$ and $y \in \clB$.
     Suppose also that $U \times V$ is any basis element of $X \times Y$ that contains $(x,y)$ so that by definition $U$ and $V$ are open in $X$ and $Y$, respectively.
-    Since $x \in \clA$ and $U$ is an open set where $x \in U$, it follows from Theorem~17.5a that $U$ intersects $A$.
+    Since $x \in \clA$ and $U$ is an open set where $x \in U$, it follows from Theorem~17.5 part (a) that $U$ intersects $A$.
     Thus there is $w \in U$ where $w \in A$ as well.
     An analogous argument shows that $V$ intersects $B$ so that there is a $z \in V$ where also $z \in B$.
     We therefore have that $(w,z) \in U \times V$ and $(w,z) \in A \times B$ so that $U \times V$ intersects $A \times B$.
-    Since $U \times V$ was an arbitrary basis element containing $(x,y)$, it follows from Theorem~17.5b that $(x,y) \in \closure{A \times B}$.
+    Since $U \times V$ was an arbitrary basis element containing $(x,y)$, it follows from Theorem~17.5 part (b) that $(x,y) \in \closure{A \times B}$.
     This shows that $\clA \times \clB \ss \closure{A \times B}$ since the point $(x,y)$ was arbitrary.
   }
 }
@@ -589,7 +589,7 @@
     If it did, then there would be an integer $m$ where $1/(n+1) < 1/m < 1/n$ so that $n < m < n+1$, which we know is not possible since $n+1$ is the immediate successor of $n$ in $\pints$.
 
     Thus in all cases there is a neighborhood of $x$ that does not intersect $K$.
-    This of course shows that $x \notin \clK$ by Theorem~17.5a.
+    This of course shows that $x \notin \clK$ by Theorem~17.5 part (a).
     We have therefore shown that $x \notin K \cup \braces{0}$ implies that $x \notin \clK$.
     By contrapositive, this shows that $\clK \ss K \cup \braces{0}$.
 
@@ -597,7 +597,7 @@
     Then $a < 0 < b$.
     Clearly there is an $n \in \pints$ large enough where $a < 0 < 1/n < b$ and hence $1/n \in (a,b) \ss U$.
     Since also $1/n \in K$, we have that $U$ intersects $K$.
-    Since $U$ was an arbitrary neighborhood, this shows that $0$ is in $\clK$ by Theorem~17.5a.
+    Since $U$ was an arbitrary neighborhood, this shows that $0$ is in $\clK$ by Theorem~17.5 part (a).
     Since also clearly any $x \in K$ is also in $\clK$, it follows that $\clK \sps K \cup \braces{0}$.
   }
 
@@ -607,7 +607,7 @@
     Now consider any $x \notin K$.
     Then clearly the set $B = (x-1,x+1) - K$ is a basis element of $\cT_2$.
     Also it clearly contains $x$ since $x \notin K$ and also does not intersect $K$ since $y \in B$ means that $y \notin K$.
-    This shows that $x$ is not in $\clK$ by Theorem~17.5b.
+    This shows that $x$ is not in $\clK$ by Theorem~17.5 part (b).
     Since $x$ was arbitrary this shows that $x \notin K$ implies that $x \notin \clK$.
     Thus $\clK \ss K$ by contrapositive.
     This suffices to show that $\clK = K$ as desired.
@@ -619,7 +619,7 @@
     Then $U$ is open in $\cT_3$ so that $\reals - U$ must be finite, noting that $\reals - U$ cannot be all of $\reals$ since $U$ would then have to be empty since $U \ss \reals$, whereas we know that $x \in U$.
     It then follows that there are a finite number of real numbers not in $U$.
     However, clearly $K$ is an infinite set so that there must be an element of $K$ that \emph{is} in $U$.
-    This shows that $K$ intersects $U$ so that $x$ is in $\clK$ by Theorem~17.5a since $U$ was an arbitrary neighborhood.
+    This shows that $K$ intersects $U$ so that $x$ is in $\clK$ by Theorem~17.5 part (a) since $U$ was an arbitrary neighborhood.
     Hence $\reals \ss \clK$ since $x$ was arbitrary.
     Clearly also $\clK \ss \reals$ so that $\clK = \reals$.
   }
@@ -642,7 +642,7 @@
     It then follows that the set $B = \opcl{1/(n+1), x}$ is a basis element of $\cT_4$ that contains $x$ and does not intersect $K$.
 
     Hence in all cases there is a basis element $B$ containing $x$ that does not intersect $K$.
-    This shows that $x \notin \clK$ by Theorem~17.5b.
+    This shows that $x \notin \clK$ by Theorem~17.5 part (b).
     Hence we have shown that $x \notin K$ implies that $x \notin \clK$, which shows by contrapositive that $\clK \ss K$.
     Therefore $\clK = K$ as desired.
   }
@@ -654,13 +654,13 @@
     Thus $0 \leq x < a$ so that there is an integer $n$ large enough that $0 < 1/n < a$.
     Then $1/n \in B$ and also clearly $1/n \in K$.
     Thus $B$ intersects $K$.
-    Since $B$ was any neighborhood of $x$ it follows from Theorem~17.5b that $x \in \clK$.
+    Since $B$ was any neighborhood of $x$ it follows from Theorem~17.5 part (b) that $x \in \clK$.
     Hence $A \ss \clK$ since $x$ was arbitrary.
 
     Now suppose that $x \notin A$ so that $x < 0$.
     Then the set $B = (-\infty,0)$ is clearly a basis element of $\cT_5$ that contains $x$.
     Since $0 < y$ for any $y \in K$, it follows that $y \notin B$, and thus $B$ cannot intersect $K$.
-    Hence by Theorem~17.5b we have that $x \notin \clK$.
+    Hence by Theorem~17.5 part (b) we have that $x \notin \clK$.
     This shows that $\clK \ss A$ by contrapositive, which completes the proof that $\clK = A$.
   }
   
@@ -738,7 +738,7 @@
     Then of course there is a real $y$ between $a$ and $e$ so that $a < y < e$.
     Thus we have $c \leq a < y < e \leq d$ so that $y \in B$.
     Also $a < y < e \leq b$ so that $y \in A$.
-    Hence $B$ intersects $A$ so that $x = a \in \clA$ by Theorem~17.5b since $B$ was an arbitrary basis element.
+    Hence $B$ intersects $A$ so that $x = a \in \clA$ by Theorem~17.5 part (b) since $B$ was an arbitrary basis element.
 
     Case: $x \neq a$.
     Then it has to be that $x \in (a, b) = A$ so that $x \in \clA$ since obviously $A \ss \clA$.
@@ -748,7 +748,7 @@
     $(\ss)$ Now consider any real $x$ where $x \notin C$ so that either $x < a$ or $x \geq b$.
     If $x < a$ then the basis element $B = \clop{x, a}$ clearly contains $x$ but does not intersect $A$.
     If $x \geq b$ then the basis element $B = \clop{b, x+1}$ contains $x$ and does not intersect $A$.
-    Either way it follows from Theorem~17.5b that $x \notin \clA$.
+    Either way it follows from Theorem~17.5 part (b) that $x \notin \clA$.
     Since $x$ was arbitrary, the contrapositive shows that $\clA \ss C$.
   }
 
@@ -763,7 +763,7 @@
     Obviously there is a rational $p$ where $p < x$ since the rationals are unbounded below.
     Similarly, there is a rational $q$ where $x < q < a$ since the rationals are order-dense in the reals.
     The set $B = \clop{p,q}$ is then clearly a basis element of $\cT_c$ that contains $x$.
-    It is also trivial to show that $B$ does not intersect $A$ since $q < a$, which shows that $x \notin \clA$ by Theorem~17.5b whether $b$ is rational or not.
+    It is also trivial to show that $B$ does not intersect $A$ since $q < a$, which shows that $x \notin \clA$ by Theorem~17.5 part (b) whether $b$ is rational or not.
 
     Case: $x = a$.
     Consider any basis element $B = \clop{p,q}$ (where $p$ and $q$ are rational) that contains $x = a$ so that $p \leq x = a < q$.
@@ -771,7 +771,7 @@
     Then of course there is a real $y$ between $a$ and $d$ so that $a < y < d$.
     Thus we have $p \leq a < y < d \leq q$ so that $y \in B$.
     Also $a < y < d \leq b$ so that $y \in A$.
-    Hence $B$ intersects $A$ so that $x = a \in \clA$ by Theorem~17.5b since $B$ was an arbitrary basis element.
+    Hence $B$ intersects $A$ so that $x = a \in \clA$ by Theorem~17.5 part (b) since $B$ was an arbitrary basis element.
     Note that this is true whether or not $b$ is rational.
 
     Case: $a < x < b$.
@@ -783,7 +783,7 @@
       Then there is another rational $q$ where $q > b$ since the rationals are unbounded above.
       Then clearly the set $B = \clop{b, q}$ is a basis element of $\cT_c$ that contains $b$.
       Also clearly $B$ does not intersect $A$ since $y \in A$ implies that $y < b$ and hence $y \notin B$.
-      This shows that $x = b \notin \clA$ by Theorem~17.5b.
+      This shows that $x = b \notin \clA$ by Theorem~17.5 part (b).
 
       Case: $b$ is irrational.
       Then consider any basis element $B = \clop{p,q}$ containing $b$ so that $p$ and $q$ are rational.
@@ -791,13 +791,13 @@
       Let $c = \max(p,a)$ so that $c < b$ since both $a < b$ and $p < b$.
       There is then a real $y$ where $c < y < b$ so that $a \leq c < y < b$ and hence $y \in A$.
       Also $p \leq c < y < b < q$ so that also $y \in B$.
-      Therefore $B$ and $A$ intersect, which shows that $x = b \in \clA$ by Theorem~17.5b since $B$ was arbitrary.
+      Therefore $B$ and $A$ intersect, which shows that $x = b \in \clA$ by Theorem~17.5 part (b) since $B$ was arbitrary.
     \end{indpar}
 
     Case: $x > b$.
     Then there are clearly rationals $p$ and $q$ where $b < p < x$ and $x < q$.
     Then clearly the set $B = \clop{p,q}$ is a basis element that contains $x$ and does not intersect $A$.
-    This of course shows that $x \notin \clA$ by Theorem~17.5b again, noting that this is true regardless of the rationality of $b$.
+    This of course shows that $x \notin \clA$ by Theorem~17.5 part (b) again, noting that this is true regardless of the rationality of $b$.
 
     These cases taken together show the desired results.
   }
@@ -914,7 +914,7 @@
     $(\ss)$ Consider any $x \times y$ where $x \times y \notin F$ so that simply $x \neq \tfrac{1}{2}$ since it has to be that $y \in [0,1]$.
     If $x < \tfrac{1}{2}$ then the basis element $\clop{0 \times 0, \tfrac{1}{2} \times 0}$ clearly contains $x \times y$ but no elements of $E$.
     If $x > \tfrac{1}{2}$ then the basis element $\opcl{\tfrac{1}{2} \times 1, 1 \times 1}$ clearly contains $x \times y$ but no elements of $E$ either.
-    This shows that $x \times y$ is a not in $\closure{E}$ by Theorem~17.5b.
+    This shows that $x \times y$ is a not in $\closure{E}$ by Theorem~17.5 part (b).
     Hence $\closure{E} \ss F$ by contrapositive.
 
     $(\sps)$ Consider any $x \times y \in F$ so that $x = \tfrac{1}{2}$ and $y \in [0,1]$.
@@ -926,7 +926,7 @@
     Then clearly the point $\tfrac{1}{2} \times z$ is in $F$, but we also have that $\tfrac{1}{2} \times z$ is in $E$ since $0 < z < 1$.
     The same argument applies if the basis element $F$ is of the form $\clop{0 \times 0, b \times d}$ or $\opcl{a \times c, 1 \times 1}$.
     A similar argument shows an analogous result in the case when $y = 1$.
-    This shows by Theorem~17.5b that $x \times y \in \closure{E}$ since $F$ was an arbitrary basis element, which of course shows that $\closure{E} \sps F$ since $x \times y$ was arbitrary.
+    This shows by Theorem~17.5 part (b) that $x \times y \in \closure{E}$ since $F$ was an arbitrary basis element, which of course shows that $\closure{E} \sps F$ since $x \times y$ was arbitrary.
   }
 }
 
@@ -950,7 +950,7 @@
   \qproof{
     Consider any $x \in \Int{A}$ so that there is a neighborhood of $x$ that is entirely contained in $A$.
     Then, for any $y \in U$, we have that $y \in A$ and hence $y \notin X - A$.
-    This shows that $U$ does not intersect $X - A$, which suffices to show that $x$ is not in the closure of $X - A$ by Theorem~17.5a.
+    This shows that $U$ does not intersect $X - A$, which suffices to show that $x$ is not in the closure of $X - A$ by Theorem~17.5 part (a).
     Thus $x$ is not in the boundary of $A$ since $\Bd{A} = \clA \cap \closure{(X-A)}$.
     This of course shows that $\Int{A}$ and $\Bd{A}$ are disjoint since $x$ was arbitrary.
 
@@ -984,7 +984,7 @@
     So consider any $x \in \clA$ so that also $x \in \Int{A}$.
     Then there is a neighborhood $U$ of $x$ contained entirely in $A$.
     Thus, for any point $y \in U$, we have that $y \in A$ so that $y \notin X - A$, which shows that $U$ does not intersect $X - A$.
-    Since $U$ is a neighborhood of $x$, this shows that $x \notin \closure{X-A}$ by Theorem~17.5a.
+    Since $U$ is a neighborhood of $x$, this shows that $x \notin \closure{X-A}$ by Theorem~17.5 part (a).
     Then, since $x$ was an arbitrary element of $\clA$, it follows that $\clA$ and $\closure{X-A}$ are disjoint so that $\Bd{A} = \clA \cap \closure{(X-A)} = \es$ as desired.
   }
 
@@ -994,7 +994,7 @@
     Then we have that $x \in \clU$ and $x \in \closure{X-U}$ since $\Bd{U} = \clU \cap \closure{(X-U)}$ by definition.
     Suppose for the moment that $x \in U$ so that $U$ itself is a neighborhood of $x$ since it is open.
     For any $y \in U$ we have that $y \notin X - U$, and hence $U$ does not intersect $X - U$.
-    This shows that $x$ is not in $\closure{X-U}$ by Theorem~17.5a, which is a contradiction since we know it is.
+    This shows that $x$ is not in $\closure{X-U}$ by Theorem~17.5 part (a), which is a contradiction since we know it is.
     Thus it must be that $x \notin U$ so that $x \in \clU - U$.
     This of course shows that $\Bd{U} \ss \clU - U$ since $x$ was arbitrary.
 
@@ -1006,7 +1006,7 @@
     $(\pmi)$ Now suppose that $\Bd{U} = \clU - U$ and consider any $x \in U$.
     Then we have that $x \notin \clU - U = \Bd{U} = \clU \cap \closure{(X-U)}$.
     Since we know that $x \in \clU$ (since $U \ss \clU$), it must be that $x \notin \closure{X-U}$.
-    Thus, by Theorem~17.5a, there is a neighborhood of $V$ of $x$ that does not intersect $X - U$.
+    Thus, by Theorem~17.5 part (a), there is a neighborhood of $V$ of $x$ that does not intersect $X - U$.
     This means that, for any point $y \in V$, we have that $y \notin X - U$.
     Since of course $y \in X$, it follows that $y$ must be in $U$.
     This shows that $V \ss U$ since $y$ was arbitrary.
@@ -1026,7 +1026,7 @@
     It cannot be that $\reals - V$ is all of $\reals$ since then $V$ would be empty, and we know that $x \in V$.
     So it must be that $\reals - V$ is finite since $V$ is open, which means that there are only a finite number of real numbers that are \emph{not} in $V$.
     However, since $U$ is infinite, there must be an element of $U$ that \emph{is} in $V$ (in fact there are an infinite number of such elements).
-    Hence $V$ intersects $U$ so that $x \in \clU$ by Theorem~17.5a.
+    Hence $V$ intersects $U$ so that $x \in \clU$ by Theorem~17.5 part (a).
     Since $x \in \reals$ was arbitrary, it must be that $\clU$ is all of $\reals$.
 
     Clearly $\reals$ is open (since the a set is always open in any topology on that set) so that $\Int(\clU) = \Int{\reals} = \reals$.
@@ -1054,7 +1054,7 @@
 
   (b) It is easy to show that $B$ is open so that $\Int{B} = B$.
   It is likewise not difficult to prove that $\clB = \braces{x \times y \where x \geq  0}$.
-  We then have from Exercise~17.19c that $\Bd{B} = \clB - B = \braces{x \times y \where x = 0} \cup \braces{x \times y \where x > 0 \text{ and } y = 0}$.
+  We then have from Exercise~17.19 part (c) that $\Bd{B} = \clB - B = \braces{x \times y \where x = 0} \cup \braces{x \times y \where x > 0 \text{ and } y = 0}$.
 
   (c) Here we have that $C = A \cup B = \braces{x \times y \where y = 0} \cup \braces{x \times y \where x > 0}$.
   It is then easy to show that the closure is $\closure{C} = \braces{x \times y \where y = 0} \cup \braces{x \times y \where x \geq 0}$.
@@ -1067,7 +1067,7 @@
 
   (d) Clearly we have that $\closure{D}$ is all of $\reals^2$ as a consequence of the fact that the rationals are order-dense in the reals.
   Also, since any neighborhood of any point in $D$ will intersect a point $x \times y$ with irrational $x$, it follows that no point of $D$ is in its interior.
-  Thus $\Int{D} = \es$ so that $\closure{D} = \Int{D} \cup \Bd{D} = \es \cup \Bd{D} = \Bd{D}$ by Exercise~17.19a, and hence $\Bd{D} = \closure{D} = \reals^2$.
+  Thus $\Int{D} = \es$ so that $\closure{D} = \Int{D} \cup \Bd{D} = \es \cup \Bd{D} = \Bd{D}$ by Exercise~17.19 part (a), and hence $\Bd{D} = \closure{D} = \reals^2$.
 
   (e) It should be fairly obvious by this point that
   \gath{
@@ -1078,7 +1078,7 @@
 
   (f) First we clearly have that $\Int{F} = \braces{x \times y \where x \neq 0 \text{ and } y < 1/x}$.
   We also have that $\closure{F} = \braces{x \times y \where x = 0} \cup \braces{x \times y \where x \neq 0 \text{ and } y \leq 1/x}$.
-  By Exercise~17.19a we have that $\closure{F} = \Int{F} \cup \Bd{F}$ and that $\Int{F} \cap \Bd{F} = \es$ so that $\Bd{F} = \closure{F} - \Int{F}$.
+  By Exercise~17.19 part (a) we have that $\closure{F} = \Int{F} \cup \Bd{F}$ and that $\Int{F} \cap \Bd{F} = \es$ so that $\Bd{F} = \closure{F} - \Int{F}$.
   Thus we have that $\Bd{F} = \braces{x \times y \where x = 0} \cup \braces{x \times y \where x \neq 0 \text{ and } y = 1/x}$.
   Again these facts are not difficult to show rigorously but would be tedious.
 }
@@ -1109,14 +1109,14 @@
   \qproof{
     First, it is obvious that $cA \cup ixA \ss X$ since each of the sets in the union is a subset of $X$.
     Now consider any $x \in X$ and suppose that $x \notin cA = \clA$.
-    Then by Lemma~17.5a there is an open set $U$ containing $x$ where $U$ does not intersect $A$.
+    Then by Lemma~17.5 part (a) there is an open set $U$ containing $x$ where $U$ does not intersect $A$.
     For any $y \in U$ we thus have that $y \notin A$ and hence $y \in X - A = xA$.
     This shows that $U \ss xA$ since $y$ was arbitrary, which suffices to show that $x \in \Int(xA) = ixA$ since $U$ is a neighborhood of $x$.
     This of course shows that $x \in cA \cup ixA$ so that $X \ss cA \cup ixA$ since $x$ was arbitrary.
     This completes the proof that $X = cA \cup ixA$.
 
     To show that $cA$ and $ixA$ are disjoint, consider any $x \in cA$.
-    Consider any neighborhood $U$ of $x$ so that $U$ intersects $A$ by Lemma~17.5a.
+    Consider any neighborhood $U$ of $x$ so that $U$ intersects $A$ by Lemma~17.5 part (a).
     Hence there is a point $y \in U$ where also $y \in A$, from which it follows that $y \notin X - A = xA$.
     This suffices to show that $U$ is not a subset of $xA$.
     Since $U$ is an arbitrary neighborhood, this shows that $x \notin \Int(xA) = ixA$.
@@ -1140,7 +1140,7 @@
     \end{multicols}
   \end{lem}
   \qproof{
-    (a) This was shown in Exercise~17.6a.
+    (a) This was shown in Exercise~17.6 part (a).
 
     (b) Consider any $x \in iA$ so that there is a neighborhood $U$ of $x$ that is totally contained in $A$.
     Then clearly $U$ is also totally contained in $B$ as well since, for any $x \in U$, we have that $x \in A$ and hence $x \in B$ since $A \ss B$.

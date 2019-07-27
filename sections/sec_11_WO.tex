@@ -1,11 +1,8 @@
-% This ensures that the unnumberred section is in the PDF index
-\def\stitle{Supplementary Exercises: Well-Ordering}
-\currentpdfbookmark{\stitle}{sec:wo}
-\subsection*{\stitle} 
-
 % Set section label to text
 \renewcommand\thesubsection{WO}
 \def\secl{\thesubsection}
+
+\subsection{Supplementary Exercises: Well-Ordering}
 
 \def\cF{\col{F}}
 \exercise{1}{
@@ -335,7 +332,7 @@
     It then follows that $f(S_y) = S_b = A$ since $f(y) = b$ so that $A$ has the same order type as the section $S_y$ of $B$ since $f$ preserves order.
 
     Hence in all cases one of the desired results always follows.
-    To show that exactly one of these is the case, note that if $A$ and $B$ have the same order type then clearly it cannot be that $A$ has the same order type as a section of $B$ since then $B$ would also have the same order type is its own section, which would violate Exercise~\secl.2b.
+    To show that exactly one of these is the case, note that if $A$ and $B$ have the same order type then clearly it cannot be that $A$ has the same order type as a section of $B$ since then $B$ would also have the same order type is its own section, which would violate Exercise~\secl.2 part (b).
     Similarly $B$ cannot have the same order type as a section of $A$ since then $A$ would have the same order type as its own section.
     Now suppose that $A$ has the same order type as a section $S_b$ of $B$.
     Then $A$ and $B$ cannot have the same order type since then $B$ would have the same order type as its section $S_b$.
@@ -371,7 +368,7 @@
 
   (a)
   \qproof{
-    For any $(A,<) \in \cA$ we have that it is not equal to a section of itself since then it would then clearly have the same order type as its own section, which would violate Exercise~\secl.2b.
+    For any $(A,<) \in \cA$ we have that it is not equal to a section of itself since then it would then clearly have the same order type as its own section, which would violate Exercise~\secl.2 part (b).
     Hence it is not true that $(A, <) \prec (A, <)$ by definition, which shows that $\prec$ is nonreflexive.
 
     Now consider $(A,<)$, $(A',<')$, and $(A'',<'')$ in $\cA$ where $(A,<) \prec (A',<')$ and $(A',<') \prec (A'',<'')$.
@@ -552,10 +549,10 @@
 
   (a)
   \qproof{
-    Since $(T_1,<_1)$ and $(T_2,<_2)$ are both well-ordered sets, it follows from Exercise~\secl.4a that either they have the same order type, $T_1$ has the same order type as a section of $T_2$, or vice-versa.
+    Since $(T_1,<_1)$ and $(T_2,<_2)$ are both well-ordered sets, it follows from Exercise~\secl.4 part (a) that either they have the same order type, $T_1$ has the same order type as a section of $T_2$, or vice-versa.
     We can assume that either they have the same order type of $T_1$ has the same order type as a section of $T_2$ since, in the third case, we can just swap the roles of $T_1$ and $T_2$.
     Thus there is an order preserving function $h: T_1 \to T_2$ whose image is either all of $T_2$ or a section of $T_2$.
-    Given this, it was shown in the proof of Exercise~\secl.2a that $h(S_x(T_1)) = S_{h(x)}(T_2)$ for all $x \in T_1$.
+    Given this, it was shown in the proof of Exercise~\secl.2 part (a) that $h(S_x(T_1)) = S_{h(x)}(T_2)$ for all $x \in T_1$.
 
     We show that $h(x) = x$ for all $x \in T_1$ by transfinite induction.
     So suppose that $h(y) = y$ for all $y < x$, i.e. for all $y \in S_x(T_1)$ so that clearly $h(S_x(T_1)) = S_x(T_1)$.
@@ -698,12 +695,12 @@
     Since $(B, \prec)$ and $(B', \prec')$ were arbitrary elements in their respective equivalence classes, this shows that $\ll$ is well defined such that it does not matter which representatives we use from the equivalence classes.
 
     Now consider any equivalence class $[(A,<)]$ in $E$.
-    Then clearly it cannot be that $[(A,<)] \ll [(A,<)]$, since this would mean that $A$ has the same order type as a section of itself, which would contradict what was shown in Exercise~\secl.2b.
+    Then clearly it cannot be that $[(A,<)] \ll [(A,<)]$, since this would mean that $A$ has the same order type as a section of itself, which would contradict what was shown in Exercise~\secl.2 part (b).
     Thus $\ll$ is nonreflexive.
 
     Next consider two distinct equivalence classes $[(A,<)]$ and $[(A',<')]$.
     Then it cannot be that $(A,<)$ and $(A',<')$ have the same order type, for then they would be the same equivalence class.
-    Then, by Exercise~\secl.4a, it must be that either $(A,<)$ has the same order type as a section of $(A',<')$ or vice-versa.
+    Then, by Exercise~\secl.4 part (a), it must be that either $(A,<)$ has the same order type as a section of $(A',<')$ or vice-versa.
     Clearly then, in the former case $[(A,<)] \ll [(A',<')]$, and in the latter case $[(A',<')] \ll [(A,<)]$.
     This shows that $\ll$ has the comparability property.
 
@@ -774,7 +771,7 @@
     Thus the equivalence class $\a = [(\pints,<)]$ is an element of $E$.
     But we know from part (b) that $(\pints,<)$ then has the same order type as the section $S_\a(E)$.
     Since we also know that $(\pints,<)$ has the same order type as $E$ itself, it follows that $E$ has the same order type as its section $S_\a(E)$.
-    This was shown not to be possible in Exercise~\secl.2b so that a contradiction has been reached.
+    This was shown not to be possible in Exercise~\secl.2 part (b) so that a contradiction has been reached.
     So it must be that in fact $E$ is uncountable as desired!
   }
 }

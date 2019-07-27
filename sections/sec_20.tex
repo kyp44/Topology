@@ -1419,3 +1419,217 @@
     Since $\vy$ was arbitrary, this shows that $C \ss B' \ss B$ as desired.
   }
 }
+
+\exercise{9}{
+  Show that the euclidean metric $d$ on $\reals^n$ is a metric, as follows:
+  If $\vx, \vy \in \reals^n$ and $c \in \reals$, define
+  \ali{
+    \vx + \vy &= (x_1 + y_1, \ldots, x_n + y_n) \,, \\
+    c\vx &= (cx_1, \ldots, cx_n) \,, \\
+    \vx \cdot \vy &= x_1 y_1 + \cdots + x_n y_n \,.
+  }
+  \eparts{
+  \item Show that $\vx \cdot (\vy + \vz) = (\vx \cdot \vy) + (\vx \cdot \vz)$.
+  \item Show that $\abs{\vx \cdot \vy} \leq \norm{\vx} \norm{\vy}$.
+    [Hint: If $\vx,\vy \neq 0$, let $a = 1/\norm{\vx}$ and $b = 1/\norm{\vy}$, and use the fact that $\norm{a\vx \pm b\vy} \geq 0$.]
+  \item Show that $\norm{\vx + \vy} \leq \norm{\vx} + \norm{\vy}$.
+    [Hint: Compute $(\vx + \vy) \cdot (\vx + \vy)$ and apply (b).]
+  \item Verify that $d$ is a metric.
+  }
+}
+\sol{
+  \dwhitman
+
+  First we show some basic properties of these operations that will be useful:
+  \begin{lem} \label{lem:metric:vprops}
+    For any $\vx, \vy \in \reals^n$ and $a \in \reals$, we assert the following:
+    \begin{enumerate}[label=(\arabic*)]
+    \item The dot product is commutative, that is $\vx \cdot \vy = \vy \cdot \vx$.
+    \item $\vze \cdot \vx = 0$.
+    \item $\norm{\vx} = 0$ if and only if $\vx = \vze$.
+    \item $\norm{\vx} \geq 0$
+    \item $\vx \cdot \vx = \norm{\vx}^2$
+    \item $\norm{a \vx} = \abs{a} \norm{\vx}$
+    \end{enumerate}
+  \end{lem}
+  \qproof{
+    For assertion (1) clearly
+    \gath{
+      \vx \cdot \vy= \sum_{i=1}^n x_i y_i = \sum_{i=1}^n y_i x_i = \vy \cdot \vx
+    }
+    by the definition of the dot product.
+    Regarding (2), we clearly have
+    \gath{
+      \vze \cdot \vx = \sum_{i=1}^n 0 \cdot x_i = \sum_{i=1}^n 0 = 0 \,.
+    }
+
+    For (3) first suppose that $\vx \neq \vze$ so that that there is an $i \in \intsfin{n}$ where $x_k \neq 0$ so that clearly $x_k^2 > 0$.
+    Then we have
+    \gath{
+      \norm{\vx} = \sum_{i=1}^n x_i^2 = \sum_{i=k} x_i^2 + \sum_{i \neq k} x_i^2 = x_k^2 + \sum_{i \neq k} x_i^2 \geq x_k^2 + 0 = x_k^2 > 0
+    }
+    since each term in the sum $\sum_{i \neq k} x_i^2$ is non-negative so that the overall sum is as well.
+    Thus of course $\norm{\vx} \neq 0$.
+    This shows the forward implication by contrapositive.
+    For the reverse direction, suppose that $\vx = \vze$ so that
+    \gath{
+      \norm{\vx} = \norm{\vze} = \squares{\sum_{i=1}^n 0^2}^{1/2} = \squares{\sum_{i=1}^n 0}^{1/2} = \squares{0}^{1/2} = 0 \,.
+    }
+
+    Assertion (4) is fairly obvious from the definition.
+    Clearly each $x_i^2 \geq 0$ since it is a square, so that $\sum_{i=1}^n x_i^2 \geq 0$ as well.
+    It then follows from Corollary~\ref{cor:metric:opmon} that
+    \gath{
+      \norm{\vx} = \squares{\sum_{i=1}^n x_i^2}^{1/2} \geq 0^{1/2} = 0
+    }
+    as desired.
+    Assertion (5) is also easy to show:
+    \gath{
+      \vx \cdot \vx = \sum_{i=1}^n x_i x_i = \sum_{i=1}^n x_i^2 = \parens{\squares{\sum_{i=1}^n x_i^2}^{1/2}}^2 = \norm{\vx}^2
+    }
+    by definition.
+
+    For part (6) we have by definition that
+    \gath{
+      \norm{a \vx} = \squares{\sum_{i=1}^n (a x_i)^2}^{1/2} = \squares{\sum_{i=1}^n a^2 x_i^2}^{1/2}
+      = \squares{a^2 \sum_{i=1}^n x_i^2}^{1/2} = \squares{a^2}^{1/2} \squares{\sum_{i=1}^n x_i^2}^{1/2} = \abs{a}\norm{\vx}
+    }
+    as desired.
+  }
+
+  \mainprob
+
+  (a)
+  \qproof{
+    By definition we have that
+    \gath{
+      \vy + \vz = (y_1 + z_1, \ldots, y_n + y_n)
+    }
+    so that clearly
+    \gath{
+      \vx \cdot (\vy + \vz) = \sum_{i=1}^n x_i (y_i + z_i) = \sum_{i=1}^n (x_i y_i + x_i z_i)
+      = \sum_{i=1}^n x_i y_i + \sum_{i=1}^n x_i z_i = (\vx \cdot \vy) + (\vx \cdot \vz)
+    }
+    as desired.
+  }
+
+  (b)
+  \qproof{
+    First, if $\vx = \vze$ then clearly by Lemma~\ref{lem:metric:vprops} parts (2) and (3)
+    \gath{
+      \abs{\vx \cdot \vy} = \abs{\vze \cdot \vy} = \abs{0} = 0 \leq 0 = 0 \norm{\vy} = \norm{\vze} \norm{\vy} = \norm{\vx} \norm{\vy} \,.
+    }
+    Similarly if $\vy = \vze$ then by all parts of Lemma~\ref{lem:metric:vprops}
+    \gath{
+      \abs{\vx \cdot \vy} = \abs{\vx \cdot \vze} = \abs{\vze \cdot \vx} = \abs{0} = 0 \leq 0 = \norm{\vx} 0 = \norm{\vx} \norm{\vze} = \norm{\vx} \norm{\vy} \,.
+    }
+    So in what follows assume that $\vx, \vy \neq \vze$.
+    Then by Lemma~\ref{lem:metric:vprops} part (3) we have that $\norm{\vx}$ and $\norm{\vy}$ are both nonzero so that $a = 1/\norm{\vx}$ and $b = 1/\norm{\vy}$ are defined.
+        Then, by Lemma~\ref{lem:metric:vprops} part (4), we of course have
+    \gath{
+      \norm{a\vx \pm b\vy} \geq 0 \,.
+    }
+    Since clearly
+    \gath{
+      a\vx \pm b\vy = (ax_1 \pm by_1, \ldots, ax_n \pm by_n)
+    }
+    by the definition of the operations, we have
+    \gath{
+      \squares{\sum_{i=1}^n (ax_i \pm by_i)^2}^{1/2} = \norm{a\vx \pm b\vy} \geq 0 \,.
+    }
+    It then follows from Lemma~\ref{lem:metric:pmon} that
+    \gath{
+      \sum_{i=1}^n (ax_i \pm by_i)^2 \geq 0^2 = 0 \\
+      \sum_{i=1}^n (a^2 x_i^2 \pm 2ab x_i y_i + b^2 y_i^2) \geq 0 \\
+      a^2 \sum_{i=1}^n x_i^2 \pm 2ab \sum_{i=1}^n x_i y_i + b^2 \sum_{i=1}^n y_i^2 \geq 0 \\
+      a^2 \norm{\vx}^2 \pm 2ab (\vx \cdot \vy) + b^2 \norm{\vy}^2 \geq 0 \\
+      \pm 2ab (\vx \cdot \vy) \geq -a^2 \norm{\vx}^2 - b^2 \norm{\vy}^2 \\
+      \pm 2\frac{\vx \cdot \vy}{\norm{\vx} \norm{\vy}} \geq -\frac{\norm{\vx}^2}{\norm{\vx}^2} - \frac{\norm{\vy}^2}{\norm{\vy}^2} \\
+      \pm 2\frac{\vx \cdot \vy}{\norm{\vx} \norm{\vy}} \geq -1 - 1 \\
+      \pm 2\frac{\vx \cdot \vy}{\norm{\vx} \norm{\vy}} \geq -2 \\
+      \mp \vx \cdot \vy \leq \norm{\vx} \norm{\vy} \,.
+    }
+    Hence we have that both $\vx \cdot \vy \leq \norm{\vx} \norm{\vy}$ and $- \vx \cdot \vy \leq \norm{\vx} \norm{\vy}$ so that $\vx \cdot \vy \geq -\norm{\vx} \norm{\vy}$.
+    Hence
+    \gath{
+      -\norm{\vx} \norm{\vy} \leq \vx \cdot \vy \leq \norm{\vx} \norm{\vy}
+    }
+    so we can conclude that $\abs{\vx \cdot \vy} \leq \norm{\vx} \norm{\vy}$ as desired.
+  }
+
+  (c)
+  \qproof{
+    We have
+    \ali{
+      \norm{\vx + \vy}^2 &= (\vx + \vy) \cdot (\vx + \vy) & \text{(by Lemma~\ref{lem:metric:vprops} part (5))} \\
+      &= (\vx + \vy) \cdot \vx + (\vx + \vy) \cdot \vy & \text{(by part (a))} \\
+      &= \vx \cdot (\vx + \vy) + \vy \cdot (\vx + \vy) & \text{(by Lemma~\ref{lem:metric:vprops} part (1))} \\
+      &= \vx \cdot \vx + \vx \cdot \vy + \vy \cdot \vx + \vy \cdot \vy & \text{(by part (a))} \\
+      &= \norm{\vx}^2 + \vx \cdot \vy + \vy \cdot \vx + \norm{\vy}^2 & \text{(by Lemma~\ref{lem:metric:vprops} part (5))} \\
+      &= \norm{\vx}^2 + \vx \cdot \vy + \vx \cdot \vy + \norm{\vy}^2 & \text{(by Lemma~\ref{lem:metric:vprops} part (1))} \\
+      &\leq \norm{\vx}^2 + \norm{\vx}\norm{\vy} + \norm{\vx}\norm{\vy} + \norm{\vy}^2 & \text{(by part (b))} \\
+      &= \norm{\vx}^2 + 2\norm{\vx}\norm{\vy} + \norm{\vy}^2 \\
+      &= (\norm{\vx} + \norm{\vy})^2 \,.
+    }
+    The desired result that $\norm{\vx + \vy} \leq \norm{\vx} + \norm{\vy}$ then follows from Corollary~\ref{cor:metric:opmon}.
+  }
+
+  (d)
+  \qproof{
+    First recall that the euclidean mertric on $\reals^n$ is defined as
+    \gath{
+      d(\vx, \vy) = \norm{\vx - \vy} \,.
+    }
+    Then part (1) of the definition of a metric follows directly from Lemma~\ref{lem:metric:vprops} since of course
+    \gath{
+      d(\vx, \vy) = \norm{\vx - \vy} \geq 0 \,.
+    }
+    We also have that $\vx = \vy$ if and only if $\vx - \vy = 0$, which is true if and only if
+    \gath{
+      d(\vx, \vy) = \norm{\vx - \vy} = 0
+    }
+    by Lemma~\ref{lem:metric:vprops} part (3).
+    Similarly part (2) of the definition follows from Lemma~\ref{lem:metric:vprops} part (6) as follows:
+    \gath{
+      d(\vx, \vy) = \norm{\vx - \vy} = \norm{(-1)(\vy - \vx)} = \abs{-1}\norm{\vy - \vx} = \norm{\vy - \vx} = d(\vy, \vx) \,.
+    }
+    Lastly, for part (3) of the definition, we have that
+    \ali{
+      d(\vx, \vz) &= \norm{\vx - \vy} = \norm{\vx - \vz + \vy - \vy} = \norm{(\vx - \vy) + (\vy - \vz)} \\
+      &\leq \norm{\vx - \vy} + \norm{\vx - \vz} = d(\vx, \vy) + d(\vy, \vz) \,,
+    }
+    where we have used what was shown in part (c).
+    This shows that $d$ has all the properties required to be a metric.
+  }
+}
+
+\exercise{10}{
+  Let $X$ denote the subset of $\reals^\w$ consisting of all sequences $(x_1, x_2, \ldots)$ such that $\sum x_i^2$ converges.
+  (You may assume standard facts about infinite series.
+  In case they are not familiar to you, we shall give them in Exercise~11 of the next section.)
+  \eparts{
+  \item Show that if $\vx,\vy \in X$, then $\sum \abs{x_i y_i}$ converges.
+    [Hint: Use (b) of Exercise~9 to show that the partial sums are bounded.]
+  \item Let $c \in \reals$.
+    Show that if $\vx, \vy \in X$, then so are $\vx + \vy$ and $c\vx$.
+  \item Show that
+    \gath{
+      d(\vx, \vy) = \squares{\sum_{i=1}^\infty (x_i - y_i)^2}^{1/2}
+    }
+    is a well-defined metric on $X$.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    First, denote the partial sums by
+    \gath{
+      s_n = \sum_{i=1}^n \abs{x_i y_i}
+    }
+    for any $n \in \pints$.
+    Clearly then each term in the sum is non-negative so that the sequence of partial sums is non-decreasing, which is to say that $s_{n+1} \geq s_n$ for every $n \in \pints$.
+    Then, to show that the series converges, it suffice to show that the partial sums are bounded, since convergence then follows from what will be shown in Exercise~21.11 part (a).
+  }
+}

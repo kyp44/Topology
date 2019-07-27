@@ -2,4 +2,5 @@
 *.log
 *.out
 *.pdf
+*.toc
 lemmas_content.tex

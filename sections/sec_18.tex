@@ -37,7 +37,7 @@
   This is not necessarily true.
   \qproof{
     As a counterexample consider a constant function $f: X \to Y$ defined by $f(x) = y_0$ for any $x \in X$ and some $y_0 \in Y$.
-    It was shown in Theorem~18.2a that this is continuous.
+    It was shown in Theorem~18.2 part (a) that this is continuous.
     However, clearly $f(A) = \braces{y_0}$ for any subset $A$ of $X$.
     So even if $x$ is a limit point of $A$, no neighborhood of $f(x)$ can intersect $f(A)$ in a point other than $f(x) = y_0$ since $y_0$ is the only point in $f(A)$!
     Therefore $f(x)$ is not a limit point of $f(A)$.
@@ -100,7 +100,7 @@
 
     Now let $f'$ be the function obtained by restricting the range of $f$ to $f(X) = \braces{x \times y_0 \where x \in X}$.
     Since $f$ is injective, it follows that $f'$ is a bijection.
-    It follows from Theorem~18.2e that $f'$ is continuous.
+    It follows from Theorem~18.2 part (e) that $f'$ is continuous.
     Clearly the inverse function $\inv{f'}$ is equal to the projection function $\pi_1$ so that $\inv{f'}(x,y) = x$.
     This was shown to be continuous in the proof of Theorem~18.4.
     This suffices to show that $f'$ is a homeomorphism, which shows the $f$ is an imbedding of $X$ in $X \times Y$.
@@ -123,7 +123,7 @@
     It is trivial to show that $f$ is a bijection.
 
     Now, $f$ is a linear function that could just as well be defined as a map from $\reals$ to $\reals$, and clearly this would be continuous by basic calculus.
-    It then follows from Theorem~18.2d that restricting its domain to $X$ means that it is still continuous.
+    It then follows from Theorem~18.2 part (d) that restricting its domain to $X$ means that it is still continuous.
     We also clearly have from basic algebra that its inverse is the function $\inv{f}: Y \to X$ defined by
     \gath{
       \inv{f}(y) = a + y(b-a)
@@ -271,7 +271,7 @@
 
   (b) We claim that only constant functions are continuous from $\reals$ to $\reals_l$.
   \qproof{
-    First, it was shown in Theorem~18.2a that constant functions are always continuous regardless of the topologies.
+    First, it was shown in Theorem~18.2 part (a) that constant functions are always continuous regardless of the topologies.
     Hence we must show that any continuous function from $\reals$ to $\reals_l$ is constant.
     So suppose that $f$ is such a function.
     Now consider any real $x$ where $x \neq 0$.
@@ -616,7 +616,7 @@
     This function is clearly continuous by Theorem~18.4 since it can be expressed as $f(x) = f_1(x) \times f_2(x)$ where the identical functions $f_1(x) = f_2(x) = x$ are obviously continuous.
     Then $g = F \circ f$, where $g$ is the function from part (b) since we have $g(x) = F(x \times x) = F(f(x))$ for any real $x$.
     Now, clearly $g$ as calculated in part (b) has a discontinuity at $x = 0$ so that it is not continuous.
-    It then follows from Theorem~18.2c that either $F$ or $f$ is not continuous since $g = F \circ f$.
+    It then follows from Theorem~18.2 part (c) that either $F$ or $f$ is not continuous since $g = F \circ f$.
     As we know that the trivial function $f$ is continuous, it must then be that $F$ is not as desired.
   }
 }
