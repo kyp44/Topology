@@ -434,7 +434,7 @@
     Since $Y'$ is finer than $Y$, it follows that $U$ is also open in $Y'$.
     Then, since $f$ is continuous with respect to $Y'$ we have that $\inv{f}(U)$ is open in $X$, which suffices to show that $f$ is continuous with respect to $Y$ since $U$ was an arbitrary open set. Assertion (2) follows immediately from the contrapositive of (1).
 
-    Regarding (3), suppose that a sequence $(y_1, y_2, y_3, \ldots)$ converges to $y_0$ in $Y'$ and let $U$ be any neighborhood of $y_0$ in $Y$.
+    Regarding (3), suppose that a sequence $\seqinf{y}$ converges to $y_0$ in $Y'$ and let $U$ be any neighborhood of $y_0$ in $Y$.
     Then $U$ is also open in $Y'$ since it is finer than $Y$, hence $U$ is a neighborhood of $y_0$ in $Y'$.
     Thus there is an $N \in \pints$ such that $x_n \in U$ for all $n \geq N$, since the sequence converges to $y_0$ in $Y'$.
     Since $U$ was an arbitrary neighborhood of $Y$, this shows that the sequence converges to $y_0$ in $Y$.
@@ -773,7 +773,7 @@
 
 \exercise{6}{
   Let $\br$ be the uniform metric on $\reals^\w$.
-  Given $\vx = (x_1,x_2,\ldots) \in \reals^\w$ and given $0 < \e < 1$, let
+  Given $\vx = \seqinf{x} \in \reals^\w$ and given $0 < \e < 1$, let
   \gath{
     U(\vx, \e) = (x_1-\e, x_1+\e) \times \cdots \times (x_n - \e, x_n + \e) \times \cdots \,.
   }
@@ -1033,12 +1033,12 @@
   \dwhitman
 
   \begin{lem} \label{lem:metric:seqleq}
-    Suppose that $(a_1, a_2, \ldots)$ and $(b_1, b_2, \ldots)$ are two real sequences that converge to $a$ and $b$, respectively.
+    Suppose that $\seqinf{a}$ and $\seqinf{b}$ are two real sequences that converge to $a$ and $b$, respectively.
     Then, if $a_n \leq b_n$ for every $n \in \pints$, then $a \leq b$.
   \end{lem}
   \qproof{
     Suppose to the contrary that $a > b$, and let $\e = (a-b)/2$ so that clearly $\e > 0$.
-    Since $(a_n)$ converges to $a$ there is an $N_a \in \pints$ where $\abs{a_n - a} < \e$ for all $n \geq N_a$.
+    Since $\seqinf{a}$ converges to $a$ there is an $N_a \in \pints$ where $\abs{a_n - a} < \e$ for all $n \geq N_a$.
     Similarly there is an $N_b \in \pints$ where $\abs{b_n - b} < \e$ for all $n \geq N_b$ since $(b_n)$ converges to $b$.
     So let $N = \max\braces{N_a, N_b}$ and consider any $n \geq N$.
     Then $n \geq N \geq N_a$ so that $\abs{a_n - a} < \e$ and hence
@@ -1092,7 +1092,7 @@
   }
 
   \begin{defin}\label{def:metric:pseries}
-    If $(x_1, x_2, \ldots)$ is a sequence whose series $\sum x_i$ converges, we define the partial series starting at $n \in \pints$ as
+    If $\seqinf{x}$ is a sequence whose series $\sum x_i$ converges, we define the partial series starting at $n \in \pints$ as
     \gath{
       \sum_{i=n}^\infty x_i = \sum_{i=1}^\infty x_i - \sum_{i=1}^{n-1} x_i \,,
     }
@@ -1100,7 +1100,7 @@
     According to this the partial series starting at $n=1$ is just the series itself as expected.
   \end{defin}
   \begin{lem} \label{lem:metric:pseries}
-    If $(x_1, x_2, \ldots)$ is a series of non-negative real numbers such that the series $\sum x_i$ converges, then the sequence of partial series defined by
+    If $\seqinf{x}$ is a series of non-negative real numbers such that the series $\sum x_i$ converges, then the sequence of partial series defined by
     \gath{
       p_n = \sum_{i=n}^\infty x_i
     }
@@ -1425,7 +1425,7 @@
   If $\vx, \vy \in \reals^n$ and $c \in \reals$, define
   \ali{
     \vx + \vy &= (x_1 + y_1, \ldots, x_n + y_n) \,, \\
-    c\vx &= (cx_1, \ldots, cx_n) \,, \\
+    c\vx &= \seqfin{cx}{n} \,, \\
     \vx \cdot \vy &= x_1 y_1 + \cdots + x_n y_n \,.
   }
   \eparts{
@@ -1576,7 +1576,7 @@
 
   (d)
   \qproof{
-    First recall that the euclidean mertric on $\reals^n$ is defined as
+    First recall that the euclidean metric on $\reals^n$ is defined as
     \gath{
       d(\vx, \vy) = \norm{\vx - \vy} \,.
     }
@@ -1606,7 +1606,7 @@
 \def\vxb{\overline{\vx}}
 \def\vyb{\overline{\vy}}
 \exercise{10}{
-  Let $X$ denote the subset of $\reals^\w$ consisting of all sequences $(x_1, x_2, \ldots)$ such that $\sum x_i^2$ converges.
+  Let $X$ denote the subset of $\reals^\w$ consisting of all sequences $\seqinf{x}$ such that $\sum x_i^2$ converges.
   (You may assume standard facts about infinite series.
   In case they are not familiar to you, we shall give them in Exercise~11 of the next section.)
   \eparts{
@@ -1624,6 +1624,25 @@
 \sol{
   \dwhitman
 
+  \begin{lem}\label{lem:metric:contseq}
+    Suppose that $X$ and $Y$ are topological spaces and $f$ is a continuous function from $X$ to $Y$.
+    If $\seqinf{x}$ converges to $x$ in $X$, then the sequence $(f(x_1), f(x_2), \ldots)$ converges to $f(x)$ in $Y$.
+    This is to say that
+    \gath{
+      \lim_{n \to \infty} f(x_n) = f\parens{\lim_{n \to \infty} x_n} \,.
+    }
+  \end{lem}
+  \qproof{
+    Suppose that $V$ is any neighborhood of $f(x)$ in $Y$.
+    Then $V$ is open in $Y$ so that $U = \inv{f}(V)$ is open in $X$ since $f$ is continuous.
+    Also, clearly $x \in U$ since $f(x) \in V$, and hence $U$ is a neighborhood of $x$ in $X$.
+    It then follows that there is an $N \in \pints$ such that $x_n \in U$ for every $n \geq N$ since the sequence $\seqinf{x}$ converges to $x$.
+    So consider any such $n \geq N$ so that clearly $f(x_n) \in V$ since $x_n \in U = \inv{f}(V)$.
+    Since $V$ was an arbitrary neighborhood of $f(x)$, this shows that $(f(x_1), f(x_2), \ldots)$ converges to $f(x)$ as desired.
+  }
+  
+  \mainprob
+
   (a)
   \qproof{
     First, denote the partial sums of the series $\sum \abs{x_i y_i}$ by
@@ -1633,7 +1652,7 @@
     for any $n \in \pints$.
     Clearly then each term in the sum is non-negative so that the sequence of partial sums is non-decreasing, which is to say that $s_{n+1} \geq s_n$ for every $n \in \pints$.
     Then, to show that the series converges, it suffices to show that the partial sums are bounded, since convergence then follows from what will be shown in Exercise~21.11 part (a).
-    To this end we show that the sequence $(s_1, s_2, \ldots)$ is a bounded above.
+    To this end we show that the sequence $\seqinf{s}$ is a bounded above.
 
     So, first let us define the real numbers
     \ali{
@@ -1641,8 +1660,8 @@
       \norm{\vy} &= \squares{\sum_{i=1}^\infty y_i^2}^{1/2} \,,
     }
     which we know are well defined since $\vx, \vy \in X$.
-    Also, for any $n \in \pints$, define the truncated sequences $\vx_n = (x_1, \ldots, x_n)$ and $\vy_n = (y_1, \ldots, y_n)$.
-    We know from Lemmm~\ref{lem:metric:pseries} that the partial series $\sum_{i=n}^\infty x_i^2$ and $\sum_{i=n}^\infty y_i^2$ are non-negative for any $n \in \pints$.
+    Also, for any $n \in \pints$, define the truncated sequences $\vx_n = \seqfin{x}{n}$ and $\vy_n = \seqfin{y}{n}$.
+    We know from Lemma~\ref{lem:metric:pseries} that the partial series $\sum_{i=n}^\infty x_i^2$ and $\sum_{i=n}^\infty y_i^2$ are non-negative for any $n \in \pints$.
     From this and Definition~\ref{def:metric:pseries} we have that
     \gath{
       \sum_{i=1}^n x_i^2 \leq \sum_{i=1}^n x_i^2 + \sum_{i=n+1}^\infty x_i^2 = \sum_{i=1}^\infty x_i^2
@@ -1686,7 +1705,7 @@
       \vx + \vy = (x_1 + y_1, x_2 + y_2, \ldots)
     }
     we have that $\vx + \vy \in X$ as desired.
-    We also have that $c \vx = (cx_1, cx_2, \ldots)$ by definition, and it again follows from Exercise~21.11 part (b) that
+    We also have that $c \vx = \seqinf{cx}$ by definition, and it again follows from Exercise~21.11 part (b) that
     \gath{
       \sum_{i=1}^\infty (c x_i)^2 = \sum_{i=1}^\infty c^2 x_i^2
     }
@@ -1709,15 +1728,15 @@
       d(\vx, \vy) = \squares{\sum_{i=1}^\infty (x_i - y_i)^2}^{1/2}
     }
     is well defined.
-
+    
     To show that $d$ is a metric, first it is obvious that $d(\vx, \vy) \geq 0$ for all $\vx, \vy \in X$ since each term is non-negative so that the sequence of partial sums is non-negative and non-decreasing.
-    Also clearly if $\vy = \vx$ then
+    Also, clearly if $\vy = \vx$ then
     \gath{
       d(\vx, \vy) = d(\vx, \vx) = \squares{\sum_{i=1}^\infty (x_i - x_i)^2}^{1/2} = \squares{\sum_{i=1}^\infty 0^2}^{1/2}
       = \squares{\sum_{i=1}^\infty 0}^{1/2} = 0^{1/2} = 0 \,.
     }
     To show the converse, suppose that $\vx \neq \vy$ so that there is an $n \in \pints$ where $x_n \neq y_n$, and hence $x_n - y_n \neq 0$ and $(x_n - y_n)^2 > 0$.
-    Referencing Defintion~\ref{def:metric:pseries}, we then have
+    Referencing Definition~\ref{def:metric:pseries}, we then have
     \ali{
       0 &< (x_n - y_n)^2 = \sum_{i=n}^n (x_i - y_i)^2 \leq \sum_{i=1}^{n-1} (x_i - y_i)^2 + \sum_{i=n}^n (x_i - y_i)^2 + \sum_{i=n+1}^\infty (x_i - y_i)^2 \\
       &= \sum_{i=1}^n (x_i - y_i)^2 + \sum_{i=n+1}^\infty (x_i - y_i)^2 = \sum_{i=1}^\infty (x_i - y_i)^2
@@ -1733,15 +1752,35 @@
     \gath{
       d(\vx, \vy) = \squares{\sum_{i=1}^\infty (x_i - y_i)^2}^{1/2} = \squares{\sum_{i=1}^\infty (y_i - x_i)^2}^{1/2} = d(\vy, \vx) \,.
     }
-    For part (3) first consider any $\vz \in X$.
-    Denote the truncated sequences by $\vz_n = (z_1, \ldots, z_n)$ for any $n \in \pints$.
+
+    For part (3) consider any $\vx,\vy,\vz \in X$.
+    Denote the truncated sequences by $\vx_n = \seqfin{x}{n}$ for any $n \in \pints$, and similarly for $\vy_n$ and $\vz_n$.
     Then we have
     \gath{
-      \sum_{i=1}^\infty z_i^2 = \lim_{n \to \infty} \sum_{i=1}^n z_i^2 = \lim_{n \to \infty} \norm{\vz_n}^2 \,.
+      \sum_{i=1}^\infty (x_i - y_i)^2 = \lim_{n \to \infty} \sum_{i=1}^n (x_i - y_i)^2 = \lim_{n \to \infty} \norm{\vx_n - \vy_n}^2 \,.
     }
-    Since the function $f(x) = x^{1/2}$ is continuous on the domain $\braces{x \in \reals \where x \geq 0}$ by elementary calculus, it follows from Lemma~TODO that
+    Since the function $f(x) = x^{1/2}$ is continuous on the domain $\braces{x \in \reals \where x \geq 0}$ by elementary calculus, it follows from Lemma~\ref{lem:metric:contseq} that
     \gath{
-      \squares{\sum_{i=1}^\infty z_i^2}^{1/2} = \squares{\lim_{n \to \infty} \norm{\vz_n}^2}^{1/2} = \lim_{n \to \infty} \squares{\norm{\vz_n}^2}^{1/2} = \lim_{n \to \infty} \norm{\vz_n}
+      d(\vx, \vy) = \squares{\sum_{i=1}^\infty (x_i - y_i)^2}^{1/2} = \squares{\lim_{n \to \infty} \norm{\vx_n - \vy_n}^2}^{1/2} = \lim_{n \to \infty} \squares{\norm{\vx_n - \vy_n}^2}^{1/2} = \lim_{n \to \infty} \norm{\vx_n - \vy_n}
     }
+    Since $\vx$ and $\vy$ are arbitrary, we of course also have that
+    \ali{
+      d(\vx, \vz) &= \lim_{n \to \infty} \norm{\vx_n - \vz_n} &
+      d(\vy, \vz) &= \lim_{n \to \infty} \norm{\vy_n - \vz_n} \,.
+    }
+    Now, it was shown in Exercise~20.9 part (d) that
+    \gath{
+      \norm{\vx_n - \vz_n} \leq \norm{\vx_n - \vy_n} + \norm{\vy_n - \vz_n}
+    }
+    for any $n \in \pints$.
+    It then follows from Lemma~\ref{lem:metric:seqleq} that
+    \ali{
+      d(\vx, \vy) = \lim_{n \to \infty} \norm{\vx_n - \vz_n} &\leq \lim_{n \to \infty} \parens{\norm{\vx_n - \vy_n} + \norm{\vy_n - \vz_n}} \\
+      &= \lim_{n \to \infty} \norm{\vx_n - \vy_n} + \lim_{n \to \infty} \norm{\vy_n - \vz_n} \\
+      &= d(\vx, \vy) + d(\vy, \vz)
+    }
+    as desired.
+    Note that we have used the well known property of sequences that, if $\seqinf{a}$ and $\seqinf{b}$ are real sequences that converge to $a$ and $b$, respectively, then $\lim_{n \to \infty} (a_n + b_n) = a + b$.
+    This shows that $d$ has all three of the properties required to be a metric.
   }
 }

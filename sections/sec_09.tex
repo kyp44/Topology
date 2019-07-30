@@ -15,7 +15,7 @@
     \end{cases}
   }
   for $i \in \pints$.
-  Then set $f(n) = \vx = (x_1, x_2, \ldots)$ so that clearly $f$ is a function from $\pints$ to $X^\w$.
+  Then set $f(n) = \vx = \seqinf{x}$ so that clearly $f$ is a function from $\pints$ to $X^\w$.
   It is easy to show that $f$ is injective.
   \qproof{
     Consider $n,m \in \pints$ where $n \neq m$.
@@ -397,7 +397,7 @@
     Clearly then $g \circ f$ is an injection from $\reals$ to $\pset{\pints}$.
 
     Now let $X = \braces{0,1}$, and we construct an injection $h : X^\w \to \reals$.
-    For any sequence $\vx = (x_1, x_2, \ldots) \in X^\w$ set $h(\vx)$ to the decimal expansion $0.x_1 x_2 x_3 \ldots$, where clearly each $x_n$ is the digit 0 or 1.
+    For any sequence $\vx = \seqinf{x} \in X^\w$ set $h(\vx)$ to the decimal expansion $0.x_1 x_2 x_3 \ldots$, where clearly each $x_n$ is the digit 0 or 1.
     Clearly $h(\vx)$ is a real number so that $h$ is a function from $X^\w$ to $\reals$.
     It is easy to see that $h$ is injective since different sequences will result in different decimal expansions.
     Since none of the expansions end in an infinite sequence of 9's, clearly the corresponding real numbers will be different.

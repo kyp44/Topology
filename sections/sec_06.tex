@@ -36,10 +36,10 @@
     mappings, all of which are trivially injective.
 
     Now suppose that $m < n$ and that there are $n! / (n-m)!$ injective mappings from $\intsfin{m}$ to $\intsfin{n}$.
-    Consider any such mapping $(f_1, \ldots, f_m)$.
+    Consider any such mapping $\seqfin{f}{m}$.
     Since this mapping is injective, each $f_i$ is unique so that it uses $m$ of the $n$ available numbers in $\intsfin{n}$.
-    Thus there are $n-m$ numbers to choose from to which to set $f_{m+1}$ so that the mapping $(f_1, \ldots, f_{m+1})$ is still injective.
-    Hence for each injective mapping $(f_1, \ldots, f_m)$ there are $n-m$ injective mappings from $\intsfin{m+1}$ to $\intsfin{n}$.
+    Thus there are $n-m$ numbers to choose from to which to set $f_{m+1}$ so that the mapping $\seqfin{f}{m+1}$ is still injective.
+    Hence for each injective mapping $\seqfin{f}{m}$ there are $n-m$ injective mappings from $\intsfin{m+1}$ to $\intsfin{n}$.
     Since there are $n!/(n-m)!$ such mappings by the induction hypothesis, the total number of mappings from $\intsfin{m+1}$ to $\intsfin{n}$ will be
     \gath{
       \frac{n!}{(n-m)!}(n-m) = \frac{n!}{(n-m-1)!} = \frac{n!}{[n-(m+1)]!} \,,
@@ -124,7 +124,7 @@
       \end{cases}
     }
     for $i \in \pints$, noting that when $i \neq 1$ we have $i > 1$ so that $i-1 \geq 1$ so that $y_i = x_{i-1}$ is defined.
-    Now define $f(\vx) = \vy = (y_1, y_2, \ldots)$ so that clearly $f$ is a function from $X^\w$ to $Y$, since $y_1 = 0$ for any input $\vx$.
+    Now define $f(\vx) = \vy = \seqinf{y}$ so that clearly $f$ is a function from $X^\w$ to $Y$, since $y_1 = 0$ for any input $\vx$.
 
     To show that $f$ is injective, consider $\vx$ and $\vx'$ in $X^\w$ where $\vx \neq \vx'$, and let $\vy = f(\vx)$ and $\vy' = f(\vx')$.
     Now, since $\vx \neq \vx'$, there is an $i \in \pints$ where $x_i \neq x_i'$.
@@ -133,7 +133,7 @@
     Since $\vx$ and $\vx'$ were arbitrary, this shows that $f$ is indeed injective.
 
     Now consider any $\vy \in Y$ so that $y_1 = 0$.
-    Define $x_i = y_{i+1}$ for any $i \in \pints$ and let $\vx = (x_1, x_2, \ldots)$.
+    Define $x_i = y_{i+1}$ for any $i \in \pints$ and let $\vx = \seqinf{x}$.
     Then $\vx \in X^\w$ since clearly each $x_i = y_{i+1} \in X$.
     Now let $\vy' = f(\vx)$ and consider any $i \in \pints$.
     If $i = 1$ then clearly $y_i' = y_1' = 0 = y_1 = y_i$ ($y_1' = 0$ since the range of $f$ is $Y$).
@@ -286,14 +286,14 @@
       \end{cases}
     }
     for any $i \in \intsfin{n} = A$.
-    Now set $f(Y) = \vx = (x_1, \ldots, x_n)$, noting that clearly $f(Y) \in X^n$ since each $x_i \in \braces{0,1} = X$.
+    Now set $f(Y) = \vx = \seqfin{x}{n}$, noting that clearly $f(Y) \in X^n$ since each $x_i \in \braces{0,1} = X$.
     Hence $f$ is a function from $\pset{A}$ to $X^n$.
 
     To show that $f$ is injective consider $Y$ and $Y'$ in $\pset{A}$ where $Y \neq Y'$.
     Also let $\vx = f(Y)$ and $\vx' = f(Y')$ as defined above.
     Since $Y \neq Y'$, we can without loss of generality assume that there is an $i \in Y$ where $i \notin Y'$.
     It then follows that $x_i = 1 \neq 0 = x_i'$ by the definition of $f$.
-    Hence clearly $f(Y) = \vx = (x_1, \ldots, x_n) \neq (x_1', \ldots, x_n') = \vx' = f(Y')$, which shows that $f$ is injective since $Y$ and $Y'$ were arbitrary.
+    Hence clearly $f(Y) = \vx = \seqfin{x}{n} \neq \seqfin{x'}{n} = \vx' = f(Y')$, which shows that $f$ is injective since $Y$ and $Y'$ were arbitrary.
 
     Now consider any $\vx \in X^n$ and let $Y = \braces{i \in A \where x_i = 1}$.
     Clearly $Y \ss A$ so that $Y \in \pset{A}$.

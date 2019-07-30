@@ -6,7 +6,7 @@
 \newcommand\prodf[1]{\prod_{k=1}^{#1} b_k}
 
 \exercise{1}{
-  Let $(b_1,b_2,\ldots)$ be an infinite sequence of real numbers.
+  Let $\seqinf{b}$ be an infinite sequence of real numbers.
   The sum $\sumf{n}$ is defined by induction as follows:
   \ali{
     \sumf{n} &= b_1 \condgap \text{for $n=1$,} \\
@@ -33,7 +33,7 @@
 }
 
 \exercise{2}{
-  Let $(b_1, b_2, \ldots)$ be an infinite sequence of real numbers.
+  Let $\seqinf{b}$ be an infinite sequence of real numbers.
   We define the product $\prodf{n}$ by the equations
   \ali{
     \prodf{1} &= b_1 \,, \\
@@ -64,7 +64,7 @@
 \sol{
   \dwhitman
 
-  Regarding $a^n$, defined the sequence $(b_1,b_2,\ldots)$ by $b_i = a$ for every $i \in \pints$, which we could denote by $(a,a,\ldots)$.
+  Regarding $a^n$, defined the sequence $\seqinf{b}$ by $b_i = a$ for every $i \in \pints$, which we could denote by $(a,a,\ldots)$.
   Then define $a^n = \prodf{n}$ as it is defined in Exercise~8.2, and we claim that this satisfies the inductive definition given in Exercise~4.6 and Example~8.2.
   \qproof{
     First, we clearly have $a^1 = \prodf{1} = b_1 = a$.
@@ -80,7 +80,7 @@
     1! &= 1 \,, \\
     n! &= (n-1)! \cdot n \condgap \text{for $n>1$.}
   }
-  Now, define the sequence $(b_1,b_2,\ldots)$ by $b_i = i$ for $i \in \pints$.
+  Now, define the sequence $\seqinf{b}$ by $b_i = i$ for $i \in \pints$.
   We then claim that defining $n! = \prodf{n}$ as defined in Exercise~8.2 satisfies this definition.
   \qproof{
     First, we have $1! = \prodf{1} = b_1 = 1$.

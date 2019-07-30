@@ -333,7 +333,7 @@
 }
 
 \exercise{9}{
-  Consider the subset $A$ of $(\pints)^\w$ consisting of all infinite sequences of positive integers $\vx = (x_1, x_2, \ldots)$ that end in an infinite string of 1's.
+  Consider the subset $A$ of $(\pints)^\w$ consisting of all infinite sequences of positive integers $\vx = \seqinf{x}$ that end in an infinite string of 1's.
   Give $A$ the following order: $\vx < \vy$ if $x_n < y_n$ and $x_i = y_i$ for $i > n$.
   We call this the ``antidictionary order'' on $A$.
   \eparts{
@@ -347,7 +347,7 @@
   (a)
   \qproof{
     Consider any positive integer $n$.
-    Define a sequence $\va = (a_1, a_2, \ldots)$ in $A$ by
+    Define a sequence $\va = \seqinf{a}$ in $A$ by
     \gath{
       a_i = \begin{cases}
         2 & i = n + 1 \\
@@ -356,11 +356,11 @@
     }
     We claim that the section $S_\va$ has the same order type as $(\pints)^n$.
     To show this we construct an order-preserving mapping $f: S_\va \to (\pints)^n$.
-    So consider any sequence $\vx = (x_1, x_2, \ldots)$ in $S_\va$ so that $\vx < \va$.
-    Now define a finite sequence where $y_i = x_{n-i+1}$ for any $i \in \intsfin{n}$, and set $f(\vx) = \vy = (y_1, \ldots, y_n)$.
+    So consider any sequence $\vx = \seqinf{x}$ in $S_\va$ so that $\vx < \va$.
+    Now define a finite sequence where $y_i = x_{n-i+1}$ for any $i \in \intsfin{n}$, and set $f(\vx) = \vy = \seqfin{y}{n}$.
     Clearly $f(\vx) \in (\pints)^n$ since $\vx \in A \ss (\pints)^\w$.
 
-    Here we must digress for a moment and show that, for all  $\vx = (x_1, x_2, \ldots) \in A$, $\vx \in S_\va$ if and only if $x_i = 1$ for all $i > n$.
+    Here we must digress for a moment and show that, for all  $\vx = \seqinf{x} \in A$, $\vx \in S_\va$ if and only if $x_i = 1$ for all $i > n$.
 
     $(\imp)$ We show the contrapositive.
     So suppose that there is an $i > n$ where $x_i \neq 1$.
@@ -379,7 +379,7 @@
 
     Now, returning to the main proof, we first show that $f$ as defined above preserves order.
     To this end let $\prec$ denote the dictionary order on $(\pints)^n$.
-    Now consider any $\vx = (x_1, x_2, \ldots)$ and $\vx' = (x_1', x_2', \ldots)$ in $S_\va$ where $\vx < \vx'$.
+    Now consider any $\vx = \seqinf{x}$ and $\vx' = \seqinf{x'}$ in $S_\va$ where $\vx < \vx'$.
     Also let $\vy = f(\vx)$ and $\vy' = f(\vx')$.
     Then there is an $m \in \pints$ where $x_m < x_m'$ and $x_i = x_i'$ for all $i > m$.
     We also have by what was shown above that $x_i = 1 x_i'$ for all $i > n$ since $\vx,\vx' \in S_\va$.
@@ -396,7 +396,7 @@
     Thus by definition we have that $f(\vx) = \vy \prec \vy' = f(\vx')$, which shows that $f$ preserves order since $\vx$ and $\vx'$ were arbitrary.
     Note that this also clearly shows that $f$ is injective.
 
-    To show that $f$ is also surjective, consider any $\vy = (y_1, \ldots, y_n) \in (\pints)^n$.
+    To show that $f$ is also surjective, consider any $\vy = \seqfin{y}{n} \in (\pints)^n$.
     Now define a sequence
     \gath{
       x_i = \begin{cases}
@@ -404,8 +404,8 @@
         1 & i > n
       \end{cases}
     }
-    so that clearly $\vx = (x_1, x_2, \ldots) \in S_\va$ by what was shown above.
-    Now let $\vy' = (y_1', \ldots y_n') = f(\vx)$.
+    so that clearly $\vx = \seqinf{x} \in S_\va$ by what was shown above.
+    Now let $\vy' = \seqfin{y'}{n} = f(\vx)$.
     Consider any $1 \leq i \leq n$ and let $j = n-i+1$ so that also $n-j+1 = i$, noting also that $1 \leq j \leq n$.
     Then we have
     \gath{
@@ -420,8 +420,8 @@
   (b)
   \qproof{
     Consider any nonempty subset $B$ of $A$.
-    Clearly the sequence $(1,1, \ldots)$ is the smallest element of $A$ and hence if it is in $B$ then it is also the smallest element of $B$.
-    So suppose that $(1,1,\ldots) \notin B$ so that, for every $\vx \in B$ there is a unique greatest $n_\vx \in \pints$ where $x_{n_\vx} > 1$ but $x_i = 1$ for all $i > n_\vx$.
+    Clearly the sequence $(1, 1, \ldots)$ is the smallest element of $A$ and hence if it is in $B$ then it is also the smallest element of $B$.
+    So suppose that $(1, 1, \ldots) \notin B$ so that, for every $\vx \in B$ there is a unique greatest $n_\vx \in \pints$ where $x_{n_\vx} > 1$ but $x_i = 1$ for all $i > n_\vx$.
     So let $I = \braces{n_\vx \where \vx \in B}$, noting that $B \neq \es$ implies that $I \neq \es$ as well.
     Thus $I$ is a nonempty subset of $\pints$ and hence has a smallest element $n$.
     If we then let $B_n$ be the set of sequences $\vx \in B$ where $x_n > 1$ but $x_i = 1$ for all $i > n$, then the fact that $n \in I$ clearly implies that $B_n \neq \es$.
@@ -434,7 +434,7 @@
     }
     as in part (a) then it follows from what was shown there that $B_n \ss S_\va$.
     Moreover it was shown that $S_\va$ has the same order type as the dictionary order of $(\pints)^n$, which we know to be a well-ordering.
-    Hence $S_\va$ must also be a well-ordering so that $B_n$ has a smallest element $\vb = (b_1, b_2, \ldots)$ since it is a nonempty subset of $S_\va$.
+    Hence $S_\va$ must also be a well-ordering so that $B_n$ has a smallest element $\vb = \seqinf{b}$ since it is a nonempty subset of $S_\va$.
     We claim that $\vb$ is in fact the smallest element of all of $B$.
 
     So consider any $\vx \in B$ so that $n_\vx \in I$.

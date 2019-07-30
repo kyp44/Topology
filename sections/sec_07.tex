@@ -267,16 +267,16 @@
         0 & i \notin A
       \end{cases}
     }
-    and set $f(A) = (x_1,x_2,\ldots)$ so that clearly $f(A) \in X^\w$.
+    and set $f(A) = \seqinf{x}$ so that clearly $f(A) \in X^\w$.
 
     To show that $f$ is injective consider $A$ and $A'$ in $\pset{\pints}$ where $A \neq A'$.
     Without loss of generality, we can assume that there is an $i \in A$ where $i \notin A'$, noting that of course $i \in \pints$ since $A \ss \pints$.
-    Let $\vx = (x_1, x_2, \ldots) = f(A)$ and $\vx' = (x_1', x_2', \ldots) = f(A')$.
+    Let $\vx = \seqinf{x} = f(A)$ and $\vx' = \seqinf{x'} = f(A')$.
     Then $x_i = 1 \neq 0 = x_i'$ by the definition of $f$ since $i \in A$ but $i \notin A'$.
     Thus clearly $f(A) = \vx \neq \vx' = f(A')$, which shows that $f$ is injective since $A$ and $A'$ were arbitrary.
 
-    Now consider any $\vx = (x_1,x_2,\ldots) \in X^\w$ and define the set $A = \braces{i \in \pints \where x_i = 1}$ so that clearly $A \ss \pints$ and hence $A \in \pset{\pints}$.
-    Let $\vx' = (x_1',x_2',\ldots) = f(A)$ and consider $i \in \pints$.
+    Now consider any $\vx = \seqinf{x} \in X^\w$ and define the set $A = \braces{i \in \pints \where x_i = 1}$ so that clearly $A \ss \pints$ and hence $A \in \pset{\pints}$.
+    Let $\vx' = \seqinf{x'} = f(A)$ and consider $i \in \pints$.
     If $i \in A$ then $x_i' = 1 = x_i$ by the definitions of $A$ and $f$.
     If $i \notin A$ then $x_i \neq 1$ since otherwise $i \in A$ by definition.
     Since $x_i \in X = \braces{0,1}$ it clearly must be that $x_i = 0$.
@@ -309,7 +309,7 @@
   (a)
   \qproof{
     First consider arbitrary degree $n \in \pints$.
-    Then for each $\vq = (q_1, \ldots, q_n) \in \rats^n$, there is a corresponding polynomial equation in $x$:
+    Then for each $\vq = \seqfin{q}{n} \in \rats^n$, there is a corresponding polynomial equation in $x$:
     \gath{
       x^n + \sum_{i = 1}^n q_i x^{i-1}  = x^n + q_n x^{n-1} + \cdots + q_2 x + q_1 = 0 \,,
     }
@@ -410,7 +410,7 @@
         1 & x_{nn} = 0
       \end{cases}
     }
-    so that clearly $\vy = (y_1, y_2, \ldots)$ is an element of $D$.
+    so that clearly $\vy = \seqinf{y}$ is an element of $D$.
     Now consider any $n \in \pints$.
     If $x_{nn} = 0$ then $y_n = 1 \neq 0 = x_{nn}$, and if $x_{nn} \neq 0$ then $y_n = 0 \neq x_{nn}$.
     Thus clearly $g(n) = \vx_n\neq \vy$ since the $n$th element of each differs.
@@ -433,7 +433,7 @@
     We show that each $F_N$ is countable.
     So consider any $N \in \pints$.
     If $N=1$ then clearly $f:\pints \to X$ defined by $f(n)=0$ for $n \in \pints$ (which could be denoted $(0,0,\ldots)$) is the only element of $F_N = F_1$ so that $f_N$ is clearly finite and therefore countable.
-    If $N > 1$ then for $\vx = (x_1, \ldots, x_{N-1}) \in X^{N-1}$ define
+    If $N > 1$ then for $\vx = \seqfin{x}{N-1} \in X^{N-1}$ define
     \gath{
       y_n = \begin{cases}
         x_n & n < N \\
@@ -441,7 +441,7 @@
       \end{cases}
     }
     for $n \in \pints$.
-    It then trivial to show that $g$ defined by $g(\vx) = \vy = (y_1, y_2, \ldots)$ is a bijection from $X^{N-1}$ to $F_N$.
+    It then trivial to show that $g$ defined by $g(\vx) = \vy = \seqinf{y}$ is a bijection from $X^{N-1}$ to $F_N$.
     Now, since $X = \braces{0,1}$ is finite, $X^{N-1}$ is finite by Corollary~6.8.
     Since this is in bijective correspondence with $F_N$, it follows that it must also be finite and therefore countable.
 
@@ -461,14 +461,14 @@
 
     We show that each $H_N$ is countable.
     So consider $N \in \pints$.
-    For any $\vx = (x_1, \ldots, x_N) \in \pints^N$ define
+    For any $\vx = \seqfin{x}{N} \in \pints^N$ define
     \gath{
       y_n = \begin{cases}
         x_n & n < N \\
         x_N & n \geq N
       \end{cases}
     }
-    for $n \in \pints$, and set $g(\vx) = \vy = (y_1, y_2, \ldots)$.
+    for $n \in \pints$, and set $g(\vx) = \vy = \seqinf{y}$.
     It is then a simple matter to show that $g$ is a bijection from $\pints^N$ to $H_N$.
     Then, since $\pints^N$ is a finite product of countable sets, it is countable by Theorem~7.6.
     Hence $H_N$ must also be countable since there is a bijective correspondence between them.
@@ -690,7 +690,7 @@
     It is then trivial to show that $h$ is an injection.
 
     Now, for $n \in \pints$, define $x_n = 1$ and $x_i = 0$ when $i \in \pints$ and $i \neq n$.
-    Clearly then $\vx = (x_1, x_2, \ldots) \in X^\pints$, and it is easily shown that the function defined by $f(n) = \vx$ is an injection from $\pints$ to $X^\pints$
+    Clearly then $\vx = \seqinf{x} \in X^\pints$, and it is easily shown that the function defined by $f(n) = \vx$ is an injection from $\pints$ to $X^\pints$
     Also clearly the identity function on $\pints$ is an injection since it is a bijection.
     It then follows from Lemma~\ref{lem:countun:expin} that there is an injection $f_1 : \pints^\pints \to (X^\pints)^\pints$, noting that clearly $X^\pints \neq \es$.
 

@@ -119,7 +119,7 @@
     Also, as there are no intervals involved here, we use the traditional tuple notation using parentheses.
     So define $f: \doms  \to \rans$ by
     \gath{
-      f(x_1, \ldots, x_{n-1}) = ((x_1, \ldots, x_{n-1}), x_n) \,.
+      f(x_1, \ldots, x_{n-1}) = (\seqfin{x}{n-1}, x_n) \,.
     }
     It is obvious that this is a bijection, and it is trivial to prove.
     Also obvious and trivial to prove based on the definition of $f$ is that $f(\cpfin{A}{n}) = (\cpfin{A}{n-1}) \times A_n$ when each $A_k \ss X_k$.
@@ -127,14 +127,14 @@
     First we show that $f$ is continuous by showing that the inverse image of every basis element in $\rans$ is open in $\doms$.
     So consider any basis element $C$ of $\rans$ and let $U = \inv{f}(C)$ so that of course $f(U) = C$ and $U \ss \doms$.
     We then have that $C = V' \times V_n$ where $V'$ is open in $\cpfin{X}{n-1}$ and $V_n$ is open in $X_n$ by the definition of the box/product topology.
-    Now consider any $x \in U$ so that $x = (x_k)_{k=1}^n$ and we have that $f(x) = ((x_1, \ldots, x_{n-1}), x_n) \in f(U) = C$.
-    Hence $x' = (x_1, \ldots, x_{n-1}) \in V'$ and $x_n \in V_n$.
+    Now consider any $x \in U$ so that $x = \seqfin{x}{n}$ and we have that $f(x) = (\seqfin{x}{n-1}, x_n) \in f(U) = C$.
+    Hence $x' = \seqfin{x}{n-1} \in V'$ and $x_n \in V_n$.
     Since $V'$ is open in $\cpfin{X}{n-1}$ there is a basis element $C'$ containing $x'$ that is a subset of $V'$.
     By the definition of the box topology, we then have that $C' = \cpfin{V}{n-1}$ where each $V_k$ is open in $X_k$.
 
-    We then have that $B = \cpfin{V}{n}$ is a basis element of $\doms$ and also clearly $B$ contains $x$ since $(x_1, \ldots, x_{n-1}) = x' \in C' = \cpfin{V}{n-1}$ and $x_n \in V_n$.
-    Now suppose that $y = (y_k)_{k=1}^n \in B$ so that each $y_k \in V_k$.
-    Then we have that $y' = (y_1, \ldots, y_{n-1}) \in C'$ so that also $y' \in V'$ since $C' \ss V'$.
+    We then have that $B = \cpfin{V}{n}$ is a basis element of $\doms$ and also clearly $B$ contains $x$ since $\seqfin{x}{n-1} = x' \in C' = \cpfin{V}{n-1}$ and $x_n \in V_n$.
+    Now suppose that $y = \seqfin{y}{n} \in B$ so that each $y_k \in V_k$.
+    Then we have that $y' = \seqfin{y}{n-1} \in C'$ so that also $y' \in V'$ since $C' \ss V'$.
     Since also of course $y_n \in V_n$, we have that $(y', y_n) \in V' \times V_n = C$.
     Also clearly $f(y) = (y', y_n) \in C = f(U)$ so that $y \in U$.
     Since $y$ was arbitrary this shows that $B \ss U$, which suffices to show that $U$ is open since $x$ was arbitrary.
@@ -257,7 +257,7 @@
 }
 
 \exercise{7}{
-  Let $\reals^\infty$ be the subset of $\reals^\w$ consisting of all sequences that are ``eventually zero,'' that is all sequences $(x_1, x_2, \ldots)$ such that $x_i \neq 0$ for only finitely many values of $i$.
+  Let $\reals^\infty$ be the subset of $\reals^\w$ consisting of all sequences that are ``eventually zero,'' that is all sequences $\seqinf{x}$ such that $x_i \neq 0$ for only finitely many values of $i$.
   What is the closure of $\reals^\infty$ in $\reals^\w$ in the box and product topologies?
   Justify your answer.
 }
@@ -267,12 +267,12 @@
   First we claim that $\reals^\infty$ is dense in $\reals^\w$ in the product topology in the sense that its closure is all of $\reals^\w$.
   \qproof{
     We show that any point of $\reals^\w$ is in $\closure{\reals^\w}$.
-    So consider any point $x = (x_n)_{n \in \pints} \in \reals^\w$ and any neighborhood $U$ of $x$.
+    So consider any point $x = \seqinf{x} \in \reals^\w$ and any neighborhood $U$ of $x$.
     Then there is a basis element $B = \prod U_n$ containing $x$ where $B \ss U$.
     By the definition of the product topology each $U_n$ is open and $U_n = \reals$ for all but finitely many values of $n$.
     So let $I$ be a finite subset of $\pints$ such that $U_n = \reals$ for all $n \notin I$ and $U_n$ is merely just open for $n \in I$.
 
-    Consider now the sequence $y = (y_n)_{n \in \pints}$ defined by
+    Consider now the sequence $y = \seqinf{y}$ defined by
     \gath{
       y_n = \begin{cases}
         x_n & n \in I \\
@@ -291,7 +291,7 @@
   For the box topology, we claim that $\reals^\infty$ is already closed.
   \qproof{
     We show this by showing that any point not in $\reals^\infty$ is not a limit point of $\reals^\infty$ so that $\reals^\infty$ must already contain all its limit points.
-    So consider any $x = (x_n)_{n \in \pints} \notin \reals^\infty$ so that $x_n \neq 0$ for infinitely many values of $n$.
+    So consider any $x = \seqinf{x} \notin \reals^\infty$ so that $x_n \neq 0$ for infinitely many values of $n$.
     Now define the sets
     \gath{
       U_n = \begin{cases}
@@ -306,7 +306,7 @@
     It therefore follows that $B = \prod U_n$ is a basis element of $\reals^\w$ and is therefore open, and that $x \in B$.
     Hence $B$ is a neighborhood of $x$.
 
-    Then, for any $y = (y_n)_{n \in \pints} \in B$ we have that each $y_n \in U_n$.
+    Then, for any $y = \seqinf{y} \in B$ we have that each $y_n \in U_n$.
     For infinitely many $n \in \pints$ we then have that $x_n \neq 0$ and hence $x_n > 0$ or $x_n < 0$.
     In the former case $y_n \in U_n = (x_n/2, 2x_n)$ so that $0 < x_n/2 < y_n$.
     In the latter case $y_n \in U_n = (2x_n, x_n/2)$ so that $y_n < x_n / 2 < 0$.
@@ -317,9 +317,9 @@
 }
 
 \exercise{8}{
-  Given sequences $(a_1, a_2, \ldots)$ and $(b_1, b_2, \ldots)$ of reals numbers with $a_i > 0$ for all $i$, define $h: \reals^\w \to \reals^\w$ by the equation
+  Given sequences $\seqinf{x}$ and $\seqinf{b}$ of reals numbers with $a_i > 0$ for all $i$, define $h: \reals^\w \to \reals^\w$ by the equation
   \gath{
-    h((x_1, x_2, \ldots)) = (a_1 x_1 + b_1, a_2 x_2 + b_2, \ldots) \,.
+    h(\seqinf{x}) = (a_1 x_1 + b_1, a_2 x_2 + b_2, \ldots) \,.
   }
   Show that if $\reals^\w$ is given the product topology, $h$ is a homeomorphism of $\reals^\w$ with itself.
   What happens if $\reals^\w$ is given the box topology?
@@ -367,7 +367,7 @@
     Now again we have that each $\pi_i$ and $g_i$ are continuous by the proof of Theorem~19.6 and elementary calculus.
     Hence $k_i = g_i \circ \pi_i$ and $k$ are continuous by Theorem~18.2 part (c), and Theorem~19.6, respectively, as before.
 
-    Now consider any $\vx = (x_i)_{i \in \pints} \in \reals^\w$ so that we have, for any $i \in \pints$,
+    Now consider any $\vx = \seqinf{x} \in \reals^\w$ so that we have, for any $i \in \pints$,
     \ali{
       k_i(h(\vx)) &=  [g_i \circ \pi_i](h(\vx)) = g_i(\pi_i(h(\vx))) = g_i(h_i(\vx)) \\
       &= g_i([f_i \circ \pi_i](\vx)) = g_i(f_i(\pi_i(\vx))) = g_i(f_i(x_i)) \\
@@ -376,7 +376,7 @@
     }
     Therefore
     \gath{
-      k(h(\vx)) = (k_1(h(\vx)), k_2(h(\vx)), \ldots) = (x_1, x_2, \ldots) = \vx \,.
+      k(h(\vx)) = (k_1(h(\vx)), k_2(h(\vx)), \ldots) = \seqinf{x} = \vx \,.
     }
     We also have that
     \ali{
@@ -387,7 +387,7 @@
     }
     for each $i \in \pints$ so that
     \gath{
-      h(k(\vx)) = (h_1(k(\vx)), h_2(k(\vx)), \ldots) = (x_1, x_2, \ldots) = \vx \,.
+      h(k(\vx)) = (h_1(k(\vx)), h_2(k(\vx)), \ldots) = \seqinf{x} = \vx \,.
     }
     Since $\vx$ was arbitrary, it thus follows from Lemma~2.1 that $h$ is bijective and $k = \inv{h}$.
     Since we have already shown that $h$ and $k = \inv{h}$ are continuous, this suffices to prove that $h$ is a homeomorphism as desired.

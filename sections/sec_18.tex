@@ -157,19 +157,19 @@
     First we note that $f(0) = 0$ since $0$ is rational.
     Now consider any $\e > 0$ and let $\d = \e$.
     Suppose real $y$ where $\abs{y - 0} = \abs{y} < \d$.
-    If $y$ is rational then $y = 0$ so that $\abs{y - f(0)} = \abs{0 - 0} = \abs{0} = 0 < \e$.
-    If $y$ is irrational then $\abs{y - f(0)} = \abs{y - 0} = \abs{y} < \d = \e$ again.
+    If $y$ is rational then $y = 0$ so that $\abs{f(y) - f(0)} = \abs{0 - 0} = \abs{0} = 0 < \e$.
+    If $y$ is irrational then $\abs{f(y) - f(0)} = \abs{y - 0} = \abs{y} < \d = \e$ again.
     Since $\e$ was arbitrary this shows that $f$ is continuous at $x = 0$.
 
     Now consider any $x \neq 0$.
-    Let $\e = \abs{x} / 2$, noting that $\e > 0$ since $x \neq 0$.
+    Let $\e = \abs{x} / 2$, noting that $\e > 0$ since $x \neq 0$ so that $\abs{x} > 0$.
     Now consider any $\d > 0$.
 
     Case: $x \in \rats$.
     Then $f(x) = 0$ but there is clearly an irrational $y$ close enough to $x$ so that $\abs{y - x} < \min(\e, \d)$, and hence both $\abs{y-x} < \e$ and $\abs{y-x} < \d$.
     We also have that $f(y) = y$. We then have that
     \gath{
-      2\e = \abs{x} \leq \abs{y-x} + \abs{y} < \e + \abs{y}
+      2\e = \abs{x} = \abs{x - 0} \leq \abs{x - y} + \abs{y - 0} < \e + \abs{y}
     }
     so that
     \gath{
