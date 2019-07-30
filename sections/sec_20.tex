@@ -1238,7 +1238,7 @@
 
     First we show that the inherited box topology has an open set that is not open in the inherited \elltop{}.
     Consider the set $U = \rinf \cap \prod_{n \in \pints} (-1, 1/n)$, which is clearly a basis element and open set in the inherited box topology.
-    We show that $U$ is not open in the inherited \elltop{} using the contrapositive of Lemma~\ref{cor:metric:subball}.
+    We show that $U$ is not open in the inherited \elltop{} using the contrapositive of Corollary~\ref{cor:metric:subball}.
     So consider the point $\vze$, which is clearly contained in $U$ and any $\e > 0$ and the arbitrary ball $B_d(\vze, \e)$ of $X$.
     Of course, there is positive integer $N$ large enough that $N \geq 2/\e$, and hence $1/N \leq \e/2$.
 
@@ -1343,7 +1343,7 @@
   \qproof{
     First we show that the inherited box topology has an open set that is not open in the inherited \elltop{}, in a very similar way to how this was shown in part (b).
     Consider the set $U = H \cap \prod_{n \in \pints} (-1, 1/n)$, which is clearly a basis element and open set in the inherited box topology.
-    We show that $U$ is not open in the inherited \elltop{} using the contrapositive of Lemma~\ref{cor:metric:subball}.
+    We show that $U$ is not open in the inherited \elltop{} using the contrapositive of Corollary~\ref{cor:metric:subball}.
     So consider the point $\vze$, which is clearly contained in $U$ and any $\e > 0$ and the arbitrary ball $B_d(\vze, \e)$ of $X$.
     Of course, there is positive integer $N$ large enough that $N \geq 2/\e$, and hence $1/N \leq \e/2$.
 
@@ -1603,6 +1603,8 @@
   }
 }
 
+\def\vxb{\overline{\vx}}
+\def\vyb{\overline{\vy}}
 \exercise{10}{
   Let $X$ denote the subset of $\reals^\w$ consisting of all sequences $(x_1, x_2, \ldots)$ such that $\sum x_i^2$ converges.
   (You may assume standard facts about infinite series.
@@ -1624,12 +1626,122 @@
 
   (a)
   \qproof{
-    First, denote the partial sums by
+    First, denote the partial sums of the series $\sum \abs{x_i y_i}$ by
     \gath{
       s_n = \sum_{i=1}^n \abs{x_i y_i}
     }
     for any $n \in \pints$.
     Clearly then each term in the sum is non-negative so that the sequence of partial sums is non-decreasing, which is to say that $s_{n+1} \geq s_n$ for every $n \in \pints$.
-    Then, to show that the series converges, it suffice to show that the partial sums are bounded, since convergence then follows from what will be shown in Exercise~21.11 part (a).
+    Then, to show that the series converges, it suffices to show that the partial sums are bounded, since convergence then follows from what will be shown in Exercise~21.11 part (a).
+    To this end we show that the sequence $(s_1, s_2, \ldots)$ is a bounded above.
+
+    So, first let us define the real numbers
+    \ali{
+      \norm{\vx} &= \squares{\sum_{i=1}^\infty x_i^2}^{1/2} &
+      \norm{\vy} &= \squares{\sum_{i=1}^\infty y_i^2}^{1/2} \,,
+    }
+    which we know are well defined since $\vx, \vy \in X$.
+    Also, for any $n \in \pints$, define the truncated sequences $\vx_n = (x_1, \ldots, x_n)$ and $\vy_n = (y_1, \ldots, y_n)$.
+    We know from Lemmm~\ref{lem:metric:pseries} that the partial series $\sum_{i=n}^\infty x_i^2$ and $\sum_{i=n}^\infty y_i^2$ are non-negative for any $n \in \pints$.
+    From this and Definition~\ref{def:metric:pseries} we have that
+    \gath{
+      \sum_{i=1}^n x_i^2 \leq \sum_{i=1}^n x_i^2 + \sum_{i=n+1}^\infty x_i^2 = \sum_{i=1}^\infty x_i^2
+    }
+    for any $n \in \pints$.
+    It then follows from Corollary~\ref{cor:metric:opmon} that
+    \gath{
+      \norm{\vx_n} = \squares{\sum_{i=1}^n x_i^2}^{1/2} \leq \squares{\sum_{i=1}^\infty x_i^2}^{1/2} = \norm{\vx} \,,
+    }
+    and similarly $\norm{\vy_n} \leq \norm{\vy}$ for any $n \in \pints$.
+    Hence, clearly $\norm{\vx_n} \norm{\vy_n} \leq \norm{\vx} \norm{\vy}$ since norms are always non-negative by Lemma~\ref{lem:metric:vprops} part (4).
+
+    Lastly, we define $\vxb_n = (\abs{x_1}, \ldots, \abs{x_n})$ and $\vyb_n = (\abs{y_1}, \ldots, \abs{y_n})$ for any $n \in \pints$.
+    From this definition it follows that
+    \gath{
+      \norm{\vxb_n} = \squares{\sum_{i=1}^n \abs{x_i}^2}^{1/2} = \squares{\sum_{i=1}^n x_i^2}^{1/2} = \norm{\vx_n} \,,
+    }
+    and similarly that $\norm{\vyb_n} = \norm{\vy_n}$.
+
+    Putting all of this together we have by Exercise~20.9 part (b) that
+    \gath{
+      s_n = \sum_{i=1}^n \abs{x_i y_i} = \sum_{i=1}^n \abs{x_i} \abs{y_i} = \vxb_n \cdot \vyb_n \leq \norm{\vxb_n} \norm{\vyb_n}
+      = \norm{\vx_n} \norm{\vy_n} \leq \norm{\vx} \norm{\vy}
+    }
+    for any $n \in \pints$.
+    This shows that the sequence of partial sums is bounded by $\norm{\vx} \norm{\vy}$, which shows the desired result as previously discussed.
+  }
+
+  (b)
+  \qproof{
+    First, it is a well known fact that if a series converges absolutely, then it converges.
+    Hence, since it was shown in part (a) that $\sum \abs{x_i y_i}$ converges, we have that $\sum x_i y_i$ also converges.
+    We of course also know that $\sum x_i^2$ and $\sum y_i^2$ converge since $\vx, \vy \in X$.
+    It then follows from Exercise~21.11 part (b) that
+    \gath{
+      \sum_{i=1}^\infty (x_i + y_i)^2 = \sum_{i=1}^\infty (x_i^2 + 2x_i y_i + y_i^2)
+    }
+    converges to $\sum x_i^2 + 2 \sum x_i y_i + \sum y_i^2$.
+    Since of course
+    \gath{
+      \vx + \vy = (x_1 + y_1, x_2 + y_2, \ldots)
+    }
+    we have that $\vx + \vy \in X$ as desired.
+    We also have that $c \vx = (cx_1, cx_2, \ldots)$ by definition, and it again follows from Exercise~21.11 part (b) that
+    \gath{
+      \sum_{i=1}^\infty (c x_i)^2 = \sum_{i=1}^\infty c^2 x_i^2
+    }
+    converges to $c^2 \sum x_i^2$.
+    Hence $c\vx \in X$ as desired.
+  }
+
+  (c)
+  \qproof{
+    Suppose that $\vx,\vy \in X$.
+    It then follows from part (b) that $-\vy = (-1) \vy \in X$.
+    Then also $\vx - \vy = \vx + (-\vy) \in X$ as well, again by what was shown in part (b).
+    Since we clearly have
+    \gath{
+      \vx - \vy = (x_1 - y_1, x_2 - y_2, \ldots) \,,
+    }
+    it therefore follows that $\sum (x_i - y_i)^2$ converges since $\vx - \vy \in X$.
+    Hence the function
+    \gath{
+      d(\vx, \vy) = \squares{\sum_{i=1}^\infty (x_i - y_i)^2}^{1/2}
+    }
+    is well defined.
+
+    To show that $d$ is a metric, first it is obvious that $d(\vx, \vy) \geq 0$ for all $\vx, \vy \in X$ since each term is non-negative so that the sequence of partial sums is non-negative and non-decreasing.
+    Also clearly if $\vy = \vx$ then
+    \gath{
+      d(\vx, \vy) = d(\vx, \vx) = \squares{\sum_{i=1}^\infty (x_i - x_i)^2}^{1/2} = \squares{\sum_{i=1}^\infty 0^2}^{1/2}
+      = \squares{\sum_{i=1}^\infty 0}^{1/2} = 0^{1/2} = 0 \,.
+    }
+    To show the converse, suppose that $\vx \neq \vy$ so that there is an $n \in \pints$ where $x_n \neq y_n$, and hence $x_n - y_n \neq 0$ and $(x_n - y_n)^2 > 0$.
+    Referencing Defintion~\ref{def:metric:pseries}, we then have
+    \ali{
+      0 &< (x_n - y_n)^2 = \sum_{i=n}^n (x_i - y_i)^2 \leq \sum_{i=1}^{n-1} (x_i - y_i)^2 + \sum_{i=n}^n (x_i - y_i)^2 + \sum_{i=n+1}^\infty (x_i - y_i)^2 \\
+      &= \sum_{i=1}^n (x_i - y_i)^2 + \sum_{i=n+1}^\infty (x_i - y_i)^2 = \sum_{i=1}^\infty (x_i - y_i)^2
+    }
+    Thus by Corollary~\ref{cor:metric:opmon} we have
+    \gath{
+      d(\vx, \vy) = \squares{\sum_{i=1}^\infty (x_i - y_i)^2}^{1/2} > 0^{1/2} = 0
+    }
+    so that of course $d(\vx, \vy) \neq 0$ as desired.
+    This shows part (1) of the definition of a metric.
+
+    Showing part (2) of the definition is even easier:
+    \gath{
+      d(\vx, \vy) = \squares{\sum_{i=1}^\infty (x_i - y_i)^2}^{1/2} = \squares{\sum_{i=1}^\infty (y_i - x_i)^2}^{1/2} = d(\vy, \vx) \,.
+    }
+    For part (3) first consider any $\vz \in X$.
+    Denote the truncated sequences by $\vz_n = (z_1, \ldots, z_n)$ for any $n \in \pints$.
+    Then we have
+    \gath{
+      \sum_{i=1}^\infty z_i^2 = \lim_{n \to \infty} \sum_{i=1}^n z_i^2 = \lim_{n \to \infty} \norm{\vz_n}^2 \,.
+    }
+    Since the function $f(x) = x^{1/2}$ is continuous on the domain $\braces{x \in \reals \where x \geq 0}$ by elementary calculus, it follows from Lemma~TODO that
+    \gath{
+      \squares{\sum_{i=1}^\infty z_i^2}^{1/2} = \squares{\lim_{n \to \infty} \norm{\vz_n}^2}^{1/2} = \lim_{n \to \infty} \squares{\norm{\vz_n}^2}^{1/2} = \lim_{n \to \infty} \norm{\vz_n}
+    }
   }
 }
