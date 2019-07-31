@@ -126,10 +126,11 @@
 \newcommand\sol[1]{\begin{solution} #1 \end{solution}}
 
 % Parts enumerate environment
-\newcommand\eparts[1]{
-    \begin{enumerate}[label=(\alph*)]
-    #1
-    \end{enumerate}
+\newcommand\eparts[2][0]{
+  \begin{enumerate}[label=(\alph*)]
+    \setcounter{enumi}{#1}
+    #2
+  \end{enumerate}
 }
 
 % Main problem label

@@ -123,7 +123,7 @@
         x_{i-1} & i \neq 1
       \end{cases}
     }
-    for $i \in \pints$, noting that when $i \neq 1$ we have $i > 1$ so that $i-1 \geq 1$ so that $y_i = x_{i-1}$ is defined.
+    for $i \in \pints$, noting that when $i \neq 1$ we have $i > 1$ so that $i-1 \geq 1$, and thus $y_i = x_{i-1}$ is defined.
     Now define $f(\vx) = \vy = \seqinf{y}$ so that clearly $f$ is a function from $X^\w$ to $Y$, since $y_1 = 0$ for any input $\vx$.
 
     To show that $f$ is injective, consider $\vx$ and $\vx'$ in $X^\w$ where $\vx \neq \vx'$, and let $\vy = f(\vx)$ and $\vy' = f(\vx')$.
@@ -211,7 +211,7 @@
       \end{cases}
     }
     for any $x \in A$.
-    It is clear that $f$ is a function from $A$ to $\intsfin{n+1}$ since obviously $n+1 \in \intsfin{n+1}$ and the range of $f'$ is $\intsfin{n} \ss \intsfin{n+1}$.
+    It is clear that $f$ is a function from $A$ to $\intsfin{n+1}$ since obviously $n+1 \in \intsfin{n+1}$ and the image of $f'$ is $\intsfin{n} \ss \intsfin{n+1}$.
 
     Consider next any $x$ and $x'$ in $A$ where $x \prec x'$.
     Suppose for the moment that $x = a$.
@@ -219,14 +219,14 @@
     This contradicts the fact that $x \prec x'$ so that it must be that $x \neq a$.
     Then $f(x) = f'(x)$.
     If also $x' \neq a$ then clearly $f(x) = f'(x) < f'(x') = f(x')$ since $f'$ preserves order.
-    If $x' = a$ then $f(x') = n+1$ so that $f(x) = f'(x) \leq n < n+1 = f(x')$ since the range of $f'$ is only $\intsfin{n}$.
+    If $x' = a$ then $f(x') = n+1$ so that $f(x) = f'(x) \leq n < n+1 = f(x')$ since the image of $f'$ is only $\intsfin{n}$.
     Hence in all cases $f(x) < f(x')$ so that $f$ preserves order since $x$ and $x'$ were arbitrary.
     Note that this also shows that $f$ is injective since, for any $x,x' \in A$ where $x \neq x'$, we can assume without loss of generality that $x \prec x'$ (since it must be that $x \prec x'$ or $x' \prec x$) so that $f(x) < f(x')$, and hence $f(x) \neq f(x')$.
 
     Lastly consider any $k \in \intsfin{n+1}$.
     If $k = n+1$ then clearly by definition $f(a) = n+1 = k$, noting that obviously $a \in A$.
     On the other hand, if $k \neq n+1$ then it has to be that $k < n+1$ so $k \leq n$.
-    Then $k \in \intsfin{n}$, which is the range of $f'$ so that there is an $x \in A'$ where $f'(x) = k$ since $f'$ is bijective (and therefore surjective).
+    Then $k \in \intsfin{n}$, which is the image of $f'$ so that there is an $x \in A'$ where $f'(x) = k$ since $f'$ is bijective (and therefore surjective).
     Since $x \in A'$ we have that $x \in A$ but $x \neq a$ so that $f(x) = f'(x) = k$.
     This shows that $f$ is surjective since $k$ was arbitrary.
 

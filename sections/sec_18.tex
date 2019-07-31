@@ -57,7 +57,7 @@
 
   (a)
   \qproof{
-    First note that clearly the inverse of the identity function is itself with the domain and range reversed, and that for any subset $A \ss X = X'$ we have $i(A) = \inv{i}(A) = A$.
+    First note that clearly the inverse of the identity function is itself with the domain and image reversed, and that for any subset $A \ss X = X'$ we have $i(A) = \inv{i}(A) = A$.
     
     $(\imp)$ Suppose that $i$ is continuous and consider any open set $U \in \cT$.
     Then we have that $\inv{i}(U) = U$ is open in $\cT'$ since $i$ is continuous.
@@ -70,7 +70,7 @@
 
   (b)
   \qproof{
-    Clearly $i$ is a bijection since its domain and range are the same set, and $\inv{i} = i$.
+    Clearly $i$ is a bijection since its domain and image are the same set, and $\inv{i} = i$.
     We then have that
     \ali{
       \text{$i$ is a homeomorphism } &\bic \text{$i$ and $\inv{i}$ are both continuous} \\
@@ -487,7 +487,7 @@
     It also follows from part (a) that $f \rest A$ is continuous with the domain being the subspace topology on $A$.
 
     Now consider any neighborhood $V$ of $f(x)$, noting that of course $x \in A$ since $x \in U'$ and $U' \ss A$.
-    Thus $f(x)$ is in the range of $f \rest A$ so that there is a neighborhood $U_A$ of $x$ in the subspace topology such that $(f \rest A)(U_A) \ss V$ by Theorem~18.1 since $f \rest A$ is continuous.
+    Thus $f(x)$ is in the image of $f \rest A$ so that there is a neighborhood $U_A$ of $x$ in the subspace topology such that $(f \rest A)(U_A) \ss V$ by Theorem~18.1 since $f \rest A$ is continuous.
     Since $U_A$ is open in the subspace topology, there is an open set $U_X$ in $X$ where $U_A = A \cap U_X$.
     Now let $U = U' \cap U_X$, which is open in $X$ since $U'$ and $U_X$ are both open in $X$.
     Then also $x \in U_X$ since $x \in U_A$ and $U_A = A \cap U_X$, and hence $x \in U$ since also $x \in U'$ and $U = U' \cap U_X$.

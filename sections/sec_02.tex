@@ -1,0 +1,64 @@
+\setcounter{subsection}{2-1}
+\subsection{Functions}
+
+% Some useful macros for this section
+\def\ivf{\inv{f}}
+
+\exercise{1}{
+  Let $f: A \to B$.
+  Let $A_0 \ss A$ and $B_0 \ss B$.
+  \eparts{
+  \item Show that $A_0 \ss \ivf(f(A_0))$ and that equality holds if $f$ is injective.
+  \item Show that $f(\ivf(B_0)) \ss B_0$ and that equality holds if $f$ is surjective.
+  }
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    Consider any $x \in A_0$ and let $y = f(x)$ so that clearly $y \in f(A_0)$.
+    Then, since $f(x) = y \in f(A_0)$, it follows from the definition of the preimage that $x \in \ivf(f(A_0))$.
+    Hence $A_0 \ss \ivf(f(A_0))$ as desired since $x$ was arbitrary.
+    Now suppose that $f$ is also injective and consider this time any $x \in \ivf(f(A_0))$ so that $y = f(x) \in f(A_0)$ by the definition of a preimage.
+    Then there is an $x' \in A_0$ where $f(x') = y = f(x)$ by the definition of an image.
+    Since $f$ injective though, it must be that $x = x' \in A_0$.
+    This shows that $\ivf(f(A_0)) \ss A_0$ since $x$ was arbitrary.
+    The desired equality follows since it was already shown that $A_0 \ss \ivf(f(A_0))$ (whether or not $f$ is injective). 
+  }
+
+  (b)
+  \qproof{
+    First suppose that $y$ is any element of $f(\ivf(B_0))$ so that there is an $x \in \ivf(B_0)$ where $f(x) = y$.
+    Since $x \in \ivf(B_0)$, we then have that $y = f(x) \in B_0$ by the definition of a preimage.
+    Hence $f(\ivf(B_0)) \ss B_0$ since $y$ was arbitrary.
+    Now suppose also that $f$ is surjective and suppose that $y \in B_0$ so that also clearly $y \in B$ since $B_0 \ss B$.
+    Since $f$ is surjective, there is an $x \in A$ where $f(x) = y$.
+    We then have that $x \in \ivf(B_0)$ since $f(x) = y \in B_0$.
+    Clearly then $y = f(x) \in f(\ivf(B_0))$ so that $B_0 \ss f(\ivf(B_0))$ since $y$ was arbitrary.
+    This shows equality as desired.
+  }
+}
+
+\exercise{2}{
+  Let $f: A \to B$ and let $A_i \ss A$ and $B_i \ss B$ for $i=0$ and $i=1$.
+  Show that $\ivf$ preserves inclusions, unions, intersections, and differences of sets:
+  \eparts{
+  \item $B_0 \ss B_1 \imp \ivf(B_0) \ss \ivf(B_1)$.
+  \item $\ivf(B_0 \cup B_1) = \ivf(B_0) \cup \ivf(B_1)$.
+  \item $\ivf(B_0 \cap B_1) = \ivf(B_0) \cap \ivf(B_1)$.
+  \item $\ivf(B_0 - B_1) = \ivf(B_0) - \ivf(B_1)$.
+  }
+  Show that $f$ preserves inclusions and unions only:
+  \eparts[4]{
+  \item $A_0 \ss A_1 \imp f(A_0) \ss f(A_1)$.
+  \item $f(A_0 \cup A_1) = f(A_0) \cup f(A_1)$.
+  \item $f(A_0 \cap A_1) \ss f(A_0) \cap f(A_1)$; show that equality holds if $f$ injective.
+  \item $f(A_0 - A_1) \sps f(A_0) - f(A_1)$; show that equality holds if $f$ injective.
+  }
+}
+\sol{
+  \dwhitman
+
+  TODO
+}
