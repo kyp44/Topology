@@ -1784,3 +1784,50 @@
     This shows that $d$ has all three of the properties required to be a metric.
   }
 }
+
+\exercise{11}{
+  Show that if $d$ is a metric for $X$, then
+  \gath{
+    d'(x, y) = d(x, y) / (1 + d(x,y))
+  }
+  is a bounded metric that gives the same topology of $X$.
+  [Hint: If $f(x) = x/(1+x)$ for $x > 0$, use the mean value theorem to show that $f(a+b) - f(b) \leq f(a)$.]
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    First we show that $d'$ is a valid metric.
+    Since $d$ is a metric, we have that
+    \gath{
+      d(x,y) \geq 0 \\
+      1 + d(x,y) \geq 1 > 0 \,.
+    }
+    Hence clearly $d'(x,y) = d(x,y)/(1+d(x,y)) \geq 0$ as well.
+    If $x = y$ then $d(x,y) = 0$ so that
+    \gath{
+      d'(x,y) = \frac{d(x,y)}{1 + d(x,y)} = \frac{0}{1 + 0} = 0 \,.
+    }
+    Conversely, if $d'(x,y) = 0$ then it has to be that $d(x,y) = 0$ as well since $1 + d(x,y) > 0$.
+    It then must be that $x = y$ since $d$ is a metric.
+    This shows part (1) of the definition of a metric.
+
+    Part (2) is easy to show:
+    \gath{
+      d'(x,y) = \frac{d(x,y)}{1 + d(x,y)} = \frac{d(y,x)}{1 + d(y,x)} = d'(y,x)
+    }
+    since again $d$ is a metric so that $d(x,y) = d(y,x)$.
+
+    For part (3) define the function $f(x) = x/(1+x)$ over the domain $\braces{x \in \reals \where x \geq 0}$.
+    We first show that $f$ is monotonically increasing.
+    The easiest way to do this is to show that its derivative is always positive, from which monotonicity follows from elementary calculus.
+    Using the quotient rule, we have
+    \gath{
+      f'(x) = \frac{1 \cdot (1+x) - x \cdot 1}{(1+x)^2} = \frac{1 + x - x}{(1+x)^2} = \frac{1}{(1+x)^2} \,.
+    }
+    Clearly we have $x \geq 0$ so that $1 + x \geq 1 > 0$, and hence $(1+x)^2 > 0^2 = 0$ by Lemma~\ref{lem:metric:pmon}.
+    It then follows that $f'(x) = 1/(1+x)^2 > 0$, and thus $f$ is monotonically increasing.
+
+    
+  }
+}
