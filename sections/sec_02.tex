@@ -60,5 +60,108 @@
 \sol{
   \dwhitman
 
-  TODO
+  (a)
+  \qproof{
+    Suppose that $B_0 \ss B_1$ and consider any $x \in \ivf(B_0)$.
+    Then by the definition of a preimage, we have $f(x) \in B_0$ so that also $f(x) \in B_1$ since $B_0 \ss B_1$.
+    This shows that $x \in \ivf(B_1)$ again by the definition of a preimage.
+    Thus $\ivf(B_0) \ss \ivf(B_1)$ since $x$ was arbitrary as desired.
+  }
+
+
+  (b)
+  \qproof{
+    We can show this easily using a string of biconditionals.
+    For any $x \in A$ we have
+    \ali{
+      x \in \ivf(B_0 \cup B_1) &\bic f(x) \in B_0 \cup B_1 \\
+      &\bic f(x) \in B_0 \lor f(x) \in B_1 \\
+      &\bic x \in \ivf(B_0) \lor x \in \ivf(B_1) \\
+      &\bic x \in \ivf(B_0) \cup \ivf(B_1) \,,
+    }
+    which shows the desired result.
+  }
+
+  (c)
+  \qproof{
+    We can show this in a very similar manner to what was done in part (b).
+    We have
+    \ali{
+      x \in \ivf(B_0 \cap B_1) &\bic f(x) \in B_0 \cap B_1 \\
+      &\bic f(x) \in B_0 \land f(x) \in B_1 \\
+      &\bic x \in \ivf(B_0) \land x \in \ivf(B_1) \\
+      &\bic x \in \ivf(B_0) \cap \ivf(B_1) \,,
+    }
+    for any $x \in A$.
+  }
+
+  (d)
+  \qproof{
+    This is also shown similarly.
+    For $x \in A$ we have
+    \ali{
+      x \in \ivf(B_0 - B_1) &\bic f(x) \in B_0 - B_1 \\
+      &\bic f(x) \in B_0 \land f(x) \notin B_1 \\
+      &\bic x \in \ivf(B_0) \land x \notin \ivf(B_1) \\
+      &\bic x \in \ivf(B_0) - \ivf(B_1) \,.
+    }
+  }
+
+  (e)
+  \qproof{
+    Suppose that $A_0 \ss A_1$ and consider any $y \in f(A_0)$.
+    Then there is an $x \in A_0$ where $y = f(x)$ by the definition of an image set.
+    Then also $x \in A_1$ since $A_0 \ss A_1$, from which it follows that $y = f(x) \in f(A_1)$.
+    Therefore $f(A_0) \ss f(A_1)$ as desired since $y$ was arbitrary.
+  }
+
+  (f)
+  \qproof{
+    We can show this easily using a string of biconditionals.
+    For any $x \in A$ we have
+    \ali{
+      y \in f(A_0 \cup A_1) &\bic \exists x (x \in A_0 \cup A_1 \land y = f(x)) \\
+      &\bic \exists x [(x \in A_0 \lor x \in A_1) \land y = f(x)] \\
+      &\bic \exists x [(x \in A_0 \land y = f(x)) \lor (x \in A_1 \land y = f(x))] \\
+      &\bic \exists x (x \in A_0 \land y = f(x)) \lor \exists x (x \in A_1 \land y = f(x)) \\
+      &\bic y \in f(A_0) \lor y \in f(A_1) \\
+      &\bic y \in f(A_0) \cup f(A_1) \,,
+    }
+    which shows the desired result.
+  }
+
+  (g)
+  \qproof{
+    Consider any $y \in f(A_0 \cap A_1)$ so that there is an $x \in A_0 \cap A_1$ where $y = f(x)$.
+    Hence of course $x \in A_0$ and $x \in A_1$.
+    Since also $y = f(x)$, this suffices to show that $y \in f(A_0)$ and $y \in f(A_1)$, and therefore $y \in f(A_0) \cap f(A_1)$ as desired.
+
+    Now suppose that $f$ is injective and consider any $y \in f(A_0) \cap f(A_1)$.
+    Then $y \in f(A_0)$ and $y \in f(A_1)$, from which it follows that there is an $x_0 \in A_0$ where $y = f(x_0)$, and an $x_1 \in A_1$ where $y = f(x_1)$.
+    We then have $f(x_0) = y = f(x_1)$ so that $x_0 = x_1$ since $f$ is injective.
+    Hence $x_0 \in A_0$ and $x_0 = x_1 \in A_1$, so of course $x_0 \in A_0 \cap A_1$.
+    Since also $y = f(x_0)$, this shows by definition that $y \in f(A_0 \cap A_1)$.
+    Therefore $f(A_0) \cap f(A_1) \ss f(A_0 \cap A_1)$ since $y$ was arbitrary, which shows the desired equivalence since the other direction was already shown.
+  }
+
+  (h)
+  \qproof{
+    Consider any $y \in f(A_0) - f(A_1)$ so that $y \in f(A_0)$ and $y \notin f(A_1)$.
+    Then there is an $x \in A_0$ where $y = f(x)$.
+    We also have that there is no $x' \in A_1$ such that $y = f(x')$.
+    Since we know that $y = f(x)$ it then has to be that $x \notin A_1$.
+    Hence $x \in A_0 - A_1$, so that $y \in f(A_0 - A_1)$ since of course $y = f(x)$.
+    This shows that $f(A_0 - A_1) \sps f(A_0) - f(A_1)$ as desired since $y$ was arbitrary.
+
+    Now suppose that $f$ is injective and consider any $y \in f(A_0 - A_1)$.
+    Then there is an $x \in A_0 - A_1$ where $y = f(x)$ by the definition of an image set.
+    Then $x \in A_0$ but $x \notin A_1$.
+    It then follows that $y \in f(A_0)$ since $y = f(x)$ and $x \in A_0$.
+    Consider any $x' \in A_1$.
+    Then it cannot be that $y = f(x')$, because if this were the case then $f(x) = y = f(x')$ so that $x = x'$ since $f$ is injective.
+    But we know that $x' = x \notin A_1$, which would present a contradiction.
+    So it must be that there is no $x' \in A_1$ where $y = f(x')$, which suffices to show that $y \notin f(A_1)$.
+    Therefore $y \in f(A_0) - f(A_1)$ so that $f(A_0 - A_1) \ss f(A_0) - f(A_1)$ since $y$ was arbitrary.
+    This of course shows equivalence as desired.
+  }
 }
