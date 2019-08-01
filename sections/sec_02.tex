@@ -3,6 +3,7 @@
 
 % Some useful macros for this section
 \def\ivf{\inv{f}}
+\def\ivg{\inv{g}}
 
 \exercise{1}{
   Let $f: A \to B$.
@@ -164,4 +165,102 @@
     Therefore $y \in f(A_0) - f(A_1)$ so that $f(A_0 - A_1) \ss f(A_0) - f(A_1)$ since $y$ was arbitrary.
     This of course shows equivalence as desired.
   }
+}
+
+\exercise{3}{
+  Show that (b), (c), (f), and (g) of Exercise~2 hold for arbitrary unions and intersections.
+}
+\sol{
+  \dwhitman
+
+  In what follows suppose that $f: A \to B$ and that $\cA$ and $\cB$ are nonempty collections of subsets of $A$ and $B$, respectively.
+  This is to say that $A' \ss A$ for all $A' \in \cA$ and $B' \ss B$ for all $B' \in \cB$.
+
+  First we show that part in Exercise~2.2 part (b) holds for arbitrary unions, i.e. that
+  \gath{
+    \ivf\parens{\bigcup_{B' \in \cB} B'} = \bigcup_{B' \in \cB} \ivf(B') \,.
+  }
+  \qproof{
+    As before, we again show this with a string of biconditional assertions:
+    \ali{
+      x \in \ivf\parens{\bigcup_{B' \in \cB} B'} &\bic f(x) \in \bigcup_{B' \in \cB} B' \\
+      &\bic \exists B' \in \cB (f(x) \in B') \\
+      &\bic \exists B' \in \cB (x \in \ivf(B')) \\
+      &\bic x \in \bigcup_{B' \in \cB} \ivf(B')
+    }
+    as desired.
+  }
+
+  Next we show Exercise~2.2 part (c) for arbitrary intersections, that is
+  \gath{
+    \ivf\parens{\bigcap_{B' \in \cB} B'} = \bigcap_{B' \in \cB} \ivf(B') \,.
+  }
+  \qproof{
+    We show this with a string of bijections again:
+    \ali{
+      x \in \ivf\parens{\bigcap_{B' \in \cB} B'} &\bic f(x) \in \bigcap_{B' \in \cB} B' \\
+      &\bic \forall B' \in \cB (f(x) \in B') \\
+      &\bic \forall B' \in \cB (x \in \ivf(B')) \\
+      &\bic x \in \bigcap_{B' \in \cB} \ivf(B') \,,
+    }
+    which shows the desired result.
+  }
+
+  Now we show Exercise~2.2 part (f) for arbitrary unions, that is that
+  \gath{
+    f\parens{\bigcup_{A' \in \cA} A'} = \bigcup_{A' \in \cA} f(A') \,.
+  }
+  \qproof{
+    Again we utilize a string of biconditionals:
+    \ali{
+      y \in f\parens{\bigcup_{A' \in \cA} A'} &\bic \exists x \squares{x \in \bigcup_{A' \in \cA} A' \land y = f(x)} \\
+      &\bic \exists x \squares{\exists A' \in \cA (x \in A') \land y = f(x)} \\
+      &\bic \exists x \squares{\exists A' \in \cA (x \in A' \land y = f(x))} \\
+      &\bic \exists x \exists A' \in \cA (x \in A' \land y = f(x)) \\
+      &\bic \exists A' \in \cA \exists x (x \in A' \land y = f(x)) \\
+      &\bic \exists A' \in \cA \squares{\exists x (x \in A' \land y = f(x))} \\
+      &\bic \exists A' \in \cA \squares{y \in f(A')} \\
+      &\bic y \in \bigcup_{A' \in \cA} f(A') \,,
+    }
+    from which the result follows immediately.
+  }
+
+  Lastly, we show Exercise~2.2 part (g) for arbitrary intersections, which is that
+  \gath{
+    f\parens{\bigcap_{A' \in \cA} A'} \ss \bigcap_{A' \in \cA} f(A') \,,
+  }
+  where equality holds if $f$ is injective.
+  \qproof{
+    First suppose that $y \in f\parens{\bigcap_{A' \in \cA} A'}$ so that there is an $x \in \bigcap_{A' \in \cA} A'$ where $y = f(x)$.
+    Then $x \in A'$ for every $A' \in \cA$.
+    So, for any such $A' \in \cA$, we have that $x \in A'$ and $y = f(x)$ so that $y \in f(A')$.
+    Since $A'$ was arbitrary, this shows that $y \in \bigcap_{A' \in \cA} f(A')$, which shows the desired result since $y$ was arbitrary.
+
+    Now suppose that $f$ is injective and let $y \in \bigcap_{A' \in \cA} f(A')$.
+    Then $y \in f(A')$ for every $A' \in \cA$.
+    So, for any such $A_0 \in \cA$ we have that $y \in f(A_0)$ so that there is a $x_0 \in A_0$ where $y = f(x_0)$.
+    Suppose for the moment that $x_0 \notin \bigcap_{A' \in \cA} A'$ so that there is an $A_1 \in \cA$ where $x_0 \notin A_1$.
+    However, since $A_1 \in \cA$ we have that $y \in f(A_1)$, and hence there is an $x_1 \in A_1$ where $y = f(x_1)$.
+    But then we have $f(x_0) = y = f(x_1)$ so that $x_0 = x_1$ since $f$ is injective, and so we have that both $x_0 \notin A_1$ and $x_0 = x_1 \in A_1$.
+    As this is a contradiction, it has to be that $x_0 \in \bigcap_{A' \in \cA} A'$.
+    Since also $y = f(x_0)$, this shows that $y \in f\parens{\bigcap_{A' \in \cA} A'}$.
+    This shows that $f\parens{\bigcap_{A' \in \cA} A'} \sps \bigcap_{A' \in \cA} f(A')$ since $y$ was arbitrary, which in turns proves the desired equivalence.
+  }
+}
+
+\exercise{4}{
+  Let $f: A \to B$ and $g: B \to C$.
+  \eparts{
+  \item If $C_0 \ss C$, show that $\inv{(g \circ f)}(C_0) = \ivf(\ivg(C_0))$.
+  \item If $f$ and $g$ are injective, show that $g \circ f$ is injective.
+  \item If $g \circ f$ is injective, what can you say about the injectivity of $f$ and $g$?
+  \item If $f$ and $g$ are surjective, show that $g \circ f$ is surjective.
+  \item If $g \circ f$ is surjective, what can you say about the surjectivity of $f$ and $g$?
+  \item Summarize your answers to (b)-(e) in the form of a theorem.
+  }
+}
+\sol{
+  \dwhitman
+
+  TODO
 }
