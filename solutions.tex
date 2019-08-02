@@ -64,27 +64,31 @@
 % Start content
 \begin{questions}
 
+% Macro to avoid a bunch of duplication
+\newcommand\insec[1]{\input{sections/sec_#1}}
+
 % Chapters (sections are used since the exam class has no chapters)
 \section{Set Theory and Logic}
-\input{sections/sec_01}
-\input{sections/sec_02}
-\input{sections/sec_04}
-\input{sections/sec_05}
-\input{sections/sec_06}
-\input{sections/sec_07}
-\input{sections/sec_08}
-\input{sections/sec_09}
-\input{sections/sec_10}
-\input{sections/sec_11}
-\input{sections/sec_11_WO}
+\insec{01}
+\insec{02}
+\insec{04}
+\insec{05}
+\insec{06}
+\insec{07}
+\insec{08}
+\insec{09}
+\insec{10}
+\insec{11}
+\insec{11_WO}
 
 \section{Topological Spaces and Continuous Functions}
-\input{sections/sec_13}
-\input{sections/sec_16}
-\input{sections/sec_17}
-\input{sections/sec_18}
-\input{sections/sec_19}
-\input{sections/sec_20}
+\insec{13}
+\insec{16}
+\insec{17}
+\insec{18}
+\insec{19}
+\insec{20}
+\insec{21}
 
 \end{questions}
 \end{document}
