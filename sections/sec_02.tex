@@ -262,5 +262,228 @@
 \sol{
   \dwhitman
 
-  TODO
+  (a)
+  \qproof{
+    Suppose that $C_0 \ss C$.
+    We can show this with a string of biconditionals.
+    For any $x$, we have
+    \ali{
+      x \in \inv{(g \circ f)}(C_0) &\bic (g \circ f)(x) \in C_0 \\
+      &\bic g(f(x)) \in C_0 \\
+      &\bic f(x) \in \ivg(C_0) \\
+      &\bic x \in \ivf(\ivg(C_0)) \,,
+    }
+    which of course shows the desired result.
+  }
+
+  (b)
+  \qproof{
+    Suppose that $x,y \in A$ and $x \neq y$.
+    Then, since $f$ is injective, it has to be that $f(x) \neq f(y)$ by the contrapositive of the definition of an injection.
+    Then again $(g \circ f)(x) = g(f(x)) \neq g(f(y)) = (g \circ f)(y)$ since $f(x) \neq f(y)$ and $g$ is injective.
+    This shows that $g \circ f$ is injective by the contrapositive of the definition.
+  }
+
+  (c)
+  Here we claim that if $g \circ f$ is injective, then $f$ must be injective but $g$ may not be.
+  \qproof{
+    Suppose that $g \circ f$ is injective but that $f$ is not.
+    Then there are $x,y \in A$ where $x \neq y$ but $f(x) = f(y)$.
+    Then we have
+    \gath{
+      (g \circ f)(x) = g(f(x)) = g(f(y)) = (g \circ f)(y) \,,
+    }
+    which contradicts the fact that $g \circ f$ is injective since $x \neq y$.
+    So it must be that $f$ is injective.
+
+    To show that $g$ need not be injective, consider the sets
+    \ali{
+      A &= \braces{1,2} &
+      B &= \braces{1,2,3} &
+      C &= \braces{a,b}
+    }
+    and the function sets
+    \ali{
+      f &= \braces{(1,1), (2,2)} &
+      g &= \braces{(1,a), (2,b), (3,b)} \,.
+    }
+    It is easy to see that $f: A \to B$ is injective as is the composition $g \circ f = \braces{(1,a), (2,b)}$, but that $g: B \to C$ is not since $g(2) = b = g(3)$.
+  }
+
+  (d)
+  \qproof{
+    Suppose that $f$ and $g$ are surjective and consider any $z \in C$.
+    Then there is a $y \in B$ where $z = g(y)$ since $g$ is surjective.
+    Since $f$ is also surjective, there is then an $x \in A$ where $y = f(x)$.
+    Then we have
+    \gath{
+      (g \circ f)(x) = g(f(x)) = g(y) = z \,,
+    }
+    which shows that $g \circ f$ is surjective as desired since $z$ was arbitrary.
+  }
+
+  (e)
+  We claim that if $g \circ f$ is surjective, then $g$ must be surjective, but $f$ may not be.
+  \qproof{
+    Suppose that $g \circ f$ is surjective and consider any $z \in C$ so that there is an $x \in A$ where $(g \circ f)(x) = z$.
+    Then we have that $g(f(x)) = z$ so that $y = f(x)$ is an element of $B$ where $g(y) = z$.
+    This shows that $g$ is surjective since $z$ was arbitrary.
+
+    To show that $f$ need not be surjective we can use the same example sets $A,B,C$ and functions $f,g$ used in part (c).
+    It is easy to see there that $g \circ f$ and $g$ are surjective but $f$ is not since there is no element of $A$ that maps to $3 \in B$.
+  }
+
+  (f) We can summarize these facts in the following theorem, whose proof is of course found in the previous parts:
+  \begin{thrm}
+    Suppose that $f: A \to B$ and $g: B \to C$.
+    We assert the following:
+    \lparts{
+    \item If $f$ and $g$ are injective then $g \circ f$ is injective.
+    \item If $g \circ f$ is injective then $f$ is also injective.
+    \item If $f$ and $g$ are surjective then $g \circ f$ is surjective.
+    \item If $g \circ f$ is surjective then $g$ is also surjective.
+    }
+  \end{thrm}
+}
+
+\exercise{5}{
+  In general, let us denote the \boldit{identity function} for a set $C$ by $i_C$.
+  That is, define $i_C: C \to C$ to be the function given by the rule $i_C(x) = x$ for all $x \in C$.
+  Given $f: A \to B$, we say that $g: B \to A$ is a \boldit{left inverse} for $f$ if $g \circ f = i_A$; and we say that $h: B \to A$ is a \boldit{right inverse} for $f$ if $f \circ h = i_B$.
+  \eparts{
+  \item Show that if $f$ has a left inverse, $f$ is injective; and if $f$ has a right inverse, $f$ is surjective.
+  \item Give an example of a function that has a left inverse but no right inverse.
+  \item Give an example of a function that has a right inverse but no left inverse.
+  \item Can a function have more than one left inverse? More than one right inverse?
+  \item Show that if $f$ has both a left inverse $g$ and a right inverse $h$, then $f$ is bijective and $g = h = \ivf$.
+  }
+}
+\sol{
+  \dwhitman
+
+  In what follows we suppose that $f: A \to B$.
+  
+  (a)
+  \qproof{
+    First suppose that $f$ has a left inverse $g: B \to A$ so that $g \circ f = i_A$.
+    Consider any $x,y \in A$ where $f(x) = f(y)$.
+    Then we have
+    \gath{
+      x = i_A(x) = (g \circ f)(x) = g(f(x)) = g(f(y)) = (g \circ f)(y) = i_A(y) = y \,,
+    }
+    which shows that $f$ is injective by definition.
+
+    Now suppose that $f$ has a right inverse $h: B \to A$ so that $f \circ h = i_B$.
+    Consider any $y \in B$ so that
+    \gath{
+      y = i_B(y) = (f \circ h)(y) = f(h(y)) \,.
+    }
+    Then $x = h(y)$ is an element of $A$ such that $f(x) = y$, which shows that $f$ must be surjective since $y$ was arbitrary.
+  }
+
+  (b) Consider the sets
+  \ali{
+    A &= \braces{1,2} &
+    B &= \braces{a,b,c}
+  }
+  and the function $f = \braces{(1,a), (2,b)}$.
+  Define the function $g: B \to A$ by $g = \braces{(a,1), (b,2), (c,2)}$.
+  It is easy to see that this is a left inverse of $f$ since we have
+  \ali{
+    (g \circ f)(1) &= g(f(1)) = g(a) = 1 &
+    (g \circ f)(2) &= g(f(2)) = g(b) = 2
+  }
+  so that $g \circ f = i_A$.
+
+  Also note that clearly $f$ is not surjective since there is no element of $A$ that maps to $c \in B$.
+  This suffices to show that $f$ cannot have a right inverse since, if it did, then it would have to be surjective by part (a).
+
+  (c) Now define the sets
+  \ali{
+    A &= \braces{1, 2, 3} &
+    B &= \braces{a, b}
+  }
+  and the function $f = \braces{(1,a), (2,b), (3,a)}$.
+  Define the function $h: B \to A$ by $h = \braces{(a,1), (b,2)}$.
+  Then we have
+  \ali{
+    (f \circ h)(a) &= f(h(a)) = f(1) = a &
+    (f \circ h)(b) &= f(h(b)) = f(2) = b
+  }
+  so that clearly $f \circ h = i_B$, and hence $h$ is a right inverse of $f$.
+
+  Note, however, that $f$ is not injective since $f(1) = a = f(3)$.
+  This suffices to show that $f$ cannot have a left inverse since, if it did, it would be injective by part (a).
+
+  (d)
+  We claim that a function can have more than one right or left inverse.
+  \qproof{
+    To show that a function can have more than one left inverse consider the example constructed in part (b).
+    Recall that this consists of the sets
+    \ali{
+      A &= \braces{1,2} &
+      B &= \braces{a,b,c}
+    }
+    and the function $f = \braces{(1,a), (2,b)}$.
+    It was shown there that the function $g_1 = \braces{(a,1), (b,2), (c,2)}$ is a left inverse.
+    Let $g_2 = \braces{(a,1), (b,2), (c,1)}$ so that clearly $g_1 \neq g_2$ since $g_1(c) = 2 \neq 1 = g_2(c)$.
+    It is trivial to show that $g_2$ is also a left inverse of $f$, which shows that more than one left inverse exists for this $f$.
+
+    To show that a function can have more than one right inverse, consider the example in part (c), which are the sets
+    \ali{
+      A &= \braces{1, 2, 3} &
+      B &= \braces{a, b}
+    }
+    and the function $f = \braces{(1,a), (2,b), (3,a)}$.
+    It was shown there that the function $h_1 = \braces{(a,1), (b,2)}$ is a right inverse.
+    Let $h_2 = \braces{(a,3), (b,2)}$ so that clearly $h_1 \neq h_2$ since $h_1(a) = 1 \neq 3 = h_2(a)$.
+    However, it is trivial to show that $h_2$ is also a right inverse of $f$, from which the desired result follows.
+  }
+
+  (e) Note that what follows proves Lemma~2.1 in the text, which is not proven there.
+  \qproof{
+    Suppose that $f$ has left inverse $g$ and right inverse $h$.
+    Then $f$ must be both injective (since it has a left inverse) and surjective (since it has a right inverse) so that it is bijective by definition.
+    Then of course the function $\ivf: B \to A$ exists.
+    Consider any $y \in B$ and set $x = \ivf(y)$ so that $y = f(x)$.
+    Then we have that
+    \gath{
+      g(y) = g(f(x)) = (g \circ f)(x) = i_A(x) = x
+    }
+    since $g$ is a left inverse of $f$.
+    We also have
+    \gath{
+      f(h(y)) = (f \circ h)(y) = i_B(y) = y
+    }
+    so that
+    \gath{
+      h(y) = \ivf(f(h(y)) = \ivf(y) = x \,.
+    }
+    This shows that $x = \ivf(y) = g(y) = h(y)$, which in turn shows that $\ivf = g = h$ as desired since $y$ was arbitrary.
+  }
+}
+
+\exercise{6}{
+  Let $f: \reals \to \reals$ be the function $f(x) = x^3 - x$.
+  By restricting the domain and range of $f$ appropriately, obtain from $f$ a bijective function $g$.
+  Draw the graphs of $g$ and $\ivg$.
+  (There are several possible choices for $g$.)
+}
+\sol{
+  \dwhitman
+
+  Define the subsets of the reals $A = \clop{1, \infty}$ and $B = \clop{0, \infty}$.
+  We claim that the function $g : A \to B$ defined by $g(x) = f(x) = x^3 - x$ for all $x \in A$ is bijective.
+  \qproof{
+    TODO
+  }
+
+  As requested, below are plots of $g$ and $\ivg$ over some subset of their infinite domains and ranges:
+
+  {\centering
+    \includegraphics[width=7cm]{figs/ex_2_6_g}
+    \includegraphics[width=7cm]{figs/ex_2_6_gi}
+    % Need a blank line here for some dumb reason
+    
+  }
 }

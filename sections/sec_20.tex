@@ -420,14 +420,14 @@
     Suppose that $X$ is a topological space and $Y$ and $Y'$ are topological spaces on the same set, and that $Y'$ is finer than $Y$.
     Suppose also that $f: X \to Y$ so that of course it is also a function from $X$ to $Y'$.
     We assert the following:
-    \begin{enumerate}[label=(\arabic*)]
+    \lparts{
     \item If $f$ is continuous with respect to $Y'$ then it is also continuous with respect to $Y$.
     \item If $f$ is \emph{not} continuous with respect to $Y$ then it is also not continuous with respect to $Y'$.
     \item If a sequence in $Y'$ converges to a point $y_0$, then it also converges to $y_0$ in $Y$.
     \item If a sequence in $Y$ does not converge to a point $y_0$, then it also does not converge to $y_0$ in $Y'$.
     \item If a sequence in $Y$ does not converge at all, then it also does not converge at all in $Y'$.
     \item If $Y$ is a Hausdorff space, then so is $Y'$.
-    \end{enumerate}
+    }
   \end{lem}
   \qproof{
     For assertion (1) suppose that $f$ is continuous with respect to $Y'$ and let $U$ be any open set of $Y$.
@@ -1443,14 +1443,14 @@
   First we show some basic properties of these operations that will be useful:
   \begin{lem} \label{lem:metric:vprops}
     For any $\vx, \vy \in \reals^n$ and $a \in \reals$, we assert the following:
-    \begin{enumerate}[label=(\arabic*)]
+    \lparts{
     \item The dot product is commutative, that is $\vx \cdot \vy = \vy \cdot \vx$.
     \item $\vze \cdot \vx = 0$.
     \item $\norm{\vx} = 0$ if and only if $\vx = \vze$.
     \item $\norm{\vx} \geq 0$
     \item $\vx \cdot \vx = \norm{\vx}^2$
     \item $\norm{a \vx} = \abs{a} \norm{\vx}$
-    \end{enumerate}
+    }
   \end{lem}
   \qproof{
     For assertion (1) clearly

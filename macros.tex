@@ -133,6 +133,14 @@
   \end{enumerate}
 }
 
+% Lemma parts enumerate environment
+\newcommand\lparts[2][0]{
+  \begin{enumerate}[label=(\arabic*)]
+    \setcounter{enumi}{#1}
+    #2
+  \end{enumerate}
+}
+
 % Main problem label
 \def\mainprob{\textbf{Main Problem.}}
 

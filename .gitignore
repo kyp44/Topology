@@ -1,6 +1,8 @@
 *.aux
 *.log
 *.out
-*.pdf
 *.toc
+figs/ex_2_6_*.pdf
+solutions.pdf
 lemmas_content.tex
+lemmas.pdf
