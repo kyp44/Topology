@@ -475,10 +475,46 @@
   Define the subsets of the reals $A = \clop{1, \infty}$ and $B = \clop{0, \infty}$.
   We claim that the function $g : A \to B$ defined by $g(x) = f(x) = x^3 - x$ for all $x \in A$ is bijective.
   \qproof{
-    TODO
+    First we will show that $B$ can even be a range for $g$, i.e. we must show that $g(x) \in B$ for every $x \in A$, as this is not necessarily obvious.
+    So for any $x \in A$ we have that $x \geq 1$, and thus $x^2 \geq 1$ as well.
+    Then we have $x^2 - 1 \geq 0$ so that the product $x(x^2 - 1) \geq 0$ since of course $x \geq 1 > 0$.
+    Therefore $g(x) = f(x) = x^3 - x = x(x^2 - 1) \geq 0$ so that $g(x) \in B$.
+
+    Next we show that $g$ is monotonically increasing, from which injectivity follows.
+    Suppose that $x,y \in A$ where $x < y$.
+    Since we have $x,y \geq 1 > 0$, it follows that $x^2 < y^2$, and therefore $x^2 - 1 < y^2 - 1$.
+    Thus we have
+    \gath{
+      x < y \\
+      x(x^2-1) \leq y(x^2-1) < y(y^2-1) \\
+      x^3-x < y^3-y \\
+      g(x) < g(y)
+    }
+    since both $x,y \geq 1 >  0$ and $x^2-1,y^2-1 \geq 0$.
+    This shows that $g$ is monotonically increasing.
+    It follows that $g$ is injective because, if we consider $x,y \in A$ where $x \neq y$, then it has to be that either $x < y$ or $x > y$.
+    In the former case we have $g(x) < g(y)$ and in the latter $g(x) > g(y)$ so that $g(x) \neq g(y)$ either way.
+
+    We show that $g$ is surjective in a roundabout way that depends on calculus since $g$ is cubic and so does not yield a simple algebraic inverse function.
+    Consider any $y \in B$ so that of course $y \geq 0$.
+    If $y = 0$ then clearly $g(1) = 0 = y$, so assume that $y > 0$.
+    Let $a_0 = \max\braces{2, y}$ so that of course there is a real $a$ such that $a > a_0$ since the reals are unbounded.
+    Then we of course have $a > a_0 \geq 2 \geq 0$ so that $a \in A$.
+    We also have
+    \gath{
+      a^2 > a_0^2 \geq 2^2 = 4 > 2 \\
+      a^2 - 1 > 1 \\
+      a(a^2 - 1) > a \\
+      a^3 - a > a \\
+      g(a) > a > a_0 \geq y \,.
+    }
+    Then we have that $g(1) = 0 < y < g(a)$, and that of course $1 < 2 \leq a_0 < a$.
+    It then follows from the intermediate value theorem that there is an $x \in (1,a)$ such that $f(x) = y$ since clearly $g$ is continuous by elementary calculus.
+    We note that of course $1 \leq x$ so that $x \in A$.
+    This shows that $g$ is surjective since $y$ was arbitrary, which in turn completes the proof that $g$ is a bijection.
   }
 
-  As requested, below are plots of $g$ and $\ivg$ over some subset of their infinite domains and ranges:
+  As requested, below are graphs of $g$ and $\ivg$ over some subset of their infinite domains and ranges:
 
   {\centering
     \includegraphics[width=7cm]{figs/ex_2_6_g}
@@ -486,4 +522,5 @@
     % Need a blank line here for some dumb reason
     
   }
+  One can observe that $g$ (and its inverse for that matter) is monotonically increasing as shown.
 }
