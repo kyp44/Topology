@@ -8,5 +8,275 @@
 \sol{
   \dwhitman
 
-  TODO
+  \begin{lem} \label{lem:metricc:basis}
+    If $\cT$ and $\cT'$ are topologies on a set $X$, and the collection $\cB$ is a basis for both, then $\cT = \cT'$.
+  \end{lem}
+  \qproof{
+    Suppose that $U \in \cT$.
+    Then, since $\cB$ is a basis for $\cT$, there is a subcollection $\braces{B_\a}_{\a \in J}$ of basis elements where $U = \bigcup_{\a \in J} B_\a$ by Lemma~13.1.
+    Therefore $U \in \cT'$ since it is the union of basis elements and $\cB$ is also a basis for $\cT'$.
+    This shows that $\cT \ss \cT'$, and a similar argument shows that $\cT \sps \cT'$ as well so that $\cT = \cT'$ as desired.
+  }
+
+  \mainprob
+
+  \qproof{
+    Let us denote the restricted function $d \rest A \times A$ by $d'$.
+    Clearly $d'$ is a metric on $A$, since for $x,y \in A$ we have $d'(x,y) = d(x,y)$ and $d$ has all the properties of a metric.
+    We show that the basis of the metric topology induced by $d'$ is also a basis for the subspace topology using Lemma~13.2.
+    It then follows that the metric topology and the subspace topology are equivalent by Lemma~\ref{lem:metricc:basis}.
+
+    First we show that $B_{d'}(x,\e) = A \cap B_d(x,\e)$ for any $x \in A$ and $\e > 0$.
+    For any $y \in B_{d'}(x,\e)$ we have that clearly $y \in A$ since the metric $d'(y,x)$ must be defined, and $d(y,x) = d'(y,x) <\e$ so that also $y \in B_d(x,\e)$.
+    Thus $y \in A \cap B_d(x,\e)$, and hence $B_{d'}(x,\e) \ss A \cap B_d(x,\e)$.
+    For the other direction suppose that $y \in A \cap B_d(x,\e)$ so that $y \in A$ and $y \in B_d(x,\e)$.
+    Thus $y$ and $x$ are in $A$ so that $d'(y,x)$ is defined and $d'(y,x) = d(y,x) < \e$, and hence $y \in B_{d'}(x,\e)$.
+    This shows that $B_{d'}(x,\e) \sps A \cap B_d(x,\e)$, which in turn shows that the two sets are the same.    
+    
+    Now, clearly each basis element of the metric topology $B_{d'}(x,\e) = A \cap B_d(x,\e)$ is open in the subspace topology since $B_d(x,\e)$ is open in the metric topology on $X$.
+    So consider any open set $U$ of the subspace topology and any $x \in U$.
+    Then by Corollary~\ref{cor:metric:subball} there is a ball $B_d(x,\e)$ in $X$ where $A \cap B_d(x,\e) \ss U$.
+    But then we have $x \in B_{d'}(x,\e) = A \cap B_d(x,\e) \ss U$, which shows that the metric topology on $A$ is the same as the subspace topology by Lemmas~13.2 and \ref{lem:metricc:basis} as previously discussed.
+  }
+}
+
+\def\ivfp{\inv{f'}}
+\exercise{2}{
+  Let $X$ and $Y$ be metric spaces with metrics $d_X$ and $d_Y$, respectively.
+  Let $f: X \to Y$ have the property that for every pair of points $x_1, x_2$ of $X$,
+  \gath{
+    d_Y(f(x_1), f(x_2)) = d_X(x_1, x_2) \,.
+  }
+  Show that $f$ is an imbedding.
+  It is called an \boldit{isometric imbedding} of $X$ in $Y$.
+}
+\sol{
+  \dwhitman
+
+  First, let $Z = f(X)$ and let $f'$ denote the function $f$ with the range restricted to $Z$ so that clearly $f'$ is surjective.
+  First we must show that $f$ and therefore also $f'$ is injective, from which it clearly follows that $f'$ is a bijection.
+  So suppose that $x_1,x_2 \in X$ where $f(x_1) = f(x_2)$.
+  Then we have that
+  \gath{
+    d_X(x_1, x_2) = d_Y(f(x_1), f(x_2)) = d_Y(f(x_1), f(x_1)) = 0
+  }
+  by property (1) of the metric $d_Y$, so that it must be that $x_1 = x_2$ since $d_X$ is a metric and $d_X(x_1, x_2) = 0$.
+  This of course means that $f$ and $f'$ are injective and hence $f'$ is bijective.
+
+  We show that $f'$ and $\ivfp$ are both continuous using Theorem~21.1 since $X$ and $Z$ are both metric spaces, noting that $Z \ss Y$ is a metric space with metric $d_Z = d_Y \rest Z \times Z$ by the previous exercise.
+  So consider any $x \in X$ and any $\e > 0$, and let $\d = \e$.
+  Then for any $x_1,x_2 \in X$ where $d_X(x_1,x_2) < \d$ we have
+  \gath{
+    d_Z(f'(x_1), f'(x_2)) = d_Y(f(x_1), f(x_2)) = d_X(x_1,x_2) < \d = \e \,,
+  }
+  which suffices to show that $f'$ is continuous.
+  A similar argument shows that $\ivfp: Z \to X$ is continuous.
+  For $y_1,y_2 \in Z$ and $\e > 0$, again let $\d = \e$ and suppose that $d_Z(y_1,y_2) <\d$.
+  Let $x_1 = \ivfp(y_1)$ and $x_2 = \ivfp(y_2)$.
+  Then we have
+  \ali{
+    d_X(\ivfp(y_1), \ivfp(y_2)) &= d_X(x_1, x_2) = d_Y(f(x_1),  f(x_2)) = d_Y(f'(x_1), f'(x_2)) \\
+    &= d_Y(f'(\ivfp(y_1)), f'(\ivfp(y_2))) = d_Y(y_1, y_2) \\
+    &= d_Z(y_1, y_2) < \d = \e \,,
+  }
+  which of course shows that $\ivfp$ is also continuous.
+  This shows that $f'$ is a homeomorphism so that $f$ is an imbedding as desired.
+}
+
+\def\bdi{\bar{d_i}}
+\exercise{3}{
+  Let $X_n$ be a metric space with metric $d_n$, for $n \in \pints$.
+  \eparts{
+  \item Show that
+    \gath{
+      \r(x,y) = \max\braces{d_1(x_1,y_1), \ldots, d_n(x_n, y_n)}
+    }
+    is a metric for the product space $\cpfin{X}{n}$.
+  \item Let $\bdi = \min\braces{d_i, 1}$.
+    Show that
+    \gath{
+      D(x,y) = \sup\braces{\bdi(x_i,y_i)/i}
+    }
+    is a metric for the product space $\prod X_i$.
+  }
+}
+\sol{
+  \dwhitman
+
+  \begin{lem} \label{lem:metricc:sup}
+    Suppose that $(x_\a)_{\a \in J}$ and $(y_\a)_{\a \in J}$ are sequences of real numbers indexed by $J$ and that $\braces{x_\a}$ and $\braces{y_\a}$ are bounded above so that $\sup\braces{x_\a}$ and $\sup\braces{y_\a}$ exist.
+    We assert the following facts:
+    \lparts{
+    \item If $x_\a \leq y_\a$ for each $\a \in J$, then $\sup\braces{x_\a} \leq \sup\braces{y_\a}$.
+    \item $\sup\braces{x_\a + y_\a}$ exists and $\sup\braces{x_\a + y_\a} \leq \sup\braces{x_\a} + \sup\braces{y_\a}$.
+    }
+  \end{lem}
+  \qproof{
+    The proofs of both parts are quite simple.
+    Regarding part (1) we have that $x_\b \leq y_\b \leq \sup\braces{y_\a}$ for any $\b \in J$ so that clearly $\sup\braces{y_\a}$ is an upper bound of the set $\braces{x_\a}$.
+    It then follows by the definition of the supremum as the least upper bound that $\sup\braces{x_\a} \leq \sup\braces{y_\a}$ as desired.
+
+    For part (2) consider any $\b \in J$.
+    Clearly $x_\b \leq \sup\braces{x_\a}$ and $y_\b \leq \sup\braces{y_\a}$ so that
+    \gath{
+      x_\b + y_\b \leq \sup\braces{x_\a} + \sup\braces{y_\a} \,.
+    }
+    Since $\b$ was arbitrary, this shows that $\sup\braces{x_\a} + \sup\braces{y_\a}$ is an upper bound for the set $\braces{x_\a + y_\a}$.
+    Therefore $\sup\braces{x_\a + y_\a} \leq \sup\braces{x_\a} + \sup\braces{y_\a}$ as desired by the definition of the supremum as the least upper bound.
+  }
+
+  \mainprob
+  
+  (a)
+  \qproof{
+    First we must show that $\r$ is a metric at all.
+    In what follows suppose that $x,y,z \in \cpfin{X}{n}$ and that $k$ and $m$ are elements of $\intsfin{n}$ such that
+    \gath{
+      \r(x,y) = \max\braces{d_1(x_1,y_1), \ldots, d_n(x_n, y_n)} = d_k(x_k, y_k)
+    }
+    and
+    \gath{
+      \r(x,z) = \max\braces{d_1(x_1,z_1), \ldots, d_n(x_n, z_n)} = d_m(x_m, z_m) \,.
+    }
+    First, we have $\r(x,y) = d_k(x_k, y_k) \geq 0$ since $d_k$ is a metric.
+    If $x = y$ then of course $x_k = y_k$ so that $\r(x,y) = d_k(x_k, y_k) = 0$.
+    Now suppose that $\r(x,y) = 0$ and consider any $l \in \intsfin{n}$.
+    Then we have that $d_l(x_l, y_l) \geq 0$ and that $d_l(x_l, y_l) \leq \r(x,y) = 0$, and hence it must be that $d_l(x_l, y_l) = 0$ so that $x_l = y_l$ since $d_l$ is a metric.
+    Since $l$ was arbitrary, this shows that $x = y$, which shows that $\r$ satisfies part (1) of the definition of a metric.
+
+    As usual, part (2) of the definition is the easiest to show since
+    \ali{
+      \r(x,y) &= \max\braces{d_1(x_1,y_1), \ldots, d_n(x_n, y_n)} = \\
+      &= \max\braces{d_1(y_1,x_1), \ldots, d_n(y_n, x_n)} = \\
+      &= \r(y,x) \,,
+    }
+    as we have that each $d_l(x_l, y_l) = d_l(y_l, x_l)$ since $d_l$ is a metric.
+    Lastly, for part (3) we have
+    \gath{
+      \r(x,z) = d_m(x_m, z_m) \leq d_m(x_m, y_m) + d_m(y_m, z_m) \leq \r(x,y) + \r(y,z)
+    }
+    since of course $d_m$ is a metric.
+    This completes the proof that $\r$ is a proper metric.
+
+    We show that the basis of the metric topology is also a basis for the product topology using Lemma~13.2.
+    To this end, we first show that every basis element of the metric topology is open in the product topology.
+    So suppose that $B_\r(x,\e)$ is any basis element of the metric topology and let $B = \prod_{i=1}^n B_{d_i}(x_i, \e)$, which is clearly a basis element of the product topology that contains $x$ since each $B_{d_i}(x_i, \e)$  is open in the metric space $X_i$.
+    Now suppose that $y \in B$ so that each $y_i \in B_{d_i}(x_i, \e)$.
+    So, for every $i \in \intsfin{n}$, we have $d_i(y_i, x_i) < \e$ so that clearly
+    \gath{
+      \r(y,x) = \max\braces{d_1(y_1,x_1), \ldots, d_n(y_n, x_n)} < \e \,,
+    }
+    which shows that $y \in B_\r(x,\e)$.
+    This shows that $x \in B \ss B_\r(x,\e)$ so that $B_\r(x,\e)$ is open in the product topology.
+
+    Now consider any open set $U$ of the product topology and any $x \in U$.
+    Then there is a basis element $B = \prod_{i=1}^n U_i$ of the product topology where $x \in B \ss U$.
+    Then of course each $U_i$ is open in $X_i$ and $x_i \in U_i$ so that there is a ball $B_{d_i}(x_i, \e_i)$ such that $B_{d_i}(x_i, \e_i) \ss U_i$ by Lemma~\ref{lem:metric:ball}.
+    Let $\e = \min\braces{\e_1, \ldots, \e_n}$ and consider the basis element $B_\r(x,\e)$ in the metric space induced by $\r$.
+    Clearly $x \in B_\r(x,\e)$ so consider any $y \in B_\r(x,\e)$ so that
+    \gath{
+      \r(y,x) = \max\braces{d_1(y_1,x_1), \ldots, d_n(y_n, x_n)} < \e \,.
+    }
+    Then, for any $i \in \intsfin{n}$, we have
+    \gath{
+      d_i(y_i,x_i) \leq \r(x,\e) < \e \leq \e_i
+    }
+    so that $y_i \in B_{d_i}(x_i,\e_i) \ss U_i$.
+    Since this is true of any $i \in \intsfin{n}$, it follows that $y \in \prod_{i=1}^n U_i = B$.
+    We can then conclude that $x \in B_\r(x,\e) \ss B \ss U$ since $y$ was arbitrary.
+    This in turns shows that the basis of the metric topology of $\r$ is also a basis for the product topology by Lemma~13.2.
+    Hence by Lemma~\ref{lem:metricc:basis} the $\r$-metric topology and the product topology are the same.
+  }
+
+  (b)
+  \qproof{
+    First we show that the metric $D$ is well-defined and is in fact a metric.
+    In what follows suppose that $x,y,z \in \prod X_i$.
+    For any $j \in \pints$ we have that $0 < 1 \leq j$ so that $1/j \leq 1$.
+    We also have that $\bd_j(x_j,y_j) = \min\braces{d_j(x_j,y_j), 1} \leq 1$ so that $\bd_j(x_j,y_j) / j \leq 1/j \leq 1$.
+    Hence $1$ is an upper bound for the set $\braces{\bd_i(x_i,y_i)/i}$ since $j$ was arbitrary, so that
+    \gath{
+      D(x,y) = \sup\braces{\bd_i(x_i,y_i)/i}
+    }
+    exists and hence $D$ is well defined.
+
+    To show part (1) of the definition of a metric, pick any $j \in \pints$ so that clearly $\bd_j(x_j,y_j) \geq 0$ and hence $\bd_j(x_j,y_j)/j \geq 0$ also since $j \geq 1 > 0$.
+    Thus we have
+    \gath{
+      D(x,y) = \sup\braces{\bd_i(x_i,y_i)/i} \geq \bd_j(x_j,y_j)/j \geq 0 \,.
+    }
+    If $x = y$ then we have that $x_j = y_j$ for any $j \in \pints$.
+    Thus $\bd_j(x_j,y_j) = 0$ since $\bd_j$ is a standard bounded metric, and therefore
+    \gath{
+      \frac{\bd_j(x_j,y_j)}{j} = \frac{0}{j} = 0 \,.
+    }
+    Since $j$ was arbitrary, this shows that
+    \gath{
+      D(x,y) = \sup\braces{\frac{\bd_i(x_i,y_i)}{j}} = \sup\braces{0} = 0 \,.
+    }
+    On the other hand, if $D(x,y) = 0$ then, for any $j \in \pints$, we have
+    \gath{
+      0 \leq \frac{\bd_j(x_j,y_j)}{j} \leq \sup\braces{\frac{\bd_i(x_i,y_i)}{i}} = D(x,y) = 0 \,.
+    }
+    This shows that $\bd_j(x_j,y_j)/j = 0$ so that clearly $\bd_j(x_j,y_j) = 0$ as well, from which it follows that $x_j = y_j$ since $\bd_j$ is a standard bounded metric.
+    Since $j$ was arbitrary, this shows that $x = y$, which completes the proof of part (1).
+
+    Showing part (2) is quite easy:
+    \gath{
+      D(x,y) = \sup\braces{\frac{\bd_i(x_i,y_i)}{i}} = \sup\braces{\frac{\bd_i(y_i,x_i)}{i}} = D(x,y)
+    }
+    since $\bd_i$ is a standard bounded metric for every $i \in \pints$.
+
+    For part (3) consider any $j \in \pints$.
+    Then
+    \gath{
+      \bd_j(x_j,z_j) \leq \bd_j(x_j,y_j) + \bd_j(y_j,z_j)
+    }
+    since $\bd_j$ is a standard bounded metric.
+    Then of course
+    \gath{
+      \frac{\bd_j(x_j,z_j)}{j} \leq \frac{\bd_j(x_j,y_j) + \bd_j(y_j,z_j)}{j} = \frac{\bd_j(x_j,y_j)}{j} + \frac{\bd_j(y_j,z_j)}{j}
+    }
+    since $j \geq 1 > 0$.
+    Then, since $j$ was arbitrary this shows that
+    \ali{
+      D(x,z) &= \sup\braces{\frac{\bd_i(x_i,z_i)}{i}} \leq \sup\braces{\frac{\bd_i(x_i,y_i)}{i} + \frac{\bd_i(y_i,z_i)}{i}} \\
+      &\leq \sup\braces{\frac{\bd_i(x_i,y_i)}{i}} + \sup\braces{\frac{\bd_i(y_i,z_i)}{i}} \\
+      &= D(x,y) + D(y,z)
+    }
+    by both parts of Lemma~\ref{lem:metricc:sup}.
+    This of course completes the proof that $D$ is a well defined metric.
+
+    Now we show that the metric topology induced by $D$ is the same as the product topology on $\prod X_i$, which we do using Lemma~13.3.
+    So consider any $x \in \prod X_i$ and any basis element of the metric topology $B_D(x,\e)$ centered at $x$.
+    Clearly there is a positive integer $N$ large enough such that $N > 2/\e$, and so $1/N < \e/2$.
+    Now define the sets
+    \gath{
+      U_i = \begin{cases}
+        B_{d_i}(x_i,\e/2) & i < N \\
+        \reals & i \geq N
+      \end{cases}
+    }
+    for $i \in \pints$, and set $B = \prod U_i$.
+    Clearly $B$ is a basis element of the product topology since each $U_i$ is open in $X_i$ and $U_i \neq \reals$ for only finitely many $i$, namely when $i < N$.
+    Clearly also $x \in B$ since each $x_i \in U_i$.
+    Now suppose that $y \in B$ and consider any $j \in \pints$.
+    If $j < N$ then we of course have that $y_j \in U_j = B_{d_j}(x_j, \e/2)$ so that
+    \gath{
+      \frac{\bd_j(y_j,x_j)}{j} \leq \bd_j(y_j,x_j) \leq d_j(y_j,x_j) < \e/2
+    }
+    since $j \geq 1$.
+    If $j \geq N$ then we have $1/j \leq 1/N$ so that
+    \gath{
+      \frac{\bd_j(y_i,x_i)}{j} \leq \frac{1}{j} \leq \frac{1}{N} < \frac{\e}{2}
+    }
+    since $\bd_j(y_j,x_j) \leq 1$.
+    Since $j$ was arbitrary, this shows that
+    \gath{
+      D(y,x) = \sup\braces{\frac{\bd_i(y_i,x_i)}{i}} \leq \frac{\e}{2} < \e
+    }
+    so that $y \in B_D(x,\e)$.
+    Therefore $x \in B \ss B_D(x,\e)$ since $y$ was arbitrary.
+    Hence the product topology is finer than the metric topology by Lemma~13.3.
+  }
 }
