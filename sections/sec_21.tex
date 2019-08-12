@@ -8,23 +8,10 @@
 \sol{
   \dwhitman
 
-  \begin{lem} \label{lem:metricc:basis}
-    If $\cT$ and $\cT'$ are topologies on a set $X$, and the collection $\cB$ is a basis for both, then $\cT = \cT'$.
-  \end{lem}
-  \qproof{
-    Suppose that $U \in \cT$.
-    Then, since $\cB$ is a basis for $\cT$, there is a subcollection $\braces{B_\a}_{\a \in J}$ of basis elements where $U = \bigcup_{\a \in J} B_\a$ by Lemma~13.1.
-    Therefore $U \in \cT'$ since it is the union of basis elements and $\cB$ is also a basis for $\cT'$.
-    This shows that $\cT \ss \cT'$, and a similar argument shows that $\cT \sps \cT'$ as well so that $\cT = \cT'$ as desired.
-  }
-
-  \mainprob
-
   \qproof{
     Let us denote the restricted function $d \rest A \times A$ by $d'$.
     Clearly $d'$ is a metric on $A$, since for $x,y \in A$ we have $d'(x,y) = d(x,y)$ and $d$ has all the properties of a metric.
-    We show that the basis of the metric topology induced by $d'$ is also a basis for the subspace topology using Lemma~13.2.
-    It then follows that the metric topology and the subspace topology are equivalent by Lemma~\ref{lem:metricc:basis}.
+    We show that the metric topology induced by $d'$ is the same as the subspace topology using Lemma~13.3 in both directions.
 
     First we show that $B_{d'}(x,\e) = A \cap B_d(x,\e)$ for any $x \in A$ and $\e > 0$.
     For any $y \in B_{d'}(x,\e)$ we have that clearly $y \in A$ since the metric $d'(y,x)$ must be defined, and $d(y,x) = d'(y,x) <\e$ so that also $y \in B_d(x,\e)$.
@@ -33,10 +20,10 @@
     Thus $y$ and $x$ are in $A$ so that $d'(y,x)$ is defined and $d'(y,x) = d(y,x) < \e$, and hence $y \in B_{d'}(x,\e)$.
     This shows that $B_{d'}(x,\e) \sps A \cap B_d(x,\e)$, which in turn shows that the two sets are the same.    
     
-    Now, clearly each basis element of the metric topology $B_{d'}(x,\e) = A \cap B_d(x,\e)$ is open in the subspace topology since $B_d(x,\e)$ is open in the metric topology on $X$.
-    So consider any open set $U$ of the subspace topology and any $x \in U$.
-    Then by Corollary~\ref{cor:metric:subball} there is a ball $B_d(x,\e)$ in $X$ where $A \cap B_d(x,\e) \ss U$.
-    But then we have $x \in B_{d'}(x,\e) = A \cap B_d(x,\e) \ss U$, which shows that the metric topology on $A$ is the same as the subspace topology by Lemmas~13.2 and \ref{lem:metricc:basis} as previously discussed.
+    Now, clearly each basis element of the metric topology $B_{d'}(x,\e) = A \cap B_d(x,\e)$ is also a basis element of the subspace topology by Lemma~16.1.
+    Hence for any $x \in A$ we have that $B_m = B_{d'}(x,\e)$ is a basis element of the metric topology and $B_s = A \cap B_d(x,\e)$ is a basis element of the subspace topology.
+    But $B_m = B_s$ so that $x \in B_s \ss B_m$ and $x \in B_m \ss B_s$ so that each topology is finer than the other by Lemma~13.3.
+    Thus they are the same topologies.
   }
 }
 
@@ -158,19 +145,17 @@
     since of course $d_m$ is a metric.
     This completes the proof that $\r$ is a proper metric.
 
-    We show that the basis of the metric topology is also a basis for the product topology using Lemma~13.2.
-    To this end, we first show that every basis element of the metric topology is open in the product topology.
-    So suppose that $B_\r(x,\e)$ is any basis element of the metric topology and let $B = \prod_{i=1}^n B_{d_i}(x_i, \e)$, which is clearly a basis element of the product topology that contains $x$ since each $B_{d_i}(x_i, \e)$  is open in the metric space $X_i$.
+    Now we show that both topologies are the same using Lemma~13.3.
+    So suppose that $x \in \cpfin{X}{n}$ and $B_\r(x,\e)$ is any basis element of the metric topology and let $B = \prod_{i=1}^n B_{d_i}(x_i, \e)$, which is clearly a basis element of the product topology that contains $x$ since each $B_{d_i}(x_i, \e)$  is open in the metric space $X_i$.
     Now suppose that $y \in B$ so that each $y_i \in B_{d_i}(x_i, \e)$.
     So, for every $i \in \intsfin{n}$, we have $d_i(y_i, x_i) < \e$ so that clearly
     \gath{
       \r(y,x) = \max\braces{d_1(y_1,x_1), \ldots, d_n(y_n, x_n)} < \e \,,
     }
     which shows that $y \in B_\r(x,\e)$.
-    This shows that $x \in B \ss B_\r(x,\e)$ so that $B_\r(x,\e)$ is open in the product topology.
+    This shows that $x \in B \ss B_\r(x,\e)$ so that $B_\r(x,\e)$ the product topology is finer than the metric topology by Lemma~13.3.
 
-    Now consider any open set $U$ of the product topology and any $x \in U$.
-    Then there is a basis element $B = \prod_{i=1}^n U_i$ of the product topology where $x \in B \ss U$.
+    Now consider again any $x \in \cpfin{X}{n}$ and any basis element $B = \prod_{i=1}^n U_i$ of the product topology.
     Then of course each $U_i$ is open in $X_i$ and $x_i \in U_i$ so that there is a ball $B_{d_i}(x_i, \e_i)$ such that $B_{d_i}(x_i, \e_i) \ss U_i$ by Lemma~\ref{lem:metric:ball}.
     Let $\e = \min\braces{\e_1, \ldots, \e_n}$ and consider the basis element $B_\r(x,\e)$ in the metric space induced by $\r$.
     Clearly $x \in B_\r(x,\e)$ so consider any $y \in B_\r(x,\e)$ so that
@@ -183,9 +168,9 @@
     }
     so that $y_i \in B_{d_i}(x_i,\e_i) \ss U_i$.
     Since this is true of any $i \in \intsfin{n}$, it follows that $y \in \prod_{i=1}^n U_i = B$.
-    We can then conclude that $x \in B_\r(x,\e) \ss B \ss U$ since $y$ was arbitrary.
-    This in turns shows that the basis of the metric topology of $\r$ is also a basis for the product topology by Lemma~13.2.
-    Hence by Lemma~\ref{lem:metricc:basis} the $\r$-metric topology and the product topology are the same.
+    We can then conclude that $x \in B_\r(x,\e) \ss B$ since $y$ was arbitrary.
+    This shows that the $\r$-metric topology is finer than the product topology, again by Lemma~13.3.
+    Hence the two topologies are the same as desired.
   }
 
   (b)
