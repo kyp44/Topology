@@ -257,7 +257,7 @@
         \reals & i \geq N
       \end{cases}
     }
-    for $i \in \pints$, and set $B = \prod U_i$.
+    for $i \in \pints$, and the set $B = \prod U_i$.
     Clearly $B$ is a basis element of the product topology since each $U_i$ is open in $X_i$ and $U_i \neq \reals$ for only finitely many $i$, namely when $i < N$.
     Clearly also $x \in B$ since each $x_i \in U_i$.
     Now suppose that $y \in B$ and consider any $j \in \pints$.
@@ -278,5 +278,26 @@
     so that $y \in B_D(x,\e)$.
     Therefore $x \in B \ss B_D(x,\e)$ since $y$ was arbitrary.
     Hence the product topology is finer than the metric topology by Lemma~13.3.
+
+    Now again consider any $x \in \prod X_i$ and any basis element $B = \prod U_i$ of the product topology where $x \in B$.
+    Then of course each $U_i$ is open in $X_i$ and there is a finite subset $J \ss \pints$ where $U_i = \reals$ for every $i \notin J$.
+    Of course also $x \in U_i$ for each $i \in \pints$.
+    For any $j \in J$ we have that $x \in U_j$ and $U_j$ is open in $X_i$ so that there is a basis element $B_{d_j}(x_j, \e_j)$ such that $B_{d_j}(x_j, \e_j) \ss U_j$.
+    So let $\e = \min(\braces{\e_j \where j \in J} \cup \braces{1})$ and $k = \max\braces{j \where j \in J}$, which both exists since $J$ is finite, and also clearly $\e > 0$.
+
+    Now consider the set $B_D(x,\e/k)$, which is a basis element of the metric topology that clearly contains $x$.
+    Suppose that $y \in B_D(x,\e/k)$ so that $D(y,x) < \e/k$.
+    Then, for any $j \in \pints$, clearly $y_i \in \reals = U_i$ if $j \neq J$.
+    On the other hand, if $j \in J$ then we have that $k \geq j$ so that $1/k \leq 1/j$.
+    We also have
+    \gath{
+      \frac{\bd(y_j,x_j)}{j} \leq \sup\braces{\frac{\bd_i(y_i,x_i)}{i}} = D(y,x) < \frac{\e}{k} \leq \frac{\e}{j} \leq \frac{1}{j}
+    }
+    since $1/k \leq 1/j$ and $\e \leq 1$.
+    Therefore $\bd_j(y_j,x_j) < 1$ so that it must be that $\bd_j(y_j,x_j) = d_j(y_j,x_j)$.
+    Hence we have $d_j(y_j,x_j) = \bd_j(y_j,x_j) < \e \leq \e_j$ so that $y_j \in B_{d_j}(x_j,\e_j) \ss U_j$.
+    Therefore $y_i \in U_i$ for all $i \in \pints$ so that $y \in \prod U_i = B$.
+    Since $y$ was arbitrary, this shows that $x \in B_D(x,\e) \ss B$, which in turn proves that the metric topology is also finer than the product topology by Lemma~13.3.
+    Thus the two topologies must be the same.
   }
 }
