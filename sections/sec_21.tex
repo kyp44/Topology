@@ -286,3 +286,109 @@
     Thus the two topologies must be the same.
   }
 }
+
+\exercise{4}{
+  Show that $\realsl$ and the ordered square satisfy the first countability axiom.
+  (This result does not, of course, imply that they are metrizable.)
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    Suppose that $x$ is any element of $\realsl$.
+    Define the sets $U_n = \clop{x,x+1/n}$ for $n \in \pints$.
+    Clearly this is a countable collection of neighborhoods of $x$ since each $U_n$ is a basis element of $\realsl$ and $x \in U_n$.
+    Now consider any other neighborhood $U$ of $x$ so that there is a basis element $B = \clop{a,b}$ that contains $x$ and $B \ss U$.
+    Thus of course $a \leq x < b$.
+    There is clearly a positive integer $N$ large enough that $N > 1/(b-x)$, noting that $b-x > 0$ since $x < b$.
+    Now consider any $y \in U_N = \clop{x,x+1/N}$ so that $x \leq y < x+1/N$.
+    Then we have
+    \ali{
+      \frac{1}{b-x} &< N \\
+      \frac{1}{N} &< b - x & \text{(since both $N \geq 1 > 0$ and $b-x>0$)}\\
+      x + \frac{1}{N} &< b
+    }
+    so that $y \leq x + 1/N < b$.
+    As we also clearly have $a \leq x \leq y$ it follows that $y \in \clop{a,b} = B \ss U$.
+    Thus $U_N \ss U$ since $y$ was arbitrary.
+    This shows that $\realsl$ satisfies the first countability axiom since $U$ and $x$ were arbitrary.
+
+    Now recall that the ordered square is the set $I \times I$ where $I = [0,1]$ with the dictionary order topology.
+    In what follows let $\prec$ denote the dictionary order on $I \times I$.
+    So suppose that $\vx = x_1 \times x_2 \in I \times I$ so that of course $0 \leq x_1 \leq 1$ and $0 \leq x_2 \leq 1$.
+    Now define the following
+    \ali{
+      a_{n,1} &= \begin{cases}
+        \max\braces{x_1-1/n, 0} & x_2 = 0 \\
+        x_1 & x_2 > 0
+      \end{cases} &
+      b_{n,1} &= \begin{cases}
+        \min\braces{x_1+1/n, 1} & x_2 = 1 \\
+        x_1 & x_2 < 1
+      \end{cases} \\
+      a_{n,2} &= \begin{cases}
+        0 & x_2 = 0 \\
+        \max\braces{x_2-1/n,0} & x_2 > 0
+      \end{cases} &
+      b_{n,2} &= \begin{cases}
+        1 & x_2 = 1 \\
+        \min\braces{x_2+1/n,1} & x_2 < 1
+      \end{cases}
+    }
+    for $n \in \pints$, which are all well defined since it is never the case that $x_2 < 0$ or $x_2 > 1$.
+    Also define $\va_n = a_{n,1} \times a_{n,2}$ and $\vb_n = b_{n,1} \times b_{n,2}$ for $n \in \pints$.
+    Lastly, define the sets
+    \gath{
+      U_n = \begin{cases}
+        \clop{\va_n, \vb_n} & x_1 = x_2 = 0 \\
+        \opcl{\va_n, \vb_n} & x_1 = x_2 = 1 \\
+        (\va_n, \vb_n) & \text{otherwise}
+      \end{cases}
+    }
+    for $n \in \pints$, noting that the intervals are in the dictionary order so that these are basis elements of the dictionary order topology and so are open.
+
+    As it is not obvious with all the difference cases going on, we now show that $\vx \in U_n$ for every $n \in \pints$.
+    So consider any $n \in \pints$.
+
+    Case: $x_2 = 0$.
+    Then we have $b_{n,1} = x_1$ and $x_2 < \min\braces{x_2+1/n,1} = b_{n,2}$ since $x_2 = 0 < 1$ and clearly $x_2 < x_2+1/n$.
+    This shows that $\vx \prec \vb_n$.
+    \begin{indpar}
+      Case: $x_1 = 0$.
+      Then we clearly have that $x_1-1/n < x_1 = 0$, and hence $a_{n,1} = \max\braces{x_1-1/n,0} = 0 = x_1$.
+      Also clearly $a_{n,1} = 0 = x_2$ since $x_2 = 0$.
+      Hence $\va_n = 0 \times 0 = \vx$ so that $\va_n \prece \vx$ is true.
+      This shows that $\vx \in \clop{\va_n,\vb_n} = U_n$.
+
+      Case: $x_1 > 0$.
+      Then we have $x_1-1/n < x_1$ and $0 < x_1$ so that $a_{n,1} = \max\braces{x_1-1/n,0} < x_1$.
+      Therefore $\va_n \prec \vx$ so that $\vx \in (\va_n, \vb_n) = U_n$.
+    \end{indpar}
+
+    Case: $x_2 = 1$.
+    Then we have $a_{n,1} = x_1$ and $a_{n,2} = \max\braces{x_2-1/n,0} < x_2$ since $x_2 = 1 > 0$ and clearly $x_2 > x_2-1/n$.
+    This shows that $\va_n \prec \vx$.
+    \begin{indpar}
+      Case: $x_1 = 1$.
+      Then $x_1+1/n > x_1 = 1$ so that $b_{n,1} = \min\braces{x_1+1/n,1} = 1 = x_1$.
+      Also $b_{n,2} = 1 = x_2$ so that $\vb_n = 1 \times 1 = \vx$ and hence $\vx \prece \vb_n$ is true.
+      Therefore $\vx \in \opcl{\va_n, \vb_n} = U_n$.
+
+      Case: $x_1 < 1$.
+      Then we have $x_1+1/n > x_1$ and $1 > x_1$ so that $b_{n,1} = \min\braces{x_1+1/n,1} > x_1$.
+      Therefore $\vx \prec \vb_n$ so that $\vx \in (\va_n, \vb_n) = U_n$.
+    \end{indpar}
+
+    Case: $0 < x_2 < 1$.
+    Then $a_{n,1} = x_1$, and $x_2-1/n < x_2$ and $0 < x_2$ so that $a_{n,2} = \max\braces{x_2-1/n,0} < x_2$.
+    This shows that $\va_n \prec \vx$.
+    Similarly $b_{n,1} = x_1$, and $x_2+1/n > x_2$ and $1 > x_2$ so that $b_{n,2} = \min\braces{x_2+1/n,1} > x_2$.
+    This shows that $\vx \prec \vb_n$.
+    Therefore we have $\vx \in (\va_n,\vb_n) = U_n$.
+    
+    Hence $\vx \in U_n$ in all of the exhaustive cases so that $\braces{U_n}_{n \in \pints}$ is a countable collection of neighborhoods of $\vx$.
+
+    Lastly consider any other neighborhood of $U$ of $\vx$ in the dictionary order topology.
+    Then there is a basis element $B$ such that $\vx \in B \ss U$.
+  }
+}

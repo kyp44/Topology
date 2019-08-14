@@ -196,8 +196,8 @@
       \lim_{x \to a^+} f(x) = f(a) \,,
     }
     for each $a \in \reals$.
-    Show that $f$ is continuous when considered as a function from $\reals_l$ to $\reals$.
-  \item Can you conjecture what functions $f: \reals \to \reals$ are continuous when considered as maps from $\reals$ to $\reals_l$?
+    Show that $f$ is continuous when considered as a function from $\realsl$ to $\reals$.
+  \item Can you conjecture what functions $f: \reals \to \reals$ are continuous when considered as maps from $\reals$ to $\realsl$?
     We shall return to this question in Chapter~3.
   }
 }
@@ -205,7 +205,7 @@
   \dwhitman
 
   \begin{lem}\label{lem:cont:Rlopcl}
-    In the topology $\reals_l$, every basis element is both open and closed.
+    In the topology $\realsl$, every basis element is both open and closed.
   \end{lem}
   \qproof{
     Consider any basis element $B = \clop{a,b}$, which is clearly open since basis elements are always open.
@@ -259,7 +259,7 @@
     Then there is a basis element $(c,d)$ of $\reals$ that contains $f(a)$ and is a subset of $V$.
     Hence $c < f(a) < d$, so let $\e = \min[f(a)-c, d - f(a)]$ so that clearly $\e > 0$ and if $\abs{y - f(a)} < \e$, then $y \in (c,d)$ so that also $y \in V$.
     Now, since $f$ is continuous from the right, there is a $\d > 0$ such that $\abs{f(x) - f(a)} < \e$ for every $x > a$ where $\abs{x-a} < \d$.
-    So let $U = \clop{a, a+\d}$ which is clearly a basis element of $\reals_l$ and contains $a$ so that it is a neighborhood of $a$.
+    So let $U = \clop{a, a+\d}$ which is clearly a basis element of $\realsl$ and contains $a$ so that it is a neighborhood of $a$.
 
     Now consider any $y \in f(U)$ so that there is an $x \in U$ where $y = f(x)$.
     If $x = a$ then clearly $\abs{f(x) - f(a)} = \abs{f(a) - f(a)} = \abs{0} = 0 < \e$ so that $f(x) \in V$.
@@ -269,16 +269,16 @@
     We have thus shown part (4) of Theorem~18.1, from which the topological continuity of $f$ follows.
   }
 
-  (b) We claim that only constant functions are continuous from $\reals$ to $\reals_l$.
+  (b) We claim that only constant functions are continuous from $\reals$ to $\realsl$.
   \qproof{
     First, it was shown in Theorem~18.2 part (a) that constant functions are always continuous regardless of the topologies.
-    Hence we must show that any continuous function from $\reals$ to $\reals_l$ is constant.
+    Hence we must show that any continuous function from $\reals$ to $\realsl$ is constant.
     So suppose that $f$ is such a function.
     Now consider any real $x$ where $x \neq 0$.
     Clearly if $f(x) = f(0)$ then $f$ is a constant function since $x$ was arbitrary.
     So suppose that this is not the case so that $f(x) \neq f(0)$.
     Without loss of generality we can assume that $f(0) < f(x)$.
-    So consider the basis element $B = \clop{f(0), f(x)}$ of $\reals_l$, which clearly contains $f(0)$ but not $f(x)$.
+    So consider the basis element $B = \clop{f(0), f(x)}$ of $\realsl$, which clearly contains $f(0)$ but not $f(x)$.
 
     Since $f$ is continuous and $B$ is both open and closed by Lemma~\ref{lem:cont:Rlopcl}, it follows from the definition of continuity and from Theorem~18.1 part (3) that $\inv{f}(B)$ must be both open and closed in $\reals$.
     However the only sets that are both open and closed in $\reals$ are $\es$ and $\reals$ itself by Lemma~\ref{lem:cont:Ropcl}.
@@ -288,7 +288,7 @@
     We therefore have a contradiction so that it must be that $f(x) = f(0)$ so that $f$ is constant.
   }
 
-  Lastly, we claim that  the only functions that are continuous from $\reals_l$ to $\reals_l$ are those that are \emph{continuous and non-decreasing from the right}.
+  Lastly, we claim that  the only functions that are continuous from $\realsl$ to $\realsl$ are those that are \emph{continuous and non-decreasing from the right}.
   For a function $f:\reals \to \reals$ this means that for every $x \in \reals$ and every $\e > 0$ there is a $\d > 0$ such that $\abs{f(y) - f(x)} < \e$ and $f(y) \geq f(x)$ for every $x \leq y < x + \d$.
   \qproof{
     First we show that such functions are in fact continuous.
@@ -296,7 +296,7 @@
     Let $V$ be any neighborhood of $f(x)$ so that there is a basis element $B = \clop{c,d}$ containing $f(x)$ such that $B \ss V$.
     Let $\e = d - f(x)$ so that $\e > 0$ since $f(x) < d$.
     Hence there is a $\d > 0$ such that $x < y < x+\d$ implies that $\abs{f(y)-f(x)} < \e$ and $f(y) \geq f(x)$.
-    We then have that $U = \clop{x, x+\d}$ is a basis element and therefore an open set of $\reals_l$ that contains $x$.
+    We then have that $U = \clop{x, x+\d}$ is a basis element and therefore an open set of $\realsl$ that contains $x$.
     Consider any $z \in f(U)$ so that $z = f(y)$ for some $y \in U$.
     Then $x \leq y < x+\d$ so that $z = f(y) \geq f(x)$ and $\abs{z - f(x)} = \abs{f(y)-f(x)} < \e$.
     It then follows that $0 \leq z - f(x) < \e$ so that $c \leq f(x) \leq z < f(x) + \e = d$, and hence $z \in \clop{c,d} = B$.
@@ -306,7 +306,7 @@
     Now we show that a continuous function \emph{must} be continuous and non-decreasing from the right by showing the contrapositive.
     So suppose that $f$ is not continuous and non-decreasing from the right.
     Then there exists a real $x$ and an $\e > 0$ such that, for any $\d > 0$, there is a $x \leq y <x+\d$ where $f(y) < f(x)$ or $\abs{f(y)-f(x)} \geq \e$.
-    Clearly we have that $V = \clop{f(x), f(x)+\e}$ is basis element and therefore open set of $\reals_l$ that contains $f(x)$.
+    Clearly we have that $V = \clop{f(x), f(x)+\e}$ is basis element and therefore open set of $\realsl$ that contains $f(x)$.
     Consider any neighborhood $U$ of $x$ so that there is a basis element $B = \clop{a,b}$ containing $x$ where $B \ss U$.
     Then $x < b$ so that $\d = b - x > 0$.
     It then follows that there is a $x \leq y < x+\d = b$ such that $f(y) < f(x)$ or $\abs{f(y) - f(x)} \geq \e$.
