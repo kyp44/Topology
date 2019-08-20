@@ -287,6 +287,9 @@
   }
 }
 
+\def\vc{\vect{c}}
+\def\vd{\vect{d}}
+\def\vone{\vect{1}}
 \exercise{4}{
   Show that $\realsl$ and the ordered square satisfy the first countability axiom.
   (This result does not, of course, imply that they are metrizable.)
@@ -326,14 +329,8 @@
         \min\braces{x_1+1/n, 1} & x_2 = 1 \\
         x_1 & x_2 < 1
       \end{cases} \\
-      a_{n,2} &= \begin{cases}
-        0 & x_2 = 0 \\
-        \max\braces{x_2-1/n,0} & x_2 > 0
-      \end{cases} &
-      b_{n,2} &= \begin{cases}
-        1 & x_2 = 1 \\
-        \min\braces{x_2+1/n,1} & x_2 < 1
-      \end{cases}
+      a_{n,2} &= \max\braces{x_2-1/n,0} &
+      b_{n,2} &= \min\braces{x_2+1/n,1}
     }
     for $n \in \pints$, which are all well defined since it is never the case that $x_2 < 0$ or $x_2 > 1$.
     Also define $\va_n = a_{n,1} \times a_{n,2}$ and $\vb_n = b_{n,1} \times b_{n,2}$ for $n \in \pints$.
@@ -347,7 +344,7 @@
     }
     for $n \in \pints$, noting that the intervals are in the dictionary order so that these are basis elements of the dictionary order topology and so are open.
 
-    As it is not obvious with all the difference cases going on, we now show that $\vx \in U_n$ for every $n \in \pints$.
+    As it is not obvious with all the different cases going on, we now show that $\vx \in U_n$ for every $n \in \pints$.
     So consider any $n \in \pints$.
 
     Case: $x_2 = 0$.
@@ -371,7 +368,8 @@
     \begin{indpar}
       Case: $x_1 = 1$.
       Then $x_1+1/n > x_1 = 1$ so that $b_{n,1} = \min\braces{x_1+1/n,1} = 1 = x_1$.
-      Also $b_{n,2} = 1 = x_2$ so that $\vb_n = 1 \times 1 = \vx$ and hence $\vx \prece \vb_n$ is true.
+      Likewise we have that $x_2+1/n > x_2 = 1$ so that $b_{n,2} = \min\braces{x_2+1/n, 1} = 1$.
+      Thus $\vb_n = 1 \times 1 = \vx$ and hence $\vx \prece \vb_n$ is true.
       Therefore $\vx \in \opcl{\va_n, \vb_n} = U_n$.
 
       Case: $x_1 < 1$.
@@ -389,6 +387,64 @@
     Hence $\vx \in U_n$ in all of the exhaustive cases so that $\braces{U_n}_{n \in \pints}$ is a countable collection of neighborhoods of $\vx$.
 
     Lastly consider any other neighborhood of $U$ of $\vx$ in the dictionary order topology.
-    Then there is a basis element $B$ such that $\vx \in B \ss U$.
+    Then there is a basis element $B$ of the dictionary order topology such that $\vx \in B \ss U$.
+    Then we have that either $B = \clop{\vc, \vd}$ where $\vc = \vze$, $B = (\vc, \vd)$, or $B = \opcl{\vc, \vd}$ where $\vd = \vone$ (where we denote $\vone = 1 \times 1$).
+    Now we set $N_a,N_b \in \pints$ based on the different cases we might have.
+    First, we know that no matter what we have $\vc \prece \vx$ since $\vx\in B$.
+    We therefore have:
+
+    Case: $c_1 < x_1$.
+    If $x_2 > 0$ then set $N_a = 1$, and otherwise $x_2 = 0$ and there is an $N_a$ large enough such that $N_a > 1/(x_1-c_1)$, noting that this is defined since $x_1-c_1>0$.
+
+    Case: $c_1 = x_1$.
+    Then it has to be that $c_2 \leq x_2$ since $\vc \prece \vx$.
+    If $c_2 = x_2$ then it must be that $B = \clop{\vc, \vd}$ and $\vc = \vx = \vze$, so just set $N_a = 1$.
+    On the other hand, if $c_2 < x_2$, then there must be an $N_a$ large enough such that $N_a > 1/(x_2-c_2)$, noting that $x_2 - c_2 > 0$.
+
+    Now we set $N_b$ in an analogous way, noting that we have $\vx \prece \vd$ no matter what since $\vx \in B$:
+
+    Case: $x_1 < d_1$.
+    If $x_2 < 1$ then simply set $N_b = 1$, and otherwise $x_2 = 1$ and there is an $N_b$ large enough such that $N_b > 1/(d_1-x_1)$, noting that $d_1-x_1 > 0$.
+
+    Case: $x_1 = d_1$.
+    Then it must be that $x_2 \leq d_2$ since $\vx \prece \vd$.
+    If $x_2 = d_2$ then it has to be that $B = \opcl{\vc, \vd}$ and $\vx = \vd = \vone$, so just set $N_b = 1$.
+    On the other hand, if $x_2 < d_2$, then there is an $N_b$ large enough such that $N_b > 1/(d_2-x_2)$, noting that $d_2-x_2 > 0$.
+
+    Now let $N = \max\braces{N_a, N_b}$, and we claim that $U_N \ss B$ in every case.
+    We have again know that $\vc \prece \vx$ so that we have:
+
+    Case: $c_1 < x_1$.
+    If $x_2 > 0$ then $c_1 < x_1 = a_{N,1}$.
+    If $x_2 = 0$ then we have $N \geq N_a > 1/(x_1-c_1)$, from which it readily follows that $c_1 < x_1 - 1/n \leq a_{N,1}$.
+    Thus either way we have $c_1 < a_{N,1}$ so that $\vc \prec \va_N$.
+
+    Case: $c_1 = x_1$.
+    If also $c_2 = x_2$ then again it has to be that $B = \clop{\vc, \vd}$ and $\vc = \vx = \vze$.
+    In this case it was established above that $U_N = \clop{\va_N, \vb_N}$ and $\va_N = \vze$.
+    So we have here that $\vc = \vze \prece \vze = \va_N$.
+    On the other hand if $c_2 < x_2$ then $N \geq N_a > 1/(x_2-c_2)$, from which it follows that $c_2 < x_2 - 1/n \leq a_{N,2}$.
+    Also $c_1 = x_1 = a_{N,1}$ so that $\vc \prec \va_N$ since $0 \leq c_2 < x_2$.
+
+    We also of course again have that $\vx \prece \vd$ so that
+
+    Case: $x_1 < d_1$.
+    If $x_2 < 1$ then $b_{N,1} = x_1 < d_1$.
+    If $x_2 = 1$ then we have $N \geq N_b > 1/(d_1-x_1)$, from which it follows that $b_{N,1} \leq x_1 + 1/N < d_1$.
+    Hence either was $b_{N,1} < d_1$ so that $\vb_N \prec \vd$.
+
+    Case: $x_1 = d_1$.
+    If also $x_2 = d_2$ then again it has to be that $B = \opcl{\vc, \vd}$ and $\vd = \vx = \vone$.
+    In this case it was established above that $U_N = \opcl{\va_N, \vb_N}$ and $\vb_N = \vone$.
+    So we have here that $\vb_N = \vone \prece \vone = \vd$.
+    On the other hand if $x_2 < d_2$ then we have $N \geq N_b > 1/(d_2-x_2)$, from which it readily follows that $b_{N,2} \leq x_2+1/N < d_2$.
+    We also have $b_{N,1} = x_1 = d_1$ so that $\vb_N \prec \vd$ since $x_2 < d_2 \leq 1$.
+
+    Therefore in every case we have that $\vc \prec \va_N$ except when $\vc = \vx = \va_N = \vze$ so that $U_N = \clop{\vze, \vb_N}$ and $B = \clop{\vze, \vd}$.
+    Similarly we always have $\vb_N \prec \vd$ except when $\vb_N = \vx = \vd = \vone$ so that $U_N = \opcl{\va_N, \vone}$ and $B = \opcl{\vc, \vone}$.
+    When $\vc = \vx = \va_N = \vze$ we cannot have $\vx = \vone$, so that $\vb_N \prec \vd$.
+    Analogously, when $\vb_N = \vx = \vd = \vone$ it cannot be that $\vx = \vze$, and hence $\vc \prec \va_N$.
+    Otherwise we have $U_N = (\va_N, \vb_N)$, $\vc \prec \va_N$, and $\vb_N \prec \vd$ so that in every case $\vx \in U_N \ss B \ss U$.
+    Since $U$ was an arbitrary neighborhood and $\vx$ was also abritrary, this shows that $I \times I$ satisfies the first countability axiom as desired.
   }
 }
