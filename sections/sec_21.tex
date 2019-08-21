@@ -490,3 +490,80 @@
   }
 }
 
+\exercise{6}{
+  Define $f_n : [0,1] \to \reals$ by the equation $f_n(x) = x^n$.
+  Show that the sequence $(f_n(x))$ converges for each $x \in [0,1]$, but that the sequence $(f_n)$ does not converge uniformly.
+}
+\sol{
+  \dwhitman
+
+  First we build up a little more theory
+  \begin{defin} \label{def:metricc:pointwise}
+    Let $f_n: X \to Y$ be a sequence of functions from a set $X$ to topological space $Y$.
+    We say that the sequence of functions converges \emph{pointwise} to a function $f: X \to Y$ if the sequence $(f_n(x))$ converges to $f(x)$ for every $x \in X$.
+  \end{defin}
+
+  \begin{lem}
+    Let $f_n : X \to Y$ be a sequence of functions from a set $X$ to topological space $Y$.
+    If $Y$ is a Hausdorff space and $(f_n)$ converges pointwise to $f$, then $f$ is unique.
+  \end{lem}
+  \qproof{
+    Suppose that $(f_n)$ converges pointwise to two distinct functions $f$ and $g$.
+    Since they are distinct, there is an $x_0 \in X$ where $f(x_0) \neq g(x_0)$.
+    But then the sequence $(f_n(x_0))$ converges to both of the distinct points $f(x_0)$ and $g(x_0)$ since $(f_n)$ converges pointwise to both $f$ and $g$.
+    As $Y$ is Hausdorff, this violates Theorem~17.10 so that $(f_n)$ can only converge pointwise to a unique function.
+  }
+  
+  \begin{lem}
+    Let $f_n : X \to Y$ be a sequence of functions from a set $X$ to metric space $Y$ with metric $d$.
+    If $(f_n)$ converges uniformly to a function $f$, then it also converges pointwise to $f$.
+  \end{lem}
+  \qproof{
+    Suppose that $(f_n)$ converges uniformly to $f$ and consider any $x_0 \in X$ and $\e > 0$.
+    Then there is an $N \in \pints$ where $d(f_n(x), f(x)) < \e$ for all $n > N$ and $x \in X$.
+    Then, since $x_0 \in X$, we have $d(f_n(x_0), f(x_0)) < \e$ for all $n \geq N+1$ since then $n > N$.
+    This shows that the sequence $(f_n(x_0))$ converges to $f(x_0)$ since $\e$ was arbitrary.
+    Since $x_0$ was arbitary, this shows that $(f_n)$ converges pointwise to $f$ as desired.
+  }
+
+  \mainprob
+  
+  \qproof{
+    First we show that the sequence $(f_n)$ converges pointwise to the function $g: [0,1] \to \reals$ defined by
+    \gath{
+      g(x) = \begin{cases}
+        0 & x < 1 \\
+        1 & x = 1
+      \end{cases}
+    }
+    for $x \in [0,1]$.
+    This of course shows that $(f_n(x))$ converges for each $x \in [0,1]$ by Definition~\ref{def:metricc:pointwise}.
+    
+    So consider any such $x \in [0,1]$ so that we have the following exhaustive cases:
+
+    Case: $x = 0$.
+    Then $f_n(x) = x^n = 0^n = 0$ for any $n \in \pints$.
+    Thus clearly the sequence $(f_n(x)) = (0,0,\ldots)$ converges to $0$.
+
+    Case: $x = 1$.
+    Somewhat similarly we have $f_n(x) = x^n = 1^n = 1$ for every $n \in \pints$ so that clearly the sequence $(f_n(x)) = (1,1,\ldots)$ converges to $1$.
+
+    Case: $0 < x < 1$.
+    Here we show that, for any $x \in (0,1)$, that the sequence $(f_n(x))$ is strictly decreasing and that it is bounded below by $0$.
+    We prove this using induction on $n$.
+    So first for $n = 1$ we have that $f_n(x) = x^n = x^1 = x > 0$.
+    We also have
+    \ali{
+      0 < x &< 1 \\
+      x^2 &< x & \text{(since $x > 0$)} \\
+      f_2(x) &< f_1(x) \\
+      f_{n+1}(x) &< f_n(x) \,.
+    }
+    TODO need to continue with the inductive step?
+    Hence the sequence is strictly decreasing (and therefore of course non-increasing) and bounded below, from which it follows that it converges by a theorem analagous to that shown in Exercise~21.11 part (a).
+
+    Hence in every case the sequence $(f_n(x))$ converges, which shows the desired result since $x$ was arbitrary.
+
+    Next we show that $(f_n(x))$ does not converge uniformly.
+  }
+}
