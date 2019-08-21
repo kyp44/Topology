@@ -445,6 +445,48 @@
     When $\vc = \vx = \va_N = \vze$ we cannot have $\vx = \vone$, so that $\vb_N \prec \vd$.
     Analogously, when $\vb_N = \vx = \vd = \vone$ it cannot be that $\vx = \vze$, and hence $\vc \prec \va_N$.
     Otherwise we have $U_N = (\va_N, \vb_N)$, $\vc \prec \va_N$, and $\vb_N \prec \vd$ so that in every case $\vx \in U_N \ss B \ss U$.
-    Since $U$ was an arbitrary neighborhood and $\vx$ was also abritrary, this shows that $I \times I$ satisfies the first countability axiom as desired.
+    Since $U$ was an arbitrary neighborhood and $\vx$ was also arbitrary, this shows that $I \times I$ satisfies the first countability axiom as desired.
   }
 }
+
+\exercise{5}{
+  \begin{thrm*}
+    Let $x_n \to x$ and $y_n \to y$ in the space $\reals$.
+    Then
+    \ali{
+      x_n + y_n &\to x + y \\
+      x_n - y_n &\to x - y \\
+      x_n y_n &\to x y \,,
+    }
+    and provided that each $y_n \neq 0$ and $y \neq 0$,
+    \gath{
+      x_n/y_n \to x/y \,.
+    }
+  \end{thrm*}
+      [Hint: Apply Lemma~21.4; recall from the exercises of \S 19 that if $x_n \to x$ and $y_n \to y$, then $x_n \times y_n \to x \times y$.]
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    First, we have that the sequence $x_n \times y_n$ converges to $x \times y$ in the product space $\reals \times \reals$ by Exercise~19.6 since both $x_n \to x$ and $y_n \to y$ in $\reals$.
+    Now suppose that $f : \reals \times \reals \to \reals$ is continuous.
+    Then we have that
+    \gath{
+      \lim_{n \to \infty} f(x_n \times y_n) = f\parens{\lim_{n \to \infty} x_n \times y_n} = f(x \times y)
+    }
+    by Lemma~\ref{lem:metric:contseq}.
+    Now, we have that addition, subtraction, and multiplication are all continuous functions from $\reals \times \reals$ to $\reals$ by Lemma~21.4.
+    It then follows that for the continuous function $+: \reals \times \reals \to \reals$ we have
+    \gath{
+      \lim_{n \to \infty} (x_n + y_n) = \lim_{n \to \infty} +(x_n \times y_n) = +(x \times y) = x + y \,.
+    }
+    It similarly follows that $x_n - y_n \to x - y$ and $x_n y_n \to x y$ as desired.
+
+    Regarding the quotient, we note that $(y_n)$ is a sequence in the subspace topology $\reals - \braces{0}$ since each $y_n \neq 0$.
+    We also note that $y \neq 0$ and hence also $y \in \reals - \braces{0}$ so that the sequence $(y_n)$ converges to a point still within the space $\reals - \braces{0}$.
+    It then again follows that $x_n \times y_n \to x \times y$ in the product space $\reals \times (\reals - \braces{0})$ by Exercise~19.6.
+    Since the quotient function is continuous from $\reals \times (\reals - \braces{0})$ to $\reals$ by Lemma~21.4, it then follows as before that $x_n/y_n \to x/y$ by Lemma~\ref{lem:metric:contseq} just as we would like.
+  }
+}
+
