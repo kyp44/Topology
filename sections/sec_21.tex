@@ -503,7 +503,7 @@
     We say that the sequence of functions converges \emph{pointwise} to a function $f: X \to Y$ if the sequence $(f_n(x))$ converges to $f(x)$ for every $x \in X$.
   \end{defin}
 
-  \begin{lem}
+  \begin{lem} \label{lem:metricc:pwunique}
     Let $f_n : X \to Y$ be a sequence of functions from a set $X$ to topological space $Y$.
     If $Y$ is a Hausdorff space and $(f_n)$ converges pointwise to $f$, then $f$ is unique.
   \end{lem}
@@ -514,7 +514,7 @@
     As $Y$ is Hausdorff, this violates Theorem~17.10 so that $(f_n)$ can only converge pointwise to a unique function.
   }
   
-  \begin{lem}
+  \begin{lem} \label{lem:metricc:unifpw}
     Let $f_n : X \to Y$ be a sequence of functions from a set $X$ to metric space $Y$ with metric $d$.
     If $(f_n)$ converges uniformly to a function $f$, then it also converges pointwise to $f$.
   \end{lem}
@@ -551,19 +551,81 @@
     Case: $0 < x < 1$.
     Here we show that, for any $x \in (0,1)$, that the sequence $(f_n(x))$ is strictly decreasing and that it is bounded below by $0$.
     We prove this using induction on $n$.
-    So first for $n = 1$ we have that $f_n(x) = x^n = x^1 = x > 0$.
-    We also have
+    So first for $n = 1$ we have
     \ali{
       0 < x &< 1 \\
-      x^2 &< x & \text{(since $x > 0$)} \\
-      f_2(x) &< f_1(x) \\
-      f_{n+1}(x) &< f_n(x) \,.
+      0 < x^2 &< x & \text{(since $x > 0$)} \\
+      0 < f_2(x) &< f_1(x) \\
+      0 < f_{n+1}(x) &< f_n(x) \,.
     }
-    TODO need to continue with the inductive step?
-    Hence the sequence is strictly decreasing (and therefore of course non-increasing) and bounded below, from which it follows that it converges by a theorem analagous to that shown in Exercise~21.11 part (a).
+    For the inductive step suppose that $f_n(x) > 0$ and $f_{n+1}(x) < f_n(x)$.
+    Then we of course have $0 < f_n(x) = x^n$ so that clearly $0 = x \cdot 0 < x \cdot x^n = x^{n+1} = f_{n+1}(x)$ as well since $x > 0$.
+    We also clearly have
+    \ali{
+      f_{n+1} &< f_n(x) \\
+      x^{n+1} &< x^n \\
+      x \cdot x^{n+1} &< x \cdot x^n & \text{(since $x > 0$)} \\
+      x^{n+2} &< x^{n+1} \\
+      f_{n+2}(x) &< f_{n+1}(x) \,,
+    }
+    which completes the inductive step.
+    
+    Hence the sequence is strictly decreasing (and therefore of course non-increasing) and bounded below by zero, from which it follows that it converges by a theorem analagous in an obvious way to that shown in Exercise~21.11 part (a).
+    So suppose that the sequence converges to the value $a$.
+    Then of course also the sequence $(f_{n+1}(x))$ must also converge to $a$.
+    Thus we have
+    \gath{
+      a = \lim_{n \to \infty} f_{n+1}(x) = \lim_{n \to \infty} x^{n+1} = \lim_{n \to \infty} x \cdot x^n = \lim_{n \to \infty} x f_n(x) = x \lim_{n \to \infty} f_n(x) = xa \,,
+    }
+    where we note that clearly the function $h(y) = xy$ for $y \in \reals$ is clearly continuous so that
+    \gath{
+      \lim_{n \to \infty} x f_n(x) = \lim_{n \to \infty} h(f_n(x)) = h\parens{\lim_{n \to \infty} f_n(x)} = x \lim_{n \to \infty} f_n(x)
+    }
+    by Lemma~\ref{lem:metric:contseq}.
+    Therefore we have $a = xa$ so that it would be that $1 = x$ if $a$ were any nonzero value.
+    However, we know that $x < 1$ so it must be that $a = 0$.
+    This completes the proof that $(f_n)$ converges pointwise to $g$.
 
-    Hence in every case the sequence $(f_n(x))$ converges, which shows the desired result since $x$ was arbitrary.
+    It then becomes fairly easy to show that $(f_n(x))$ does not converge uniformly.
+    Consider any function $f: [0,1] \to \reals$.
+    If $f \neq g$ then $(f_n)$ cannot converge pointwise to $f$ since it was shown to converge pointwise to $g$ above and $g$ is unique by Lemma~\ref{lem:metricc:pwunique} since $\reals$ is Hausdorff.
+    Hence $(f_n)$ cannot converge uniformly to $f$ by the converse of Lemma~\ref{lem:metricc:unifpw} since it does even not converge pointwise.
+    On the other hand if $f = g$ then clearly $f = g$ has a disconinuity at $1$ so that it is not continuous.
+    However each $f_n(x) = x^n$ is continuous on $[0,1]$ by elementary calculus.
+    This shows that $(f_n)$ cannot converge uniformly to $f=g$ since this would violate Theorem~21.6.
+    Therefore $(f_n)$ does converge uniformly to any function since $f$ was arbitrary.
+  }
+}
 
-    Next we show that $(f_n(x))$ does not converge uniformly.
+\exercise{7}{
+  Let $X$ be a set, and let $f_n: X \to \reals$ be a sequence of functions.
+  Let $\br$ be the uniform metric on the space $\reals^X$.
+  Show that the sequence $(f_n)$ converges uniformly to the function $f: X \to \reals$ if any only if the sequence converges to $f$ as elements of the metric space $(\reals^X, \br)$.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    $(\imp)$ First suppose that $(f_n)$ converges uniformly to $f$ in the functional sense.
+    Consider any $\e > 0$.
+    Then, by the definition of uniform convergence there is an $N \in \pints$ where
+    \gath{
+      d(f_n(x), f(x)) < \e/2
+    }
+    for all $n > N$ and $x \in X$, noting that $d$ of course denotes the usual metric on $\reals$.
+    Now consider any $x_0 \in X$ and an $n \geq N+1$ so that $n > N$.
+    Then of course we have
+    \gath{
+      \bd(f_n(x_0),f(x_0)) = \min\braces{d(f_n(x_0),f(x_0)), 1} \leq d(f_n(x_0),f(x_0)) < \e/2\,,
+    }
+    from which it follows that
+    \gath{
+      \br(f_n, f) = \sup\braces{\bd(f_n(x),f(x)) \where x \in X} \leq \e/2 < \e
+    }
+    since $x_0$ was arbitrary.
+    This shows that $f_n \in B_{\br}(f, \e)$.
+    Since $n \geq N+1$ and $\e > 0$ were both arbitrary, this shows that the sequence $(f_n)$ converges to $f$ as elements of the metric space $\reals^X$.
+
+    $(\pmi)$ Now suppose that $(f_n)$ converges to $f$ in the uniform metric space $\reals^X$.
   }
 }
