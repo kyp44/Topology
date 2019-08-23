@@ -627,5 +627,55 @@
     Since $n \geq N+1$ and $\e > 0$ were both arbitrary, this shows that the sequence $(f_n)$ converges to $f$ as elements of the metric space $\reals^X$.
 
     $(\pmi)$ Now suppose that $(f_n)$ converges to $f$ in the uniform metric space $\reals^X$.
+    Consider any $\e > 0$ and let $\d = \min\braces{\e,1}$.
+    Then, since $B_{\br}(f,\d)$ is a neighborhood of $f$ in the uniform metric space, there is an $N \in \pints$ where $f_n \in B_{\br}(f,\d)$ for all $n \geq N$.
+    So consider any $n > N$ and $x_0 \in X$.
+    Then clearly $f_n \in B_{\br}(f,\d)$ so that $\br(f_n,f) < \d$.
+    Hence
+    \gath{
+      \bd(f_n(x_0),f(x_0)) \leq \sup\braces{\bd(f_n(x),f(x)) \where x \in X} = \br(f_n,f)  < \d \leq 1 
+    }
+    so it has to be that $d(f_n(x_0),f(x_0)) = \bd(f_n(x_0),f(x_0))$ since
+    \gath{
+      \bd(f_n(x_0),f(x_0)) = \min\braces{d(f_n(x_0),f(x_0)), 1} < 1 \,.
+    }
+    Therefore we have
+    \gath{
+      d(f_n(x_0),f(x_0)) = \bd(f_n(x_0),f(x_0)) \leq \br(f_n,f) < \d \leq \e \,.
+    }
+    Since $n > N$, $x_0 \in X$, and $\e > 0$ were arbitrary, this shows that $(f_n)$ converges to $f$ uniformly in the functional sense.
   }
+}
+
+\exercise{8}{
+  Let $X$ be a topological space and let $Y$ be a metric space.
+  Let $f_n: X \to Y$ be a sequence of continuous functions.
+  Let $x_n$ be a sequence of points of $X$ converging to $x$.
+  Show that if the sequence $(f_n)$ converges uniformly to $f$, then $(f_n(x_n))$ converges to $f(x)$.
+}
+\sol{
+  \dwhitman
+
+  Suppose that $(f_n)$ converges to $f$ uniformly and let $d$ denote the metric for $Y$.
+  Consider any $\e > 0$.
+  Since $(f_n)$ converges to $f$ uniformly there is an $N_1 \in \pints$ where $d(f_n(x'),f(x')) < \e/2$ for any $n > N_1$ and $x' \in X$.
+  We also know from the uniform limit theorem (Theorem~21.6) that $f$ is continuous since each $f_n$ is continuous.
+  It then follows from Lemma~\ref{lem:metric:contseq} that the sequence $(f(x_n))$ converges to $f(x)$ since $x_n \to x$.
+  Hence there is an $N_2 \in \pints$ such that $d(f(x_n),f(x)) < \e/2$ for all $n \geq N_2$.
+
+  So set $N = \max\braces{N_1+1, N_2}$ and consider any $n \geq N$.
+  Then of course $n \geq N \geq N_1+1 > N_1$ and $x_n \in X$ so that
+  \gath{
+    d(f_n(x_n), f(x_n)) < \e/2 \,.
+  }
+  We also have that $n \geq N \geq N_2$ so that
+  \gath{
+    d(f(x_n),f(x)) < \e/2 \,.
+  }
+  We then have
+  \gath{
+    d(f_n(x_n),f(x)) \leq d(f_n(x_n), f(x_n)) + d(f(x_n), f(x)) < \frac{\e}{2} + \frac{\e}{2} = \e
+  }
+  since $d$ is a metric, and so $f_n(x_n) \in B_d(f(x),\e)$.
+  Since $n \geq N$ and $\e > 0$ were arbitrary, we have shown that the sequence $(f_n(x_n))$ converges to $f(x)$ in the metric space $Y$ by definition.
 }
