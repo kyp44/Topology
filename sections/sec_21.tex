@@ -719,6 +719,90 @@
 
   (b)
   \qproof{
+    Let $\e = 1/2$ and consider any $N \in \pints$ and let $n = N+1$ so of course $n > N$.
+    Also set $x = 1/n$.
+    Then we have
+    \gath{
+      f_n(x) = \frac{1}{n^3 [x-(1/n)]^2 + 1} = \frac{1}{n^3 [(1/n)-(1/n)]^2 + 1} = \frac{1}{n^3 \cdot 0 + 1} = \frac{1}{1} = 1
+    }
+    whereas of course $f(x) = 0$.
+    We therefore have
+    \gath{
+      d(f_n(x), f(x)) = d(1,0) = \abs{1-0} = 1 \geq 1/2 = \e \,.
+    }
+    This shows the negation of the definition of uniform convergence so that $(f_n)$ does not converge uniformly to $f$ as desired.
+    }
+  Note that this also shows that $(f_n)$ does not uniformly converge to any function at all since, if it did, it can only converge uniformly to $f$ since this is the only function to which it converges pointwise.
+  This follows from Lemmas~\ref{lem:metricc:pwunique} and \ref{lem:metricc:unifpw} as in Exercise~21.6.
+}
+
+\exercise{10}{
+  Using the closed set formulation of continuity (Theorem~18.1), show that the following are closed subsets of $\reals^2$:
+  \ali{
+    A &= \braces{x \times y \where xy = 1} \,, \\
+    S^1 &= \braces{x \times y \where x^2 + y^2 = 1} \,, \\
+    B^2 &= \braces{x \times y \where x^2 + y^2 \leq 1} \,.
+  }
+  The set $B^2$ is called the (closed) \boldit{unit ball} in $\reals^2$.
+}
+\sol{
+  \dwhitman
+
+  \qproof{
+    Regarding the set $A$, the function $f: \reals \times \reals \to \reals$ defined by $f(x \times y) = xy$ is simply the multiplication function, which is continuous by Lemma~21.4.
+    Clearly the set $A = \inv{f}(\braces{1})$ by definition.
+    We also have that $\braces{1}$ is closed in $\reals$ by Theorem~17.8 since $\reals$ is Hausdorff.
+    Thus $A = \inv{f}(\braces{1})$ is closed in $\reals \times \reals = \reals^2$ by Theorem~18.1 since $f$ is continuous.
+
+    For $S^1$, let $d$ denote the usual euclidean metric on $\reals \times \reals$, which we know induces the same topology as the product topology.
+    We also know from Exercise~20.3 that $d: \reals \times \reals \to \reals$ is continuous.
+    The function $f: \reals \times \reals \to \reals$ by
+    \gath{
+      f(x \times y) = d(x,y) \cdot d(x,y) = [d(x,y)]^2 = \squares{\sqrt{x^2 + y^2}}^2 = x^2 + y^2 \,.
+    }
+    is also then continuous by Theorem~21.5 being the product of two continuous functions.
+    As previously mentioned, the finite set $\braces{1}$ is closed in $\reals$.
+    We also have that $S^1 = \inv{f}(\braces{1})$ by definition, which then also must be closed in $\reals \times \reals = \reals^2$ again by Theorem~18.1 since $f$ continuous.
+
+    Regarding the closed unit ball $B^2$, define $f = d \cdot d$ as above for $S^1$, which is of course still continuous.
+    Define the subset $C = \braces{x \in \reals \where 0 \leq x \leq 1}$ of $\reals$.
+    We claim that $B^2 = \inv{f}(C)$.
+    This is pretty obvious since clearly $0 \leq f(x \times y) = x^2 + y^2 \leq 1$ for any $x \times y \in B^2$ by definition so that $f(x \times y) \in C$ and hence $x \times y \in \inv{f}(C)$.
+    Conversely, for any $x \times y \in \inv{f}(C)$, we have that $f(x \times y) \in C$ so that $0 \leq f(x \times y) = x^2 + y^2 \leq 1$ so that $x \times y \in B^2$ by definition.
+    This shows the desired equality of $B^2$ and $\inv{f}(C)$.
+    As it is trivial to show that $C$ is closed in $\reals$, and $f$ is continuous, it follows that $B^2 = \inv{f}(C)$ is also closed in $\reals \times \reals = \reals^2$, again by Theorem~18.1.
+  }
+}
+
+\exercise{11}{
+  Prove the following standard facts about infinite series:
+  \eparts{
+  \item Show that if $(s_n)$ is a bounded sequence of real numbers and $s_n \leq s_{n+1}$ for each $n$, then $(s_n)$ converges.
+  \item Let $(a_n)$ be a sequence of real numbers; define
+    \gath{
+      s_n = \sum_{i=1}^n a_i \,.
+    }
+    If $s_n \to s$, we say that the \boldit{infinite series}
+    \gath{
+      \sum_{i=1}^\infty a_i
+    }
+    converges to $s$ also.
+    Show that if $\sum a_i$ converges to $s$ and $\sum b_i$ converges to $t$, then $\sum (ca_i + b_i)$ converges to $cs+t$.
+  \item Prove the \boldit{comparison test} for infinite series: If $\abs{a_i} \leq b_i$ for each $i$, and if the series $\sum b_i$ converges, then the series $\sum a_i$ converges.
+    [Hint: Show that the series $\sum \abs{a_i}$ and $\sum c_i$ converge, where $c_i = \abs{a_i} + a_i$.]
+  \item Given a sequence of functions $f_n: X \to \reals$, let
+    \gath{
+      s_n(x) = \sum_{i=1}^n f_i(x) \,.
+    }
+    Prove the \boldit{Weierstrass M-test} for uniform convergence: If $\abs{f_i(x)} \leq M_i$ for all $x \in X$ and all $i$, and if the series $\sum M_i$ converges, then the sequence $(s_n)$ converges uniformly to a function $s$.
+    [Hint: Let $r_n = \sum_{i=n+1}^\infty M_i$.
+    Show that if $k > n$, then $\abs{s_k(x) - s_n(x)} \leq r_n$; conclude that $\abs{s(x) - s_n(x)} \leq r_n$.]
+  }
+}
+\sol{
+  \dwhitman
+
+  \qproof{
     TODO
   }
 }
