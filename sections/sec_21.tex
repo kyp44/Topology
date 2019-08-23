@@ -656,26 +656,69 @@
 \sol{
   \dwhitman
 
-  Suppose that $(f_n)$ converges to $f$ uniformly and let $d$ denote the metric for $Y$.
-  Consider any $\e > 0$.
-  Since $(f_n)$ converges to $f$ uniformly there is an $N_1 \in \pints$ where $d(f_n(x'),f(x')) < \e/2$ for any $n > N_1$ and $x' \in X$.
-  We also know from the uniform limit theorem (Theorem~21.6) that $f$ is continuous since each $f_n$ is continuous.
-  It then follows from Lemma~\ref{lem:metric:contseq} that the sequence $(f(x_n))$ converges to $f(x)$ since $x_n \to x$.
-  Hence there is an $N_2 \in \pints$ such that $d(f(x_n),f(x)) < \e/2$ for all $n \geq N_2$.
+  \qproof{
+    Suppose that $(f_n)$ converges to $f$ uniformly and let $d$ denote the metric for $Y$.
+    Consider any $\e > 0$.
+    Since $(f_n)$ converges to $f$ uniformly there is an $N_1 \in \pints$ where $d(f_n(x'),f(x')) < \e/2$ for any $n > N_1$ and $x' \in X$.
+    We also know from the uniform limit theorem (Theorem~21.6) that $f$ is continuous since each $f_n$ is continuous.
+    It then follows from Lemma~\ref{lem:metric:contseq} that the sequence $(f(x_n))$ converges to $f(x)$ since $x_n \to x$.
+    Hence there is an $N_2 \in \pints$ such that $d(f(x_n),f(x)) < \e/2$ for all $n \geq N_2$.
 
-  So set $N = \max\braces{N_1+1, N_2}$ and consider any $n \geq N$.
-  Then of course $n \geq N \geq N_1+1 > N_1$ and $x_n \in X$ so that
-  \gath{
-    d(f_n(x_n), f(x_n)) < \e/2 \,.
+    So set $N = \max\braces{N_1+1, N_2}$ and consider any $n \geq N$.
+    Then of course $n \geq N \geq N_1+1 > N_1$ and $x_n \in X$ so that
+    \gath{
+      d(f_n(x_n), f(x_n)) < \e/2 \,.
+    }
+    We also have that $n \geq N \geq N_2$ so that
+    \gath{
+      d(f(x_n),f(x)) < \e/2 \,.
+    }
+    We then have
+    \gath{
+      d(f_n(x_n),f(x)) \leq d(f_n(x_n), f(x_n)) + d(f(x_n), f(x)) < \frac{\e}{2} + \frac{\e}{2} = \e
+    }
+    since $d$ is a metric, and so $f_n(x_n) \in B_d(f(x),\e)$.
+    Since $n \geq N$ and $\e > 0$ were arbitrary, we have shown that the sequence $(f_n(x_n))$ converges to $f(x)$ in the metric space $Y$ by definition.
   }
-  We also have that $n \geq N \geq N_2$ so that
+}
+
+\exercise{9}{
+  Let $f_n: \reals \to \reals$ be the function
   \gath{
-    d(f(x_n),f(x)) < \e/2 \,.
+    f_n(x) = \frac{1}{n^3 [x-(1/n)]^2 + 1} \,.
   }
-  We then have
-  \gath{
-    d(f_n(x_n),f(x)) \leq d(f_n(x_n), f(x_n)) + d(f(x_n), f(x)) < \frac{\e}{2} + \frac{\e}{2} = \e
+  See Figure~21.1.
+  Let $f: \reals \to \reals$ be the zero function.
+  \eparts{
+  \item Show that $f_n(x) \to f(x)$ for each $x \in \reals$.
+  \item Show that $f_n$ does not converge uniformly to $f$.
+    (This shows that the converse of Theorem~21.6 does not hold; the limit function $f$ may be continuous even though the convergence is not uniform.)
   }
-  since $d$ is a metric, and so $f_n(x_n) \in B_d(f(x),\e)$.
-  Since $n \geq N$ and $\e > 0$ were arbitrary, we have shown that the sequence $(f_n(x_n))$ converges to $f(x)$ in the metric space $Y$ by definition.
+}
+\sol{
+  \dwhitman
+
+  (a)
+  \qproof{
+    This is easy to show by evaluating the limit using techniques from elementary calculus.
+    Fix $x \in \reals$ and first suppose that $x \neq 0$.
+    Clearly $1/n \to 0$ as $n \to \infty$ so that $[x-(1/n)]^2 \to x^2$.
+    Since $x^2 > 0$ it follows that $n^3 [x - (1/n)]^2 \to n^3 x^2 \to \infty$ as $n \to \infty$.
+    Hence the overall function
+    \gath{
+      f_n(x) = \frac{1}{n^3 [x-(1/n)]^2 + 1} \to \frac{1}{\infty + 1} \to 0 = f(x)
+    }
+    as $n \to \infty$.
+    Of course this is a little informal, but it can be justified rigorously using nothing more than Exercise~21.5.
+    If $x = 0$ then we clearly have
+    \gath{
+      f_n(x) = f_n(0) = \frac{1}{n^3 [-(1/n)]^2 + 1} = \frac{1}{n^3/n^2 + 1} = \frac{1}{n+1} \to 0 = f(x)
+    }
+    as $n \to \infty$.
+  }
+
+  (b)
+  \qproof{
+    TODO
+  }
 }
