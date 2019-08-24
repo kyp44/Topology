@@ -523,7 +523,7 @@
     Then there is an $N \in \pints$ where $d(f_n(x), f(x)) < \e$ for all $n > N$ and $x \in X$.
     Then, since $x_0 \in X$, we have $d(f_n(x_0), f(x_0)) < \e$ for all $n \geq N+1$ since then $n > N$.
     This shows that the sequence $(f_n(x_0))$ converges to $f(x_0)$ since $\e$ was arbitrary.
-    Since $x_0$ was arbitary, this shows that $(f_n)$ converges pointwise to $f$ as desired.
+    Since $x_0$ was arbitrary, this shows that $(f_n)$ converges pointwise to $f$ as desired.
   }
 
   \mainprob
@@ -570,7 +570,7 @@
     }
     which completes the inductive step.
     
-    Hence the sequence is strictly decreasing (and therefore of course non-increasing) and bounded below by zero, from which it follows that it converges by a theorem analagous in an obvious way to that shown in Exercise~21.11 part (a).
+    Hence the sequence is strictly decreasing (and therefore of course non-increasing) and bounded below by zero, from which it follows that it converges by a theorem analogous in an obvious way to that shown in Exercise~21.11 part (a).
     So suppose that the sequence converges to the value $a$.
     Then of course also the sequence $(f_{n+1}(x))$ must also converge to $a$.
     Thus we have
@@ -590,7 +590,7 @@
     Consider any function $f: [0,1] \to \reals$.
     If $f \neq g$ then $(f_n)$ cannot converge pointwise to $f$ since it was shown to converge pointwise to $g$ above and $g$ is unique by Lemma~\ref{lem:metricc:pwunique} since $\reals$ is Hausdorff.
     Hence $(f_n)$ cannot converge uniformly to $f$ by the converse of Lemma~\ref{lem:metricc:unifpw} since it does even not converge pointwise.
-    On the other hand if $f = g$ then clearly $f = g$ has a disconinuity at $1$ so that it is not continuous.
+    On the other hand if $f = g$ then clearly $f = g$ has a discontinuity at $1$ so that it is not continuous.
     However each $f_n(x) = x^n$ is continuous on $[0,1]$ by elementary calculus.
     This shows that $(f_n)$ cannot converge uniformly to $f=g$ since this would violate Theorem~21.6.
     Therefore $(f_n)$ does converge uniformly to any function since $f$ was arbitrary.
@@ -802,7 +802,108 @@
 \sol{
   \dwhitman
 
+  (a)
   \qproof{
-    TODO
+    Clearly image of the sequence $S = \braces{s_n \where n \in \pints}$ is a set of real numbers that is bounded above since the sequence is bounded above.
+    Therefore $s = \sup S$ exists, noting that of course $s_n \leq s$ for any $n \in \pints$ since $s_n \in S$.
+    We claim that $s_n \to s$.
+    So consider any $\e > 0$ so that clearly $s-\e < s$, and hence $s-\e$ cannot be an upper bound of $S$ (since $s$ is the least upper bound).
+    Thus there is an $N \in \pints$ where $s - \e < s_N$.
+    Then, for any $n \geq N$ we have that $s-\e < S_N \leq s_n \leq s$ since the sequence is non-decreasing.
+    Thus we have
+    \gath{
+      s - \e < s_n \\
+      s - s_n < \e \\
+      \abs{s - s_n} < \e \\
+      d(s_n, s) < \e
+    }
+    since $s \geq s_n$, where $d$ denotes the usual metric on $\reals$.
+    Hence $s_n \in B_d(s, \e)$, which shows that the sequence converges to $s$ since $n \geq N$ and $\e$ were arbitrary.
+  }
+
+  (b)
+  \qproof{
+    Define the partials sums
+    \ali{
+      s_n &= \sum_{i=1}^n a_i &
+      t_n &= \sum_{i=1}^n b_i
+    }
+    of $\sum a_i$ and $\sum b_i$ so that $s_n \to s$ and $t_n \to t$ by the definition of infinite series.
+    Also define the constant sequence $c_n = c$ for real $c$, so that of course $c_n \to c$.
+    For any $n \in \pints$, we of course have
+    \gath{
+      c_n s_n + t_n = c \sum_{i=1}^n a_i + \sum_{i=1}^n b_i = \sum_{i=1}^n c a_i + \sum_{i=1}^n b_i = \sum_{i=1}^n (c a_i + b_i)
+    }
+    since these are just finite sums.
+    It then follows from what was shown in Exercise~21.5 that
+    \gath{
+      \sum_{i=1}^\infty (c a_i + b_i) = \lim_{n \to \infty} \sum_{i=1}^n (c a_i + b_i) = \lim_{n \to \infty} (c_n s_n + t_n) = cs + t
+    }
+    as desired.
+  }
+
+  (c)
+  \qproof{
+    Denote the partial sums
+    \ali{
+      s_n &= \sum_{i=1}^n \abs{a_i} &
+      t_n &= \sum_{i=1}^n b_i \,.
+    }
+    We know that $(t_n)$ converges by the definition of an infinite series, since $\sum b_i$ converges.
+    So suppose that $t_n \to t$.
+    We also clearly have that $0 \leq \abs{a_i} \leq b_i$ for all $i \in \pints$, so that each term in both sums is always non-negative.
+    It then follows that the sequence of partial sums $(s_n)$ and $(t_n)$ are non-decreasing, and moreover that $t_n \leq t$ for all $n \in \pints$.
+    Lastly, since each $\abs{a_i} \leq b_i$, it follows from a simple inductive argument that each $s_n \leq t_n \leq t$.
+    Hence $(s_n)$ is a non-decreasing sequence that is also bounded (by $t$), and so it converges by part (a).
+    Therefore the infinite series $\sum \abs{a_i}$ converges by definition.
+    Denote its convergence value by $u$.
+
+    Now, we also have that clearly
+    \gath{
+      -\abs{a_i} \leq a_i \leq \abs{a_i} \\
+      0 \leq \abs{a_i} + a_i \leq 2 \abs{a_i}
+    }
+    for every $i \in \pints$, and that $\sum 2\abs{a_i}$ converges to $2u$ by what was shown in part (b).
+    Therefore, by the same argument as above, the sequence of partial sums of $\sum (\abs{a_i} + a_i)$ is non-decreasing and bounded by $2u$ so that the series converges, say the the value $v$.
+    Then, again by part (b), we have that the series
+    \gath{
+      \sum_{i=1}^\infty a_i = \sum_{i=1}^\infty (\abs{a_i} + a_i - \abs{a_i}) = \sum_{i=1}^\infty \squares{(\abs{a_i} + a_i) + (-1)\abs{a_i}}
+    }
+    converges to $v - u$ since both $v = \sum (\abs{a_i} + a_i)$ and $u = \sum \abs{a_i}$ have been shown to converge.
+    This shows the desired result.
+  }
+
+  (d)
+  \qproof{
+    First, since $\abs{f_i(x)} \leq M_i$ for all $x \in X$ and $\sum M_i$ converges, it follows from part (c) that the series $\sum f_i(x)$ converges (as does the sequence $(s_n(x))$) for each $x \in X$.
+    So set the function $s : X \to \reals$ to $s(x) = \lim_{n \to \infty} s_n(x)$ for each $x \in X$.
+    Thus $(s_n)$ converges pointwise to $s$ by Definition~\ref{def:metricc:pointwise}, and $s$ can be thought of as the (pointwise) infinite sum of the functions $f_i$.
+
+    To show that $s_n \to s$ uniformly, first define
+    \gath{
+      r_n = \sum_{i=n+1}^\infty M_i
+    }
+    for $n \in \pints$ as the partial series of $\sum M_i$ as in Definition~\ref{def:metric:pseries}.
+    Now consider any $x \in X$, any $n \in \pints$, and any $k > n$.
+    Then we have that
+    \gath{
+      \abs{s_k(x) - s_n(x)} = \abs{\sum_{i=1}^k f_i(x) - \sum_{i=1}^n f_i(x)} = \abs{\sum_{i=n+1}^k f_i(x)} \leq \sum_{i=n+1}^k \abs{f_i(x)} \leq \sum_{i=n+1}^k M_i \leq \sum_{i=n+1}^\infty M_i = r_n \,,
+    }
+    where we note that $\sum_{i=n+1}^k M_i \leq \sum_{i=n+1}^\infty M_i$ since each $M_i$ is non-negative.
+    Since the absolute value function is continuous on $\reals$, it follows from Lemma~\ref{lem:metric:contseq} and Exercise~21.5 that the sequence $\abs{s_k(x) - s_n(x)}$ converges as $k \to \infty$, and moreover converges to $\abs{s(x) - s_n(x)}$ since $s_k(x) \to s(x)$ as $k \to \infty$ as shown above.
+    Then, since the above inequality holds for any $k > n$, it follows from Lemma~\ref{lem:metric:seqleq} that
+    \gath{
+      \abs{s(x) - s_n(x)} = \lim_{k \to \infty} \abs{s_k(x) - s_n(x)} \leq \lim_{k \to \infty} r_n = r_n \,.
+    }
+
+    Now consider any $\e > 0$.
+    We know from Lemma~\ref{lem:metric:pseries} that the sequence of partial series $(r_n)$ converges to zero since each $M_i$ is non-negative.
+    Hence there is an $N \in \pints$ where $\abs{r_n - 0} < \e$ for all $n \geq N$.
+    Moreover, Lemma~\ref{lem:metric:pseries} asserts that each $r_n \geq 0$ so that $\abs{r_n - 0} = \abs{r_n} = r_n < \e$ for all $n \geq N$.
+    Thus, for any $n > N$ and any $x \in X$, we have
+    \gath{
+      \abs{s(x) - s_n(x)} \leq r_n < \e \,.
+    }
+    This suffices to show that $(s_n)$ uniformly converges to $s$ since $\e$ was arbitrary.
   }
 }
