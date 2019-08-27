@@ -465,7 +465,7 @@
     \gath{
       \lim_{n \to \infty} f(x_n \times y_n) = f\parens{\lim_{n \to \infty} x_n \times y_n} = f(x \times y)
     }
-    by Lemma~\ref{lem:metric:contseq}.
+    by Theorem~21.3.
     Now, we have that addition, subtraction, and multiplication are all continuous functions from $\reals \times \reals$ to $\reals$ by Lemma~21.4.
     It then follows that for the continuous function $+: \reals \times \reals \to \reals$ we have
     \gath{
@@ -476,7 +476,7 @@
     Regarding the quotient, we note that $(y_n)$ is a sequence in the subspace topology $\reals - \braces{0}$ since each $y_n \neq 0$.
     We also note that $y \neq 0$ and hence also $y \in \reals - \braces{0}$ so that the sequence $(y_n)$ converges to a point still within the space $\reals - \braces{0}$.
     It then again follows that $x_n \times y_n \to x \times y$ in the product space $\reals \times (\reals - \braces{0})$ by Exercise~19.6.
-    Since the quotient function is continuous from $\reals \times (\reals - \braces{0})$ to $\reals$ by Lemma~21.4, it then follows as before that $x_n/y_n \to x/y$ by Lemma~\ref{lem:metric:contseq} just as we would like.
+    Since the quotient function is continuous from $\reals \times (\reals - \braces{0})$ to $\reals$ by Lemma~21.4, it then follows as before that $x_n/y_n \to x/y$ by Theorem~21.3 just as we would like.
   }
 }
 
@@ -569,7 +569,7 @@
     \gath{
       \lim_{n \to \infty} x f_n(x) = \lim_{n \to \infty} h(f_n(x)) = h\parens{\lim_{n \to \infty} f_n(x)} = x \lim_{n \to \infty} f_n(x)
     }
-    by Lemma~\ref{lem:metric:contseq}.
+    by Theorem~21.3.
     Therefore we have $a = xa$ so that it would be that $1 = x$ if $a$ were any nonzero value.
     However, we know that $x < 1$ so it must be that $a = 0$.
     This completes the proof that $(f_n)$ converges pointwise to $g$.
@@ -645,7 +645,7 @@
     Consider any $\e > 0$.
     Since $(f_n)$ converges to $f$ uniformly there is an $N_1 \in \pints$ where $d(f_n(x'),f(x')) < \e/2$ for any $n > N_1$ and $x' \in X$.
     We also know from the uniform limit theorem (Theorem~21.6) that $f$ is continuous since each $f_n$ is continuous.
-    It then follows from Lemma~\ref{lem:metric:contseq} that the sequence $(f(x_n))$ converges to $f(x)$ since $x_n \to x$.
+    It then follows from Theorem~21.3 that the sequence $(f(x_n))$ converges to $f(x)$ since $x_n \to x$.
     Hence there is an $N_2 \in \pints$ such that $d(f(x_n),f(x)) < \e/2$ for all $n \geq N_2$.
 
     So set $N = \max\braces{N_1+1, N_2}$ and consider any $n \geq N$.
@@ -868,7 +868,7 @@
       \abs{s_k(x) - s_n(x)} = \abs{\sum_{i=1}^k f_i(x) - \sum_{i=1}^n f_i(x)} = \abs{\sum_{i=n+1}^k f_i(x)} \leq \sum_{i=n+1}^k \abs{f_i(x)} \leq \sum_{i=n+1}^k M_i \leq \sum_{i=n+1}^\infty M_i = r_n \,,
     }
     where we note that $\sum_{i=n+1}^k M_i \leq \sum_{i=n+1}^\infty M_i$ since each $M_i$ is non-negative.
-    Since the absolute value function is continuous on $\reals$, it follows from Lemma~\ref{lem:metric:contseq} and Exercise~21.5 that the sequence $\abs{s_k(x) - s_n(x)}$ converges as $k \to \infty$, and moreover converges to $\abs{s(x) - s_n(x)}$ since $s_k(x) \to s(x)$ as $k \to \infty$ as shown above.
+    Since the absolute value function is continuous on $\reals$, it follows from Theorem~21.3 and Exercise~21.5 that the sequence $\abs{s_k(x) - s_n(x)}$ converges as $k \to \infty$, and moreover converges to $\abs{s(x) - s_n(x)}$ since $s_k(x) \to s(x)$ as $k \to \infty$ as shown above.
     Then, since the above inequality holds for any $k > n$, it follows from Lemma~\ref{lem:metric:seqleq} that
     \gath{
       \abs{s(x) - s_n(x)} = \lim_{k \to \infty} \abs{s_k(x) - s_n(x)} \leq \lim_{k \to \infty} r_n = r_n \,.
@@ -883,5 +883,87 @@
       \abs{s(x) - s_n(x)} \leq r_n < \e \,.
     }
     This suffices to show that $(s_n)$ uniformly converges to $s$ since $\e$ was arbitrary.
+  }
+}
+
+\exercise{12}{
+  Prove continuity of the algebraic operations on $\reals$, as follows: Use the metric $d(a,b) = \abs{a-b}$ on $\reals$ and the metric on $\reals^2$ given by the equation
+  \gath{
+    \r((x,y),(x_0,y_0)) = \max\braces{\abs{x-x_0},\abs{y-y_0}} \,.
+  }
+  \eparts{
+  \item Show that addition is continuous.
+    [Hint: Given $\e$, let $\d=\e/2$ and note that
+      \gath{
+        d(x+y, x_0+y_0) \leq \abs{x-x_0} + \abs{y-y_0} \,.]
+    }
+  \item Show that multiplication is continuous.
+    [Hint: Given $(x_0,y_0)$ and $0 < \e < 1$, let
+      \gath{
+        3\d = \e/(\abs{x_0} + \abs{y_0} + 1)
+      }
+      and note that
+      \gath{
+        d(xy, x_0 y_0) \leq \abs{x_0}\abs{y-y_0} + \abs{y_0}\abs{x-x_0} + \abs{x-x_0}\abs{y-y_0} \,.]
+    }
+  \item Show that the operation of taking reciprocals is a continuous map from $\reals-\braces{0}$ to $\reals$.
+    [Hint: Show the inverse image of the interval $(a,b)$ is open.
+      Consider five cases, according as $a$ and $b$ are positive, negative, or zero.]
+  \item Show that the subtraction and quotient operations are continuous.
+  }
+}
+\sol{
+  First we note that this exercise proves Lemma~21.4 in the text.
+  We also note that the square metric $\r$ as defined above induces the usual product topology on $\reals^2$, which was shown in Theorem~20.3.
+
+  (a)
+  \qproof{
+    We show the continuity of $+: \reals^2 \to \reals$ using Theorem~21.1.
+    So consider any $x_0 \times y_0 \in \reals^2$ and any $\e>0$.
+    Following the hint, let $\d=\e/2$ and consider any $x \times y \in \reals^2$ where $\r(x \times y,x_0 \times y_0) < \d$.
+    Then we have that
+    \gath{
+      \r(x \times y,x_0 \times y_0) = \max\braces{\abs{x-x_0},\abs{y-y_0}} < \d = \e/2 \,,
+    }
+    from which it clearly follows that both $\abs{x-x_0} < \e/2$ and $\abs{y-y_0} < \e/2$.
+    Then we have
+    \ali{
+      d(+(x \times y), +(x_0 \times y_0)) &= d(x+y,x_0+y_0) = \abs{x+y - (x_0+y_0)} \\
+      &= \abs{(x-x_0) + (y-y_0)} \leq \abs{x-x_0} + \abs{y-y_0} \\
+      &< \frac{\e}{2} + \frac{\e}{2} = \e \,.
+    }
+    This suffices to show that $+$ is continuous by Theorem~21.1 since $\e$ was arbitrary.
+  }
+
+  (b)
+  \qproof{
+    We again use Theorem~21.1 so show that the multiplication function $\times : \reals^2 \to \reals$ is continuous.
+    So consider any $x \times y \in \reals^2$ and any $\e > 0$.
+    Let
+    \gath{
+      \d = \min\braces{\frac{\e}{\abs{x_0} + \abs{y_0} + 1}, 1}
+    }
+    so that of course $\d > 0$.
+    Now consider any $x \times y \in \reals^2$ where $\r(x \times y,x_0 \times y_0) < \d$.
+    Then of course
+    \gath{
+      \r(x \times y,x_0 \times y_0) = \max\braces{\abs{x-x_0},\abs{y-y_0}} < \d
+    }
+    so that both $\abs{x-x_0} < \d$ and $\abs{y-y_0} < \d$.
+    We then have
+    \ali{
+      d(\times(x \times y),\times(x_0 \times y_0)) &= d(xy, x_0 y_0) = \abs{xy - x_0 y_0} \\
+      &= \abs{xy - x_0 y_0 + (x_0 y - x_0 y) + (x y_0 - x y_0) + (x_0 y_0 - x_0 y_0)} \\
+      &= \abs{(x_0 y - x_0 y_0) + (x y_0 - x_0 y_0) + (xy - x y_0 - x_0 y + x_0 y_0)} \\
+      &= \abs{x_0(y-y_0) + y_0(x-x_0) + (x-x_0)(y-y_0)} \\
+      &\leq \abs{x_0(y-y_0)} + \abs{y_0(x-x_0)} + \abs{(x-x_0)(y-y_0)} \\
+      &= \abs{x_0}\abs{y-y_0} + \abs{y_0}\abs{x-x_0} + \abs{x-x_0}\abs{y-y_0} \\
+      &< \abs{x_0} \d + \abs{y_0} \d + \d^2 \\
+      &\leq \abs{x_0} \d + \abs{y_0} \d + \d \\
+      &= \d (\abs{x_0} + \abs{y_0} + 1) \\
+      &\leq \frac{\e}{\abs{x_0} + \abs{y_0} + 1} (\abs{x_0} + \abs{y_0} + 1) \\
+      &= \e \,,
+    }
+    where we have used the fact that $0 < \d \leq 1$, from which it follows that $\d^2 \leq d$.
   }
 }

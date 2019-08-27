@@ -130,7 +130,12 @@
     \setcounter{question}{#1-1} % Manually set the question number since we always know the exercise number
     \question{\hspace{0.1cm}#2} % The actual exam class question (hspace is necessary because lists start on same line for some annoying reason)
 }}
-\newcommand\sol[1]{\begin{solution} #1 \end{solution}}
+\newcommand\sol[1]{
+  \begin{solution}
+
+    #1
+  \end{solution}
+}
 
 % Parts enumerate environment
 \newcommand\eparts[2][0]{
