@@ -16,8 +16,6 @@
   We sometimes denote the sum $\sumf{n}$ by the symbol $b_1 + b_2 + \cdots + b_n$.
 }
 \sol{
-  \dwhitman
-
   For a function $f: \intsfin{m} \to A$, define $\r(f) = f(m) + b_{m+1}$.
   For clarity, denote the sum function by $s : \pints \to A$ so that $s(n) = \sumf{n}$.
   Then by Theorem~8.4 there is a unique $s : \pints \to A$ such that
@@ -43,8 +41,6 @@
   We sometimes denote the product $\prodf{n}$ by the symbol $b_1 b_2 \cdots b_n$.
 }
 \sol{
-  \dwhitman
-
   First, for any function $f : \intsfin{m} \to \reals$, define $\r$ by $\r(f) = f(m) \cdot b_{m+1}$.
   Then, by the recursion theorem (Theorem~8.4), there is a unique function $p: \pints \to \reals$ such that
   \ali{
@@ -62,15 +58,13 @@
   Obtain the definitions of $a^n$ and $n!$ for $n \in \pints$ as special cases of Exercise~8.2.
 }
 \sol{
-  \dwhitman
-
   Regarding $a^n$, defined the sequence $\seqinf{b}$ by $b_i = a$ for every $i \in \pints$, which we could denote by $(a,a,\ldots)$.
   Then define $a^n = \prodf{n}$ as it is defined in Exercise~8.2, and we claim that this satisfies the inductive definition given in Exercise~4.6 and Example~8.2.
   \qproof{
     First, we clearly have $a^1 = \prodf{1} = b_1 = a$.
     Next, for $n > 1$, we have
     \gath{
-*      a^n = \prodf{n} = \parens{\prodf{n-1}} \cdot b_n = a^{n-1} \cdot a \,,
+      *      a^n = \prodf{n} = \parens{\prodf{n-1}} \cdot b_n = a^{n-1} \cdot a \,,
     }
     which shows that the inductive definition is satisfied.
   }
@@ -101,8 +95,6 @@
   Define them rigorously by use of Theorem~8.4.
 }
 \sol{
-  \dwhitman
-
   First, note that the Fibonacci numbers are all positive integers.
   So, for any function $f: \intsfin{m} \to \pints$ define
   \gath{
@@ -140,8 +132,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   \qproof{
     First, for any function $f : \intsfin{m} \to \preals$, define
     \gath{
@@ -193,8 +183,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   (a)
   \qproof{
     Suppose to the contrary that there is such a function $h$.
@@ -256,8 +244,6 @@
   Prove Theorem~8.4.
 }
 \sol{
-  \dwhitman
-
   The proof follows the same pattern used to prove $(*)$ at the beginning of the section, which culminates in Theorem~8.3.
   Similar to that approach, two lemmas will be proved first.
   In what follows, $(*)$ refers to the properties defined in the statement of Theorem~8.4.
@@ -359,8 +345,6 @@
   Then there is a unique function $h: \pints \to A$ such that $h(n) = \r(h \rest S_n)$ for each $n \in \pints$.
 }
 \sol{
-  \dwhitman
-
   Denote the above property of $h$ by $(*)$.
   We show that there is a unique $h: \pints \to A$ satisfying this using the standard principle of recursive definition, Theorem~8.4.
   \qproof{

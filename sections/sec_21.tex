@@ -6,8 +6,6 @@
   If $d$ is a metric for the topology of $X$, show that $d \rest A \times A$ is a metric for the subspace topology on $A$.
 }
 \sol{
-  \dwhitman
-
   \qproof{
     Let us denote the restricted function $d \rest A \times A$ by $d'$.
     Clearly $d'$ is a metric on $A$, since for $x,y \in A$ we have $d'(x,y) = d(x,y)$ and $d$ has all the properties of a metric.
@@ -38,8 +36,6 @@
   It is called an \boldit{isometric imbedding} of $X$ in $Y$.
 }
 \sol{
-  \dwhitman
-
   First, let $Z = f(X)$ and let $f'$ denote the function $f$ with the range restricted to $Z$ so that clearly $f'$ is surjective.
   First we must show that $f$ and therefore also $f'$ is injective, from which it clearly follows that $f'$ is a bijection.
   So suppose that $x_1,x_2 \in X$ where $f(x_1) = f(x_2)$.
@@ -88,8 +84,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   \begin{lem} \label{lem:metricc:sup}
     Suppose that $(x_\a)_{\a \in J}$ and $(y_\a)_{\a \in J}$ are sequences of real numbers indexed by $J$ and that $\braces{x_\a}$ and $\braces{y_\a}$ are bounded above so that $\sup\braces{x_\a}$ and $\sup\braces{y_\a}$ exist.
     We assert the following facts:
@@ -295,8 +289,6 @@
   (This result does not, of course, imply that they are metrizable.)
 }
 \sol{
-  \dwhitman
-
   \qproof{
     Suppose that $x$ is any element of $\realsl$.
     Define the sets $U_n = \clop{x,x+1/n}$ for $n \in \pints$.
@@ -466,8 +458,6 @@
       [Hint: Apply Lemma~21.4; recall from the exercises of \S 19 that if $x_n \to x$ and $y_n \to y$, then $x_n \times y_n \to x \times y$.]
 }
 \sol{
-  \dwhitman
-
   \qproof{
     First, we have that the sequence $x_n \times y_n$ converges to $x \times y$ in the product space $\reals \times \reals$ by Exercise~19.6 since both $x_n \to x$ and $y_n \to y$ in $\reals$.
     Now suppose that $f : \reals \times \reals \to \reals$ is continuous.
@@ -495,8 +485,6 @@
   Show that the sequence $(f_n(x))$ converges for each $x \in [0,1]$, but that the sequence $(f_n)$ does not converge uniformly.
 }
 \sol{
-  \dwhitman
-
   First we build up a little more theory
   \begin{defin} \label{def:metricc:pointwise}
     Let $f_n: X \to Y$ be a sequence of functions from a set $X$ to topological space $Y$.
@@ -603,8 +591,6 @@
   Show that the sequence $(f_n)$ converges uniformly to the function $f: X \to \reals$ if any only if the sequence converges to $f$ as elements of the metric space $(\reals^X, \br)$.
 }
 \sol{
-  \dwhitman
-
   \qproof{
     $(\imp)$ First suppose that $(f_n)$ converges uniformly to $f$ in the functional sense.
     Consider any $\e > 0$.
@@ -654,8 +640,6 @@
   Show that if the sequence $(f_n)$ converges uniformly to $f$, then $(f_n(x_n))$ converges to $f(x)$.
 }
 \sol{
-  \dwhitman
-
   \qproof{
     Suppose that $(f_n)$ converges to $f$ uniformly and let $d$ denote the metric for $Y$.
     Consider any $\e > 0$.
@@ -696,8 +680,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   (a)
   \qproof{
     This is easy to show by evaluating the limit using techniques from elementary calculus.
@@ -746,8 +728,6 @@
   The set $B^2$ is called the (closed) \boldit{unit ball} in $\reals^2$.
 }
 \sol{
-  \dwhitman
-
   \qproof{
     Regarding the set $A$, the function $f: \reals \times \reals \to \reals$ defined by $f(x \times y) = xy$ is simply the multiplication function, which is continuous by Lemma~21.4.
     Clearly the set $A = \inv{f}(\braces{1})$ by definition.
@@ -800,8 +780,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   (a)
   \qproof{
     Clearly image of the sequence $S = \braces{s_n \where n \in \pints}$ is a set of real numbers that is bounded above since the sequence is bounded above.

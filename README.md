@@ -16,7 +16,6 @@ When doing exercises it can be useful to see a list of lemmas that have been wri
 Running the `lemmas.py` Python script will build `lemmas_content.tex` that contains these lemmas.
 You can then build a lemma list document by compiling `lemmas.tex`, which includes `lemmas_content.tex`.
 
-If you are interested in contributing, send me a message.
-Also, please submit an issue if you discover any errors in any of the proofs or any typos.
+Please submit an issue if you discover any errors in any of the proofs or any typos.
 
 For an up-to-date PDF of the solutions manual and links to other solutions manuals for this text head over to [my website](https://kyp4.dyndns-home.com/topology/).

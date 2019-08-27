@@ -11,8 +11,6 @@
   is a topology on $X$.
 }
 \sol{
-  \dwhitman
-
   \qproof{
     First, clearly $\es$ and $X$ are in $\cT$ since $\es = X - X$ and $X = X - \es$ and both $X$ and $\es$ are in $\cC$.
     This shows the first defining property of a topology.
@@ -47,8 +45,6 @@
   Show that if $A$ is closed in $Y$ and $Y$ is closed in $X$, then $A$ is closed in $X$.
 }
 \sol{
-  \dwhitman
-
   \qproof{
     Since $A$ is closed in $Y$, it follows from Theorem~17.2 that $A = B \cap Y$ where $B$ is some closed set in $X$.
     Hence by definition $X - B$ is open in $X$.
@@ -67,7 +63,6 @@
   Show that if $A$ is closed in $X$ and $B$ is closed in $Y$, then $A \times B$ is closed in $X \times Y$.
 }
 \sol{
-  \dwhitman
   \begin{lem}\label{lem:closedlim:setid}
     If $X$, $Y$, $A$, and $B$ are sets then $X \times Y - A \times B = (X-A) \times Y \cup X \times (Y - B)$.
   \end{lem}
@@ -103,8 +98,6 @@
   Show that if $U$ is open in $X$ and $A$ is closed in $X$, then $U-A$ is open in $X$, and $A-U$ is closed in $X$.
 }
 \sol{
-  \dwhitman
-
   \begin{lem}\label{lem:closedlim:setmid}
     If $A$, $B$, and $C$ are sets then $A - (B - C) = (A-B) \cup (A \cap C)$.
   \end{lem}
@@ -162,8 +155,6 @@
   Under what conditions does equality hold?
 }
 \sol{
-  \dwhitman
-
   \qproof{
     First, the closed interval $[a,b]$ is closed (hence why it is called such!) because clearly its compliment is
     \gath{
@@ -217,8 +208,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   (a)
   \qproof{
     Suppose that $A \ss B$ and consider any $x \in \clA$.
@@ -280,8 +269,6 @@
   Therefore, $x \in \bigcup \clA_\a$.
 }
 \sol{
-  \dwhitman
-
   The problem with this ``proof'' is that, just because every neighborhood $U$ intersects \emph{some} $A_\a$, it does not mean that \emph{every} $U$ intersects a single $A_\a$, which is what is required for $x$ to be in $\clA_\a$.
   This is illustrated in the counterexample above at the end of Exercise~17.6 part (c).
   There, every neighborhood of $0$ clearly intersects \emph{some} set $A_n = \opcl{1/n, 2}$, but, for any given $n \in \pints$, not every neighborhood of $0$ intersects $A_n$, for example the neighborhood $(-1, 1/n)$ does not.
@@ -297,8 +284,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   (a) We claim that $\closure{A \cap B} \ss \clA \cap \clB$ but equality is not always true.
   \qproof{
     Consider any $x \in \closure{A \cap B}$ and any open set $U$ containing $x$.
@@ -351,8 +336,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   \qproof{
     $(\ss)$ Consider $(x,y) \in \closure{A \times B}$.
     Also suppose that $U$ and $V$ are any open sets in $X$ and $Y$, respectively, that contain $x$ and $y$, respectively.
@@ -377,8 +360,6 @@
   Show that every order topology is Hausdorff.
 }
 \sol{
-  \dwhitman
-
   \qproof{
     Suppose that $X$ is an ordered set with the order topology.
     Consider a pair of distinct points $x_1$ and $x_2$ in $X$.
@@ -408,8 +389,6 @@
   Show that the product of two Hausdorff spaces is Hausdorff.
 }
 \sol{
-  \dwhitman
-
   \qproof{
     Suppose that $X$ and $Y$ are Hausdorff spaces and consider two distinct points $(x_1,y_1)$ and $(x_2,y_2)$ in $X \times Y$.
     Since these points are distinct, it has to be that $x_1 \neq x_2$ or $y_1 \neq y_2$.
@@ -430,8 +409,6 @@
   Show that a subspace of a Hausdorff space is Hausdorff.
 }
 \sol{
-  \dwhitman
-
   \qproof{
     Suppose that $X$ is a Hausdorff space and that $Y$ is a subset of $X$.
     Consider any two distinct points $y_1$ and $y_2$ in $Y$ so that of course also $y_1,y_2 \in X$.
@@ -449,8 +426,6 @@
   Show that $X$ is Hausdorff if and only if the \boldit{diagonal} $\D = \braces{x \times x \where x \in X}$ is closed in $X \times X$.
 }
 \sol{
-  \dwhitman
-
   \qproof{
     $(\imp)$ Suppose that $X$ is Hausdorff and consider any point $x \times y \in X \times X$ where $x \times y \notin \D$.
     Then it must be that $x \neq y$ so that there are disjoint neighborhood $U$ of $x$ and $V$ of $y$ since $X$ is Hausdorff.
@@ -479,8 +454,6 @@
   In the finite compliment topology on $\reals$, to what point or points does the sequence $x_n = 1/n$ converge?
 }
 \sol{
-  \dwhitman
-
   We claim that this sequence converges to every point in $\reals$.
   \qproof{
     Suppose that this is not the case so that there is point $a \in \reals$ where the sequence does not converge to $A$.
@@ -505,8 +478,6 @@
   Show the $T_1$ axiom is equivalent to the condition that for each pair of points of $X$, each has a neighborhood not containing the other.
 }
 \sol{
-  \dwhitman
-
   Note that, though it does not say so above, the points must be distinct since any neighborhood containing $x$ obviously has to contain $x$.
 
   \qproof{
@@ -536,8 +507,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   \begin{lem}\label{lem:closedlim:axiomsf}
     Suppose that $\cT$ and $\cT'$ are topologies on $X$ and $\cT'$ is finer than $\cT$.
     If $\cT$ satisfies the $T_1$ axiom, then so does $\cT'$.
@@ -719,8 +688,6 @@
   Determine the closures of the intervals $A = (0, \sqrt{2})$ and $B = (\sqrt{2}, 3)$ in these two topologies.
 }
 \sol{
-  \dwhitman
-
   Recall that $\cC = \braces{\clop{a,b} \where \text{$a < b$, $a$ and $b$ rational}}$ from Exercise~13.8, noting that it was shown there that this basis generates a topology different from the lower limit topology.
   Denote the lower limit topology by $\cT_l$, and denote the topology generated by $\cC$ by $\cT_c$.
 
@@ -822,8 +789,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   We assume that the ordered square refers to the set $X = [0,1]^2$ with the dictionary order topology.
   Denote the dictionary order on $X$ by $\prec$.
 
@@ -944,8 +909,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   (a)
   \qproof{
     Consider any $x \in \Int{A}$ so that there is a neighborhood of $x$ that is entirely contained in $A$.
@@ -1046,8 +1009,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   (a) It is easy to show that $A$ is closed so that $\clA = A$, and that also $\closure{\reals - A} = A$ so that $\Bd{A} = A$.
   It is also easy to see that no basis element and therefore no neighborhood of any point in $A$ is contained entirely within $A$.
   From this it follows that $\Int{A} = \es$.
@@ -1092,8 +1053,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   For the following we introduce the following notation to make things simpler. If $A$ is a subset of a topological space $X$ then denote
   \ali{
     cA &= \clA &

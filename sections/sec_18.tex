@@ -5,8 +5,6 @@
   Prove that for functions $f: \reals \to \reals$, the $\e$-$\d$ definition of continuity implies the open set definition.
 }
 \sol{
-  \dwhitman
-
   Recall that that $f: \reals \to \reals$ is continuous at a point $x \in \reals$ if, for every real $\e > 0$, there is a real $\d > 0$ such that $\abs{f(y) - f(x)} < \e$ for every real $y$ where $\abs{y - x} < \d$.
   We say that $f$ itself is continuous if it is continuous at every $p \in \reals$.
   \qproof{
@@ -32,8 +30,6 @@
   If $x$ is a limit point of the subset $A$ of $X$, is it necessarily true the $f(x)$ is a limit point of $f(A)$?
 }
 \sol{
-  \dwhitman
-
   This is not necessarily true.
   \qproof{
     As a counterexample consider a constant function $f: X \to Y$ defined by $f(x) = y_0$ for any $x \in X$ and some $y_0 \in Y$.
@@ -53,8 +49,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   (a)
   \qproof{
     First note that clearly the inverse of the identity function is itself with the domain and image reversed, and that for any subset $A \ss X = X'$ we have $i(A) = \inv{i}(A) = A$.
@@ -90,8 +84,6 @@
   are imbeddings.
 }
 \sol{
-  \dwhitman
-
   We only show that $f$ is an imbedding of $X$ in $X \times Y$ as the argument for $g$ is entirely analogous.
   \qproof{
     First, it is easy to see and trivial to formally show that $f$ is injective.
@@ -111,8 +103,6 @@
   Show that the subspace $(a,b)$ of $\reals$ is homeomorphic with $(0,1)$ and the subspace $[a,b]$ of $\reals$ is homeomorphic with $[0,1]$.
 }
 \sol{
-  \dwhitman
-
   First we show that $(a,b)$ is homeomorphic to $(0,1)$.
   \qproof{
     First let $X = (a,b)$ and $Y = (0,1)$, and define the map $f: X \to Y$ by
@@ -142,8 +132,6 @@
   Find a function $f: \reals \to \reals$ that is continuous at precisely one point.
 }
 \sol{
-  \dwhitman
-
   For any real $x$ define
   \gath{
     f(x) = \begin{cases}
@@ -202,8 +190,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   \begin{lem}\label{lem:cont:Rlopcl}
     In the topology $\realsl$, every basis element is both open and closed.
   \end{lem}
@@ -332,8 +318,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   (a) First let $C = \braces{x \in X \where f(x) \leq g(x)}$ so that we must show that $C$ is closed in $X$.
   \qproof{
     We prove this by showing that the complement $X - C$ is open in $X$.
@@ -418,8 +402,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   (a)
   \qproof{
     We show using induction that $f$ is continuous for any collection $\braces{A_\a}_{\a=1}^n$, for any $n \in \pints$,  where each $A_\a$ is closed.
@@ -517,8 +499,6 @@
   Show that $f \times g$ is continuous.
 }
 \sol{
-  \dwhitman
-
   \qproof{
     Consider any $\xy \in A \times C$ and any neighborhood $V$ of $(\fg)(\xy)$ in $B \times D$.
     Since $V$ is open in $B \times D$, there is a basis element $U_B \times U_D$ of the product topology that contains $(\fg)(\xy)$ where $U_B \times U_D \ss V$.
@@ -546,8 +526,6 @@
   Show that if $F$ is continuous, then $F$ is continuous in each variable separately.
 }
 \sol{
-  \dwhitman
-
   \qproof{
     To show that $F$ is continuous in $x$, consider any $y_0 \in Y$ and define $h: X \to Z$ by $h(x) = F(x \times y_0)$.
     Now consider any $x \in X$ and any neighborhood $V$ of $h(x) = F(x \times y_0)$.
@@ -582,8 +560,6 @@
   }
 }
 \sol{
-  \dwhitman
-
   (a)
   \qproof{
     It is easy to see that $F$ is continuous in $x$.
@@ -626,8 +602,6 @@
   Show that if $f$ may be extended to a continuous function $g: \clA \to Y$, then $g$ is uniquely determined by $f$.
 }
 \sol{
-  \dwhitman
-
   \qproof{
     Suppose that $g_1$ and $g_2$ are both continuous functions from $\clA$ to $Y$ that extend $f$ so that $g_1(x) = g_2(x) = f(x)$ for all $x \in A$.
     Clearly $g_1 = g_2$ if and only if $g_1(x) = g_2(x)$ for all $x \in \clA$.
