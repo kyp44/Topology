@@ -473,10 +473,10 @@
     }
     It similarly follows that $x_n - y_n \to x - y$ and $x_n y_n \to x y$ as desired.
 
-    Regarding the quotient, we note that $(y_n)$ is a sequence in the subspace topology $\reals - \braces{0}$ since each $y_n \neq 0$.
-    We also note that $y \neq 0$ and hence also $y \in \reals - \braces{0}$ so that the sequence $(y_n)$ converges to a point still within the space $\reals - \braces{0}$.
-    It then again follows that $x_n \times y_n \to x \times y$ in the product space $\reals \times (\reals - \braces{0})$ by Exercise~19.6.
-    Since the quotient function is continuous from $\reals \times (\reals - \braces{0})$ to $\reals$ by Lemma~21.4, it then follows as before that $x_n/y_n \to x/y$ by Theorem~21.3 just as we would like.
+    Regarding the quotient, we note that $(y_n)$ is a sequence in the subspace topology $\realsnz$ since each $y_n \neq 0$.
+    We also note that $y \neq 0$ and hence also $y \in \realsnz$ so that the sequence $(y_n)$ converges to a point still within the space $\realsnz$.
+    It then again follows that $x_n \times y_n \to x \times y$ in the product space $\reals \times (\realsnz)$ by Exercise~19.6.
+    Since the quotient function is continuous from $\reals \times (\realsnz)$ to $\reals$ by Lemma~21.4, it then follows as before that $x_n/y_n \to x/y$ by Theorem~21.3 just as we would like.
   }
 }
 
@@ -730,9 +730,9 @@
 \sol{
   \qproof{
     Regarding the set $A$, the function $f: \reals \times \reals \to \reals$ defined by $f(x \times y) = xy$ is simply the multiplication function, which is continuous by Lemma~21.4.
-    Clearly the set $A = \inv{f}(\braces{1})$ by definition.
+    Clearly the set $A = \ivf(\braces{1})$ by definition.
     We also have that $\braces{1}$ is closed in $\reals$ by Theorem~17.8 since $\reals$ is Hausdorff.
-    Thus $A = \inv{f}(\braces{1})$ is closed in $\reals \times \reals = \reals^2$ by Theorem~18.1 since $f$ is continuous.
+    Thus $A = \ivf(\braces{1})$ is closed in $\reals \times \reals = \reals^2$ by Theorem~18.1 since $f$ is continuous.
 
     For $S^1$, let $d$ denote the usual euclidean metric on $\reals \times \reals$, which we know induces the same topology as the product topology.
     We also know from Exercise~20.3 that $d: \reals \times \reals \to \reals$ is continuous.
@@ -742,15 +742,15 @@
     }
     is also then continuous by Theorem~21.5 being the product of two continuous functions.
     As previously mentioned, the finite set $\braces{1}$ is closed in $\reals$.
-    We also have that $S^1 = \inv{f}(\braces{1})$ by definition, which then also must be closed in $\reals \times \reals = \reals^2$ again by Theorem~18.1 since $f$ continuous.
+    We also have that $S^1 = \ivf(\braces{1})$ by definition, which then also must be closed in $\reals \times \reals = \reals^2$ again by Theorem~18.1 since $f$ continuous.
 
     Regarding the closed unit ball $B^2$, define $f = d \cdot d$ as above for $S^1$, which is of course still continuous.
     Define the subset $C = \braces{x \in \reals \where 0 \leq x \leq 1}$ of $\reals$.
-    We claim that $B^2 = \inv{f}(C)$.
-    This is pretty obvious since clearly $0 \leq f(x \times y) = x^2 + y^2 \leq 1$ for any $x \times y \in B^2$ by definition so that $f(x \times y) \in C$ and hence $x \times y \in \inv{f}(C)$.
-    Conversely, for any $x \times y \in \inv{f}(C)$, we have that $f(x \times y) \in C$ so that $0 \leq f(x \times y) = x^2 + y^2 \leq 1$ so that $x \times y \in B^2$ by definition.
-    This shows the desired equality of $B^2$ and $\inv{f}(C)$.
-    As it is trivial to show that $C$ is closed in $\reals$, and $f$ is continuous, it follows that $B^2 = \inv{f}(C)$ is also closed in $\reals \times \reals = \reals^2$, again by Theorem~18.1.
+    We claim that $B^2 = \ivf(C)$.
+    This is pretty obvious since clearly $0 \leq f(x \times y) = x^2 + y^2 \leq 1$ for any $x \times y \in B^2$ by definition so that $f(x \times y) \in C$ and hence $x \times y \in \ivf(C)$.
+    Conversely, for any $x \times y \in \ivf(C)$, we have that $f(x \times y) \in C$ so that $0 \leq f(x \times y) = x^2 + y^2 \leq 1$ so that $x \times y \in B^2$ by definition.
+    This shows the desired equality of $B^2$ and $\ivf(C)$.
+    As it is trivial to show that $C$ is closed in $\reals$, and $f$ is continuous, it follows that $B^2 = \ivf(C)$ is also closed in $\reals \times \reals = \reals^2$, again by Theorem~18.1.
   }
 }
 
@@ -906,7 +906,7 @@
       \gath{
         d(xy, x_0 y_0) \leq \abs{x_0}\abs{y-y_0} + \abs{y_0}\abs{x-x_0} + \abs{x-x_0}\abs{y-y_0} \,.]
     }
-  \item Show that the operation of taking reciprocals is a continuous map from $\reals-\braces{0}$ to $\reals$.
+  \item Show that the operation of taking reciprocals is a continuous map from $\realsnz$ to $\reals$.
     [Hint: Show the inverse image of the interval $(a,b)$ is open.
       Consider five cases, according as $a$ and $b$ are positive, negative, or zero.]
   \item Show that the subtraction and quotient operations are continuous.
@@ -965,5 +965,101 @@
       &= \e \,,
     }
     where we have used the fact that $0 < \d \leq 1$, from which it follows that $\d^2 \leq d$.
+    This suffices to show that $\times$ is continuous by Theorem~21.1 since $\e$ was arbitrary.
+  }
+
+  \def\ra{\tfrac{1}{a}}
+  \def\rb{\tfrac{1}{b}}
+  \def\rx{\tfrac{1}{x}}
+  (c)
+  \qproof{
+    Define the reciprocal function $f: \realsnz \to \reals$ by $f(x) = \rx$.
+    To show that $f$ is continuous, it suffices to show that $\ivf(B)$ is open in $\realsnz$ for every basis element $B$ of $\reals$, which was shown back in \S 18.
+    So let $B = (a,b)$ be any basis element of $\reals$.
+
+    Case: $a > 0$.
+    Then it has to be that $0 < a < b$.
+    We claim that $\ivf(B) = (\rb,\ra)$, noting that $0 < \rb < \ra$ follows readily from the fact that $0 < a < b$.
+    We have the following
+    \ali{
+      x \in (\rb,\ra) &\bic \rb < x < \ra \bic \rb < x \land x < \ra \\
+      &\bic 1 < bx \land ax < 1 \bic \rx < b \land a < \rx \\
+      &\bic a < \rx < b \bic f(x) = \rx \in (a,b) = B \\
+      &\bic x \in \ivf(B) \,,
+    }
+    noting that $x > a > 0$ and $\rx > \rb > 0$.
+    This of course shows that $\ivf(B) = (\rb,\ra)$ as desired.
+
+    Case: $a = 0$.
+    Then we have $0 = a < b$ and hence also $0 < \rb$.
+    We claim that $\ivf(B) = (\rb,\infty)$.
+    So first suppose that $x \in \ivf(B)$ so that $f(x) \in B = (a,b) = (0,b)$, and hence $0 < x < b$.
+    Then $0 < 1 < b/x$, from which follows $0 < \rb < x$ so that $x \in (\rb,\infty)$.
+    Now consider any $x \in (\rb,\infty)$ so that $0 < \rb < x$.
+    Then $0 < 1 < bx$ so that $0 < \rx < b$, and hence $f(x) = \rx \in (0,b) = (a,b) = B$.
+    Therefore $x \in \ivf(B)$, from which we conclude that $\ivf(B) = (\rb,\infty)$ as desired.
+
+    Case: $a < 0$.
+    Then also $\ra < 0$ and we have the following sub-cases:
+    \begin{indpar}
+      Case: $b > 0$.
+      Then also $\rb > 0$.
+      Here we claim that $\ivf(B) = (-\infty,\ra) \cup (\rb,\infty)$.
+      So suppose that $x \in \ivf(B)$ so that $f(x) = \rx \in B = (a,b)$, and hence $a < \rx < b$.
+      We know that $x \neq 0$ since the domain of $f$ is $\realsnz$.
+      If $x < 0$ then we have $a < \rx$ so that $ax > 1$, and hence $x < \ra$ since $a < 0$.
+      Therefore $x \in (\infty, \ra)$.
+      On the other hand, if $x > 0$ then we have $\rx < b$ so that $1 < bx$, and hence $\rb < x$ since $b>0$.
+      Therefore $x \in (\rb,\infty)$.
+      So either way $x \in (-\infty,\ra) \cup (\rb, \infty)$ so that $\ivf(B) \ss (-\infty,\ra) \cup (\rb, \infty)$.
+
+      Now consider $x \in (-\infty,\ra) \cup (\rb, \infty)$.
+      If $x \in (-\infty.\ra)$ then $x < \ra < 0$ so that $ax > 1$, and hence $a < \rx < 0 < b$.
+      If $x \in (\rb, \infty)$ then $0 < \rb < x$ so that $1 < bx$, and hence $a < 0 < \rx < b$.
+      Thus either way we have $a < \rx = f(x) < b$ so that $f(x) \in (a,b) = B$ and $x \in \ivf(B)$.
+      Hence $(-\infty,\ra) \cup (\rb, \infty) \ss \ivf(B)$, which completes the proof that $\ivf(B) = (-\infty,\ra) \cup (\rb, \infty)$ as desired.
+
+      Case: $b = 0$.
+      Then we have $a < b = 0$.
+      An argument analogous to the previous case when $a = 0 < b$ shows that $\ivf(B) = (-\infty, \ra)$.
+
+      Case: $b < 0$.
+      Then we have $a < b < 0$.
+      An argument analogous to the previous case when $0 < a < b$ again shows that $\ivf(B) = (\rb, \ra)$.
+    \end{indpar}
+
+    Thus in all cases and sub-cases clearly $\ivf(B)$ is an open set of $\realsnz$, which shows that $f$ is continuous as previously discussed since $B = (a,b)$ was an arbitrary basis element.
+  }
+
+  (d)
+  \qproof{
+    Regarding the subtraction function $-: \reals^2 \to \reals$, first define the function $f: \reals \to \reals$ by $f(x) = -x$, which is clearly continuous by elementary calculus.
+    We also know that the coordinate functions $\pi_1 : \reals^2 \to \reals$ and $\pi_2: \reals^2 \to \reals$ are also continuous.
+    Therefore the composition $f \circ \pi_2 : \reals^2 \to \reals$ is also continuous by Theorem~18.2 part (c).
+    We then have that the function $g: \reals^2 \to \reals^2$ defined by $g(x \times y) = \pi_1(x \times y) \times (f \circ \pi_2)(x \times y)$ is continuous by Theorem~18.4.
+    Then the composition $+ \circ g : \reals^2 \to \reals$ is continuous, again by Theorem~18.2 part (c), since it was shown in part (a) that the addition function $+: \reals^2 \to \reals$ is continuous.
+
+    However, for any $x \times y \in \reals^2$, we have
+    \ali{
+      (+ \circ g)(x \times y) &= +(g(x \times y)) = +(\pi_1(x \times y) \times (f \circ \pi_2)(x \times y)) \\
+      &= \pi_1(x \times y) + (f \circ \pi_2)(x \times y) = x + f(\pi_1(x \times y)) \\
+      &= x + f(y) = x - y \\
+      &= -(x \times y)
+    }
+    so that $- = + \circ g$ is continuous just as we would like.
+
+    Regarding the quotient function $/: \reals \times (\realsnz) \to \reals$, let $f: \realsnz \to \reals$ be the reciprocal function, which we know is continuous by part (c).
+    Again the coordinate functions $\pi_1: \reals \times (\realsnz) \to \reals$ and $\pi_2: \reals \times (\realsnz) \to \realsnz$ are continuous so that the composition $f \circ \pi_2: \reals \times (\realsnz) \to \reals$ is also continuous by Theorem~18.2 part (c).
+    Then we have that the function $g: \reals \times (\realsnz) \to \reals^2$ defined by $g(x \times y) = \pi_1(x \times y) \times (f \circ \pi_2)(x \times y)$ is continuous by Theorem~18.4.
+    Thus the composition $\times \circ g : \reals \times (\realsnz) \to \reals$ is continuous again by Theorem~18.2 part (c) since it was shown in part (b) that the multiplication function $\times: \reals^2 \to \reals$ is continuous.
+
+    Now, for any $x \times y \in \reals \times (\realsnz)$, we have that
+    \ali{
+      (\times \circ g)(x \times y) &= \times(g(x \times y)) = \times(\pi_1(x \times y) \times (f \circ \pi_2)(x \times y)) \\
+      &= \pi_1(x \times y) \cdot (f \circ \pi_2)(x \times y) = x \cdot f(\pi_2(x \times y)) \\
+      &= x \cdot f(y) = x \cdot \tfrac{1}{y} = \tfrac{x}{y} \\
+      &= /(x \times y)
+    }
+    so that $/ = \times \circ g$ is continuous as desired.
   }
 }
