@@ -2,6 +2,7 @@
 \subsection{Relations}
 
 \newcommand\ppt[1]{(x_{#1}, y_{#1})}
+
 \exercise{1}{
   Define two points $(x_0,y_0)$ and $(x_1,y_1)$ of the plane to be equivalent if $y_0 - x_0^2 = y_1 - x_1^2$.
   Check that this is an equivalence relation and describe the equivalence classes.
@@ -23,5 +24,187 @@
     This suffices to show that $\sim$ is an equivalence relation as we set out to show.
   }
 
-  TODO
+  Each equivalence class formed by this relation is the parabola $y = x^2$ shifted up or down on the $y$-axis.
+  This is easy to see since two points $\ppt{0}$ and $\ppt{1}$ are in the same class if $y_0 - x_0^2$ and $y_1 - x_1^2$ have the same value, say $c$.
+  Then $y_0 - x_0^2 = c$ so that $y_0 = x_0^2 + c$, which is clearly such a parabola, and similarly $y_1 = x_1^2 + c$.
+}
+
+\exercise{2}{
+  Let $C$ be a relation on a set $A$.
+  If $A_0 \ss A$, define the \boldit{restriction} of $C$ to $A_0$ to be the relation $C \cap (A_0 \times A_0)$.
+  We also note that clearly $C_0 \ss C$ as well.
+  Show that the restriction of an equivalence relation is an equivalence relation.
+}
+\sol{
+  \qproof{
+    Define $C$, $A$, and $A_0$ as above and suppose that $C$ is an equivalence relation.
+    Let $C_0 = C \cap (A_0 \times A_0)$ be the restriction of $C$ to $A_0$, noting that this is in fact a relation on $A_0$ since clearly $C_0 \ss A_0 \times A_0$.
+    Now we show that $C_0$ satisfies the three properties of an equivalence relation.
+
+    (Reflexivity) Consider any $a \in A_0$ so that of course $(a,a) \in A_0 \times A_0$.
+    Since $A_0 \ss A$ we also have that $a \in A$.
+    Hence $aCa$ since $C$ is an equivalance relation on $A$ and is therefore reflexive.
+    Thus $(a,a) \in C \cap (A_0 \times A_0) = C_0$, which shows that $a C_0 a$ so that $C_0$ is reflexive since $a$ was arbitrary.
+
+    (Symmetry) Suppose that $a,b \in A_0$ and that $aC_0b$.
+    Then of course $(b,a) \in A_0 \times A_0$ and $bCa$ since $C_0 \ss C$.
+    From this it follows that $(b,a) \in C \cap (A_0 \times A_0) = C_0$ so that $b C_0 a$.
+    This of course shows that $C_0$ is symmetric.
+
+    (Transitivity) Now consider $a,b,c \in A_0$ and suppose that both $a C_0 b$ and $b C_0 c$.
+    Then we have $aCb$ and $bCc$ since $C_0 \ss C$.
+    Since $C$ is an equivalence relation and therefore transitive, it follows that $aCc$, and since also clearly $(a,c) \in A_0 \times A_0$, we have $(a,c) \in C \cap (A_0 \times A_0) = C_0$ so that $a C_0 c$.
+    This shows that $C_0$ is transitive.
+  }
+}
+
+\exercise{3}{
+  Here is a ``proof'' that every relation $C$ that is both symmetric and transitive is also reflexive:
+  ``Since $C$ is symmetric, $aCb$ implies $bCa$.
+  Since $C$ is transitive, $aCb$ and $bCa$ together imply $aCa$, as desired.''
+  Find the flaw in this argument.
+}
+\sol{
+  Suppose that $C$ is a relation on the set $A$.
+  This argument is perfectly valid for any $a,b \in A$ such that $aCb$, which is to say that we can conclude that $aCa$ in this case (and by the same argument $bCb$).
+  However, reflexivity requires $aCa$ to hold for \emph{every} $a \in A$.
+  So if there is no $b \in A$ such that $aCb$ then the above argument cannot be applied and we cannot conclude that $aCa$.
+  In this case the element $a$ is effectively not involved in the relation at all.
+
+  This is perhaps best illustrated with an example: suppose that $A = \braces{1,2,3,4}$ and
+  \gath{
+    C = \braces{(1,1), (2,2), (3,3), (1,2), (2,1), (2,3), (3,2), (1,3), (3,1)} \,.
+  }
+  It is easy to verify that $C$ is both symmetric and transitive on $A$ but it is clearly not reflexive since $(4,4) \notin C$.
+  One can also observe how $4$ is not involved in the relation at all and, if it were, it would have to be that $(4,4) \in C$ if $C$ were to remain symmetric and transitive.
+}
+
+\exercise{4}{
+  Let $f: A \to B$ be a surjective function.
+  Let us define a relation on $A$ by setting $a_0 \sim a_1$ if
+  \gath{
+    f(a_0) = f(a_1) \,.
+  }
+  \eparts{
+  \item Show that this is an equivalence relation.
+  \item Let $A^*$ be the set of equivalence classes.
+    Show that there is a bijective correspondence of $A^*$ with $B$.
+  }
+}
+\sol{
+  (a)
+  \qproof{
+    We show the three properties necessary for $\sim$ to be an equivalence relation:
+    
+    (Reflexivity) Consider any $a \in A$ so that of course $f(a) = f(a)$ since $f$ is a function.
+    Hence $a \sim a$ so that $\sim$ is reflexive since $a$ was arbitrary.
+
+    (Symmetry) Consider $a,b \in A$ and suppose that $a \sim b$.
+    Then by definition $f(a) = f(b)$ so that obviously also $f(b) = f(a)$ since equality is symmetric.
+    So of course $b \sim a$, which shows that $\sim$ is symmetric.
+
+    (Transitivity) Consider $a,b,c \in A$ and suppose that $a \sim b$ and $b \sim c$.
+    Then by definition $f(a) = f(b)$ and $f(b) = f(c)$ so that of course $f(a) = f(b) = f(c)$, and hence $a \sim c$.
+    This shows that $\sim$ is transitive.
+  }
+
+  (b)
+  \qproof{
+    Define the function $g: A^* \to B$ as follows.
+    For any equivalence class $C \in A^*$, we know that $C$ is nonempty since $A^*$ is a partition of $A$.
+    Hence there is an $a \in C$, so set $g(C) = f(a)$, noting that clearly $g(C) = f(a) \in B$ so that $B$ can be the range of $g$.
+
+    To show that $g$ is injective, consider two equivalence classes $C$ and $D$ where $g(C) = g(D)$.
+    Then there are elements $c \in C$ and $d \in D$ where $f(c) = g(C) = g(D) = f(d)$.
+    This shows that $c \sim d$ so that they must be in the same equivalence class.
+    Thus $d \in C$ since $c \in C$, but also $d \in D$ so that $C$ and $D$ are not disjoint.
+    Hence it must be that $C = D$ by Lemma~3.1, which shows that $g$ is injective.
+
+    To show that $g$ is surjective, consider any $b \in B$.
+    Since $f$ is surjective, there is an $a \in A$ such that $f(a) = b$.
+    Since $A^*$ is a partition, $a$ must belong to an equivlence class $C \in A^*$.
+    Then there is an element $c \in C$ such that $g(C) = f(c)$ by the definition of $g$.
+    Since $a$ and $c$ are both in the same equivalence class $C$, we have that $a \sim c$ so that $g(C) = f(c) = f(a) = b$.
+    This shows that $g$ is surjective since $b \in B$ was arbitrary.
+
+    Therefore we have shown that $g$ is both injective and surjective, and so is a bijection by definition, as desired.
+  }
+}
+
+\exercise{5}{
+  Let $S$ and $S'$ be the following subsets of the plane:
+  \ali{
+    S &= \braces{\ppt{} \where y = x+1 \text{ and } 0 < x < 2} \,, \\
+    S' &= \braces{\ppt{} \where y - x \text{ is an integer}} \,.
+  }
+  \eparts{
+  \item Show that $S'$ is an equivalence relation on the real line and $S' \sps S$.
+    Describe the equivalence classes of $S'$.
+  \item Show that given any collection of equivalence relations on a set $A$, their intersection is an equivalence relation on $A$.
+  \item Describe the equivalence relation $T$ on the real line that is the intersection of all equivalence relations on the real line that contain $S$.
+    Describe the equivalence classes of $T$.
+  }
+}
+\sol{
+  (a)
+  \qproof{
+    First note that $S' \ss \reals \times \reals$ and so is a relation on $\reals$.
+    We show that $S'$ has the three properties required of an equivalence relation.
+
+    (Reflexivity) Consider any $x \in \reals$ so that clearly $x - x=0$ is an integer.
+    Hence $(x,x) \in S'$ by definition.
+    This shows that $S'$ is reflexive since $x$ was arbitrary.
+
+    (Symmetry) Suppose that $x,y \in \reals$ and $x S' y$.
+    Then $n = y - x$ is an integer so that $x - y = -(y-x) = -n$ is also clearly an integer.
+    Therefore $y S' x$ as well, which shows that $S'$ is symmetric.
+
+    (Transitivity) Consider $x,y,z \in \reals$ and suppose that both $x S' y$ and $y S' z$.
+    Then $n = y - x$ and $m = z - y$ are both integers.
+    We then have
+    \gath{
+      z - x = z - x + y - y = (z - y) + (y - x) = m + n \,,
+    }
+    which is clearly an integer since $m$ and $n$ are.
+    Hence $x S' z$ so that $S'$ is transitive.
+
+    It is easy to show that $S' \sps S$.
+    Consider any $(x,y) \in S$ so that $0 < x < 2$ and $y = x + 1$.
+    Then $y - x = (x + 1) - x = 1$, which is of course an integer.
+    Hence $(x,y) \in S'$, and thus $S' \sps S$ since $(x,y)$ was arbitrary.
+  }
+
+  The equivalence class $C$ containing $x \in \reals$ is the countable set $C = \braces{x + n \where n \in \ints}$.
+  While perhaps not immediately obvious, it is almost trivial to show:
+  \ali{
+    y \in C &\bic \exists n \in \ints (y = x + n) \bic \exists n \in \ints (y - x = n) \\
+    &\bic x S' y \bic y S' x \\
+    &\bic \text{$y$ is in the equivalence class determined by $x$}
+  }
+  since $S'$ is symmetric.
+
+  (b)
+  \qproof{
+    Let $A^*$ be a collection of equivalence relations on $A$ so that we must show that $C = \bigcap_{D \in A^*} D$ is also an equivalence relation on $A$.
+    First, suppose that any $(x,y) \in C$ and consider any $D \in A^*$ so that $(x,y) \in D$.
+    Then also $(x,y) \in A \times A$ since $D$ is a relation on $A$ so that $D \ss A \times A$.
+    This shows that $C \ss A \times A$ since $(x,y)$ was arbitrary, and so $C$ is a relation on $A$.
+    Now we show the three required properties of an equivalence relation:
+
+    (Reflexivity) Consider any $x \in A$ so that $(x,x) \in D$ for every $D \in A^*$ since each $D$ is an equivalence relation and so is reflexive.
+    It then follows that $(x,x) \bigcap_{D \in A^*} D = C$, which shows that $C$ is reflexive.
+
+    (Symmetric) Suppose that $(x,y) \in C$ and consider any $D \in A^*$ so that also $(x,y) \in D$.
+    Then also $(y,x) \in D$ since $D$ is an equivalence relation and so is symmetric.
+    Since $D$ was arbitrary, this shows that $(y,x) \in \bigcap_{D \in A^*} D = C$ so that $C$ is symmetric.
+
+    (Transitivity) Suppose that $(x,y) \in C$ and $(y,z) \in C$.
+    For any $D \in A^*$ we then have that both $(x,y) \in D$ and $(y,z) \in D$.
+    It then follows that $(x,z) \in D$ since $D$ is an equivalence relation and so is transitive.
+    Since $D$ was arbitrary, we have that $(x,z) \in \bigcap_{D \in A^*} D = C$ so that $C$ is transitive as desired.
+  }
+
+  (c)
+  First we note that $S$ itself is \emph{not} an equivalence relation on $\reals$ since it is not reflexive.
+  In fact $(x,x) \notin S$ for any $x \in \reals$ since it is never true that $x = x+1$.
 }
