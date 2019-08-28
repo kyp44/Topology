@@ -1,0 +1,27 @@
+\setcounter{subsection}{3-1}
+\subsection{Relations}
+
+\newcommand\ppt[1]{(x_{#1}, y_{#1})}
+\exercise{1}{
+  Define two points $(x_0,y_0)$ and $(x_1,y_1)$ of the plane to be equivalent if $y_0 - x_0^2 = y_1 - x_1^2$.
+  Check that this is an equivalence relation and describe the equivalence classes.
+}
+\sol{
+  First we show that this relation, which we shall denote with $\sim$, is an equivalence relation.
+  \qproof{
+    In what follows, suppose that $\ppt{0}$, $\ppt{1}$, and $\ppt{2}$ are all points in the plane.
+    
+    (Reflexivity) Of course we have $y_0 - x_0^2 = y_0 - x_0^2$, and hence $\ppt{0} \sim \ppt{0}$.
+
+    (Symmetry) Suppose that $\ppt{0} \sim \ppt{1}$.
+    Then we have $y_0 - x_0^2 = y_1 - x_1^2$ so that of course $y_1 - x_1^2 = y_0 - x_0^2$ since numerical equality is symmetric, and so $\ppt{1} \sim \ppt{0}$ as well.
+
+    (Transitivity) Suppose that $\ppt{0} \sim \ppt{1}$ and $\ppt{1} \sim \ppt{2}$.
+    Then $y_0 - x_0^2 = y_1 - x_1^2$ and $y_1 - x_1^2 = y_2 - x_2^2$ so that of course $y_0 - x_0^2 = y_2 - x_2^2$ since numerical equality is transitive.
+    Therefore $\ppt{0} \sim \ppt{2}$, which shows transitivity.
+
+    This suffices to show that $\sim$ is an equivalence relation as we set out to show.
+  }
+
+  TODO
+}
