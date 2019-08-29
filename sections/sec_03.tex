@@ -169,9 +169,9 @@
     Hence $x S' z$ so that $S'$ is transitive.
 
     It is easy to show that $S' \sps S$.
-    Consider any $(x,y) \in S$ so that $0 < x < 2$ and $y = x + 1$.
+    Consider any $\ppt{} \in S$ so that $0 < x < 2$ and $y = x + 1$.
     Then $y - x = (x + 1) - x = 1$, which is of course an integer.
-    Hence $(x,y) \in S'$, and thus $S' \sps S$ since $(x,y)$ was arbitrary.
+    Hence $\ppt{} \in S'$, and thus $S' \sps S$ since $\ppt{}$ was arbitrary.
   }
 
   The equivalence class $C$ containing $x \in \reals$ is the countable set $C = \braces{x + n \where n \in \ints}$.
@@ -186,20 +186,20 @@
   (b)
   \qproof{
     Let $A^*$ be a collection of equivalence relations on $A$ so that we must show that $C = \bigcap_{D \in A^*} D$ is also an equivalence relation on $A$.
-    First, suppose that any $(x,y) \in C$ and consider any $D \in A^*$ so that $(x,y) \in D$.
-    Then also $(x,y) \in A \times A$ since $D$ is a relation on $A$ so that $D \ss A \times A$.
-    This shows that $C \ss A \times A$ since $(x,y)$ was arbitrary, and so $C$ is a relation on $A$.
+    First, suppose that any $\ppt{} \in C$ and consider any $D \in A^*$ so that $\ppt{} \in D$.
+    Then also $\ppt{} \in A \times A$ since $D$ is a relation on $A$ so that $D \ss A \times A$.
+    This shows that $C \ss A \times A$ since $\ppt{}$ was arbitrary, and so $C$ is a relation on $A$.
     Now we show the three required properties of an equivalence relation:
 
     (Reflexivity) Consider any $x \in A$ so that $(x,x) \in D$ for every $D \in A^*$ since each $D$ is an equivalence relation and so is reflexive.
     It then follows that $(x,x) \bigcap_{D \in A^*} D = C$, which shows that $C$ is reflexive.
 
-    (Symmetric) Suppose that $(x,y) \in C$ and consider any $D \in A^*$ so that also $(x,y) \in D$.
+    (Symmetric) Suppose that $\ppt{} \in C$ and consider any $D \in A^*$ so that also $\ppt{} \in D$.
     Then also $(y,x) \in D$ since $D$ is an equivalence relation and so is symmetric.
     Since $D$ was arbitrary, this shows that $(y,x) \in \bigcap_{D \in A^*} D = C$ so that $C$ is symmetric.
 
-    (Transitivity) Suppose that $(x,y) \in C$ and $(y,z) \in C$.
-    For any $D \in A^*$ we then have that both $(x,y) \in D$ and $(y,z) \in D$.
+    (Transitivity) Suppose that $\ppt{} \in C$ and $(y,z) \in C$.
+    For any $D \in A^*$ we then have that both $\ppt{} \in D$ and $(y,z) \in D$.
     It then follows that $(x,z) \in D$ since $D$ is an equivalence relation and so is transitive.
     Since $D$ was arbitrary, we have that $(x,z) \in \bigcap_{D \in A^*} D = C$ so that $C$ is transitive as desired.
   }
@@ -207,4 +207,109 @@
   (c)
   First we note that $S$ itself is \emph{not} an equivalence relation on $\reals$ since it is not reflexive.
   In fact $(x,x) \notin S$ for any $x \in \reals$ since it is never true that $x = x+1$.
+  Now define the following subsets of the plane:
+  \ali{
+    S_1 &= \braces{\ppt{} \where y = x} &
+    S_4 &= \braces{\ppt{} \where y = x + 2 \text{ and } 0 < x < 1} \\
+    S_2 &= S = \braces{\ppt{} \where y = x + 1 \text{ and } 0 < x < 2} &
+    S_5 &= \braces{\ppt{} \where y = x - 2 \text{ and } 2 < x < 3} \,. \\
+    S_3 &= \braces{\ppt{} \where y = x - 1 \text{ and } 1 < x < 3}
+  }
+  We then claim that the intersection we seek is $T = \bigcup_{i \in \intsfin{5}} S_i$.
+  An illustration of this set in the plane is shown below:
+  \begin{center}
+    \begin{tikzpicture}[scale=0.6]
+      % Open line
+      \newcommand\oline[2]{
+        \draw[thick,-] (#1) -- (#2);
+        \filldraw[fill=white] (#1) circle (0.15);
+        \filldraw[fill=white] (#2) circle (0.15);
+      }
+      % Coordinate grid
+      \draw[step=1cm,black!25!white,thin] (-0.9,-0.9) grid (3.9,3.9);
+
+      % Axes
+      \draw[thick,<->] (-1,0) -- (4,0);
+      \draw[thick,<->] (0,-1) -- (0,4);
+
+      % Subsets
+      \draw[thick,<->] (-0.9,-0.9) -- (3.9,3.9);
+      \node [below] at (3.5,3.5) {$S_1$};
+      \oline{0,1}{2,3}
+      \node [above] at (2,3) {$S_2$};
+      \oline{1,0}{3,2}
+      \node [right] at (3,2) {$S_3$};
+      \oline{0,2}{1,3}
+      \node [above] at (1,3) {$S_4$};
+      \oline{2,0}{3,1}
+      \node [right] at (3,1) {$S_5$};
+    \end{tikzpicture}
+  \end{center}
+  \qproof{
+    Let $S^*$ denote the collection of all equivalence relations on $\reals$ that contain $S$ so that we must show that $T = \bigcap_{R \in S^*} R$.
+
+    $(\ss)$ Consider any $\ppt{} \in T$ and any $R \in S^*$ so that $R$ is an equivalence relation on $\reals$ that contains $S$.
+    We then have the following cases:
+
+    Case: $\ppt{} \in S_1$.
+    Then of course $y = x$ so that $\ppt{} = (x,x) \in R$ since it is an equivalence relation and thus reflexive.
+
+    Case: $\ppt{} \in S_2 = S$.
+    Then of course $\ppt{} \in R$ since $R$ contains $S$.
+
+    Case: $\ppt{} \in S_3$.
+    Then we have that $y = x - 1$ with $1 < x < 3$, from which it follows that $x = y + 1$ and $0 < y = x-1 < 2$.
+    Therefore $(y,x) \in S$ so that $(y,x) \in R$ since $R$ contains $S$.
+    We then have that $\ppt{} \in R$ as well since $R$ is an equivalence relation and therefore symmetric.
+
+    Case: $\ppt{} \in S_4$.
+    Then $y = x+2$ with $0 < x < 1$.
+    Let $z = x+1$ so that $(x,z) \in S = S_4$ since we also have $0 < x < 1 < 2$.
+    We then know that $(x,z) \in R$ since $R$ contains $S$.
+    We also then have that $y = x+2 = (x+1)+1 = z+1$ with $0 < 1 < z = x+1 < 2$ since $0 < x < 1$.
+    Thus $(z,y) \in S = S_4$ so that also $(z,y) \in R$.
+    Since $R$ is an equivalence relation and therefore transitive, we have that $\ppt{} \in R$ as well.
+
+    Case: $\ppt{} \in S_5$.
+    Then we have $y = x-2$ and $2 < x < 3$.
+    It then follows that $x = y+2$ and $0 < y = x-2 < 1$ so that $(y,x) \in S_4$.
+    Then of course $(y,x) \in R$ by the previous case so that also $\ppt{} \in R$ since $R$ is an equivalence relation and therefore symmetric.
+
+    Thus in every case $\ppt{} \in R$ so that also $\ppt{} \in \bigcap_{R \in S^*} R$ since $R$ was arbitrary.
+    It then follows that $T \ss \bigcap_{R \in S^*} R$ since $\ppt{}$ was arbitrary.
+
+    $(\sps)$ For all we really need to show is that $T$ is an equivalence relation on $\reals$ that contains $S$.
+    From this it follows that $T \in S^*$ so that of course $T \sps \bigcap_{R \in S^*} R$.
+    First we note that clearly $T \ss \reals^2$ so that it is a relation on $\reals$.
+    Also clearly it contains $S$ since $S = S_2 \ss T$.
+    Now we show that it has the three properties that an equivalence relation require.
+
+    (Reflexivity) For any $x \in \reals$ clearly $(x,x) \in S_1 \ss T$ so that $T$ is reflexive.
+
+    (Symmetry) Suppose that $xTy$ so that $\ppt{} \in T$.
+    We then have the following cases:
+
+    Case: $\ppt{} \in S_1$.
+    Then of course $y = x$ so $(y,x) = (x,x) = (x,y) \in S_1 \ss T$.
+
+    Case: $\ppt{} \in S_2 = S$.
+    Then $y = x+1$ and $0<x<2$ so that $x = y-1$ and $1 < y=x+1 < 3$.
+    Hence $(y,x) \in S_3 \ss T$.
+
+    Case: $\ppt{} \in S_3$.
+    Then we have that $y = x - 1$ with $1 < x < 3$, from which it follows that $x = y + 1$ and $0 < y = x-1 < 2$.
+    Therefore $(y,x) \in S = S_2 \ss T$.
+
+    Case: $\ppt{} \in S_4$.
+    Then $y = x+2$ with $0 < x < 1$ so that $x = y-2$ and $2 < y=x+2 < 3$.
+    Hence $(y,x) \in S_5 \ss T$.
+
+    Case: $\ppt{} \in S_5$.
+    Then we have $y = x-2$ and $2 < x < 3$ so that $x = y+2$ and $0 < y=x-2 < 1$.
+    Hence $(y,x) \in S_4 \ss T$.
+
+    So in all cases $(y,x) \in T$, which shows that $T$ is symmetric.
+
+    (Transitivity) Now suppose that $xTy$ and $yTz$.
+  }
 }
