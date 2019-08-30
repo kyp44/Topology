@@ -499,12 +499,35 @@
   }
 
   As requested, below are graphs of $g$ and $\ivg$ over some subset of their infinite domains and ranges:
-
-  {\centering
-    \includegraphics[width=7cm]{figs/ex_2_6_g}
-    \includegraphics[width=7cm]{figs/ex_2_6_gi}
-    % Need a blank line here for some dumb reason
-    
-  }
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+          width=7.5cm,
+          xmin=1, xmax=10,
+        ]
+        \addplot[
+          black,
+          thick,
+          domain=1:10,
+        ]
+        (x, x^3 - x);
+        \node [above] at (axis cs:5.5,200) {$g$};
+      \end{axis}
+    \end{tikzpicture}
+    \begin{tikzpicture}
+      \begin{axis}[
+          width=7.5cm,
+          xmin=0, xmax=1000,
+          domain=1:10,
+        ]
+        \addplot[
+          black,
+          thick,
+        ]
+        (x^3 - x, x);
+        \node [above] at (axis cs:500,8) {$\ivg$};
+      \end{axis}
+    \end{tikzpicture}
+  \end{center}
   One can observe that $g$ (and its inverse for that matter) is monotonically increasing as shown.
 }

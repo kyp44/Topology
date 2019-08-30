@@ -99,7 +99,23 @@
   (a) First, the basis elements of the metric topology induced by $d'$ are open intervals in $\reals$, open diamonds in $n=2$, open octahedrons for $n = 3$, and the higher dimensional analogues for $n > 3$.
   A sketch of the ball $B_{d'}(0 \times 0, 1)$ in $\reals^2$ is shown below:
   \begin{center}
-    \includegraphics[height=6cm]{figs/ex_20_1_1}
+    \begin{tikzpicture}[scale=2]
+      % Coordinate grid
+      \draw[step=1cm,black!30!white,thin] (-1.5,-1.5) grid (1.5,1.5);
+
+      % Set shape
+      \filldraw[thick,dashed,fill=black!30!white] (-1,0) -- (0,1) -- (1,0) -- (0,-1) -- cycle;
+
+      % Axes
+      \draw[thick,<->] (-1.5,0) -- (1.5,0);
+      \draw[thick,<->] (0,-1.5) -- (0,1.5);
+
+      % Point labels
+      \node [above left] at (-1,0) {$(-1,0)$};
+      \node [above right] at (0,1) {$(0,1)$};
+      \node [above right] at (1,0) {$(1,0)$};
+      \node [below right] at (0,-1) {$(0,-1)$};
+    \end{tikzpicture}
   \end{center}
   Now we show that $d'$ is a metric and induces the usual topology of $\reals^n$.
   \qproof{

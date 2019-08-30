@@ -5,12 +5,9 @@ Solutions Manual
 ----------------
 
 The main solutions manual is `solutions.tex`.
-Some solutions have figures, which are the `.pdf` files in the `figs` directory.
-Most of these figures were created with the `xfig` program, whose `.fig` source files are also in the `figs` directory.
-Some of the figures, however, are plots, which were generated with Python and Matplotlib.
-To generate these figures and install them to the `figs` directory change to the `python` directory and run the `generate_plots.sh` script.
-The `python` directory also contains some quick and dirty Python scripts that were used to gain insight while working on some of the exercises.
-These are not really documented at all and so probably will not be of interest to anyone else.
+Some solutions have figures, which are done directly in LaTeX using the [TikZ](https://www.ctan.org/pkg/pgf) and [PGFPLOTS](https://ctan.org/pkg/pgfplots) packages.
+The `python` directory contains some quick and dirty Python scripts that were used to gain insight while working on some of the exercises.
+These are not documented at all and so probably will not be of interest to anyone else.
 
 Other Documents
 ---------------
