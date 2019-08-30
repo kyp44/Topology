@@ -43,7 +43,7 @@
 
     (Reflexivity) Consider any $a \in A_0$ so that of course $(a,a) \in A_0 \times A_0$.
     Since $A_0 \ss A$ we also have that $a \in A$.
-    Hence $aCa$ since $C$ is an equivalance relation on $A$ and is therefore reflexive.
+    Hence $aCa$ since $C$ is an equivalence relation on $A$ and is therefore reflexive.
     Thus $(a,a) \in C \cap (A_0 \times A_0) = C_0$, which shows that $a C_0 a$ so that $C_0$ is reflexive since $a$ was arbitrary.
 
     (Symmetry) Suppose that $a,b \in A_0$ and that $aC_0b$.
@@ -122,7 +122,7 @@
 
     To show that $g$ is surjective, consider any $b \in B$.
     Since $f$ is surjective, there is an $a \in A$ such that $f(a) = b$.
-    Since $A^*$ is a partition, $a$ must belong to an equivlence class $C \in A^*$.
+    Since $A^*$ is a partition, $a$ must belong to an equivalence class $C \in A^*$.
     Then there is an element $c \in C$ such that $g(C) = f(c)$ by the definition of $g$.
     Since $a$ and $c$ are both in the same equivalence class $C$, we have that $a \sim c$ so that $g(C) = f(c) = f(a) = b$.
     This shows that $g$ is surjective since $b \in B$ was arbitrary.
@@ -278,7 +278,7 @@
     Thus in every case $\ppt{} \in R$ so that also $\ppt{} \in \bigcap_{R \in S^*} R$ since $R$ was arbitrary.
     It then follows that $T \ss \bigcap_{R \in S^*} R$ since $\ppt{}$ was arbitrary.
 
-    $(\sps)$ For all we really need to show is that $T$ is an equivalence relation on $\reals$ that contains $S$.
+    $(\sps)$ All we really need to show is that $T$ is an equivalence relation on $\reals$ that contains $S$.
     From this it follows that $T \in S^*$ so that of course $T \sps \bigcap_{R \in S^*} R$.
     First we note that clearly $T \ss \reals^2$ so that it is a relation on $\reals$.
     Also clearly it contains $S$ since $S = S_2 \ss T$.
@@ -290,7 +290,7 @@
     We then have the following cases:
 
     Case: $\ppt{} \in S_1$.
-    Then of course $y = x$ so $(y,x) = (x,x) = (x,y) \in S_1 \ss T$.
+    Then of course $y = x$ so $(y,x) = (x,x) = \ppt{} \in S_1 \ss T$.
 
     Case: $\ppt{} \in S_2 = S$.
     Then $y = x+1$ and $0<x<2$ so that $x = y-1$ and $1 < y=x+1 < 3$.
@@ -311,5 +311,99 @@
     So in all cases $(y,x) \in T$, which shows that $T$ is symmetric.
 
     (Transitivity) Now suppose that $xTy$ and $yTz$.
+    If $x = y$ then of course we have $(x,z) = (y,z) \in T$.
+    Similarly if $y = z$ then $(x,z) = \ppt{} \in T$.
+    So assume that $x \neq y$ and $y \neq z$ so that it can neither be that $\ppt{} \in S_1$ nor $(y,z) \in S_1$.
+    Thus there are four sets (i.e. $S_i$ where $i \in \braces{2,3,4,5}$) that $\ppt{}$ and $(y,z)$ can be in, which results in sixteen different possibilities, though not all are possible:
+
+    Case: $\ppt{} \in S_2$.
+    Then $y=x+1$ and $0 < x < 2$ so that $1 < y = x+1 < 3$.
+    \begin{indpar}
+      Case: $(y,z) \in S_2$.
+      Then also $z=y+1$ and $0 < y < 2$ so that $z = y+1 = (x+1)+1 = x+2$ and $y = x+1 < 2$ means that $x < 1$.
+      Hence $z = x+2$ and $0 < x < 1$ so that $(x,z) \in S_4 \ss T$.
+
+      Case: $(y,z) \in S_3$.
+      Then $z = y-1$ and $1 < y < 3$ so that $z = y-1 = (x+1)-1 = x$, and hence $(x,z) = (x,x) \in S_1 \ss T$.
+
+      Case: $(y,z) \in S_4$.
+      This case is not possible because $1 < y < 3$ so that it cannot be that $0 < y < 1$ and hence $(y,z)$ cannot be in $S_4$.
+
+      Case: $(y,z) \in S_5$.
+      Then $z = y-2$ and $2 < y < 3$ so that $z = y-2 = (x+1)-2 = x-1$ and $2 < y = x+1 < 3$ means that $1 < x < 2 < 3$.
+      Hence $z=x-1$ and $1 < x < 3$ so that $(x,z) \in S_3 \ss T$.
+    \end{indpar}
+
+    Case: $\ppt{} \in S_3$.
+    Then $y=x-1$ and $1 < x < 3$ so that $0 < y = x-1 < 2$.
+    \begin{indpar}
+      Case: $(y,z) \in S_2$.
+      Then $z = y+1$ and $0 < y < 2$ so that $z = y+1 = (x-1)+1 = x$ and hence $(x,z) = (x,x) \in S_1 \ss T$.
+
+      Case: $(y,z) \in S_3$.
+      Then $z = y-1$ and $1 < y < 3$ so that $z = y-1 = (x-1)-1 = x-2$ and $1 < y = x-1$ and hence $2 < x$.
+      Therefore $z = x-2$ and $2 < x < 3$ so that $(x,z) \in S_5 \ss T$.
+
+      Case: $(y,z) \in S_4$.
+      Then $z=y+2$ and $0 < y < 1$ so that $z = y+2 = (x-1)+2 = x+1$ and $y = x-1 < 1$ and hence $x < 2$.
+      Thus $z = x+1$ and $0 < 1 < x < 2$ so that $(x,z) \in S_2 \ss T$.
+
+      Case: $(y,z) \in S_5$.
+      This is case is not possible because $y < 2$ so that it cannot be that $2 < y < 3$, and hence $(y,z)$ cannot be in $S_5$.
+    \end{indpar}
+
+    Case: $\ppt{} \in S_4$.
+    Then $y=x+2$ and $0 < x < 1$ so that $2 < y = x+2 < 3$.
+    \begin{indpar}
+      Case: $(y,z) \in S_2$.
+      This case is also impossible because $2 < y$  so that it cannot be that $0 < y < 2$, and hence $(y,z)$ cannot be in $S_2$.
+
+      Case: $(y,z) \in S_3$.
+      Then $z = y-1$ and $1 < y < 3$ so that $z = y-1 = (x+2)-1 = x+1$ and $y = x+2 < 3$ so that $x < 1 < 2$.
+      Thus $z = x+1$ and $0 < x < 2$ so that $(x,z) \in S_2 \ss T$.
+
+      Case: $(y,z) \in S_4$.
+      This case is not possible because again $2 < y$ so that it cannot be that $0 < y < 1$, and hence $(y,z)$ cannot be in $S_4$.
+
+      Case: $(y,z) \in S_5$.
+      Then $z=y-2$ and $0 < y <1$ so that $z=y-2=(x+2)-2=x$ and hence $(x,z) = (x,x) \in S_1 \ss T$.
+    \end{indpar}
+
+    Case: $\ppt{} \in S_5$.
+    Then $y=x-2$ and $2 < x < 3$ so that $0 < y=x-2 < 1$.
+    \begin{indpar}
+      Case: $(y,z) \in S_2$.
+      Then $z = y+1$ and $0 < y < 2$ so that $z = y+1 = (x-2) + 1 = x-1$ and $0 < y = x-2$ so that $1 < 2 < x$.
+      Therefore $z=x-1$ and $1 < x < 3$ so that $(x,z) \in S_3 \ss T$.
+
+      Case: $(y,z) \in S_3$.
+      This case is not possible because $y < 1$ so that it cannot be that $1 < y < 3$, and hence $(y,z)$ cannot be in $S_3$.
+
+      Case: $(y,z) \in S_4$.
+      Then $z = y+2$ and $0 < y < 1$ so that $z = y+2 = (x-2)+2$ and hence $(z,x) = (x,x) \in S_1 \ss T$.
+
+      Case: $(y,z) \in S_5$.
+      This case is also not possible because again $y < 1$ so that it cannot be that $2 < y < 3$, and hence $(y,z)$ cannot be in $S_5$.
+    \end{indpar}
+
+    Thus in every case that is actually possible we have that $(x,z) \in T$, which shows that $T$ is transitive.
+
+    Therefore $T$ is an equivalence relation that contains $S$ so that $T \sps \bigcap_{R \in S^*} R$ as discussed above, which of course completes the proof that $T = \bigcap_{R \in S^*} R$.
   }
+
+  As far as the equivalence classes formed by $T$ are concerned, refer to the illustration above.
+  Consider the equivalence class $C$ contains $x \in \reals$.
+  If $x \leq 0$ or $x \geq 3$ then $C = \braces{x}$ because there is no other $y$ for which $yTx$ except $y=x$.
+  So suppose that $0 < x < 3$.
+  If $x$ is an integer so that $x = 1$ or $x = 2$, then $C = \braces{1,2}$.
+  If $x$ is not an integer, then $C$ always has three elements.
+  We have that
+  \gath{
+    C = \begin{cases}
+      \braces{x, x+1, x+2} & 0 < x < 1 \\
+      \braces{x-1, x, x+1} & 1 < x < 2 \\
+      \braces{x-2, x-1, x} & 2 < x < 3
+    \end{cases} \,.
+  }
+  These facts can be deduced by examining where the vertical line intersecting the $x$-axis at $x$ intersects the graph of $T$.
 }
