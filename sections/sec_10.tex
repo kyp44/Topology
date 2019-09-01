@@ -112,7 +112,7 @@
     Suppose that $A$ is a set that is simply ordered by $\prec$ such that every countable subset is well-ordered by $\prec$.
     Consider any nonempty subset $B \ss A$.
     Suppose for a moment that the restricted $\prec$ does not well-order $B$.
-    Then it follows from part (a) that $B$ has a subset $C$ with the same order type as $\nints$.
+    Then it follows from part~(a) that $B$ has a subset $C$ with the same order type as $\nints$.
     However, clearly $C \ss A$ (since $B \ss A$) and $C$ is countable (since $\nints$ is countable) and thus it should be well-ordered.
     As this is impossible since $C$ has the same order-type as $\nints$ (which is clearly not well-ordered), it has to be that the restricted $\prec$ does in fact well-order $B$.
     Hence $B$ has a $\prec$-smallest element, which shows that $A$ is well-ordered since $B$ was arbitrary.
@@ -185,12 +185,12 @@
     Assume the contrary so that $\a \in S_\W$ is an upper bound of $X_0$.
     It then follows that the set $T_\a = \braces{x \in S_\W \where \a < x}$ is such that every element of $T_\a$ has an immediate predecessor since otherwise there would be a $\b \in T_\a$ where $\b \in X_0$ so that $\a$ would not be an upper bound of $X_0$ since then $\a < \b$.
 
-    Now, we know from part (a) that $S_\W$ has no largest element so that it follows from Exercise~10.2 that every element of $S_\W$ has an immediate successor.
+    Now, we know from part~(a) that $S_\W$ has no largest element so that it follows from Exercise~10.2 that every element of $S_\W$ has an immediate successor.
     Since $T_\a \ss S_\W$ it follows that each element $x \in T_\a$ has an immediate successor $y$.
     Moreover we then have that $\a < x < y$ so that $y \in T_\a$ also.
     Hence every element of $T_\a$ has an immediate successor in $T_\a$.
     
-    Now, we know that $T_\a$ is uncountable by part (b) so that it has a smallest element $\b$ since it is then a nonempty subset of the well-ordered $S_\W$.
+    Now, we know that $T_\a$ is uncountable by part~(b) so that it has a smallest element $\b$ since it is then a nonempty subset of the well-ordered $S_\W$.
     We derive a contradiction by showing that $T_\a$ has the same order type as $\pints$ and is thus countable.
     We do this by defining an increasing bijection $f: \pints \to T_\a$.
     First, set $f(1) = \b$ and then set $f(n)$ to the immediate successor of $f(n-1)$ for $n > 1$, which was shown to exist above.
@@ -208,12 +208,12 @@
     As this contradicts the fact that $y \notin f(\pints)$, it must be that $f$ is in fact surjective!
 
     Therefore we have shown that $f$ is a bijection from $\pints$ to $T_\a$ so that $T_\a$ is countable.
-    But we know from part (b) that $T_\a$ is uncountable.
+    But we know from part~(b) that $T_\a$ is uncountable.
     As mentioned above, this is a contradiction so that it must be that indeed $X_0$ is not bounded above.
     From this it immediately follows from the contrapositive of Theorem~10.3 that $X_0$ must be uncountable.
   }
 
-  It is interesting to note that $S_\W$ corresponds to the ordinal number $\w_1$, which is the first uncountable ordinal, and the set $X_0$ of part (c) corresponds to the set of limit ordinals in $\w_1$.
+  It is interesting to note that $S_\W$ corresponds to the ordinal number $\w_1$, which is the first uncountable ordinal, and the set $X_0$ of part~(c) corresponds to the set of limit ordinals in $\w_1$.
   All of the curious properties deduced here for $S_\W$ apply to $\w_1$ too, assuming we allow the choice axiom.
 }
 
@@ -414,7 +414,7 @@
         1 & i \neq n+1
       \end{cases}
     }
-    as in part (a) then it follows from what was shown there that $B_n \ss S_\va$.
+    as in part~(a) then it follows from what was shown there that $B_n \ss S_\va$.
     Moreover it was shown that $S_\va$ has the same order type as the dictionary order of $(\pints)^n$, which we know to be a well-ordering.
     Hence $S_\va$ must also be a well-ordering so that $B_n$ has a smallest element $\vb = \seqinf{b}$ since it is a nonempty subset of $S_\va$.
     We claim that $\vb$ is in fact the smallest element of all of $B$.
@@ -534,7 +534,7 @@
     First we show that $k$ is actually a function from $\bigcup_{\a \in K} S_\a$ to $C$.
     So consider any $x$ in the domain of $k$.
     Suppose that $(x, a)$ and $(x, b)$ are both in $k$ so that there are $\a$ and $\b$ in $K$ where $(x, a) \in h_\a$ and $(x, b) \in h_\b$.
-    Since $h_\a$ and $h_\b$ both satisfy $(*)$, it follows from part (a) that $a = h_\a(x) = h_\b(x) = b$ since clearly $x$ is in the domain of both.
+    Since $h_\a$ and $h_\b$ both satisfy $(*)$, it follows from part~(a) that $a = h_\a(x) = h_\b(x) = b$ since clearly $x$ is in the domain of both.
     This shows that $k$ is indeed a function since $(x,a)$ and $(x,b)$ were arbitrary.
     Also clearly the domain of $k$ is $\bigcup_{\a \in K} S_\a$ since, for any $x \in \bigcup_{\a \in K} S_\a$, we have that there is an $\a \in K$ where $x \in S_\a$.
     Hence $x$ is in the domain of $h_\a$ and so in the domain of $k$.
@@ -565,7 +565,7 @@
     On the other hand if $x \in \braces{\a}$ then $x = \a < \b$ so that again $x \in S_\b$.
     Thus we have shown that $S_\b \ss S_\a \cup \braces{\a}$ and $S_\a \cup \braces{\a} \ss S_\b$ so that $S_\b = S_\a \cup \braces{\a}$.
     Since $\a \in S_\b$ it follows that there is an $h_\a : S_\a \to C$ that satisfies $(*)$.
-    Then, by part (b), we have that there is an $h_\b : S_\b = S_\a \cup \braces{\a} \to C$ that also satisfies $(*)$.
+    Then, by part~(b), we have that there is an $h_\b : S_\b = S_\a \cup \braces{\a} \to C$ that also satisfies $(*)$.
 
     If $\b$ does not have an immediate predecessor then we claim that $S_\b = \bigcup_{\g < \b} S_\g$.
     So consider any $x \in S_\b$ so that $x < \b$.
@@ -575,7 +575,7 @@
     Then clearly $x < \a < \b$ so that also $x \in S_\b$.
     Thus we have shown that $S_\b \ss \bigcup_{\g < \b} S_\g$ and $\bigcup_{\g < \b} S_\g \ss S_\b$ so that $S_\b = \bigcup_{\g < \b} S_\g$.
     Now, clearly $S_\b$ is a subset of $J$ where there is an $h_x : S_x \to C$ satisfying $(*)$ for every $x \in S_\b$.
-    Then it follows from what was shown in part (c) that there is a function $h_\b$ from $\bigcup_{\g < S_\b} S_\g = \bigcup_{\g < \b} S_\g = S_\b$ to $C$ that satisfies $(*)$.
+    Then it follows from what was shown in part~(c) that there is a function $h_\b$ from $\bigcup_{\g < S_\b} S_\g = \bigcup_{\g < \b} S_\g = S_\b$ to $C$ that satisfies $(*)$.
 
     Therefore, in either case, we have shown that there is an $h_\b : S_\b \to C$ that satisfies $(*)$.
     The desired result then follows by transfinite induction.
@@ -590,12 +590,12 @@
     Then, for any $x \in \bigcup_{\a \in J} S_\a$, there is an $\a \in J$ where $x \in S_\a$.
     Clearly $S_\a \ss J$ so that $x \in J$ also.
     Hence $J \ss \bigcup_{\a \in J} S_\a$ and $\bigcup_{\a \in J} S_\a \ss J$ so that $J = \bigcup_{\a \in J} S_\a$.
-    Since we know from part (d) that there is an $h_\a : S_\a \to C$ that satisfies $(*)$ for every $\a \in J$, it follows from part (c) that there is a function $h$ from $\bigcup_{\a \in J} S_\a = J$ to $C$ that satisfies $(*)$.
+    Since we know from part~(d) that there is an $h_\a : S_\a \to C$ that satisfies $(*)$ for every $\a \in J$, it follows from part~(c) that there is a function $h$ from $\bigcup_{\a \in J} S_\a = J$ to $C$ that satisfies $(*)$.
 
     If $J$ does have a largest element $\b$ then clearly $J = S_\b \cup \braces{\b}$.
-    Since we know that there is an $h_\b : S_\b \to C$ that satisfies $(*)$ by part (d), it follows from part (b) that there is a function $h$ from $S_\b \cup \braces{\b} = J$ to $C$ that satisfies $(*)$.
+    Since we know that there is an $h_\b : S_\b \to C$ that satisfies $(*)$ by part~(d), it follows from part~(b) that there is a function $h$ from $S_\b \cup \braces{\b} = J$ to $C$ that satisfies $(*)$.
     Hence the desired function $h$ exists in both cases.
-    Part (a) also clearly shows that this function is unique.
+    part~(a) also clearly shows that this function is unique.
   }
 }
 
@@ -642,7 +642,7 @@
     Thus in what follows assume that $A \neq \es$.
 
     Suppose that there is an injection from $A$ to $B$.
-    Then there cannot be an injection from $B$ to $A$ since, if there were, then $A$ and $B$ would have the same cardinality by the Cantor-Schroeder-Bernstein Theorem (shown in Exercise~7.6 part (b)).
+    Then there cannot be an injection from $B$ to $A$ since, if there were, then $A$ and $B$ would have the same cardinality by the Cantor-Schroeder-Bernstein Theorem (shown in Exercise~7.6 part~(b)).
     Thus $B$ has greater cardinality than $A$ by definition.
 
     On the other hand, if there is no injection from $A$ to $B$ then there is no surjection from $B$ to $A$ by Lemma~\ref{lem:wellord:injsur} since they are both well-ordered and $A \neq \es$.

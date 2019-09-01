@@ -343,13 +343,13 @@
     }
     This can further be broken down as $h_i(\vx) = f_i(\pi_i(\vx)) = (f_i \circ \pi_i)(\vx)$, where each $f_i : \reals \to \reals$ is defined by $f_i(x) = a_i x + b_i$.
     As discussed in the proof of Theorem~19.6, each $\pi_i$ is continuous and we have that each $f_i$ is continuous by elementary calculus, noting that this is true whether each $a_i > 0$ or not.
-    It then follows from Theorem~18.2 part (c) that each $f_i \circ \pi_i = h_i$ is continuous.
+    It then follows from Theorem~18.2 part~(c) that each $f_i \circ \pi_i = h_i$ is continuous.
     Then we have that $h$ is continuous by Theorem~19.6 since each coordinate function is continuous and we are using the product topology.
 
     Now define the functions $g_i : \reals \to \reals$ by $g_i(x) = (x - b_i) / a_i$ for $i \in \pints$, noting that this is defined since each $a_i > 0$.
     Define also the functions $k_i : \reals^\w \to \reals$ by $k_i = g_i \circ \pi_i$, and finally define $k : \reals^\w \to \reals^\w$ by $k(\vx) = (k_1(\vx), k_2(\vx), \ldots)$.
     Now again we have that each $\pi_i$ and $g_i$ are continuous by the proof of Theorem~19.6 and elementary calculus.
-    Hence $k_i = g_i \circ \pi_i$ and $k$ are continuous by Theorem~18.2 part (c), and Theorem~19.6, respectively, as before.
+    Hence $k_i = g_i \circ \pi_i$ and $k$ are continuous by Theorem~18.2 part~(c), and Theorem~19.6, respectively, as before.
 
     Now consider any $\vx = \seqinf{x} \in \reals^\w$ so that we have, for any $i \in \pints$,
     \ali{
@@ -446,7 +446,7 @@
   \qproof{
     Let $\cC$ be the collection of topologies on $A$ relative to which each of the functions $f_\a$ is continuous.
     Clearly $\cC$ is nonempty as the discrete topology is in $\cC$ since every subset of $A$ is open in it so that $f_\a(V_\a)$ is always open when $V_\a$ is open in $X_\a$.
-    Let $\cT = \bigcap \cC$, which is a topology on $A$ by what was shown in Exercise~13.4 part (a).
+    Let $\cT = \bigcap \cC$, which is a topology on $A$ by what was shown in Exercise~13.4 part~(a).
     We claim that this is the unique coarsest topology such that each $f_\a$ is continuous relative to it.
     To see this suppose that $\cT'$ is any topology in such that each $f_\a$ is continuous relative to it, hence $\cT' \in \cC$.
     Then, for any open $U \in \cT = \bigcap \cC$ we of course have that $U \in \cT'$ since $\cT' \in \cC$.
@@ -461,9 +461,9 @@
 
   (b)
   \qproof{
-    We show that $\cC$ from part (a) is exactly the set of topologies on $A$ that contain the subbasis $\cS$.
+    We show that $\cC$ from part~(a) is exactly the set of topologies on $A$ that contain the subbasis $\cS$.
     That is, we show that $\cT' \in \cC$ if and only if $\cS \ss \cT'$ when $\cT'$ is a topology on $A$.
-    Since the coarsest topology $\cT$ from part (a) is defined as $\bigcap \cC$, this shows that $\cT$ is the topology generated from the subbasis $\cS$ by Exercise~13.5.
+    Since the coarsest topology $\cT$ from part~(a) is defined as $\bigcap \cC$, this shows that $\cT$ is the topology generated from the subbasis $\cS$ by Exercise~13.5.
 
     $(\imp)$ Suppose that $\cT' \in \cC$ so that every $f_\a$ is continuous relative to $\cT'$.
     Now consider any subbasis element $S \in \cS$ so that $S = \inv{f_\b}(U_\b)$ for some $\b \in J$ and some open set $U_\b$ in $X_\b$.
@@ -484,13 +484,13 @@
     Consider any $\a \in J$ and any open set $U_\a$ of $X_\a$.
     Then $\inv{f_\a}(U_\a)$ is open with respect to $\cT$ since $f_\a$ is continuous relative to $\cT$ since every $f_\a$ is.
     It then follows that $\inv{g}(\inv{f_\a}(U_\a))$ is open in $Y$ since $g$ is continuous relative to $\cT$.
-    From Exercise~2.4 part (a) we have that $\inv{g}(\inv{f_\a}(U_\a)) = \inv{(f_\a \circ g)}(U_\a)$, which shows that $f_\a \circ g$ is continuous since $U_\a$ was an arbitrary open set of $X_\a$.
+    From Exercise~2.4 part~(a) we have that $\inv{g}(\inv{f_\a}(U_\a)) = \inv{(f_\a \circ g)}(U_\a)$, which shows that $f_\a \circ g$ is continuous since $U_\a$ was an arbitrary open set of $X_\a$.
     Since $\a \in J$ was arbitrary, this shows the desired result.
 
     $(\pmi)$ Now suppose that every $f_\a \circ g$ is continuous and consider any open set $U$ of $A$ with respect to $\cT$.
-    Then by part (b) we have that $U$ is an arbitrary union of finite intersections of subbasis elements $\inv{f_\a}(U_\a)$ for $\a \in J$ and open $U_\a$ in $X_\a$.
+    Then by part~(b) we have that $U$ is an arbitrary union of finite intersections of subbasis elements $\inv{f_\a}(U_\a)$ for $\a \in J$ and open $U_\a$ in $X_\a$.
     It then follows from Exercise~2.2 parts (b) and (c) that $\inv{g}(U)$ is an arbitrary union of finite intersections of sets $\inv{g}(\inv{f_\a}(U_\a))$.
-    Again we have that each $\inv{g}(\inv{f_\a}(U_\a)) = \inv{(f_\a \circ g)}(U_\a)$ by Exercise~2.4 part (a) so that each of these sets is open in $Y$ since every $f_\a \circ g$ is continuous.
+    Again we have that each $\inv{g}(\inv{f_\a}(U_\a)) = \inv{(f_\a \circ g)}(U_\a)$ by Exercise~2.4 part~(a) so that each of these sets is open in $Y$ since every $f_\a \circ g$ is continuous.
     Hence $\inv{g}(U)$ is open as well since it is the arbitrary union of finite intersections of these open sets and $Y$ is a topological space.
     Since $U$ was an arbitrary open set of $A$ with respect to $\cT$, this shows that $g$ is continuous relative to $\cT$ as desired.
   }
@@ -500,7 +500,7 @@
     Suppose that $U$ is any open set of $A$ with respect to $\cT$.
     Consider any $\vy = (y_\a)_{\a \in J} \in f(U)$ so that there is an $a \in U$ where $f(a) = \vy$.
     Since $a \in U$ and $U$ is open in $A$, we have that there is a basis element $B_A$ containing $a$ where $B_A \ss U$.
-    It then follows from part (b) that this basis element is a finite intersection of subbasis elements, hence $B_A = \bigcap_{\b \in I} \inv{f_\b}(U_\b)$, where $I \ss J$ is finite and each $U_\b$ is open in $X_\b$.
+    It then follows from part~(b) that this basis element is a finite intersection of subbasis elements, hence $B_A = \bigcap_{\b \in I} \inv{f_\b}(U_\b)$, where $I \ss J$ is finite and each $U_\b$ is open in $X_\b$.
     Now define
     \gath{
       V_\a = \begin{cases}

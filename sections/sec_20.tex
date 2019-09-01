@@ -169,7 +169,7 @@
     Therefore it must be that the two topologies are equal since each is finer than the other.
   }
 
-  (b) Let $d$ denote the metric defined in part (a), that is
+  (b) Let $d$ denote the metric defined in part~(a), that is
   \gath{
     d(\vx, \vy) = \sum_{i=1}^n \abs{x_i - y_i} \,.
   }
@@ -213,7 +213,7 @@
   This of course shows that the metric topology induced by $d$ is finer than that induced by $d'$ by Lemma~20.2 again.
 
   Thus we have shown that the metric topology induced by $d'$ is finer than that induced by $\r$, and also that that induced by $d$ is finer than that induced by $d'$.
-  But it was shown in part (a) and Theorem~20.3 that those induced by $d$ and $\r$ are the same topology, which is is the usual product topology on $\reals^n$.
+  But it was shown in part~(a) and Theorem~20.3 that those induced by $d$ and $\r$ are the same topology, which is is the usual product topology on $\reals^n$.
   Hence if $\cT_p$ denotes this usual product topology, we have
   \gath{
     \cT_p = \cT_\r \ss \cT_{d'} \ss \cT_d = \cT_\r = \cT_p \,.
@@ -337,7 +337,7 @@
   One can summarize the result of this exercise as follows: If $X$ has a metric $d$, then the topology induced by $d$ is the coarsest topology relative to which the function $d$ is continuous.
 }
 \sol{
-  (a) We use Theorem~18.1 part (4) to show that $d$ is continuous.
+  (a) We use Theorem~18.1 part~(4) to show that $d$ is continuous.
   So consider any $x_1 \times x_2 \in X \times X$ and any neighborhood $V$ of $z = d(x_1,x_2)$, noting that $V \ss \reals$ since $\reals$ is the range of $d$.
   Since $V$ is open in $\reals$, there is a basis element $B = (a,b)$ containing $z$ where $B \ss V$.
   Hence $a < z < b$.
@@ -369,7 +369,7 @@
   }
   We therefore have that $a < w < b$ so that $w \in (a,b) = B$.
   This of course shows that $d(U) \ss B$ since $w$ was arbitrary.
-  Moreover, we have that $B \ss V$ so that clearly $d(U) \ss V$, which completes the proof of Theorem~18.1 part (4) so that $d$ is continuous.
+  Moreover, we have that $B \ss V$ so that clearly $d(U) \ss V$, which completes the proof of Theorem~18.1 part~(4) so that $d$ is continuous.
 
   (b) Let $U$ be any open set of $X$ and consider any $x \in U$.
   Then clearly there is a basis element $B_d(y, \e)$, for some $\e > 0$ and $y \in U$, of the metric topology $X$ that contains $x$ and where $B_d(y, \e) \ss U$.
@@ -524,7 +524,7 @@
     Hence it is not true that $\br(\vx, \vze) < 1$ so that $\vx \notin B_{\br}(\vze, 1)$.
     Thus $f((-\d, \d)) \nss B_{\br}(\vze, 1)$ so that $f$ is not continuous in the uniform topology.
 
-    Next we show that $g$ and $h$ \emph{are} continuous in the uniform topology at the same time, which we show using Theorem~18.1 part (4).
+    Next we show that $g$ and $h$ \emph{are} continuous in the uniform topology at the same time, which we show using Theorem~18.1 part~(4).
     Consider any real $u$ and any neighborhood $V$ of $\vx = g(u)$ (or $\vx = h(u)$) in the uniform topology.
     Then by Lemma~\ref{lem:metric:ball} there is an $\e > 0$ such that the basis element $B_{\br}(\vx, \e)$ is a subset of $V$.
     Now consider the basis element and open set $U = B_d(u, \e/2)$, where $d$ denotes the usual metric on $\reals$.
@@ -557,7 +557,7 @@
   }
 
   (b) First we note that, since $\reals$ is a Hausdorff space, $\reals^\w$ is as well in both the box and product topologies by Theorem~19.4.
-  Therefore the uniform topology on $\reals^\w$ is also Hausdorff by Lemma~\ref{lem:metric:finer} part (6) since it is finer than the product topology.
+  Therefore the uniform topology on $\reals^\w$ is also Hausdorff by Lemma~\ref{lem:metric:finer} part~(6) since it is finer than the product topology.
   It then follows from Theorem~17.10 that if any of the sequences converge in any of the three topologies, then they converge to a unique point.
 
   Regarding whether the sequences converge in the various topologies then, we claim
@@ -600,7 +600,7 @@
     Since $n \geq N+1$ was arbitrary and $U$ was an arbitrary neighborhood of $\vze$, this shows that the sequence converges to $\vze$ as desired.
     
     Next we show that the $\vw$ sequence does not converge in the uniform topology.
-    It suffices to show that the sequence does not converge to $\vze$, since if it converged to any other point $\vx$, then by Lemma~\ref{lem:metric:finer} part (3) it would also converge to $\vx$ in the product topology since it is coarser than the uniform topology.
+    It suffices to show that the sequence does not converge to $\vze$, since if it converged to any other point $\vx$, then by Lemma~\ref{lem:metric:finer} part~(3) it would also converge to $\vx$ in the product topology since it is coarser than the uniform topology.
     However, this would violate the fact that the sequence converges to $\vze$ in the product topology (just shown above), and so cannot also converge to $\vx \neq \vze$ since the convergence point is unique as noted above.
 
     So consider the neighborhood $B_{\br}(\vze, 1)$ of $\vze$ in the uniform topology.
@@ -614,7 +614,7 @@
     Hence it is not true that $\br(\vw_n, \vze) < 1$ so that $\vw_n \notin B_{\br}(\vze, 1)$.
     This shows the desired result since $n$ was arbitrary.
 
-    It then follows that the $\vw$ sequence also does not converge at all in the box topology by Lemma~\ref{lem:metric:finer} part (5) since it is finer than the uniform topology.
+    It then follows that the $\vw$ sequence also does not converge at all in the box topology by Lemma~\ref{lem:metric:finer} part~(5) since it is finer than the uniform topology.
 
     Regarding the $\vx$ sequence, the definition is that each
     \gath{
@@ -645,10 +645,10 @@
     Thus also $\vx_n \in U$ since $B_{\br}(\vze, \e) \ss U$.
     Since $n \geq N$ was arbitrary as was the neighborhood $U$, this shows that the sequence converges to $\vze$ as desired.
 
-    Since it is coarser than the uniform topology, it follows that the $\vx$ sequence also converges to $\vze$ in the product topology as well by Lemma~\ref{lem:metric:finer} part (3).
+    Since it is coarser than the uniform topology, it follows that the $\vx$ sequence also converges to $\vze$ in the product topology as well by Lemma~\ref{lem:metric:finer} part~(3).
 
     Next we show that the $\vx$ sequence does not converge in the box topology, for which it suffices to show that it does not converge to $\vze$.
-    Again, this is because, if it were to converge to some other point $\vy \neq 0$ in the box topology, then it would also converge to $\vy$ in the uniform topology since it is coarser (Lemma~\ref{lem:metric:finer} part (3)), but this would violate the fact that it converges to the unique point $\vze$ by what was just shown.
+    Again, this is because, if it were to converge to some other point $\vy \neq 0$ in the box topology, then it would also converge to $\vy$ in the uniform topology since it is coarser (Lemma~\ref{lem:metric:finer} part~(3)), but this would violate the fact that it converges to the unique point $\vze$ by what was just shown.
     So consider the basis element and open set of the box topology $U = \prod_{n=1}^\infty U_n$ where each $U_n = (-1/n, 1/n)$.
     Clearly $U$ contains $\vze$ so that it is a neighborhood of $\vze$.
     We claim that no element of the sequence is in $U$, which of course suffices to show that it cannot converge to $\vze$.
@@ -702,7 +702,7 @@
     Since $m$ was arbitrary, this shows that $\vz_n \in \prod_{m=1}^\infty B_m = B \ss U$.
     This shows that the sequence converges to $\vze$ since $n \geq N$ was arbitrary and $U$ was any neighborhood of $\vze$.
 
-    Of course this also shows that the $\vz$ sequence converges to $\vze$ in the uniform and product topologies as well by Lemma~\ref{lem:metric:finer} part (3) since they are both coarser than the box topology.
+    Of course this also shows that the $\vz$ sequence converges to $\vze$ in the uniform and product topologies as well by Lemma~\ref{lem:metric:finer} part~(3) since they are both coarser than the box topology.
   }
 }
 
@@ -840,7 +840,7 @@
 
   (b)
   \qproof{
-    Let $\vy$ be the point in $\reals^\w$ defined in part (a) so that we know that $\vy \in U(\vx, \e)$.
+    Let $\vy$ be the point in $\reals^\w$ defined in part~(a) so that we know that $\vy \in U(\vx, \e)$.
     Now if $U(\vx, \e)$ were open in the uniform topology then there would be a basis element $B_{\br}(\vy, \d)$ that is contained in $U(\vx, \e)$.
     We shall show that any such basis element cannot be contained within $U(\vx, \e)$, from which the desired result follows.
 
@@ -925,7 +925,7 @@
 \sol{
   First some discussion.
   We know that the product topology is strictly finer than the uniform topology in $\reals^\w$, and the that box topology is strictly finer than the uniform topology.
-  By Lemma~\ref{lem:metric:finer} part (1), when the topology on the range of a function becomes coarser, the function remains continuous.
+  By Lemma~\ref{lem:metric:finer} part~(1), when the topology on the range of a function becomes coarser, the function remains continuous.
   It is similarly easy to show that if the topology on the \emph{domain} of a function becomes \emph{finer}, it also remains continuous.
   However, nothing can be said for sure if the range becomes finer and/or the domain becomes coarser.
 
@@ -937,7 +937,7 @@
   \qproof{
     $(\imp)$ We show this direction by contrapositive.
     So suppose that $\braces{a_i}$ is not bounded.
-    We then show that $h$ is not continuous by showing the negation of Theorem~18.1 part (4).
+    We then show that $h$ is not continuous by showing the negation of Theorem~18.1 part~(4).
     So consider the point $\vze$ and the neighborhood $V = B_{\br}(h(\vze), 1)$ in the uniform topology.
     Consider also any neighborhood $U$ of $\vze$ so that by Lemma~\ref{lem:metric:ball} there is an $\e > 0$ where $B_{\br}(\vze, \e) \ss U$.
     Now define the point $\vx \in \reals^\w$ by $x_i = \e/2$ for all $i \in \pints$.
@@ -988,7 +988,7 @@
       \br(\vz, h(\vx)) = \br(h(\vy), h(\vx)) = \sup\braces{\bd(h_i(y_i), h_i(x_i)) \where i \in \pints} \leq \e/2 < \e
     }
     so that $\vz \in B_{\br}(h(\vx), \e) \ss V$.
-    Since $\vz$ was arbitrary, this shows that $f(U) \ss V$, which shows that $h$ is continuous by Theorem~18.1 part (4) since $V$ was an arbitrary neighborhood.
+    Since $\vz$ was arbitrary, this shows that $f(U) \ss V$, which shows that $h$ is continuous by Theorem~18.1 part~(4) since $V$ was an arbitrary neighborhood.
   }
 
   The function $h$ is a homeomorphism if and only if there are real $a, a_0 > 0$ where $0 < a_0 \leq a_i \leq a$ for all $i \in \pints$.
@@ -1229,7 +1229,7 @@
 
   (b)
   \qproof{
-    Since relative topological ``fineness'' is preserved when inherited by subspace topologies (which is trivial to show), we have from part (a) and what was shown in the text that
+    Since relative topological ``fineness'' is preserved when inherited by subspace topologies (which is trivial to show), we have from part~(a) and what was shown in the text that
     \gath{
       \text{box topology} \sps \text{\elltop{}} \sps \text{uniform topology} \sps \text{product topology}
     }
@@ -1341,7 +1341,7 @@
   on $H$.
   We claim, however, that the inherited box topology is distinct from the other three, which are all the same.
   \qproof{
-    First we show that the inherited box topology has an open set that is not open in the inherited \elltop{}, in a very similar way to how this was shown in part (b).
+    First we show that the inherited box topology has an open set that is not open in the inherited \elltop{}, in a very similar way to how this was shown in part~(b).
     Consider the set $U = H \cap \prod_{n \in \pints} (-1, 1/n)$, which is clearly a basis element and open set in the inherited box topology.
     We show that $U$ is not open in the inherited \elltop{} using the contrapositive of Corollary~\ref{cor:metric:subball}.
     So consider the point $\vze$, which is clearly contained in $U$ and any $\e > 0$ and the arbitrary ball $B_d(\vze, \e)$ of $X$.
@@ -1487,7 +1487,7 @@
     }
     by definition.
 
-    For part (6) we have by definition that
+    For part~(6) we have by definition that
     \gath{
       \norm{a \vx} = \squares{\sum_{i=1}^n (a x_i)^2}^{1/2} = \squares{\sum_{i=1}^n a^2 x_i^2}^{1/2}
       = \squares{a^2 \sum_{i=1}^n x_i^2}^{1/2} = \squares{a^2}^{1/2} \squares{\sum_{i=1}^n x_i^2}^{1/2} = \abs{a}\norm{\vx}
@@ -1522,8 +1522,8 @@
       \abs{\vx \cdot \vy} = \abs{\vx \cdot \vze} = \abs{\vze \cdot \vx} = \abs{0} = 0 \leq 0 = \norm{\vx} 0 = \norm{\vx} \norm{\vze} = \norm{\vx} \norm{\vy} \,.
     }
     So in what follows assume that $\vx, \vy \neq \vze$.
-    Then by Lemma~\ref{lem:metric:vprops} part (3) we have that $\norm{\vx}$ and $\norm{\vy}$ are both nonzero so that $a = 1/\norm{\vx}$ and $b = 1/\norm{\vy}$ are defined.
-    Then, by Lemma~\ref{lem:metric:vprops} part (4), we of course have
+    Then by Lemma~\ref{lem:metric:vprops} part~(3) we have that $\norm{\vx}$ and $\norm{\vy}$ are both nonzero so that $a = 1/\norm{\vx}$ and $b = 1/\norm{\vy}$ are defined.
+    Then, by Lemma~\ref{lem:metric:vprops} part~(4), we of course have
     \gath{
       \norm{a\vx \pm b\vy} \geq 0 \,.
     }
@@ -1559,13 +1559,13 @@
   \qproof{
     We have
     \ali{
-      \norm{\vx + \vy}^2 &= (\vx + \vy) \cdot (\vx + \vy) & \text{(by Lemma~\ref{lem:metric:vprops} part (5))} \\
-      &= (\vx + \vy) \cdot \vx + (\vx + \vy) \cdot \vy & \text{(by part (a))} \\
-      &= \vx \cdot (\vx + \vy) + \vy \cdot (\vx + \vy) & \text{(by Lemma~\ref{lem:metric:vprops} part (1))} \\
-      &= \vx \cdot \vx + \vx \cdot \vy + \vy \cdot \vx + \vy \cdot \vy & \text{(by part (a))} \\
-      &= \norm{\vx}^2 + \vx \cdot \vy + \vy \cdot \vx + \norm{\vy}^2 & \text{(by Lemma~\ref{lem:metric:vprops} part (5))} \\
-      &= \norm{\vx}^2 + \vx \cdot \vy + \vx \cdot \vy + \norm{\vy}^2 & \text{(by Lemma~\ref{lem:metric:vprops} part (1))} \\
-      &\leq \norm{\vx}^2 + \norm{\vx}\norm{\vy} + \norm{\vx}\norm{\vy} + \norm{\vy}^2 & \text{(by part (b))} \\
+      \norm{\vx + \vy}^2 &= (\vx + \vy) \cdot (\vx + \vy) & \text{(by Lemma~\ref{lem:metric:vprops} part~(5))} \\
+      &= (\vx + \vy) \cdot \vx + (\vx + \vy) \cdot \vy & \text{(by part~(a))} \\
+      &= \vx \cdot (\vx + \vy) + \vy \cdot (\vx + \vy) & \text{(by Lemma~\ref{lem:metric:vprops} part~(1))} \\
+      &= \vx \cdot \vx + \vx \cdot \vy + \vy \cdot \vx + \vy \cdot \vy & \text{(by part~(a))} \\
+      &= \norm{\vx}^2 + \vx \cdot \vy + \vy \cdot \vx + \norm{\vy}^2 & \text{(by Lemma~\ref{lem:metric:vprops} part~(5))} \\
+      &= \norm{\vx}^2 + \vx \cdot \vy + \vx \cdot \vy + \norm{\vy}^2 & \text{(by Lemma~\ref{lem:metric:vprops} part~(1))} \\
+      &\leq \norm{\vx}^2 + \norm{\vx}\norm{\vy} + \norm{\vx}\norm{\vy} + \norm{\vy}^2 & \text{(by part~(b))} \\
       &= \norm{\vx}^2 + 2\norm{\vx}\norm{\vy} + \norm{\vy}^2 \\
       &= (\norm{\vx} + \norm{\vy})^2 \,.
     }
@@ -1578,7 +1578,7 @@
     \gath{
       d(\vx, \vy) = \norm{\vx - \vy} \,.
     }
-    Then part (1) of the definition of a metric follows directly from Lemma~\ref{lem:metric:vprops} since of course
+    Then part~(1) of the definition of a metric follows directly from Lemma~\ref{lem:metric:vprops} since of course
     \gath{
       d(\vx, \vy) = \norm{\vx - \vy} \geq 0 \,.
     }
@@ -1586,17 +1586,17 @@
     \gath{
       d(\vx, \vy) = \norm{\vx - \vy} = 0
     }
-    by Lemma~\ref{lem:metric:vprops} part (3).
-    Similarly part (2) of the definition follows from Lemma~\ref{lem:metric:vprops} part (6) as follows:
+    by Lemma~\ref{lem:metric:vprops} part~(3).
+    Similarly part~(2) of the definition follows from Lemma~\ref{lem:metric:vprops} part~(6) as follows:
     \gath{
       d(\vx, \vy) = \norm{\vx - \vy} = \norm{(-1)(\vy - \vx)} = \abs{-1}\norm{\vy - \vx} = \norm{\vy - \vx} = d(\vy, \vx) \,.
     }
-    Lastly, for part (3) of the definition, we have that
+    Lastly, for part~(3) of the definition, we have that
     \ali{
       d(\vx, \vz) &= \norm{\vx - \vy} = \norm{\vx - \vz + \vy - \vy} = \norm{(\vx - \vy) + (\vy - \vz)} \\
       &\leq \norm{\vx - \vy} + \norm{\vx - \vz} = d(\vx, \vy) + d(\vy, \vz) \,,
     }
-    where we have used what was shown in part (c).
+    where we have used what was shown in part~(c).
     This shows that $d$ has all the properties required to be a metric.
   }
 }
@@ -1628,7 +1628,7 @@
     }
     for any $n \in \pints$.
     Clearly then each term in the sum is non-negative so that the sequence of partial sums is non-decreasing, which is to say that $s_{n+1} \geq s_n$ for every $n \in \pints$.
-    Then, to show that the series converges, it suffices to show that the partial sums are bounded, since convergence then follows from what will be shown in Exercise~21.11 part (a).
+    Then, to show that the series converges, it suffices to show that the partial sums are bounded, since convergence then follows from what will be shown in Exercise~21.11 part~(a).
     To this end we show that the sequence $\seqinf{s}$ is a bounded above.
 
     So, first let us define the real numbers
@@ -1649,7 +1649,7 @@
       \norm{\vx_n} = \squares{\sum_{i=1}^n x_i^2}^{1/2} \leq \squares{\sum_{i=1}^\infty x_i^2}^{1/2} = \norm{\vx} \,,
     }
     and similarly $\norm{\vy_n} \leq \norm{\vy}$ for any $n \in \pints$.
-    Hence, clearly $\norm{\vx_n} \norm{\vy_n} \leq \norm{\vx} \norm{\vy}$ since norms are always non-negative by Lemma~\ref{lem:metric:vprops} part (4).
+    Hence, clearly $\norm{\vx_n} \norm{\vy_n} \leq \norm{\vx} \norm{\vy}$ since norms are always non-negative by Lemma~\ref{lem:metric:vprops} part~(4).
 
     Lastly, we define $\vxb_n = (\abs{x_1}, \ldots, \abs{x_n})$ and $\vyb_n = (\abs{y_1}, \ldots, \abs{y_n})$ for any $n \in \pints$.
     From this definition it follows that
@@ -1658,7 +1658,7 @@
     }
     and similarly that $\norm{\vyb_n} = \norm{\vy_n}$.
 
-    Putting all of this together we have by Exercise~20.9 part (b) that
+    Putting all of this together we have by Exercise~20.9 part~(b) that
     \gath{
       s_n = \sum_{i=1}^n \abs{x_i y_i} = \sum_{i=1}^n \abs{x_i} \abs{y_i} = \vxb_n \cdot \vyb_n \leq \norm{\vxb_n} \norm{\vyb_n}
       = \norm{\vx_n} \norm{\vy_n} \leq \norm{\vx} \norm{\vy}
@@ -1670,9 +1670,9 @@
   (b)
   \qproof{
     First, it is a well known fact that if a series converges absolutely, then it converges.
-    Hence, since it was shown in part (a) that $\sum \abs{x_i y_i}$ converges, we have that $\sum x_i y_i$ also converges.
+    Hence, since it was shown in part~(a) that $\sum \abs{x_i y_i}$ converges, we have that $\sum x_i y_i$ also converges.
     We of course also know that $\sum x_i^2$ and $\sum y_i^2$ converge since $\vx, \vy \in X$.
-    It then follows from Exercise~21.11 part (b) that
+    It then follows from Exercise~21.11 part~(b) that
     \gath{
       \sum_{i=1}^\infty (x_i + y_i)^2 = \sum_{i=1}^\infty (x_i^2 + 2x_i y_i + y_i^2)
     }
@@ -1682,7 +1682,7 @@
       \vx + \vy = (x_1 + y_1, x_2 + y_2, \ldots)
     }
     we have that $\vx + \vy \in X$ as desired.
-    We also have that $c \vx = \seqinf{cx}$ by definition, and it again follows from Exercise~21.11 part (b) that
+    We also have that $c \vx = \seqinf{cx}$ by definition, and it again follows from Exercise~21.11 part~(b) that
     \gath{
       \sum_{i=1}^\infty (c x_i)^2 = \sum_{i=1}^\infty c^2 x_i^2
     }
@@ -1693,8 +1693,8 @@
   (c)
   \qproof{
     Suppose that $\vx,\vy \in X$.
-    It then follows from part (b) that $-\vy = (-1) \vy \in X$.
-    Then also $\vx - \vy = \vx + (-\vy) \in X$ as well, again by what was shown in part (b).
+    It then follows from part~(b) that $-\vy = (-1) \vy \in X$.
+    Then also $\vx - \vy = \vx + (-\vy) \in X$ as well, again by what was shown in part~(b).
     Since we clearly have
     \gath{
       \vx - \vy = (x_1 - y_1, x_2 - y_2, \ldots) \,,
@@ -1723,14 +1723,14 @@
       d(\vx, \vy) = \squares{\sum_{i=1}^\infty (x_i - y_i)^2}^{1/2} > 0^{1/2} = 0
     }
     so that of course $d(\vx, \vy) \neq 0$ as desired.
-    This shows part (1) of the definition of a metric.
+    This shows part~(1) of the definition of a metric.
 
-    Showing part (2) of the definition is even easier:
+    Showing part~(2) of the definition is even easier:
     \gath{
       d(\vx, \vy) = \squares{\sum_{i=1}^\infty (x_i - y_i)^2}^{1/2} = \squares{\sum_{i=1}^\infty (y_i - x_i)^2}^{1/2} = d(\vy, \vx) \,.
     }
 
-    For part (3) consider any $\vx,\vy,\vz \in X$.
+    For part~(3) consider any $\vx,\vy,\vz \in X$.
     Denote the truncated sequences by $\vx_n = \seqfin{x}{n}$ for any $n \in \pints$, and similarly for $\vy_n$ and $\vz_n$.
     Then we have
     \gath{
@@ -1745,7 +1745,7 @@
       d(\vx, \vz) &= \lim_{n \to \infty} \norm{\vx_n - \vz_n} &
       d(\vy, \vz) &= \lim_{n \to \infty} \norm{\vy_n - \vz_n} \,.
     }
-    Now, it was shown in Exercise~20.9 part (d) that
+    Now, it was shown in Exercise~20.9 part~(d) that
     \gath{
       \norm{\vx_n - \vz_n} \leq \norm{\vx_n - \vy_n} + \norm{\vy_n - \vz_n}
     }
@@ -1785,15 +1785,15 @@
     }
     Conversely, if $d'(x,y) = 0$ then it has to be that $d(x,y) = 0$ as well since $1 + d(x,y) > 0$.
     It then must be that $x = y$ since $d$ is a metric.
-    This shows part (1) of the definition of a metric.
+    This shows part~(1) of the definition of a metric.
 
-    Part (2) is easy to show:
+    part~(2) is easy to show:
     \gath{
       d'(x,y) = \frac{d(x,y)}{1 + d(x,y)} = \frac{d(y,x)}{1 + d(y,x)} = d'(y,x)
     }
     since again $d$ is a metric so that $d(x,y) = d(y,x)$.
 
-    For part (3) define the function $f(x) = x/(1+x)$ over the domain $\braces{x \in \reals \where x \geq 0}$ so that clearly $d'(x,y) = f(d(x,y))$.
+    For part~(3) define the function $f(x) = x/(1+x)$ over the domain $\braces{x \in \reals \where x \geq 0}$ so that clearly $d'(x,y) = f(d(x,y))$.
     We first show that $f$ is monotonically increasing.
     The easiest way to do this is to show that its derivative is always positive, from which monotonicity follows from elementary calculus.
     Using the quotient rule, we have
@@ -1827,7 +1827,7 @@
       &\leq f(d(x,y)) + f(d(y,z)) & \text{(by what was just shown)} \\
       d'(x,z) &\leq d'(x,y) + d'(y,z) \,,
     }
-    for any $x,y,z \in X$, which of course shows part (3) of the definition.
+    for any $x,y,z \in X$, which of course shows part~(3) of the definition.
     This completes the proof that $d'$ is a valid metric.
 
     It is easy to see that $d'$ is bounded by $1$:

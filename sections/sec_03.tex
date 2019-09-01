@@ -548,3 +548,175 @@
   For example if $x = -2$ and $y = 1$ then clearly $x < y$ in the normal order.
   However, we have that $y^2 = 1^2 = 1 < 4 = (-2)^2 = x^2$ so that $yCx$.
 }
+
+\newcommand\appt[1]{a_{#1} \times b_{#1}}
+\exercise{9}{
+  Check that the dictionary order is an order relation.
+}
+\sol{
+  Suppose that $A$ and $B$ are two sets with order relations $<_A$ and $<_B$.
+  Recall that the dictionary order $<$ on $A \times B$ is defined by
+  \gath{
+    \appt{1} < \appt{2}
+  }
+  if $a_1 <_A a_2$ or if $a_1 = a_2$ and $b_1 <_B b_2$.
+  \qproof{
+    Clearly $<$ is a relation on $A \times B$ so we just need to show the three properties of an order relation:
+
+    (Comparability) Consider distinct points $\appt{1}$ and $\appt{2}$ in $A \times B$ so that $a_1 \neq a_2$ or $b_1 \neq b_1$.
+    If $a_1 \neq a_2$ then they are comparable in $<_A$ (since it is an order relation) so that, without loss of generality, we can assume that $a_1 <_A a_2$.
+    Then of course $\appt{1} < \appt{2}$ by definition.
+    So assume that $a_1 = a_2$ so that it must be that $b_1 \neq b_2$.
+    Then $b_1$ and $b_2$ are comparable in $<_B$ since it is an order relation.
+    So without loss of generality we can assume that $b_1 <_B b_2$.
+    Then of course $\appt{1} < \appt{2}$ since also $a_1 = a_2$.
+    Thus either way $\appt{1}$ and $\appt{2}$ are comparable in $<$.
+
+    (Nonreflexivity) Suppose that $\appt{}$ is any element of $A \times B$.
+    Since $<_B$ is an order relation, it is nonreflexive so that it is not true that $b <_B b$.
+    Since of course $a=a$, it follows that it cannot be that $\appt{} < \appt{}$ since it would have to be that $b <_B b$.
+    Hence $<$ is nonreflexive since $\appt{}$ was arbitrary.
+
+    (Transitivity) Suppose that $\appt{1} < \appt{2}$ and $\appt{2} < \appt{3}$.
+    We then have the following cases:
+
+    Case: $a_1 <_A a_2$.
+    \begin{indpar}
+      Case: $a_2 <_A a_3$.
+      Then $a_1 <_A a_2$ and $a_2 <_A a_3$ so that $a_1 <_A a_3$ since $<_A$ is transitive.
+      Thus by definition $\appt{1} < \appt{3}$.
+
+      Case: $a_2 = a_3$ and $b_2 <_B b_3$.
+      Then $a_1 <_A a_2 = a_3$ so that $\appt{1} < \appt{3}$ by definition.
+    \end{indpar}
+
+    Case: $a_1 = a_2$ and $b_1 <_B b_2$.
+    \begin{indpar}
+      Case: $a_2 <_A a_3$.
+      Then $a_1 = a_2 <_A a_3$ so that by definition $\appt{1} < \appt{3}$.
+
+      Case: $a_2 = a_3$ and $b_2 <_B b_3$.
+      Then $a_1 = a_2 = a_3$ and $b_1 <_B b_2$ and $b_2 <_B b_3$ so that $b_1 <_B b_3$ since $<_B$ is transitive.
+      Therefore again $\appt{1} < \appt{3}$ by definition.
+    \end{indpar}
+
+    Thus in all cases $\appt{1} < \appt{3}$, which shows that $<$ is transitive.
+  }
+}
+
+\def\srt{\sqrt{1+4y^2}}
+\exercise{10}{
+  \eparts{
+  \item Show that the map $f: (-1,1) \to \reals$ of Example~9 is order preserving.
+  \item Show that the equation $g(y) = 2y/[1+(1+4y^2)^{1/2}]$ defines a function $g: \reals \to (-1,1)$ that is both a left and right inverse for $f$.
+  }
+}
+\sol{
+  (a)
+  Recall that $f$ from Example~3.9 is defined by
+  \gath{
+    f(x) = \frac{x}{1-x^2}
+  }
+  for $x \in (-1,1)$.
+  We show that $f$ preserves order.
+  \qproof{
+    Suppose that $x,y \in (-1,1)$ and that $x < y$.
+    Now, since $-1 < x < 1$, we have $0 \leq \abs{x} < 1$ so that
+    \gath{
+      x^2 = \abs{x}^2 = \abs{x}\abs{x} < \abs{x} \cdot 1 = \abs{x} < 1.
+    }
+    Hence $0 < 1-x^2$ so that also $0 < 1/(1-x^2)$ as well.
+    By the same argument $0 < 1-y^2$ so that $0 < 1/(1-y^2)$.
+    We then have the following cases:
+
+    Case: $x \geq 0$.
+    Then also $y > 0$ since $y > x \geq 0$.
+    Thus
+    \ali{
+      x^2 = x \cdot x \leq x &\cdot y < y \cdot y = y^2 & \text{(since $x<y$, $x \geq 0$, and $y > 0$)} \\
+      -x^2 &> -y^2 \\
+      1-x^2 &> 1-y^2 \\
+      \frac{1}{1-y^2} &> \frac{1}{1-x^2} \,.
+    }
+    From this it follows that
+    \gath{
+      f(x) = \frac{x}{1-x^2} < \frac{y}{1-x^2} < \frac{y}{1-y^2} = f(y)
+    }
+    since $x < y$ and $1/(1-x^2)$ and $1/(1-y^2)$ are both positive.
+
+    Case: $x < 0$.
+    Then $f(x) = x/(1-x^2) < 0$ since $x<0$ and $1/(1-x^2) > 0$.
+    \begin{indpar}
+      Case: $y \leq 0$.
+      Then we have that $-x > -y \geq 0$ so that $f(-y) < f(-x)$ by the previous case.
+      But we have $f(-x) = -x/(1-(-x)^2) = -x/(1-x^2) = -f(x)$, and similarly $f(-y) = -f(y)$.
+      Hence $-f(y) = f(-y) < f(-x) = -f(x)$ so that $f(y) > f(x)$.
+
+      Case: $y > 0$.
+      Then $f(y) = y/(1-y^2) > 0$ since $y>0$ and $1/(1-y^2) > 0$.
+      Hence $f(x) < 0 < f(y)$.
+    \end{indpar}
+
+    Therefore in all cases we have $f(x) < f(y)$, which shows that $f$ preserves order.
+  }
+
+  (b)
+  \qproof{
+    First we need to show that $g$ is even a function from $\reals$ to $(-1,1)$.
+    We note that
+    \gath{
+      y^2 \geq 0 \\
+      4y^2 \geq 0 \\
+      1+4y^2 \geq 1 > 0 \\
+      \srt > 0 \\
+      1 + \srt > 1 > 0
+    }
+    so that $g(y)$ is well-defined for all $y \in \reals$ since the denominator of $g(y)$ is always nonzero.
+    Now, if $y = 0$ then clearly $\abs{g(y)} = \abs{g(0)} = \abs{0} = 0 < 1$.
+    So in what follows assume that $y \neq 0$ so that $\abs{y} > 0$ and $y^2 > 0$.
+    Then we have
+    \gath{
+      1 > 0 \\
+      1 + 4y^2 > 4y^2 > 0 \\
+      \srt > \sqrt{4y^2} = 2\abs{y} \\
+      1 + \srt > 1 + 2\abs{y} > 2 \abs{y} > 0 \\
+      \frac{1}{2\abs{y}} > \frac{1}{1+\srt} \\
+      1 = \frac{2\abs{y}}{2\abs{y}} > \frac{2\abs{y}}{1+\srt} = \abs{\frac{2y}{1+\srt}} = \abs{g(y)}
+    }
+    so that $-1 < g(y) < 1$ and hence $g(y) \in (-1,1)$.
+    Thus $g$ is in fact a well-defined function from $\reals$ into $(-1,1)$.
+
+    To show that $g$ is a left inverse of $f$ consider any $x \in (-1,1)$.
+    First we have
+    \ali{
+      \sqrt{1 + 4f(x)^2} &= \sqrt{1 + \frac{4x^2}{(1-x^2)^2}} = \sqrt{\frac{(1-x^2)^2 + 4x^2}{(1-x^2)^2}} \\
+      &= \sqrt{\frac{1 - 2x^2 + x^4 + 4x^2}{{(1-x^2)^2}}} = \sqrt{\frac{1 + 2x^2 + x^4}{(1-x^2)^2}} \\
+      &= \sqrt{\frac{(1 + x^2)^2}{(1-x^2)^2}} = \frac{1+x^2}{1-x^2}
+    }
+    so that
+    \ali{
+      (g \circ f)(x) &= g(f(x)) = \frac{2f(x)}{1 + \sqrt{1+4f(x)^2}} = \frac{2x/(1-x^2)}{1 + \frac{1+x^2}{1-x^2}} \\
+      &= \frac{2x}{(1-x^2)\parens{1 + \frac{1+x^2}{1-x^2}}} = \frac{2x}{1 - x^2 + 1 + x^2} \\
+      &= \frac{2x}{2} = x \,,
+    }
+    which shows that $g \circ f = i_{(-1,1)}$ since $x$ was arbitrary so that $g$ is a left inverse of $f$.
+
+    Now consider any $y \in \reals$.
+    Then we first have
+    \ali{
+      g(y)^2 &= \parens{\frac{2y}{1 + \srt}}^2 = \frac{4y^2}{(1 + \srt)^2} \\
+      &= \frac{4y^2}{1 + 2\srt + 1 + 4y^2} = \frac{4y^2}{2 + 4y^2 + 2\srt} \\
+      &= \frac{2y^2}{1 + 2y^2 + \srt}
+    }
+    so that
+    \ali{
+      (f \circ g)(y) &= f(g(y)) = \frac{g(y)}{1 - g(y)^2} = \frac{2y/(1 + \srt)}{1 - \frac{2y^2}{1 + 2y^2 + \srt}} \\
+      &= \frac{2y}{(1 + \srt)\parens{\frac{1 + 2y^2 + \srt - 2y^2}{1 + 2y^2 + \srt}}} \\
+      &= \frac{2y}{(1 + \srt)\parens{\frac{1 + \srt}{1 + 2y^2 + \srt}}} \\
+      &= \frac{2y}{\frac{1 + 2\srt + 1 + 4y^2}{1 + 2y^2 + \srt}} = \frac{2y}{\frac{2 + 4y^2 + 2\srt}{1 + 2y^2 + \srt}} \\
+      &= \frac{2y}{2\parens{\frac{1 + 2y^2 + \srt}{1 + 2y^2 + \srt}}} = \frac{2y}{2} = y \,,
+    }
+    which shows that $f \circ g = i_\reals$ since $y$ was arbitrary so that $g$ is also a right inverse of $f$.
+  }
+  Note that what was shown implies that $f$ is bijective and that $g$ is its inverse, by Exercise~2.5 part~(e).
+}

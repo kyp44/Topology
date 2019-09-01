@@ -94,10 +94,10 @@
   \end{lem}
   \qproof{
     The proofs of both parts are quite simple.
-    Regarding part (1) we have that $x_\b \leq y_\b \leq \sup\braces{y_\a}$ for any $\b \in J$ so that clearly $\sup\braces{y_\a}$ is an upper bound of the set $\braces{x_\a}$.
+    Regarding part~(1) we have that $x_\b \leq y_\b \leq \sup\braces{y_\a}$ for any $\b \in J$ so that clearly $\sup\braces{y_\a}$ is an upper bound of the set $\braces{x_\a}$.
     It then follows by the definition of the supremum as the least upper bound that $\sup\braces{x_\a} \leq \sup\braces{y_\a}$ as desired.
 
-    For part (2) consider any $\b \in J$.
+    For part~(2) consider any $\b \in J$.
     Clearly $x_\b \leq \sup\braces{x_\a}$ and $y_\b \leq \sup\braces{y_\a}$ so that
     \gath{
       x_\b + y_\b \leq \sup\braces{x_\a} + \sup\braces{y_\a} \,.
@@ -123,16 +123,16 @@
     If $x = y$ then of course $x_k = y_k$ so that $\r(x,y) = d_k(x_k, y_k) = 0$.
     Now suppose that $\r(x,y) = 0$ and consider any $l \in \intsfin{n}$.
     Then we have that $d_l(x_l, y_l) \geq 0$ and that $d_l(x_l, y_l) \leq \r(x,y) = 0$, and hence it must be that $d_l(x_l, y_l) = 0$ so that $x_l = y_l$ since $d_l$ is a metric.
-    Since $l$ was arbitrary, this shows that $x = y$, which shows that $\r$ satisfies part (1) of the definition of a metric.
+    Since $l$ was arbitrary, this shows that $x = y$, which shows that $\r$ satisfies part~(1) of the definition of a metric.
 
-    As usual, part (2) of the definition is the easiest to show since
+    As usual, part~(2) of the definition is the easiest to show since
     \ali{
       \r(x,y) &= \max\braces{d_1(x_1,y_1), \ldots, d_n(x_n, y_n)} = \\
       &= \max\braces{d_1(y_1,x_1), \ldots, d_n(y_n, x_n)} = \\
       &= \r(y,x) \,,
     }
     as we have that each $d_l(x_l, y_l) = d_l(y_l, x_l)$ since $d_l$ is a metric.
-    Lastly, for part (3) we have
+    Lastly, for part~(3) we have
     \gath{
       \r(x,z) = d_m(x_m, z_m) \leq d_m(x_m, y_m) + d_m(y_m, z_m) \leq \r(x,y) + \r(y,z)
     }
@@ -179,7 +179,7 @@
     }
     exists and hence $D$ is well defined.
 
-    To show part (1) of the definition of a metric, pick any $j \in \pints$ so that clearly $\bd_j(x_j,y_j) \geq 0$ and hence $\bd_j(x_j,y_j)/j \geq 0$ also since $j \geq 1 > 0$.
+    To show part~(1) of the definition of a metric, pick any $j \in \pints$ so that clearly $\bd_j(x_j,y_j) \geq 0$ and hence $\bd_j(x_j,y_j)/j \geq 0$ also since $j \geq 1 > 0$.
     Thus we have
     \gath{
       D(x,y) = \sup\braces{\bd_i(x_i,y_i)/i} \geq \bd_j(x_j,y_j)/j \geq 0 \,.
@@ -198,15 +198,15 @@
       0 \leq \frac{\bd_j(x_j,y_j)}{j} \leq \sup\braces{\frac{\bd_i(x_i,y_i)}{i}} = D(x,y) = 0 \,.
     }
     This shows that $\bd_j(x_j,y_j)/j = 0$ so that clearly $\bd_j(x_j,y_j) = 0$ as well, from which it follows that $x_j = y_j$ since $\bd_j$ is a standard bounded metric.
-    Since $j$ was arbitrary, this shows that $x = y$, which completes the proof of part (1).
+    Since $j$ was arbitrary, this shows that $x = y$, which completes the proof of part~(1).
 
-    Showing part (2) is quite easy:
+    Showing part~(2) is quite easy:
     \gath{
       D(x,y) = \sup\braces{\frac{\bd_i(x_i,y_i)}{i}} = \sup\braces{\frac{\bd_i(y_i,x_i)}{i}} = D(x,y)
     }
     since $\bd_i$ is a standard bounded metric for every $i \in \pints$.
 
-    For part (3) consider any $j \in \pints$.
+    For part~(3) consider any $j \in \pints$.
     Then
     \gath{
       \bd_j(x_j,z_j) \leq \bd_j(x_j,y_j) + \bd_j(y_j,z_j)
@@ -558,7 +558,7 @@
     }
     which completes the inductive step.
     
-    Hence the sequence is strictly decreasing (and therefore of course non-increasing) and bounded below by zero, from which it follows that it converges by a theorem analogous in an obvious way to that shown in Exercise~21.11 part (a).
+    Hence the sequence is strictly decreasing (and therefore of course non-increasing) and bounded below by zero, from which it follows that it converges by a theorem analogous in an obvious way to that shown in Exercise~21.11 part~(a).
     So suppose that the sequence converges to the value $a$.
     Then of course also the sequence $(f_{n+1}(x))$ must also converge to $a$.
     Thus we have
@@ -832,7 +832,7 @@
     We also clearly have that $0 \leq \abs{a_i} \leq b_i$ for all $i \in \pints$, so that each term in both sums is always non-negative.
     It then follows that the sequence of partial sums $(s_n)$ and $(t_n)$ are non-decreasing, and moreover that $t_n \leq t$ for all $n \in \pints$.
     Lastly, since each $\abs{a_i} \leq b_i$, it follows from a simple inductive argument that each $s_n \leq t_n \leq t$.
-    Hence $(s_n)$ is a non-decreasing sequence that is also bounded (by $t$), and so it converges by part (a).
+    Hence $(s_n)$ is a non-decreasing sequence that is also bounded (by $t$), and so it converges by part~(a).
     Therefore the infinite series $\sum \abs{a_i}$ converges by definition.
     Denote its convergence value by $u$.
 
@@ -841,9 +841,9 @@
       -\abs{a_i} \leq a_i \leq \abs{a_i} \\
       0 \leq \abs{a_i} + a_i \leq 2 \abs{a_i}
     }
-    for every $i \in \pints$, and that $\sum 2\abs{a_i}$ converges to $2u$ by what was shown in part (b).
+    for every $i \in \pints$, and that $\sum 2\abs{a_i}$ converges to $2u$ by what was shown in part~(b).
     Therefore, by the same argument as above, the sequence of partial sums of $\sum (\abs{a_i} + a_i)$ is non-decreasing and bounded by $2u$ so that the series converges, say the the value $v$.
-    Then, again by part (b), we have that the series
+    Then, again by part~(b), we have that the series
     \gath{
       \sum_{i=1}^\infty a_i = \sum_{i=1}^\infty (\abs{a_i} + a_i - \abs{a_i}) = \sum_{i=1}^\infty \squares{(\abs{a_i} + a_i) + (-1)\abs{a_i}}
     }
@@ -853,7 +853,7 @@
 
   (d)
   \qproof{
-    First, since $\abs{f_i(x)} \leq M_i$ for all $x \in X$ and $\sum M_i$ converges, it follows from part (c) that the series $\sum f_i(x)$ converges (as does the sequence $(s_n(x))$) for each $x \in X$.
+    First, since $\abs{f_i(x)} \leq M_i$ for all $x \in X$ and $\sum M_i$ converges, it follows from part~(c) that the series $\sum f_i(x)$ converges (as does the sequence $(s_n(x))$) for each $x \in X$.
     So set the function $s : X \to \reals$ to $s(x) = \lim_{n \to \infty} s_n(x)$ for each $x \in X$.
     Thus $(s_n)$ converges pointwise to $s$ by Definition~\ref{def:metricc:pointwise}, and $s$ can be thought of as the (pointwise) infinite sum of the functions $f_i$.
 
@@ -1035,9 +1035,9 @@
   \qproof{
     Regarding the subtraction function $-: \reals^2 \to \reals$, first define the function $f: \reals \to \reals$ by $f(x) = -x$, which is clearly continuous by elementary calculus.
     We also know that the coordinate functions $\pi_1 : \reals^2 \to \reals$ and $\pi_2: \reals^2 \to \reals$ are also continuous.
-    Therefore the composition $f \circ \pi_2 : \reals^2 \to \reals$ is also continuous by Theorem~18.2 part (c).
+    Therefore the composition $f \circ \pi_2 : \reals^2 \to \reals$ is also continuous by Theorem~18.2 part~(c).
     We then have that the function $g: \reals^2 \to \reals^2$ defined by $g(x \times y) = \pi_1(x \times y) \times (f \circ \pi_2)(x \times y)$ is continuous by Theorem~18.4.
-    Then the composition $+ \circ g : \reals^2 \to \reals$ is continuous, again by Theorem~18.2 part (c), since it was shown in part (a) that the addition function $+: \reals^2 \to \reals$ is continuous.
+    Then the composition $+ \circ g : \reals^2 \to \reals$ is continuous, again by Theorem~18.2 part~(c), since it was shown in part~(a) that the addition function $+: \reals^2 \to \reals$ is continuous.
 
     However, for any $x \times y \in \reals^2$, we have
     \ali{
@@ -1048,10 +1048,10 @@
     }
     so that $- = + \circ g$ is continuous just as we would like.
 
-    Regarding the quotient function $/: \reals \times (\realsnz) \to \reals$, let $f: \realsnz \to \reals$ be the reciprocal function, which we know is continuous by part (c).
-    Again the coordinate functions $\pi_1: \reals \times (\realsnz) \to \reals$ and $\pi_2: \reals \times (\realsnz) \to \realsnz$ are continuous so that the composition $f \circ \pi_2: \reals \times (\realsnz) \to \reals$ is also continuous by Theorem~18.2 part (c).
+    Regarding the quotient function $/: \reals \times (\realsnz) \to \reals$, let $f: \realsnz \to \reals$ be the reciprocal function, which we know is continuous by part~(c).
+    Again the coordinate functions $\pi_1: \reals \times (\realsnz) \to \reals$ and $\pi_2: \reals \times (\realsnz) \to \realsnz$ are continuous so that the composition $f \circ \pi_2: \reals \times (\realsnz) \to \reals$ is also continuous by Theorem~18.2 part~(c).
     Then we have that the function $g: \reals \times (\realsnz) \to \reals^2$ defined by $g(x \times y) = \pi_1(x \times y) \times (f \circ \pi_2)(x \times y)$ is continuous by Theorem~18.4.
-    Thus the composition $\times \circ g : \reals \times (\realsnz) \to \reals$ is continuous again by Theorem~18.2 part (c) since it was shown in part (b) that the multiplication function $\times: \reals^2 \to \reals$ is continuous.
+    Thus the composition $\times \circ g : \reals \times (\realsnz) \to \reals$ is continuous again by Theorem~18.2 part~(c) since it was shown in part~(b) that the multiplication function $\times: \reals^2 \to \reals$ is continuous.
 
     Now, for any $x \times y \in \reals \times (\realsnz)$, we have that
     \ali{

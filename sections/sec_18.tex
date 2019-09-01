@@ -33,7 +33,7 @@
   This is not necessarily true.
   \qproof{
     As a counterexample consider a constant function $f: X \to Y$ defined by $f(x) = y_0$ for any $x \in X$ and some $y_0 \in Y$.
-    It was shown in Theorem~18.2 part (a) that this is continuous.
+    It was shown in Theorem~18.2 part~(a) that this is continuous.
     However, clearly $f(A) = \braces{y_0}$ for any subset $A$ of $X$.
     So even if $x$ is a limit point of $A$, no neighborhood of $f(x)$ can intersect $f(A)$ in a point other than $f(x) = y_0$ since $y_0$ is the only point in $f(A)$!
     Therefore $f(x)$ is not a limit point of $f(A)$.
@@ -68,7 +68,7 @@
     We then have that
     \ali{
       \text{$i$ is a homeomorphism } &\bic \text{$i$ and $\inv{i}$ are both continuous} \\
-      &\bic \text{$\cT'$ is finer than $\cT$ and $\cT$ is finer than $\cT'$} & \text{(by part (a) applied twice)} \\
+      &\bic \text{$\cT'$ is finer than $\cT$ and $\cT$ is finer than $\cT'$} & \text{(by part~(a) applied twice)} \\
       &\bic \cT \ss \cT' \text{ and } \cT' \ss \cT \\
       &\bic \cT' = \cT
     }
@@ -92,7 +92,7 @@
 
     Now let $f'$ be the function obtained by restricting the range of $f$ to $f(X) = \braces{x \times y_0 \where x \in X}$.
     Since $f$ is injective, it follows that $f'$ is a bijection.
-    It follows from Theorem~18.2 part (e) that $f'$ is continuous.
+    It follows from Theorem~18.2 part~(e) that $f'$ is continuous.
     Clearly the inverse function $\inv{f'}$ is equal to the projection function $\pi_1$ so that $\inv{f'}(x,y) = x$.
     This was shown to be continuous in the proof of Theorem~18.4.
     This suffices to show that $f'$ is a homeomorphism, which shows the $f$ is an imbedding of $X$ in $X \times Y$.
@@ -113,7 +113,7 @@
     It is trivial to show that $f$ is a bijection.
 
     Now, $f$ is a linear function that could just as well be defined as a map from $\reals$ to $\reals$, and clearly this would be continuous by basic calculus.
-    It then follows from Theorem~18.2 part (d) that restricting its domain to $X$ means that it is still continuous.
+    It then follows from Theorem~18.2 part~(d) that restricting its domain to $X$ means that it is still continuous.
     We also clearly have from basic algebra that its inverse is the function $\inv{f}: Y \to X$ defined by
     \gath{
       \inv{f}(y) = a + y(b-a)
@@ -252,12 +252,12 @@
     If $x \neq a$ then it has to be that $x > a$ and also that $\abs{x-a} = x - a < \d$ since $U = \clop{a,a+\d}$.
     It then follows that $\abs{f(x) - f(a)} < \e$ so that again $f(x) \in V$.
     Hence in both cases $y = f(x) \in V$, which shows that $f(U) \ss V$ since $y$ was arbitrary.
-    We have thus shown part (4) of Theorem~18.1, from which the topological continuity of $f$ follows.
+    We have thus shown part~(4) of Theorem~18.1, from which the topological continuity of $f$ follows.
   }
 
   (b) We claim that only constant functions are continuous from $\reals$ to $\realsl$.
   \qproof{
-    First, it was shown in Theorem~18.2 part (a) that constant functions are always continuous regardless of the topologies.
+    First, it was shown in Theorem~18.2 part~(a) that constant functions are always continuous regardless of the topologies.
     Hence we must show that any continuous function from $\reals$ to $\realsl$ is constant.
     So suppose that $f$ is such a function.
     Now consider any real $x$ where $x \neq 0$.
@@ -266,7 +266,7 @@
     Without loss of generality we can assume that $f(0) < f(x)$.
     So consider the basis element $B = \clop{f(0), f(x)}$ of $\realsl$, which clearly contains $f(0)$ but not $f(x)$.
 
-    Since $f$ is continuous and $B$ is both open and closed by Lemma~\ref{lem:cont:Rlopcl}, it follows from the definition of continuity and from Theorem~18.1 part (3) that $\inv{f}(B)$ must be both open and closed in $\reals$.
+    Since $f$ is continuous and $B$ is both open and closed by Lemma~\ref{lem:cont:Rlopcl}, it follows from the definition of continuity and from Theorem~18.1 part~(3) that $\inv{f}(B)$ must be both open and closed in $\reals$.
     However the only sets that are both open and closed in $\reals$ are $\es$ and $\reals$ itself by Lemma~\ref{lem:cont:Ropcl}.
     Thus either $\inv{f}(B) = \es$ or $\inv{f}(B) = \reals$.
     It cannot be that $\inv{f}(B) = \es$ since we have that $f(0) \in B$ so that $0 \in \inv{f}(B)$.
@@ -369,7 +369,7 @@
 
   (b)
   \qproof{
-    Let $A = \braces{x \in X \where f(x) \leq g(x)}$ and $B = \braces{x \in X \where g(x) \leq f(x)}$, which are clearly both closed by part (a).
+    Let $A = \braces{x \in X \where f(x) \leq g(x)}$ and $B = \braces{x \in X \where g(x) \leq f(x)}$, which are clearly both closed by part~(a).
     It is easy to see that $X = A \cup B$.
     First, clearly $X \sps A \cup B$ since both $A \ss X$ and $B \ss X$.
     Then, for any $x \in X$, it has to be that either $f(x) \leq g(x)$ or $f(x) > g(x)$ since $<$ is a total order on $Y$.
@@ -466,7 +466,7 @@
     Consider any $x \in X$ so that there is a neighborhood $U'$ of $x$ that intersects a finite subcollection $\braces{A_k}_{k=1}^n$ of the full collection $\braces{A_\a}$.
     Consider $A = \bigcup_{k=1}^n A_k$ as a subspace of $X$, from which it follows from Theorem~17.2 that each $A_k$ is closed in $A$ since it is a subset of $A$ and closed in $X$.
     It is then easy to show that $U' \ss A$.
-    It also follows from part (a) that $f \rest A$ is continuous with the domain being the subspace topology on $A$.
+    It also follows from part~(a) that $f \rest A$ is continuous with the domain being the subspace topology on $A$.
 
     Now consider any neighborhood $V$ of $f(x)$, noting that of course $x \in A$ since $x \in U'$ and $U' \ss A$.
     Thus $f(x)$ is in the image of $f \rest A$ so that there is a neighborhood $U_A$ of $x$ in the subspace topology such that $(f \rest A)(U_A) \ss V$ by Theorem~18.1 since $f \rest A$ is continuous.
@@ -482,7 +482,7 @@
     Since $z$ was arbitrary, this shows that $f(U) \ss V$, which in turn shows that $f$ is continuous by Theorem~18.1 since $V$ was an arbitrary neighborhood of $f(x)$ and $x$ was an arbitrary element of $X$.
   }
 
-  We note that the example in part (b) is not locally finite since any neighborhood of $x = 0$ intersects infinitely many $A_n$ in the collection.
+  We note that the example in part~(b) is not locally finite since any neighborhood of $x = 0$ intersects infinitely many $A_n$ in the collection.
   This fact is easy to see and would be easy to prove formally, though a bit tedious.
 }
 
@@ -590,9 +590,9 @@
   \qproof{
     First consider the function $f: \reals \to \reals \times \reals$ defined simply by $f(x) = x \times x$.
     This function is clearly continuous by Theorem~18.4 since it can be expressed as $f(x) = f_1(x) \times f_2(x)$ where the identical functions $f_1(x) = f_2(x) = x$ are obviously continuous.
-    Then $g = F \circ f$, where $g$ is the function from part (b) since we have $g(x) = F(x \times x) = F(f(x))$ for any real $x$.
-    Now, clearly $g$ as calculated in part (b) has a discontinuity at $x = 0$ so that it is not continuous.
-    It then follows from Theorem~18.2 part (c) that either $F$ or $f$ is not continuous since $g = F \circ f$.
+    Then $g = F \circ f$, where $g$ is the function from part~(b) since we have $g(x) = F(x \times x) = F(f(x))$ for any real $x$.
+    Now, clearly $g$ as calculated in part~(b) has a discontinuity at $x = 0$ so that it is not continuous.
+    It then follows from Theorem~18.2 part~(c) that either $F$ or $f$ is not continuous since $g = F \circ f$.
     As we know that the trivial function $f$ is continuous, it must then be that $F$ is not as desired.
   }
 }
