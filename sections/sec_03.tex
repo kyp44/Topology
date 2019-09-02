@@ -720,3 +720,154 @@
   }
   Note that what was shown implies that $f$ is bijective and that $g$ is its inverse, by Exercise~2.5 part~(e).
 }
+
+\exercise{11}{
+  Show that an element in an ordered set has at most one immediate successor and at most one immediate predecessor.
+  Show that a subset of an ordered set has at most one smallest element and at most one largest element.
+}
+\sol{
+  \begin{lem}\label{lem:relations:lngeq}
+    Suppose that $A$ is a set with order $<$ and that $a$ and $b$ are two elements of $A$.
+    Then $a < b$ if and only if it is not true that $b \leq a$.
+  \end{lem}
+  \qproof{
+    $(\imp)$ Suppose that $a < b$.
+    If it were the case that $a = b$ then we would have $a < b = a$, which would violate the nonreflexivity property of the order.
+    If it were the case that $b < a$ then we would have $a < b$ and $b < a$ so that $a < a$ by the transitive property of the order.
+    This again violates nonreflexivity.
+    Hence neither $a=b$ nor $b < a$ so that it is not true that $b \leq a$.
+
+    ($\pmi$) Now suppose that it is \emph{not} true that $b \leq a$.
+    Then neither $b = a$ nor $b < a$.
+    Since $b \neq a$, it must be that either $a < b$ or $b < a$ by the comparability property.
+    However, we know that cannot be that $b < a$, so it must be that $a < b$.
+  }
+  
+  \mainprob
+  
+  \qproof{
+    In what follows Suppose that $A$ is a set with order $<$.
+
+    First let $a$ be an element of $A$ and suppose that $b_1$ and $b_2$ are both immediate successors of $a$, which of course means that $a < b_1,b_2$.
+    Then by definition the open intervals  $(a,b_1)$ and $(a,b_2)$ are both empty.
+    Now, suppose that $b_1$ and $b_2$ are distinct so that they must be comparable since $<$ is an order.
+    Without loss of generality we can assume that $b_1 < b_2$, but then we have $a < b_1 < b_2$ so that $b_1 \in (a,b_2)$.
+    This is a contradiction since we know that $(a,b_2)$ is empty, so it has to be that $b_1 = b_2$.
+    This of course shows that the immediate successor is unique.
+    An analagous argument shows that the immediate predecessor, if it exists, is also unique.
+
+    Now suppose that $A_0$ is a subset of $A$ with smallest elements $a_1$ and $a_2$.
+    If $a_1$ and $a_2$ were to be distinct then they must be comparable so that we can assume $a_1 < a_2$.
+    However, then it is not true that $a_2 \leq a_1$ by Lemma~\ref{lem:relations:lngeq}, but this means that $a_2$ cannot be a smallest element of $A_0$ since $a_1 \in A_0$.
+    As this is a contradiction, it must be that $a_1 = a_2$, which shows that the smallest element is unique if there is one.
+    An analagous argument shows any largest element is also unique.
+  }
+}
+
+\def\pintss{\pints \times \pints}
+\exercise{12}{
+  Let $\pints$ denote the set of positive integers.
+  Consider the following order relations on $\pintss$.
+  \begin{enumerate}[label=(\roman*)]
+  \item The dictionary order.
+  \item $\ppt{0} < \ppt{1}$ if either $x_0 - y_0 < x_1 - y_1$ or $x_0 - y_0 = x_1 - y_1$ and $y_0 < y_1$.
+  \item $\ppt{0} < \ppt{1}$ if either $x_0 + y_0 < x_1 + y_1$ or $x_0 + y_0 = x_1 + y_1$ and $y_0 < y_1$.
+  \end{enumerate}
+  In these order relations, which elements have immediate predecessors?
+  Does the set have a smallest element?
+  Show that the three order types are different.
+}
+\sol{
+  First, for the dictionary order, we claim that every point has an immediate predecessor except points in the subset $A = \braces{\ppt{} \where y = 1}$.
+  We also claim that $(1,1)$ is the smallest element in $\pintss$ with this order.
+  \qproof{
+    First consider any point $\ppt{1} \in \pintss$ where $\ppt{1} \notin A$ so that $y_0 \neq 1$.
+    It then follows that $y_1 > 1$ since $1$ is the smallest positive integer.
+    Then set $x_0 = x_1$ and $y_0 = y_1 - 1$ so that clearly $\ppt{0} \in \pintss$ since $y_0 > 0$ because $y_1 > 1$.
+    Clearly also $x_0 = x_1$ and $y_0 < y_1$ so that $\ppt{0} < \ppt{1}$ in the dictionary order.
+    We claim that $\ppt{0}$ is the immediate predecessor of $\ppt{1}$.
+    So suppose to the contrary that there is an $\ppt{2} \in \pintss$ such that $\ppt{0} < \ppt{2} < \ppt{1}$.
+    It cannot be that $x_0 < x_2$ since then we would have $x_1 = x_0 < x_2$ so that $\ppt{1} < \ppt{2}$, which by Lemma~\ref{lem:relations:lngeq} contradicts the fact that $\ppt{2} < \ppt{1}$.
+    So it has to be that $x_0 = x_2$ and $y_0 < y_2$.
+    Since then $x_2 = x_0 = x_1$, it must also be that $y_2 < y_1$ since $\ppt{2} < \ppt{1}$.
+    But then we have $y_0 < y_2 < y_1 = y_0+1$, which is not possble since $y_1 = y_0+1$ is the immediate successor of $y_0$ in $\pints$ so that there can be no integers between them.
+    So it must be that no $\ppt{2}$ exists so that $\ppt{0}$ is the immediate predecessor of $\ppt{1}$.
+    Thus every element not in $A$ has an immediate predecessor.
+
+    Now consider any $\ppt{1} \in A$ so that $y_1 = 1$, and consider any point $\ppt{0} < \ppt{1}$.
+    It cannot be that $x_0 = x_1$ since then we would have $y_0 < y_1 = 1$, which is not possible since $1$ is the smallest positive integer.
+    So it must be that $x_0 < x_1$.
+    Then let $x_2 = x_0$ and $y_2 = y_0+1$ so that clearly $\ppt{2} \in \pintss$ since $y+1$ is always still a positive integer if $y$ is.
+    Then we have that $x_0 = x_2$ and $y_0 < y_0 + 1 = y_2$, and hence $\ppt{0} < \ppt{2}$.
+    We also have $x_2 = x_0 < x_1$ so that $\ppt{2} < \ppt{1}$.
+    Therefore $\ppt{0} < \ppt{2} < \ppt{1}$, which shows that $\ppt{0}$ is not the immediate predecessor of $\ppt{1}$.
+    This shows that $\ppt{1}$ has no immediate predecessor since $\ppt{0} < \ppt{1}$ was arbitrary.
+    Since $\ppt{1} \in A$ was arbitrary, this completes the proof that every element in $\pintss$ has an immediate predecessor except thos in $A$.
+
+    It is easy to prove that $(1,1)$ is the smallest element in the dictionary order.
+    Consider any $\ppt{0} \in \pintss$ and suppose that $\ppt{0} < (1,1)$.
+    It cannot be that $x_0 < 1$ since $1$ is the smallest positive integer.
+    So then $x_0 = 1$ and $y_0 < 1$, but this is also not possible, again since $1$ is the smallest positive integer.
+    Thus it cannot be that $\ppt{0} < (1,1)$, so it must be that $(1,1) \leq \ppt{0}$ by Lemma~\ref{lem:relations:lngeq}.
+    This shows that $(1,1)$ is the smallest element since $\ppt{0}$ was arbitrary.
+  }
+
+  For the order in part~(ii), we claim that every element has an immediate predecessor except those in the subset $A = \braces{\ppt{} \where x=1 \text{ or } y=1}$.
+  We also claim that the set $\pintss$ has no smallest element in this order.
+  \qproof{
+    First consider any $\ppt{1} \notin A$ so that $x_1 \neq 1$ and $y_1 \neq 1$.
+    Then it has to be that $x_1,y_1 > 1$.
+    So set $\ppt{0} = (x_1-1,y_1-1)$ so that clearly still $\ppt{0} \in \pintss$.
+    Then $x_0-y_0 = (x_1-1)-(y_1-1) = x_1-1-y_1+1 = x_1-y_1$.
+    We also have $y_0 = y_1-1 < y_1$ so that $\ppt{0} < \ppt{1}$.
+    Now suppose that there is an $\ppt{2} \in \pintss$ where $\ppt{0} < \ppt{2} < \ppt{1}$.
+    It cannot be that $x_0-y_0 < x_2-y_2$ since then we would have $x_1-y_1 = x_0-y_0 < x_2-y_2$ so that $\ppt{1} < \ppt{2}$, which we know cannot be the case since $\ppt{2} < \ppt{1}$.
+    So it must be that $x_2-y_2 = x_0-y_0 = x_1-y_1$ and $y_0 < y_2$, but then we must have $y_0 < y_2 < y_1 = y_0+1$, noting that $y_2 < y_1$ because $x_2-y_2 = x_1-y_1$ and $\ppt{2} < \ppt{1}$.
+    However, this is not possible since of course $y_0+1$ is the immediate successor of $y_0$ in $\pints$.
+    So then it has to be that no such $\ppt{2}$ exists so that $\ppt{0}$ is the immediate predecessor of $\ppt{1}$.
+    This shows that every point not in $A$ has an immediate predecessor since $\ppt{1}$ was arbitrary.
+
+    Now suppose that $\ppt{1} \in A$ so that $x_1 = 1$ or $y_1 = 1$, and consider any $\ppt{0} < \ppt{1}$.
+
+    Case: $x_1 = 1$.
+    Suppose that $x_0-y_0 = x_1-y_1$ and $y_0 < y_1$.
+    Then we would have $-y_0 > -y_1$ and $x_0-y_0 = x_1-y_1 = 0 - y_1 = -y_1 < -y_0$ so that $x_0 < 0$ (by adding $y_0$ to both sides), which is not possible.
+
+    Case: $y_1 = 1$.
+    It clealy cannot be that case that $x_0-y_0 = x_1-y_1$ and $y_0 < y_1$ since then $y_0 < y_1 = 1$, which is not possible.
+
+    So in either case it must be that $x_0-y_0 < x_1-y_1$ since $\ppt{0} < \ppt{1}$.
+    So set the point $\ppt{2} = (x_0+1,y_0+1)$, which is clearly still an element of $\pintss$.
+    We then have $x_2-y_2 = (x_0+1)-(y_0+1) = x_0+1-y_0-1 = x_0-y_0 < x_1-y_1$ so that $\ppt{2} < \ppt{1}$.
+    We also have $x_0-y_0 = x_2-y_2$ and $y_0 < y_0+1 = y_2$ so that also $\ppt{0} < \ppt{2}$.
+    Hence $\ppt{0} < \ppt{2} < \ppt{1}$ so that $\ppt{0}$ is not the immediate predecessor of $\ppt{1}$.
+    Since $\ppt{0} < \ppt{1}$ was arbitrary, this shows that $\ppt{1}$ has no immediate predecessor at all.
+    Since $\ppt{1} \in A$ was arbitrary, this shows that no element of $A$ has an immediate predecessor.
+
+    To show that $\pints$ in this order has no smallest element, consider absolutely any $\ppt{1} \in \pintss$.
+    Let $\ppt{0} = (x_1,y_1+1)$ so that of course $\ppt{0} \in \pintss$.
+    We then have that $x_0 - y_0 = x_1 - (y_1+1) = (x_1 - y_1) - 1 < x_1 - y_1$ so that $\ppt{0} < \ppt{1}$.
+    Then of course is it not true that $\ppt{1} \leq \ppt{0}$ by Lemma~\ref{lem:relations:lngeq} so that $\ppt{1}$ cannnot be the smallest element.
+    Then, since $\ppt{1}$ was arbitrary, this shows that $\pintss$ has no smallest element in this order.
+  }
+
+  For the order of part~(iii) we claim that every element has an immediate predecessor excpept for $(1,1)$, which is the smallest element.
+  \qproof{
+    First we show that $\ppt{0} = (1,1)$ is the smallest element, from which it follows that it cannot have an immediate predecessor since it has no predecessors at all.
+    Consider any $\ppt{1}$ in $\pintss$.
+    If $\ppt{1} = (1,1)$ then of course $\ppt{0} = (1,1) \leq \ppt{1}$ is true, so assume that $\ppt{1} \neq (1,1)$ so that either $x_1 \neq 1$ or $y_1 \neq 1$.
+    If $x_1 \neq 1$ then it has to be that $x_1 > 1$ so that $x_0 + y_0 = 1 + 1 \leq 1 + y_1 < x_1 + y_1$, and hence $\ppt{0} < \ppt{1}$.
+    If $y_1 \neq 1$ then $y_1 > 1$ so that again $x_0 + y_0 = 1 + 1 \leq x_1 + 1 < x_1 + y_1$, and hence $\ppt{0} < \ppt{1}$.
+    Thus in every case $\ppt{0} \leq \ppt{1}$, which shows that $\ppt{0} = (1,1)$ is the smallest element since $\ppt{1}$ was arbitrary.
+
+    Now we show that every other element of $\pints$ has an immediate predecessor in this order.
+    So consider any $\ppt{1} \in \pintss$ where $\ppt{1} \neq (1,1)$.
+    Hence either $x_1 \neq 1$ or $y_1 \neq 1$.
+
+    Case: $y_1 = 1$.
+    Then it has to be that $x_1 \neq 1$ so that $x_1 > 1$.
+    We claim that $\ppt{0} = (1, x_1-1)$ is the immediate predecessor of $\ppt{1}$.
+    First we note that clearly $\ppt{0} \in \pintss$ since $x_1 > 1$.
+    We also have that $x_0 + y_0 = 1 + x_1 - 1 = x_1 < x_1 + y_1$ since $0 < 1 = y_1$, and so $\ppt{0} < \ppt{1}$.
+  }
+}
