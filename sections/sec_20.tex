@@ -101,10 +101,10 @@
   \begin{center}
     \begin{tikzpicture}[scale=2]
       % Coordinate grid
-      \draw[step=1cm,black!30!white,thin] (-1.5,-1.5) grid (1.5,1.5);
+      \draw[step=1cm,\tikzgridclr,thin] (-1.5,-1.5) grid (1.5,1.5);
 
       % Set shape
-      \filldraw[thick,dashed,fill=black!30!white] (-1,0) -- (0,1) -- (1,0) -- (0,-1) -- cycle;
+      \filldraw[thick,dashed,fill=\tikzgray] (-1,0) -- (0,1) -- (1,0) -- (0,-1) -- cycle;
 
       % Axes
       \draw[thick,<->] (-1.5,0) -- (1.5,0);

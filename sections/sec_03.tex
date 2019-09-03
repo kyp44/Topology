@@ -754,13 +754,13 @@
     Without loss of generality we can assume that $b_1 < b_2$, but then we have $a < b_1 < b_2$ so that $b_1 \in (a,b_2)$.
     This is a contradiction since we know that $(a,b_2)$ is empty, so it has to be that $b_1 = b_2$.
     This of course shows that the immediate successor is unique.
-    An analagous argument shows that the immediate predecessor, if it exists, is also unique.
+    An analogous argument shows that the immediate predecessor, if it exists, is also unique.
 
     Now suppose that $A_0$ is a subset of $A$ with smallest elements $a_1$ and $a_2$.
     If $a_1$ and $a_2$ were to be distinct then they must be comparable so that we can assume $a_1 < a_2$.
     However, then it is not true that $a_2 \leq a_1$ by Lemma~\ref{lem:relations:lngeq}, but this means that $a_2$ cannot be a smallest element of $A_0$ since $a_1 \in A_0$.
     As this is a contradiction, it must be that $a_1 = a_2$, which shows that the smallest element is unique if there is one.
-    An analagous argument shows any largest element is also unique.
+    An analogous argument shows any largest element is also unique.
   }
 }
 
@@ -777,30 +777,49 @@
   Does the set have a smallest element?
   Show that the three order types are different.
 }
-\def\drawgrid{
+\newcommand\draworder[1]{
   % Coordinate grid
-  \draw[step=1cm,black!30!white,thin] (0,0) grid (4.9,4.9);
+  \draw[step=1cm,\tikzgridclr,thin] (0,0) grid (4.9,4.9);
 
   % Axes
   \draw[thick,->] (0,0) -- (5,0);
   \draw[thick,->] (0,0) -- (0,5);
 
+  #1
+
   % Points
   \foreach \x in {1,2,3,4}
   \foreach \y in {1,2,3,4}
-  \filldraw (\x,\y) circle (0.1);
+  \filldraw[fill=\tikzgray] (\x,\y) circle (0.1);
 }
 \sol{
+  \begin{lem}\label{lem:relations:otsmallest}
+    If $A$ and $B$ are ordered sets and $A$ has a smallest element but $B$ does not, then $A$ and $B$ do not have the same order type.
+  \end{lem}
+  \qproof{
+    This may seem fairly obvious but we show it formally anyway.
+    Suppose that $<_A$ and $<_B$ are the orders on $A$ and $B$, respectively.
+    Let $a$ be the smallest element of $A$ and suppose to the contrary that they \emph{do} have the same order type.
+    Then there is a bijection $f: A \to B$ that preserves order, noting that $\inv{f}$ is also then a bijection.
+    Now, since $B$ has no smallest element, there must be a $b \in B$ where $b <_B f(a)$.
+    Setting $a' = \inv{f}(b)$ so that $f(a') = b$ we have that $f(a') = b <_B f(a)$, and hence it has to be that $a' <_A a$ since otherwise we'd have $a \leq_A a'$ so that $f(a) \leq_B f(a')$.
+    However, $a' < a$ means that it is not true that $a \leq a'$ by Lemma~\ref{lem:relations:lngeq}, which contradicts the fact that $a$ is the smallest element of $A$.
+    Therefore it must be that no such $f$ exists so that $A$ and $B$ have different order types.
+    
+  }
+
+  \mainprob
+  
   The figure below illustrates the dictionary order of part~(i):
   \begin{center}
     \begin{tikzpicture}[scale=0.8]
-      \drawgrid
-      
-      % Order lines
-      \foreach \x in {1,2,3,4}
-      \draw[thick,dashed,->] (\x,1) -- (\x,4.9);
-      \foreach \x in {1,2,3}
-      \draw[thick,dashed,->] (\x,4.9) -- (\x+0.9,1+0.1);
+      \draworder{
+        % Order lines
+        \foreach \x in {1,2,3,4}
+        \draw[thick,dashed,->] (\x,1) -- (\x,4.9);
+        \foreach \x in {1,2,3}
+        \draw[thick,dashed,->] (\x,4.9) -- (\x+0.9,1+0.1);
+      }
     \end{tikzpicture}
   \end{center}
   We claim that every point has an immediate predecessor except points in the subset
@@ -818,7 +837,7 @@
     It cannot be that $x_0 < x_2$ since then we would have $x_1 = x_0 < x_2$ so that $\ppt{1} < \ppt{2}$, which by Lemma~\ref{lem:relations:lngeq} contradicts the fact that $\ppt{2} < \ppt{1}$.
     So it has to be that $x_0 = x_2$ and $y_0 < y_2$.
     Since then $x_2 = x_0 = x_1$, it must also be that $y_2 < y_1$ since $\ppt{2} < \ppt{1}$.
-    But then we have $y_0 < y_2 < y_1 = y_0+1$, which is not possble since $y_1 = y_0+1$ is the immediate successor of $y_0$ in $\pints$ so that there can be no integers between them.
+    But then we have $y_0 < y_2 < y_1 = y_0+1$, which is not possible since $y_1 = y_0+1$ is the immediate successor of $y_0$ in $\pints$ so that there can be no integers between them.
     So it must be that no $\ppt{2}$ exists so that $\ppt{0}$ is the immediate predecessor of $\ppt{1}$.
     Thus every element not in $A$ has an immediate predecessor.
 
@@ -830,7 +849,7 @@
     We also have $x_2 = x_0 < x_1$ so that $\ppt{2} < \ppt{1}$.
     Therefore $\ppt{0} < \ppt{2} < \ppt{1}$, which shows that $\ppt{0}$ is not the immediate predecessor of $\ppt{1}$.
     This shows that $\ppt{1}$ has no immediate predecessor since $\ppt{0} < \ppt{1}$ was arbitrary.
-    Since $\ppt{1} \in A$ was arbitrary, this completes the proof that every element in $\pintss$ has an immediate predecessor except thos in $A$.
+    Since $\ppt{1} \in A$ was arbitrary, this completes the proof that every element in $\pintss$ has an immediate predecessor except those in $A$.
 
     It is easy to prove that $(1,1)$ is the smallest element in the dictionary order.
     Consider any $\ppt{0} \in \pintss$ and suppose that $\ppt{0} < (1,1)$.
@@ -843,18 +862,18 @@
   Below is shown an illustration for the order in part~(ii):
   \begin{center}
     \begin{tikzpicture}[scale=0.8]
-      \drawgrid
-      
-      % Order lines
-      \foreach \y in {1,2,3,4}
-      \draw[thick,dashed,->] (1,\y) -- (5.9-\y,4.9);
-      \foreach \x in {2,3,4}
-      \draw[thick,dashed,->] (\x,1) -- (4.9,5.9-\x);
-      \foreach \y in {2,3,4}
-      \draw[thick,dashed,->] (5.9-\y,4.9) -- (1+0.1,\y-1+0.1);
-      \draw[thick,dashed,->] (1.3,4.9) -- (1+0.1,4+0.1);
-      \foreach \x in {1,2,3}
-      \draw[thick,dashed,->] (4.9,5.9-\x) -- (\x+1+0.1,1+0.1);
+      \draworder{
+        % Order lines
+        \foreach \y in {1,2,3,4}
+        \draw[thick,dashed,->] (1,\y) -- (5.9-\y,4.9);
+        \foreach \x in {2,3,4}
+        \draw[thick,dashed,->] (\x,1) -- (4.9,5.9-\x);
+        \foreach \y in {2,3,4}
+        \draw[thick,dashed,->] (5.9-\y,4.9) -- (1+0.1,\y-1+0.1);
+        \draw[thick,dashed,->] (1.3,4.9) -- (1+0.1,4+0.1);
+        \foreach \x in {1,2,3}
+        \draw[thick,dashed,->] (4.9,5.9-\x) -- (\x+1+0.1,1+0.1);
+      }
     \end{tikzpicture}
   \end{center}
   We claim that every element has an immediate predecessor except those in the subset
@@ -882,7 +901,7 @@
     Then we would have $-y_0 > -y_1$ and $x_0-y_0 = x_1-y_1 = 0 - y_1 = -y_1 < -y_0$ so that $x_0 < 0$ (by adding $y_0$ to both sides), which is not possible.
 
     Case: $y_1 = 1$.
-    It clealy cannot be that case that $x_0-y_0 = x_1-y_1$ and $y_0 < y_1$ since then $y_0 < y_1 = 1$, which is not possible.
+    It clearly cannot be that case that $x_0-y_0 = x_1-y_1$ and $y_0 < y_1$ since then $y_0 < y_1 = 1$, which is not possible.
 
     So in either case it must be that $x_0-y_0 < x_1-y_1$ since $\ppt{0} < \ppt{1}$.
     So set the point $\ppt{2} = (x_0+1,y_0+1)$, which is clearly still an element of $\pintss$.
@@ -895,11 +914,29 @@
     To show that $\pints$ in this order has no smallest element, consider absolutely any $\ppt{1} \in \pintss$.
     Let $\ppt{0} = (x_1,y_1+1)$ so that of course $\ppt{0} \in \pintss$.
     We then have that $x_0 - y_0 = x_1 - (y_1+1) = (x_1 - y_1) - 1 < x_1 - y_1$ so that $\ppt{0} < \ppt{1}$.
-    Then of course is it not true that $\ppt{1} \leq \ppt{0}$ by Lemma~\ref{lem:relations:lngeq} so that $\ppt{1}$ cannnot be the smallest element.
+    Then of course is it not true that $\ppt{1} \leq \ppt{0}$ by Lemma~\ref{lem:relations:lngeq} so that $\ppt{1}$ cannot be the smallest element.
     Then, since $\ppt{1}$ was arbitrary, this shows that $\pintss$ has no smallest element in this order.
   }
 
-  For the order of part~(iii) we claim that every element has an immediate predecessor excpept for $(1,1)$, which is the smallest element.
+  An illustration of the order of part~(iii) is shown below:
+  \begin{center}
+    \begin{tikzpicture}[scale=0.8]
+      \draworder{
+        % Order lines
+        \foreach \x in {2,3,4}
+        \draw[thick,dashed,->] (\x,1) -- (1+0.1,\x-0.1);
+        \foreach \x in {5,6,7}
+        \draw[thick,dashed,->] (4.9,\x-3.9) -- (\x-3.9,4.9);
+        \draw[thick,dashed,->] (1,1) -- (2-0.1,1);
+        \foreach \y in {2,3,4}
+        \draw[thick,dashed,->] (1,\y) -- (\y+1-0.1,1+0.1);
+        \clip (0,0) rectangle (4.9,4.9);
+        \foreach \y in {5,6,7}
+        \draw[thick,dashed,->] (1,\y) -- (4.9,\y-3.2);
+      }
+    \end{tikzpicture}
+  \end{center}
+  We claim that every element has an immediate predecessor except for $(1,1)$, which is the smallest element.
   \qproof{
     First we show that $\ppt{0} = (1,1)$ is the smallest element, from which it follows that it cannot have an immediate predecessor since it has no predecessors at all.
     Consider any $\ppt{1}$ in $\pintss$.
@@ -932,8 +969,25 @@
     But then we must have $y_1 - 1 = y_0 < y_2 < y_1$, which is not possible since $y_1-1$ is the immediate predecessor of $y_1$ in $\pints$.
     So no such $\ppt{2}$ can exists, and hence $\ppt{0}$ is the immediate predecessor of $\ppt{1}$.
 
-    This in all cases $\ppt{1}$ has an immediate predecessor, which shows the desired result since $\ppt{1}$ was arbitrary.
+    This in all cases $\ppt{1}$ has an immediate predecessor, which shows the desired result since $\ppt{1} \neq (1,1)$ was arbitrary.
   }
 
   Now we show that all three orders have different order types.
+  \qproof{
+    It follows immediately from Lemma~\ref{lem:relations:otsmallest} that order (i) and order (ii) do not have the same order type since (i) has a smallest element while (ii) does not.
+    Similarly order (iii) and order (ii) cannot have the same order type for the same reason.
+    So all that remains to be shown is that orders (i) and (iii) have different order types.
+
+    So denote order (i) with $<$ and order (iii) with $\prec$ and suppose to the contrary that they do have the same order type.
+    Then there is a bijection $f: \pintss \to \pintss$ that preserves order, supposing that the domain has the dictionary order $<$ and the range has the order $\prec$.
+    Then of course $\inv{f}$ is also a bijection that preserves order.
+    It was shown above that $\pintss$ with $<$ has countably many elements with no immediate predecessor, whereas $\pintss$ with $\prec$ has only a single such element, namely the smallest element $(1,1)$.
+
+    Thus we can choose an element $\ppt{1}$ of $\pintss$ that has no immediate predecessor in $<$ but also such that $f\ppt{1} \neq (1,1)$ so that $f\ppt{1}$ does have an immediate predecessor in $\prec$.
+    So let $(u_0, v_0)$ be the immediate predecessor of $f\ppt{1}$ in $\prec$ and set $\ppt{0} = \inv{f}(u_0,v_0)$ so that $(u_0,v_0) = f\ppt{0}$.
+    Then of course $\ppt{0} < \ppt{1}$ since $f\ppt{0} = (u_0,v_0) \prec f\ppt{1}$ and $f$ preserves order.
+    But since $\ppt{1}$ has no immediate predecessor in $<$, there is a point $\ppt{2}$ such that $\ppt{0} < \ppt{2} < \ppt{1}$.
+    We then have that $(u_0,v_0) = f\ppt{0} \prec f\ppt{2} \prec f\ppt{1}$ since $f$ preserves order, which is a contradiction since $(u_0,v_0)$ is the immediate predecessor of $f\ppt{1}$.
+    So it must be that no such order-preserving $f$ exists and hence the two orders do not have the same order type.
+  }
 }
