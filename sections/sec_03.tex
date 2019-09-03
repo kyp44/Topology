@@ -777,8 +777,36 @@
   Does the set have a smallest element?
   Show that the three order types are different.
 }
+\def\drawgrid{
+  % Coordinate grid
+  \draw[step=1cm,black!30!white,thin] (0,0) grid (4.9,4.9);
+
+  % Axes
+  \draw[thick,->] (0,0) -- (5,0);
+  \draw[thick,->] (0,0) -- (0,5);
+
+  % Points
+  \foreach \x in {1,2,3,4}
+  \foreach \y in {1,2,3,4}
+  \filldraw (\x,\y) circle (0.1);
+}
 \sol{
-  First, for the dictionary order, we claim that every point has an immediate predecessor except points in the subset $A = \braces{\ppt{} \where y = 1}$.
+  The figure below illustrates the dictionary order of part~(i):
+  \begin{center}
+    \begin{tikzpicture}[scale=0.8]
+      \drawgrid
+      
+      % Order lines
+      \foreach \x in {1,2,3,4}
+      \draw[thick,dashed,->] (\x,1) -- (\x,4.9);
+      \foreach \x in {1,2,3}
+      \draw[thick,dashed,->] (\x,4.9) -- (\x+0.9,1+0.1);
+    \end{tikzpicture}
+  \end{center}
+  We claim that every point has an immediate predecessor except points in the subset
+  \gath{
+    A = \braces{\ppt{} \where y = 1} \,.
+  }
   We also claim that $(1,1)$ is the smallest element in $\pintss$ with this order.
   \qproof{
     First consider any point $\ppt{1} \in \pintss$ where $\ppt{1} \notin A$ so that $y_0 \neq 1$.
@@ -812,7 +840,27 @@
     This shows that $(1,1)$ is the smallest element since $\ppt{0}$ was arbitrary.
   }
 
-  For the order in part~(ii), we claim that every element has an immediate predecessor except those in the subset $A = \braces{\ppt{} \where x=1 \text{ or } y=1}$.
+  Below is shown an illustration for the order in part~(ii):
+  \begin{center}
+    \begin{tikzpicture}[scale=0.8]
+      \drawgrid
+      
+      % Order lines
+      \foreach \y in {1,2,3,4}
+      \draw[thick,dashed,->] (1,\y) -- (5.9-\y,4.9);
+      \foreach \x in {2,3,4}
+      \draw[thick,dashed,->] (\x,1) -- (4.9,5.9-\x);
+      \foreach \y in {2,3,4}
+      \draw[thick,dashed,->] (5.9-\y,4.9) -- (1+0.1,\y-1+0.1);
+      \draw[thick,dashed,->] (1.3,4.9) -- (1+0.1,4+0.1);
+      \foreach \x in {1,2,3}
+      \draw[thick,dashed,->] (4.9,5.9-\x) -- (\x+1+0.1,1+0.1);
+    \end{tikzpicture}
+  \end{center}
+  We claim that every element has an immediate predecessor except those in the subset
+  \gath{
+    A = \braces{\ppt{} \where x=1 \text{ or } y=1} \,.
+  }
   We also claim that the set $\pintss$ has no smallest element in this order.
   \qproof{
     First consider any $\ppt{1} \notin A$ so that $x_1 \neq 1$ and $y_1 \neq 1$.
@@ -869,5 +917,23 @@
     We claim that $\ppt{0} = (1, x_1-1)$ is the immediate predecessor of $\ppt{1}$.
     First we note that clearly $\ppt{0} \in \pintss$ since $x_1 > 1$.
     We also have that $x_0 + y_0 = 1 + x_1 - 1 = x_1 < x_1 + y_1$ since $0 < 1 = y_1$, and so $\ppt{0} < \ppt{1}$.
+    Now suppose that there is a point $\ppt{2} \in \pintss$ where $\ppt{0} < \ppt{2} < \ppt{1}$.
+    It cannot be that $x_1+y_1 = x_2+y_2$ and $y_1 < y_2$ because then we would have $y_2 < y_1 = 1$, which is not possible since $y_2 \in \pints$.
+    So it must be that $x_2+y_2 < x_1+y_1 = x_1+1$ since $\ppt{2} < \ppt{1}$.
+    Now, since also $\ppt{0} < \ppt{2}$, it must be that $x_0+y_0 \leq x_2+y_2$, but then we have $x_1 = 1 + (x_1 - 1) = x_0 + y_0 \leq x_2+y_2 < x_1+1$, which is impossible.
+    So it has to be that no such $\ppt{2}$ exists so that $\ppt{0}$ is the immediate predecessor of $\ppt{1}$.
+
+    Case: $y_1 \neq 1$.
+    Then it has to be that $y_1 > 1$ so that the point $\ppt{0} = (x_1+1,y_1-1)$ is still an element of $\pintss$.
+    We show that $\ppt{0}$ is the immediate predecessor of $\ppt{1}$.
+    First we have that $x_0+y_0 = (x_1+1) + (y_1-1) = x_1 + y_1$ and $y_0 = y_1-1 < y_1$ so that $\ppt{0} < \ppt{1}$.
+    Now suppose that there a point $\ppt{2} \in \pintss$ where $\ppt{0} < \ppt{2} < \ppt{1}$.
+    Then it has to be that $x_0 + y_0 \leq x_2+y_2 \leq x_1+y_1$ so that we have $x_1+y_1 = (x_1+1)+(y_1-1) = x_0+y_0 \leq x_2+y_2 \leq x_1+y_1$ so that $x_0+y_0 = x_2+y_2 = x_1+y_1$.
+    But then we must have $y_1 - 1 = y_0 < y_2 < y_1$, which is not possible since $y_1-1$ is the immediate predecessor of $y_1$ in $\pints$.
+    So no such $\ppt{2}$ can exists, and hence $\ppt{0}$ is the immediate predecessor of $\ppt{1}$.
+
+    This in all cases $\ppt{1}$ has an immediate predecessor, which shows the desired result since $\ppt{1}$ was arbitrary.
   }
+
+  Now we show that all three orders have different order types.
 }
