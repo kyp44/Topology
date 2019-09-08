@@ -991,3 +991,174 @@
     So it must be that no such order-preserving $f$ exists and hence the two orders do not have the same order type.
   }
 }
+
+\exercise{13}{
+  Prove the following:
+  \begin{thrm*}
+    If an ordered set $A$ has the least upper bound property, then it has the greatest lower bound property.
+  \end{thrm*}
+}
+\sol{
+  \qproof{
+    Suppose that $A_0$ is any nonempty subset of $A$ that is bounded below so that $b$ is a lower bound of $A_0$.
+    Let $B_0$ be the set of lower bounds of $A_0$ so that $B_0$ is nonempty since $b \in B_0$.
+    Since $A_0$ is nonempty there is an $a \in A_0$.
+    Now, for any $x \in B_0$ we have that $x$ is a lower bound of $A_0$ so that $x \leq a$, which shows that $a$ is an upper bound of $B_0$.
+    Hence $B_0$ is a nonempty subset of $A$ that is bounded above, and so has a least upper bound $c$ since $A$ has the least upper bound property.
+    We claim that $c$ is also the greatest lower bound of $A_0$.
+
+    Consider any $x \in A_0$ and any $y \in B_0$.
+    Then $y$ is a lower bound of $A_0$ so that $y \leq x$ since $x \in A_0$.
+    Since $y \in B_0$ was arbitrary, this shows that $x$ is an upper bound of $B_0$.
+    Thus we have $c \leq x$ since $c$ is the least upper bound of $B_0$.
+    Since $x \in A_0$ was arbitrary, this shows that $c$ is a lower bound of $A_0$.
+    If $y$ is any other lower bound then $y \in B_0$ so that $y \leq c$ since $c$ is an upper bound of $B_0$.
+    Since $y$ was an arbitrary lower bound, this shows that in fact $c$ is the greatest lower bound of $A_0$.
+    Hence $A$ also has the greatest lower bound property since the nonempty subset $A_0$ was arbitrary.
+  }
+}
+
+\exercise{14}{
+  If $C$ is a relation on a set $A$, define a new relation $D$ on $A$ by letting $(b,a) \in D$ if $(a,b) \in C$.
+  \eparts{
+  \item Show that $C$ is symmetric if and only if $C = D$.
+  \item Show that if $C$ is an order relation, $D$ is also an order relation.
+  \item Prove the converse of the theorem in Exercise~13.
+  }
+}
+\sol{
+  (a)
+  \qproof{
+    $(\imp)$ Suppose that $C$ is symmetric.
+    Then we simply have
+    \ali{
+      (a,b) \in C &\bic (b,a) \in C & \text{(since $C$ is symmetric)} \\
+      &\bic (a,b) \in D \,, & \text{(by definition)}
+    }
+    which shows that $C = D$.
+
+    $(\pmi)$ Now suppose that $C = D$ and consider any $(a,b) \in C$.
+    Then $(b,a) \in D$ by definition.
+    Hence also $(b,a) \in C$ since $C = D$, which shows that $C$ is symmetric.
+  }
+
+  (b)
+  \qproof{
+    Suppose that $C$ is an order relation.
+    Since clearly $D$ is a relation on $A$, we need only show that it has the three required properties:
+
+    (Comparability) Consider any distinct $a,b \in A$ so that $aCb$ or $bCa$ since $C$ has comparability.
+    Hence either $bDa$ or $aDb$, respectively, by definition so that $a$ and $b$ are comparable in $D$ as well.
+
+    (Nonreflexivity) Consider any $a \in A$.
+    Then $(a,a) \notin C$ since it is nonreflexive, thus also $(a,a) \notin D$ since, if it were, it would also be that $(a,a) \in C$ by definition.
+    Hence $D$ is also nonreflexive since $a$ was arbitrary.
+
+    (Transitivity) Suppose that $aDb$ and $bDc$.
+    Then by definition we have $bCa$ and $cCb$.
+    That is, $cCb$ and $bCa$ so that $cCa$ since $C$ is transitive.
+    Therefore $aDc$ by definition, which shows that $D$ is also transitive.
+  }
+
+  (c)
+  The converse follows from an argument directly analogous to the proof of Exercise~3.13, which we give here for completeness.
+  \qproof{
+    Suppose that $A$ has the greatest lower bound property and that $A_0$ is any nonempty subset of $A$ that is bounded above so that $b$ is an upper lower bound of $A_0$.
+    Let $B_0$ be the set of upper bounds of $A_0$ so that $B_0$ is nonempty since $b \in B_0$.
+    Since $A_0$ is nonempty there is an $a \in A_0$.
+    Now, for any $x \in B_0$ we have that $x$ is an upper bound of $A_0$ so that $a \leq x$, which shows that $a$ is a lower bound of $B_0$.
+    Hence $B_0$ is a nonempty subset of $A$ that is bounded below, and so has a greatest lower bound $c$ since $A$ has the greatest lower bound property.
+    We claim that $c$ is also the least upper bound of $A_0$.
+
+    Consider any $x \in A_0$ and any $y \in B_0$.
+    Then $y$ is an upper bound of $A_0$ so that $x \leq y$ since $x \in A_0$.
+    Since $y \in B_0$ was arbitrary, this shows that $x$ is a lower bound of $B_0$.
+    Thus we have $x \leq c$ since $c$ is the greatest lower bound of $B_0$.
+    Since $x \in A_0$ was arbitrary, this shows that $c$ is an upper bound of $A_0$.
+    If $y$ is any other upper bound then $y \in B_0$ so that $c \leq y$ since $c$ is a lower bound of $B_0$.
+    Since $y$ was an arbitrary upper bound, this shows that in fact $c$ is the lest upper bound of $A_0$.
+    Hence $A$ also has the lest upper bound property since the nonempty subset $A_0$ was arbitrary.
+  }
+}
+
+\renewcommand\ppt[1]{x_{#1} \times y_{#1}}
+\exercise{15}{
+  Assume that the real line has the least upper bound property.
+  \eparts{
+  \item Show that the sets
+    \ali{
+      [0,1] &= \braces{x \where 0 \leq x \leq 1} \,, \\
+      \clop{0,1} &= \braces{x \where 0 \leq x < 1}
+    }
+    have the least upper bound property.
+  \item Does $[0,1] \times [0,1]$ in the dictionary order have the least upper bound property?
+    What about $[0,1] \times \clop{0,1}$?
+    What about $\clop{0,1} \times [0,1]$?
+  }
+}
+\sol{
+  (a)
+  We show this for both sets simultaneously as their proofs are nearly identical.
+  We note the minor differences in parentheses.
+  \qproof{
+    Let $A = [0,1]$ (or $A = \clop{0,1}$) and consider any nonempty subset $A_0$ of $A$ that is bounded above in $A$.
+    So suppose that $b$ is an upper bound of $A_0$ in $A$ so that $0 \leq b \leq 1$ (or $0 \leq b < 1$).
+    Now, of course $A_0$ has a least upper bound $c$ in $\reals$ since it is also a nonempty subset of $\reals$ that is bounded above.
+    Obviously $c \leq b$ since it is the \emph{least} upper bound.
+    For any $x \in A_0$ we of course have that $x \in A$ so that $0 \leq x \leq 1$ (or $0 \leq x < 1$), and clearly $x \leq c$ since it is an upper bound of $A_0$.
+    Thus we have $0 \leq x \leq c \leq b \leq 1$ (or $0 \leq x \leq c \leq b <1$) so that $c \in A$.
+    Hence $A_0$ has a least upper bound in $A$ as desired.
+  }
+
+  (b)
+  First we claim that both $[0,1] \times [0,1]$ and $\clop{0,1} \times [0,1]$ have the least upper bound property.
+  We show this for both sets simultaneously as their proofs are identical.
+  \qproof{
+    Let $X = [0,1] \times [0,1]$ (or $X = \clop{0,1} \times [0,1]$).
+    Suppose that $A$ is a nonempty subset of $X$ that is bounded above, and that $\ppt{1}$ is an upper bound of $A$ in $X$.
+    Then of course we have $x_1 \in [0,1]$ (or $x_1 \in \clop{0,1}$).
+    Define $A_x = \braces{x \where \ppt{} \in A}$ so that clearly $A_x \ss [0,1]$ (or $A_x \ss \clop{0,1}$).
+    It then follows that $x \leq x_1$ for any $x \in A_x$ since $\ppt{1}$ is an upper bound of $A$ in the dictionary order.
+    Also clearly $A_x$ is nonempty since $A$ is.
+    Thus $A_x$ is a nonempty subset of $[0,1]$ (or $\clop{0,1}$) that is bounded above (by $x_1$) so that it has a least upper bound $a$ by what was shown in part~(a).
+
+    Now, if $a \notin A_x$ then set $b = 0$.
+    Otherwise define $A_y = \braces{y \where a \times y \in A}$.
+    Then, since $a \in A_x$, there is a $y \in [0,1]$ where $a \times y \in A$, which shows that $y \in A_y$ and hence $A_y \neq \es$.
+    We also clearly have that $A_y \ss [0,1]$ so that $A_y$ is bounded above by $1$.
+    Then $A_y$ has a least upper bound $b$, again by what was shown in part~(a).
+    In either case we assert that $a \times b$ is the least upper bound of $A$ in $X$ in the dictionary order.
+
+    First, it is obvious that $a \times b \in X$ based on how $a$ and $b$ were defined.
+    Consider any $\ppt{} \in A$ so that $x \in A_x$, and hence $x \leq a$ since $a$ is the least upper bound of $A_x$.
+    If $x < a$ then of course $\ppt{} \leq a \times b$, so assume that $x = a$.
+    Then $a = x \in A_x$ so that $b$ was defined as the least upper bound of $A_y$.
+    Then we have that $y \in A_y$ since $\ppt{} = a \times y \in A$, and thus $y \leq b$ since $b$ is the least upper bound of $A_y$.
+    This shows that $\ppt{} \leq a \times b$ so that we  have shown that $a \times b$ is an upper bound of $A$ since $\ppt{}$ was arbitrary.
+
+    To show that it is the \emph{least} upper bound consider any $\ppt{0} \in X$ where $\ppt{0} < a \times b$.
+    If $x_0 < a$ then there must be an $x \in A_x$ where $x_0 < x$ since $x_0$ cannot be an upper bound of $A_x$ since $x_0 < a$ and $a$ is the least upper bound of $A_x$.
+    Then, since $x \in A_x$, there is a $y \in [0,1]$ where $\ppt{} \in A$.
+    Hence $\ppt{0} < \ppt{}$ since $x_0 < x$ so that $\ppt{0}$ is not an upper bound of $A$.
+    On the other hand if $x_0 = a$ we must have $y_0 < b$ so that it cannot be that $b = 0$, and hence it must be that $a \in A_x$.
+    Then there must be a $y \in A_y$ where $y_0 < y$ since $y_0$ cannot be an upper bound of $A_y$ since $y_0 < b$ and $b$ is the least upper bound of $A_y$.
+    Hence $a \times y \in A$, $x_0 = a$, and $y_0 < y$ so that $\ppt{0} < a \times y \in A$, which shows that $\ppt{0}$ is not an upper bound of $A$.
+    Thus in either case $\ppt{0}$ is not an upper bound of $A$, which shows that $a \times b$ is the least upper bound since $\ppt{0} < a \times b$ was arbitrary.
+
+    This of course completes the proof that $A$ has a least upper bound, which shows that $X$ has the least upper bound property since $A$ was an arbitrary nonempty subset.
+  }
+
+  We also claim that $[0,1] \times \clop{0,1}$ does \emph{not} have the least upper bound property.
+  \qproof{
+    Let $X = [0,1] \times \clop{0,1}$.
+    Consider the set $A = \braces{0} \times \clop{0,1}$, which is clearly a nonempty subset of $X$.
+    This subset also obviously has an upper bound in $X$ in the dictionary order, for example the point $1 \times 0$.\
+    So let $\ppt{1}$ be any upper bound of $A$ in $X$ and suppose for the moment that $x_1 = 0$.
+    Then $y_1 \in \clop{0,1}$ so that $0 \leq y_1 < 1$, but then there is a $y_0 \in \reals$ such that $0 \leq y_1 < y_0 < 1$.
+    Then $y_0 \in \clop{0,1}$ so that $x_1 \times y_0 = 0 \times y_0 \in A$, but also $\ppt{1} < x_1 \times y_0$ so that $\ppt{1}$ cannot be an upper bound of $A$.
+    So it must be that in fact $x_1 \neq 0$ and hence $x_1 > 0$.
+    Now let $x_0 = x_1/2 > 0$ and $y_0 = 0$ so that clearly $\ppt{} < \ppt{0} < \ppt{1}$ for any $\ppt{} \in A$ since $x = 0 < x_1/2 = x_0 < x_1$.
+    This shows that $\ppt{0}$ is still an upper bound of $A$ but that $\ppt{0} < \ppt{1}$.
+    Since $\ppt{1}$ was an arbitrary upper bound of $A$, this proves that $A$ can have no \emph{least} upper bound!
+  }
+}
