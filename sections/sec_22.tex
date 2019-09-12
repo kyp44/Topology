@@ -87,6 +87,29 @@
 
   (b)
   \qproof{
-    TODO
+    Suppose $X$ is a topological space, $A \ss X$, and $r: X \to A$ is a retraction.
+    Let $f: A \to X$ be defined by $f(a) = a$ for all $a \in A$, i.e. $f$ is the identity function on $A$ with the range expanded to $X$.
+    Now, $i_A$ is continuous (in fact it is a homeomorphism) by Exercise~18.3 so that $f$ is also continuous by Theorem~18.2 part~(e) since it is just $i_A$ with an expanded range.
+    Then for any $a \in A$ we have that
+    \gath{
+      (p \circ f)(a) = p(f(a)) = p(a) = a
+    }
+    since $p$ is a retraction.
+    Thus $p \circ f = i_A$, which shows that $p$ is a quotient map by what was shown in part~(a).
+  }
+}
+
+\def\realss{\reals \times \reals}
+\exercise{3}{
+  Let $\pi_1: \realss \to \reals$ be projection on the first coordinate.
+  Let $A$ be the subspace of $\realss$ consisting of all points $x \times y$ for which either $x \geq 0$ or $y = 0$ (or both); let $q: A \to \reals$ be obtained by restricting $\pi_1$.
+  Show that $q$ is a quotient map that is neither open nor closed.
+}
+\sol{
+  \qproof{
+    First consider any $x \in \reals$ and the point $x \times 0$, which is clearly in $A$ by definition.
+    Then we have $q(x \times 0) = \pi_1(x \times 0) = x$, which shows that $q$ is surjective since $x$ was arbitrary.
+    Now, since we know that $\pi_1$ is continuous, its restriction $q$ is also continuous by Theorem~18.2 part~(d).
+    So, suppose that $U$ is a saturated open set of $A$ so that $U = \inv{q}(V)$ for some subset $V \ss \reals$.
   }
 }
