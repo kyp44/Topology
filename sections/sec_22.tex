@@ -107,9 +107,54 @@
 }
 \sol{
   \qproof{
-    First consider any $x \in \reals$ and the point $x \times 0$, which is clearly in $A$ by definition.
-    Then we have $q(x \times 0) = \pi_1(x \times 0) = x$, which shows that $q$ is surjective since $x$ was arbitrary.
-    Now, since we know that $\pi_1$ is continuous, its restriction $q$ is also continuous by Theorem~18.2 part~(d).
-    So, suppose that $U$ is a saturated open set of $A$ so that $U = \inv{q}(V)$ for some subset $V \ss \reals$.
+    An illustration of the subspace $A \ss \realss$ is shown below:
+    \begin{center}
+      \begin{tikzpicture}[scale=0.6]
+        % Fill region
+        \fill[fill=\tikzgray] (0,-2.7) rectangle (2.7,2.7);
+
+        % Coordinate grid
+        \draw[step=1cm,\tikzgridclr,thin] (-2.9,-2.9) grid (2.9,2.9);
+
+        % Axes
+        \draw[dashed, <->] (-2.9,0) -- (2.9,0);
+        \draw[dashed, <->] (0,-2.9) -- (0,2.9);
+
+        % Boundaries
+        \draw[line width=0.6mm] (-2.7,0) -- (0,0);
+        \draw[line width=0.6mm] (0,-2.7) -- (0,2.7);
+
+      \end{tikzpicture}
+    \end{center}
+    First, we know that $\pi_1$ is continuous from \S 18.
+    It then follows that the restriction $q$ is a continuous map as well by Theorem~18.2 part~(d).
+
+    Now define a map $f: \reals \to A$ by $f(x) = x \times 0$ for any $x \in \reals$, noting that clearly $f(x) \in A$.
+    We show that $f$ is continuous by considering any basis element $U \times V$ of $\realss$ so that $U$ and $V$ are open in $\reals$.
+    Now, if either of $U$ or $V$ are empty, then of course $U \times V$ is empty as well so that $\ivf(U \times V) = \ivf(\es) = \es$ is open in $\reals$.
+    Otherwise if $0 \notin V$ then also $\ivf(U \times V) = \es$ is open in $\reals$.
+    If $0 \in V$ then we claim that $\ivf(U \times V) = U$, which is of course open in $\reals$.
+    This is easy to show:
+    \ali{
+      x \in \ivf(U \times V) &\bic f(x) \in U \times V \\
+      &\bic x \times 0 \in U \times V \\
+      &\bic x \in U
+    }
+    since we know that $0 \in V$.
+    Thus in all cases $\ivf(U \times V)$ is open in $\reals$, which suffices to show that $f$ is continuous.
+
+    Now consider any $x \in \reals$ so that we have
+    \gath{
+      (q \circ f)(x) = q(f(x)) = q(x \times 0) = \pi_1(x \times 0) = x \,,
+    }
+    which shows that $q \circ f = i_\reals$.
+    Since $q: A \to \reals$ and $f: \reals \to A$ have both been shown to be continuous, it follows from Exercise~22.1 part~(a) that $q$ is a quotient map as desired.
+
+    To show that $q$ is not an open map, consider that subset $U = \clop{0, 1} \times (1,2) \ss A$, which is open in the subspace $A$ since $U = A \cap [(-1,1) \times (1,2)]$ and clearly $(-1,1) \times (1,2)$ is a basis element of $\realss$ and so is open.
+    However, clearly the set $q(U) = \pi_1(U) = \clop{0,1}$ is not open in $\reals$.
+    To show that $q$ is not a closed map, consider the set $C = \braces{x \times (1/x) \where x > 0}$.
+    It is easy to see and not difficult to show that $C$ is a closed subset of the subspace $A$ because no point of $A - C$ is a limit point of $C$.
+    Also clearly $q(C) = \pi_1(C) = \preals$, which is not closed in $\reals$ since its complement $\braces{x \where x \leq 0}$ is not open.
+    Thus $q$ is not a closed map either.
   }
 }
