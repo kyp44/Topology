@@ -172,12 +172,3 @@ with open(ofname, "w") as ofile :
         # If text section the restore numbered sections
         if tsec :
             print(r"\renewcommand\thechapter{\arabic{chapter}}", file=ofile)
-                        
-    # Go through theorems
-    """
-    print("Processing theorems...")
-    print(r"\setcounter{chapter}{0}", file=ofile)
-    print(r"\setcounter{section}{1}", file=ofile)
-    print(r"\section{Theorems}", file=ofile)
-    process_file("theorems.tex", ofile, headers=True)
-    """

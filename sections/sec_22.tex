@@ -111,7 +111,7 @@
     \begin{center}
       \begin{tikzpicture}[scale=0.6]
         % Fill region
-        \fill[fill=\tikzgray] (0,-2.7) rectangle (2.7,2.7);
+        \fill[fill=black, fill opacity=\tikzgrayopac] (0,-2.7) rectangle (2.7,2.7);
 
         % Coordinate grid
         \draw[step=1cm,\tikzgridclr,thin] (-2.9,-2.9) grid (2.9,2.9);
@@ -156,5 +156,217 @@
     It is easy to see and not difficult to show that $C$ is a closed subset of the subspace $A$ because no point of $A - C$ is a limit point of $C$.
     Also clearly $q(C) = \pi_1(C) = \preals$, which is not closed in $\reals$ since its complement $\braces{x \where x \leq 0}$ is not open.
     Thus $q$ is not a closed map either.
+  }
+}
+
+\newcommand\peqa[1]{x_{#1} + y_{#1}^2}
+\newcommand\peqb[1]{x_{#1}^2 + y_{#1}^2}
+\newcommand\pptz[1]{#1 \times 0}
+\exercise{4}{
+  \eparts{
+  \item Define an equivalence relation on the plane $X = \reals^2$ as follows:
+    \gath{
+      \pptt{0} \sim \pptt{1} \condgap \text{if $\peqa{0} = \peqa{1}$.}
+    }
+    Let $X^*$ be the corresponding quotient space.
+    It is homeomorphic to a familiar space; what is it?
+    [Hint: Set $g(\pptt{}) = \peqa{}$.]
+  \item Repeat (a) for the equivalence relation
+    \gath{
+      \pptt{0} \sim \pptt{1} \condgap \text{if $\peqb{0} = \peqb{1}$.}
+    }
+  }
+}
+\sol{
+  (a)
+  Two points in the plane are in the same equivalence class if $\peqa{}$ have the same value, say $c$.
+  Then we have that $\peqa{} = c$ and hence $x = c - y^2$, which is the equation for horizontally-oriented parabola opening to the left and shifted in $x$ by $c$.
+  A few of these parabolic equivalence classes are shown below for various values of $c$:
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+          axis lines=middle,
+          xmin=-5, xmax=5,
+          ymin=-5, ymax=5,
+          samples=100,
+        ]
+        \newcommand\parab[1]{
+          \addplot[
+            black,
+            thick,
+            domain=-5:5,
+          ]
+          (#1 - x^2, x);
+          \node [above right] at (axis cs:#1,0) {$c=#1$};
+        }
+        \parab{-3}
+        \parab{0}
+        \parab{3}
+      \end{axis}
+    \end{tikzpicture}
+  \end{center}
+  Then, if $X^*$ is the quotient space induced, by this equivalence relation, then each element of $X^*$ is one of these equivalence classes.
+  We claim that this space is homeomorphic to $\reals$.
+  \qproof{
+    So define $f: X^* \to \reals$ as follows: if $U$ is an equivalence class (so that $U \in X^*$) containing $\pptt{}$ then set $f(U) = \peqa{}$, noting that clearly $f(U) \in \reals$.
+    We also note that if $\pptt{0}$ and $\pptt{1}$ are both in the equivalence class $X$ then $\peqa{0} = \peqa{1}$ so that $f(X) = \peqa{0} = \peqa{1}$ is well defined.
+
+    Now suppose that $U_0$ and $U_1$ are two distinct equivalence classes and that $\pptt{0} \in U_0$ and $\pptt{1} \in U_1$.
+    It then follows that it is not true that $\pptt{0} \sim \pptt{1}$ so that $\peqa{0} \neq \peqa{1}$.
+    Thus we have $f(U_0) = \peqa{0} \neq \peqa{1} = f(U_1)$, which shows that $f$ s injective.
+    Next consider any real $c$ and, the point $\pptz{c}$ in the plane, and let $U$ be the equivalence class containing $\pptz{c}$, which must exist since the equivalence classes form a partition of the plane.
+    Then we have $f(U) = c + 0^2 = c$, which shows that $f$ is surjective since $c$ was arbitrary.
+    This completes the proof that $f$ is a bijection, noting that of course this means that $\ivf$ is also a bijective function.
+
+    Now, the standard topology of $\reals$ of course can have different bases, but we will concern ourselves with the order topology basis first.
+    So consider any basis element $B = (a,b)$ of $\reals$ in the order topology.
+    Clearly then the inverse image of $B$ is the collection $\cU$ of equivalence classes $U$ where $a < f(U) < b$.
+    Then the union of all the sets in $\cU$ is the set of points in the plane $\pptt{}$ where $a < \peqa{} < b$.
+    An illustration of such a subset of the plane is illustrated below for $a = -2$ and $b = 3$:
+    \begin{center}
+      \begin{tikzpicture}
+        \begin{axis}[
+            axis lines=middle,
+            xmin=-5, xmax=5,
+            ymin=-5, ymax=5,
+            samples=100,
+          ]
+          \newcommand\parab[2]{
+            \addplot[
+              name path=#2,
+              black,
+              thick,
+              dashed,
+              domain=-5:5,
+            ]
+            (#1 - x^2, x);
+          }
+          \parab{-2}{a}
+          \parab{3}{b}
+          \addplot[
+            fill=black,
+            fill opacity=\tikzgrayopac,
+          ]
+          fill between[
+            of=a and b,
+          ];
+        \end{axis}
+      \end{tikzpicture}
+    \end{center}
+    It is easy to see that such a set is open in $\reals^2$ for any $a$ and $b$, which we shall not show formally.
+    Thus $\cU$ is an open subset of $X^*$, which suffices to show that $f$ is continuous.
+
+    Now, to show that $\ivf$ is continuous we utilize metric topology bases for both $\reals^2$ and $\reals$, which we know induce the standard topologies on those sets.
+    In particular, we use the standard metric $d$ on $\reals$ but use the square metric $\r$ on $\reals^2$, which induces the standard topology on $\reals^2$ by Theorem~20.3.
+    Recall that the sequare metric is defined by
+    \gath{
+      \r(\pptt{0}, \pptt{1}) = \max\braces{\abs{x_0-x_1}, \abs{y_0-y_1}} \,.
+    }
+    So consider any $x \in \reals$, let $U$ be the equivalence class in $X^*$ such that $U = \ivf(x)$ so that $f(U) = x$, and let $\cU$ be a neighborhood of $U = \ivf(x)$ in the quotient topology on $X^*$.
+    Then we have that $\cU$ is a collection of equivalence classes and that $\pptz{x}$ must be in $U$ since $x + 0^2 = x = f(U)$.
+    Clearly also the union $A = \bigcup_{U' \in \cU} U'$ is then open in $\reals^2$ since $\cU$ is open in the quotient space, and $\pptz{x} \in A$ since $\pptz{x} \in U$ and $U \in \cU$.
+    Thus by Lemma~\ref{lem:metric:ball} there is a $\d > 0$ where $B_\r(\pptz{x}, \d) \ss A$.
+
+    Now, consider the set $B_d(x, \d)$, which is clearly a neighborhood of $x$ in $\reals$.
+    Consider any $V \in \ivf(B_d(x, \d))$ and let $v = f(V)$ so that it must be that $\pptz{v} \in V$ since $v + 0^2 = v = f(V)$.
+    Then $v = f(V) \in B_d(x, \d)$ so that $d(v,x) = \abs{v-x} < \d$.
+    Since we have $\abs{v-x} \geq 0 = \abs{0-0}$, it follows that
+    \gath{
+      \r(\pptz{v}, \pptz{x}) = \max\braces{\abs{v-x}, \abs{0-0}} = \abs{v-x} < \d \,,
+    }
+    and hence $\pptz{v} \in B_\r(\pptz{x}, \d) \ss A = \bigcup_{U' \in \cU} U'$.
+    Therefore there is an equivalence class $W$ in $\cU$ such that $\pptz{v} \in W$ and $W \in \cU$.
+    However, since the equivalence classes are all disjoint, it has to be that $W = V$ since $\pptz{v} \in V$ as well.
+    Thus $V = W \in \cU$ so that $\ivf(B_d(x,\d)) \ss \cU$ since $V$ was arbitrary.
+    This suffices to show that $\ivf$ is continuous by Theorem~18.1 since $\cU$ was an arbitrary neighborhood of $U = \ivf(x)$.
+    This completes the proof that $f$ is a homeomorphism so that $X^*$ is homeomorphic to $\reals$ as desired.
+  }
+
+  (b)
+  Here two points are in the same equivalence class if $\peqb{}$ have the same value, say $c$.
+  Then we have that the equivalence class is all the points in the plane such that $\peqb{} = c$, which is clearly a circle in the plane with radius $\sqrt{c}$ centered at the origin, noting that of course always $c = \peqb{} \geq 0$.
+  We also note that the only point such that $\peqb{} = 0$ is $\pptz{0}$ itself, so this the only point in its equivalence class.
+  We claim that the quotient topology on the set of equivalence classes $X^*$ is homeomorphic to the subspace topology of nonnegative reals, i.e. the subspace $A = \braces{x \in \reals \where x \geq 0}$ of $\reals$.
+  \qproof{
+    Taking a similar approach to that in part~(a), define $f: X^* \to A$ by $f(U) = \norm{\pptt{}} = \sqrt{\peqb{}}$ if $\pptt{}$ is a point in the equivalence class $U$.
+    Clearly we have $f(U) \geq 0$ so that $f(U) \in A$.
+    It also follows that $f$ is well-defined since, if $\pptt{0}$ and $\pptt{1}$ are two points in the same equivalence class $U$, then $f(U) = \sqrt{\peqb{0}} = \sqrt{\peqb{1}}$ since $\peqb{0} = \peqb{1}$.
+
+    Now, if $U_0$ and $U_1$ are two distinct equivalence classes and $\pptt{0} \in U_0$ and $\pptt{1} \in U_1$ then it is not true that $\pptt{0} \sim \pptt{1}$ so that $f(U_0) = \sqrt{\peqb{0}} \neq \sqrt{\peqb{1}} = f(U_1)$ since $\peqb{0} \neq \peqb{1}$ and the square root function is injective on the nonnegative reals.
+    This shows that $f$ is injective.
+    Also, if $c$ is any element of $A$ then let $U$ be the equivalence class containing $\pptz{c}$, which exists since the classes form a partition on the plane.
+    Then we have $f(U) = \sqrt{c^2 + 0^2} = \abs{c} = c$ since $c \geq 0$, which shows that $f$ is surjective since $c$ was arbitrary.
+    Hence $f$ is a bijection so that of course $\ivf$ is also a bijective function.
+
+    Next, consider the order topology basis of $\reals$ and any corresponding basis element $B$ of the subspace $A$.
+    Then clearly either $B = \clop{0, b}$ (since then, for example, $B = A \cap (-1,b)$ and $(-1,b)$ is clearly a basis element of $\reals$) or $B = (a,b)$ for some $0 \leq a < b$.
+    In the former case clearly $\ivf(B)$ is the collection $\cU$ of equivalence classes $U$ such that $0 \leq f(U) < b$, the union of which is clearly the set of points $\pptt{}$ in the plane such that $\sqrt{\peqb{}} < b$, which is an open filled circle of radius $b$ centered at the origin.
+    This is obviously an open set of $\reals^2$.
+    In the later case clearly $\ivf(B)$ is the collection $\cU$ of equivalence classes $U$ such that $a < f(U) < b$, the union of which is the set of points in the plane $\pptt{}$ such that $a < \sqrt{\peqb{}} < b$.
+    As this is clearly an open annular ring centered at the origin, it is open in $\reals^2$.
+    Hence in either case the union of the collection $\cU$ is open in $\reals^2$ so that $\cU = \ivf(B)$ is an open subset of $X^*$.
+    Since $B$ was an arbitrary basis element of $A$, this shows that $f$ is continuous.
+
+    Similar to what was done in part~(a), we show that $\ivf$ is also continuous by utilizing the euclidean metric $d$ on $\reals^2$ and the standard metric $d'$ on $A$, i.e. $d'$ is the standard metric $d$ on $\reals$ restricted to $A \times A$, which is a metric for the subspace $A$ by the remarks at the beginning of \S 21.
+    So consider any $x \in A$ so that $x \geq 0$, let $U$ be the equivalence class in $X^*$ such that $U = \ivf(x)$ so that $f(U) = x$, and let $\cU$ be a neighborhood of $U = \ivf(x)$ in the quotient topology on $X^*$.
+    Then we have that $\cU$ is a collection of equivalence classes and that $\pptz{x}$ must be in $U$ since $\sqrt{x^2 + 0^2} = \abs{x} = x = f(U)$.
+    Clearly also the union $C = \bigcup_{U' \in \cU} U'$ is then open in $\reals^2$ since $\cU$ is open in the quotient space, and $\pptz{x} \in C$ since $\pptz{x} \in U$ and $U \in \cU$.
+    Thus by Lemma~\ref{lem:metric:ball} there is a $\d > 0$ where $B_d(\pptz{x}, \d) \ss C$.
+
+    Now, consider the set $B_{d'}(x, \d)$, which is clearly a neighborhood of $x$ in $A$.
+    Consider any $V \in \ivf(B_{d'}(x, \d))$ and let $v = f(V) \in A$ so that it must be that $\pptz{v} \in V$ since $\sqrt{v^2 + 0^2} = \abs{v} = v = f(V)$.
+    Then $v = f(V) \in B_{d'}(x, \d)$ so that $d'(v,x) = d(v,x) = \abs{v-x} < \d$.
+    Then also
+    \gath{
+      d(\pptz{v}, \pptz{x}) = \sqrt{(z-x)^2 + (0-0)^2} = \sqrt{(z-x)^2} = \abs{v-x} < \d \,,
+    }
+    and hence $\pptz{v} \in B_d(\pptz{x}, \d) \ss C = \bigcup_{U' \in \cU} U'$.
+    Therefore there is an equivalence class $W$ in $\cU$ such that $\pptz{v} \in W$ and $W \in \cU$.
+    However, since the equivalence classes are all disjoint, it has to be that $W = V$ since $\pptz{v} \in V$ as well.
+    Thus $V = W \in \cU$ so that $\ivf(B_{d'}(x,\d)) \ss \cU$ since $V$ was arbitrary.
+    This suffices to show that $\ivf$ is continuous by Theorem~18.1 since $\cU$ was an arbitrary neighborhood of $U = \ivf(x)$.
+    This completes the proof that $f$ is a homeomorphism so that $X^*$ is homeomorphic to $A$ as desired.
+  }
+}
+
+\exercise{5}{
+  Let $p: X \to Y$ be an open map.
+  Show that if $A$ is open in $X$, then the map $q: A \to p(A)$ obtained by resrtricting $p$ is an open map.
+}
+\sol{
+  Consider any open set $U$ in the subspace $A$ so that $U = A \cap V$ for some open set $V$ in $X$ by the definition of a subspace.
+  Since $A$ is also open in $X$ we have that $A \cap V = U$ is also open in $X$ by the definition of a topology.
+  Then $q(U) = p(U)$ is open in $Y$ since $p$ is an open map.
+  Since $U \ss A$, it follows that $p(U) \ss p(A)$ by Exercise~2.2 part~(e) so that $p(U) \cap p(A) = p(U) = q(U)$.
+  This shows that $q(U)$ is open in the subspace $p(A)$ since we have shown that $p(U)$ is open in $Y$.
+  Therefore $q$ is an open map since $U$ was an arbitrary open set of $A$.
+}
+
+\exercise{6}{
+  Recall that $\reals_K$ denotes the real line in the K-topology.
+  (See \S 13.)
+  Let $Y$ be the quotient space obtained from $\reals_K$ by collapsing the set $K$ to a point: let $p: \reals_K \to Y$ be the quotient map.
+  \eparts{
+  \item Show that $Y$ satisfies the $T_1$ axiom, but is not Hausdorff.
+  \item Show that $p \times p: \reals_K \times \reals_K \to Y \times Y$ is not a quotient map.
+    [Hint: The diagonal is not closed in $Y \times Y$, but its inverse image is closed in $\reals_K \times \reals_K$.]
+  }
+}
+\sol{
+  In what follows let
+  \gath{
+    Y = \braces{K} \cup \braces{\braces{x} \where x \in \reals - K} \,.
+  }
+  It is easy to see and trivial to show that $Y$ is a partition of $\reals_K$, and that $K$ becomes a single point in the quotient space $Y$.
+
+  (a)
+  \qproof{
+    First, consider a single point $U$ in the collection $Y$.
+    If $U = K$ then clearly $\ivp(\braces{U}) = K$, which we know is closed in $\reals_K$ as was shown in Exercise~17.16 part~(b).
+    If $U \neq K$ then $U = \braces{x}$ for some $x \in \reals - K$ so that of course $\ivp(\braces{U}) = \braces{x}$ is closed in $\reals_K$ since $\reals_K$ was shown to satisfy the $T_1$ axiom, again in Exercise~17.16 part~(b).
+    Hence either way $\ivp(\braces{U})$ is closed in $\reals_K$ so that $\braces{U}$ must be closed in $Y$ since $p$ is a quotient map.
+    This suffices to show that $Y$ satisfies the $T_1$ axiom since $U$ was arbitrary.
+
+    To show that $Y$ is not Hausdorff
   }
 }

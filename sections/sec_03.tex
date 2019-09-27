@@ -2,32 +2,31 @@
 \subsection{Relations}
 
 % Some useful commands for these exercises
-\newcommand\ppt[1]{(x_{#1}, y_{#1})}
 \newcommand\peq[1]{y_{#1} - x_{#1}^2}
 
 \exercise{1}{
-  Define two points $\ppt{0}$ and $\ppt{1}$ of the plane to be equivalent if $\peq{0} = \peq{1}$.
+  Define two points $\pptp{0}$ and $\pptp{1}$ of the plane to be equivalent if $\peq{0} = \peq{1}$.
   Check that this is an equivalence relation and describe the equivalence classes.
 }
 \sol{
   First we show that this relation, which we shall denote with $\sim$, is an equivalence relation.
   \qproof{
-    In what follows, suppose that $\ppt{0}$, $\ppt{1}$, and $\ppt{2}$ are all points in the plane.
+    In what follows, suppose that $\pptp{0}$, $\pptp{1}$, and $\pptp{2}$ are all points in the plane.
     
-    (Reflexivity) Of course we have $\peq{0} = \peq{0}$, and hence $\ppt{0} \sim \ppt{0}$.
+    (Reflexivity) Of course we have $\peq{0} = \peq{0}$, and hence $\pptp{0} \sim \pptp{0}$.
 
-    (Symmetry) Suppose that $\ppt{0} \sim \ppt{1}$.
-    Then we have $\peq{0} = \peq{1}$ so that of course $\peq{1} = \peq{1}$ since numerical equality is symmetric, and so $\ppt{1} \sim \ppt{0}$ as well.
+    (Symmetry) Suppose that $\pptp{0} \sim \pptp{1}$.
+    Then we have $\peq{0} = \peq{1}$ so that of course $\peq{1} = \peq{1}$ since numerical equality is symmetric, and so $\pptp{1} \sim \pptp{0}$ as well.
 
-    (Transitivity) Suppose that $\ppt{0} \sim \ppt{1}$ and $\ppt{1} \sim \ppt{2}$.
+    (Transitivity) Suppose that $\pptp{0} \sim \pptp{1}$ and $\pptp{1} \sim \pptp{2}$.
     Then $\peq{0} = \peq{1}$ and $\peq{1} = \peq{2}$ so that of course $\peq{0} = \peq{2}$ since numerical equality is transitive.
-    Therefore $\ppt{0} \sim \ppt{2}$, which shows transitivity.
+    Therefore $\pptp{0} \sim \pptp{2}$, which shows transitivity.
 
     This suffices to show that $\sim$ is an equivalence relation as we set out to show.
   }
 
   Each equivalence class formed by this relation is the parabola $y = x^2$ shifted up or down on the $y$-axis.
-  This is easy to see since two points $\ppt{0}$ and $\ppt{1}$ are in the same class if $\peq{0}$ and $\peq{1}$ have the same value, say $c$.
+  This is easy to see since two points $\pptp{0}$ and $\pptp{1}$ are in the same class if $\peq{0}$ and $\peq{1}$ have the same value, say $c$.
   Then $\peq{0} = c$ so that $y_0 = x_0^2 + c$, which is clearly such a parabola, and similarly $y_1 = x_1^2 + c$.
 }
 
@@ -136,8 +135,8 @@
 \exercise{5}{
   Let $S$ and $S'$ be the following subsets of the plane:
   \ali{
-    S &= \braces{\ppt{} \where y = x+1 \text{ and } 0 < x < 2} \,, \\
-    S' &= \braces{\ppt{} \where y - x \text{ is an integer}} \,.
+    S &= \braces{\pptp{} \where y = x+1 \text{ and } 0 < x < 2} \,, \\
+    S' &= \braces{\pptp{} \where y - x \text{ is an integer}} \,.
   }
   \eparts{
   \item Show that $S'$ is an equivalence relation on the real line and $S' \sps S$.
@@ -171,9 +170,9 @@
     Hence $x S' z$ so that $S'$ is transitive.
 
     It is easy to show that $S' \sps S$.
-    Consider any $\ppt{} \in S$ so that $0 < x < 2$ and $y = x + 1$.
+    Consider any $\pptp{} \in S$ so that $0 < x < 2$ and $y = x + 1$.
     Then $y - x = (x + 1) - x = 1$, which is of course an integer.
-    Hence $\ppt{} \in S'$, and thus $S' \sps S$ since $\ppt{}$ was arbitrary.
+    Hence $\pptp{} \in S'$, and thus $S' \sps S$ since $\pptp{}$ was arbitrary.
   }
 
   The equivalence class $C$ containing $x \in \reals$ is the countable set $C = \braces{x + n \where n \in \ints}$.
@@ -188,20 +187,20 @@
   (b)
   \qproof{
     Let $A^*$ be a collection of equivalence relations on $A$ so that we must show that $C = \bigcap_{D \in A^*} D$ is also an equivalence relation on $A$.
-    First, suppose that any $\ppt{} \in C$ and consider any $D \in A^*$ so that $\ppt{} \in D$.
-    Then also $\ppt{} \in A \times A$ since $D$ is a relation on $A$ so that $D \ss A \times A$.
-    This shows that $C \ss A \times A$ since $\ppt{}$ was arbitrary, and so $C$ is a relation on $A$.
+    First, suppose that any $\pptp{} \in C$ and consider any $D \in A^*$ so that $\pptp{} \in D$.
+    Then also $\pptp{} \in A \times A$ since $D$ is a relation on $A$ so that $D \ss A \times A$.
+    This shows that $C \ss A \times A$ since $\pptp{}$ was arbitrary, and so $C$ is a relation on $A$.
     Now we show the three required properties of an equivalence relation:
 
     (Reflexivity) Consider any $x \in A$ so that $(x,x) \in D$ for every $D \in A^*$ since each $D$ is an equivalence relation and so is reflexive.
     It then follows that $(x,x) \bigcap_{D \in A^*} D = C$, which shows that $C$ is reflexive.
 
-    (Symmetric) Suppose that $\ppt{} \in C$ and consider any $D \in A^*$ so that also $\ppt{} \in D$.
+    (Symmetric) Suppose that $\pptp{} \in C$ and consider any $D \in A^*$ so that also $\pptp{} \in D$.
     Then also $(y,x) \in D$ since $D$ is an equivalence relation and so is symmetric.
     Since $D$ was arbitrary, this shows that $(y,x) \in \bigcap_{D \in A^*} D = C$ so that $C$ is symmetric.
 
-    (Transitivity) Suppose that $\ppt{} \in C$ and $(y,z) \in C$.
-    For any $D \in A^*$ we then have that both $\ppt{} \in D$ and $(y,z) \in D$.
+    (Transitivity) Suppose that $\pptp{} \in C$ and $(y,z) \in C$.
+    For any $D \in A^*$ we then have that both $\pptp{} \in D$ and $(y,z) \in D$.
     It then follows that $(x,z) \in D$ since $D$ is an equivalence relation and so is transitive.
     Since $D$ was arbitrary, we have that $(x,z) \in \bigcap_{D \in A^*} D = C$ so that $C$ is transitive as desired.
   }
@@ -211,11 +210,11 @@
   In fact $(x,x) \notin S$ for any $x \in \reals$ since it is never true that $x = x+1$.
   Now define the following subsets of the plane:
   \ali{
-    S_1 &= \braces{\ppt{} \where y = x} &
-    S_4 &= \braces{\ppt{} \where y = x + 2 \text{ and } 0 < x < 1} \\
-    S_2 &= S = \braces{\ppt{} \where y = x + 1 \text{ and } 0 < x < 2} &
-    S_5 &= \braces{\ppt{} \where y = x - 2 \text{ and } 2 < x < 3} \,. \\
-    S_3 &= \braces{\ppt{} \where y = x - 1 \text{ and } 1 < x < 3}
+    S_1 &= \braces{\pptp{} \where y = x} &
+    S_4 &= \braces{\pptp{} \where y = x + 2 \text{ and } 0 < x < 1} \\
+    S_2 &= S = \braces{\pptp{} \where y = x + 1 \text{ and } 0 < x < 2} &
+    S_5 &= \braces{\pptp{} \where y = x - 2 \text{ and } 2 < x < 3} \,. \\
+    S_3 &= \braces{\pptp{} \where y = x - 1 \text{ and } 1 < x < 3}
   }
   We then claim that the intersection we seek is $T = \bigcup_{i \in \intsfin{5}} S_i$.
   An illustration of this set in the plane is shown below:
@@ -250,35 +249,35 @@
   \qproof{
     Let $S^*$ denote the collection of all equivalence relations on $\reals$ that contain $S$ so that we must show that $T = \bigcap_{R \in S^*} R$.
 
-    $(\ss)$ Consider any $\ppt{} \in T$ and any $R \in S^*$ so that $R$ is an equivalence relation on $\reals$ that contains $S$.
+    $(\ss)$ Consider any $\pptp{} \in T$ and any $R \in S^*$ so that $R$ is an equivalence relation on $\reals$ that contains $S$.
     We then have the following cases:
 
-    Case: $\ppt{} \in S_1$.
-    Then of course $y = x$ so that $\ppt{} = (x,x) \in R$ since it is an equivalence relation and thus reflexive.
+    Case: $\pptp{} \in S_1$.
+    Then of course $y = x$ so that $\pptp{} = (x,x) \in R$ since it is an equivalence relation and thus reflexive.
 
-    Case: $\ppt{} \in S_2 = S$.
-    Then of course $\ppt{} \in R$ since $R$ contains $S$.
+    Case: $\pptp{} \in S_2 = S$.
+    Then of course $\pptp{} \in R$ since $R$ contains $S$.
 
-    Case: $\ppt{} \in S_3$.
+    Case: $\pptp{} \in S_3$.
     Then we have that $y = x - 1$ with $1 < x < 3$, from which it follows that $x = y + 1$ and $0 < y = x-1 < 2$.
     Therefore $(y,x) \in S$ so that $(y,x) \in R$ since $R$ contains $S$.
-    We then have that $\ppt{} \in R$ as well since $R$ is an equivalence relation and therefore symmetric.
+    We then have that $\pptp{} \in R$ as well since $R$ is an equivalence relation and therefore symmetric.
 
-    Case: $\ppt{} \in S_4$.
+    Case: $\pptp{} \in S_4$.
     Then $y = x+2$ with $0 < x < 1$.
     Let $z = x+1$ so that $(x,z) \in S = S_4$ since we also have $0 < x < 1 < 2$.
     We then know that $(x,z) \in R$ since $R$ contains $S$.
     We also then have that $y = x+2 = (x+1)+1 = z+1$ with $0 < 1 < z = x+1 < 2$ since $0 < x < 1$.
     Thus $(z,y) \in S = S_4$ so that also $(z,y) \in R$.
-    Since $R$ is an equivalence relation and therefore transitive, we have that $\ppt{} \in R$ as well.
+    Since $R$ is an equivalence relation and therefore transitive, we have that $\pptp{} \in R$ as well.
 
-    Case: $\ppt{} \in S_5$.
+    Case: $\pptp{} \in S_5$.
     Then we have $y = x-2$ and $2 < x < 3$.
     It then follows that $x = y+2$ and $0 < y = x-2 < 1$ so that $(y,x) \in S_4$.
-    Then of course $(y,x) \in R$ by the previous case so that also $\ppt{} \in R$ since $R$ is an equivalence relation and therefore symmetric.
+    Then of course $(y,x) \in R$ by the previous case so that also $\pptp{} \in R$ since $R$ is an equivalence relation and therefore symmetric.
 
-    Thus in every case $\ppt{} \in R$ so that also $\ppt{} \in \bigcap_{R \in S^*} R$ since $R$ was arbitrary.
-    It then follows that $T \ss \bigcap_{R \in S^*} R$ since $\ppt{}$ was arbitrary.
+    Thus in every case $\pptp{} \in R$ so that also $\pptp{} \in \bigcap_{R \in S^*} R$ since $R$ was arbitrary.
+    It then follows that $T \ss \bigcap_{R \in S^*} R$ since $\pptp{}$ was arbitrary.
 
     $(\sps)$ All we really need to show is that $T$ is an equivalence relation on $\reals$ that contains $S$.
     From this it follows that $T \in S^*$ so that of course $T \sps \bigcap_{R \in S^*} R$.
@@ -288,25 +287,25 @@
 
     (Reflexivity) For any $x \in \reals$ clearly $(x,x) \in S_1 \ss T$ so that $T$ is reflexive.
 
-    (Symmetry) Suppose that $xTy$ so that $\ppt{} \in T$.
+    (Symmetry) Suppose that $xTy$ so that $\pptp{} \in T$.
     We then have the following cases:
 
-    Case: $\ppt{} \in S_1$.
-    Then of course $y = x$ so $(y,x) = (x,x) = \ppt{} \in S_1 \ss T$.
+    Case: $\pptp{} \in S_1$.
+    Then of course $y = x$ so $(y,x) = (x,x) = \pptp{} \in S_1 \ss T$.
 
-    Case: $\ppt{} \in S_2 = S$.
+    Case: $\pptp{} \in S_2 = S$.
     Then $y = x+1$ and $0<x<2$ so that $x = y-1$ and $1 < y=x+1 < 3$.
     Hence $(y,x) \in S_3 \ss T$.
 
-    Case: $\ppt{} \in S_3$.
+    Case: $\pptp{} \in S_3$.
     Then we have that $y = x - 1$ with $1 < x < 3$, from which it follows that $x = y + 1$ and $0 < y = x-1 < 2$.
     Therefore $(y,x) \in S = S_2 \ss T$.
 
-    Case: $\ppt{} \in S_4$.
+    Case: $\pptp{} \in S_4$.
     Then $y = x+2$ with $0 < x < 1$ so that $x = y-2$ and $2 < y=x+2 < 3$.
     Hence $(y,x) \in S_5 \ss T$.
 
-    Case: $\ppt{} \in S_5$.
+    Case: $\pptp{} \in S_5$.
     Then we have $y = x-2$ and $2 < x < 3$ so that $x = y+2$ and $0 < y=x-2 < 1$.
     Hence $(y,x) \in S_4 \ss T$.
 
@@ -314,11 +313,11 @@
 
     (Transitivity) Now suppose that $xTy$ and $yTz$.
     If $x = y$ then of course we have $(x,z) = (y,z) \in T$.
-    Similarly if $y = z$ then $(x,z) = \ppt{} \in T$.
-    So assume that $x \neq y$ and $y \neq z$ so that it can neither be that $\ppt{} \in S_1$ nor $(y,z) \in S_1$.
-    Thus there are four sets (i.e. $S_i$ where $i \in \braces{2,3,4,5}$) that $\ppt{}$ and $(y,z)$ can be in, which results in sixteen different possibilities, though not all are possible:
+    Similarly if $y = z$ then $(x,z) = \pptp{} \in T$.
+    So assume that $x \neq y$ and $y \neq z$ so that it can neither be that $\pptp{} \in S_1$ nor $(y,z) \in S_1$.
+    Thus there are four sets (i.e. $S_i$ where $i \in \braces{2,3,4,5}$) that $\pptp{}$ and $(y,z)$ can be in, which results in sixteen different possibilities, though not all are possible:
 
-    Case: $\ppt{} \in S_2$.
+    Case: $\pptp{} \in S_2$.
     Then $y=x+1$ and $0 < x < 2$ so that $1 < y = x+1 < 3$.
     \begin{indpar}
       Case: $(y,z) \in S_2$.
@@ -336,7 +335,7 @@
       Hence $z=x-1$ and $1 < x < 3$ so that $(x,z) \in S_3 \ss T$.
     \end{indpar}
 
-    Case: $\ppt{} \in S_3$.
+    Case: $\pptp{} \in S_3$.
     Then $y=x-1$ and $1 < x < 3$ so that $0 < y = x-1 < 2$.
     \begin{indpar}
       Case: $(y,z) \in S_2$.
@@ -354,7 +353,7 @@
       This is case is not possible because $y < 2$ so that it cannot be that $2 < y < 3$, and hence $(y,z)$ cannot be in $S_5$.
     \end{indpar}
 
-    Case: $\ppt{} \in S_4$.
+    Case: $\pptp{} \in S_4$.
     Then $y=x+2$ and $0 < x < 1$ so that $2 < y = x+2 < 3$.
     \begin{indpar}
       Case: $(y,z) \in S_2$.
@@ -371,7 +370,7 @@
       Then $z=y-2$ and $0 < y <1$ so that $z=y-2=(x+2)-2=x$ and hence $(x,z) = (x,x) \in S_1 \ss T$.
     \end{indpar}
 
-    Case: $\ppt{} \in S_5$.
+    Case: $\pptp{} \in S_5$.
     Then $y=x-2$ and $2 < x < 3$ so that $0 < y=x-2 < 1$.
     \begin{indpar}
       Case: $(y,z) \in S_2$.
@@ -413,7 +412,7 @@
 \exercise{6}{
   Define a relation on the plane by setting
   \gath{
-    \ppt{0} < \ppt{1}
+    \pptp{0} < \pptp{1}
   }
   if either $y_0 - x_0^2 < y_1 - x_1^2$ or $y_0 - x_0^2 = y_1 - x_1^2$ and $x_0 < x_1$.
   Show that this is an order relation on the plane, and describe it geometrically.
@@ -423,8 +422,8 @@
   \qproof{
     As clearly $<$ is a relation on the plane, we need only show that it has the three required properties of an order relation:
 
-    (Comparability) Consider distinct $\ppt{0}$ and $\ppt{1}$ in the plane so that either $x_0 \neq x_1$ or $y_0 \neq y_1$.
-    Obviously if $\peq{0} < \peq{1}$ (or $\peq{1} < \peq{0}$) then of course $\ppt{0} < \ppt{1}$ (or $\ppt{1} < \ppt{0}$) so we are done.
+    (Comparability) Consider distinct $\pptp{0}$ and $\pptp{1}$ in the plane so that either $x_0 \neq x_1$ or $y_0 \neq y_1$.
+    Obviously if $\peq{0} < \peq{1}$ (or $\peq{1} < \peq{0}$) then of course $\pptp{0} < \pptp{1}$ (or $\pptp{1} < \pptp{0}$) so we are done.
     So assume that $\peq{0} = \peq{1}$.
     It it were the case that $x_0 = x_1$ it would have to be that $y_0 \neq y_1$, but we would have
     \gath{
@@ -433,41 +432,41 @@
     }
     which is a contradiction.
     So it must be that $x_0 \neq x_1$.
-    So either $x_0 < x_1$ and so $\ppt{0} < \ppt{0}$ or $x_1 < x_0$ and so $\ppt{1} < \ppt{0}$.
+    So either $x_0 < x_1$ and so $\pptp{0} < \pptp{0}$ or $x_1 < x_0$ and so $\pptp{1} < \pptp{0}$.
     This shows that $<$ is comparable in the plane.
 
-    (Nonreflexivity) Consider $\ppt{}$ in the plane so that obviously $\peq{} = \peq{}$.
-    As we also have that $x = x$, it is not the case that $x < x$ so that it is not true that $\ppt{} < \ppt{}$.
+    (Nonreflexivity) Consider $\pptp{}$ in the plane so that obviously $\peq{} = \peq{}$.
+    As we also have that $x = x$, it is not the case that $x < x$ so that it is not true that $\pptp{} < \pptp{}$.
 
-    (Transitivity) Suppose that $\ppt{0} < \ppt{1}$ and $\ppt{1} < \ppt{2}$.
+    (Transitivity) Suppose that $\pptp{0} < \pptp{1}$ and $\pptp{1} < \pptp{2}$.
     We then have the following:
 
     Case: $\peq{0} < \peq{1}$.
     \begin{indpar}
       Case:  $\peq{1} < \peq{2}$.
-      Then of course $\peq{0} < \peq{1} < \peq{2}$ so that $\ppt{0} < \ppt{2}$.
+      Then of course $\peq{0} < \peq{1} < \peq{2}$ so that $\pptp{0} < \pptp{2}$.
 
       Case: $\peq{1} = \peq{2}$ and $x_1 < x_2$.
-      Then we have $\peq{0} < \peq{1} = \peq{2}$ so that again $\ppt{0} < \ppt{2}$.
+      Then we have $\peq{0} < \peq{1} = \peq{2}$ so that again $\pptp{0} < \pptp{2}$.
     \end{indpar}
 
     Case: $\peq{0} = \peq{1}$ and $x_0 < x_1$.
     \begin{indpar}
       Case: $\peq{1} < \peq{2}$.
-      Then $\peq{0} = \peq{1} < \peq{2}$ so that $\ppt{0} < \ppt{2}$.
+      Then $\peq{0} = \peq{1} < \peq{2}$ so that $\pptp{0} < \pptp{2}$.
 
       Case: $\peq{1} = \peq{2}$ and $x_1 < x_2$.
-      Then $\peq{0} = \peq{1} = \peq{2}$ and $x_0 < x_1 < x_2$ so that $\ppt{0} < \ppt{2}$.
+      Then $\peq{0} = \peq{1} = \peq{2}$ and $x_0 < x_1 < x_2$ so that $\pptp{0} < \pptp{2}$.
     \end{indpar}
 
-    Thus in all cases $\ppt{0} < \ppt{2}$, which shows that $<$ is transitive in the plane.
+    Thus in all cases $\pptp{0} < \pptp{2}$, which shows that $<$ is transitive in the plane.
   }
 
   Geometrically, we refer back to Exercise~3.1 and consider a parabola $y = x^2$ shifted up or down on the $y$-axis be some amount $c$.
-  Then $y = x^2 + c$ so that $\peq{} = c$, and hence every $\ppt{}$ point on the parabola has the same value for $\peq{}$, namely $c$.
-  Therefore if two distinct points $\ppt{0}$ and $\ppt{1}$ lie on the different parabolas then $\peq{0}$ and $\peq{1}$ will have different values, say $c$ and $d$, respectively.
-  Then clearly if $\ppt{1}$ is on a higher parabola on the $y$-axis then $c < d$ so that $\peq{0} = c < d = \peq{1}$ so that $\ppt{0} < \ppt{1}$ in our order.
-  If the points lie on the same parabola then $\peq{0} = \peq{1}$ and whichever points is further to the right will be larger in our order since then, for example, $x_0 < x_1$ so that $\ppt{0} < \ppt{1}$.
+  Then $y = x^2 + c$ so that $\peq{} = c$, and hence every $\pptp{}$ point on the parabola has the same value for $\peq{}$, namely $c$.
+  Therefore if two distinct points $\pptp{0}$ and $\pptp{1}$ lie on the different parabolas then $\peq{0}$ and $\peq{1}$ will have different values, say $c$ and $d$, respectively.
+  Then clearly if $\pptp{1}$ is on a higher parabola on the $y$-axis then $c < d$ so that $\peq{0} = c < d = \peq{1}$ so that $\pptp{0} < \pptp{1}$ in our order.
+  If the points lie on the same parabola then $\peq{0} = \peq{1}$ and whichever points is further to the right will be larger in our order since then, for example, $x_0 < x_1$ so that $\pptp{0} < \pptp{1}$.
 }
 
 \exercise{7}{
@@ -770,8 +769,8 @@
   Consider the following order relations on $\pintss$.
   \begin{enumerate}[label=(\roman*)]
   \item The dictionary order.
-  \item $\ppt{0} < \ppt{1}$ if either $x_0 - y_0 < x_1 - y_1$ or $x_0 - y_0 = x_1 - y_1$ and $y_0 < y_1$.
-  \item $\ppt{0} < \ppt{1}$ if either $x_0 + y_0 < x_1 + y_1$ or $x_0 + y_0 = x_1 + y_1$ and $y_0 < y_1$.
+  \item $\pptp{0} < \pptp{1}$ if either $x_0 - y_0 < x_1 - y_1$ or $x_0 - y_0 = x_1 - y_1$ and $y_0 < y_1$.
+  \item $\pptp{0} < \pptp{1}$ if either $x_0 + y_0 < x_1 + y_1$ or $x_0 + y_0 = x_1 + y_1$ and $y_0 < y_1$.
   \end{enumerate}
   In these order relations, which elements have immediate predecessors?
   Does the set have a smallest element?
@@ -824,39 +823,39 @@
   \end{center}
   We claim that every point has an immediate predecessor except points in the subset
   \gath{
-    A = \braces{\ppt{} \where y = 1} \,.
+    A = \braces{\pptp{} \where y = 1} \,.
   }
   We also claim that $(1,1)$ is the smallest element in $\pintss$ with this order.
   \qproof{
-    First consider any point $\ppt{1} \in \pintss$ where $\ppt{1} \notin A$ so that $y_0 \neq 1$.
+    First consider any point $\pptp{1} \in \pintss$ where $\pptp{1} \notin A$ so that $y_0 \neq 1$.
     It then follows that $y_1 > 1$ since $1$ is the smallest positive integer.
-    Then set $x_0 = x_1$ and $y_0 = y_1 - 1$ so that clearly $\ppt{0} \in \pintss$ since $y_0 > 0$ because $y_1 > 1$.
-    Clearly also $x_0 = x_1$ and $y_0 < y_1$ so that $\ppt{0} < \ppt{1}$ in the dictionary order.
-    We claim that $\ppt{0}$ is the immediate predecessor of $\ppt{1}$.
-    So suppose to the contrary that there is an $\ppt{2} \in \pintss$ such that $\ppt{0} < \ppt{2} < \ppt{1}$.
-    It cannot be that $x_0 < x_2$ since then we would have $x_1 = x_0 < x_2$ so that $\ppt{1} < \ppt{2}$, which by Lemma~\ref{lem:relations:lngeq} contradicts the fact that $\ppt{2} < \ppt{1}$.
+    Then set $x_0 = x_1$ and $y_0 = y_1 - 1$ so that clearly $\pptp{0} \in \pintss$ since $y_0 > 0$ because $y_1 > 1$.
+    Clearly also $x_0 = x_1$ and $y_0 < y_1$ so that $\pptp{0} < \pptp{1}$ in the dictionary order.
+    We claim that $\pptp{0}$ is the immediate predecessor of $\pptp{1}$.
+    So suppose to the contrary that there is an $\pptp{2} \in \pintss$ such that $\pptp{0} < \pptp{2} < \pptp{1}$.
+    It cannot be that $x_0 < x_2$ since then we would have $x_1 = x_0 < x_2$ so that $\pptp{1} < \pptp{2}$, which by Lemma~\ref{lem:relations:lngeq} contradicts the fact that $\pptp{2} < \pptp{1}$.
     So it has to be that $x_0 = x_2$ and $y_0 < y_2$.
-    Since then $x_2 = x_0 = x_1$, it must also be that $y_2 < y_1$ since $\ppt{2} < \ppt{1}$.
+    Since then $x_2 = x_0 = x_1$, it must also be that $y_2 < y_1$ since $\pptp{2} < \pptp{1}$.
     But then we have $y_0 < y_2 < y_1 = y_0+1$, which is not possible since $y_1 = y_0+1$ is the immediate successor of $y_0$ in $\pints$ so that there can be no integers between them.
-    So it must be that no $\ppt{2}$ exists so that $\ppt{0}$ is the immediate predecessor of $\ppt{1}$.
+    So it must be that no $\pptp{2}$ exists so that $\pptp{0}$ is the immediate predecessor of $\pptp{1}$.
     Thus every element not in $A$ has an immediate predecessor.
 
-    Now consider any $\ppt{1} \in A$ so that $y_1 = 1$, and consider any point $\ppt{0} < \ppt{1}$.
+    Now consider any $\pptp{1} \in A$ so that $y_1 = 1$, and consider any point $\pptp{0} < \pptp{1}$.
     It cannot be that $x_0 = x_1$ since then we would have $y_0 < y_1 = 1$, which is not possible since $1$ is the smallest positive integer.
     So it must be that $x_0 < x_1$.
-    Then let $x_2 = x_0$ and $y_2 = y_0+1$ so that clearly $\ppt{2} \in \pintss$ since $y+1$ is always still a positive integer if $y$ is.
-    Then we have that $x_0 = x_2$ and $y_0 < y_0 + 1 = y_2$, and hence $\ppt{0} < \ppt{2}$.
-    We also have $x_2 = x_0 < x_1$ so that $\ppt{2} < \ppt{1}$.
-    Therefore $\ppt{0} < \ppt{2} < \ppt{1}$, which shows that $\ppt{0}$ is not the immediate predecessor of $\ppt{1}$.
-    This shows that $\ppt{1}$ has no immediate predecessor since $\ppt{0} < \ppt{1}$ was arbitrary.
-    Since $\ppt{1} \in A$ was arbitrary, this completes the proof that every element in $\pintss$ has an immediate predecessor except those in $A$.
+    Then let $x_2 = x_0$ and $y_2 = y_0+1$ so that clearly $\pptp{2} \in \pintss$ since $y+1$ is always still a positive integer if $y$ is.
+    Then we have that $x_0 = x_2$ and $y_0 < y_0 + 1 = y_2$, and hence $\pptp{0} < \pptp{2}$.
+    We also have $x_2 = x_0 < x_1$ so that $\pptp{2} < \pptp{1}$.
+    Therefore $\pptp{0} < \pptp{2} < \pptp{1}$, which shows that $\pptp{0}$ is not the immediate predecessor of $\pptp{1}$.
+    This shows that $\pptp{1}$ has no immediate predecessor since $\pptp{0} < \pptp{1}$ was arbitrary.
+    Since $\pptp{1} \in A$ was arbitrary, this completes the proof that every element in $\pintss$ has an immediate predecessor except those in $A$.
 
     It is easy to prove that $(1,1)$ is the smallest element in the dictionary order.
-    Consider any $\ppt{0} \in \pintss$ and suppose that $\ppt{0} < (1,1)$.
+    Consider any $\pptp{0} \in \pintss$ and suppose that $\pptp{0} < (1,1)$.
     It cannot be that $x_0 < 1$ since $1$ is the smallest positive integer.
     So then $x_0 = 1$ and $y_0 < 1$, but this is also not possible, again since $1$ is the smallest positive integer.
-    Thus it cannot be that $\ppt{0} < (1,1)$, so it must be that $(1,1) \leq \ppt{0}$ by Lemma~\ref{lem:relations:lngeq}.
-    This shows that $(1,1)$ is the smallest element since $\ppt{0}$ was arbitrary.
+    Thus it cannot be that $\pptp{0} < (1,1)$, so it must be that $(1,1) \leq \pptp{0}$ by Lemma~\ref{lem:relations:lngeq}.
+    This shows that $(1,1)$ is the smallest element since $\pptp{0}$ was arbitrary.
   }
 
   Below is shown an illustration for the order in part~(ii):
@@ -878,23 +877,23 @@
   \end{center}
   We claim that every element has an immediate predecessor except those in the subset
   \gath{
-    A = \braces{\ppt{} \where x=1 \text{ or } y=1} \,.
+    A = \braces{\pptp{} \where x=1 \text{ or } y=1} \,.
   }
   We also claim that the set $\pintss$ has no smallest element in this order.
   \qproof{
-    First consider any $\ppt{1} \notin A$ so that $x_1 \neq 1$ and $y_1 \neq 1$.
+    First consider any $\pptp{1} \notin A$ so that $x_1 \neq 1$ and $y_1 \neq 1$.
     Then it has to be that $x_1,y_1 > 1$.
-    So set $\ppt{0} = (x_1-1,y_1-1)$ so that clearly still $\ppt{0} \in \pintss$.
+    So set $\pptp{0} = (x_1-1,y_1-1)$ so that clearly still $\pptp{0} \in \pintss$.
     Then $x_0-y_0 = (x_1-1)-(y_1-1) = x_1-1-y_1+1 = x_1-y_1$.
-    We also have $y_0 = y_1-1 < y_1$ so that $\ppt{0} < \ppt{1}$.
-    Now suppose that there is an $\ppt{2} \in \pintss$ where $\ppt{0} < \ppt{2} < \ppt{1}$.
-    It cannot be that $x_0-y_0 < x_2-y_2$ since then we would have $x_1-y_1 = x_0-y_0 < x_2-y_2$ so that $\ppt{1} < \ppt{2}$, which we know cannot be the case since $\ppt{2} < \ppt{1}$.
-    So it must be that $x_2-y_2 = x_0-y_0 = x_1-y_1$ and $y_0 < y_2$, but then we must have $y_0 < y_2 < y_1 = y_0+1$, noting that $y_2 < y_1$ because $x_2-y_2 = x_1-y_1$ and $\ppt{2} < \ppt{1}$.
+    We also have $y_0 = y_1-1 < y_1$ so that $\pptp{0} < \pptp{1}$.
+    Now suppose that there is an $\pptp{2} \in \pintss$ where $\pptp{0} < \pptp{2} < \pptp{1}$.
+    It cannot be that $x_0-y_0 < x_2-y_2$ since then we would have $x_1-y_1 = x_0-y_0 < x_2-y_2$ so that $\pptp{1} < \pptp{2}$, which we know cannot be the case since $\pptp{2} < \pptp{1}$.
+    So it must be that $x_2-y_2 = x_0-y_0 = x_1-y_1$ and $y_0 < y_2$, but then we must have $y_0 < y_2 < y_1 = y_0+1$, noting that $y_2 < y_1$ because $x_2-y_2 = x_1-y_1$ and $\pptp{2} < \pptp{1}$.
     However, this is not possible since of course $y_0+1$ is the immediate successor of $y_0$ in $\pints$.
-    So then it has to be that no such $\ppt{2}$ exists so that $\ppt{0}$ is the immediate predecessor of $\ppt{1}$.
-    This shows that every point not in $A$ has an immediate predecessor since $\ppt{1}$ was arbitrary.
+    So then it has to be that no such $\pptp{2}$ exists so that $\pptp{0}$ is the immediate predecessor of $\pptp{1}$.
+    This shows that every point not in $A$ has an immediate predecessor since $\pptp{1}$ was arbitrary.
 
-    Now suppose that $\ppt{1} \in A$ so that $x_1 = 1$ or $y_1 = 1$, and consider any $\ppt{0} < \ppt{1}$.
+    Now suppose that $\pptp{1} \in A$ so that $x_1 = 1$ or $y_1 = 1$, and consider any $\pptp{0} < \pptp{1}$.
 
     Case: $x_1 = 1$.
     Suppose that $x_0-y_0 = x_1-y_1$ and $y_0 < y_1$.
@@ -903,19 +902,19 @@
     Case: $y_1 = 1$.
     It clearly cannot be that case that $x_0-y_0 = x_1-y_1$ and $y_0 < y_1$ since then $y_0 < y_1 = 1$, which is not possible.
 
-    So in either case it must be that $x_0-y_0 < x_1-y_1$ since $\ppt{0} < \ppt{1}$.
-    So set the point $\ppt{2} = (x_0+1,y_0+1)$, which is clearly still an element of $\pintss$.
-    We then have $x_2-y_2 = (x_0+1)-(y_0+1) = x_0+1-y_0-1 = x_0-y_0 < x_1-y_1$ so that $\ppt{2} < \ppt{1}$.
-    We also have $x_0-y_0 = x_2-y_2$ and $y_0 < y_0+1 = y_2$ so that also $\ppt{0} < \ppt{2}$.
-    Hence $\ppt{0} < \ppt{2} < \ppt{1}$ so that $\ppt{0}$ is not the immediate predecessor of $\ppt{1}$.
-    Since $\ppt{0} < \ppt{1}$ was arbitrary, this shows that $\ppt{1}$ has no immediate predecessor at all.
-    Since $\ppt{1} \in A$ was arbitrary, this shows that no element of $A$ has an immediate predecessor.
+    So in either case it must be that $x_0-y_0 < x_1-y_1$ since $\pptp{0} < \pptp{1}$.
+    So set the point $\pptp{2} = (x_0+1,y_0+1)$, which is clearly still an element of $\pintss$.
+    We then have $x_2-y_2 = (x_0+1)-(y_0+1) = x_0+1-y_0-1 = x_0-y_0 < x_1-y_1$ so that $\pptp{2} < \pptp{1}$.
+    We also have $x_0-y_0 = x_2-y_2$ and $y_0 < y_0+1 = y_2$ so that also $\pptp{0} < \pptp{2}$.
+    Hence $\pptp{0} < \pptp{2} < \pptp{1}$ so that $\pptp{0}$ is not the immediate predecessor of $\pptp{1}$.
+    Since $\pptp{0} < \pptp{1}$ was arbitrary, this shows that $\pptp{1}$ has no immediate predecessor at all.
+    Since $\pptp{1} \in A$ was arbitrary, this shows that no element of $A$ has an immediate predecessor.
 
-    To show that $\pints$ in this order has no smallest element, consider absolutely any $\ppt{1} \in \pintss$.
-    Let $\ppt{0} = (x_1,y_1+1)$ so that of course $\ppt{0} \in \pintss$.
-    We then have that $x_0 - y_0 = x_1 - (y_1+1) = (x_1 - y_1) - 1 < x_1 - y_1$ so that $\ppt{0} < \ppt{1}$.
-    Then of course is it not true that $\ppt{1} \leq \ppt{0}$ by Lemma~\ref{lem:relations:lngeq} so that $\ppt{1}$ cannot be the smallest element.
-    Then, since $\ppt{1}$ was arbitrary, this shows that $\pintss$ has no smallest element in this order.
+    To show that $\pints$ in this order has no smallest element, consider absolutely any $\pptp{1} \in \pintss$.
+    Let $\pptp{0} = (x_1,y_1+1)$ so that of course $\pptp{0} \in \pintss$.
+    We then have that $x_0 - y_0 = x_1 - (y_1+1) = (x_1 - y_1) - 1 < x_1 - y_1$ so that $\pptp{0} < \pptp{1}$.
+    Then of course is it not true that $\pptp{1} \leq \pptp{0}$ by Lemma~\ref{lem:relations:lngeq} so that $\pptp{1}$ cannot be the smallest element.
+    Then, since $\pptp{1}$ was arbitrary, this shows that $\pintss$ has no smallest element in this order.
   }
 
   An illustration of the order of part~(iii) is shown below:
@@ -938,38 +937,38 @@
   \end{center}
   We claim that every element has an immediate predecessor except for $(1,1)$, which is the smallest element.
   \qproof{
-    First we show that $\ppt{0} = (1,1)$ is the smallest element, from which it follows that it cannot have an immediate predecessor since it has no predecessors at all.
-    Consider any $\ppt{1}$ in $\pintss$.
-    If $\ppt{1} = (1,1)$ then of course $\ppt{0} = (1,1) \leq \ppt{1}$ is true, so assume that $\ppt{1} \neq (1,1)$ so that either $x_1 \neq 1$ or $y_1 \neq 1$.
-    If $x_1 \neq 1$ then it has to be that $x_1 > 1$ so that $x_0 + y_0 = 1 + 1 \leq 1 + y_1 < x_1 + y_1$, and hence $\ppt{0} < \ppt{1}$.
-    If $y_1 \neq 1$ then $y_1 > 1$ so that again $x_0 + y_0 = 1 + 1 \leq x_1 + 1 < x_1 + y_1$, and hence $\ppt{0} < \ppt{1}$.
-    Thus in every case $\ppt{0} \leq \ppt{1}$, which shows that $\ppt{0} = (1,1)$ is the smallest element since $\ppt{1}$ was arbitrary.
+    First we show that $\pptp{0} = (1,1)$ is the smallest element, from which it follows that it cannot have an immediate predecessor since it has no predecessors at all.
+    Consider any $\pptp{1}$ in $\pintss$.
+    If $\pptp{1} = (1,1)$ then of course $\pptp{0} = (1,1) \leq \pptp{1}$ is true, so assume that $\pptp{1} \neq (1,1)$ so that either $x_1 \neq 1$ or $y_1 \neq 1$.
+    If $x_1 \neq 1$ then it has to be that $x_1 > 1$ so that $x_0 + y_0 = 1 + 1 \leq 1 + y_1 < x_1 + y_1$, and hence $\pptp{0} < \pptp{1}$.
+    If $y_1 \neq 1$ then $y_1 > 1$ so that again $x_0 + y_0 = 1 + 1 \leq x_1 + 1 < x_1 + y_1$, and hence $\pptp{0} < \pptp{1}$.
+    Thus in every case $\pptp{0} \leq \pptp{1}$, which shows that $\pptp{0} = (1,1)$ is the smallest element since $\pptp{1}$ was arbitrary.
 
     Now we show that every other element of $\pints$ has an immediate predecessor in this order.
-    So consider any $\ppt{1} \in \pintss$ where $\ppt{1} \neq (1,1)$.
+    So consider any $\pptp{1} \in \pintss$ where $\pptp{1} \neq (1,1)$.
     Hence either $x_1 \neq 1$ or $y_1 \neq 1$.
 
     Case: $y_1 = 1$.
     Then it has to be that $x_1 \neq 1$ so that $x_1 > 1$.
-    We claim that $\ppt{0} = (1, x_1-1)$ is the immediate predecessor of $\ppt{1}$.
-    First we note that clearly $\ppt{0} \in \pintss$ since $x_1 > 1$.
-    We also have that $x_0 + y_0 = 1 + x_1 - 1 = x_1 < x_1 + y_1$ since $0 < 1 = y_1$, and so $\ppt{0} < \ppt{1}$.
-    Now suppose that there is a point $\ppt{2} \in \pintss$ where $\ppt{0} < \ppt{2} < \ppt{1}$.
+    We claim that $\pptp{0} = (1, x_1-1)$ is the immediate predecessor of $\pptp{1}$.
+    First we note that clearly $\pptp{0} \in \pintss$ since $x_1 > 1$.
+    We also have that $x_0 + y_0 = 1 + x_1 - 1 = x_1 < x_1 + y_1$ since $0 < 1 = y_1$, and so $\pptp{0} < \pptp{1}$.
+    Now suppose that there is a point $\pptp{2} \in \pintss$ where $\pptp{0} < \pptp{2} < \pptp{1}$.
     It cannot be that $x_1+y_1 = x_2+y_2$ and $y_1 < y_2$ because then we would have $y_2 < y_1 = 1$, which is not possible since $y_2 \in \pints$.
-    So it must be that $x_2+y_2 < x_1+y_1 = x_1+1$ since $\ppt{2} < \ppt{1}$.
-    Now, since also $\ppt{0} < \ppt{2}$, it must be that $x_0+y_0 \leq x_2+y_2$, but then we have $x_1 = 1 + (x_1 - 1) = x_0 + y_0 \leq x_2+y_2 < x_1+1$, which is impossible.
-    So it has to be that no such $\ppt{2}$ exists so that $\ppt{0}$ is the immediate predecessor of $\ppt{1}$.
+    So it must be that $x_2+y_2 < x_1+y_1 = x_1+1$ since $\pptp{2} < \pptp{1}$.
+    Now, since also $\pptp{0} < \pptp{2}$, it must be that $x_0+y_0 \leq x_2+y_2$, but then we have $x_1 = 1 + (x_1 - 1) = x_0 + y_0 \leq x_2+y_2 < x_1+1$, which is impossible.
+    So it has to be that no such $\pptp{2}$ exists so that $\pptp{0}$ is the immediate predecessor of $\pptp{1}$.
 
     Case: $y_1 \neq 1$.
-    Then it has to be that $y_1 > 1$ so that the point $\ppt{0} = (x_1+1,y_1-1)$ is still an element of $\pintss$.
-    We show that $\ppt{0}$ is the immediate predecessor of $\ppt{1}$.
-    First we have that $x_0+y_0 = (x_1+1) + (y_1-1) = x_1 + y_1$ and $y_0 = y_1-1 < y_1$ so that $\ppt{0} < \ppt{1}$.
-    Now suppose that there a point $\ppt{2} \in \pintss$ where $\ppt{0} < \ppt{2} < \ppt{1}$.
+    Then it has to be that $y_1 > 1$ so that the point $\pptp{0} = (x_1+1,y_1-1)$ is still an element of $\pintss$.
+    We show that $\pptp{0}$ is the immediate predecessor of $\pptp{1}$.
+    First we have that $x_0+y_0 = (x_1+1) + (y_1-1) = x_1 + y_1$ and $y_0 = y_1-1 < y_1$ so that $\pptp{0} < \pptp{1}$.
+    Now suppose that there a point $\pptp{2} \in \pintss$ where $\pptp{0} < \pptp{2} < \pptp{1}$.
     Then it has to be that $x_0 + y_0 \leq x_2+y_2 \leq x_1+y_1$ so that we have $x_1+y_1 = (x_1+1)+(y_1-1) = x_0+y_0 \leq x_2+y_2 \leq x_1+y_1$ so that $x_0+y_0 = x_2+y_2 = x_1+y_1$.
     But then we must have $y_1 - 1 = y_0 < y_2 < y_1$, which is not possible since $y_1-1$ is the immediate predecessor of $y_1$ in $\pints$.
-    So no such $\ppt{2}$ can exists, and hence $\ppt{0}$ is the immediate predecessor of $\ppt{1}$.
+    So no such $\pptp{2}$ can exists, and hence $\pptp{0}$ is the immediate predecessor of $\pptp{1}$.
 
-    This in all cases $\ppt{1}$ has an immediate predecessor, which shows the desired result since $\ppt{1} \neq (1,1)$ was arbitrary.
+    This in all cases $\pptp{1}$ has an immediate predecessor, which shows the desired result since $\pptp{1} \neq (1,1)$ was arbitrary.
   }
 
   Now we show that all three orders have different order types.
@@ -983,11 +982,11 @@
     Then of course $\inv{f}$ is also a bijection that preserves order.
     It was shown above that $\pintss$ with $<$ has countably many elements with no immediate predecessor, whereas $\pintss$ with $\prec$ has only a single such element, namely the smallest element $(1,1)$.
 
-    Thus we can choose an element $\ppt{1}$ of $\pintss$ that has no immediate predecessor in $<$ but also such that $f\ppt{1} \neq (1,1)$ so that $f\ppt{1}$ does have an immediate predecessor in $\prec$.
-    So let $(u_0, v_0)$ be the immediate predecessor of $f\ppt{1}$ in $\prec$ and set $\ppt{0} = \inv{f}(u_0,v_0)$ so that $(u_0,v_0) = f\ppt{0}$.
-    Then of course $\ppt{0} < \ppt{1}$ since $f\ppt{0} = (u_0,v_0) \prec f\ppt{1}$ and $f$ preserves order.
-    But since $\ppt{1}$ has no immediate predecessor in $<$, there is a point $\ppt{2}$ such that $\ppt{0} < \ppt{2} < \ppt{1}$.
-    We then have that $(u_0,v_0) = f\ppt{0} \prec f\ppt{2} \prec f\ppt{1}$ since $f$ preserves order, which is a contradiction since $(u_0,v_0)$ is the immediate predecessor of $f\ppt{1}$.
+    Thus we can choose an element $\pptp{1}$ of $\pintss$ that has no immediate predecessor in $<$ but also such that $f\pptp{1} \neq (1,1)$ so that $f\pptp{1}$ does have an immediate predecessor in $\prec$.
+    So let $(u_0, v_0)$ be the immediate predecessor of $f\pptp{1}$ in $\prec$ and set $\pptp{0} = \inv{f}(u_0,v_0)$ so that $(u_0,v_0) = f\pptp{0}$.
+    Then of course $\pptp{0} < \pptp{1}$ since $f\pptp{0} = (u_0,v_0) \prec f\pptp{1}$ and $f$ preserves order.
+    But since $\pptp{1}$ has no immediate predecessor in $<$, there is a point $\pptp{2}$ such that $\pptp{0} < \pptp{2} < \pptp{1}$.
+    We then have that $(u_0,v_0) = f\pptp{0} \prec f\pptp{2} \prec f\pptp{1}$ since $f$ preserves order, which is a contradiction since $(u_0,v_0)$ is the immediate predecessor of $f\pptp{1}$.
     So it must be that no such order-preserving $f$ exists and hence the two orders do not have the same order type.
   }
 }
@@ -1081,7 +1080,6 @@
   }
 }
 
-\renewcommand\ppt[1]{x_{#1} \times y_{#1}}
 \exercise{15}{
   Assume that the real line has the least upper bound property.
   \eparts{
@@ -1115,10 +1113,10 @@
   We show this for both sets simultaneously as their proofs are identical.
   \qproof{
     Let $X = [0,1] \times [0,1]$ (or $X = \clop{0,1} \times [0,1]$).
-    Suppose that $A$ is a nonempty subset of $X$ that is bounded above, and that $\ppt{1}$ is an upper bound of $A$ in $X$.
+    Suppose that $A$ is a nonempty subset of $X$ that is bounded above, and that $\pptt{1}$ is an upper bound of $A$ in $X$.
     Then of course we have $x_1 \in [0,1]$ (or $x_1 \in \clop{0,1}$).
-    Define $A_x = \braces{x \where \ppt{} \in A}$ so that clearly $A_x \ss [0,1]$ (or $A_x \ss \clop{0,1}$).
-    It then follows that $x \leq x_1$ for any $x \in A_x$ since $\ppt{1}$ is an upper bound of $A$ in the dictionary order.
+    Define $A_x = \braces{x \where \pptt{} \in A}$ so that clearly $A_x \ss [0,1]$ (or $A_x \ss \clop{0,1}$).
+    It then follows that $x \leq x_1$ for any $x \in A_x$ since $\pptt{1}$ is an upper bound of $A$ in the dictionary order.
     Also clearly $A_x$ is nonempty since $A$ is.
     Thus $A_x$ is a nonempty subset of $[0,1]$ (or $\clop{0,1}$) that is bounded above (by $x_1$) so that it has a least upper bound $a$ by what was shown in part~(a).
 
@@ -1130,20 +1128,20 @@
     In either case we assert that $a \times b$ is the least upper bound of $A$ in $X$ in the dictionary order.
 
     First, it is obvious that $a \times b \in X$ based on how $a$ and $b$ were defined.
-    Consider any $\ppt{} \in A$ so that $x \in A_x$, and hence $x \leq a$ since $a$ is the least upper bound of $A_x$.
-    If $x < a$ then of course $\ppt{} \leq a \times b$, so assume that $x = a$.
+    Consider any $\pptt{} \in A$ so that $x \in A_x$, and hence $x \leq a$ since $a$ is the least upper bound of $A_x$.
+    If $x < a$ then of course $\pptt{} \leq a \times b$, so assume that $x = a$.
     Then $a = x \in A_x$ so that $b$ was defined as the least upper bound of $A_y$.
-    Then we have that $y \in A_y$ since $\ppt{} = a \times y \in A$, and thus $y \leq b$ since $b$ is the least upper bound of $A_y$.
-    This shows that $\ppt{} \leq a \times b$ so that we  have shown that $a \times b$ is an upper bound of $A$ since $\ppt{}$ was arbitrary.
+    Then we have that $y \in A_y$ since $\pptt{} = a \times y \in A$, and thus $y \leq b$ since $b$ is the least upper bound of $A_y$.
+    This shows that $\pptt{} \leq a \times b$ so that we  have shown that $a \times b$ is an upper bound of $A$ since $\pptt{}$ was arbitrary.
 
-    To show that it is the \emph{least} upper bound consider any $\ppt{0} \in X$ where $\ppt{0} < a \times b$.
+    To show that it is the \emph{least} upper bound consider any $\pptt{0} \in X$ where $\pptt{0} < a \times b$.
     If $x_0 < a$ then there must be an $x \in A_x$ where $x_0 < x$ since $x_0$ cannot be an upper bound of $A_x$ since $x_0 < a$ and $a$ is the least upper bound of $A_x$.
-    Then, since $x \in A_x$, there is a $y \in [0,1]$ where $\ppt{} \in A$.
-    Hence $\ppt{0} < \ppt{}$ since $x_0 < x$ so that $\ppt{0}$ is not an upper bound of $A$.
+    Then, since $x \in A_x$, there is a $y \in [0,1]$ where $\pptt{} \in A$.
+    Hence $\pptt{0} < \pptt{}$ since $x_0 < x$ so that $\pptt{0}$ is not an upper bound of $A$.
     On the other hand if $x_0 = a$ we must have $y_0 < b$ so that it cannot be that $b = 0$, and hence it must be that $a \in A_x$.
     Then there must be a $y \in A_y$ where $y_0 < y$ since $y_0$ cannot be an upper bound of $A_y$ since $y_0 < b$ and $b$ is the least upper bound of $A_y$.
-    Hence $a \times y \in A$, $x_0 = a$, and $y_0 < y$ so that $\ppt{0} < a \times y \in A$, which shows that $\ppt{0}$ is not an upper bound of $A$.
-    Thus in either case $\ppt{0}$ is not an upper bound of $A$, which shows that $a \times b$ is the least upper bound since $\ppt{0} < a \times b$ was arbitrary.
+    Hence $a \times y \in A$, $x_0 = a$, and $y_0 < y$ so that $\pptt{0} < a \times y \in A$, which shows that $\pptt{0}$ is not an upper bound of $A$.
+    Thus in either case $\pptt{0}$ is not an upper bound of $A$, which shows that $a \times b$ is the least upper bound since $\pptt{0} < a \times b$ was arbitrary.
 
     This of course completes the proof that $A$ has a least upper bound, which shows that $X$ has the least upper bound property since $A$ was an arbitrary nonempty subset.
   }
@@ -1153,12 +1151,12 @@
     Let $X = [0,1] \times \clop{0,1}$.
     Consider the set $A = \braces{0} \times \clop{0,1}$, which is clearly a nonempty subset of $X$.
     This subset also obviously has an upper bound in $X$ in the dictionary order, for example the point $1 \times 0$.\
-    So let $\ppt{1}$ be any upper bound of $A$ in $X$ and suppose for the moment that $x_1 = 0$.
+    So let $\pptt{1}$ be any upper bound of $A$ in $X$ and suppose for the moment that $x_1 = 0$.
     Then $y_1 \in \clop{0,1}$ so that $0 \leq y_1 < 1$, but then there is a $y_0 \in \reals$ such that $0 \leq y_1 < y_0 < 1$.
-    Then $y_0 \in \clop{0,1}$ so that $x_1 \times y_0 = 0 \times y_0 \in A$, but also $\ppt{1} < x_1 \times y_0$ so that $\ppt{1}$ cannot be an upper bound of $A$.
+    Then $y_0 \in \clop{0,1}$ so that $x_1 \times y_0 = 0 \times y_0 \in A$, but also $\pptt{1} < x_1 \times y_0$ so that $\pptt{1}$ cannot be an upper bound of $A$.
     So it must be that in fact $x_1 \neq 0$ and hence $x_1 > 0$.
-    Now let $x_0 = x_1/2 > 0$ and $y_0 = 0$ so that clearly $\ppt{} < \ppt{0} < \ppt{1}$ for any $\ppt{} \in A$ since $x = 0 < x_1/2 = x_0 < x_1$.
-    This shows that $\ppt{0}$ is still an upper bound of $A$ but that $\ppt{0} < \ppt{1}$.
-    Since $\ppt{1}$ was an arbitrary upper bound of $A$, this proves that $A$ can have no \emph{least} upper bound!
+    Now let $x_0 = x_1/2 > 0$ and $y_0 = 0$ so that clearly $\pptt{} < \pptt{0} < \pptt{1}$ for any $\pptt{} \in A$ since $x = 0 < x_1/2 = x_0 < x_1$.
+    This shows that $\pptt{0}$ is still an upper bound of $A$ but that $\pptt{0} < \pptt{1}$.
+    Since $\pptt{1}$ was an arbitrary upper bound of $A$, this proves that $A$ can have no \emph{least} upper bound!
   }
 }

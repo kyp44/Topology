@@ -104,7 +104,7 @@
       \draw[step=1cm,\tikzgridclr,thin] (-1.5,-1.5) grid (1.5,1.5);
 
       % Set shape
-      \filldraw[thick,dashed,fill=\tikzgray] (-1,0) -- (0,1) -- (1,0) -- (0,-1) -- cycle;
+      \filldraw[thick,dashed,fill=black,fill opacity=\tikzgrayopac] (-1,0) -- (0,1) -- (1,0) -- (0,-1) -- cycle;
 
       % Axes
       \draw[thick,<->] (-1.5,0) -- (1.5,0);
@@ -173,7 +173,7 @@
   \gath{
     d(\vx, \vy) = \sum_{i=1}^n \abs{x_i - y_i} \,.
   }
-  First we show that the metric topology induced by $d'$ is finer than that induced by $\rho$.
+  First we show that the metric topology induced by $d'$ is finer than that induced by $\r$.
   So consider any $\vx \in \reals^n$ and $\e > 0$.
   Let $\d = \e$ and suppose that $\vy \in B_{d'}(\vx, \d)$ so that
   \gath{
@@ -194,7 +194,7 @@
     \r(\vx, \vy) < \e \,.
   }
   Therefore $\vy \in B_\r(\vx, \e)$ so that $B_{d'}(\vx, \d) \ss B_\r(\vx, \e)$.
-  This suffices to show that the metric topology induced by $d'$ is finer than that induced by $\rho$ by Lemma~20.2.
+  This suffices to show that the metric topology induced by $d'$ is finer than that induced by $\r$ by Lemma~20.2.
 
   Now we show that the metric topology induced by $d$ is finer than that induced by $d'$.
   So again consider any $\vx \in \reals^n$ and $\e > 0$.
