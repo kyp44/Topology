@@ -1,0 +1,26 @@
+% Set section label to text
+\renewcommand\thesubsection{TG}
+\def\secl{\thesubsection}
+
+\subsection{Supplementary Exercises: Topological Groups}
+
+For this section, recall that a group is a set $G$ together with some operation $\cdot$ that satisfies the following properties, called the group axioms:
+\lparts{
+\item \emph{(Closure)} For all $a,b \in G$, the result $a \cdot b$ is also in $G$.
+\item \emph{(Associativity)} $(a \cdot b) \cdot c = a \cdot (b \cdot c)$ for all $a,b,c \in G$.
+\item \emph{(Identity Element)} There is an element $e \in G$ such that $a \cdot e = e \cdot a = a$ for all $a \in G$.
+  This element is unique and so is called \emph{the} identity element.
+\item \emph{(Inverse Element)} For every $a \in G$, there is an element $b \in G$ such that $a \cdot b = b \cdot a = e$, where $e$ is the identity element.
+  This element $b$ is typically denoted $\inv{a}$ and is called the \emph{inverse} of $a$.
+}
+
+\exercise{1}{
+  Let $H$ denote a group that is also a topological space satisfying the $T_1$ axiom.
+  Show that $H$ is a topological group if and only if the map of $H \times H$ into $H$ sending $x \times y$ to $x \cdot \inv{y}$ is continuous.
+}
+\sol{
+  TODO
+}
+
+% Restore section label to number
+\renewcommand\thesubsection{\arabic{subsection}}
