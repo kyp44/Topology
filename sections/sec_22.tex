@@ -389,7 +389,33 @@
   }
 
   (b)
+  In what follows we define the map $p \times p : \reals_K \times \reals_K \to Y \times Y$ by
+  \gath{
+    (p \times p)(\pptt{}) = p(x) \times p(y)
+  }
+  for $\pptt{} \in \reals_K \times \reals_K$.
   \qproof{
-    TODO
+    Define the set $\D_Y = \braces{(U,U) \where U \in Y} \ss Y \times Y$ to be the diagonal of $Y \times Y$.
+    Since it was shown in part~(a) that $Y$ is not Hausdorff, it follows that $\D_Y$ is not closed in $Y \times Y$ by Exercise~17.13.
+    Now set $\D = \inv{(p \times p)}(\D_Y) \ss \reals_K \times \reals_K$, and we claim that $\D = \D_\reals \cup (K \times K)$, where of course $\D_\reals = \braces{(x,x) \where x \in \reals}$ is the diagonal of $\reals_K$.
+
+    To show this, first consider $x \times y \in \D = \inv{(p \times p)}(\D_Y)$ so that $(p \times p)(x \times y) = p(x) \times p(y) \in D_Y$.
+    Hence $p(x) = p(y) \in Y$ so that either $x,y \in K$ so that $p(x) = K = p(y)$, or $x,y \notin K$ so that $p(x) = \braces{x} = \braces{y} = p(y)$ and $x = y$.
+    Clearly in the former case we have $x \times y \in K \times K$, and in the latter case $x \times y = x \times x \in \D_\reals$.
+    Thus either way we have $x \times y \in \D_\reals \cup (K \times K)$ so that $\D \ss \D_\reals \cup (K \times K)$.
+    Now consider any $x \times y \in \D_\reals \cup (K \times K)$.
+    If $x \times y \in \D_\reals$ then $x = y$ so that of course $p(x) = p(y)$ since $p$ is a function.
+    On the other hand, if $x \times y \in K \times K$ then we again have $p(x) = K = p(y)$.
+    Therefore either way we have $p(x) = p(y)$ so that $(p \times p)(x \times y) = p(x) \times p(y) = p(x) \times p(x) \in \D_Y$, and thus $x \times y \in \inv{(p \times p)}(\D_Y) = \D$.
+    Hence $\D \sps \D_\reals \cup (K \times K)$ as well so that equality has been shown.
+
+    Now, since $\reals_K$ is Hausdorff (again, as shown in Exercise~17.16), it follows from Exercise~17.13 that $\D_\reals$ is closed in $\reals_K \times \reals_K$, and therefore $\closure{\D_\reals} = \D_\reals$.
+    Since $K$ is also closed in $\reals_K$ (also shown in Exercise~17.16), we have that $K \times K$ is closed in $\reals_K \times \reals_K$ per Exercise~17.3, and so $\closure{K \times K} = K \times K$.
+    By Exercise~17.6 part~(b), we then have that
+    \gath{
+      \closure{\D} = \closure{\D_\reals \cup (K \times K)} = \closure{\D_\reals} \cup \closure{(K \times K)} = \D_\reals \cup (K \times K) = \D \,,
+    }
+    which shows that $\D = \inv{(p \times p)}(\D_Y)$ is in fact closed in $\reals_K \times \reals_K$.
+    This suffices to show that $p \times p$ is \emph{not} a quotient map as desired since $\D_Y$ is \emph{not} closed in $Y \times Y$.
   }
 }
