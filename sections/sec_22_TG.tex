@@ -8,18 +8,279 @@ For this section, recall that a group is a set $G$ together with some operation 
 \lparts{
 \item \emph{(Closure)} For all $a,b \in G$, the result $a \cdot b$ is also in $G$.
 \item \emph{(Associativity)} $(a \cdot b) \cdot c = a \cdot (b \cdot c)$ for all $a,b,c \in G$.
-\item \emph{(Identity Element)} There is an element $e \in G$ such that $a \cdot e = e \cdot a = a$ for all $a \in G$.
-  This element is unique and so is called \emph{the} identity element.
+\item \emph{(Identity Element)} There is an element $e \in G$ such that $a \cdot e = e \cdot a = a$ for all $a \in G$, which is called an identity element.
 \item \emph{(Inverse Element)} For every $a \in G$, there is an element $b \in G$ such that $a \cdot b = b \cdot a = e$, where $e$ is the identity element.
-  This element $b$ is typically denoted $\inv{a}$ and is called the \emph{inverse} of $a$.
+  This $b$ is called an inverse element of $a$.
 }
+It is easy to show directly from these axioms that the identity element of a group is unique, and so we refer to \emph{the} identity element.
+Similarly, if $a \in G$, then its inverse element is also unique, and is usually denoted by $\inv{a}$.
 
 \exercise{1}{
   Let $H$ denote a group that is also a topological space satisfying the $T_1$ axiom.
   Show that $H$ is a topological group if and only if the map of $H \times H$ into $H$ sending $x \times y$ to $x \cdot \inv{y}$ is continuous.
 }
 \sol{
-  TODO
+  \begin{lem}\label{lem:setg:idinv}
+    In any group $G$ the inverse element of an inverse element is the element itself, i.e. $\inv{\parens{\inv{x}}} = x$ for any $x \in G$.
+  \end{lem}
+  \qproof{
+    Consider any $x$ in the group $G$ with operation $\cdot$ and identity element $e$, and let $y = \inv{\parens{\inv{x}}}$.
+    Then we have of course that $y \cdot \inv{x} = e$ since $y$ is the inverse of $\inv{x}$.
+    Since we of course also have $x \cdot \inv{x} = e$ since $\inv{x}$ is the inverse of $x$, it has to be that $y = x$ because the inverse of $\inv{x}$ must be unique.
+    Therefore of course $\inv{\parens{\inv{x}}} = y = x$ as desired.
+  }
+
+  \mainprob
+  
+  \qproof{
+    $(\imp)$ First suppose that $H$ is a topological group.
+    Then $f: H \to H$ defined by $f(x) = \inv{x}$ and $g: H \times H \to H$ defined by $g(\pptt{}) = x \cdot y$ are both continuous.
+    Define $h: H \times H \to H$ by 
+    \gath{
+      h = g \circ (i_H \times f) \,,
+    }
+    where of course $i_H$ is the identity function on $H$, and we have defined the function $i_H \times f : H \times H \to H \times H$ as in Exercise~18.10.
+
+    Now, we know that both $i_H$ and $f$ are continuous so that $i_H \times f$ is continuous by Exercise~18.10.
+    It then follows that $g \circ (i_H \times f) = h$ is continuous by Theorem~18.2 part~(c) since $g$ is also continuous.
+    Now, for any $\pptt{} \in H \times H$, we have
+    \ali{
+      h(\pptt{}) &= \parens{g \circ (i_H \times f)}(\pptt{}) \\
+      &= g((i_H \times f)(\pptt{})) \\
+      &= g(i_H(x) \times f(y)) \\
+      &= g(x \times \inv{y}) \\
+      &= x \cdot \inv{y} \,.
+    }
+    Since we have shown that $h$ is continuous, this shows the desired result.
+
+    $(\pmi)$ Now again define $h: H \times H \to H$ by $h(\pptt{}) = x \cdot \inv{y}$, and suppose that $h$ is continuous.
+    Then $h$ is continuous in each variable separately by Exercise~18.11.
+    So, if we let $e$ be the unique identity element of $H$, then we have that
+    \gath{
+      h(e \times x) = e \cdot \inv{x} = \inv{x}
+    }
+    is continuous for any $x$.
+    Similarly, for any $x,y \in H$, we have that $\inv{\parens{\inv{y}}} = y$ by Lemma~\ref{lem:setg:idinv} so that
+    \gath{
+      h(x \times \inv{y}) = x \cdot \inv{\parens{\inv{y}}} = x \cdot y
+    }
+    must also be continuous.
+  }
+}
+
+\def\gl{\mathrm{GL}}
+\def\adj{\mathrm{adj}}
+\exercise{2}{
+  Show that the following are topological groups:
+  \eparts{
+  \item $(\ints, +)$
+  \item $(\reals, +)$
+  \item $(\realsp, \cdot)$
+  \item $(S^1, \cdot)$, where we take $S^1$ to be the space of all complex numbers $z$ for which $\abs{z} = 1$.
+  \item The \emph{general linear group} $\gl(n)$, under the operation of matrix multiplication.
+    ($\gl(n)$ is the set of all nonsingular $n$ by $n$ matrices, topologized by considering it as a subset of euclidean space of dimension $n^2$ in the obvious way.)
+  }
+}
+\sol{
+  \begin{lem} \label{lem:setg:t1disc}
+    Any discrete topology satisfies the $T_1$ axiom.
+  \end{lem}
+  \qproof{
+    Suppose that $X$ is a set with the discrete topology and $C$ is a finite point set.
+    Then $X - C$ is clearly still a subset of $X$ and so is open since $X$ is discrete.
+    This shows by definition that $C$ is closed.
+    In fact by this same argument \emph{any} subset of $X$ is both open and closed.
+  }
+    
+  \begin{lem} \label{lem:setg:pdisc}
+    If $Y$ and $Y$ are sets both with discrete topologies, then $X \times Y$ is also the discrete topology.
+  \end{lem}
+  \qproof{
+    It suffices to show that the subset of $X \times Y$ containing a single arbitrary element is open, since clearly any other subset is the union of such single-element open subsets and is therefore also open by the definition of a topology.
+    So consider any $(x,y) \in X \times Y$ and the subset $\braces{(x,y)} \ss X \times Y$.
+    Then clearly $\braces{(x, y)} = \braces{x} \times \braces{y}$, which is a basis element of $X \times Y$ and therefore open by the definition of a product topology since both $\braces{x}$ and $\braces{y}$ are open in $X$ and $Y$, respectively, since they are discrete.
+  }
+
+  \begin{lem} \label{lem:setg:cdisc}
+    If $X$ and $Y$ are topological spaces and $X$ has the discrete topology then any function $f: X \to Y$ is continuous.
+  \end{lem}
+  \qproof{
+    This is fairly obvious since, for any open subset $V$ of $Y$, of course $\ivf(V)$ is a subset of $X$ and so is open since $X$ is discrete.
+  }
+
+  \mainprob
+  
+  (a)
+  \qproof{
+    First we must show that $(\ints, +)$ is even a group.
+    Clearly $a+b$ is an integer when $a$ and $b$ are so that the closure axiom is satisfied.
+    Also, we know that integer addition is associative.
+    We clearly have that $0 \in \ints$ and that $a + 0 = a$ for any $a \in \ints$ so that $0$ is the identity element of $(\ints, +)$.
+    Lastly, for any $a \in \ints$, we have that $-a \in \ints$ and that $a + (-a) = a - a = 0$ so that clearly $-a$ is the inverse of $a$.
+    This shows that $(\ints, +)$ is in fact a group.
+
+    To show that it is a topological group, we first note that $\ints$ clearly has the discrete topology when considered both an order topology or as a subspace of $\reals$, for similar reason as discussed in Example~3 of \S 14.
+    Thus $\ints$ satisfies the $T_1$ axiom by Lemma~\ref{lem:setg:t1disc} since it is discrete.
+    Also $X \times X$ is the discrete topology by Lemma~\ref{lem:setg:pdisc}.
+    Thus the function $f$ defined by $f(x \times y) = x + \inv{y} = x + (-y) = x - y$ is a function from $X \times X$ to $X$, so that it follows that $f$ is continuous by Lemma~\ref{lem:setg:cdisc} since $X \times X$ is discrete.
+    Hence $(\ints, +)$ is a topological group by Exercise~\secl.1.
+  }
+
+  (b)
+  \qproof{
+    Similarly to part~(a), clearly $(\reals,+)$ is a group with identity element $0$ and inverse element $-x$ for any $x \in \reals$.
+    However, this time the topology is no longer discrete.
+    Of course we know that $\reals$ satisfies the $T_1$ axiom.
+    Now consider the function $f(\pptt{}) = x + \inv{y} = x + (-y) = x - y$ for any $x,y \in \reals$.
+    Consider also any basis element $B = (a,b) \in \reals$, where here we are of course using the order topology basis.
+    Then we clearly have
+    \ali{
+      \ivf(B) &= \braces{\pptt{} \where f(\pptt{}) \in (a,b)} = \braces{\pptt{} \where a < f(\pptt{}) < b} \\
+      &= \braces{\pptt{} \where a < x-y < b} = \braces{\pptt{} \where a-x < -y < b-x} \\
+      &= \braces{\pptt{} \where x-a > y > x-b} \,.
+    }
+    Clearly this is the region in $\reals^2$ between the lines $y=x-b$ and $y=x-a$, which is obviously an open set in $\reals^2$.
+    This shows that $f$ is continuous since $B$ was an arbitrary basis element, so that $(\reals,+)$ is a topological group by Exercise~\secl.1.
+  }
+
+  (c)
+  \qproof{
+    First, clearly $\realsp$ satisfies the $T_1$ axiom since $\reals$ does.
+    Next we note that for any $x,y \in \realsp$ we have that $x \cdot y$ is also positive so that $x \cdot y \in \realsp$ as well, which shows the closure property of a group.
+    Also, clearly $1 \in \realsp$ is the identity element of multiplication, and the inverse element is $\inv{x} = 1/x$ for any $x \in \realsp$, noting that this is defined since $x > 0$, and that $1/x > 0$ so that $\inv{x} = 1/x \in \realsp$.
+    Lastly, we know that multiplication is associative on the reals (and therefore also on $\realsp$), which completes the check that $(\realsp,\cdot)$ is in fact a group.
+
+    As before, define the function $f: \realsp \times \realsp \to \realsp$ by $f(\pptt{}) = x \cdot \inv{y} = x \cdot 1/y = x/y$.
+    Consider the order topology basis of $\reals$ and consider any basis element $B$ of the subspace $\realsp$ so that $B = \realsp \cap (a,b)$ for some $a,b \in \reals$ where $a<b$ by Lemma~16.1.
+    Now, if $a \leq 0$ then clearly $B = (0, b)$, and we have that
+    \ali{
+      \ivf(B) &= \braces{\pptt{} \where f(\pptt{}) \in B} = \braces{\pptt{} \where 0 < f(\pptt{}) < b} \\
+      &= \braces{\pptt{} \where 0 < x/y < b} = \braces{\pptt{} \where 0 < x < by} \\
+      &= \braces{\pptt{} \where 0 < x/b < y} \,,
+    }
+    noting that $0 < b$ so that $x/b$ is defined.
+    Obviously this is the region in $\realsp \times \realsp$ ($\realsp \times \realsp$ being the upper right quadrant of $\reals^2$ that does not include either axis) above the line $y = x/b$, which is easy to show is open in $\realsp \times \realsp$.
+
+    On the other hand, if $a > 0$ than $B = (a,b)$ so that
+    \ali{
+      \ivf(B) &= \braces{\pptt{} \where f(\pptt{}) \in B} = \braces{\pptt{} \where a < f(\pptt{}) < b} \\
+      &= \braces{\pptt{} \where a < x/y < b} = \braces{\pptt{} \where ay < x < by} \\
+      &= \braces{\pptt{} \where ay < x \land x < by} = \braces{\pptt{} \where y < x/a \land x/b < y} \\
+      &= \braces{\pptt{} \where x/b < y < x/a} \,,
+    }
+    which is clearly the region of $\realsp \times \realsp$ between the lines $y = x/b$ and $y = x/a$.
+    It is easy to see that again this is an open subset of $\realsp \times \realsp$, which shows that $f$ is continuous either way.
+    This in turn proves that $(\realsp,\cdot)$ is a topological space, again by Exercise~\secl.1.
+  }
+
+  (d)
+  \qproof{
+    Topologies on the complex plane $\cpx$ have not really been discussed, but $\cpx$ is usually defined as $\reals \times \reals$ having the usual product topology.
+    Then of course $S^1$ is the unit circle in $\cpx$.
+    We know that $\reals$ is Hausdorff so that $\cpx = \reals \times \reals$ is as well by Theorem~17.11.
+    Then, again by Theorem~17.11, $S^1$ is Hausdorff since it is a subspace of $\cpx$, and so it also satisfies the $T_1$ axiom.
+    
+    While perhaps not immediately obvious, it is easy to show that $S^1$ is closed under multiplication.
+    If $z,w \in S^1$ then $\abs{z} = \abs{w} = 1$ so that $\abs{z \cdot w} = \abs{z} \cdot \abs{w} = 1 \cdot 1 = 1$ by familiar rules of complex analysis so that $z \cdot w \in S^1$ as well.
+    Clearly $1 \in S^1$ is the identity element where the inverse element of $z \in S^1$ is $1/z$, noting that $\abs{1/z} = 1/\abs{z} = 1/1 = 1$ since $z \in S^1$, and so $1/z \in S^1$.
+    We also note that $\abs{0} = 0$, and hence $0 \notin S^1$ so that the inverse $1/z$ is always defined.
+    Lastly, we know that multiplication is associative within $\cpx$ and therefore also within $S^1$.
+    This shows that $(S^1,\cdot)$ satisfies all of the group axioms.
+
+    To rigorously show that $S^1$ is a topological group is actually quite tedious so we shall omit some details.
+    Suppose that $U$ is open in $S^1$ and that $z \times w \in \ivf(U)$ so that $f(z \times w) \in U$.
+    Now, clearly the unit circle in $\cpx = \reals \times \reals$ is the set $S^1 = \braces{e^{i\th} \where \th \in \reals}$ so that we can express $z = e^{i\th}$ and $w = e^{i\phi}$ for some $\th,\phi \in \reals$.
+    We then have that
+    \gath{
+      f(z \times w) = z/w = e^{i\th}/e^{i\phi} = e^{i\th}e^{-i\phi} = e^{i(\th-\phi)} \in U \,.
+    }
+    While tedious to show rigorously, it follows from the fact that $U$ is open in $S^1$ that there is an $\e > 0$ where $f(z \times w) \in A_{\th-\phi,\e} \ss U$, where we define
+    \gath{
+      A_{\a,\e} = \braces{e^{i\g} \where \a-\e < \g < \a+\e} \,,
+    }
+    noting that of course $A_{\a,\e} \ss S^1$.
+    Now consider $A_{\th,\e/2}$ and $A_{\phi,\e/2}$, which are both clearly open in $S^1$ and noting that clearly $z \in A_{\th,\e/2}$ and $w \in A_{\phi,\e/2}$.
+    For any $z' = e^{i\th'} \in A_{\th,\e/2}$ and $w' = e^{i\phi'} \in A_{\phi,\e/2}$ we then have that
+    \ali{
+      \th - \e/2 &< \th' < \th + \e/2 &
+      \phi - \e/2 &< \phi' < \phi + \e/2 \,.
+    }
+    Hence
+    \gath{
+      -\phi + \e/2 > -\phi' > -\phi - \e/2 \\
+      \th' - \phi + \e/2 > \th' - \phi' > \th' -\phi - \e/2 \\
+      \th + \e/2 - \phi + \e/2 > \th' - \phi + \e/2 > \th' - \phi' >  \th' -\phi - \e/2 > \th - \e/2 -\phi - \e/2 \\
+      (\th - \phi) + \e > \th' - \phi' > (\th - \phi) - \e
+    }
+    so that $f(z' \times w') = e^{i(\th' - \phi')} \in A_{\th-\phi,\e} \ss U$.
+    Thus $z' \times w' \in \ivf(U)$ so that $z \times w \in A_{\th,\e/2} \times  A_{\phi,\e/2} \ss \ivf(U)$ since $z'$ and $w'$ were arbitrary.
+    We also have that $A_{\th,\e/2} \times  A_{\phi,\e/2}$ is open in $S^1 \times S^1$ since both $A_{\th,\e/2}$ and $A_{\phi,\e/2}$ are open in $S^1$.
+    Since $z \times w$ was an arbitrary element of $\ivf(U)$, this shows that $\ivf(U)$ is open in $S^1 \times S^1$, which in turn shows that $f$ is continuous by definition.
+    Thus by Exercise~\secl.1 we have that $S^1$ is a topological group.
+  }
+
+  (e)
+  \qproof{
+    First, from linear algebra we know that the matrix product of two nonsingular $n$ by $n$ matrices is another nonsingular $n$ by $n$ matrix, so that $\gl(n)$ is closed under matrix multiplication.
+    Clearly the identity matrix is the identity element of $\gl(n)$, while the inverse matrix $\inv{A}$ is the inverse element of the matrix $A \in \gl(n)$, noting that this inverse matrix exists since $A$ is nonsingular.
+    Lastly, we know that matrix multiplication is associative, which suffices to show that $(\gl(n), \cdot)$ is a group.
+
+    To show that it is a topological group takes more work.
+    To begin, we denote a vector in $\reals^n$ by $\vx_n = \cpfin{x}{n}$, using the subscript on the vector itself to indicate its dimension.
+    We show that the function $s_n: \reals^n \to \reals$ defined by
+    \gath{
+      s_n(\vx_n) = \sum_{i=1}^n x_i
+    }
+    is continuous for all $n \in \pints$, which we show by induction.
+    First, for $n = 1$, we clearly have that $s_n$ is simply the identity function from $\reals$ to $\reals$, which is clearly continuous.
+    Now suppose that $s_n$ is continuous.
+    Define $g : \reals^{n+1} \to \reals^n$ by
+    \gath{
+      g(\vx_{n+1}) = \pi_1(\vx_{n+1}) \times \cdots \times \pi_n(\vx_{n+1}) = \cpfin{x}{n} = \vx_n \,,
+    }
+    which is continuous by Theorem~19.6 since we know that each $\pi_i$ is continuous.
+    Then also $s_n \circ g$ is continuous by Theorem~18.2 part~(c).
+    It then follows that the function $h : \reals^{n+1} \to \reals^2$ defined by $h(\vx_{n+1}) = (s_n \circ g)(\vx_{n+1}) \times \pi_{n+1}(\vx_{n+1})$ is continuous by Theorem~18.4 since both $s_n \circ g$ and $\pi_{n+1}$ are continuous.
+    Lastly we then have that $k : \reals^{n+1} \to \reals$ defined by $+ \circ h$ is continuous by Theorem~18.2 part~(c), where of course $+$ is the usual addition operation from $\reals^2$ to $\reals$, which we showed is continuous in Exercise~21.12.
+    Now we claim that $k = s_{n+1}$.
+    For any $\vx_{n+1} \in \reals^{n+1}$ we have
+    \ali{
+      k(\vx_{n+1}) &= (+ \circ h)(\vx_{n+1}) = +(h(\vx_{n+1})) = +((s_n \circ g)(\vx_{n+1}) \times \pi_{n+1}(\vx_{n+1})) \\
+      &= +(s_n(g(\vx_{n+1})), x_{n+1}) = +(s_n(\vx_n), x_{n+1}) = s_n(\vx_n) + x_{n+1} \\
+      &= \sum_{i=1}^n x_i + x_{n+1} = \sum_{i=1}^{n+1} x_i \\
+      &= s_{n+1}(\vx_{n+1}) \,.
+    }
+    This completes the induction since we have shown that $k = s_{n+1}$ is continuous.
+
+    Next we show that the function $p_{ij} : \reals^n \times \reals^n \to \reals$ defined by $p_{ij}(\vx_n \times \vy_n) = x_i y_j$ is continuous, where of course $ij \in \intsfin{n}$.
+    Define the function $g_{ij}: \reals^n \times \reals^n \to \reals^2$ by $g_{ij} = \pi_i \times \pi_j$ as in Exercise~18.10, which we know is continuous by that exercise since the coordinate functions are continuous.
+    Then the function $\cdot \circ g_{ij}$ from $\reals^n \times \reals^n$ to $\reals$ is also continuous by Theorem~18.2 part~(c), where of course $\cdot$ is the normal multiplication operation from $\reals^2$ to $\reals$, which we know is continuous from Exercise~12.12.
+    However, for any $\vx_n,\vy_n \in \reals^n$, we have
+    \gath{
+      (\cdot \circ g_{ij})(\vx_n \times \vy_n) = \cdot(g_{ij}(\vx_n \times \vy_n)) = \cdot(\pi_i(\vx_n) \times \pi_j(\vy_n))
+      = \cdot(x_i \times y_j) = x_i \cdot y_j = p_{ij}(\vx_n \times \vy_n)
+    }
+    so that $\cdot \circ g_{ij} = p_{ij}$ is continuous, which shows the desired result.
+
+    Now, by definition, each matrix component of the resultant matrix in matrix multiplication on $\gl(n)$ is a sum of products, where each product involves a term from each of the matrices, and the sum has $n$ terms going across a row of the first matrix and a column of the second.
+    Thus each component is a composition of the sum function $s_n : \reals^n \to \reals$ with a mapping $f$ from $\reals^{n^2} \times \reals^{n^2} \to \reals^n$, where each element in $\reals^n$ of this mapping is a product function $p_{ij}$.
+    Since have shown above that each $p_{ij}$ is continuous, it follows from Theorem~19.6 that the mapping $f$ is also continuous.
+    Hence the composition $s_n \circ f$, i.e. the matrix component function, is also continuous by Theorem~18.2 part~(c) since we have also shown above that $s_n$ is continuous.
+    Since each component function is continuous, it again follows from Theorem~19.6 that the overall matrix multiplication mapping from $\reals^{n^2} \times \reals^{n^2} \to \reals^{n^2}$ is continuous.
+
+    Regarding the inverse element function, we recall from linear algebra that in the inverse of a matrix $A \in \gl(n)$ is
+    \gath{
+      \inv{A} = \frac{1}{\abs{A}} \adj(A) \,,
+    }
+    where $\adj(A)$ is the adjugate matrix of $A$ and $\abs{A}$ is the determinant of $A$, noting that this is nonzero since $A$ is nonsingular.
+    Now, the determinant is a sum of products so that the function $g: \gl(N) \to \reals$ defined by $g(A) = \abs{A}$ is continuous by the same arguments as above for matrix multiplication.
+    Likewise each element of the adjugate matrix is a sum of products as well so that the function $f_{ij} : \gl(A) \to \reals$ defined by $f_{ij}(A) = \adj(A)_{ij}$, i.e. the $i$th row and $j$th column component of the adjugate matrix, is also continuous.
+
+    Then clearly the corresponding component of the inverse matrix is the function $h_{ij} : \gl(A) \to \reals$ defined by $h_{ij}(A) = f_{ij}(A)/g(A)$.
+    Since both $f_{ij}$ and $g$ are continuous (and again noting that $g$ is always nonzero), then their quotient $h_{ij}$ is also continuous by Exercise~21.12.
+    Hence, since each component $h_{ij}$ of the inverse matrix is continuous, it follows that the inversion operation as a whole is continuous by Theorem~19.6 as above, considering the matrices as elements of $\reals^{n^2}$.
+    Since both multiplication and inversion are continuous, this shows that $\gl(n)$ is a topological group by definition.
+  }
 }
 
 % Restore section label to number
