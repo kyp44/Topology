@@ -226,7 +226,9 @@ Similarly, if $a \in G$, then its inverse element is also unique, and is usually
     Lastly, we know that matrix multiplication is associative, which suffices to show that $(\gl(n), \cdot)$ is a group.
 
     To show that it is a topological group takes more work.
-    To begin, we denote a vector in $\reals^n$ by $\vx_n = \cpfin{x}{n}$, using the subscript on the vector itself to indicate its dimension.
+    To begin, we note that of course $\reals^{n^2}$ is Hausdorff and so satisfies the $T_1$ axiom.
+    Thus so does $\gl(n)$ since $\reals^{n^2}$ gives it its topology.
+    Next, we denote a vector in $\reals^n$ by $\vx_n = \cpfin{x}{n}$, using the subscript on the vector itself to indicate its dimension.
     We show that the function $s_n: \reals^n \to \reals$ defined by
     \gath{
       s_n(\vx_n) = \sum_{i=1}^n x_i
@@ -239,6 +241,7 @@ Similarly, if $a \in G$, then its inverse element is also unique, and is usually
       g(\vx_{n+1}) = \pi_1(\vx_{n+1}) \times \cdots \times \pi_n(\vx_{n+1}) = \cpfin{x}{n} = \vx_n \,,
     }
     which is continuous by Theorem~19.6 since we know that each $\pi_i$ is continuous.
+
     Then also $s_n \circ g$ is continuous by Theorem~18.2 part~(c).
     It then follows that the function $h : \reals^{n+1} \to \reals^2$ defined by $h(\vx_{n+1}) = (s_n \circ g)(\vx_{n+1}) \times \pi_{n+1}(\vx_{n+1})$ is continuous by Theorem~18.4 since both $s_n \circ g$ and $\pi_{n+1}$ are continuous.
     Lastly we then have that $k : \reals^{n+1} \to \reals$ defined by $+ \circ h$ is continuous by Theorem~18.2 part~(c), where of course $+$ is the usual addition operation from $\reals^2$ to $\reals$, which we showed is continuous in Exercise~21.12.
@@ -280,6 +283,104 @@ Similarly, if $a \in G$, then its inverse element is also unique, and is usually
     Since both $f_{ij}$ and $g$ are continuous (and again noting that $g$ is always nonzero), then their quotient $h_{ij}$ is also continuous by Exercise~21.12.
     Hence, since each component $h_{ij}$ of the inverse matrix is continuous, it follows that the inversion operation as a whole is continuous by Theorem~19.6 as above, considering the matrices as elements of $\reals^{n^2}$.
     Since both multiplication and inversion are continuous, this shows that $\gl(n)$ is a topological group by definition.
+  }
+}
+
+\def\clH{\closure{H}}
+\exercise{3}{
+  Let $H$ be a subspace of $G$.
+  Show that if $H$ is also a subgroup of $G$, then both $H$ and $\clH$ are topological groups.
+}
+\sol{
+  \begin{lem} \label{lem:setg:t1sub}
+    Any subspace of a space satisfying the $T_1$ axiom also satisfies the $T_1$ axiom.
+  \end{lem}
+  \qproof{
+    Suppose that $X$ is a subspace of $Y$ and consider two distinct points $x,y \in X$.
+    Then there is a neighborhood $U$ of $x$ in $Y$ that does not contain $y$ by Exercise~17.15.
+    It then follows that $U \cap X$ is a neighborhood of $x$ in $X$ that does not contain $y$ since $y \notin U$.
+    A similar argument shows that there is a neighborhood of $y$ in $X$ that does not contain $x$.
+    Hence $X$ also satisfies the $T_1$ axiom, again by Exercise~17.15.
+  }
+
+  \mainprob
+  \qproof{
+    Presumably here $G$ is a topological group.
+    Hence $G$ satisfies the $T_1$ axiom so that $H$ and $\clH$ do as well by Lemma~\ref{lem:setg:t1sub} since they are subspaces of $G$.
+
+    We first show that $\clH$ is a subgroup of $G$, noting that of course $\clH$ is nonempty since $H$ must be (as it is a subgroup) and $H \ss \clH$.
+    Let $f : G \times G \to G$ be the operation defined by $f(\pptt{}) = x \cdot \inv{y}$ for $x,y \in G$.
+    It is a well known theorem of group theory that $\clH$ is a subgroup of $G$ if and only if $x \cdot \inv{y} \in \clH$ for any $x,y \in \clH$, which is to say that $f(\clH \times \clH) \ss \clH$.
+    This is exactly what we intend to show.
+    We have the following deductions:
+    \begin{itemize}
+    \item As subsets of $G \times G$, $\clH \times \clH = \closure{H \times H}$ by Exercise~17.9 since $H \ss G$.
+    \item Since $f$ is continuous on $G \times G$, it follows that $f(\closure{H \times H}) \ss \closure{f(H \times H)}$ by Theorem~18.1.
+    \item Since $H$ is a subgroup we have that $x \cdot \inv{y} \in H$ for every $x,y \in H$, which is to say that $f(H \times H) \ss H$.
+      It then follows from Exercise~17.6 part~(a) that $\closure{f(H \times H)} \ss \clH$.
+    \end{itemize}
+    Putting these all together, we can conclude that
+    \gath{
+      f(\clH \times \clH) = f(\closure{H \times H}) \ss \closure{f(H \times H)} \ss \clH \,,
+    }
+    which shows the desired result that $\clH$ is a subgroup of $G$.
+    
+    Next, obviously $H$ and $\clH$ are both groups by the definition of a subgroup.
+    The operation of $H$ (or $\clH$) is of course the operation of $G$ with its domain restricted to $H \times H$  (or $\clH \times \clH$).
+    The continuity of this operation on $H$  (or $\clH$) follows from Theorem~18.2 part~(d) since it is continuous on $G$ since $G$ is a topological group.
+    Likewise the inversion function on $H$  (or $\clH$) is a restriction of the inversion function on $G$, and so is also continuous for the same reason.
+    Hence $H$ and $\clH$ are topological groups by definition.
+  }
+}
+
+\def\fa{f_\a}
+\def\ga{g_\a}
+\def\fia{f_\a'}
+\def\gia{g_\a'}
+\exercise{4}{
+  Let $\a$ be an element of $G$.
+  Show that the maps $\fa, \ga : G \to G$ defined by
+  \gath{
+    \fa(x) = \a \cdot x \condgap \text{and} \condgap \ga(x) = x \cdot \a
+  }
+  are homeomorphisms of $G$.
+  Conclude that $G$ is a \emph{homogeneous space}.
+  (This means that for every pair $x$, $y$ of points of $G$, there exists a homeomorphism of $G$ onto itself that carries $x$ to $y$.)
+}
+\sol{
+  \qproof{
+    Clearly $G$ is meant to be a topological group.
+    Let $e$ be the identity element of $G$.
+    Define the function $\fia : G \to G$ by $\fia(x) = \inv{\a} \cdot x$.
+    For any any $x \in G$ we then have
+    \gath{
+      (\fia \circ \fa)(x) = \fia(\fa(x)) = \fia(\a \cdot x) = \inv{\a} \cdot (\a \cdot x) = (\inv{\a} \cdot \a) \cdot x
+      = e \cdot x = x
+    }
+    and
+    \gath{
+      (\fa \circ \fia)(x) = \fa(\fia(x)) = \fa(\inv{\a} \cdot x) = \a \cdot (\inv{\a} \cdot x)
+      = (\a \cdot \inv{\a}) \cdot x = e \cdot x = x \,.
+    }
+    This shows that both $\fia \circ \fa = i_G$ and $\fa \circ \fia = i_G$ so that $\fia$ is both a left inverse and a right inverse for $\fa$ (see Exercise~2.5).
+    Hence $\fa$ is bijective and $\inv{\fa} = \fia$ by Exercise~2.5 part~(e).
+    An analogous argument shows $\ga$ is bijective and that $\gia(x) = x \cdot \inv{\a}$ is its inverse function.
+    
+    To show that they are homeomorphisms, we note that the group operation is a continuous function since $G$ is a topological group.
+    We then have that the operation is continuous in each variable separately by Exercise~18.11.
+    From this it clearly follows that both $\fa$ and $\ga$ are continuous since $\fa(x) = \cdot(\a \times x)$ and $\ga(x) = \cdot (x \times \a)$.
+    Similarly $\inv{\fa}$ and $\inv{\ga}$ are continuous since we have $\inv{\fa}(x) = \fia(x) = \cdot(\inv{\a} \times x)$ and $\inv{\ga}(x) = \gia(x) = \cdot(x \times \inv{\a})$.
+    This shows that both $\fa$ and $\ga$ are homeomorphisms by definition.
+
+    Now, to show that $G$ is a homogeneous space, consider any points $x_0,y_0 \in G$.
+    Set $\a = y_0 \cdot \inv{x_0}$, noting that of course $\a \in G$.
+    We then claim that $\fa$ as defined above is a homeomorphism that carries $x_0$ to $y_0$.
+    Of course we already showed above that $\fa$ is a homeomorphism, so all that remains is to show that $\fa(x_0) = y_0$.
+    To this end we have
+    \gath{
+      \fa(x_0) = \a \cdot x_0 = (y_0 \cdot \inv{x_0}) \cdot x_0 = y_0 \cdot (\inv{x_0} \cdot x_0) = y_0 \cdot e = y_0 \,,
+    }
+    which shows the desired result.
   }
 }
 
