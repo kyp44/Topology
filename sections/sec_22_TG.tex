@@ -384,5 +384,220 @@ Similarly, if $a \in G$, then its inverse element is also unique, and is usually
   }
 }
 
+\exercise{5}{
+  Let $H$ be a subgroup of $G$.
+  If $x \in G$, define $xH = \braces{x \cdot h \where h \in H}$; this set is called a \boldit{left coset} of $H$ in $G$.
+  Let $G/H$ denote the collection of left cosets of $H$ in $G$; it is a partition of $G$.
+  Give $G/H$ the quotient topology.
+  \eparts{
+  \item Show that if $\a \in G$, the map $f_\a$ of the preceding exercise induces a homeomorphism of $G/H$ carrying $xH$ to $(\a \cdot x)H$.
+    Conclude that $G/H$ is a homogeneous space.
+  \item Show that if $H$ is a closed set in the topology of $G$ then one-point sets are closed in $G/H$.
+  \item Show that the quotient map $p: G \to G/H$ is open.
+  \item Show that if $H$ is closed in the topology of $G$ and is a normal subgroup of $G$, then $G/H$ is a topological group.
+  }
+}
+\sol{
+  First we note that it is a well-known theorem of group theory that any subgroup of a group contains the identity element of the group, which is also the identity element of the subgroup.
+  So, for what follows, let $e$ be the identity element of $G$ and $H$ above, from which it follows that $x \in xH$ for any $x \in G$ since we have $x = x \cdot e$ and $e \in H$.
+  We also have that $H \in G/H$ since clearly $H = eH$.
+  Also let $p : G \to G/H$ denote the quotient map corresponding to the quotient space.
+      
+  (a)
+  \qproof{
+    Now, for $\a \in G$, define the function $h_\a : G/H \to G/H$ by mapping the left coset $xH \in G/H$ to $f_\a(x) H = (\a \cdot x)H$.
+    We note that if $xH = yH$ for $x,y \in G$ then of course $y \in yH = xH$ so that $y = x \cdot h$ for some $h \in H$.
+    Then
+    \gath{
+      f_\a(y) = \a \cdot y = \a \cdot (x \cdot h) = (\a \cdot x) \cdot h = f_\a(x) \cdot h
+    }
+    so that $f_\a(y) \in f_\a(x) H$, which suffices to show that $f_\a(x)H = f_\a(y)H$ since $G/H$ is a partition.
+    Hence $h_\a(yH) = f_\a(y)H = f_\a(x)H = h_\a(xH)$ so that the mapping $h_\a$ is a well-defined function.
+
+    To show that $h_\a$ is a homeomorphism, we first show that it is a bijection.
+    Suppose that $xH$ and $yH$ are left cosets where $h_\a(xH) = h_\a(yH)$.
+    Then we have $h_\a(xH) = f_\a(x)H = f_\a(y)H = h_\a(yH)$, and hence $f_\a(x) \in f_\a(y)H$.
+    From this it follows that
+    \gath{
+      f_\a(x) = f_\a(y) \cdot h = (\a \cdot y) \cdot h = \a \cdot (y \cdot h) = f_\a(y \cdot h)
+    }
+    for some $h \in H$.
+    Since $f_\a$ is injective (since it was shown in Exercise~\secl.4 to be bijective), it has to be that $x = y \cdot h$ so that $x \in yH$.
+    Since also $x \in xH$ and $G/H$ is a partition, it must be that $xH = yH$, which shows that $h_\a$ is injective.
+    Now consider any coset $yH \in G/H$.
+    Since $f_\a$ is a surjection we have that there is an $x \in G$ where $y = f_\a(x)$.
+    Thus it immediately follows that $h_\a(xH) = f_\a(x)H = yH$, which shows that $h_\a$ is surjective since $yH$ was arbitrary.
+    This completes the proof that $h_\a$ is a bijection.
+
+    Next we digress a bit and show that $\bigcup h_\a(\cH) = f_\a\parens{\bigcup \cH}$ for any subset $\cH \ss G/H$, where we use the notation $\bigcup \cA = \bigcup_{A \in \cA} A$ for a collection of sets $\cA$.
+    So first consider any $x_0 \in \bigcup h_\a(\cH)$ so that there is a coset $yH \in h_\a(\cH)$ where $x_0 \in yH$.
+    Then, since $yH \in h_\a(\cH)$, there is another coset $xH \in \cH$ where $x_0 \in yH = h_\a(xH) = f_\a(x)H$.
+    We then have that
+    \gath{
+      x_0 = f_\a(x) \cdot h = (\a \cdot x) \cdot h = \a \cdot (x \cdot h) = f_\a(x \cdot h)
+    }
+    for some $h \in H$.
+    Since clearly $x \cdot h \in xH$ and $xH \in \cH$, we have that $x \cdot h \in \bigcup \cH$.
+    Then of course $x_0 \in f_\a(\bigcup \cH)$ since $x_0 = f_\a(x \cdot h)$, which shows that $\bigcup h_\a(\cH) \ss f_\a\parens{\bigcup \cH}$ since $x_0$ was arbitrary.
+    Now consider $x_0 \in f_\a(\bigcup \cH)$ so that there is a $y_0 \in \bigcup \cH$ where $x_0 = f_\a(y_0)$.
+    Then also there is a coset $xH \in \cH$ where $y_0 \in xH$ since $y_0 \in \bigcup \cH$.
+    Hence $y_0 = x \cdot h$ for some $h \in H$.
+    Define the coset $yH = h_\a(xH) = f_\a(x)H$ and we have
+    \gath{
+      x_0 = f_\a(y_0) = \a \cdot y_0 = \a \cdot (x \cdot h) = (\a \cdot x) \cdot h = f_\a(x) \cdot h
+    }
+    so that $x_0 \in f_\a(x)H = yH$.
+    Then, since $yH = h_\a(xH)$ and $xH \in \cH$, we have that $yH \in h_\a(\cH)$.
+    As we also have $x_0 \in yH$, it follows that $x_0 \in \bigcup h_\a(\cH)$.
+    This shows that $\bigcup h_\a(\cH) \sps f_\a\parens{\bigcup \cH}$ since $x_0$ was arbitrary, which completes the proof that $\bigcup h_\a(\cH) = f_\a\parens{\bigcup \cH}$.
+
+    To return to the main goal, we therefore have that
+    \ali{
+      \text{$\cU$ is open in $G/H$} &\bic \text{$\bigcup \cU$ is open in $G$} & \text{(by the definition of the quotient space)} \\
+      &\bic \text{$f_\a\parens{\bigcup \cU} = \bigcup h_\a(\cU)$ is open in $G$} & \text{(since $f_\a$ is a homeomorphism)} \\
+      &\bic \text{$h_\a(\cU)$ is open in $G/H$} \,, & \text{(by the definition of the quotient space)}
+    }
+    noting that $f_\a$ was shown to be a homeomorphism in Exercise~\secl.4.
+    This shows that $h_\a$ is a homeomorphism as desired.
+
+    Lastly, to show that $G/H$ is homogeneous, consider two cosets $xH,yH \in G/H$.
+    We know from what was shown in Exercise~\secl.4 that there is an $f_\a$ such that $y = f_\a(x)$.
+    If $h_\a$ is the homeomorphism on $G/H$ induced by $f_\a$ as defined above then we have $h_\a(xH) = f_\a(x)H = yH$.
+    This suffices to show that $G/H$ is homogeneous since $xH$ and $yH$ were arbitrary.
+  }
+
+  (b)
+  \qproof{
+    Define the single-point subset $\cH_0 = \braces{H}$ of $G/H$, noting that we showed above why $H \in G/H$.
+    We have that $\cH_0$ is closed in $G/H$ since we know that $\ivp(\cH_0) = \bigcup \cH_0 = H$ is closed in $G$, which follows from the alternative definition of a quotient map.
+    Now consider any arbitrary one-point subset $\cH = \braces{xH} \ss G/H$.
+    Since it was shown in part~(a) that $G/H$ is a homogeneous space, there is a homeomorphism $h_\a : G/H \to G/H$ that maps $H$ to $xH$.
+    Then we clearly have that $h_\a(\cH_0) = h_\a(\braces{H}) = \braces{xH} = \cH$.
+    Since $\cH_0$ is closed in $G/H$ and $h_\a$ is a homeomorphism, it follows that $h_\a(\cH_0) = \cH$ is also closed in $G/H$.
+    This shows the desired result since $\cH$ was an arbitrary single-point subset.
+  }
+
+  (c)
+  \qproof{
+    Let $g_\a : G \to G$ be the function defined by $g_\a(x) = x \cdot \a$ for $\a,x \in G$, which we know is a homeomorphism for any $\a \in G$ by Exercise~\secl.4.
+    Consider any open set $U$ of $G$.
+
+    We first show that $\ivp(p(U)) = \bigcup_{h \in H} g_h(U)$.
+
+    $(\ss)$
+    Consider arbitrary $x \in \ivp(p(U))$ so that $p(x) \in p(U)$.
+    Of course $p(x) = xH$ so that $xH \in p(U)$ so that there is a $y \in U$ where $xH = p(y) = yH$.
+    From this it follows that $x \in yH$ so that $x = y \cdot h_0$ for some $h_0 \in H$, and so $x = g_{h_0}(y)$.
+    Since $y \in U$ we have that $x \in g_{h_0}(U)$, and thus of course $x \in \bigcup_{h \in H} g_h(U)$ since $h_0 \in H$.
+    This shows that $\ivp(p(U)) \ss \bigcup_{h \in H} g_h(U)$ since $x$ was arbitrary.
+
+    $(\sps)$
+    Now consider $x \in \bigcup_{h \in H} g_h(U)$ so that there is an $h_0 \in H$ where $x \in g_{h_0}(U)$.
+    Hence $x = g_{h_0}(y)$ for some $y \in U$, and so $x = y \cdot h_0$.
+    This shows that $x \in yH$ since $h_0 \in H$, and thus it must be that $xH = yH$.
+    However, we have that $xH = yH = p(y)$ and $y \in U$ so that $xH \in p(U)$.
+    Moreover $xH = p(x)$ so that $p(x) \in p(U)$ and hence $x \in \ivp(p(U))$.
+    This shows that $\ivp(p(U)) \sps \bigcup_{h \in H} g_h(U)$, which shows the desired result.
+
+    Now, since each $g_h$ is a homeomorphism for $h \in H$ and $U$ is open in $G$, it follows that each $g_h(U)$ also open in $G$.
+    Then of course their union $\bigcup_{h \in H} g_h(U) = \ivp(p(U))$ is open in $G$ by the definition of a topology.
+    Since $\ivp(p(U))$ is open in $G$, it follows that $p(U)$ is open in $G/H$ since $p$ is a quotient map.
+    Then, since $U$ was an arbitrary open set of $G$, this proves that $p$ is an open map.
+  }
+
+  (d)
+  Recall from algebra that $H$ being a normal subgroup of $G$ means that $g h \inv{g} \in H$ for any $h \in H$ and $g \in G$.
+  It is also an equivalent definition of that $xy \in H$ if and only if $yx \in H$ for $x,y \in G$.
+  \qproof{
+    First we need to show that we can define an operation on $G/H$ that makes it into a group.
+    This is done in the expected way: for $xH,yH \in G/H$ define $xH \cdot yH = (x \cdot y) H$.
+    To show that this operation is well-defined, suppose that $x_0H = x_1H$ and $y_0H = y_1H$ are elements of $G/H$.
+    Then of course $x_1 \in x_0H$ so that $x_1 = x_0 \cdot h_x$ for some $h_x \in H$.
+    Similarly $y_1 \in y_0H$ so that $y_1 = y_0 \cdot h_y$ for some $h_y \in H$.
+    Freely utilizing the associativity of the operation of $G$ and suppressing the $\cdot$ by using multiplication notation, we then have that
+    \ali{
+      x_1 y_1 &= (x_0 h_x) (y_0 h_y) \\
+      (x_1 y_1) \inv{y_0} &= (x_0 h_x) (y_0 h_y) \inv{y_0}\\
+      x_1 y_1 \inv{y_0} &= x_0 h_x (y_0 h_y \inv{y_0}) \\
+      x_1 y_1 \inv{y_0} &= x_0 h_x h_1 & \text{(where $h_1 = y_0 h_y \inv{y_0} \in H$ since $H$ is normal)} \\
+      x_1 y_1 \inv{y_0} &= x_0 h_2 & \text{(where $h_2 = h_x h_1 \in H$ since $H$ is a group)} \\
+      x_1 y_1 \inv{y_0} \inv{x_0} &= x_0 h_2 \inv{x_0} \\
+      x_1 y_1 \inv{y_0} \inv{x_0} &= h_3 & \text{(where $h_3 = x_0 h_2 \inv{x_0} \in H$ since $H$ is normal)}
+    }
+    Hence $(x_1 y_1) (\inv{y_0} \inv{x_0}) = x_1 y_1 \inv{y_0} \inv{x_0} \in H$ so that also $(\inv{y_0} \inv{x_0})(x_1 y_1) \in H$ by the equivalent definition of a normal subgroup.
+    Therefore, for some $h \in H$, we have
+    \gath{
+      \inv{y_0} \inv{x_0} x_1 y_1 = (\inv{x_0} \inv{y_0})(x_1 y_1) = h \\
+      \inv{x_0} x_1 y_1 = y_0 h \\
+      x_1 y_1 = x_0 y_0 h \\
+      x_1 y_1 = (x_0 y_0) h
+    }
+    so that $x_1 \cdot y_1 \in (x_0 \cdot y_0) H$, which of course shows that $(x_1 \cdot y_1)H = (x_0 \cdot y_0)H$, and hence the operation on $G/H$ is well-defined.
+
+    Now we show that $G/H$ with this operation satisfies the group axioms.
+    We first note that, for $x,y \in G$, we have $xH,yH \in G/H$ and $x \cdot y \in G$ since $G$ is a group so that $xH \cdot yH = (x \cdot y)H \in G/H$.
+    Hence the operation is closed in $G/H$.
+    Next, clearly $eH = H$ itself is the identity element for $G/H$ since we have $eH \cdot xH = (e \cdot x)H = xH$ and $xH \cdot eH = (x \cdot e)H = xH$ for any $xH \in G/H$.
+    We also have that the inverse element of $xH$ is $\inv{x} H$ since $xH \cdot \inv{x}H = (x \cdot \inv{x})H = eH$ and $\inv{x}H \cdot xH = (\inv{x} \cdot x)H = eH$.
+    Lastly, we have that
+    \ali{
+      (xH \cdot yH) \cdot zH &= (x \cdot y)H \cdot zH = ((x \cdot y) \cdot z)H = (x \cdot (y \cdot z))H \\
+      &= xH \cdot (y \cdot z)H = xH \cdot (yH \cdot zH)
+    }
+    since of course the operation on $G$ is associative.
+    This shows that the operation on $G/H$ is associative as well, which completes the proof that $G/H$ is a group.
+
+    To show that $G/H$ is in fact a topological group, first it was shown in part~(b) that one-point subsets of $G/H$ are closed in $G/H$ since $H$ is closed in $G$.
+    From this is follows that $G/H$ satisfies the $T_1$ axiom since any finite subset of $G/H$ is a finite union of one-point sets and so is also closed in $G/H$.
+
+    At this point we take a short digression and show that if $f: G \times G \to G$ is continuous, then the function $h : G/H \times G/H \to G/H$ defined by $h(xH, yH) = f(x,y)H$ is also continuous.
+    To see this, we first claim that $h \circ (p \times p) = p \circ f$, where the function $p \times p : G \times G \to G/H \times G/H$ is defined as $(p \times p)(x,y) = (p(x),p(y))$ as in Exercise~18.10.
+    This is easy to show as we have
+    \ali{
+      (h \circ (p \times p))(x,y) &= h((p \times p)(x,y)) = h(p(x), p(y)) = h(xH, yH) \\
+      &= f(x,y)H = p(f(x,y)) = (p \circ f)(x,y)
+    }
+    for any $x,y \in G$.
+    Since both $p$ and $f$ are continuous, it follows that $p \circ f = h \circ (p \times p)$ is also continuous by Theorem~18.2 part~(c).
+    We also have that $p \times p$ is an open quotient map by the remarks in the text since $p$ is an open quotient map by part~(c).
+
+    At this point, we use Theorem~22.2 to show that $h$ is continuous.
+    As this can be confusing, we include the following table, which shows how the sets and functions in the statement of Theorem~22.2 map to the sets and functions we are working with:
+    \begin{center}
+      \begin{tabular}{c|c|c}
+        Type & Theorem~22.2 & Ours \\
+        \hline
+        Set & $X$ & $G \times G$ \\
+        Set & $Y$ & $G/H \times G/H$ \\
+        Set & $Z$ & $G/H$ \\
+        Function & $p: X \to Y$ & $p \times p$ \\
+        Function & $g: X \to Z$ & $p \circ f = h \circ (p \times p)$ \\
+        Function & $f: Y \to Z$ & $h$
+      \end{tabular}
+    \end{center}
+    Now we show that the conditions of the theorem are met.
+    We have already shown that $p \times p$ is a quotient map.
+    Now let $P = \braces{(xH, yH)}$ be a one-point subset of $G/H \times G/H$.
+    Since $p \times p$ is a quotient map, it is surjective so that $(p \times p)(\inv{(p \times p)}(P)) = P$ by Exercise~2.1.
+    Then clearly
+    \ali{
+      (p \circ f)(\inv{(p \times p)}(P)) &= (h \circ (p \times p))(\inv{(p \times p)}(P)) \\
+      &= h((p \times p)(\inv{(p \times p)}(P))) = h(P) \\
+      &= \braces{h(xH, yH)} \,,
+    }
+    which shows that $p \circ f$ is constant on the set $\inv{(p \times p)}(P)$.
+    Thus $p \circ f$ induces the function $h$ per Theorem~22.2 since $h \circ (p \times p) = p \circ f$ as shown above.
+    It then follows by the theorem that $h$ is continuous since we have shown above that $p \circ f$ is.
+
+    Returning to the main problem, since $G$ is a topological group the function $f: G \times G \to G$ defined by $f(x,y) = x \cdot \inv{y}$ is continuous by Exercise~\secl.1.
+    It then follows by what was just shown that $h : G/H \times G/H \to G/H$ defined by
+    \gath{
+      h(xH, yH) = xH \cdot \inv{(yH)} = xH \cdot \inv{y}H = (x \cdot \inv{y})H = f(x,y)H
+    }
+    is also continuous.
+    This suffices to show that $G/H$ is also a topological group as desired, again by Exercise~\secl.1.
+  }
+}
+
 % Restore section label to number
 \renewcommand\thesubsection{\arabic{subsection}}
