@@ -599,5 +599,174 @@ Similarly, if $a \in G$, then its inverse element is also unique, and is usually
   }
 }
 
+\exercise{6}{
+  The integers $\ints$ are a normal subgroup of $(\reals,+)$.
+  The quotient $\reals/\ints$ is a familiar topological group; what is it?
+}
+\sol{
+  The quotient $\reals/\ints$ is the reals with addition modulo one.
+  This is to say that two reals $x$ and $y$ are considered equivalent (i.e. they are in the same equivalence class) if $x-y \in \ints$.
+  This is also homeomorphic and isomorphic (with respect to the group) to the topological group $(S^1,\cdot)$ from Exercise~\secl.2 part~(d) by the map $f: \reals/\ints \to S^1$ defined by $f(x\ints) = e^{i 2\pi x}$.
+  We shall not show this rigorously as doing so would be tedious, but it is not difficult to see intuitively.
+}
+
+\exercise{7}{
+  If $A$ and $B$ are subsets of $G$, let $A \cdot B$ denote the set of all points $a \cdot b$ for $a \in A$ and $b \in B$.
+  Let $\inv{A}$ denote the set of all points $\inv{a}$, for $a \in A$.
+  \eparts{
+  \item A neighborhood $V$ of the identity element $e$ is said to be \boldit{symmetric} if $V = \inv{V}$.
+    If $U$ is a neighborhood of $e$, show that there is a symmetric neighborhood $V$ of $e$ such that $V \cdot V \ss U$.
+    [Hint: If $W$ is a neighborhood of $e$, then $W \cdot \inv{W}$ is symmetric.]
+  \item Show that $G$ is Hausdorff.
+    In fact, show that if $x \neq y$, there is a neighborhood $V$ of $e$ such that $V \cdot x$ and $V \cdot y$ are disjoint.
+  \item Show that $G$ satisfies the following separation axiom, which is called the \boldit{regularity axiom}: Given a closed set $A$ and a point $x$ not in $A$, there exist disjoint open sets containing $A$ and $x$, respectively.
+    [Hint: There is a neighborhood $V$ of $e$ such that $V \cdot x$ and $V \cdot A$ are disjoint.]
+  \item Let $H$ be a subgroup of $G$ that is closed in the topology of $G$; let $p: G \to G/H$ be the quotient map.
+    Show that $G/H$ satisfies the regularity axiom.
+    [Hint: Examine the proof of (c) when $A$ is saturated.]
+  }
+}
+\sol{
+  \begin{lem} \label{lem:setg:contf}
+    Suppose that $X$ and $Y$ are topological spaces and $f: X \times X \to Y$ is continuous.
+    Also suppose that $f(x, x) = y$ for some $x \in X$ and $y \in Y$.
+    Then, for any neighborhood $V$ of $y$, there is a neighborhood $U$ of $x$ such that $f(U \times U) \ss V$.
+  \end{lem}
+  \qproof{
+    Let $V$ be any neighborhood of $y = f(x,x)$ in $Y$.
+    Then there is a neighborhood $U'$ of $(x,x)$ in $X \times X$ such that $f(U') \ss V$ by Theorem~18.1 part~(4).
+    Now, since $U'$ is an open set of $X \times X$ containing $(x,x)$, there is a basis element $B = U_1 \times U_2$ of $X \times X$ such that $(x,x) \in U_1 \times U_2 = B \ss U'$, where of course $U_1$ and $U_2$ are open in $X$.
+    Then, being a finite intersection of open sets, $U = U_1 \cap U_2$ is also open in $X$ and we have $x \in U$ since $x \in U_1$ and $x \in U_2$.
+    Hence $U$ is a neighborhood of $x$ in $X$, and of course both $U \ss U_1$ and $U \ss U_2$.
+
+    Now consider any $z \in f(U \times U)$ so that there is an $(x_1,x_2) \in U \times U$ where $f(x_1,x_2) = z$.
+    Then $x_1 \in U \ss U_1$ and $x_2 \in U \ss U_2$ so that $(x_1,x_2) \in U_1 \times U_2 = B \ss U'$.
+    Hence $z = f(x_1,x_2) \in f(U')$ so that also $z \in V$ since $f(U') \ss V$.
+    This shows the desired result that $f(U \times U) \ss V$ since $z$ was arbitrary.
+  }
+
+  \begin{lem} \label{lem:setg:mulinv}
+    $\inv{(x \cdot y)} = \inv{y} \cdot \inv{x}$ for any $x$ and $y$ in a group.
+  \end{lem}
+  \qproof{
+    Let $e$ be the identity element of the group.
+    Then we have
+    \ali{
+      \inv{(x \cdot y)} \cdot (x \cdot y) &= e & \text{(definition of the inverse)} \\
+      \parens{\inv{(x \cdot y)} \cdot x} \cdot y &= e & \text{(associativity of the operation)} \\
+      \inv{(x \cdot y)} \cdot x &= e \cdot \inv{y} \\
+      \inv{(x \cdot y)} \cdot x &= \inv{y} & \text{(definition of the identity element)} \\
+      \inv{(x \cdot y)} &= \inv{y} \cdot \inv{x} \,,
+    }
+    which shows the desired result.
+  }
+
+  \begin{lem} \label{lem:setg:topen}
+    If $G$ is a topological group and $U$ is an open set of $G$ then the sets $\a \cdot U$ and $U \cdot \a$ are also open in $G$ for any $\a \in G$.
+  \end{lem}
+  \qproof{
+    For $\a \in G$, of course $\a \cdot U$ denotes the set $\braces{\a \cdot x \where x \in U}$, and analogously $U \cdot \a = \braces{x \cdot \a \where x \in U}$.
+    The openness of $\a \cdot U$ and $U \cdot \a$ follow almost immediately from what was shown in Exercise~\secl.4.
+    It is trivial to show that $\a \cdot U = f_\a(U)$, where $f_\a : G \to G$ is defined by $f_\a(x) = \a \cdot x$ as in Exercise~\secl.4.
+    We know from that exercise that $f_\a$ is a homeomorphism so that $\a \cdot U = f_\a(U)$ is open since $U$ is.
+    Analogously $U \cdot \a = g_\a(U)$ is also open for the same reason, where $g_\a(x) = x \cdot \a$ as in the exercise.
+  }
+  
+  \begin{lem} \label{lem:setg:sym}
+    If $G$ is a topological group with identity element $e$ and $U$ is a neighborhood of $e$, then $U \cdot \inv{U}$ is a symmetric neighborhood of $e$.
+  \end{lem}
+  \qproof{
+    First we show that $U \cdot \inv{U}$ is indeed a neighborhood of $e$.
+    We claim that
+    \gath{
+      U \cdot \inv{U} = \bigcup_{\a \in \inv{U}} (U \cdot \a) \,,
+    }
+    We have
+    \ali{
+      x \in U \cdot \inv{U} &\bic \exists y \in U \exists \a \in \inv{U} \parens{x = y \cdot \a} \\
+      &\bic \exists \a \in \inv{U} \exists y \in U \parens{x = y \cdot \a} \\
+      &\bic \exists \a \in \inv{U} \parens{x \in U \cdot \a} \\
+      &\bic x \in \bigcup_{\a \in \inv{U}} (U \cdot \a) \,
+    }
+    which of course shows the desired result.
+    Now, we know from Lemma~\ref{lem:setg:topen} that each $U \cdot \a$ is open since $U$ is open (being a neighborhood of $e$).
+    Hence their union is open by the definition of a topology, which shows that $U \cdot \inv{U}$ is in fact open.
+    Also, since $e \in U$ and $\inv{e} = e$ (a well-known property of the identity element in any group), we clearly have that $e = e \cdot e = e \cdot \inv{e} \in U \cdot \inv{U}$ and therefore $U \cdot \inv{U}$ is a neighborhood of $e$.
+
+    To show that $U \cdot \inv{U}$ is symmetric, we have
+    \ali{
+      z \in \inv{(U \cdot \inv{U})} &\bic \exists x \in U \exists y \in U \parens{z = \inv{(x \cdot \inv{y})}} \\
+      &\bic \exists x \in U \exists y \in U \parens{z = \inv{(\inv{y})} \cdot \inv{x}} & \text{(by Lemma~\ref{lem:setg:mulinv})} \\
+      &\bic \exists x \in U \exists y \in U \parens{z = y \cdot \inv{x}} \\
+      &\bic \exists y \in U \exists x \in U \parens{z = y \cdot \inv{x}} \\
+      &\bic z \in U \cdot \inv{U} \,,
+    }
+    which shows that $\inv{(U \cdot \inv{U})} = U \cdot \inv{U}$ so that $U \cdot \inv{U}$ is symmetric by definition.
+  }
+
+  \mainprob
+
+  (a)
+  \qproof{
+    Suppose that $U$ is any neighborhood of $e$.
+    Since $G$ is a topological group, we know that the function $f: G \times G \to G$ defined by $f(x,y) = x \cdot y$ is continuous.
+    Then, since $f(e,e) = e \cdot e = e$, it follows from Lemma~\ref{lem:setg:contf} that there is a neighborhood $V'$ of $e$ such that $f(V' \times V') \ss U$.
+    Now we claim that $f(V' \times V') = V' \cdot V'$.
+    For any $z \in f(V' \times V')$ we have that there is an $(x,y) \in V' \times V$ where $f(x,y) = x \cdot y = z$.
+    Since $x,y \in V'$ and $z = x \cdot y$, this shows that $z \in V' \cdot V'$ so that $f(V' \times V') \ss V' \cdot V'$.
+    To show the other direction, for any $z \in V' \cdot V'$ we have that $z = x \cdot y$ for some $x,y \in V'$.
+    Then $(x,y) \in V' \times V'$ and $z = x \cdot y = f(x,y)$ so that $z \in f(V' \times V')$, which shows that $f(V' \times V') \sps V' \cdot V'$.
+    This shows the desired result that $V' \cdot V' = f(V' \times V') \ss U$.
+    
+    Similarly the function $g: G \times G \to G$ defined by $g(x,y) = x \cdot \inv{y}$ is also continuous by Exercise~\secl.1 since $G$ is a topological group.
+    Then, since $V'$ is a neighborhood of $e$ and $g(e,e) = e \cdot \inv{e} = e \cdot e = e$, it follows again from Lemma~\ref{lem:setg:contf} that there is a neighborhood $W$ of $e$ such that $g(W \times W) \ss V'$.
+    We have that $W \cdot \inv{W} = g(W \times W)$ by an argument analogous to that for $f$ above so that $W \cdot \inv{W} = g(W \times W) \ss V'$.
+    Let $V = W \cdot \inv{W} \ss V'$, which we know is a symmetric neighborhood of $e$ by Lemma~\ref{lem:setg:sym} and is the neighborhood we seek.
+
+    So consider any $z \in V \cdot V$ so that $z = x \cdot y$ for some $x,y \in V$.
+    Then also $x,y \in V'$ since $V \ss V'$.
+    From this it follows that $z = x \cdot y \in V' \cdot V'$ so that also $z \in U$ since $V' \cdot V' \ss U$.
+    This shows the desired result that $V \cdot V \ss U$ since $z$ was arbitrary, which completes the overall proof.
+  }
+
+  (b)
+  \qproof{
+    Suppose that $x,y \in G$ and that $x \neq y$.
+    Then there are neighborhoods $U_x'$ of $x$ and $U_y'$ of $y$ such that $y \notin U_x'$ and $x \notin U_y'$.
+    This follows from Exercise~17.15 since $G$ satisfies the $T_1$ axiom on account of it being a topological group.
+    Then $U_x = U_x' \cdot \inv{x}$ and $U_y = U_y' \cdot \inv{y}$ are both neighborhoods of $e$ since they are open by Lemma~\ref{lem:setg:topen} and we have that $e = x \cdot \inv{x} \in U_x' \cdot \inv{x} = U_x$ since $x \in U_x'$, and analogously $e = y \cdot \inv{y} \in U_y' \cdot \inv{y} = U_y$ since $y \in U_y'$.
+    Note that we also have that
+    \ali{
+      z \in U_y \cdot y &\bic z \in (U_y' \cdot \inv{y}) \cdot y \\
+      &\bic \exists y' \in U_y' (z = (y' \cdot \inv{y}) \cdot y) \\
+      &\bic \exists y' \in U_y' (z = y' \cdot (\inv{y} \cdot y)) \\
+      &\bic  \exists y' \in U_y' (z = y' \cdot e) \\
+      &\bic  \exists y' \in U_y' (z = y') \\
+      &\bic z \in U_y'
+    }
+    so that clearly $U_y \cdot y = U_y'$.
+
+    Now, let $U = U_x \cap U_y$, which is also obviously a neighborhood of $e$.
+    It then follows from part~(a) that there is a symmetric neighborhood $V$ of $e$ such that $V \cdot V \ss U$.
+    Suppose that $V \cdot x$ and $V \cdot y$ are not disjoint so that there is a $z \in V \cdot x$ where also $z \in V \cdot y$.
+    Then we have that $z = v_x \cdot x = v_y \cdot y$ for some $v_x,v_y \in V$.
+    It then follows that $x = (\inv{v_x} \cdot v_y) \cdot y$ and, since $\inv{v_x} \in \inv{V} = V$ as $V$ is symmetric, we have $\inv{v_x} \cdot v_y \in V \cdot V \ss U \ss U_y$.
+    Thus $x = (\inv{v_x} \cdot v_y) \cdot y \in U_y \cdot y = U_y'$, but we know that $x$ cannot be in $U_y'$ by its definition per the $T_1$ axiom!
+    This contradiction means that it must be that $V \cdot x$ and $V \cdot y$ are disjoint, which shows the desired result.
+
+    From this the fact that $G$ is Hausdorff readily follows.
+    Clearly $V \cdot x$ is a neighborhood of $x$ since it is open by Lemma~\ref{lem:setg:topen} and we have $x = e \cdot x \in V \cdot x$.
+    Similarly $V \cdot y$ is a neighborhood of $y$.
+    As we have shown that these are disjoint, this suffices to show that $G$ is a Hausdorff space.
+  }
+
+  \iffalse
+  (c)
+  \qproof{
+    TODO
+  }
+  \fi
+}
+
 % Restore section label to number
 \renewcommand\thesubsection{\arabic{subsection}}
