@@ -663,13 +663,15 @@ Similarly, if $a \in G$, then its inverse element is also unique, and is usually
 
   \begin{lem} \label{lem:setg:topen}
     If $G$ is a topological group and $U$ is an open set of $G$ then the sets $\a \cdot U$ and $U \cdot \a$ are also open in $G$ for any $\a \in G$.
+    Similarly, if $C$ is a closed set of $G$ then $\a \cdot C$ and $C \cdot \a$ are also closed.
   \end{lem}
   \qproof{
     For $\a \in G$, of course $\a \cdot U$ denotes the set $\braces{\a \cdot x \where x \in U}$, and analogously $U \cdot \a = \braces{x \cdot \a \where x \in U}$.
     The openness of $\a \cdot U$ and $U \cdot \a$ follow almost immediately from what was shown in Exercise~\secl.4.
     It is trivial to show that $\a \cdot U = f_\a(U)$, where $f_\a : G \to G$ is defined by $f_\a(x) = \a \cdot x$ as in Exercise~\secl.4.
     We know from that exercise that $f_\a$ is a homeomorphism so that $\a \cdot U = f_\a(U)$ is open since $U$ is.
-    Analogously $U \cdot \a = g_\a(U)$ is also open for the same reason, where $g_\a(x) = x \cdot \a$ as in the exercise.
+    Analogously $U \cdot \a = g_\a(U)$ is also open for the same reason, where $g_\a(x) = x \cdot \a$ as in Exercise~\secl.4.
+    If $C$ is a closed set of $G$ then $\a \cdot C = f_\a(C)$ and $C \cdot \a = g_\a(C)$ are also closed since the homeomorphisms $f_\a$ and $g_\a$ also of course preserve closed sets.
   }
   
   \begin{lem} \label{lem:setg:sym}
@@ -760,12 +762,69 @@ Similarly, if $a \in G$, then its inverse element is also unique, and is usually
     As we have shown that these are disjoint, this suffices to show that $G$ is a Hausdorff space.
   }
 
-  \iffalse
   (c)
   \qproof{
-    TODO
+    A proof of this is similar to the proof of part~(b).
+    Since $A$ is closed, we know that $A \cdot \inv{x}$ is also closed by Lemma~\ref{lem:setg:topen}.
+    Then $G - A \cdot \inv{x}$ is of course open.
+    Moreover if $e$ were in $A \cdot \inv{x}$ then we would have $e = a \cdot \inv{x}$ for some $a \in A$ so that $a = e \cdot x = x$, which is not possible since we know that $x \notin A$.
+    So it must be that $e \notin A \cdot \inv{x}$ so that $e \in G - A \cdot \inv{x}$ since of course $e \in G$.
+    Hence $G - A \cdot \inv{x}$ is a neighborhood of $e$, and thus there is a symmetric neighborhood $V$ of $e$ such that $V \cdot V \ss G - A \cdot \inv{x}$ by what was shown in part~(a).
+
+    We claim that $V \cdot A$ and $V \cdot x$ are disjoint.
+    To see this, suppose to the contrary that there is a $y \in V \cdot A$ where also $y \in V \cdot x$.
+    Then $y = v_a \cdot a = v_x \cdot x$ for some $v_a,v_x \in V$ and $a \in A$.
+    Then we have
+    \gath{
+      v_x \cdot x = v_a \cdot a \\
+      \inv{v_a} \cdot v_x \cdot x = a \\
+      \inv{v_a} \cdot v_x = a \cdot \inv{x} \,.
+    }
+    Since $V$ is symmetric we have that $\inv{v_a} \in \inv{V} = V$ so that $\inv{v_a} \cdot v_x \in V \cdot V \ss G - A \cdot \inv{x}$ and hence $\inv{v_a} \cdot v_x \notin A \cdot \inv{x}$.
+    However, clearly $\inv{v_a} \cdot v_x = a \cdot \inv{x}$ so that $\inv{v_a} \cdot v_x \in A \cdot \inv{x}$ since $a \in A$.
+    This contradiction can only mean that in fact $V \cdot A$ and $V \cdot x$ are disjoint.
+
+    Now, for any $a \in A$, we have that $a = e \cdot a \in V \cdot A$ since $e \in V$, which shows that $A$ is contained in $V \cdot A$.
+    Similar to what was done in the beginning of the proof of Lemma~\ref{lem:setg:sym}, it is easy to show that
+    \gath{
+      V \cdot A = \bigcup_{a \in A} V \cdot a \,,
+    }
+    which is open since each $V \cdot a$ is open by Lemma~\ref{lem:setg:topen}.
+    Thus $V \cdot A$ is an open set containing $A$.
+    We also have that $V \cdot x$ is a neighborhood of $x$ since it is open by Lemma~\ref{lem:setg:topen} and $x = e \cdot x \in V \cdot x$ since $e \in V$.
+    Since we have already shown that $V \cdot A$ and $V \cdot x$ are disjoint, this shows the desired result that $G$ satisfies the regularity axiom.
   }
-  \fi
+
+  (d)
+  \qproof{
+    Suppose that $A$ is a closed subset of $G/H$ and $xH$ is an element of $G/H$ not contained in $A$.
+    Then $\ivp(A)$ is a closed subset of $G$ since $p$ is a quotient map.
+    Moreover $\ivp(A)$ cannot contain $x$ for, if it did, then we would have $xH = p(x) \in A$.
+    So let $V$ be a symmetric neighborhood of $e$ such that $V \cdot \ivp(A)$ and $V \cdot x$ are disjoint, as shown to exist in part~(c).
+
+    It was also shown in part~(c) that $V \cdot \ivp(A)$ is an open set in $G$ containing $\ivp(A)$ and $V \cdot x$ is a neighborhood of $x$ in $G$.
+    So, for any $yH \in A$ we have that $p(y) = yH \in A$ so that $y \in \ivp(A)$ and hence also $y \in V \cdot \ivp(A)$.
+    Then of course $yH = p(y) \in p(V \cdot \ivp(A))$, which shows that $A \ss p(V \cdot \ivp(A))$ since $yH$ was arbitrary.
+    We also have that $p(V \cdot \ivp(A))$ is open in $G/H$ since $V \cdot \ivp(A)$ is open in $G$ and $p$ is an open map by Exercise~\secl.5 part~(c).
+    Similarly, since $x \in V \cdot x$, we have that $xH = p(x) \in p(V \cdot x)$ and $p(V \cdot x)$ is open in $G/H$ since $p$ is an open map.
+    Thus $p(V \cdot x)$ is a neighborhood of $xH$ in $G/H$.
+
+    Now we show that $p(V \cdot \ivp(A))$ and $p(V \cdot x)$ are disjoint subsets of $G/H$.
+    Suppose to the contrary that they are not so that there is a $zH \in p(V \cdot \ivp(A))$ where also $zH \in p(V \cdot x)$.
+    Then we have that there is a $y_a \in V \cdot \ivp(A)$ where $z = p(y_a)$ and likewise a $y_x \in V \cdot x$ where $z = p(y_x)$.
+    Thus $y_a H = p(y_a) = z = p(y_x) = y_x H$ so that $y_x \in y_a H$, and hence there is an $h \in H$ where $y_x = y_a \cdot h$.
+    Also since $y_a \in V \cdot \ivp(A)$ we have $y_a = v_a \cdot a'$ for some $v_a \in V$ and $a' \in \ivp(A)$.
+    Putting this together we have
+    \gath{
+      y_x = y_a \cdot h = v_a \cdot a' \cdot h \,.
+    }
+    Since $a' \in \ivp(A)$ we have that $a'H = p(a') \in A$.
+    Also clearly $a' \cdot h \in a'H$ since $h \in H$.
+    Therefore $a' \cdot h \in \bigcup A = \ivp(A)$.
+    Hence we have that $y_x = v_a \cdot (a' \cdot h) \in V \cdot \ivp(A)$.
+    Since also $y_x \in V \cdot x$, this violates the fact that $V \cdot \ivp(A)$ and $V \cdot x$ are disjoint.
+    This contradiction means that it must be that in fact $p(V \cdot \ivp(A))$ and $p(V \cdot x)$ are disjoint, which completes the proof that $G/H$ satisfies the regularity axiom.
+  }
 }
 
 % Restore section label to number
