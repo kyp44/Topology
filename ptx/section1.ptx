@@ -3714,7 +3714,7 @@ thick,
           </li>
           <li>
             <p>
-              The set $B_n$ of all functions $f: \braces{1, <ellipsis />, n} \to {\ints_+}$.
+              The set $B_n$ of all functions $f: \braces{1, <ellipsis/>, n} \to {\ints_+}$.
             </p>
           </li>
           <li>
@@ -3899,7 +3899,7 @@ thick,
           </p>
         </proof>
         <p>
-          (b) The set $B_n$ of all functions $f: \braces{1, <ellipsis />, n} \to {\ints_+}$.
+          (b) The set $B_n$ of all functions $f: \braces{1, <ellipsis/>, n} \to {\ints_+}$.
         </p>
         <proof>
           <p>
@@ -4240,7 +4240,7 @@ thick,
           </li>
           <li>
             <p>
-              The set $B_n$ of all functions $f: \braces{1, <ellipsis />, n} \to {\ints_+}$.
+              The set $B_n$ of all functions $f: \braces{1, <ellipsis/>, n} \to {\ints_+}$.
             </p>
           </li>
           <li>
@@ -4332,7 +4332,7 @@ thick,
           </p>
         </proof>
         <p>
-          (b) The set $B_n$ of all functions $f: \braces{1, <ellipsis />, n} \to {\ints_+}$.
+          (b) The set $B_n$ of all functions $f: \braces{1, <ellipsis/>, n} \to {\ints_+}$.
         </p>
         <proof>
           <p>
@@ -6806,7 +6806,7 @@ thick,
             </li>
             <li>
               <p>
-                The set $B_n$ of all functions $f: \braces{1, <ellipsis />, n} \to {\ints_+}$.
+                The set $B_n$ of all functions $f: \braces{1, <ellipsis/>, n} \to {\ints_+}$.
               </p>
             </li>
             <li>
@@ -6874,7 +6874,7 @@ thick,
           </p>
         </proof>
         <p>
-          (b) The set $B_n$ of all functions $f: \braces{1, <ellipsis />, n} \to {\ints_+}$.
+          (b) The set $B_n$ of all functions $f: \braces{1, <ellipsis/>, n} \to {\ints_+}$.
         </p>
         <proof>
           <p>
@@ -8427,7 +8427,7 @@ thick,
             </li>
             <li>
               <p>
-                The set $B_n$ of all functions $f: \braces{1, <ellipsis />, n} \to {\ints_+}$.
+                The set $B_n$ of all functions $f: \braces{1, <ellipsis/>, n} \to {\ints_+}$.
               </p>
             </li>
             <li>
@@ -8495,7 +8495,7 @@ thick,
           </p>
         </proof>
         <p>
-          (b) The set $B_n$ of all functions $f: \braces{1, <ellipsis />, n} \to {\ints_+}$.
+          (b) The set $B_n$ of all functions $f: \braces{1, <ellipsis/>, n} \to {\ints_+}$.
         </p>
         <p>
           We claim that <m>B_n</m>

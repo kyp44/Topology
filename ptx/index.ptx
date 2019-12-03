@@ -288,11 +288,11 @@ domain=-5:5,
       <titlepage>
       </titlepage>
     </frontmatter>
-    <xi:include href="./section1x.ptx" />
-    <xi:include href="./section1.ptx" />
-    <xi:include href="./section2.ptx" />
+    <xi:include href="./section1x.ptx"/>
+    <xi:include href="./section1.ptx"/>
+    <xi:include href="./section2.ptx"/>
     <backmatter>
-      <xi:include href="./bibliography.ptx" />
+      <xi:include href="./bibliography.ptx"/>
     </backmatter>
   </article>
 </pretext>
