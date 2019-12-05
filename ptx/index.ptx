@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pretext xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en-US">
+  <docinfo>
+<macros>
+\def\ints{{\mathbb{Z}}}
+\def\pints{{\ints_+}}
+\def\nints{{\ints_-}}
+\def\liclink{http://creativecommons.org/licenses/by-nc-sa/4.0/}
+\def\rats{{\mathbb{Q}}}
+\newcommand{\peq}[1]{y_{#1} - x_{#1}^2}
+\def\reals{{\mathbb{R}}}
+\newcommand{\oline}[2]{
+\draw[thick,-] (#1) -- (#2);
+\filldraw[fill=white] (#1) circle (0.15);
+\filldraw[fill=white] (#2) circle (0.15);
+}
+\def\realsnz{\reals - \braces{0}}
+\newcommand{\appt}[1]{a_{#1} \times b_{#1}}
+\def\realsp{\reals_+}
+\def\srt{\sqrt{1+4y^2}}
+\def\preals{{\reals_+}}
+\def\pintss{\pints \times \pints}
+\def\cpx{\mathbb{C}}
+\def\rinf{\reals^\infty}
+\def\multcom{since multiplication is commutative}
+\def\es{\varnothing}
+\def\multass{since multiplication is associative}
+\newcommand{\intsfin}[1]{\braces{1, \ldots, #1}}
+\def\parta{If $x + y = x$, then $y = 0$.}
+\newcommand{\cpfin}[2]{#1_1 \times \cdots \times #1_{#2}}
+\def\partb{$0 \cdot x = 0$. \begin{hint}Compute $(x+0) \cdot x$.\end{hint}}
+\def\realsl{\reals_\ell}
+\def\partc{$-0 = 0$.}
+\def\vphi{\varphi}
+\def\partd{$-(-x) = x$.}
+\def\a{\alpha}
+\def\parte{$x(-y) = -(xy) = (-x)y$.}
+\def\b{\beta}
+\def\partf{$(-1)x = -x$.}
+\def\g{\gamma}
+\def\partg{$x(y-z) = xy - xz$.}
+\def\D{\Delta}
+\def\parth{$-(x+y) = -x - y$; $-(x-y) = -x + y$.}
+\def\d{\delta}
+\def\parti{If $x \neq 0$ and $x \cdot y = x$, then $y = 1$.}
+\def\e{\epsilon}
+\def\partj{$x/x = 1$ if $x \neq 0$.}
+\def\z{\zeta}
+\def\partk{$x/1 = x$.}
+\def\k{\kappa}
+\def\partl{$x \neq 0$ and $y \neq 0 \imp xy \neq 0$.}
+\def\l{\lambda}
+\def\partm{$(1/y)(1/z) = 1/(yz)$ if $y,z \neq 0$.}
+\def\n{\nu}
+\def\partn{$(x/y)(w/z) = (xw)/(yz)$ if $y,z \neq 0$.}
+\def\r{\rho}
+\def\parto{$(x/y) + (w/z) = (xz + wy)/(yz)$ if $y,z \neq 0$.}
+\def\s{\sigma}
+\def\partp{$x \neq 0 \imp 1/x \neq 0$.}
+\def\t{\tau}
+\def\partq{$1/(w/z) = z/w$ if $w,z \neq 0$.}
+\def\th{\theta}
+\def\partr{$(x/y)/(w/z) = (xz)/(yw)$ if $y,w,z \neq 0$.}
+\def\x{\xi}
+\def\parts{$(ax)/y = a(x/y)$ if $y \neq 0$.}
+\def\w{\omega}
+\def\partt{$(-x)/y = x/(-y) = -(x/y)$ if $y \neq 0$.}
+\def\W{\Omega}
+\def\xr{\frac{1}{x}}
+\def\ivf{\inv{f}}
+\def\yr{\frac{1}{y}}
+\def\ivg{\inv{g}}
+\def\zr{\frac{1}{z}}
+\def\cA{\col{A}}
+\def\yzr{\frac{1}{yz}}
+\def\cB{\col{B}}
+\def\parta{$x > y$ and $w > z \imp x+w > y+z$.}
+\def\cC{\col{C}}
+\def\partb{$x > 0$ and $y > 0 \imp x+y>0$ and $x \cdot y > 0$.}
+\def\cH{\col{H}}
+\def\partc{$x > 0 \bic -x \lt  0$.}
+\def\cS{\col{S}}
+\def\partd{$x > y \bic -x \lt  -y$.}
+\def\cT{\col{T}}
+\def\parte{$x > y$ and $z \lt  0 \imp xz \lt  yz$.}
+\def\cU{\col{U}}
+\def\partf{$x \neq 0 \imp x^2 > 0$, where $x^2 = x \cdot x$.}
+\def\clA{\closure{A}}
+\def\partg{$-1 \lt  0 \lt  1$.}
+\def\clB{\closure{B}}
+\def\parth{$xy > 0 \bic x$ and $y$ are both positive or both negative.}
+\def\clK{\closure{K}}
+\def\parti{$x > 0 \imp 1/x > 0$.}
+\def\clU{\closure{U}}
+\def\partj{$x > y > 0 \imp 1/x \lt  1/y$.}
+\def\bic{\Leftrightarrow}
+\def\partk{$x \lt  y \imp x \lt  (x+y)/2 \lt  y$.}
+\def\where{\mid}
+\def\inds{\mathcal{A}}
+\def\dom{\mathrm{dom}\,}
+\def\intA{\bigcap_{A \in \inds} A}
+\def\ran{\mathrm{ran}\,}
+\def\intB{\bigcap_{B \in \inds} B}
+\def\Int{\mathrm{Int}\,}
+\def\pintsz{\pints \cup \braces{0}}
+\def\Bd{\mathrm{Bd}\,}
+\def\opx{(a_1, b_1)}
+\def\lefts{[}
+\def\opy{(a_2, b_2)}
+\def\rights{]}
+\def\pox{(b_1, a_1)}
+\newcommand{\parens}[1]{\left( #1 \right)}
+\def\poy{(b_2, a_2)}
+\newcommand{\squares}[1]{\left[ #1 \right]}
+\def\parta{If $m \leq n$, find an injective map $f : X^m \to X^n$.}
+\newcommand{\braces}[1]{\left\{ #1 \right\}}
+\def\partb{Find a bijective map $g : X^m \times X^n \to X^{m+n}$.}
+\newcommand{\angles}[1]{\left\langle #1 \right\rangle}
+\def\partc{Find an injective map $h : X^n \to X^\w$.}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\def\partd{Find a bijective map $k : X^n \times X^\w \to X^\w$.}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\def\parte{Find a bijective map $l : X^\w \times X^\w \to X^\w$.}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\def\partf{If $A \ss B$, find an injective map $m : \parens{A^\w}^n \to B^\w$.}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\def\zs{\ints \times \ints}
+\newcommand{\dabs}[1]{\left\| #1 \right\|}
+\def\zps{\pints \times \pints}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\def\vq{\vect{q}}
+\newcommand{\closure}[1]{\overline{#1}}
+\def\parta{The set $A$ of all functions $f: \braces{0,1} \to \pints$.}
+\newcommand{\pset}[1]{\mathcal{P}\left(#1\right)}
+\def\partb{The set $B_n$ of all functions $f: \intsfin{n} \to \pints$.}
+\newcommand{\inv}[1]{#1^{-1}}
+\def\partc{The set $C = \bigcup_{n \in \pints} B_n$.}
+\def\rest{\restriction}
+\def\partd{The set $D$ of all functions $f: \pints \to \pints$.}
+\def\vw{\vect{w}}
+\def\parte{The set $E$ of all functions $f: \pints \to \braces{0,1}$.}
+\def\vx{\vect{x}}
+\def\partf{
+The set $F$ of all functions $f: \pints \to \braces{0,1}$ that are ``eventually zero.''
+[We say that $f$ is \boldit{eventually zero} if there is a positive integer $N$ such that $f(n) = 0$ for all $n \geq N$.]
+}
+\def\vy{\vect{y}}
+\def\partg{The set $G$ of all functions $f: \pints \to \pints$ that are eventually 1.}
+\def\vz{\vect{z}}
+\def\parth{The set $H$ of all functions $f: \pints \to \pints$ that are eventually constant.}
+\def\va{\vect{a}}
+\def\parti{The set $I$ of all two-element subsets of $\pints$.}
+\def\vb{\vect{b}}
+\def\partj{The set $J$ of all finite subsets of $\pints$.}
+\def\vze{\vect{0}}
+\def\css{\mathcal{B}}
+\def\ss{\subset}
+\newcommand{\sumf}[1]{\sum_{k=1}^{#1} b_k}
+\def\nss{\not \ss}
+\newcommand{\prodf}[1]{\prod_{k=1}^{#1} b_k}
+\def\sps{\supset}
+\def\ca{\col{A}}
+\def\pss{\subsetneq}
+\def\cb{\col{B}}
+\def\prece{\preccurlyeq}
+\def\ot{\braces{1,2}}
+\def\condgap{\hspace{1cm}}
+\def\cA{\col{A}}
+\newcommand{\col}[1]{\mathcal{#1}}
+\def\cB{\col{B}}
+\def\eprec{\preceq}
+\def\cC{\col{C}}
+\newcommand{\seqfin}[2]{\parens{#1_1, \ldots, #1_{#2}}}
+\newcommand{\seqinf}[1]{\parens{#1_1, #1_2, \ldots}}
+\def\secl{\thesubsection}
+\def\bd{\bar{d}}
+\def\cF{\col{F}}
+\def\br{\bar{\r}}
+\def\imp{\Rightarrow}
+\def\cTa{\col{T}_\a}
+\def\pmi{\Leftarrow}
+\def\cTb{\col{T}_\b}
+\newcommand{\boldit}[1]{\textbf{\textit{#1}}}
+\def\cTi{\col{T}_\infty}
+\newcommand{\gath}[1]{\begin{gather*} #1 \end{gather*}}
+\def\cTo{\col{T}_1}
+\def\cTt{\col{T}_2}
+\def\cTs{\col{T}_s}
+\def\cTl{\col{T}_l}
+\def\oh{\tfrac{1}{2}}
+\newcommand{\lparts}[2][0]{
+\begin{enumerate}
+#2
+\end{enumerate}
+}
+\def\Rl{$\realsl$}
+\def\mainprob{\textbf{Main Problem.}}
+\def\Ru{$\reals_u$}
+\def\booktitle{
+Topology \\
+Second Edition \\
+by James Munkres
+}
+\def\Rd{$\reals_d$}
+\newcommand{\clop}[1]{[#1)}
+\def\fsize{3cm}
+\newcommand{\opcl}[1]{(#1]}
+\def\tikzgridclr{black!30!white}
+\def\pres{\text{(previous result)}}
+\def\tikzgray{black!30!white}
+\newcommand{\lemref}[1]{\text{(by Lemma~\ref{lem:closedlim:idents}#1)}}
+\def\tikzgrayopac{0.3}
+\def\fg{f \times g}
+\newcommand{\pptp}[1]{(x_{#1}, y_{#1})}
+\def\xy{x \times y}
+\newcommand{\pptt}[1]{x_{#1} \times y_{#1}}
+\def\xyp{x' \times y'}
+\def\wz{w \times z}
+\def\doms{\cpfin{X}{n}}
+\def\rans{(\cpfin{X}{n-1}) \times X_n}
+\def\elltop{$\ell^2$-topology}
+\def\vxb{\overline{\vx}}
+\def\vyb{\overline{\vy}}
+\def\ivfp{\inv{f'}}
+\def\bdi{\bar{d_i}}
+\def\vc{\vect{c}}
+\def\vd{\vect{d}}
+\def\vone{\vect{1}}
+\def\ra{\tfrac{1}{a}}
+\def\rb{\tfrac{1}{b}}
+\def\rx{\tfrac{1}{x}}
+\def\ivp{\inv{p}}
+\newcommand{\ivpss}[1]{\ivp\parens{\braces{#1}}}
+\def\zset{\braces{0}}
+\def\realss{\reals \times \reals}
+\newcommand{\peqa}[1]{x_{#1} + y_{#1}^2}
+\newcommand{\peqb}[1]{x_{#1}^2 + y_{#1}^2}
+\newcommand{\pptz}[1]{#1 \times 0}
+\newcommand{\parab}[1]{
+\addplot[
+black,
+thick,
+domain=-5:5,
+]
+(#1 - x^2, x);
+\node [above right] at (axis cs:#1,0) {$c=#1$};
+}
+\newcommand{\parab}[2]{
+\addplot[
+name path=#2,
+black,
+thick,
+dashed,
+domain=-5:5,
+]
+(#1 - x^2, x);
+}
+\def\secl{\thesubsection}
+\def\gl{\mathrm{GL}}
+\def\adj{\mathrm{adj}}
+\def\clH{\closure{H}}
+\def\fa{f_\a}
+\def\ga{g_\a}
+\def\fia{f_\a'}
+\def\gia{g_\a'}
+</macros>
+<latex-image-preamble>
+\usepackage{tikz}
+\usepackage{tkz-graph}
+\usepackage{tkz-euclide}
+\usetikzlibrary{patterns}
+\usetikzlibrary{positioning}
+\usetikzlibrary{matrix,arrows}
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes}
+\usetikzlibrary{through,intersections,decorations,shadows,fadings}
+\usepackage{pgfplots}
+</latex-image-preamble>
+  </docinfo>
+  <article>
+    <title>\booktitle \\
+    \ \\
+    Solutions Manual \\
+    \ \\
+    \ \\
+    by Dan Whitman</title>
+    <frontmatter>
+      <titlepage>
+      </titlepage>
+    </frontmatter>
+    <xi:include href="./section1x.ptx"/>
+    <xi:include href="./section1.ptx"/>
+    <xi:include href="./section2.ptx"/>
+    <backmatter>
+      <xi:include href="./bibliography.ptx"/>
+    </backmatter>
+  </article>
+</pretext>
