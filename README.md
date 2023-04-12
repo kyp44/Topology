@@ -21,5 +21,5 @@ Miscellaneous
 
 Please submit an issue if you discover any errors in any of the proofs or any typos.
 
-For an up-to-date PDF of the solutions manual and links to other resources for this text head over to [my website](https://kyp4.dyndns-home.com/topology/).
+For an up-to-date PDF of the solutions manual and links to other resources for this text head over to [my website](https://math-study.net/topology/).
 Note that this is still a work in progress.
